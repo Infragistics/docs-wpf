@@ -1,0 +1,117 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-selected-data-items",
+    "tags": ["Editing","How Do I","Selection"],
+    "controlName": ["xamDataGrid"],
+    "guid": "6a05a523-db57-4370-8cca-c9f57f9e2f1a",  
+    "buildFlags": [],
+    "createdOn": "2014-03-21T13:48:21.4937593Z"
+}
+|metadata|
+////
+
+= 選択されたデータ項目での作業 (xamDataGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDataGrid_   の選択された項目にアクセスする方法について説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックは、 _xamDataGrid_ コントロールとコントロールが構成されるさまざまな要素を紹介します。
+
+| link:xamdata-selection-overview.html[選択の概要]
+|このトピックでは、データ プレゼンターのセル、列、およびフィールドの選択について概要を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref380068372,はじめに>>
+* <<_Ref380068382,選択範囲の構成の概要>>
+* <<_Ref380068388,関連コンテンツ>>
+
+[[_Ref380068372]]
+
+== はじめに
+
+=== 選択されたデータ項目の概要
+
+_xamDataGrid_   の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteddataitems.html[SelectedDataItems] プロパティは、現在選択されている項目の配列を設定または取得します。このプロパティにバインド、および MVVM デザイン パターン アプリケーションの作成中に  _xamDataGrid_   選択を操作することができます。
+
+注:
+
+[NOTE]
+====
+`SelectedDataItems` 配列内の項目は、基本データ ソースの実際のデータ項目です。
+====
+
+このプロパティを公開すると、アプリケーションはこのプロパティに双方向 (デフォルトのバインディング モード) でバインドでき、関連付けられた `DataRecords` の選択およびセルやレコードの選択に関する通知ができるようになります。この動作は、以下で説明する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteddataitemsscope.html[SelectedDataItemsScope] プロパティにより決定されます。
+
+また、 _xamDataGrid_   の最後に選択された項目を取得または設定するには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteddataitem.html[SelectedDataItem] プロパティを使用できます。
+
+[[_Ref380068382]]
+== 選択範囲の構成の概要
+
+=== 選択構成の概要表
+
+[options="header", cols="a,a"]
+|====
+|*タスク*|*値*
+
+|ユーザーの選択は、`SelectedDataItems` プロパティに影響を与えません。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteddataitemsscope.html[None] (既定値)
+
+|ユーザーが選択したレコードのみが、`SelectedDataItems` プロパティに含まれます。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteddataitemsscope.html[RecordsOnly]
+
+|ユーザーが選択したレコードまたはセルが`SelectedDataItems` プロパティに含まれています。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+ユーザーがレコード選択とセル選択を切り替えるたびに、前回選択した項目がクリアされ新しい選択が開始されます。 
+
+====
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteddataitemsscope.html[RecordsOrCells]
+
+|====
+
+注:
+
+[NOTE]
+====
+`SelectedDataItemsScope` プロパティの既定値 `None` を変更すると、ユーザーが選択を変更するたびに `SelectedDataItems` プロパティは前述の表に示す動作に基づき、データ項目の新しい配列に設定されます。
+====
+
+[[_Ref380068388]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、フィールドの表示をコントロールで定義および構成する方法を説明します。
+
+|====

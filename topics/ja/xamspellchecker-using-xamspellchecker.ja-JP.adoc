@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamspellchecker-using-xamspellchecker",
+    "controlName": ["xamSpellChecker"],
+    "tags": [],
+    "guid": "{DEB9ECBE-7F7E-4463-A2D3-5A070AB9FF74}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.1203759Z"
+}
+|metadata|
+////
+
+= xamSpellChecker の使用
+
+このセクションは、xamSpellChecker コントロールの重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+link:xamspellchecker-performance-options.html[パフォーマンス オプション]
+
+このトピックは xamSpellChecker のパフォーマンスを向上する方法を説明します。
+
+link:xamspellchecker-spelling-options.html[スペル オプション]
+
+このトピックは、xamSpellChecker コントロールがミススペルをチェックする方法をカスタマイズする方法を説明します。
+
+link:xamspellchecker-how-to-specify-text-to-be-spell-checked.html[テキストをスペルチェックするように指定する方法]
+
+このトピックは、xamSpellChecker コントロールによってスペルをチェックするテキストを識別する方法を示します。
+
+link:xamspellchecker-dictionaries.html[辞書]
+
+このチュートリアルでは、xamSpellChecker コントロールのデフォルトの辞書を変更する方法を示します。

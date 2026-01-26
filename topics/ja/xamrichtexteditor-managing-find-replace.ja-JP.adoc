@@ -1,0 +1,252 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-find-replace",
+    "tags": ["Editing","How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "43045bc5-f8d6-46b1-9cbf-b3033b8181ba",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.5323074Z"
+}
+|metadata|
+////
+
+= 検索 / 置換の管理 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールの検索および置換機能を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref365468739,検索と置換の概要>>
+* <<_Ref365468717,テキスト コンテンツの検索>>
+* <<_Ref365468724,コンテンツの置換>>
+* <<_Ref365468753,関連コンテンツ>>
+
+[[_Ref365468739]]
+== 検索と置換の概要
+
+=== 検索と置換の概要表
+
+_xamRichTextEditor_   ドキュメントは、テキスト コンテンツの検索と置換操作をサポートしています。これらの機能は link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] のメソッドを使用してアクセスできます。検索と置換機能は両方とも、メソッドのオーバーロードを使用して単一または複数のドキュメント間で操作ができます。また、検索と置換機能はどちらも、大文字と小文字の区別およびワイルドカード検索モードをサポートしています。
+
+注:
+
+[NOTE]
+====
+ワイルドカードのサポートは Visual Basic の link:http://msdn.microsoft.com/en-us/library/swf8kaxw.aspx[Like 演算子]で使用されるパターンと同じです。
+====
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|メソッド
+
+|<<_Ref365468717,テキスト コンテンツの検索>>
+|ドキュメントのコンテンツ検索に使用
+|
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~findall.html[FindAll] 
+
+|<<_Ref365468724,テキスト コンテンツの置換>>
+|ドキュメントのコンテンツ置換に使用
+|
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~replaceall.html[ReplaceAll] 
+
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~replacecontents.html[ReplaceContents] 
+
+|====
+
+[[_Ref365468717]]
+
+== テキスト コンテンツの検索
+
+=== 概要
+
+`RichTextDocument` の `FindAll` メソッドを使用して、ドキュメントのコンテンツから特定のテキストを検索できます。メソッドは、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.findresult_members.html[FindResult] 型のオブジェクトを返し、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.findmatch_members.html[FindMatch] 型の一致する値に対し繰り返し使用できます。各 `FindMatch` オブジェクトには、一致する値を使用するドキュメント範囲が含まれます。
+
+=== プロパティ設定
+
+以下の表では、任意の動作と各メソッドのマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|次の引数を提供:
+
+|テキストの検索
+|`FindAll`
+|`span` - ドキュメントの範囲 
+
+`textToFind` - 検索するテキスト 
+
+`error` - ワイルドカード検索モードで `textToFind` ワイルドカードが無効な場合に、操作中に発生するエラーが含まれる文字列のオブジェクト 
+
+`findCriteria` - 大文字と小文字を区別する検索モードまたはワイルドカード検索モードの指定に使用される link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.findcriteria_members.html[FindCriteria] 型のオブジェクト
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコード スニペットは、`FindAll` メソッドを起動して、ドキュメントの全範囲を対象に全検索を繰り返す方法を紹介します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+FindCriteria fc = new FindCriteria();
+fc.CaseSensitive = this.cbCase.IsChecked ?? false;
+fc.Operator =
+    (this.cbWildcard.IsChecked.HasValue && this.cbWildcard.isChecked.Value) ?
+    FindOperator.Wildcard : FindOperator.PlainText;
+DocumentSpan ds = this.xamRichTextEditor1.Document.RootNode.Body.GetDocumentSpan();
+string errorMsg;
+FindResult fr = this.xamRichTextEditor1.Document.FindAll(ds,
+    "text-to-find", out errorMsg, fc);
+if (fr.HasMatch)
+{
+    foreach (FindMatch fm in fr.Matches)
+    {
+        // 各検索一致のドキュメント範囲を取得
+        DocumentSpan span = fm.Span;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim fc As New FindCriteria()
+fc.CaseSensitive = If(Me.cbCase.IsChecked, False)
+fc.[Operator] = _
+    If((Me.cbWildcard.IsChecked.HasValue AndAlso Me.cbWildcard.isChecked.Value), _
+    FindOperator.Wildcard, FindOperator.PlainText)
+Dim ds As DocumentSpan = Me.xamRichTextEditor1.Document.RootNode.Body.GetDocumentSpan()
+Dim errorMsg As String
+Dim fr As FindResult = Me.xamRichTextEditor1.Document.FindAll(ds, "text-to-find", errorMsg, fc)
+If fr.HasMatch Then
+      For Each fm As FindMatch In fr.Matches
+            ' 各検索一致のドキュメント範囲を取得
+            Dim span As DocumentSpan = fm.Span
+      Next
+End If
+----
+
+[[_Ref365468724]]
+== コンテンツの置換
+
+=== 概要
+
+`RichTextDocument` の `ReplaceAll` メソッドを使用して、テキストまたはコンテンツを特定のテキストに置換します。特定のコンテンツを置換するには `ReplaceContents` メソッドを使用します。置換操作は指定されたドキュメント範囲で実行されます。`ReplaceAll` メソッドは、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.replacement_members.html[Replacement] 型の置換項目に対して繰り返し使用される link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.replaceresult_members.html[ReplaceResult] 型のオブジェクトを返します。`Replacement` オブジェクトには、検索一致および置換テキストやコンテンツが含まれています。
+
+=== プロパティ設定
+
+以下の表では、任意の動作と各メソッドのマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|次の引数を提供:
+
+|テキストの置換
+|`ReplaceAll`
+|`span`/`spans` - 置換操作を実行するドキュメント範囲 
+
+`textToFind` - 検索に使用されるテキスト 
+
+`replacementText`/`replacementContent` - テキストの置換に使用される文字列または link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase_members.html[NodeBase] 値 
+
+`error` - 操作中に発生したエラーを含む文字列のオブジェクト 
+
+`findCriteria` - 大文字と小文字を区別する検索モードまたはワイルドカード検索モードの指定に使用される `FindCriteria` 型のオブジェクト
+
+|コンテンツの置換
+|`ReplaceContent`
+|`span` - 置換操作を実行するドキュメント範囲 
+
+`newText`/`contentNode` - 指定されたコンテンツの置換に使用される文字列または `NodeBase` 値 
+
+`error` - 操作中に発生したエラーを含む文字列のオブジェクト 
+
+`breakParagraphBeforeContent` - true に設定すると、新規コンテンツの前に新しい段落を挿入します。 
+
+`breakParagraphAfterContent` - true に設定すると、新規コンテンツの後ろに新しい段落を挿入します。
+
+|====
+
+=== 例
+
+以下のコード スニペットは、`ReplaceAll` メソッドを起動して、ドキュメントの全範囲のテキスト コンテンツを置換する方法を紹介します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+FindCriteria fc = new FindCriteria();
+fc.CaseSensitive = this.cbCase.IsChecked ?? false;
+fc.Operator =
+    (this.cbWildcard.IsChecked.HasValue && this.cbWildcard.isChecked.Value) ?
+    FindOperator.Wildcard : FindOperator.PlainText;
+DocumentSpan ds = this.xamRichTextEditor1.Document.RootNode.Body.GetDocumentSpan();
+string errorMsg;
+this.xamRichTextEditor1.Document.ReplaceAll(ds,
+    "old-text", "new-text", out errorMsg, fc);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim fc As New FindCriteria()
+fc.CaseSensitive = If(Me.cbCase.IsChecked, False)
+fc.[Operator] = _
+    If((Me.cbWildcard.IsChecked.HasValue AndAlso Me.cbWildcard.isChecked.Value), _
+    FindOperator.Wildcard, FindOperator.PlainText)
+Dim ds As DocumentSpan = Me.xamRichTextEditor1.Document.RootNode.Body.GetDocumentSpan()
+Dim errorMsg As String
+Me.xamRichTextEditor1.Document.ReplaceAll(ds, "old-text", "new-text", errorMsg, fc)
+----
+
+[[_Ref365468753]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-clipboard.html[クリップボードの管理]
+|このトピックは、 _xamRichTextEditor_ コントロールのクリップボードの操作について、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-selection.html[選択の管理]
+|このトピックは、 _xamRichTextEditor_ コントロールの選択機能を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-undo-redo.html[元に戻す / やり直しの管理]
+|このトピックは、 _xamRichTextEditor_ コントロールの [元に戻す] および [やり直し] の操作について、開発者の観点から説明します。
+
+|====

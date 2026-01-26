@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-using-xamdockmanager",
+    "controlName": ["xamDockManager"],
+    "tags": [],
+    "guid": "{979E54AE-53FD-417C-8C6B-252D1158C43B}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5410613Z"
+}
+|metadata|
+////
+
+= xamDockManager を使用
+
+
+
+このセクションは、xamDockManager™ の重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+* link:xamdockmanager-about-opening-and-closing-panes.html[開始ペインと終了ペインについて]
+* link:xamdockmanager-add-content-to-a-contentpane.html[コンテンツを ContentPane に追加]
+* link:xamdockmanager-add-panes-to-the-documentcontenthost-object.html[ペインを DocumentContentHost オブジェクトに追加]
+* link:xamdockmanager-add-panes-to-xamdockmanager.html[ペインを xamDockManager に追加]
+* link:xamdockmanager-creating-a-tabbed-mdi-application.html[タブ付き MDI アプリケーションを作成]
+* link:xamdockmanager-add-menu-items-to-the-file-menu.html[メニュー項目をファイル メニューに追加]
+* link:xamdockmanager-hide-the-controls-in-a-content-panes-header.html[コンテンツ ペインのヘッダーのコントロールを非表示にする]
+* link:xamdockmanager-pin-and-unpin-a-pane.html[ペインのピンを固定および解除]
+* link:xamdockmanager-prevent-unpinned-panes-from-flying-out.html[ピン固定されていないペインがフライアウトすることを禁止]
+* link:xamdockmanager-prevent-end-users-from-resizing-floating-panes.html[エンドユーザーがフローティング ペインのサイズを変更することを禁止]
+* link:xamdockmanager-set-the-location-of-a-floating-pane.html[フローティング ペインの場所を設定]
+* link:xamdockmanager-set-the-initial-location-of-a-pane.html[ペインの最初の位置を設定]
+* link:xamdockmanager-set-the-size-of-a-floating-pane.html[フローティング ペインのサイズを設定]
+* link:xamdockmanager-show-the-pane-navigator-programmatically.html[プログラミングによるペイン ナビゲータの表示]
+* link:xamdockmanager-prevent-xamdockmanager-from-reserving-space-for-content.html[xamDockManager がコンテンツ用のスペースを確保することを禁止]
+* link:xamdockmanager-min-max.html[フローティング ペインの最大化/最小化]
+* link:xamdockmanager-owned-panes.html[所有されるペインと所有されないペイン]
+* link:xamdockmanger-dragging-panes.html[ペイン ドラッグのモード]
+* link:xamdockmanager-end-user-settings.html[エンドユーザー設定]
+* link:xamdockmanager-styling-xamdockmanager.html[xamDockManager のスタイリング]

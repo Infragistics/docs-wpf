@@ -1,0 +1,429 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-conf-properties-sorting",
+    "tags": ["How Do I","Sorting"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "0f1c92cf-15c4-4614-b1f4-9967f1a9cc4c",  
+    "buildFlags": [],
+    "createdOn": "2015-06-26T13:22:00.2192946Z"
+}
+|metadata|
+////
+
+= プロパティ リストの並べ替え (xamPropertyGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、プロパティ リストのカスタムな並べ替えのロジックを提供する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref422990961, 集計の並べ替え >>
+* <<_Ref422926570, プロパティの並べ替え順序の設定 >>
+* <<_Ref422926579, カテゴリの並べ替え順序の設定 >>
+* <<_Ref422926588, プロパティの比較演算子の提供 >>
+* <<_Ref422926597, カテゴリの比較演算子の提供 >>
+* <<_Ref422991366, 並べ替えの詳細 >>
+* <<_Ref422991008, 関連コンテンツ >>
+
+[[_Ref422990961]]
+== 集計の並べ替え
+
+=== 構成概要の並べ替え
+
+link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[ _xamPropertyGrid_  ] コントロールは、次のように宣言的なプログラムによる方法で、プロパティ リストおよびそのカテゴリの並べ替え (順序を変更する) をサポートします。
+
+* プロパティ宣言で属性を指定する
+* プロパティを含むクラス宣言でカテゴリの属性を指定する
+* プロパティのカスタム比較演算子を提供する
+* カテゴリのカスタム比較演算子を提供する
+
+=== 構成の概要表の並べ替え
+
+以下の表では、プロパティ リストを並べ替えるためのさまざまなオプションを簡単に説明し、それらを有効にする属性/プロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|オプション|詳細|属性/プロパティ
+
+|<<_Ref422926570,プロパティの並べ替え順序の設定>>
+|プロパティの並べ替え順序を指定する宣言的な方法を提供します。
+|`PropertySortOrder`
+
+|<<_Ref422926579,カテゴリの並べ替え順序の設定>>
+|カテゴリの並べ替え順序を指定する宣言的な方法を提供します。
+|`CategorySortOrder`
+
+|<<_Ref422926588,プロパティの比較演算子の提供>>
+|プロパティの並べ替え順序を指定するプログラムによる方法を提供します。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~propertysortcomparer.html[PropertySortComparer]
+
+|<<_Ref422926597,カテゴリの比較演算子の提供>>
+|カテゴリの並べ替え順序を指定するプログラムによる方法を提供します。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~categorysortcomparer.html[CategorySortComparer]
+
+|====
+
+[[_Ref422926570]]
+== プロパティの並べ替え順序の設定
+
+[[_Hlk368069110]]
+
+=== 概要
+
+プロパティをレンダリンする順序は、各プロパティの並べ替え順序を示す属性を、タイプのプロパティ宣言に含めることでカスタマイズできます。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用する属性:|提供内容:
+
+|プロパティの並べ替え順序の設定
+|`PropertySortOrder`
+|プロパティの任意の並べ替え順序を示す数値
+
+|====
+
+注:
+
+[NOTE]
+====
+`PropertySortOrder` 属性は、 _xamPropertyGrid_   のアセンブリで定義されます。この属性の使用が必要なクラスが、 _xamPropertyGrid_   のアセンブリを参照しない場合は、独自の属性を定義できます。_xamPropertyGrid_   が属性を認識するには、属性の名前が「PropertySortOrder」(または「PropertySortOrderAttribute」) で、プロパティの並べ替え順序のタイプ`int` のコンストラクターに 1 つのパラメータが含まれている必要があることに注意してください。
+====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコード例は、属性を使用して 3 つのプロパティの並べ替え順序を指定する方法を示します。プロパティ グリッドは属性の値に基づき、3 つのプロパティを次の順序で表示します。
+
+* MyProperty2
+* MyProperty3
+* MyProperty1
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+<PropertySortOrder(3)> _
+Public Property MyProperty1() As String
+  Get
+    Return m_MyProperty1
+  End Get
+  Set
+    m_MyProperty1 = Value
+  End Set
+End Property
+Private m_MyProperty1 As String
+<PropertySortOrder(1)> _
+Public Property MyProperty2() As String
+  Get
+    Return m_MyProperty2
+  End Get
+  Set
+    m_MyProperty2 = Value
+  End Set
+End Property
+Private m_MyProperty2 As String
+<PropertySortOrder(2)> _
+Public Property MyProperty3() As String
+  Get
+    Return m_MyProperty3
+  End Get
+  Set
+    m_MyProperty3 = Value
+  End Set
+End Property
+Private m_MyProperty3 As String
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+[PropertySortOrder(3)]
+public string MyProperty1 { get; set; }
+[PropertySortOrder(1)]
+public string MyProperty2 { get; set; }
+[PropertySortOrder(2)]
+public string MyProperty3 { get; set; }
+----
+
+[[_Ref422926579]]
+== カテゴリの並べ替え順序の設定
+
+=== 概要
+
+カテゴリの並べ替え順序は、1 つ以上の `CategorySortOrder` 属性でカテゴリを並べ替えるプロパティを含むクラスを使用することによりカスタマイズできます。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用する属性:|提供内容:
+
+|カテゴリの並べ替え順序の設定
+|`CategorySortOrder`
+|カテゴリ名と数値による並べ替え順序
+
+|====
+
+注:
+
+[NOTE]
+====
+`CategorySortOrder` 属性は、 _xamPropertyGrid_   のアセンブリで定義されます。この属性の使用が必要なクラスが、 _xamPropertyGrid_   のアセンブリを参照しない場合は、独自の属性を定義できます。_xamPropertyGrid_   が属性を認識するには、属性の名前が「CategorySortOrder」(または「CategorySortOrderAttribute」) で、コンストラクターに次の 2 つのパラメータが含まれている必要があることに注意してください。
+
+* カテゴリ名の`文字列`タイプのパラメーター
+* 並べ替え順序の `int` タイプのパラメーター
+
+====
+
+=== 例
+
+以下の例は、2 つのプロパティを持つ 2 つのカテゴリを示します。クラスに設定された属性が、最初に「ビジュアル」、2 番目に「データ」の順序でカテゴリを並べ替えます。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+<CategorySortOrder("Visual", 1)> _
+<CategorySortOrder("Data", 2)> _
+Public Class [MyClass]
+  <Category("Data")> _
+  Public Property DataSourceLocation() As String
+    Get
+      Return m_DataSourceLocation
+    End Get
+    Set
+      m_DataSourceLocation = Value
+    End Set
+  End Property
+  Private m_DataSourceLocation As String
+  <Category("Data")> _
+  Public Property DataSourcePath() As String
+    Get
+      Return m_DataSourcePath
+    End Get
+    Set
+      m_DataSourcePath = Value
+    End Set
+  End Property
+  Private m_DataSourcePath As String
+  <Category("Visual")> _
+  Public Property Foreground() As Color
+    Get
+      Return m_Foreground
+    End Get
+    Set
+      m_Foreground = Value
+    End Set
+  End Property
+  Private m_Foreground As Color
+  <Category("Visual")> _
+  Public Property Background() As String
+    Get
+      Return m_Background
+    End Get
+    Set
+      m_Background = Value
+    End Set
+  End Property
+  Private m_Background As String
+End Class
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+[CategorySortOrder("Visual", 1)]
+[CategorySortOrder("Data", 2)]
+public class MyClass
+{
+  [Category("Data")]
+  public string DataSourceLocation { get; set; }
+  [Category("Data")]
+  public string DataSourcePath { get; set; }
+  [Category("Visual")]
+  public Color Foreground { get; set; }
+  [Category("Visual")]
+  public string Background { get; set; }
+}
+----
+
+[[_Ref422926588]]
+== プロパティの比較演算子の提供
+
+=== 概要
+
+コントロールがプロパティの並べ替えに使用する、カスタム プロパティの比較演算子を提供することができます。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|カスタム プロパティの比較演算子の提供
+|`PropertySortComparer`
+|`IComparer<PropertyGridPropertyItem>` からの派生タイプ
+
+|====
+
+=== 例
+
+以下のコードは、カスタム プロパティの比較演算子を作成し、「xamPropertyGrid1」という名前のプロパティ グリッド インスタンスに設定する方法を示します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class MyCustomPropertyComparer
+  Implements IComparer(Of PropertyGridPropertyItem)
+  Public Function Compare(x As PropertyGridPropertyItem, y As PropertyGridPropertyItem) As Integer
+    ' カスタムの比較および並べ替えロジックをここで提供
+  End Function
+End Class
+…
+Me.xamPropertyGrid1.PropertySortComparer = New MyCustomPropertyComparer()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class MyCustomPropertyComparer : IComparer<PropertyGridPropertyItem>
+{
+  public int Compare(PropertyGridPropertyItem x, PropertyGridPropertyItem y)
+  {
+    // カスタムの比較および並べ替えロジックをここで提供
+  }
+}
+…
+this.xamPropertyGrid1.PropertySortComparer = new MyCustomPropertyComparer();
+----
+
+注:
+
+[NOTE]
+====
+`PropertyGridPropertyItem` で link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridpropertyitem~sortorder.html[SortOrder] プロパティが公開されています。これは、`IComparer` 実装で検査できます。
+====
+
+[[_Ref422926597]]
+== カテゴリの比較演算子の提供
+
+=== 概要
+
+コントロールがカテゴリの並べ替えるに使用する、カスタム カテゴリの比較演算子を提供することができます。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|カスタム カテゴリの比較演算子の提供
+|`CategorySortComparer`
+|`IComparer<PropertyGridCategoryItem>` からの派生タイプ
+
+|====
+
+=== 例
+
+以下のコードは、カスタム カテゴリの比較演算子を作成し、「xamPropertyGrid1」という名前のプロパティ グリッド インスタンスに設定する方法を示します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class MyCustomCategoryComparer
+  Implements IComparer(Of PropertyGridCategoryItem)
+  Public Function Compare(x As PropertyGridCategoryItem, y As PropertyGridCategoryItem) As Integer
+    ' カスタムの比較および並べ替えロジックをここで提供
+  End Function
+End Class
+…
+Me.xamPropertyGrid1.CategorySortComparer = New MyCustomCategoryComparer()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class MyCustomCategoryComparer : IComparer<PropertyGridCategoryItem>
+{
+  public int Compare(PropertyGridCategoryItem x, PropertyGridCategoryItem y)
+  {
+    // カスタムの比較および並べ替えロジックをここで提供
+  }
+}
+…
+this.xamPropertyGrid1.CategorySortComparer = new MyCustomCategoryComparer();
+----
+
+[[_Ref422991366]]
+== 並べ替えの詳細
+
+=== 詳細
+
+* オブジェクトのプロパティ/カテゴリとプロパティ/カテゴリに供給された並べ替えの比較演算子の両方が属性に使用されている場合は、比較演算子が優先されます。
+* 並べ替え順序が等しいプロパティ/カテゴリは、`表示名`により、アルファベット順に並べ替えられます。
+* 並べ替え順序のないプロパティ/カテゴリは、デフォルトで `int.MaxValue` の並べ替え順序に設定されます。これにより、プロパティ/カテゴリは指定された順序で並べ替えされ、次にアルファベット順で並べ替えられます。
+
+[[_Ref422991008]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-conf-visuals.html[表示外観の構成 (xamPropertyGrid)]
+|このトピックでは、一般的なコントロール オプションを構成する方法を説明します。
+
+| link:xampropertygrid-conf-editors.html[エディター定義の構成 (xamPropertyGrid)]
+|このトピックでは、プロパティの値の編集に使用されるエディターをカスタマイズする方法を説明します。
+
+| link:xampropertygrid-conf-properties-filtering.html[プロパティ リストのフィルタリング (xamPropertyGrid)]
+|このトピックでは、コントロールのプロパティ リストのフィルタリングを構成する方法を説明します。
+
+| link:xampropertygrid-conf-templateselector.html[エディター定義のデータ テンプレート セレクターの構成 (xamPropertyGrid)]
+|このトピックは、エディター定義で編集テンプレートを割り当てるためのカスタム ロジックを作成する方法を紹介します。
+
+|====

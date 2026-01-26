@@ -1,0 +1,78 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-copypastehelpermethods",
+    "controlName": ["xamGrid"],
+    "tags": [],
+    "guid": "fa6391b1-c8f6-4ee6-be8e-fe8542c66ddd",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.5632062Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= コピー/貼り付けのヘルパー メソッド
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、{ProductName} 2012 Volume 1 リリースで導入されたコピー/貼り付けのヘルパー メソッドを紹介します。メソッドの詳細については、<<_Ref320009106,「関連するコンテンツ」>>を参照してください。
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref320009090, コピー/貼り付けのヘルパー メソッドの参照 >>
+* <<_Ref320009106, 関連コンテンツ >>
+
+[[_Ref320009090]]
+== コピー/貼り付けのヘルパー メソッドの参照
+
+=== 概要
+
+コピー/貼り付けのヘルパー メソッドは、xamGrid™ コントロールでのデータのコピー/貼り付けを容易にします。
+
+=== ヘルパー メソッドの参照の概要
+
+以下の表は、コピー/貼り付けのヘルパー メソッドの目的および機能の概要を説明しています。
+
+[options="header", cols="a,a"]
+|====
+|メソッド|説明
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingeventargs~validateselectedrectangle.html[ValidateSelectedRectangle]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingeventargs_members.html[ClipboardCopyingEventArgs] オブジェクトの `ValidateSelectedRectangle` メソッドは、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~clipboardcopying_ev.html[ClipboardCopying] イベント ハンドラで使用されます。 
+
+このコピー ヘルパー メソッドは、選択した領域がコピーに有効かどうかを決定します。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardpastingeventargs~pasteasexcel.html[PasteAsExcel]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardpastingeventargs_members.html[ClipboardPastingEventArgs] オブジェクトの `PasteAsExcel` メソッドは、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~clipboardpasting_ev.html[ClipboardPasting] イベント ハンドラーで使用されます。 
+
+この貼り付けヘルパー メソッドは、xamGrid コントロール内でデータを貼り付けます。
+
+|====
+
+[[_Ref320009106]]
+== 関連コンテンツ
+
+[[_Ref320009185]]
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-pasting-data-and-handling-paste-errors.html[データの貼り付け、および貼り付けエラーの処理]
+|このトピックでは、コピーされたデータを xamGrid コントロール内で貼り付ける方法、およびデータの貼り付け中にエラーが発生した場合の処理方法について説明します。
+
+| link:xamgrid-verifying-rectangular-cell-selection-when-copying-data.html[データ コピー時の、長方形セル選択の検証]
+|このトピックでは、エンド ユーザーが選択したセルを Microsoft® Excel® ワークシートに正しく貼り付けることができるかどうかを検証する方法を説明します。長方形のセル選択のみが、有効な領域として承認されます。
+
+|====

@@ -1,0 +1,91 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-merge-open-street-maps-with-shapefile",
+    "controlName": ["xamMap"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "{F68B58FD-7877-4C6E-8ABB-D7D640DE0429}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1202279Z"
+}
+|metadata|
+////
+
+= OpenStreetMap をシェープファイルと結合
+
+== 始める前に
+
+xamMap コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~maptilesource.html[MapTileSource] プロパティは、地理的画像がロードされるソースを構成するために使用されます。サポートされる地理的画像のソースの完全なリストについては、 link:xamwebmap-supported-geo-imagery.html[「サポートされる地理的画像」]セクションを参照してください。ただし、このセクションは、地理的画像のソースとして OpenStreetMap だけに焦点を当てます。Open Street Maps Web マッピング サービスはライセンスされていないため、xamMap で作業するためのライセンス キーを提供しません。
+
+画像タイル プロバイダーによって使用される地図投影タイプに一致させるために xamMap コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~mapprojectiontype.html[MapProjectionType] プロパティを設定しなければならない場合があることを理解することが重要です。そうでなければ、使用される Shapefiles は画像に正しく配置されません。シェープファイルが画像タイルと揃わない場合、xamMap コントロールの MapProjectionType プロパティを使用可能な列挙体メンバーのいずれかに変更して、問題が解決されるかどうかを確認します。現在サポートされているマップ投影法のタイプの完全なリストについては、 link:xamwebmap-understanding-xamwebmap.html[マップ投影法について]セクションを参照してください。
+
+== 達成すること
+
+Open Street Maps ソースから地図画像を読み込み、コンピューターのローカルに保存されているシェープファイルと結合します。
+
+image::images/XamMap_Merge_Open_Street_Maps_with_Shapefile_01.png[]
+
+== 以下の手順を実行します。
+
+以下の XAML コードは、xamMap コントロールに {PlatformName} プロジェクトが既に設定されていて、 Shapefiles が {PlatformName} プロジェクトに追加されていることが前提です。
+
+[start=1]
+. link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap] コントロールを適切な投影タイプで追加します。
+
+*XAML の場合:*
+
+----
+<igMap:XamMap x:Name="xamMap" MapProjectionType="SphericalMercator">
+        <!-- TODO: 地理的画像データ ソースとして Open Street Maps を追加 -->
+        <!-- TODO: Shapefile で Map Layer を追加します -->
+</igMap:XamMap>
+----
+
+[start=2]
+. link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~maptilesource.html[MapTileSource] プロパティを link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.maps.openstreetmaptilesource.html[OpenStreetMapTileSource] に設定します。
+
+*XAML の場合:*
+
+----
+<igMap:XamMap.MapTileSource >
+      <igMap:OpenStreetMapTileSource/>
+</igMap:XamMap.MapTileSource>
+----
+
+[start=3]
+. Shapefile からのデータを表示するために link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer.html[MapLayer] オブジェクトを追加します。
+
+*XAML の場合:*
+
+----
+<igMap:XamMap.Layers>
+     <igMap:MapLayer x:Name="mapLayer"  Brushes="Transparent">
+     <!-- TODO: ShapeFileReader を追加します -->
+     </igMap:MapLayer>
+</igMap:XamMap.Layers>
+----
+
+[start=4]
+. link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.shapefilereader.html[ShapeFileReader] オブジェクトを作成し、適切なパスを Shapefile に指定します。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer.Reader>
+     <igMap:ShapeFileReader Uri="/../../Shapefiles/europe/eu_countries" />
+</igMap:MapLayer.Reader>
+----
+
+endif::wpf[]
+
+[start=5]
+. アプリケーションを実行します。xamMap コントロールは、Open Streep Maps の地図画像データを Shapefile へ結合します。
+
+== 関連トピック
+
+link:xamwebmap-display-different-layer-types.html[異なるレイヤー タイプを表示]
+
+link:xamwebmap-merge-bing-maps-with-shapefile.html[Bing Maps をシェープファイルと結合]

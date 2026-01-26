@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": [],
+    "guid": "eae1bda5-0ed5-4f47-b3ac-b583c8c97634",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.30836Z"
+}
+|metadata|
+////
+
+= xamSyntaxEditor
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのこのトピックでは、 _xamSyntaxEditor™_   クロス プラットフォーム コントロールを紹介します。
+
+=== トピック
+
+このセクションは、 _xamSyntaxEditor_   の目的、その使用方法と、ニーズに合わせたカスタマイズの方法を解説するトピックからなります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+| link:xamsyntaxeditor-adding-to-your-page.html[ _xamSyntaxEditor_ をページに追加]
+|このトピックでは、 _xamSyntaxEditor_ を短時間で起動、実行するのに役立つ体系的な操作方法を紹介します。
+
+| link:xamsyntaxeditor-configuring.html[ _xamSyntaxEditor_ の構成]
+|このセクションでは、 _xamSyntaxEditor_ クロス プラットフォーム コントロールのさまざまな機能を使用する上で役立つ、主要概念やタスク ベースの情報について解説します。
+
+| link:xamsyntaxeditor-api-overview.html[API の概要]
+|このトピックでは、 _xamSyntaxEditor_ によるプログラミングで操作する名前空間とクラスを紹介します。このトピックでリストアップした名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]に対応しています。
+
+|====

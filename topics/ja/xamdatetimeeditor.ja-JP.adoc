@@ -1,0 +1,28 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatetimeeditor",
+    "controlName": ["xamDateTimeEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{F5413562-08BE-4C09-9C30-0AFFC6DA0A5F}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1389781Z"
+}
+|metadata|
+////
+
+= xamDateTimeEditor
+
+xamDateTimeEditor コントロールに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このセクションをご覧ください。このセクションは、コントロールについての概要からアプリケーションで使用する理由、コントロールを使用して共通タスクを達成するための方法の手順などの xamDateTimeEditor についての有益な情報を含んでいます。
+
+以下のリンクをクリックして、xamDateTimeEditor コントロールについての情報にアクセスします。
+
+* link:xamdatetimeeditor-about-xamdatetimeeditor.html[xamDateTimeEditor について]
+* link:xameditors-overview-of-the-valueeditor-class.html[ValueEditor クラスの概要]
+* link:xameditors-masks.html[マスク]
+* link:xamdatetimeeditor-using-xamdatetimeeditor-as-a-field-in-xamdatagrid.html[xamDataGrid でフィールドとして xamDateTimeEditor を使用]
+* link:xameditors-working-with-the-isalwaysineditmode-property-and-the-editors.html[IsAlwaysInEditMode プロパティとエディターによる作業]
+* link:xameditors-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xameditors-japanese-imperial-date-support.html[和暦サポート]
+* link:xamdatetimeeditor-api-overview.html[API の概要]

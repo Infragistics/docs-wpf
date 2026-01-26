@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-creating-the-custom-view-class-and-layout-panel",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Extending","How Do I","Layouts"],
+    "guid": "{6B995059-689C-4A4E-A66A-9F9A585B7A06}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1269785Z"
+}
+|metadata|
+////
+
+= カスタム ビュー クラスとレイアウト パネルを作成
+
+
+== カスタム ビュー クラス
+
+カスタム ビュー クラス自体は通常何の「働き」もしません。その主な目的は、xamDataPresenter™ の十分な情報を提供するよう ViewBase プロパティおよびメソッドをオーバーライドすることであり、その Field と要素生成プロセスをカスタム ビューのニーズに合うようにカスタマイズします。カスタム ビュー のレイアウト パネル (下記参照) は、ビューを実装するために必要な作業のうち最も大きな部分を占めます。
+
+オプションで、自分の カスタム ビュー はカスタム ビューの機能の重要な側面を開発者が制御できるようにするひとつまたは複数のプロパティを公開することができます。View に、公開する機能がひとつまたは 2 つしかない場合、カスタム ビュー クラス自体で直接公開できます。Custom View がそれ以上のプロパティを公開する必要がある場合には、組み込みの GridView クラスと CarouselView クラスが実行する機能の実行を検討してもいいでしょう。これは ViewSettingsBase から派生した設定オブジェクトを返す ViewSettings と呼ばれる単一のプロパティを公開します。これによって、カスタム ビュー クラスでの混乱を減らし、開発者に分かりやすくビューの機能を公開します。
+
+== カスタム ビューのレイアウト パネル
+
+カスタム ビューのレイアウト パネルは、View の代わりに項目を配列する役割を行います。ここで、カスタム ビュー の「マジック」の大半が行われます。カスタム ビューの主要な目的は、xamDataPresenter によって自動的に生成される要素を表示するための固有の UI を提供することです。これらの生成された要素は、基本的なデータ ソース内のレコードとフィールドを表すために UI で使用されます。レイアウト パネルは、この固有の UI が組み立てられ表示される場所です。
+
+レイアウト パネルは通常、DataPresenterBase.CurrentView の関連付けられたプロパティが変更されたことの通知を探し出す、OnPropertyChanged メソッドをオーバーライドします。作成されるときにレイアウト パネル上で xamDataPresenter によって設定される、この関連付けられたプロパティは、カスタム ビュー クラスのインスタンスへの参照を含みます。これはカスタム ビューとそれが公開する設定へのレイアウト パネルの「リンク」です。(カスタム ビュー クラスのこのインスタンスは、カスタム ビューを使用するプロセスを開始するための xamDataPresenter の View プロパティで開発者が設定する同じインスタンスです。)
+
+レイアウト パネルは、基本のデータソース内の各 DataRecord の UI 要素を生成するために、xamDataPresenter の組み込み RecordListBoxControl と自動的にやりとりする基本の Panel クラスから機能を継承しますが、これらの生成された要素の仮想化のサポートを自動的に取得しません (つまり、スクロールされて表示されなくなるとクリーンアップされます)。特に大きいデータセットにバインディングする時に最適なパフォーマンスを保証するには、生成された要素の仮想化の基本サポートを継承するために、System.Windows.Controls.VirtualizingPanel からレイアウト パネルを派生することを検討すべきです。
+
+== 関連トピック
+
+link:xamdatapresenter-how-to-create-a-basic-custom-view.html[基本のカスタム ビューの作成方法]
+
+link:xamdatapresenter-services-provided-by-the-xamdatapresenter.html[XamDataPresenter によって提供されるサービス]
+
+link:xamdatapresenter-how-to-use-your-custom-view-with-xamdatapresenter.html[xamDataPresenter とカスタムビューを使用する方法]

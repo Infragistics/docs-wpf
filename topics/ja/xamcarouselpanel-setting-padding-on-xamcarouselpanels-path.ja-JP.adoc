@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-setting-padding-on-xamcarouselpanels-path",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["How Do I"],
+    "guid": "{6FD4CB38-4137-490E-8B84-571E6EA51C2A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0897711Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel のパスでパディングを設定
+
+
+
+xamCarouselPanel のパスの前後にバッファ ゾーンを配置できます。xamCarouselPanel は、パスに沿ってコントロールのレイアウトを計算するときにこのバッファ ゾーン、つまりパディングを使用します。
+
+以下の画像は、パスのプレフィックスとサフィックスの機能を例示します。
+
+image::images/xamCarousel_Setting_a_Path_Padding_01.png[xamcarouselpanel のパスのプレフィックスとサフィックスの機能]
+
+以下のコードを使用して、 link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~itempathprefixpercent.html[CarouselViewSettings] の link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~itempathsuffixpercent.html[ItemPathPrefixPercent] プロパティと link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[ItemPathSuffixPercent] プロパティを指定します。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        <igWindows:CarouselViewSettings ItemPathPrefixPercent=".2" 
+          ItemPathSuffixPercent=".4" />
+</igWindows:XamCarouselPanel.ViewSettings>
+----
+
+link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]トピックにこのコードを適用すると、最後の画像の後と最初の画像の前に大量のパディングが適用されることになります。
+
+image::images/xamCarousel_Setting_a_Path_Padding_02.png[xamcarouselpanel にパディングを設定]

@@ -1,0 +1,110 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcontextmenu-opening-and-showing-xamcontextmenu",
+    "controlName": ["xamContextMenu"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{818B2899-C26A-4153-A669-276C00431E0B}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8000975Z"
+}
+|metadata|
+////
+
+= xamContextMenu を開いて表示
+
+デフォルトでは、エンドユーザーが右マウス ボタンをリリースした時に xamContextMenu™ コントロールが表示されます。link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.contextmenumanager.html[ContextMenuManager] オブジェクトは、このデフォルト動作を変更するオプションを提供しています。
+
+* ContextMenuManager オブジェクトの link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.contextmenumanager~modifierkeys.html[ModifierKeys] プロパティを、xamContextMenu を起動する前にエンドユーザーがホールドする必要がある修飾キーのビットワイズ コンビネーションに設定することができます。
+* ContextMenuManager オブジェクトの link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.contextmenumanager~openmode.html[OpenMode] プロパティを link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.openmode.html[OpenMode] 列挙値に設定して、xamContextMenu を起動するマウスボタンを決定することができます。
+* Infragistics Commanding Framework を link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xamcontextmenucommandsource.html[xamContextMenuCommandSource] オブジェクトおよび link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xamcontextmenucommand.html[Open] コマンドと共に使用して xamContextMenu を起動することができます。このオプションによって、xamContextMenu を起動するためのコントロールを公開するイベントを選択する柔軟性がユーザーに与えられます。このオプションを選択する場合、ContextMenuManager オブジェクトの OpenMode プロパティを None に設定してください。
+
+以下のコードは、デフォルト (右クリック) の開くモードを左マウス クリックに変更し、 ModifierKeys プロパティを Control および Shift キーの組み合わせに設定する方法を示します。
+
+ifdef::wpf[]
+*XAML の場合:*
+
+endif::wpf[]
+
+ifdef::wpf[]
+----
+<TextBox Name="textBox1">
+    <!--
+    Infragistics Commanding Framework を使用してコンテキスト メニューを開く例:
+    -->
+    <!--
+    <igWPF:Commanding.Command>
+        <ig:XamContextMenuCommandSource 
+            CommandType="Open" 
+            EventName="SelectionChanged" 
+            TargetName="contextMenu1" />
+    </igWPF:Commanding.Command>
+    -->
+    <ig:ContextMenuService.Manager>
+        <!--Infragistics Commanding Framework を使用する場合、OpenMode プロパティを None に設定してください。-->
+        <ig:ContextMenuManager ModifierKeys="Control, Shift" OpenMode="LeftClick">
+            <ig:ContextMenuManager.ContextMenu>
+                <ig:XamContextMenu Name="contextMenu1">
+                    <ig:XamMenuItem Header="Font" />
+                    <ig:XamMenuItem Header="Formatting" />
+                </ig:XamContextMenu>
+            </ig:ContextMenuManager.ContextMenu>
+        </ig:ContextMenuManager>
+    </ig:ContextMenuService.Manager>
+</TextBox>
+----
+endif::wpf[]
+
+ifdef::sl[]
+*XAML の場合:*
+
+endif::sl[]
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Menus
+Imports Infragistics
+...
+Dim contextMenuManager1 As New ContextMenuManager()
+contextMenuManager1.ModifierKeys = ModifierKeys.Control Or ModifierKeys.Shift
+contextMenuManager1.OpenMode = OpenMode.LeftClick
+'TODO: xamContextMenu を作成して XamMenuItem オブジェクトをそれに追加します。
+'TODO: ContextMenuManager オブジェクトの ContextMenu プロパティを xamContextMenu コントロールに設定します。
+ContextMenuService.SetManager(textBox1, contextMenuManager1)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Menus;
+using Infragistics;
+...
+ContextMenuManager contextMenuManager1 = new ContextMenuManager
+{
+    ModifierKeys = ModifierKeys.Control | ModifierKeys.Shift,
+    OpenMode = OpenMode.LeftClick
+};
+//TODO: xamContextMenu を作成して XamMenuItem オブジェクトをそれに追加します。
+//TODO: ContextMenuManager オブジェクトの ContextMenu プロパティを xamContextMenu コントロールに設定します。
+ContextMenuService.SetManager(textBox1, contextMenuManager1);
+...
+----
+
+== 関連トピック
+
+link:xamcontextmenu-opening-and-showing-xamcontextmenu.html[xamContextMenu を開いて表示]
+
+link:xamcontextmenu-set-xamcontextmenus-location.html[xamContextMenu の位置を設定]
+
+link:xammenu-binding-to-data.html[データにバインドする]
+
+link:xammenu-adding-and-removing-items.html[項目の追加と削除]
+
+link:xammenu-adding-separators-between-xammenuitems.html[セパレーターを XamMenuItems 間に追加]
+
+link:xammenu-adding-icons-to-xammenuitems.html[アイコンを XamMenuItems に追加]
+
+link:xammenu-adding-check-boxes-to-xammenuitems.html[チェックボックスを XamMenuItems に追加]

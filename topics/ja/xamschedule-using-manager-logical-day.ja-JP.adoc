@@ -1,0 +1,64 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-manager-logical-day",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "7ce3290e-34ca-43ce-aac9-59fcc4b96e59",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7393285Z"
+}
+|metadata|
+////
+
+= 論理的な 1 日とタイムスロット
+
+== 論理的な日
+
+xamSchedule ビューは、1 日を定義する時間の範囲を定義する機能をサポートします。この「論理的な 1 日」機能は、特定の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[データ マネージャー]に添付されているすべての link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase.html[ビュー]の「ビューポート」を定義し、xamScheduleDataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~settings.html[Settings] の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~logicaldayoffset.html[LogicalDayOffset] プロパティと link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~logicaldayduration.html[LogicalDayDuration] プロパティを使用して制御されます。
+
+論理的な 1 日の使用例は、1 日の区切りを 12am の代わりに 4am にしたい時です。前日の一部として真夜中から 4am の時間を考慮するプログラミング スケジュールに合わせるためにステーションの「1 日」が 4am に始まる、TV ステーションのスケジューリング アプリケーションを考慮します。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduleview.html[xamScheduleView] や link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdayview.html[xamDayView] のようなコントロールの場合、これはその link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~visibledates.html[VisibleDates] コレクションの各日に表示されるタイムスロットに影響します。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview.html[xamMonthView] の場合、これはコントロールの各日内に表示されるアクティビティに影響します。以下の表は、特定の日付の時間の範囲でのこれらのプロパティの影響を示します。
+
+[options="header", cols="a,a,a"]
+|====
+|論理的な 1 日のオフセット|LogicDayDuration|Apr/15 の時間の範囲
+
+|00:00:00 (デフォルト) 
+|24:00:00 (デフォルト) 
+|12am Apr/15 ～ 12am Apr/16
+
+|-08:00:00
+|24:00:00 (デフォルト) 
+|4pm Apr/14 ～ 4pm Apr/15
+
+|12:00:00
+|24:00:00 (デフォルト) 
+|12pm Apr/15 ～ 12pm Apr/16
+
+|6:00:00
+|12:00:00
+|6am Apr/15 ～ 6pm Apr/15
+
+|====
+
+*注:* 示されている終了時間は排他的です。
+
+== タイムスロット
+
+xamDayView と xamScheduleView の各日はタイムスロットに分割されます。タイムスロットの最初の期間は 15 分で、各日で個別に link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduletimecontrolbase~timeslotinterval.html[TimeslotInterval] プロパティを変更することによって変えることができます。許可される値は 1 秒と 1 日の間です。
+
+表示されるタイムスロットを制限するもうひとつの方法は、これらのコントロールで link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduletimecontrolbase~showworkinghoursonly.html[ShowWorkinghoursOnly] プロパティを使用することです。True に設定すると、コントロールは稼働時間定義外のすべてのタイムスロットを除外しようとします。ビューの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduletimecontrolbase~workinghourssource.html[WorkingHoursSource] プロパティは、稼働時間を解決する時にどの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[Resources] が評価されるのかを決定して、以下の値を持ちます。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuser.html[CurrentUser] - DataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuserid.html[CurrentUserId] プロパティで設定されるカレント ユーザー。
+* AllResourcesInGroup - ビューの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~calendargroups.html[CalendarGroupsResolved] プロパティ内のリソースに設定されているすべての稼働時間の結合。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-views.html[xamSchedule ビューについて]
+
+link:xamschedule-using-manager-working-hours.html[稼働時間]

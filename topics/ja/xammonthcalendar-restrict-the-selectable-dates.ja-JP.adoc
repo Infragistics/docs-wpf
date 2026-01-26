@@ -1,0 +1,81 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammonthcalendar-restrict-the-selectable-dates",
+    "controlName": ["xamMonthCalendar"],
+    "tags": ["Editing","How Do I","Selection"],
+    "guid": "{69886B08-7D57-4B58-BB5E-4C18391123CB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.9871505Z"
+}
+|metadata|
+////
+
+= 選択可能な日付を制限
+
+
+
+xamMonthCalendar™ コントロールは、エンド ユーザーが選択可能な日付を制限する 3 つの異なる方法を提供します。週の特定の日、特定の日の範囲、または指定された最初/最大の日以外の日をエンド ユーザーが選択できないように指定できます。
+
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~disableddaysofweek.html[DisabledDaysOfWeek] プロパティ - このプロパティを設定すると、エンド ユーザーが土曜日と日曜日など週の特定の日を選択できないように指定できます。
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~disableddates.html[DisabledDates コレクション] - link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.calendardaterange.html[CalendarDateRange] オブジェクトを追加すると、エンドユーザーが特定の日または日の範囲を選択するのを制限できます。
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~mindate.html[MinDate] および link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~maxdate.html[MaxDate] プロパティ - これらのプロパティを設定すると、特定の範囲にある日以外をエンド ユーザーが選択できないように指定できます。
+
+以下のコード例は、選択可能な日付を制限する方法を示します。このコード例は、上記の 3 つのプロパティすべての使用を組み合わせることによって選択可能な日を制限します。
+
+*XAML の場合:*
+
+----
+<igEditors:XamMonthCalendar 
+    Name="xamMonthCalendar1" 
+    DisabledDaysOfWeek="Saturday, Sunday" 
+    MinDate="1/1/2008" 
+    MaxDate="12/31/2009">
+    <igEditors:XamMonthCalendar.DisabledDates>
+        <igEditors:CalendarDateRange Start="1/1/09" End="1/02/09" />
+    </igEditors:XamMonthCalendar.DisabledDates>
+</igEditors:XamMonthCalendar>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Editors
+...
+' エンドユーザーが週末を選択できないようにします
+Me.xamMonthCalendar1.DisabledDaysOfWeek = DayOfWeekFlags.Saturday Or DayOfWeekFlags.Sunday
+' エンドユーザーが 2008 年 1 月 1 日以前および 2009 年 12 月 31 日以降を選択できないようにします
+Me.xamMonthCalendar1.MinDate = New DateTime(2008, 1, 1)
+Me.xamMonthCalendar1.MaxDate = New DateTime(2009, 12, 31)
+' エンドユーザーが元日とその翌日を選択できないようにします
+Dim firstHolidayRange As New CalendarDateRange(New DateTime(2009, 1, 1), New DateTime(2009, 1, 2))
+Me.xamMonthCalendar1.DisabledDates.Add(firstHolidayRange)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Editors;
+...
+// エンドユーザーが週末を選択できないようにします
+this.xamMonthCalendar1.DisabledDaysOfWeek = DayOfWeekFlags.Saturday | DayOfWeekFlags.Sunday;
+// エンドユーザーが 2008 年 1 月 1 日以前および 2009 年 12 月 31 日以降を選択できないようにします
+this.xamMonthCalendar1.MinDate = new DateTime(2008, 1, 1);
+this.xamMonthCalendar1.MaxDate = new DateTime(2009, 12, 31);
+// エンドユーザーが元日とその翌日を選択できないようにします
+CalendarDateRange firstHolidayRange = new CalendarDateRange(new DateTime(2009, 1, 1), new DateTime(2009, 1, 2));
+this.xamMonthCalendar1.DisabledDates.Add(firstHolidayRange);
+...
+----
+
+== 関連トピック
+
+link:xammonthcalendar-about-xammonthcalendar.html[xamMonthCalendar について]
+
+link:xammonthcalendar-getting-started-with-xammonthcalendar.html[xamMonthCalendar をページに追加]
+
+link:xammonthcalendar-retrieve-the-selected-dates.html[選択された日付を取得]
+
+link:xammonthcalendar-switch-to-a-different-calendar-view.html[異なるカレンダー ビューに切り替え]

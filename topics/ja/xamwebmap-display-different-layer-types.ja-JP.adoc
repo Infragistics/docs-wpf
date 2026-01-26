@@ -1,0 +1,243 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-display-different-layer-types",
+    "controlName": ["xamMap"],
+    "tags": ["Application Scenarios","Data Presentation","How Do I"],
+    "guid": "{780A471B-6C0A-463B-9B9D-9D86782899E2}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.090235Z"
+}
+|metadata|
+////
+
+= 異なるレイヤー タイプを表示
+
+このセクションは、xamMap コントロールに異なるレイヤー タイプのサポートされる地図画像を表示する方法に関する指示を提供します。
+
+== Open Street Maps
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.maps.openstreetmaptilesource.html[OpenStreetMapTileSource] は、Open Street Maps ソースの地図画像で道路を表示します。
+
+* 道路表示
+
+image::images/XamMap_Display_Different_Layer_Types_02.png[]
+
+*XAML の場合:*
+
+----
+<igMap:XamMap x:Name="webMap" MapProjectionType="SphericalMercator" >
+    <igMap:XamMap.MapTileSource >
+        <igMap:OpenStreetMapTileSource />
+    </igMap:XamMap.MapTileSource> 
+</igMap:XamMap>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim geoImagery As New Infragistics.Controls.Maps.OpenStreetMapTileSource()
+Dim webMap As Infragistics.Controls.Maps.XamMap = New Infragistics.Controls.Maps.XamMap()
+webMap.MapTileSource = geoImagery
+----
+
+*C# の場合:*
+
+----
+Infragistics.Controls.Maps.OpenStreetMapTileSource geoImagery = new Infragistics.Controls.Maps.OpenStreetMapTileSource();
+Infragistics.Controls.Maps.XamMap webMap = new Infragistics.Controls.Maps.XamMap();
+webMap.MapTileSource = geoImagery;
+----
+
+== Bing Maps
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.maps.bingmapstilesource.html[BingMapsTileSource] は航空、ラベル付き航空、道路の 3 つのマップを表示します。以下のコード例は、Web サービスを使用して BingMaps 地図画像を表示する方法を知っていること、また Web サービスにアクセスするために有効なネットワーク認証を提供することによってトークン変数が作成されたことを前提とします。
+
+* 航空表示
+
+image::images/XamMap_Display_Different_Layer_Types_03.png[]
+
+ImageryMetadataRequest オブジェクトの MapStyle プロパティを MapStyle.Aerial に変更します。
+
+*Visual Basic の場合:*
+
+ifdef::wpf[]
+----
+Public Sub New()
+    InitializeComponent()
+    Dim mapUriRequest As New BingImageryServiceReference.ImageryMetadataRequest()
+    mapUriRequest.Credentials = New BingImageryServiceReference.Credentials()
+    mapUriRequest.Credentials.ApplicationId = "BING_MAPS_SECRET_KEY"
+    ' 地理画像ソースのレイヤー タイプを設定します
+    mapUriRequest.Style = BingImageryServiceReference.MapStyle.Aerial
+    ' 地図画像要求を処理するための非同期の Bing Maps サービスを作成します
+    Dim imageryService As New BingImageryServiceReference.ImageryServiceClient("BasicHttpBinding_IImageryService")
+    Dim imageryService As New BingImageryServiceReference.ImageryService()
+    AddHandler imageryService.GetImageryMetadataCompleted, AddressOf imageryService_GetImageryMetadataCompleted
+    imageryService.GetImageryMetadataAsync(mapUriRequest)
+End Sub
+Private Sub imageryService_GetImageryMetadataCompleted(ByVal sender As Object, ByVal e As BingImageryServiceReference.GetImageryMetadataCompletedEventArgs)
+    Dim result As BingImageryServiceReference.ImageryMetadataResult = e.Result.Results(0)
+    Dim source As New Infragistics.Controls.Maps.BingMapsTileSource()
+    source.TilePath = result.ImageUri
+    source.SubDomains = New ObservableCollection(Of String)(result.ImageUriSubdomains)
+    xamMap.MapTileSource = source
+End Sub
+----
+endif::wpf[]
+
+*C# の場合:*
+
+[source]
+----
+public MainPage()
+{
+    InitializeComponent();
+    BingImageryServiceReference.ImageryMetadataRequest mapUriRequest = new BingImageryServiceReference.ImageryMetadataRequest();
+    mapUriRequest.Credentials = new BingImageryServiceReference.Credentials();
+    mapUriRequest.Credentials.ApplicationId = "BING_MAPS_SECRET_KEY";
+    // 地理画像ソースのレイヤー タイプを設定します
+    mapUriRequest.Style = BingImageryServiceReference.MapStyle.Aerial;
+    // 地図画像要求を処理するための非同期の Bing Maps サービスを作成します
+    BingImageryServiceReference.ImageryServiceClient imageryService = new BingImageryServiceReference.ImageryServiceClient("BasicHttpBinding_IImageryService");
+    BingImageryServiceReference.ImageryService imageryService = new BingImageryServiceReference.ImageryService();
+    imageryService.GetImageryMetadataCompleted += imageryService_GetImageryMetadataCompleted;
+    imageryService.GetImageryMetadataAsync(mapUriRequest);
+}
+void imageryService_GetImageryMetadataCompleted(object sender, BingImageryServiceReference.GetImageryMetadataCompletedEventArgs e)
+{
+    BingImageryServiceReference.ImageryMetadataResult result = e.Result.Results[0];
+    xamMap.MapTileSource = newInfragistics.Controls.Maps.BingMapsTileSource()
+    {
+         TilePath = result.ImageUri,
+         SubDomains = new ObservableCollection<string>(result.ImageUriSubdomains)
+    };
+}
+----
+
+* ラベル付き航空表示
+
+image::images/XamMap_Display_Different_Layer_Types_04.png[]
+
+ImageryMetadataRequest オブジェクトの MapStyle プロパティを MapStyle.AerialWithLabels に変更します。
+
+*Visual Basic の場合:*
+
+ifdef::wpf[]
+----
+Public Sub New()
+    InitializeComponent()
+    Dim mapUriRequest As New BingImageryServiceReference.ImageryMetadataRequest()
+    mapUriRequest.Credentials = New BingImageryServiceReference.Credentials()
+    mapUriRequest.Credentials.ApplicationId = "BING_MAPS_SECRET_KEY"
+    ' 地理画像ソースのレイヤー タイプを設定します
+    mapUriRequest.Style = BingImageryServiceReference.MapStyle.AerialWithLabels
+    ' 地図画像要求を処理するための非同期の Bing Maps サービスを作成します
+    Dim imageryService As New BingImageryServiceReference.ImageryServiceClient("BasicHttpBinding_IImageryService")
+    Dim imageryService As New BingImageryServiceReference.ImageryService()
+    AddHandler imageryService.GetImageryMetadataCompleted, AddressOf imageryService_GetImageryMetadataCompleted
+    imageryService.GetImageryMetadataAsync(mapUriRequest)
+End Sub
+Private Sub imageryService_GetImageryMetadataCompleted(ByVal sender As Object, ByVal e As BingImageryServiceReference.GetImageryMetadataCompletedEventArgs)
+    Dim result As BingImageryServiceReference.ImageryMetadataResult = e.Result.Results(0)
+    Dim source As New Infragistics.Controls.Maps.BingMapsTileSource()
+    source.TilePath = result.ImageUri
+    source.SubDomains = New ObservableCollection(Of String)(result.ImageUriSubdomains)
+    xamMap.MapTileSource = source
+End Sub
+----
+endif::wpf[]
+
+*C# の場合:*
+
+ifdef::wpf[]
+----
+public MainPage()
+{
+    InitializeComponent();
+    BingImageryServiceReference.ImageryMetadataRequest mapUriRequest = new BingImageryServiceReference.ImageryMetadataRequest();
+    mapUriRequest.Credentials = new BingImageryServiceReference.Credentials();
+    mapUriRequest.Credentials.ApplicationId = "BING_MAPS_SECRET_KEY";
+    // 地理画像ソースのレイヤー タイプを設定します
+    mapUriRequest.Style = BingImageryServiceReference.MapStyle.AerialWithLabels;
+    // 地図画像要求を処理するための非同期の Bing Maps サービスを作成します
+    BingImageryServiceReference.ImageryServiceClient imageryService = new BingImageryServiceReference.ImageryServiceClient("BasicHttpBinding_IImageryService");
+    BingImageryServiceReference.ImageryService imageryService = new BingImageryServiceReference.ImageryService();
+    imageryService.GetImageryMetadataCompleted += imageryService_GetImageryMetadataCompleted;
+    imageryService.GetImageryMetadataAsync(mapUriRequest);
+}
+void imageryService_GetImageryMetadataCompleted(object sender, BingImageryServiceReference.GetImageryMetadataCompletedEventArgs e)
+{
+    BingImageryServiceReference.ImageryMetadataResult result = e.Result.Results[0];
+    xamMap.MapTileSource = newInfragistics.Controls.Maps.BingMapsTileSource()
+    {
+         TilePath = result.ImageUri,
+         SubDomains = new ObservableCollection<string>(result.ImageUriSubdomains)
+    };
+}
+----
+endif::wpf[]
+
+* 道路表示
+
+image::images/XamMap_Display_Different_Layer_Types_05.png[]
+
+ImageryMetadataRequest オブジェクトの MapStyle プロパティを MapStyle.Road に変更します。
+
+*Visual Basic の場合:*
+
+ifdef::wpf[]
+----
+Public Sub New()
+    InitializeComponent()
+    Dim mapUriRequest As New BingImageryServiceReference.ImageryMetadataRequest()
+    mapUriRequest.Credentials = New BingImageryServiceReference.Credentials()
+    mapUriRequest.Credentials.ApplicationId = "BING_MAPS_SECRET_KEY"
+    ' 地理画像ソースのレイヤー タイプを設定します
+    mapUriRequest.Style = BingImageryServiceReference.MapStyle.Road
+    ' 地図画像要求を処理するための非同期の Bing Maps サービスを作成します
+    Dim imageryService As New BingImageryServiceReference.ImageryServiceClient("BasicHttpBinding_IImageryService")
+    Dim imageryService As New BingImageryServiceReference.ImageryService()
+    AddHandler imageryService.GetImageryMetadataCompleted, AddressOf imageryService_GetImageryMetadataCompleted
+    imageryService.GetImageryMetadataAsync(mapUriRequest)
+End Sub
+Private Sub imageryService_GetImageryMetadataCompleted(ByVal sender As Object, ByVal e As BingImageryServiceReference.GetImageryMetadataCompletedEventArgs)
+    Dim result As BingImageryServiceReference.ImageryMetadataResult = e.Result.Results(0)
+    Dim source As New Infragistics.Controls.Maps.BingMapsTileSource()
+    source.TilePath = result.ImageUri
+    source.SubDomains = New ObservableCollection(Of String)(result.ImageUriSubdomains)
+    xamMap.MapTileSource = source
+End Sub
+----
+endif::wpf[]
+
+*C# の場合:*
+
+ifdef::wpf[]
+----
+public MainPage()
+{
+    InitializeComponent();
+    BingImageryServiceReference.ImageryMetadataRequest mapUriRequest = new BingImageryServiceReference.ImageryMetadataRequest();
+    mapUriRequest.Credentials = new BingImageryServiceReference.Credentials();
+    mapUriRequest.Credentials.ApplicationId = "BING_MAPS_SECRET_KEY";
+    // 地理画像ソースのレイヤー タイプを設定します
+    mapUriRequest.Style = BingImageryServiceReference.MapStyle.Road;
+    // 地図画像要求を処理するための非同期の Bing Maps サービスを作成します
+    BingImageryServiceReference.ImageryServiceClient imageryService = new BingImageryServiceReference.ImageryServiceClient("BasicHttpBinding_IImageryService");
+    BingImageryServiceReference.ImageryService imageryService = new BingImageryServiceReference.ImageryService();
+    imageryService.GetImageryMetadataCompleted += imageryService_GetImageryMetadataCompleted;
+    imageryService.GetImageryMetadataAsync(mapUriRequest);
+}
+void imageryService_GetImageryMetadataCompleted(object sender, BingImageryServiceReference.GetImageryMetadataCompletedEventArgs e)
+{
+    BingImageryServiceReference.ImageryMetadataResult result = e.Result.Results[0];
+    xamMap.MapTileSource = newInfragistics.Controls.Maps.BingMapsTileSource()
+    {
+         TilePath = result.ImageUri,
+         SubDomains = new ObservableCollection<string>(result.ImageUriSubdomains)
+    };
+}
+----
+endif::wpf[]

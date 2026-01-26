@@ -1,0 +1,282 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-the-position-and-size-of-diagram-nodes",
+    "tags": ["Charting","Data Presentation","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "197cf0e5-fc69-49a7-bc53-af8171cdad1c",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:30:45.5224584Z"
+}
+|metadata|
+////
+
+= ダイアグラム ノードの位置およびサイズの構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールのダイアグラムの各ノードのサイズと位置を制御する方法を説明します。ノードのサイズと位置をまとめて管理する方法の詳細は、 link:xamdiagram-configuring-the-layout.html[レイアウトの構成]のトピックを参照してください。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを {PlatformName} アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref385408385, ノードの位置とサイズの構成の概要 >>
+
+** <<_Ref388552307,ダイアグラム スペースの座標系>>
+** <<_Ref386534590,ノードの位置とサイズの構成の概要>>
+** <<_Ref385408391,ノードの位置とサイズの構成の概要表>>
+
+* <<_Ref388552386, ダイアグラム ノードの位置の構成 >>
+
+** <<_Ref385408401,概要>>
+** <<_PropertySettings,プロパティ設定>>
+** <<_Ref385408408,例>>
+
+* <<_Ref385408414,>><<_Ref388552393, ダイアグラム ノードのサイズの構成 >>
+
+** <<_Ref385408417,概要>>
+** <<_Ref385408421,プロパティ設定>>
+** <<_Ref385408425,例>>
+
+* <<_Ref385408430, 関連コンテンツ >>
+
+** <<_Ref385408435,トピック>>
+
+[[_Ref385408385]]
+== ノードの位置とサイズの構成の概要
+
+[[_Ref388552307]]
+
+=== ダイアグラム スペースの座標系
+
+include::xamdiagram-coordinate-system.ja-JP.adoc[]
+
+[[_Ref386534590]]
+
+=== ノードの位置とサイズの構成の概要
+
+_xamDiagram_   ノードは、ダイアグラムの領域の任意の位置に個別に配置、またはレイアウト アルゴリズム (link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~layout.html[Layout] プロパティを介して使用可能な設定) を適用して配置します。(レイアウト アルゴリズムの詳細は、 link:xamdiagram-configuring-the-layout.html[レイアウトの構成]のトピックを参照してください。)
+
+デフォルトでは、明示的なオーバーライドが適用されていない場合、座標系の原点 (0、0) に新たに作成されたノードが表示されます。
+
+ダイアグラムのノードのサイズは、幅と高さを設定すると明示的に制御できます。デフォルトのサイズはノードの図形に依存します。(デフォルトのサイズの参照については、 link:xamdiagram-visual-elements-overview.html#_Ref389665128[ノードのデフォルト サイズ]を参照してください。)
+
+[NOTE]
+====
+
+注:
+
+ノードの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[Content] プロパティの値がノードの境界線内に収まらない場合、コンテンツはオーバーフローします。
+====
+
+[[_Ref385408391]]
+
+=== ノードの位置とサイズの構成の概要表
+
+以下の表は、ダイアグラムのノードの位置とサイズに関連して構成可能な項目を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+ノードの位置
+|ダイアグラムの左上隅からのノードの左上隅までのオフセット (ピクセル数) を示す複素数として表される、ダイアグラム上のノードの位置 (例: _(5,25)_ __ )。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~position.html[Position] 
+
+|ノードのサイズ
+|ノードのサイズは、幅と高さの設定から導き出されます。幅と高さは、各プロパティで個別に管理されます。
+|
+* `Width` 
+
+* `Height` 
+
+|サイズ変更時のノードの動作
+|ノードのサイズ変更では、ノードの水平方向および垂直方向の縦横比を維持 (ノードは縦横均等に伸縮)することも、水平方向または垂直方向へのマウスの動きに応じた任意のサイズにすることもできます (新しい縦横比になります)。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~maintainaspectratio.html[MaintainAspectRatio] 
+
+|====
+
+[[_Ref388552386]]
+== ダイアグラム ノードの位置の構成
+
+[[_Ref385408401]]
+
+=== 概要
+
+ノードの位置は、ダイアグラム領域上のノードの水平方向および垂直方向の配置に対応するピクセル値を、ノードの `Position` プロパティに設定することで指定します。値の形式は、 _「X ,Y_   _」_   (例:  _75,125_  ) です。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ノード位置の構成
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~position.html[Position]
+|ダイアグラムの左上端からの目的の X 座標および Y 座標 (ピクセル数で指定)
+
+|====
+
+[[_Ref385408408]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果のノードの配置を示します。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~position.html[Position]
+| _5, 125_ 
+
+|====
+
+image::images/xamDiagram_Configuring_the_Position_and_Size_of_Diagram_Nodes_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="diagram"
+               Width="300"
+               Height="250"
+               Background="#F9F9F9">
+    <ig:DiagramNode x:Name="node0"
+                    Position="5,125"/>
+</ig:XamDiagram>
+----
+
+[[_Ref388552393]]
+[[_Ref385408414]]
+== ダイアグラム ノードのサイズの構成
+
+[[_Ref385408417]]
+
+=== 概要
+
+ダイアグラムのノードのサイズは、`Width` プロパティおよび `Height` プロパティの値を設定すると明示的に制御できます。デフォルトのサイズはノードの図形に依存します (定義済みのノード図形の場合)。
+
+サイズ変更時にダイアグラム ノードの縦横比を維持するかどうかを指定するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~maintainaspectratio.html[MaintainAspectRatio] プロパティを設定する必要があります。四角、円、菱形を除くすべてのノード タイプの縦横比は、デフォルトで維持されていません。ダイアグラムのノードの現在の縦横比は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~resizeratio.html[ResizeRatio] プロパティの値から取得できます。
+
+[[_Ref385408421]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|設定する目的|使用するプロパティ:|設定値:
+
+|ノードの幅
+|`Width`
+|目的の幅 (ピクセル数)
+
+|ノードの高さ
+|`Height`
+|目的の高さ (ピクセル数)
+
+|サイズ変更モード
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~maintainaspectratio.html[MaintainAspectRatio]
+|
+* _True_ - サイズ変更時に、図形の縦横比を維持します。 
+
+* _False_ - サイズ変更時に、図形の縦横比を維持しません (サイズ変更時の実際のサイズ変更に応じて、縦横比が変化します)。 
+
+|====
+
+[[_Ref385408425]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、ノードがどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+|`Width`
+| _65_ 
+
+|`Height`
+| _75_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~maintainaspectratio.html[MaintainAspectRatio]
+| _True_ 
+
+|====
+
+image::images/xamDiagram_Configuring_the_Position_and_Size_of_Diagram_Nodes_3.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="diagram"
+               Width="300"
+               Height="250"
+               Background="#F9F9F9">
+    <ig:DiagramNode x:Name="node0"
+                    Width="65"
+                    Height="75"
+                    MaintainAspectRatio="True"
+/>
+</ig:XamDiagram>
+----
+
+[[_Ref385408430]]
+== 関連コンテンツ
+
+[[_Ref385408435]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-overview.html[ _xamDiagram_ の概要]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-configuring-the-shape-of-diagram-nodes-overview.html[ダイアグラム ノードの図形の構成 ( _xamDiagram_ )]
+|このトピックでは、定義済みの図形を選択、またはカスタム図形を適用して、 _xamDiagram_ コントロールのダイアグラム ノードの図形を構成する方法を説明します。
+
+| link:xamdiagram-styling-items-templates.html[ダイアグラム項目の内容の視覚化の構成 ( _xamDiagram_ )]
+|このトピックでは、ダイアグラムの項目の内容についてDataTemplates を設定する方法、およびこれらの内容を編集するために DataTemplates を設定する方法を説明します。
+
+|====

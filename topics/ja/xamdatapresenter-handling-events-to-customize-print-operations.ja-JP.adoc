@@ -1,0 +1,352 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-handling-events-to-customize-print-operations",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Events","Printing"],
+    "guid": "{8A478093-9270-431D-9677-FEE63F8E9A6F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2239979Z"
+}
+|metadata|
+////
+
+= 印刷操作をカスタマイズするためにイベントを処理
+
+
+== 始める前に
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトの link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~print.html[Print] または link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~export.html[Export] メソッドを呼び出すと、WPF レポーティング エンジンは DataPresenter コントロールの状態を正確にそのまま印刷/エクスポートします。プリントアウトまたはエクスポートされたファイルは、印刷またはエクスポート前にエンドユーザーが DataPresenter コントロールをどのように操作するのかに基づいています。
+
+幸い、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection.html[EmbeddedVisualReportSection] オブジェクトは、ページング関連のイベントを公開しているので、それを処理することで、WPF レポーティング エンジンが印刷/エクスポートする DataPresenter コントロールのコピーへの参照を取得できます。この参照を使用すると、DataPresenter コントロールのプロパティを設定したり、イベントハンドラーを DataPresenter が公開するイベントにアタッチできます。特に、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutinitialized_ev.html[FieldLayoutInitialized] イベントまたは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~initializerecord_ev.html[InitializeRecord] イベントを処理すると、それぞれ、フィールド/フィールド レイアウト プロパティまたはレコード プロパティを設定できます。DataPresenter コントロールへの参照はコピーなので、コピーに対してプロパティを設定しても、ユーザー インターフェイス上の DataPresenter コントロールは変更されません。
+
+== 達成すること
+
+EmbeddedVisualReportSection オブジェクトのイベントのペアを処理して、WPF レポーティング エンジンが印刷/エクスポートする xamDataGrid コントロールのコピーへの参照を取得します。イベント ハンドラーに DataPresenter コントロールへの参照を確保したら、イベント ハンドラーを DataPresenter コントロールの InitializeRecord イベントに追加して、すべての偶数番目のレコードを非表示にできます。最後に、DataPresenter コントロールの InitializeRecord イベントのイベントハンドラーおよび EmbeddedVisualReportSection オブジェクトのイベントのペアを削除します。
+
+また、コード例は、EmbeddedVisualReportSection オブジェクトを作成するときに xamDataGrid コントロールを参照しますが、それを xamDataPresenter コントロールまたは xamDataCarousel コントロールに置換できます。このコード例には、 link:xamdata-displaying-hierarchical-data.html[xamDataGrid を階層データにバインド]、 link:xamdatagrid-getting-started-with-xamdatagrid.html[xamDataGrid をページに追加]、または xamDataGrid コントロールを使用した link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加] の個々の手順を示すことや説明は含まれません。
+
+== 次の手順を実行します
+
+[start=1]
+. コード ビハインドを開き、コード ビハインド内に using/Imports のディレクティブを配置すれば、メンバーの完全に記述された名前を常にタイプする必要がなくなります。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Reporting
+Imports Infragistics.Windows.Reporting.Events
+Imports Infragistics.Windows.DataPresenter
+Imports Infragistics.Windows.DataPresenter.Events
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Reporting;
+using Infragistics.Windows.Reporting.Events;
+using Infragistics.Windows.DataPresenter;
+using Infragistics.Windows.DataPresenter.Events;
+----
+
+[start=2]
+. xamDataGrid コントロールを使用してレポートを作成します。
+
+このコード例では、使用する xamDataGrid コントロールの名前が xamDataGrid1 であることを前提としています。
+
+[NOTE]
+====
+*注:* 一部のイベント ハンドラー (link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection~paginationstarting_ev.html[PaginationStarting]、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection~paginationended_ev.html[PaginationEnded]、InitializeRecord など) を除き、コントロールのクリック イベントなどのイベント ハンドラーの中にコード例を追加できます。
+====
+
+*Visual Basic の場合:*
+
+----
+Private Sub Button_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    Dim report1 As New Report()
+    Dim section1 As New EmbeddedVisualReportSection(Me.xamDataGrid1)
+    report1.Sections.Add(section1)
+    'TODO: イベント ハンドラーを section1 にアタッチします
+    'TODO: レポートを印刷またはエクスポートします
+    'TODO: イベント ハンドラーを section1 から削除します
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void Button_Click(object sender, RoutedEventArgs e)
+{
+    Report report1 = new Report();
+    EmbeddedVisualReportSection section1 = new EmbeddedVisualReportSection(this.xamDataGrid1);
+    report1.Sections.Add(section1);
+    //TODO: イベント ハンドラーを section1 にアタッチします
+    //TODO: レポートを印刷またはエクスポートします
+    //TODO: イベント ハンドラーを section1 から削除します
+}
+----
+
+[start=3]
+. EmbeddedVisualReportSection オブジェクトの PaginationStarting イベントにイベント ハンドラーをアタッチします。
+
+EmbeddedVisualReportSection オブジェクトは、Report オブジェクトの Print または Export メソッドを呼び出すときに PaginationStarting イベントを発生させます。
+
+*Visual Basic の場合:*
+
+----
+AddHandler section1.PaginationStarting, New EventHandler(Of EmbeddedVisualPaginationEventArgs)(AddressOf section1_PaginationStarting)
+----
+
+*C# の場合:*
+
+----
+section1.PaginationStarting += new EventHandler<EmbeddedVisualPaginationEventArgs>(section1_PaginationStarting);
+----
+
+[start=4]
+. EmbeddedVisualReportSection オブジェクトの PaginationEnded イベントにイベント ハンドラーをアタッチします。
+
+*Visual Basic の場合:*
+
+----
+AddHandler section1.PaginationEnded, New EventHandler(Of EmbeddedVisualPaginationEventArgs)(AddressOf section1_PaginationEnded)
+----
+
+*C# の場合:*
+
+----
+section1.PaginationEnded += new EventHandler<EmbeddedVisualPaginationEventArgs>(section1_PaginationEnded);
+----
+
+[start=5]
+. レポートを印刷します。
+
+*Visual Basic の場合:*
+
+----
+report1.Print()
+----
+
+*C# の場合:*
+
+----
+report1.Print();
+----
+
+[start=6]
+. PaginationStarting イベントのイベント ハンドラーを EmbeddedVisualReportSection オブジェクトから削除します。
+
+*Visual Basic の場合:*
+
+----
+RemoveHandler section1.PaginationStarting, AddressOf section1_PaginationStarting
+----
+
+*C# の場合:*
+
+----
+section1.PaginationStarting -= section1_PaginationStarting;
+----
+
+[start=7]
+. PaginationEnded イベントのイベント ハンドラーを EmbeddedVisualReportSection オブジェクトから削除します。
+
+*Visual Basic の場合:*
+
+----
+RemoveHandler section1.PaginationEnded, AddressOf section1_PaginationEnded
+----
+
+*C# の場合:*
+
+----
+section1.PaginationEnded -= section1_PaginationEnded;
+----
+
+[start=8]
+. PaginationStarting イベント ハンドラーを検索します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub section1_PaginationStarting(ByVal sender As Object, ByVal e As EmbeddedVisualPaginationEventArgs)
+    'TODO: DataPresenterBase クラスへの TryCast e.VisualPaginator
+    'TODO: イベントを xamDataGrid コントロールにアタッチします。
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void section1_PaginationStarting(object sender, EmbeddedVisualPaginationEventArgs e)
+{
+    //TODO: e.VisualPaginator を DataPresenterBase クラスへキャストすることを試みます。
+    //TODO: イベントを xamDataGrid コントロールにアタッチします。
+}
+----
+
+[start=9]
+. link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.events.embeddedvisualpaginationeventargs.html[EmbeddedVisualPaginationEventArgs] オブジェクトの link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.events.embeddedvisualpaginationeventargs~visualpaginator.html[VisualPaginator] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataBasePresenter] クラスへキャストすることを試みます。
+
+*Visual Basic の場合:*
+
+----
+Dim presenter As DataPresenterBase = TryCast(e.VisualPaginator, DataPresenterBase)
+----
+
+*C# の場合:*
+
+----
+DataPresenterBase presenter = e.VisualPaginator as DataPresenterBase;
+----
+
+[start=10]
+. キャストが成功した場合、イベント ハンドラーを DataPresenterBase オブジェクトの InitializeRecord イベントにアタッチします。
+
+イベント ハンドラーを DataPresenterBase が公開するほかのイベントにアタッチすることもできます。
+
+*Visual Basic の場合:*
+
+----
+If presenter IsNot Nothing
+    AddHandler presenter.InitializeRecord, New EventHandler(Of InitializeRecordEventArgs)(AddressOf presenter_InitializeRecord)
+    ' 注: イベント ハンドラーを DataPresenterBase が公開するほかのイベントにアタッチすることもできます。
+End If
+----
+
+*C# の場合:*
+
+----
+if(presenter != null)
+{
+    presenter.InitializeRecord += new EventHandler<InitializeRecordEventArgs>(presenter_InitializeRecord);    
+    // 注: イベント ハンドラーを DataPresenterBase が公開するほかのイベントにアタッチすることもできます。
+}
+----
+
+[start=11]
+. PaginationEnded イベント ハンドラーを検索します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub section1_PaginationEnded(ByVal sender As Object, ByVal e As EmbeddedVisualPaginationEventArgs)
+    'TODO: e.VisualPaginator を DataPresenterBase クラスへキャストすることを試みます。
+    'TODO: キャストが成功した場合、DataPresenterBase オブジェクトからイベント ハンドラーを削除します。
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void section1_PaginationEnded(object sender, EmbeddedVisualPaginationEventArgs e)
+{
+    //TODO: e.VisualPaginator を DataPresenterBase クラスへキャストすることを試みます。
+    //TODO: キャストが成功した場合、DataPresenterBase オブジェクトからイベント ハンドラーを削除します。
+}
+----
+
+[start=12]
+. EmbeddedVisualPaginationEventArgs オブジェクトの VisualPaginator プロパティを DataPresenterBase クラスへキャストすることを試みます。
+
+*Visual Basic の場合:*
+
+----
+Dim presenter As DataPresenterBase = TryCast(e.VisualPaginator, DataPresenterBase)
+----
+
+*C# の場合:*
+
+----
+DataPresenterBase presenter = e.VisualPaginator as DataPresenterBase;
+----
+
+[start=13]
+. キャストが成功した場合、イベント ハンドラーを DataPresenterBase オブジェクトの InitializeRecord イベントから削除します。
+
+DataPresenterBase クラスが公開するほかのイベントを登録している場合、それらのイベントも同様に削除します。
+
+*Visual Basic の場合:*
+
+----
+If presenter IsNot Nothing
+    RemoveHandler presenter.InitializeRecord, AddressOf presenter_InitializeRecord
+    ' イベント ハンドラーを DataPresenterBase が公開するイベントからかならず削除してください。
+End If
+----
+
+*C# の場合:*
+
+----
+if(presenter != null)
+{
+    presenter.InitializeRecord -= presenter_InitializeRecord;
+    // イベント ハンドラーを DataPresenterBase が公開するイベントからかならず削除してください。    
+}
+----
+
+[start=14]
+. InitializeRecord イベント ハンドラーを検索します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub presenter_InitializeRecord(ByVal sender As Object, ByVal e As InitializeRecordEventArgs)
+    'TODO: インデックス % 2 が 0 のレコードを展開します。
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void presenter_InitializeRecord(object sender, InitializeRecordEventArgs e)
+{
+    //TODO: インデックス % 2 が 0 のレコードを展開します。
+}
+----
+
+[start=15]
+. レコードが偶数番目のレコードの場合、Visibility プロパティを Collapsed を設定することで、それを非表示にします。
+
+*Visual Basic の場合:*
+
+----
+If e.Record.Index Mod 2 = 0 Then 
+    e.Record.Visibility = Visibility.Collapsed
+End If
+----
+
+*C# の場合:*
+
+----
+if(e.Record.Index % 2 == 0)
+{
+    e.Record.Visibility = Visibility.Collapsed;
+}
+----
+
+[start=16]
+. プロジェクトを実行します。
+
+xamDataGrid コントロールを印刷するとき、WPF レポーティング エンジンは奇数番目のレコードのみを印刷します。
+
+== 関連トピック
+
+link:xamdatapresenter-exclude-datapresenter-settings-when-printing.html[印刷時に DataPresenter 設定を除外]
+
+link:xamdatapresenter-fit-all-fields-on-a-single-page.html[単一ページにすべてのフィールドを収める]
+
+link:xamdatapresenter-print-all-records-in-a-hierarchy.html[階層のすべてのレコードを印刷]
+
+link:xamdatapresenter-repeat-field-headers-on-all-pages.html[すべてのページでフィールド ヘッダーを繰り返す]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]

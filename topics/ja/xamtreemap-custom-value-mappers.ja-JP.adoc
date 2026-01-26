@@ -1,0 +1,223 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-custom-value-mappers",
+    "controlName": ["xamTreemap"],
+    "tags": ["Charting","How Do I"],
+    "guid": "14cba6d0-1828-49e2-8fd2-5487d26395b3",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.904393Z"
+}
+|metadata|
+////
+
+= xamTreemap カスタム値マッパー
+
+== 始める前に
+
+xamTreemap コントロールによって、ランキングに応じて各ノードのプロパティを操作することができます。これは値マッパーによって実行されます。
+
+xamTreemap コントロールには、以下の事前に定義された値マッパーがあります。
+
+* link:xamtreemap-colormapper.html[ColorMapper]
+* link:xamtreemap-radialcolormapper.html[RadialColorMapper]
+* link:xamtreemap-groupvaluemapper.html[GroupValueMapper]
+* link:xamtreemap-doublemapper.html[DoubleMapper]
+
+使用例によっては、各ノードのプロパティを設定するためにカスタム ロジックが必要になる場合があります。これはカスタムの値マッパーを作成することによって実行できます。
+
+== 値のマッパー
+
+2 つの基本的なマッパーがあります。
+
+* link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.valuemapper.html[ValueMapper]
+
+image::images/xamTreemap_Custom_Value_Mappers_02.png[]
+
+* link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.rangemapper.html[RangeMapper] - ValueMapper を継承します。
+
+image::images/xamTreemap_Custom_Value_Mappers_03.png[]
+
+== 値マッパーの継承
+
+image::images/xamTreemap_Custom_Value_Mappers_01.png[]
+
+== カスタムの値マッパー
+
+最初に ValueMapper クラスから派生するのか、それとも RangeMapper クラスから派生するのかを決定する必要があります。RangeMapper クラスは ValueMapper クラスの機能を拡張します。
+
+ValueMapper.Treemap プロパティがシナリオに基づいて xamTreemap コントロールのインスタンスへの参照を提供することに注意してください。これにより制御の程度を高めることができます。
+
+== MapValue メソッド
+
+値マッパーは MapValue メソッドを使用して、ノードのランク付けを計算し、マップされたプロパティを設定します。
+
+xamTreemap コントロールはすべてのノードを移動して、各ノードで値マッパーの MapValue メソッドを呼び出します。このメソッドは以下のアクションを担当します。
+
+* 現在のノードが ValueTypeName タイプかどうかをチェックします。
+* ノードのデータ コンテキストでロジックを適用します。
+* マッパーのロジックに基づいて、このメソッドは値を TargetPrpoperty に設定します。
+
+== ResetValue メソッド
+
+値マッパーが Value Mappers でコレクションから削除されると、マップされたノードそれぞれに対して ResetValue メソッドが実行されます。その目的は、MapValue メソッドが実行される前の元の状態にノードを戻すことです。このため、マッパーが適用される前のノードの状態を知っておく必要があります。
+
+== 例
+
+以下の値マッパーは、現在のノードが Product タイプかどうかをチェックします。そうである場合、ノードの塗りつぶしの色はマゼンタ一色に設定されます。
+
+この値マッパーの XAML 宣言がプロパティ ValueTypename または TargetProperty を指定しないことに注意してください。MapValue メソッドでコードされます (ValueTypeName は Product、TargetProperty は Fill)。
+
+*Visual Basic の場合:*
+
+[source]
+----
+Public Class CustoMapper
+    Inherits ValueMapper
+    Public Overrides Sub MapValue(ByVal node As Infragistics.Controls.Charts.TreemapNode)
+        If (node.DataContext Is Product) Then
+            node.Fill = New SolidColorBrush(Colors.Magenta)
+        End If
+    End Sub
+
+    Public Overrides Sub ResetValue(ByVal node As Infragistics.Controls.Charts.TreemapNode)
+	End Sub
+
+End Class
+----
+
+*C# の場合:*
+
+----
+public class CustomMapper : ValueMapper
+{
+    public override void MapValue(TreemapNode node)
+    {
+        if (node.DataContext is Product)
+        {
+            node.Fill = new SolidColorBrush(Colors.Magenta);
+        }
+    }    public override void ResetValue(TreemapNode node)
+    {    }
+}
+----
+
+*XAML の場合:*
+
+----
+<ig:XamTreemap>
+    <ig:XamTreemap.ValueMappers>
+        <local:CustomMapper />
+    </ig:XamTreemap.ValueMappers>
+</ig:XamTreemap>
+----
+
+== 例
+
+InventoryEntry 要素を表すノードにはテンプレートに縮小された画像 (感嘆符) があります。InventoryEntry の Quantity プロパティが 300 未満の場合、より多くの項目を購入する必要があることをユーザーに警告するために画像が表示されます。
+
+以下の値マッパーでは XAML 宣言で ValueTypeName を設定したことに注意してください。MapValue は文字列 ValueTypeName を、現在のノードのデータ コンテキストと比較します。さまざまなターゲット プロパティの多数のターゲット タイプにマッパーが使用される時に、XAML またはコード ビハインドでマッパーのマッピング プロパティを設定するアプローチ (以前の例のようにハードコード化されない) が役に立ちます。
+*Visual Basic の場合:*
+
+[source]
+----
+Public Class CustoMapper
+    Inherits ValueMapper
+    Public Overrides Sub MapValue(ByVal node As Infragistics.Controls.Charts.TreemapNode)
+        If (IsDBNull(node.DataContext)) Then
+            Return
+        End If
+        '現在のノードが ValueTypeName であり、そのテンプレートに子があるかどうかをチェックします
+        If (Me.ValueTypeName = node.DataContext.GetType().Name And VisualTreeHelper.GetChildrenCount(node) > 0) Then
+            Dim inventoryEntry = CType(node.DataContext, InventoryEntry)
+            'カスタム ロジック
+            If (inventoryEntry.Quantity < 300) Then
+                'ノードのテンプレートから WarningImage のインスタンスを取得します
+                Dim rootElement = CType(VisualTreeHelper.GetChild(node, 0), FrameworkElement)
+                Dim warningImage = CType(rootElement.FindName("WarningImage"), Image)
+                '画像の表示/非表示を設定します
+                warningImage.Visibility = Visibility.Visible
+            End If
+        End If
+    End Sub
+    Public Overrides Sub ResetValue(ByVal node As Infragistics.Controls.Charts.TreemapNode)
+        If (IsDBNull(node.DataContext)) Then
+            Return
+        End If
+        '現在のノードが ValueTypeName であり、そのテンプレートに子があるかどうかをチェックします
+        If (Me.ValueTypeName = node.DataContext.GetType().Name And VisualTreeHelper.GetChildrenCount(node) > 0) Then
+            Dim inventoryEntry = CType(node.DataContext, InventoryEntry)
+            'ノードのテンプレートから WarningImage のインスタンスを取得します
+            Dim rootElement = CType(VisualTreeHelper.GetChild(node, 0), FrameworkElement)
+            Dim warningImage = CType(rootElement.FindName("WarningImage"), Image)
+            '画像の表示/非表示を設定します
+            warningImage.Visibility = Visibility.Collapsed
+        End If
+    End Sub
+End Class
+----
+
+*C# の場合:*
+
+----
+public class VisibilityMapper : ValueMapper
+{
+    public override void MapValue(TreemapNode node)
+    {
+        if (node.DataContext == null)
+        {
+            return;
+        }
+        //現在のノードが ValueTypeName であり、そのテンプレートに子があるかどうかをチェックします
+        if (this.ValueTypeName == node.DataContext.GetType().Name && VisualTreeHelper.GetChildrenCount(node) > 0)
+        {
+            InventoryEntry inventoryEntry = (InventoryEntry)node.DataContext;
+            //カスタム ロジック
+            if (inventoryEntry.Quantity < 300)
+            {
+                //ノードのテンプレートから WarningImage のインスタンスを取得します
+                FrameworkElement rootElement = VisualTreeHelper.GetChild(node, 0) as FrameworkElement;
+                Image warningImage = rootElement.FindName("WarningImage") as Image;
+                //画像の表示/非表示を設定します
+                warningImage.Visibility = Visibility.Visible;
+            }
+        }
+    }
+    public override void ResetValue(TreemapNode node)
+    {
+        if (node.DataContext == null)
+        {
+            return;
+        }
+        //現在のノードが ValueTypeName であり、そのテンプレートに子があるかどうかをチェックします
+        if (this.ValueTypeName == node.DataContext.GetType().Name && VisualTreeHelper.GetChildrenCount(node) > 0)
+        {
+            InventoryEntry inventoryEntry = (InventoryEntry)node.DataContext;
+            //ノードのテンプレートから WarningImage のインスタンスを取得します
+            FrameworkElement rootElement = VisualTreeHelper.GetChild(node, 0) as FrameworkElement;
+            Image warningImage = rootElement.FindName("WarningImage") as Image;
+            //画像を縮小します。
+            warningImage.Visibility = Visibility.Collapsed;
+        }
+    }
+}
+----
+
+*XAML の場合:*
+
+----
+<ig:XamTreemap>
+    <ig:XamTreemap.ValueMappers>
+        <local:VisibilityMapper ValueTypeName="InventoryEntry" />
+    </ig:XamTreemap.ValueMappers>
+</ig:XamTreemap>
+----
+
+image::images/xamTreemap_Custom_Value_Mappers_04.png[]
+
+関連トピック
+
+link:xamtreemap-node-binders.html[ノード バインダー]
+
+link:xamtreemap-value-mappers.html[値のマッパー]

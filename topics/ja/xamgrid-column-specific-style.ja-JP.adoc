@@ -1,0 +1,246 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-column-specific-style",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Layouts","Styling"],
+    "guid": "1aa8684f-ab82-4591-a762-f49ac2ef5483",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.5362043Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列固有のスタイル
+
+xamGrid 列には、カスタム スタイリングを導入できる、多数のポイントが含まれます。以下の表は、特定の列に適用できるスタイル プロパティを説明しています。
+
+[options="header", cols="a,a,a"]
+|====
+|TargetType|Style プロパティ|説明
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.primitives.filterrowcellcontrol.html[FilterRowCellControl]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filtercolumnsettings~filterrowcellstyle.html[FilterRowCellStyle]
+|xamGrid の特定の Column の FilterRow にある Cell オブジェクトをスタイルします。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.primitives.summaryrowcellcontrol.html[SummaryRowCellControl]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summarycolumnsettings~summaryrowcellstyle.html[SummaryRowCellStyle]
+|xamGrid の特定の Column の SummaryRow にある Cell オブジェクトをスタイルします。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.primitives.addnewrowcellcontrol.html[AddNewRowCellControl]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~addnewrowcellstyle.html[AddNewRowCellStyle]
+|xamGrid の特定の Column の AddNewRow にある Cell オブジェクトをスタイルします。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.primitives.groupbyheadercellcontrol.html[GroupByHeaderCellControl]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~groupbyheaderstyle.html[GroupByHeaderStyle]
+|xamGrid の特定の Columns の GroupByHeader をスタイルします。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.primitives.groupbycellcontrol.html[GroupByCellControl]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~groupbyrowstyle.html[GroupByRowStyle]
+|xamGrid の特定の Columns の GroupByRow をスタイルします。
+
+|====
+
+== コード例
+
+=== 例の概要
+
+以下の例は、列固有のスタイルを適用する方法を示しています。
+
+以下の表は、以下に提供されたコード例を示しています。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|AddNewRowCellStyle、FilterRowCellStyle および SummaryRowCellStyle プロパティを使って特定の列をスタイルします。
+|この例は、特定の列の Add New 行、Filter 行および Summary 行がどのようにスタイルされるかを示しています。
+
+|GroupByHeaderStyle および GroupByRowStyle プロパティを使って特定の列をスタイルします。
+|この例は、特定の列の Group By ヘッダーおよび行がどのようにスタイルされるかを示しています。
+
+|====
+
+== コード例: AddNewRowCellStyle、FilterRowCellStyle および SummaryRowCellStyle プロパティを使って特定の列をスタイルします。
+
+=== 例の詳細
+
+この例は、特定の列の Add New 行、Filter 行および Summary 行がどのようにスタイルされるかを示しています。
+
+image::images/xamGrid_ColumnSpecificStyles1.png[]
+
+=== 要件
+
+例を完了するには、以下が必要です:
+
+[start=1]
+. link:resources-xamgrid-customstyles.html[CustomStyles.xaml] ResourceDictionary。
+
+これには、AddNewRowCellStyle、 FilterRowCellStyle、および SummaryRowCellStyle の例で使用されるすべてのスタイルが含まれています。
+[start=2]
+. サンプル データを提供する link:resources-datautil.html[DataUtil] クラス。
+
+=== 概要
+
+[start=1]
+. *手順 1*
+
+次の名前空間を追加します:
+
+*XAML の場合:*
+
+----
+....
+    xmlns:ig="http://schemas.infragistics.com/xaml"    
+    xmlns:data="clr-namespace:Application1"
+....
+----
+
+[start=2]
+. *手順 2*
+
+次に、xamGrid コントロールをアプリケーションに追加し、 link:resources-xamgrid-customstyles.html[CustomStyles.xaml] ResourceDictionary を Grid MergedDictionaries コレクションに含めます。以下のコードは、AddNewRowCellStyle、FilterRowCellStyle、SummaryRowCellStyle が特定の列に適用される方法を示しています。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot">  
+    <Grid.Resources>
+      <ResourceDictionary>          
+	      <data:DataUtil x:Key="xamGridData" />
+          <ResourceDictionary.MergedDictionaries>
+              <ResourceDictionary Source="CustomStyles.xaml" />
+          </ResourceDictionary.MergedDictionaries>
+      </ResourceDictionary>
+  </Grid.Resources>
+  <ig:XamGrid x:Name="dataGrid" AutoGenerateColumns="False" ColumnWidth="$$*$$"
+      ItemsSource="{Binding Source={StaticResource xamGridData},Path=Products}"
+      Width="560" Height="380">
+    <ig:XamGrid.Columns>
+      <!-- 列固有の AddNewRowCellStyle を適用 -$$->$$
+      <ig:TextColumn Key="ProductID" 
+                     AddNewRowCellStyle="{StaticResource addNewRowCellStyle}" />
+      <ig:TextColumn Key="ProductName" 
+                     AddNewRowCellStyle="{StaticResource addNewRowCellStyle}">
+        <ig:TextColumn.FilterColumnSettings>
+          <!-- 列固有の FilterRowCellStyle を適用 -$$->$$
+          <ig:FilterColumnSettings 
+              FilterRowCellStyle="{StaticResource filterStyle}" />
+          </ig:TextColumn.FilterColumnSettings>
+        </ig:TextColumn>
+        <ig:TextColumn Key="UnitPrice" HeaderText="Unit Price"/>
+        <ig:TextColumn Key="UnitsInStock" HeaderText="Units in Stock">
+        <ig:TextColumn.SummaryColumnSettings>
+          <!-- 列固有の SummaryRowCellStyle を適用 -$$->$$
+          <ig:SummaryColumnSettings 
+              SummaryRowCellStyle="{StaticResource RedSummaryStyle}" />
+          </ig:TextColumn.SummaryColumnSettings> 
+        </ig:TextColumn>
+        <ig:TextColumn Key="UnitsOnOrder" HeaderText="Units on Order" >
+          <ig:TextColumn.SummaryColumnSettings>
+            <!-- 列固有の SummaryRowCellStyle を適用 -$$->$$
+            <ig:SummaryColumnSettings 
+                SummaryRowCellStyle="{StaticResource GreenSummaryStyle}" />
+        </ig:TextColumn.SummaryColumnSettings>
+      </ig:TextColumn>
+    </ig:XamGrid.Columns>
+    <ig:XamGrid.AddNewRowSettings>
+      <ig:AddNewRowSettings AllowAddNewRow="Top" />
+    </ig:XamGrid.AddNewRowSettings>
+    <ig:XamGrid.PagerSettings>
+      <ig:PagerSettings AllowPaging="Bottom" PageSize="9" />
+    </ig:XamGrid.PagerSettings>
+    <ig:XamGrid.FilteringSettings>
+      <ig:FilteringSettings AllowFiltering="FilterRowBottom" />
+    </ig:XamGrid.FilteringSettings>
+    <ig:XamGrid.SummaryRowSettings>
+      <ig:SummaryRowSettings AllowSummaryRow="Bottom" />
+    </ig:XamGrid.SummaryRowSettings>
+  </ig:XamGrid>
+</Grid>
+----
+
+=== コード例: GroupByHeaderStyle および GroupByRowStyle プロパティを使って特定の列をスタイルします。
+
+== 例の詳細
+
+この例は、特定の列の GroupBy ヘッダーおよび行がどのようにスタイルされるかを示しています。
+
+image::images/xamGrid_ColumnSpecificStyles2.png[]
+
+== 要件
+
+例を完了するには、以下が必要です:
+
+[start=1]
+. link:resources-xamgrid-groupby-styles.html[GroupBy_Styles.xaml] ResourceDictionary。
+
+これには、GroupByHeaderStyle および GroupByRowStyle の例で使用されるすべてのスタイルが含まれています。
+[start=2]
+. サンプル データを提供する link:resources-datautil.html[DataUtil] クラス。
+
+=== 概要
+
+[start=1]
+. *手順 1*
+
+次の名前空間を追加します:
+
+*XAML の場合:*
+
+----
+....
+    xmlns:ig="http://schemas.infragistics.com/xaml"     
+    xmlns:data="clr-namespace:Application1"
+....
+----
+
+[start=2]
+. *手順 2*
+
+次に、xamGrid コントロールをアプリケーションに追加します。
+
+GroupBy_Styles.xaml ResourceDictionary を Grid MergedDictionaries コレクションに含めます。以下のコードは、GroupByHeader および GroupByRow styles が特定の列に適用される方法を示しています。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot">
+  <Grid.Resources>
+    <ResourceDictionary>
+      <data:DataUtil x:Key="xamGridData" /> 
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="GroupBy_Styles.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Grid.Resources>
+  <ig:XamGrid x:Name="dataGrid" AutoGenerateColumns="False" ColumnWidth="$$*$$"
+            ItemsSource="{Binding Source={StaticResource xamGridData},Path=Products}"
+            Width="560" Height="380">    
+    <ig:XamGrid.Columns>
+      <ig:TextColumn Key="ProductID" HeaderText="ID" />
+      <ig:TextColumn Key="ProductName" HeaderText="Product Name" />
+      <ig:TextColumn Key="UnitPrice" HeaderText="Unit Price"/>
+      <ig:TextColumn Key="CategoryID" 
+                     HeaderText="CategoryID" 
+                     IsGroupBy="True"
+                     GroupByHeaderStyle="{StaticResource groupByHeaderStyle}"
+                     GroupByRowStyle="{StaticResource groupByRowStyle}"/>
+      <ig:TextColumn Key="UnitsInStock" HeaderText="Units in Stock" />
+      <ig:TextColumn Key="UnitsOnOrder" HeaderText="Units on Order" />
+    </ig:XamGrid.Columns>        
+    <ig:XamGrid.GroupBySettings>
+      <ig:GroupBySettings AllowGroupByArea="Top" />
+    </ig:XamGrid.GroupBySettings>
+  </ig:XamGrid>
+</Grid>
+----
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xamgrid-adding-xamgrid-to-your-page.html[xamGrid をページに追加]

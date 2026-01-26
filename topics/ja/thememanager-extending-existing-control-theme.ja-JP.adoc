@@ -1,0 +1,274 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager-extending-existing-control-theme",
+    "tags": ["Getting Started","How Do I","Theming"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "41ab1a03-a11a-459a-af4b-140365553e81",  
+    "buildFlags": [],
+    "createdOn": "2014-09-03T11:42:26.503289Z"
+}
+|metadata|
+////
+
+= 既存のコントロール テーマの拡張 (ThemeManager)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、_Infragistics ThemeManager_™ を使用して既存のコントロール テーマを拡張する方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-applying-theme-to-control.html[FrameworkElement レベルのテーマの適用]
+|このトピックでは、_Infragistics ThemeManager_ を使用して FrameworkElement にテーマを適用する方法について説明します。
+
+| link:xamtilemanager-adding-xamtilemanager-to-your-application.html[xamTileManager をアプリケーションに追加]
+|このトピックでは、_xamTileManager_ コントロールをページに追加する方法について説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref398126228,既存のテーマの拡張 - 例>>
+* <<_Ref398134090,関連コンテンツ>>
+
+[[_Ref398126228]]
+== 既存のテーマの拡張 - 例
+
+=== 概要
+
+以下の手順では、_ThemeManager_ を使用して、_xamTileManager_ の _Office2013_ のテーマを拡張します。
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/Extending_an_Existing_Theme_1.png[]
+
+[[_Ref397962631]]
+
+=== 要件
+
+以下は、_xamTileManager_ の _Office2013_ テーマを拡張するための一般要件です。
+
+* NuGet パッケージの参照:
+
+** Infragistics.WPF.TileManager
+** Infragistics.WPF.Themes.Office2013
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+* 名前空間:
+
+** Infragistics® 名前空間への参照: (xmlns:ig="http://schemas.infragistics.com/xaml")
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページがある Microsoft® Visual Studio® WPF プロジェクト
+* プロジェクトに追加した必要な NuGet パッケージ参照および名前空間 (<<_Ref397962631,要件>>を参照)
+* 以下のテーマ リソースをプロジェクトに追加します。
+
+** link:resources-extendedtheme-xamtilemanager.html[ExtendedTheme.xamTileManager.xaml]
+
+=== 概要
+
+以下はプロセスの概要です。
+
+[start=1]
+. <<_Ref398052991, リソース ディレクトリへの xamTileManager のテーマの作成 >>
+
+[start=2]
+. <<_Ref398053010, Office2013Theme クラスから派生する拡張されたテーマ クラスの作成 >>
+
+[start=3]
+. <<_Ref398138081, 拡張されたテーマ クラスの ConfigureControlMappings メソッドへの上書き >>
+
+[start=4]
+. <<_Ref398053031, 拡張されたテーマのコントロールへの適用 >>
+
+=== 手順
+
+以下の手順では、変更された  _Office2013_  テーマを拡張し  _xamTileManager_   コントロールに適用する方法を示します。
+
+1. リソース ディレクトリへの xamTileManager のテーマの作成
+
+詳細は、 link:resources-extendedtheme-xamtilemanager.html[ExtendedTheme.xamTileManager.xaml] を参照してください。
+
+[start=2]
+2. Office2013Theme クラスから派生する拡張されたテーマ クラスの作成
+
+link:{ApiPlatform}themes.office2013{ApiVersion}~infragistics.themes.office2013theme_members.html[Office2013Theme] クラスから派生する、ExtendedOffice2013Theme という名前のクラスを作成します。
+
+*C# の場合:*
+[source,csharp]
+----
+public class ExtendedOffice2013Theme : Office2013Theme
+{
+// クラスの実装 
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class ExtendedOffice2013Theme Inherits Office2013Theme
+    ' クラスの実装 
+End Class
+----
+
+[start=3]
+3. 拡張されたテーマ クラスの ConfigureControlMappings メソッドへの上書き
+
+拡張されたテーマ クラスの link:{RootAssembly}{ApiVersion}~infragistics.themes.themebase~configurecontrolmappings.html[ConfigureControlMappings] メソッドを上書きします。
+
+*C# の場合:*
+
+[source,csharp]
+----
+protected override void ConfigureControlMappings()
+{
+    // すべてのコントロールのマッピングを ConfigureControlMappings メソッドの基本実装
+	// への呼び出しを介してプリセットします
+    base.ConfigureControlMappings();
+    string assemblyFullName = typeof(ExtendedOffice2013Theme).Assembly.FullName;
+    // XamTileManager コントロールのマッピングをオーバーライドします
+    Mappings[ControlMappingKeys.XamTileManager] =
+		ThemeBase.BuildLocationString(assemblyFullName, @"/ExtendedTheme.xamTileManager.xaml");
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Protected Overrides Sub ConfigureControlMappings()
+    ' すべてのコントロールのマッピングを ConfigureControlMappings メソッドの基本実装
+	' への呼び出しを介してプリセットします
+    MyBase.ConfigureControlMappings()
+    Dim assemblyFullName As String = GetType(ExtendedOffice2013Theme).Assembly.FullName
+    ' XamTileManager コントロールのマッピングをオーバーライドします
+    Mappings(ControlMappingKeys.XamTileManager) = _
+		ThemeBase.BuildLocationString(assemblyFullName, "/ExtendedTheme.xamTileManager.xaml")
+End Sub
+----
+
+[start=4]
+4. 拡張されたテーマのコントロールへの適用
+
+拡張されたテーマをコントロールに適用します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <ig:ThemeManager.Theme> 
+ <extendedTheme:ExtendedOffice2013Theme />
+    </ig:ThemeManager.Theme>
+    <ig:XamTileManager>
+        <ig:XamTile Header="TILE 1" 
+                    IsMaximized="True" />
+        <ig:XamTile Header="TILE 2" />
+        <ig:XamTile Header="TILE 3" />
+        <ig:XamTile Header="TILE 4" />
+    </ig:XamTileManager>
+</Grid>
+----
+
+[[_Ref382317785]]
+=== 全コード
+
+以下は、この手順の完全なコードです。
+
+*ウィンドウの XAML コード*
+
+*XAML の場合:*
+[source,xaml]
+----
+<Grid>
+    <ig:ThemeManager.Theme>
+        <extendedTheme:ExtendedOffice2013Theme />
+    </ig:ThemeManager.Theme>
+    <ig:XamTileManager>
+        <ig:XamTile Header="TILE 1" 
+                    IsMaximized="True" />
+        <ig:XamTile Header="TILE 2" />
+        <ig:XamTile Header="TILE 3" />
+        <ig:XamTile Header="TILE 4" />
+    </ig:XamTileManager>
+</Grid>
+----
+
+*ExtendedOffice2013Theme.cs*
+
+*C# の場合:*
+[source,csharp]
+----
+public class ExtendedOffice2013Theme : Office2013Theme
+{
+    protected override void ConfigureControlMappings()
+    {
+        // すべてのコントロールのマッピングを ConfigureControlMappings メソッドの基本実装
+		// への呼び出しを介してプリセットします
+        base.ConfigureControlMappings();
+        string assemblyFullName = typeof(ExtendedOffice2013Theme).Assembly.FullName;
+        // XamTileManager コントロールのマッピングをオーバーライドします
+        Mappings[ControlMappingKeys.XamTileManager] = 
+			ThemeBase.BuildLocationString(assemblyFullName, @"/ExtendedTheme.xamTileManager.xaml");
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class ExtendedOffice2013Theme Inherits Office2013Theme
+    Protected Overrides Sub ConfigureControlMappings()
+        ' すべてのコントロールのマッピングを ConfigureControlMappings メソッドの基本実装
+		' への呼び出しを介してプリセットします
+        MyBase.ConfigureControlMappings()
+        Dim assemblyFullName As String = GetType(ExtendedOffice2013Theme).Assembly.FullName
+        ' XamTileManager コントロールのマッピングをオーバーライドします
+        Mappings(ControlMappingKeys.XamTileManager) = _
+            ThemeBase.BuildLocationString(assemblyFullName, "/ExtendedTheme.xamTileManager.xaml")
+    End Sub
+End Class
+----
+
+[[_Ref398134090]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-applying-theme-to-control.html[FrameworkElement レベルのテーマの適用]
+|このトピックでは、_Infragistics ThemeManager_ を使用して FrameworkElement にテーマを適用する方法について説明します。
+
+| link:thememanager-applying-theme-to-application.html[アプリケーション レベルのテーマの適用]
+|このトピックでは、_Infragistics ThemeManager_ を使用してアプリケーションにテーマを適用する方法について説明します。
+
+| link:thememanager-applying-theme-to-supported-ms-wpf-controls.html[サポートされる Microsoft の WPF コントロールへのテーマの適用]
+|このトピックでは、サポートされるマイクロソフトの WPF コントロールのテーマ設定を、_Infragistics ThemeManager_ を使用して有効または無効にする方法を説明します。
+
+| link:thememanager-creating-new-custom-theme.html[新規のカスタム テーマの作成]
+|このトピックでは、_Infragistics ThemeManager_ を使用して、新しいカスタム テーマを作成し適用する方法について説明します。
+
+|====

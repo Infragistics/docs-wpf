@@ -1,0 +1,58 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-editing-support",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": [],
+    "guid": "89e13e43-48a3-4722-b926-e64363b25655",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3443529Z"
+}
+|metadata|
+////
+
+= 編集サポート (xamSyntaxEditor)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのこのトピックでは、 _xamSyntaxEditor™_   によるテキストの編集方法について解説します。
+
+=== トピック
+
+このセクションは、テキスト編集に関するトピックからなります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能を取り上げます。
+
+| link:xamsyntaxeditor-clipboard-support.html[クリップボードのサポート]
+|このトピックでは、 _xamSyntaxEditor_ コントロールでサポートしているクリップボードの操作について解説します。
+
+| link:xamsyntaxeditor-undo-redo.html[元に戻す/やり直し]
+|このトピックでは、 _xamSyntaxEditor_ コントロールの元に戻す/やり直しの操作について解説します。
+
+| link:xamsyntaxeditor-find-replace.html[検索と置換]
+|このトピックでは、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument_members.html[xamSyntaxEditor] コントロールの検索、置換、すべて置換の操作について解説します。
+
+| link:xamsyntaxeditor-selection.html[選択]
+|このトピックでは、 _xamSyntaxEditor_ コントロールの選択機能をコードで使用する方法を紹介します。
+
+| link:xamsyntaxeditor-events-and-commands.html[イベントとコマンド]
+|このトピックでは、 _xamSyntaxEditor_ アプリケーションの構築とともにユーザーが利用できるイベントとサポート対象コマンドを紹介します。
+
+| link:xamsyntaxeditor-working-with-snapshots.html[スナップショットによる作業]
+|このトピックでは、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot_members.html[TextDocumentSnapshot] クラスと link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner_members.html[TextDocumentSnapshotScanner] クラスの機能を紹介します。
+
+| link:xamsyntaxeditor-indent-outdent-lines.html[行のインデント / アウトデント]
+|このトピックでは、テキスト ブロックのインデント、アウトデント、およびテキストの書式設定について解説します。テキストの書式設定は、言語で定義したルールおよび Language で登録したデフォルト (カスタムはオプションです) の `IndentServiceProvider` に基づきます。
+
+| link:xamsyntaxeditor-drag-and-drop-support.html[ドラッグ アンド ドロップのサポート]
+|このトピックでは、 _xamSyntaxEditor_ の内外でテキストを移動するドラッグ アンド ドロップの操作方法を解説します。
+
+|====

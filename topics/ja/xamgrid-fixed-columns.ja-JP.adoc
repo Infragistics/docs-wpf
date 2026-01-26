@@ -1,0 +1,80 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-fixed-columns",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Layouts","Selection"],
+    "guid": "{DC0BAEC0-BE05-4FFF-8733-33F9463DFF16}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7691902Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 固定列
+
+xamGrid のもうひとつの特徴は、固定列機能です。この機能によって、グリッドが水平にスクロールされるときに表示されたままにするために固定 (スクロールされない) 列を作成できます。
+
+エンドユーザーがヘッダーで列インジケーターをクリックすると、列は xamGrid の左または右に移動し (設定に基づいて)、水平スクロールの間固定されます。この機能によって、エンドユーザーは特定のデータをビュー内に常に保持でき、それを列データと比較または対比できます。
+
+デフォルトでは、固定列機能は無効になっています。
+
+xamGrid で固定列を有効にするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumnsettings.html[FixedColumnSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumnsettings~allowfixedcolumns.html[AllowFixedColumns] プロパティを以下の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumntype.html[FixedColumnType] 列挙体のいずれかの値に設定するだけです。
+
+* Indicator - この値は、固定列が有効で、列のヘッダーにある固定列インジケーターをクリックすることでエンドユーザーが列を固定できるように指定します。
+* DropArea - この値は固定列が有効で、xamGrid の指定された領域にドラッグすることでエンドユーザーが列を固定できるように指定します。
+* Both - この値は、固定列が有効で、列のヘッダーにある固定列インジケーターをクリックする、または xamGrid の指定された領域にドラッグすることでエンドユーザーが列を固定できるように指定します。
+* Disabled - この値は、固定列を無効にします。
+
+以下のコードは、固定列を有効する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid.FixedColumnSettings>
+   <ig:FixedColumnSettings AllowFixedColumns="Both"/>
+</ig:XamGrid.FixedColumnSettings>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Me.MyGrid.FixedColumnSettings.AllowFixedColumns = FixedColumnType.Both
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.MyGrid.FixedColumnSettings.AllowFixedColumns = FixedColumnType.Both;
+----
+
+以下のスクリーン ショットは、固定列があるグリッドです。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Fixed_Columns_01.png[Fixed Columns]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Fixed_Columns_01.png[Fixed Columns]
+endif::win-rt[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Fixed_Columns_02.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-setting-the-drop-area-location.html[ドロップ領域の場所を設定]
+
+link:xamgrid-fixed-column-events.html[固定列イベント]
+
+link:xamgrid-setting-fixed-columns-programmatically.html[プログラムによる固定列の設定]
+
+pick:[win-rt=" link:xamgrid-touch-support.html[タッチ サポート]"]

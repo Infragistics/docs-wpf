@@ -1,0 +1,82 @@
+﻿////
+|metadata|
+{
+    "name": "xamcolorpicker-adding-xamcolorpicker-to-your-grid",
+    "controlName": ["xamColorPicker"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "82b058dd-1144-42f6-a2e5-d7c10f75dd09",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.6840961Z"
+}
+|metadata|
+////
+
+= xamColorPicker をグリッドに追加
+
+== 始める前に
+
+xamColorPicker コントロールは、定義済みの色パレットからエンドユーザーが色を選択できる簡単なエディター コントロールです。
+
+== 達成すること
+
+このトピックは、XAML を使用して、DataGrid コントロールに xamColorPicker コントロールを追加する方法を示します。
+
+== 以下の手順を実行します。
+
+[start=1]
+. {PlatformName} プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.ColorPicker
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. xamColorPicker および Windows.Controls の以下の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:msd="clr-namespace:System.Windows.Controls;
+    assembly=System.Windows.Controls.Data"
+----
+
+[start=4]
+. DataGrid コントロールをページに追加します。以下のように設定します。
+
+.. x:Name - MyDataGrid
+.. Columns コレクションに、テンプレート列を追加します。
+.. DataTemplate に、幅 40 で xamColorPicker コントロールを追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<msd:DataGrid x:Name="MyDataGrid" AutoGenerateColumns="True">
+  <msd:DataGrid.Columns>
+    <msd:DataGridTemplateColumn CanUserSort=">
+      <msd:DataGridTemplateColumn.CellTemplate>
+        <DataTemplate>
+          <ig:XamColorPicker x:Name="MyColorPicker"
+                             DerivedPalettesCount="10"
+                             Width="40" />
+        </DataTemplate>
+      </msd:DataGridTemplateColumn.CellTemplate>
+    </msd:DataGridTemplateColumn>
+  </msd:DataGrid.Columns>
+</msd:DataGrid>
+----
+
+[start=5]
+. プロパティ SelectedColor を、DataGrid のデータ ソースの適切なパスにバインドできます。
+
+== 関連トピック
+
+link:xamcolorpicker-about-xamcolorpicker.html[xamColorPicker について]
+
+link:xamcolorpicker-adding-xamcolorpicker-to-your-page.html[xamColorPicker をページに追加]
+
+link:xamcolorpicker-using-xamcolorpicker.html[xamColorPicker の使用]

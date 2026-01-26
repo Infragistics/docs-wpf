@@ -1,0 +1,57 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-xamdatatree-data-binding",
+    "controlName": ["xamDataTree"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "5ed97f1e-65aa-41dd-8960-1547d1518f0e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8931115Z"
+}
+|metadata|
+////
+
+= xamDataTree をデータにバインド
+
+xamDataTree™ コントロールはバウンド ツリー コントロールであるため、ノードを直接追加できません。
+
+xamDataTree をデータにバインドするには、xamDataTree コントロールの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~itemssource.html[ItemsSource] プロパティを設定する必要があります。
+
+以下のコードは、xamDataTree でデータにバインドする方法を示します。これは開発者に提供される link:resources-datautil.html[DataUtil クラス]を使用します。
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+    <local:DataUtil x:Key="DataUtil" />
+</UserControl.Resources>
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamDataTree x:Name="MyTree" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=CategoriesAndProducts}">
+   </ig:XamDataTree>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+MyTree.ItemsSource = DataUtil.CategoriesAndProducts
+----
+
+*C# の場合:*
+
+----
+MyTree.ItemsSource = DataUtil.CategoriesAndProducts;
+----
+
+*データ表示*
+
+xamDataTree コントロールは、ノードのグループ/タイプを表すために link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.nodelayout.html[NodeLayout] オブジェクトを使用します。これによって、タイプまたはデータ レベルに基づく共通のスタイルが可能になります。詳細については、 link:xamdatatree-xamdatatree-node-layouts.html[「xamDataTree ノード レイアウト」]を参照してください。
+
+*関連トピック*
+
+link:xamdatatree-about-xamdatatree.html[xamDataTree について]
+
+link:xamdatatree-adding-xamdatatree-to-your-page.html[xamDataTree をページに追加]
+
+link:xamdatatree-using-xamdatatree.html[xamDataTree の構成]

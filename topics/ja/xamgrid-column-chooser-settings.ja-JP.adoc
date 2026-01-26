@@ -1,0 +1,79 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-column-chooser-settings",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Styling"],
+    "guid": "f7e4fe2e-463f-4063-ad58-a52256254036",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.1462131Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列の選択設定
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnchoosersettingsoverride.html[ColumnChooserSettingsOverride] オブジェクトには存在せず、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnchoosersettings.html[ColumnChooserSettings] に存在する、3 つの追加プロパティがあります。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnchoosersettings~hiddencolumnindicatortooltiptext.html[HiddenColumnIndicatorTooltipText] - このプロパティは、エンド ユーザーが列ヘッダーの列チューザー インジケーター上でマウスをホバーするときに表示されるテキストを設定します。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnchoosersettings~columnchooserdisplaytext.html[ColumnChooserDisplayText] - このプロパティは、列チューザーのダイアログ ウィンドウのヘッダーに表示されるテキスト、および列チューザーのドロップダウン リストのラベルとして表示されるテキストを指定します。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.stylesettingsbase~style.html[Style] - ColumnChooserDialog コントロールをターゲットとするこのプロパティを設定することによって、列チューザーのダイアログ ウィンドウのスタイルを設定できます。
+
+以下のコードはこれらのプロパティを設定する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid.Resources>
+    <Style x:Key="ColumnChooserStyle" TargetType="igPrim:ColumnChooserDialog">
+        <Setter Property="Foreground" Value="Red" />
+    </Style>
+</ig:XamGrid.Resources>
+...
+
+<ig:ColumnChooserSettings AllowHideColumnIcon="True" AllowHiddenColumnIndicator="True" 
+    HiddenColumnIndicatorToolTipText="Click to display hidden columns" 
+    ColumnChooserDisplayText="Hide Column"
+    Style="{StaticResource ColumnChooserStyle}">
+</ig:ColumnChooserSettings>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyDataGrid.ColumnChooserSettings.HiddenColumnIndicatorToolTipText = "Click to display hidden columns"
+Me.MyDataGrid.ColumnChooserSettings.ColumnChooserDisplayText = "Hide Columns"
+Me.MyDataGrid.ColumnChooserSettings.Style = CType(Me.MyDataGrid.Resources("ColumnChooserStyle"), Style)
+----
+
+*C# の場合:*
+
+----
+this.MyDataGrid.ColumnChooserSettings.HiddenColumnIndicatorToolTipText = "Click to display hidden columns";
+this.MyDataGrid.ColumnChooserSettings.ColumnChooserDisplayText = "Hide Columns";
+this.MyDataGrid.ColumnChooserSettings.Style = this.MyDataGrid.Resources["ColumnChooserStyle"] as Style;
+----
+
+ifdef::sl,wpf[]
+image::images/xamGrid_columnChooser5.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_columnChooser5.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-enabling-column-chooser.html[列の選択を有効にする]
+
+link:xamgrid-column-chooser-dialog-window.html[列の選択ダイアログ ウィンドウ]
+
+link:xamgrid-prevent-columns-from-being-hidden.html[列が非表示にされることを防止する]
+
+pick:[win-rt=" link:xamgrid-touch-support.html[タッチ サポート]"]

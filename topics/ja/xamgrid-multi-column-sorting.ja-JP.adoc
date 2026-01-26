@@ -1,0 +1,61 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-multi-column-sorting",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Sorting"],
+    "guid": "{6707AB6D-8473-4AC4-95E7-C84232B7BD22}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6741874Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 複数列の並べ替え
+
+xamGrid コントロールによって、単一列の並べ替えまたは複数列の並べ替えができます。デフォルトでは単一列の並べ替えが有効になっています。複数列の並べ替えによって、エンド ユーザーは第 1、第 2、第 3 (など) の列の並べ替えができます。
+
+エンド ユーザーは、まず第 1 の列で並べ替えを実行することによって、複数列の並べ替え機能を使用できます。その後 Control キーを押しながら、2 番目の列をクリックして並べ替えます。必要な数の列の並べ替えが終わるまでこのプロセスを繰り返します。以下は、エンド ユーザーがまず Category 列を並べ替える場合の複数列の並べ替え例です。各カテゴリが複数存在し、エンド ユーザーが UnitsInStock 列で 2 番目の並べ替えを実行すると仮定します。エンド ユーザーは、各カテゴリが、在庫内の対応するユニットと共にカテゴリごとに並べ替えていることを確認できます。
+
+以下のコードは xamGrid で複数列の並べ替えを有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid.SortingSettings>
+   <ig:SortingSettings AllowMultipleColumnSorting="True" />
+</ig:XamGrid.SortingSettings>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.SortingSettings.AllowMultipleColumnSorting = True
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.SortingSettings.AllowMultipleColumnSorting = true;
+----
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Multi_Column_Sorting_01.png[Sorting]
+endif::sl,wpf[]
+
+== 関連トピック
+
+link:xamgrid-sorting.html[並べ替え]
+
+link:xamgrid-remove-sort-indicator.html[並べ替えインジケーターの削除]
+
+link:xamgrid-disable-sorting-on-certain-columns.html[特定の列の並べ替えを無効にする]
+
+link:xamgrid-sorting-events.html[並べ替えイベント]
+
+link:xamgrid-custom-sort.html[カスタム並べ替え]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

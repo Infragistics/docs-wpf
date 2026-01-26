@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-automatically-fit-fields",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Presentation","Layouts"],
+    "guid": "{A78F071A-94ED-4601-B205-EE0693C3A8F3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0969725Z"
+}
+|metadata|
+////
+
+= 自動的にフィールドを調整
+
+
+
+DataPresenter コントロールは、そのフィールドを自動的にサイズ変更し、すべてのフィールドがコントロールの境界に収まるようにできます。DataPresenter コントロールは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autofitmode.html[AutoFitMode] プロパティを以下のいずれかの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.autofitmode.html[AutoFitMode] 列挙値に設定することで使用できる複数の「自動調整」モードを提供します。
+
+* Always - DataPresenter コントロールは、スター サイズ指定を使用して、フィールドの比率を保持しながら、すべてのフィールドが境界に収まるようにサイズ調整します。
+* Default - DataPresenter コントロールは、その AutoFit プロパティ値に基づいてデフォルト設定を決定します。以下のリストは、DataPresenter コントロールの AutoFit プロパティ値を、FieldLayoutSettings オブジェクトの AutoFitMode プロパティ値とともに示します。
+
+** グリッド ビューを使用し NULL に設定された AutoFit プロパティ - OnlyWithVisibleStarFields
+** カルーセル ビューを使用し NULL に設定された AutoFit プロパティ - Always
+** False に設定された AutoFit プロパティ - Never
+** True に設定された AutoFit プロパティ - Always
+
+* ExtendLastField - DataPresenter コントロールは、最後のフィールドを展開し、残りのスペースを埋めます。この設定は、フィールドの合計幅が DataPresenter コントロールの合計幅未満の場合にのみ適用可能です。
+* Never - DataPresenter コントロールは、フィールドのサイズを調整しません。
+* OnlyWithVisibleStarFields - DataPresenter コントロールは、スター サイズ指定 (パーセンテージのサイズ設定) のフィールドが表示されている場合にのみ、フィールドのサイズを調整します。フィールド レイアウトでスター サイズ指定を使用するすべてのフィールドをご自分でまたはエンド ユーザーが非表示にすると、DataPresenter コントロールは残りのフィールドを自動的に調整しません。
+
+image::images/xamDataPresenter_Automatically_Fit_Fields_01.png[]
+
+以下のコード例は、フィールドを自動的に調整する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AutoFitMode="ExtendLastField" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldLayoutSettings.AutoFitMode = AutoFitMode.ExtendLastField
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldLayoutSettings.AutoFitMode = AutoFitMode.ExtendLastField;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-set-a-fields-width.html[フィールドの幅の設定]
+
+link:xamdatapresenter-modify-field-sizing-behaviors.html[フィールドのサイズ設定動作の修正]
+
+link:xamdatapresenter-perform-an-auto-sizing-operation.html[自動サイズ設定操作の実行]

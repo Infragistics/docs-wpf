@@ -1,0 +1,89 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-retrieve-the-result-of-a-summary",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Summaries"],
+    "guid": "{078578C2-4A7F-4832-8CA0-899FDD2299DA}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3130157Z"
+}
+|metadata|
+////
+
+= 集計結果を取得
+
+
+
+xamDataPresenter で link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordcollection.html[Records コレクション] から link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordcollectionbase~summaryresults.html[SummaryResults コレクション] にインデックスすることによって link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summaryresult.html[SummaryResult] オブジェクトを取得できます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summaryresult.html[SummaryResult] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summaryresult~value.html[Value] プロパティは、集計の結果を返します。アプリケーションロジックでそれを使用する前に、正しいデータ型に Value プロパティをキャストする必要があります。
+
+組み込み集計計算式は、以下のデータ型を返します：
+
+[options="header", cols="a,a"]
+|====
+|集計計算式|データ型
+
+|合計
+|10 進
+
+|平均値
+|10 進
+
+|カウント
+|整数
+
+|最小
+|フィールドのデータ型
+
+|最大
+|フィールドのデータ型
+
+|====
+
+以下のコード例は、集計の結果の取得方法を示します。
+
+*Visual Basic の場合:*
+
+----
+...
+'以下のコードは、ルート レベルのフィールド レイアウトに少なくともひとつの集計があることを想定します。
+Try 
+    Dim val As Object = Me.xamDataPresenter1.Records.SummaryResults(0).Value 
+    Dim summaryValue As Decimal = Convert.ToDecimal(val) 
+    MessageBox.Show(String.Format("First summary value is {0}", summaryValue)) 
+Catch 
+    '警告なしに失敗する 
+End Try 
+...
+----
+
+*C# の場合:*
+
+----
+...
+'以下のコードは、ルート レベルのフィールド レイアウトに少なくともひとつの集計があることを想定します。
+try
+{
+    object val = this.xamDataPresenter1.Records.SummaryResults[0].Value;
+    decimal summaryValue = Convert.ToDecimal(val);
+    MessageBox.Show(string.Format("First summary value is {0}", summaryValue));
+}
+catch
+{
+    //警告なしで失敗する
+}
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-apply-default-summary-formats.html[デフォルトの集計フォーマットを適用]
+
+link:xamdatapresenter-creating-a-custom-summary-calculator.html[カスタム集計計算を作成]
+
+link:xamdatapresenter-enable-row-summaries.html[行集計を有効]
+
+link:xamdatapresenter-format-the-value-of-a-summary.html[集計の値をフォーマット]
+
+link:xamdatapresenter-programmatically-add-summaries-to-a-field.html[集計をフィールドにプログラムで追加]

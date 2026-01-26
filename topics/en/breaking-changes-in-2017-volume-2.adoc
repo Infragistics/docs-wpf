@@ -1,0 +1,184 @@
+﻿////
+|metadata|
+{
+    "name": "breaking-changes-in-2017-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "d03c1f2a-72f5-44e4-b766-366ce6a89fbc",
+    "buildFlags": [],
+    "createdOn": "2016-12-15T11:57:27.7825621Z"
+}
+|metadata|
+////
+
+= Breaking Changes in 2017 Volume 2
+
+== Breaking Changes Summary
+
+The following table summarizes the breaking changes of the {ProductName} 2017 Volume 2 Release. Detailed explanations of the issues are provided after the summary table.
+
+==== Legend:
+image:images/Yes.png[] - Workaround available +
+image:images/No.png[] - No known workaround +
+image:images/Fix.png[] - No known workaround, fix planned
+
+[options="header", cols="a,a,a"]
+|====
+|Control|Issue|Status
+
+|<<_Ref012,xamDataChart>>
+|<<_Ref013,Change to WindowResponse Default Value>>
+|image::images/Yes.png[]
+
+.2+|<<_Ref001,xamDataPresenter>>
+|<<_Ref002,UI Automation Peers Are Virtualized>>
+|image::images/Yes.png[]
+
+|<<_Ref003,GlyphRuns Used Instead of FormattedText in SimpleTextBlock>>
+|image::images/Yes.png[]
+
+|<<_Ref014,xamDoughnutChart>>
+|<<_Ref015,Changed IsSurfaceInteractionEnabled property type>>
+|image::images/Yes.png[]
+
+|<<_Ref008, xamGauge>>
+|<<_Ref009, xamGauge Controls Removed>>
+|image::images/No.png[]
+
+|<<_Ref006, xamGeographicMap/xamMap>>
+|<<_Ref007, Removal of CloudMade Support>>
+|image::images/No.png[]
+
+|<<_Ref004,xamGrid>>
+|<<_Ref005,Initial Column Pre-measuring and Rendering>>
+|image::images/Yes.png[]
+
+|<<_Ref010,xamRadialGauge>>
+|<<_Ref011,Renamed event handler name>>
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref012]]
+== xamDataChart
+
+[[_Ref013]]
+=== Change to WindowResponse Default Value
+
+Changed the default value of 
+link:{ApiPlatform}{DataChartAssembly}{ApiVersion}~Infragistics.Controls.SeriesViewer{ApiProp}WindowResponse.html[WindowResponse] from `Deferred` to `Immediate`. This means that panning and zooming actions will happen immediately as the user moves the pointer position during these actions. The previous Deferred behavior would wait until the user finished the movement before refreshing the view.
+
+[[_Ref001]]
+== xamDataPresenter
+
+[[_Ref002]]
+=== UI Automation Peers Are Virtualized
+The cell UI automation peers are now virtualized. This means that you can obtain a peer only for hydrated cells, which may cause some automated tests (that rely on UI automation) to fail. If you need to switch back to the old behavior you should set the static `DataPresenterBaseAutomationPeer.ProcessCellsInViewOnly` property to `false`.
+
+[[_Ref003]]
+=== GlyphRun Used Instead of FormattedText in SimpleTextBlock
+The `SimpleTextBlock` which is found in the editor templates found in cell templates now uses `GlyphRun` instead of `FormattedText` to display the cell text. This leads to significant performance improvements when rendering the cells but some advanced features like ligatures are not supported. If you need the old behavior you should set the inherited attached `SimpleTextBlock.GlyphRunMode` property to `Never` on either the data presenter control or any of its ancestor elements. Note that the `GlyphRunMode` enumeration also provides other options for selectively using `GlyphRun` or `FormattedText` based on the text being displayed.
+
+*Related topic:* +
+link:xamdata-performance-optimizations-overview.html[Performance Optimizations Overview (xamDataPresenter)]
+
+[[_Ref014]]
+== xamDoughnutChart
+
+[[_Ref015]]
+=== Changed IsSurfaceInteractionDisabled property type
+
+Originally, link:{DoughnutChartLink}.{DoughnutChartName}{ApiProp}IsSurfaceInteractionDisabled.html[IsSurfaceInteractionDisabled] was a nullable boolean but this has been changed to a generic boolean (bool? -> bool).  This keeps in line with the link:piechart.html[xamPieChart's]  link:{PieChartLink}.{PieChartBase}{ApiProp}IsSurfaceInteractionDisabled.html[IsSurfaceInteractionDisabled] property.  The property will still function the same in that if you set the property on a link:{DoughnutChartLink}.RingSeries_Members.html[RingSeries] it will take precedent over the one set on the link:{DoughnutChartLink}.{DoughnutChartName}.html[xamDoughnutChart].
+
+[[_Ref008]]
+== xamGauge
+
+[[_Ref009]]
+=== xamGauge Controls Removed
+
+Starting with the release of 2017 Volume 2, the InfragisticsWPF.Controls.Charts.XamGauge assembly will no longer be available. This effectively removes the following controls:
+
+* xamLinearGauge
+* xamRadialGauge
+* xamSegmentedDisplay
+
+.Note
+[NOTE]
+====
+The xamLinearGauge and xamRadialGauge controls mentioned above are the ones that existed as part of the xamGauge family of controls. The InfragisticsWPF.Controls.Gauges assembly that contains the newer version of these gauges still exists in 2017 Volume 2. You can read further about the newer version of these gauges by viewing the documentation for the link:lineargauge.html[xamLinearGauge] and link:radialgauge.html[xamRadialGauge].
+====
+
+
+[[_Ref006]]
+== xamGeographicMap/xamMap
+
+[[_Ref007]]
+=== Removed Classes
+
+The link:geographicmap.html[XamGeographicMap] and link:xammap.html[XamMap] controls used *CloudMade* imagery and tile sources. However, the *CloudMade* company made their image and tile sources unavailable. As result, we have removed support for them in the `XamGeographicMap` and `XamMap` controls.
+
+Below is a table of the classes that were removed, the control that is affected by this change, and the assembly that contained the removed class.
+
+[options="header", cols="20a,30a,50a"]
+|===
+|Affected Control|Removed Classes| Affected Assembly
+
+|link:geographicmap.html[XamGeographicMap]
+|`CloudMadeMapImagery`
+|InfragisticsWPF.Controls.Maps.XamGeographicMap 
+
+|link:xammap.html[XamMap]
+|`CloudMadeTileSource` +
+|InfragisticsWPF.DataVisualization
+
+|===
+
+==== Move Classes
+We moved some classes from the *InfragisticsWPF.Controls.Maps.XamGeographicMap* assembly in order to support new scatter series in the link:datachart-datachart.html[XamDataChart] control and provide loading of shapefile in the link:shapechart-overview.html[XamShapeChart] control. The following table lists all classes that were moved:
+
+[options="header", cols="20a,30a,50a"]
+|===
+|Affected Control|Moved Classes|New Assembly
+
+|link:geographicmap.html[XamGeographicMap]
+|all classes under namespace +
+`Infragistics.Controls.Charts`
+
+|InfragisticsWPF.Controls.Charts.XamDataChart`
+
+|link:geographicmap.html[XamGeographicMap]
+|
+`AdvancedScatterSeriesRule` +
+`AdvancedSubCollectionsRule`
+|InfragisticsWPF.Controls.Charts.XamDataChart 
+ 
+|link:geographicmap.html[XamGeographicMap]
+|
+`ShapefileConverter` +
+`ShapefileRecord` +
+`ShapefileRecordFields` +
+`ShapeType` +
+`StyleVisibilityConverter` +
+`ItfConverter` +
+`XBaseDataType` +
+`XBaseField` +
+
+|InfragisticsWPF.DataVisualization
+|===
+
+[[_Ref004]]
+== xamGrid
+
+[[_Ref005]]
+=== Initial Column Pre-measuring and Rendering
+
+The control now renders by default only the columns in view. Columns outside of the view are rendered once they come into view (for example when scrolling horizontally). If have control over this behavior using the link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~minimumnumberofcolumnsrendered.html[MinimumNumberOfColumnsRendered] property. By default its value is 0 which means that only the columns in view will be rendered, however you can set a value indicating how many columns you want to be pre-measured instead of virtualized.
+Please note that setting this property to higher values may lead to decreased performance results.
+
+[[_Ref010]]
+== xamRadialGauge
+
+[[_Ref011]]
+=== Renamed event handler
+
+Fixed misspelling in link:{RadialGaugeLink}.{RadialGaugeName}{ApiProp}AlignLabel_ev.html[AlignLabel] event handler. The old name was AlignRadialGaugeLabelHangler and the new name is AlignRadialGaugeLabelHandler.

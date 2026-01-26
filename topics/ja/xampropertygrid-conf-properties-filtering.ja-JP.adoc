@@ -1,0 +1,179 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-conf-properties-filtering",
+    "tags": ["Filtering","How Do I"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "5bd1384f-c0e2-4a17-8b3a-2f92fd83bc8e",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:47:41.5589397Z"
+}
+|metadata|
+////
+
+= プロパティ リストのフィルタリング (xamPropertyGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールのプロパティ リストのフィルタリングを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref394577185, フィルタリングの概要 >>
+* <<_Ref394577193, コード例の概要 >>
+* <<_Ref394577067, コード例:プロパティ名によるプロパティのフィルター処理 >>
+* <<_Ref394577076, コード例:プロパティ名およびカテゴリによるプロパティのフィルター処理 >>
+* <<_Ref394577218, 関連コンテンツ >>
+
+[[_Ref394577185]]
+== フィルタリングの概要
+
+=== フィルタリングの概要
+
+link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[ _xamPropertyGrid_  ] コントロールにより、コントロール上端のフィルター領域にあるテキスト ボックスにフィルター値を入力できます。このフィルターは、表示されたプロパティ リストに追加するプロパティを評価する際に、「contains」フィルターとして使用されます。パイプ記号 (「|」) は、「Or」演算子を使用して組み合わされる複数のフィルター条件を指定するために使用できます。
+
+コントロールの link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~filtertext.html[FilterText] プロパティは、既定でフィルター領域のテキストボックスにバインドされています。そのため、常にエンド ユーザーが入力する現在の値を反映します。また、「And」演算子の使用によってユーザーが指定したフィルター条件と組み合わされる、コントロールの link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~itemfilters.html[ItemFilters] プロパティにより、プログラムでコントロールのカスタム フィルター (link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.icondition_members.html[ICondition] インターフェイスに基づく) を追加できます。
+
+カスタム フィルターを作成する場合は、`ICondition` インターフェイスを実装する独自のクラスの使用、または提供されているクラスの 1 つ  _xamPropertyGrid_   アセンブリ - link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridcomparisoncondition_members.html[PropertyGridComparisonCondition]、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridcomplementcondition_members.html[PropertyGridComplementCondition] および link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridconditiongroup_members.html[PropertyGridConditionGroup] の使用が可能です。これらはそれぞれ、タイプ link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridfilteroperandsource.html[PropertyGridFilterOperandSource] の link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridcomparisoncondition~operandsource.html[OperandSource] プロパティを公開します。このプロパティにより、特定の項目に対する要件の評価に使用する link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridpropertyitem_members.html[PropertyGridPropertyItem] の値を指定することができます。
+
+[[_Ref394577193]]
+== コード例の概要
+
+=== コード例の概要表
+
+以下の表は、このトピックで使用したコード例をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|<<_Ref394577067,コード例:プロパティ名によるプロパティのフィルター処理>>
+|以下の例では、「Brush」または「Color」が名前に含まれるプロパティを表示するフィルターを追加する方法を示します。
+
+|<<_Ref394577076,コード例:プロパティ名およびカテゴリによるプロパティのフィルター処理>>
+|以下の例では、カテゴリ「Appearance」からのプロパティを表示するフィルターを追加する方法を示します。名前には「Visibility」が含まれます。
+
+|====
+
+[[_Ref394577067]]
+== コード例:プロパティ名によるプロパティのフィルター処理
+
+=== 説明
+
+以下の例では、「Brush」または「Color」が名前に含まれるプロパティを表示するフィルターを追加する方法を示します。
+
+=== コード
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPropertyGrid>
+  <ig:XamPropertyGrid.ItemFilters>
+    <ig:PropertyGridConditionGroup LogicalOperator="Or">
+      <ig:PropertyGridComparisonCondition Operator="Contains" Value="Brush" />
+      <ig:PropertyGridComparisonCondition Operator="Contains" Value="Color" />
+    </ig:PropertyGridConditionGroup>
+  </ig:XamPropertyGrid.ItemFilters>
+</ig:XamPropertyGrid>
+----
+
+注:
+
+[NOTE]
+====
+既定値が `PropertyName` であるため、`OperandSource` プロパティは省略されます。
+====
+
+注:
+
+[NOTE]
+====
+上記に示すように、項目フィルターを作成すると、ユーザーがフィルターのテキストボックスに *「Brush | Color」* と入力した場合と同じ結果になります。
+====
+
+[[_Ref394577076]]
+== コード例:プロパティ名およびカテゴリによるプロパティのフィルター処理
+
+=== 説明
+
+以下の例では、カテゴリ「Appearance」からのプロパティを表示するフィルターを追加する方法を示します。名前には「Visibility」が含まれます。
+
+=== コード
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPropertyGrid>
+  <ig:XamPropertyGrid.ItemFilters>
+    <ig:PropertyGridConditionGroup LogicalOperator="And">
+      <ig:PropertyGridComparisonCondition OperandSource="CategoryName"
+        Operator="Equals" Value="Appearance" />
+      <ig:PropertyGridComparisonCondition OperandSource="PropertyName" 
+        Operator="Contains" Value="Visibility" />
+    </ig:PropertyGridConditionGroup>
+  </ig:XamPropertyGrid.ItemFilters>
+</ig:XamPropertyGrid>
+----
+
+注:
+
+[NOTE]
+====
+エンド ユーザーは、フィルターのテキストボックスを使用して、前述の項目フィルターを作成できません。これには 2 つの理由があります。
+
+* フィルター条件は、「And」演算子を使用して組み合わせます (フィルターのテキストボックスは、複数の条件を組み合わせる際に「Or」演算子を使用します)。
+* フィルター条件は、「CategoryName」に基づくフィルタリングです (フィルターのテキストボックスは、「PropertyName」に基づいてフィルタリングを行います)。
+
+====
+
+[[_Ref394577218]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-conf-visuals.html[表示外観の構成 (xamPropertyGrid)]
+|このトピックでは、一般的なコントロール オプションを構成する方法を説明します。
+
+| link:xampropertygrid-conf-editors.html[エディター定義の構成 (xamPropertyGrid)]
+|このトピックでは、プロパティの値の編集に使用されるエディターのカスタマイズする方法を説明します。
+
+| link:xampropertygrid-conf-properties-sorting.html[プロパティ リストの並べ替え (xamPropertyGrid)]
+|このトピックでは、プロパティ リストのカスタム並べ替えのロジックを設定する方法を紹介します。
+
+| link:xampropertygrid-conf-templateselector.html[エディター定義のデータ テンプレート セレクターの構成 (xamPropertyGrid)]
+|このトピックは、エディター定義で編集テンプレートを割り当てるためのカスタム ロジックを作成する方法を紹介します。
+
+|====

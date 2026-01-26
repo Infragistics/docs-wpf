@@ -1,0 +1,82 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-other-features",
+    "controlName": ["xamGantt"],
+    "tags": ["FAQ","Getting Started","How Do I"],
+    "guid": "f5db375d-8c89-454f-b2ca-cdb1d9b46a1b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.4101322Z"
+}
+|metadata|
+////
+
+= その他の xamGantt の機能
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   コントロールを使用して使用可能な主要機能の概要を提供します。
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref335842092, タイムスケールおよびタイムスケール バンド >>
+* <<_Ref335842098, リソース >>
+* <<_Ref335842102, カレンダー >>
+* <<_Ref335401312, 関連コンテンツ >>
+
+[[_Ref335842092]]
+== タイムスケールおよびタイムスケール バンド
+
+=== タイムスケールおよびタイムスケール バンド
+
+_xamGantt_   コントロールはタイムスケールおよびタイムスケール バンドの機能を提供します。
+
+==== 関連トピック:
+
+* link:xamgantt-configuring-the-xamgantt-timescale.html[xamGantt タイムスケールの構成]
+
+[[_Ref335842098]]
+== リソース
+
+=== リソース
+
+_xamGantt_   コントロールはプロジェクト リソースを作成しリソースをタスクに割り当てるための機能を提供します。
+
+==== 関連トピック:
+
+* link:xamgantt-configuring-resources.html[リソースの構成]
+
+[[_Ref335842102]]
+== カレンダー
+
+=== カレンダー
+
+_xamGantt_   コントロールはプロジェクト カレンダーを作成し稼働時間情報を指定するための機能を提供します。
+
+==== 関連トピック:
+
+* link:xamgantt-configuring-the-xamgantt-calendars.html[xamGantt プロジェクト カレンダーの構成]
+
+[[_Ref335401312]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-project-related-features.html[プロジェクト関連の機能]
+|このトピックでは、 _xamGantt_ コントロールを使用して使用可能な主要なプロジェクト関連の機能の概要を提供します。
+
+| link:xamgantt-task-related-features.html[タスク関連機能]
+|このトピックでは、 _xamGantt_ コントロールを使用して使用可能な主要なタスク関連の機能の概要を提供します。
+
+|====

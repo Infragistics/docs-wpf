@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-interaction-with-xampivotgrid",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Grids","How Do I"],
+    "guid": "b99aada1-0061-4d4b-b2c5-f9c758375148",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.1242836Z"
+}
+|metadata|
+////
+
+= xamPivotGrid との相互作用
+
+=== 概要
+
+このセクションのトピックでは、UI を通じて実行するかコードで実装可能な、xamPivotGrid™ コントロールとの主な相互作用について説明します。
+
+=== トピック
+
+xamPivotGrid との相互作用に関する詳しい情報については、次のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-us-assigning-hierarchies-and-measures.html[階層およびメジャーの指定]
+|データでキューブをロード後、計算するデータのスライスの基礎とする階層を選択する必要があります。
+
+| link:xampivotgrid-us-selection-and-cell-interaction.html[選択およびセルの操作]
+|このトピックでは、xamPivotGrid のセルと相互作用する方法について説明しています。
+
+| link:xampivotgrid-us-expanding-hierarchies-in-runtime-from-code.html[コードからランタイムに階層を展開]
+|このトピックでは、コードから階層を展開する方法について説明しています。
+
+| link:xampivotgrid-us-deferred-updates.html[遅延更新]
+|このトピックでは、xamPivotGrid の遅延レイアウト更新機能について説明しています。
+
+| link:xampivotgrid-us-pivotdata-command.html[PivotData コマンド]
+|グリッドでデータをピボットするというのは、行領域にすべての列階層、列領域にすべての行階層を移動し、次にグリッドのコンテンツを更新するために結果を再計算するという意味です。This.
+
+|====

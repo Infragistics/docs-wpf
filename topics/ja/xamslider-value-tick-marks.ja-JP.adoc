@@ -1,0 +1,89 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamslider-value-tick-marks",
+    "controlName": ["xamSlider"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{B0018632-4571-49CA-9CA9-D09B612DFA3D}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0923486Z"
+}
+|metadata|
+////
+
+= 目盛値
+
+== 始める前に
+
+デフォルトで、目盛はスライダーの目盛として表示されます。ただし、このデフォルト設定をオーバーライドして、代わりに目盛の値を表示できます。
+
+標準の左右上下の目盛はありません。すべてはデータ テンプレートに依存します。
+
+このトピックは、ページに xamSlider コントロールが追加済みであることを前提とします。詳細は、 link:xamslider-getting-started-with-xamslider.html[「xamSlider を使用した作業の開始」]トピックを参照してください。
+
+== 達成すること
+
+ラベルに似た、目盛の値を表示します。
+
+== 次の手順を実行します
+
+[start=1]
+. グリッド リソースを追加します。
+
+*XAML の場合:*
+
+----
+<Grid.Resources>
+   <!— Add DataTemplate -->
+</Grid.Resources>
+----
+
+[start=2]
+. データ テンプレートを追加します。このデータ テンプレートは目盛の値にバインドされ、その値を表示します。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="HorizontalTick">
+   <Border >
+      <TextBlock Text="{Binding}" Margin="0,60,0,0"/>
+   </Border>
+</DataTemplate>
+----
+
+[start=3]
+. link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarks.html[SliderTickMarks] 内で、作成したデータ テンプレートに link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarksbase~horizontaltickmarkstemplate.html[HorizontalTickMarksTemplate] プロパティを設定します。
+
+*XAML の場合:*
+
+----
+<ig:XamNumericRangeSlider Grid.Row="1" MinValue="0"   MaxValue="80" Height="100" Margin="10">
+   <ig:XamSliderNumericThumb Value="15" InteractionMode="Push"/>
+   <ig:XamSliderNumericThumb Value="40" />
+   <ig:XamSliderNumericThumb Value="65" InteractionMode="Lock"/>
+   <ig:XamNumericRangeSlider.TickMarks>
+      <ig:SliderTickMarks TickMarksFrequency="5" UseFrequency="True"/>
+      <ig:SliderTickMarks TickMarksFrequency="5" UseFrequency="True" HorizontalTickMarksTemplate="{StaticResource HorizontalTick}"/>
+   </ig:XamNumericRangeSlider.TickMarks>
+</ig:XamNumericRangeSlider>
+----
+
+[start=4]
+. アプリケーションを保存して実行します。
+
+ifdef::win-phone[]
+image::images/xamSlider_Value_Tick_Marks_01.png[]
+endif::win-phone[]
+
+ifdef::sl,wpf[]
+image::images/xamSlider_Value_Tick_Marks_01_XAML.png[]
+endif::sl,wpf[]
+
+== 関連トピック
+
+* link:xamslider-interaction-modes.html[操作モード]
+* link:xamslider-xamslider-thumbs.html[xamSlider につまみを追加]
+* link:xamslider-xamslider-tick-marks.html[xamSlider の目盛]
+* link:xamslider-retrieve-the-thumb-values.html[つまみの値の取得]
+* link:xamslider-programmatically-add-or-remove-thumbs-at-runtime.html[プログラムによってランタイムでつまみを追加または削除]

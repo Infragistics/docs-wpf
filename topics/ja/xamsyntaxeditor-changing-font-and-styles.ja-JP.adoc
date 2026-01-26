@@ -1,0 +1,337 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-changing-font-and-styles",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["How Do I","Styling","Theming"],
+    "guid": "7a03123f-b772-44ce-b1a0-04d2f85d1690",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4713603Z"
+}
+|metadata|
+////
+
+= フォントとスタイル設定の変更 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   内の文書内容の提示を変更する方法について説明します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref332792997, コントロール構成の要旨 >>
+* <<_Ref332793115, 背景の変更 >>
+* <<_Ref332793121, フォント ファミリーの変更 >>
+* <<_Ref332793130, フォント サイズの変更 >>
+* <<_Ref332793137, フォント スタイルの変更 >>
+* <<_Ref332793147, フォント太さの変更 >>
+* <<_Ref332793155, ズームの変更 >>
+* <<_Ref332793163, 関連コンテンツ >>
+
+[[_Ref332792997]]
+== コントロール構成の要旨
+
+=== コントロール構成の要点チャート
+
+以下の表は、 _xamSyntaxEditor_   の編集ビューの構成可能な要素を示しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な要素|解説|プロパティ
+
+|背景の変更
+|このプロパティを使ってさまざまなブラシや色を適用することによって、背景を変更することができます。
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.background.aspx[Background]
+
+|フォント ファミリーの変更
+|このプロパティを使用してフォント ファミリーを変更できます。
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontfamily.aspx[FontFamily]
+
+|フォント サイズの変更
+|このプロパティを使用してフォント サイズを変更できます。
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontsize.aspx[FontSize]
+
+|フォント スタイルの変更
+|このプロパティを使用してフォント スタイルを変更できます。
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontstyle.aspx[FontStyle]
+
+|フォント太さの変更
+|このプロパティを使用してフォントの太さを変更できます。
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontweight.aspx[FontWeight]
+
+|ズームの変更
+|このプロパティを使用してズームを変更できます。
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~zoomlevel.html[ZoomLevel]
+
+|====
+
+注:
+
+[NOTE]
+====
+前景色を変更するには、 link:xamsyntaxeditor-changing-default-classification-types-appearance.html[デフォルト分類タイプの外観の変更]トピックを参照してください。
+====
+
+[[_Ref332793115]]
+== 背景の変更
+
+=== 概要
+
+このプロパティを使ってさまざまなブラシや色を適用することによって、背景を変更することができます。
+
+=== プロパティ設定
+
+以下の表では、目的のプロパティ設定の構成をマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ|設定の選択肢
+
+|_xamSyntaxEditor_ 編集領域の背景を変更します
+|`Background`
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.brush.aspx[Brush] のインスタンス
+
+|====
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.Background = new SolidColorBrush(Colors.Yellow);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.Background = New SolidColorBrush(Colors.Yellow)
+----
+
+[[_Ref332793121]]
+== フォント ファミリーの変更
+
+=== 概要
+
+このプロパティを使用してフォント ファミリーを変更できます。
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ|設定の選択肢
+
+|_xamSyntaxEditor_ が使用するフォント ファミリーを変更します
+|`FontFamily`
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.fontfamily.aspx[FontFamily] のインスタンス
+
+|====
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.FontFamily = new FontFamily("Arial");
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.FontFamily = New FontFamily("Arial")
+----
+
+[[_Ref332793130]]
+== フォント サイズの変更
+
+=== 概要
+
+このプロパティを使用してフォント サイズを変更できます。
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ|設定の選択肢
+
+|_xamSyntaxEditor_ が使用するフォント サイズを変更します
+|`FontSize`
+|`double` タイプの正値。
+
+|====
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.FontSize = 12;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.FontSize = 12
+----
+
+[[_Ref332793137]]
+== フォント スタイルの変更
+
+=== 概要
+
+このプロパティを使用してフォント スタイルを変更できます。
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ|設定の選択肢
+
+|_xamSyntaxEditor_ が使用するフォント スタイルを変更します
+|`FontStyle`
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.fontstyle.aspx[FontStyles] タイプの値。
+
+|====
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.FontStyle = FontStyles.Italic;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.FontStyle = FontStyles.Italic
+----
+
+[[_Ref332793147]]
+== フォント太さの変更
+
+=== 概要
+
+このプロパティを使用してフォントの太さを変更できます。
+
+=== プロパティ設定
+
+以下の表では、目的のプロパティ設定の構成をマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ|設定の選択肢
+
+|_xamSyntaxEditor_ が使用するフォントの太さを変更します
+|`FontWeight`
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.fontweight.aspx[FontWeights] タイプの値。
+
+|====
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.FontWeight = FontWeights.Bold;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.FontWeight = FontWeights.Bold
+----
+
+[[_Ref332793155]]
+== ズームの変更
+
+=== 概要
+
+このプロパティを使用してズーム レベルを変更できます。
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ|設定の選択肢
+
+|_xamSyntaxEditor_ が使用するズームを変更します
+|`ZoomLevel`
+|描画時に文書のテキストに適用される倍率を表す、0.2 ～ 4.0 の範囲の _double_ タイプの正値。たとえば、デフォルトのズーム レベル 1.0 では、`FontSize` プロパティの現在の設定に基づいて、文書のテキストが「標準」サイズで表示されます。2.0 に設定すると、テキストのサイズが 2 倍率で表示されます。
+
+|====
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.ZoomLevel = 2.5;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.ZoomLevel = 2.5
+----
+
+[[_Ref332793163]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-changing-default-classification-types-appearance.html[デフォルト分類タイプの外観の変更]
+|このトピックでは、 _xamSyntaxEditor_ によって言語要素に割り当てられる、色およびその他の外観属性の変更方法に関する情報を提供します。
+
+| link:xamsyntaxeditor-currentlinehl.html[現在の行の強調表示]
+|このトピックは現在の行の強調表示機能について説明します。
+
+| link:xamsyntaxeditor-line-number-margin.html[行番号の余白]
+|このトピックでは、 _xamSyntaxEditor_ コントロールの組み込み行番号余白の使用方法と構成方法を解説します。
+
+| link:xamsyntaxeditor-splitting.html[分割]
+|このトピックは、 _xamSyntaxEditor_ の文書分割機能、およびそのカスタマイズ方法の理解を支援します。
+
+|====

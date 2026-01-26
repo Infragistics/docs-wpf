@@ -1,0 +1,250 @@
+﻿////
+
+|metadata|
+{
+    "name": "shared-crossfieldrecordfiltering",
+    "tags": [""],
+    "controlName": ["xamDataPresenter"],
+    "createdOn": "2016-10-05T12:08:15.8764289Z"
+}
+|metadata|
+////
+
+== このトピックの構成
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_RefLink01, 概要 >>
+* <<_RefLink02, クロス フィールド レコード フィルタリングの構成 >>
+* <<_RefLink03, ダイアログでフィルターの指定 >>
+* <<_RefLink04, コードでフィルターの指定 >>
+* <<_RefLink05, 関連コンテンツ >>
+
+[[_RefLink01]]
+== 概要
+
+クロス フィールド レコード フィルタリング機能は、フィルター グループのグループ化を可能にし、論理演算子で接続可能な高度なフィルタリング ルールを作成できます。たとえば、同時に 2 つのフィールドに指定した値があるレコードのみを表示、あるいは 3 つ目のフィールドに指定した値のあるレコードのみを表示できます。XAML またはコードでクロス フィールド レコード フィルタリング機能を設定できます。または、ダイアログでクロス フィールド レコード フィルタリング機能を設定できます。
+
+クロス フィールド レコード フィルタリングはフィールド固有のレコード フィルタリングと結合されます。つまり、レコードがクロス フィールド レコード フィルタリング条件と一致しても、フィールド固有のフィルタリング条件と一致する必要もあります。
+
+クロス フィールド レコード フィルタリングは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordfilterscope.html[FieldLayoutSettings.RecordFilterScope] プロパティの値に基づき階層データ ソースのレコードに影響します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordfilterscope.html[SiblingDataRecords] 値の場合、フィルタリングは各フィールド レイアウトのクロス フィールド レコード フィルタリングのルールを適用します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordfilterscope.html[AllRecords] 値の場合、ルート レイアウトのフィルタリング ルールはすべてのレベルに適用されます。
+
+[[_RefLink02]]
+== クロス フィールド レコード フィルタリングの構成
+
+[options="header", cols="a,a,a"]
+|====
+|要素|詳細|プロパティ
+
+|クロス フィールド レコード フィルタリング ダイアログですべてのフィールドの選択を有効化
+|クロス フィールド レコード フィルタリング ダイアログですべてのフィールドの選択を有効または無効にするには、このプロパティを使用します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+フィールドがコードでクロス フィールド レコード フィルタリング グループに追加される場合、そのフィールドはフィルタリング ダイアログで表示されます。 
+
+====
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowcrossfieldrecordfiltering.html[AllowCrossFieldRecordFiltering]
+
+|クロス フィールド レコード フィルタリング ダイアログで特定のフィールドの選択を有効化
+|クロス フィールド レコード フィルタリング ダイアログで特定のフィールドの選択を有効または無効にするには、このプロパティを使用します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+フィールドがコードでクロス フィールド レコード フィルタリング グループに追加される場合、そのフィールドはフィルタリング ダイアログで表示されます。 
+
+====
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~allowcrossfieldrecordfiltering.html[AllowCrossFieldRecordFiltering]
+
+|クロス フィールド レコード フィルタリング ダイアログの開きを許可
+|クロス フィールド レコード フィルタリング ダイアログの開きおよびすべてのクロス フィールド レコード フィルターのクリアを示す項目を含むメニューを表示するかどうかを構成します。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~headerprefixareadisplaymode.html[HeaderPrefixAreaDisplayMode]
+
+|ヘッダー メニューのメニュー項目の構成
+|ヘッダー プレフィックス領域メニューにある項目を構成します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.headerprefixareamenuoptions.html[HeaderPrefixAreaMenuOptions] 型の値の結合である値を設定します。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~headerprefixareamenuoptions.html[HeaderPrefixAreaMenuOptions]
+
+|====
+
+[[_RefLink03]]
+== ダイアログでフィルターの指定
+
+許可される場合、ダイアログでクロス フィールド レコード フィルタリングを編集できます。ダイアログは、以下の画面のようにヘッダー プレフィックス領域メニューからメニュー項目を選択して開いています。
+
+image::images/xamDataPresenter_CrossFieldRecordFiltering_02.png[]
+
+以下の画面は、定義されたフィルター ルールがあるクロス フィールド レコード フィルタリング ダイアログを表示します。
+
+image::images/xamDataPresenter_CrossFieldRecordFiltering_01.png[]
+
+以下はダイアログのオプションです。
+
+* 新しいフィルタリング条件を追加します。
+* 選択したフィルタリング条件を削除します。
+* AND 論理演算子を使用して 2 つ以上のフィルタリング条件をグループ化します。
+* OR 論理演算子を使用して 2 つ以上のフィルタリング条件をグループ化します。
+* 選択されているグループの論理演算子 (AND <> OR) を切り替えます。
+* グループ化されているがルート レベル グループにない (フィールド レイアウトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~crossfieldrecordfilters.html[CrossFieldRecordFilters] プロパティに直接定義) 場合、選択された項目をグループ化解除します。
+
+すべての定義されるフィルターはダイアログの下部に説明されます。
+
+[[_RefLink04]]
+== コードでフィルターを指定
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.crossfieldrecordfilter.html[CrossFieldRecordFilter] クラスによって表されるクロス フィールド レコード フィルターは、`FieldLayout.CrossFieldRecordFilters` プロパティによって各フィールド レイアウトで定義されます。有効なフィルターで以下のことが指定されます:
+
+* セル データが演算子とオペランドを使用して一致させる link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.crossfieldrecordfilter~field.html[Field] (link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.crossfieldrecordfilter~fieldname.html[FieldName])。
+* 比較で使用される link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.crossfieldrecordfilter~operator.html[Operator]。
+* セル データに比較される link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.crossfieldrecordfilter~operand.html[Operand]。
+
+クロス フィールド レコード フィルターは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.crossfieldrecordfiltergroup.html[CrossFieldRecordFilterGroup] 型によって表されるグループでグループ化できます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.crossfieldrecordfiltergroup~logicaloperator.html[LogicalOperator] プロパティを使用してグループの論理演算子を設定できます。
+
+以下のコード スニペットは、次の一致条件のクロス フィールド レコード フィルターを定義する方法を紹介します。
+
+「ContactName」フィールドが「A」で開始し、「Country」フィールドが「UK」または「USA」と等しいレコードを含みます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataGrid x:Name="xamDataGrid1">
+  <igDP:XamDataGrid.FieldSettings>
+    <igDP:FieldSettings AllowCrossFieldRecordFiltering="True" />
+  </igDP:XamDataGrid.FieldSettings>
+  <igDP:XamDataGrid.FieldLayouts>
+    <igDP:FieldLayout>
+      <igDP:FieldLayout.CrossFieldRecordFilters>
+        <igDP:CrossFieldRecordFilterGroup LogicalOperator="And">
+          <igDP:CrossFieldRecordFilterGroup LogicalOperator="Or">
+            <igDP:CrossFieldRecordFilter FieldName="Country" Operator="Equals" Operand="UK" />
+            <igDP:CrossFieldRecordFilter FieldName="Country" Operator="Equals" Operand="USA" />
+          </igDP:CrossFieldRecordFilterGroup>
+          <igDP:CrossFieldRecordFilter FieldName="ContactName" Operator="StartsWith" Operand="A" />
+        </igDP:CrossFieldRecordFilterGroup>
+      </igDP:FieldLayout.CrossFieldRecordFilters>
+      <igDP:TextField Name="CustomerID" Label="ID" />
+      <igDP:TextField Name="ContactName" Label="Contact Name" />
+      <igDP:TextField Name="Country" Label="Country" />
+      <igDP:TextField Name="City" Label="City" />
+      <igDP:TextField Name="CompanyName" Label="Company Name" />
+      <igDP:TextField Name="Phone" Label="Phone" />
+    </igDP:FieldLayout>
+  </igDP:XamDataGrid.FieldLayouts>
+</igDP:XamDataGrid>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamDataGrid1.FieldSettings.AllowCrossFieldRecordFiltering = True
+Dim fGroup1 As New CrossFieldRecordFilterGroup()
+fGroup1.LogicalOperator = LogicalOperator.[Or]
+fGroup1.Filters.Add(New CrossFieldRecordFilter() With { _
+ .FieldName = "Country", _
+ .[Operator] = ComparisonOperator.Equals, _
+ .Operand = "UK" _
+})
+fGroup1.Filters.Add(New CrossFieldRecordFilter() With { _
+ .FieldName = "Country", _
+ .[Operator] = ComparisonOperator.Equals, _
+ .Operand = "USA" _
+})
+Dim fGroup2 As New CrossFieldRecordFilterGroup()
+fGroup2.LogicalOperator = LogicalOperator.[And]
+fGroup2.Filters.Add(fGroup1)
+fGroup2.Filters.Add(New CrossFieldRecordFilter() With { _
+ .FieldName = "ContactName", _
+ .[Operator] = ComparisonOperator.StartsWith, _
+ .Operand = "A" _
+})
+Dim fl As New FieldLayout()
+fl.Fields.Add(New TextField() With { _
+ .Name = "CustomerID", _
+ .Label = "ID" _
+})
+fl.Fields.Add(New TextField() With { _
+ .Name = "ContactName", _
+ .Label = "Contact Name" _
+})
+fl.Fields.Add(New TextField() With { _
+ .Name = "Country", _
+ .Label = "Country" _
+})
+fl.Fields.Add(New TextField() With { _
+ .Name = "City", _
+ .Label = "City" _
+})
+fl.Fields.Add(New TextField() With { _
+ .Name = "CompanyName", _
+ .Label = "Company Name" _
+})
+fl.Fields.Add(New TextField() With { _
+ .Name = "Phone", _
+ .Label = "Phone" _
+})
+fl.CrossFieldRecordFilters = fGroup2
+Me.xamDataGrid1.FieldLayouts.Add(fl)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamDataGrid1.FieldSettings.AllowCrossFieldRecordFiltering = true;
+CrossFieldRecordFilterGroup fGroup1 = new CrossFieldRecordFilterGroup();
+fGroup1.LogicalOperator = LogicalOperator.Or;
+fGroup1.Filters.Add(
+ new CrossFieldRecordFilter()
+  {
+    FieldName = "Country",
+    Operator = ComparisonOperator.Equals,
+    Operand = "UK"
+  });
+fGroup1.Filters.Add(
+  new CrossFieldRecordFilter()
+  {
+    FieldName = "Country",
+    Operator = ComparisonOperator.Equals,
+    Operand = "USA"
+  });
+CrossFieldRecordFilterGroup fGroup2 = new CrossFieldRecordFilterGroup();
+fGroup2.LogicalOperator = LogicalOperator.And;
+fGroup2.Filters.Add(fGroup1);
+fGroup2.Filters.Add(
+  new CrossFieldRecordFilter()
+  {
+    FieldName = "ContactName",
+    Operator = ComparisonOperator.StartsWith,
+    Operand = "A"
+  });
+FieldLayout fl = new FieldLayout();
+fl.Fields.Add(new TextField() { Name = "CustomerID", Label = "ID" });
+fl.Fields.Add(new TextField() { Name = "ContactName", Label = "Contact Name" });
+fl.Fields.Add(new TextField() { Name = "Country", Label = "Country" });
+fl.Fields.Add(new TextField() { Name = "City", Label = "City" });
+fl.Fields.Add(new TextField() { Name = "CompanyName", Label = "Company Name" });
+fl.Fields.Add(new TextField() { Name = "Phone", Label = "Phone" });
+fl.CrossFieldRecordFilters = fGroup2;
+this.xamDataGrid1.FieldLayouts.Add(fl);
+----
+
+[[_RefLink05]]
+== 関連コンテンツ
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-external-filtering.html[外部フィルタリング]
+|このトピックでは、コード例を使用して xamDataGrid™ コントロールでレコードのフィルタリング処理を外部で行う方法を説明します。
+
+|====

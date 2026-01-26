@@ -1,0 +1,57 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-breaking-changes-in-2012-volume-1",
+    "controlName": [],
+    "tags": [],
+    "guid": "6ee02d3f-1659-448f-bc6f-a99184e59518",  
+    "buildFlags": [],
+    "createdOn": "2012-09-18T15:41:01.6679441Z"
+}
+|metadata|
+////
+
+= 2012 Volume 1 の重大な変更点
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、{ProductName} 2012 Volume 1 リリースでの重大な変更です。
+
+== 重大な変更
+
+=== XamPivotGrid/XamPivotDataSelector
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree_members.html[XamDataTree] を使用するとパフォーマンスが向上します。link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.primitives.filterfielditemcontrol_members.html[FilterFieldItemControl] コントロールのテンプレートをカスタマイズした場合、あるいは、使用されている XamTree に依存している場合、XamTree を使用する代わりに link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree_members.html[XamDataTree] を使用してください。
+
+=== DataSourceBase
+
+1. link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.iolapviewmodel~resultchanged_ev.html[IOlapViewModel.ResultChanged] イベントのイベント属性のタイプを link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.resultchangedeventargs_members.html[ResultChangedEventArgs] に変更します。
+
+2. `DataSourceBase.BuildDataInternal(System.ComponentModel.BackgroundWorker,` `System.ComponentModel.DoWorkEventArgs``)` は`DataSourceBase.BuildDataInternal(DataSourceBase.BackgroundWorker, DataSourceBase.DoWorkEventArgs) に変更されます。`
+
+`DataSourceBase.BackgroundWorker` クラス定義が保護され、可能性のある競合を最小限にします。ただし、派生クラスが `ataSourceBase.BuildDataInternal` を上書きし、ポイントするワーカー タイプを明示的に指定する必要がある `em.ComponentModel.BackgroundWorker` を使用します。
+
+このワーカーを実行するには、ワーカーが実行される `Work` のインスタンス、および渡されて、`DataSourceBase.DoWorkEventArgs.Argument` を介してアクセス可能なデータ ソースの現在の状態をキャプチャする `DataSourceState` のインスタンスが必要です。`DataSourceBase.BuildDataInternal` がオーバーライドされている場合、このワーカーの現在のワーク情報を簡単に取得できます。
+
+[start=3]
+3. ユーザーのアプリケーションに、同じ階層インスタンスで link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.ihierarchy_members.html[IHierarchy] インスタンスおよび link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.ifilterviewmodel_members.html[IFilterViewModel] のインスタンスを操作する link:{ApiPlatform}controls.grids.xampivotdataslicer{ApiVersion}~infragistics.controls.grids.xampivotdataslicer_members.html[XamPivotDataSlicer] がある場合、ユーザー コードは、 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase~createfilterviewmodel.html[DataSourceBase.CreateFilterViewModel(IHierarchy)] を直接呼び出す代わりに link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase~getfilterviewmodelfromhierarchy.html[DataSourceBase.GetFilterViewModelFromHierarchy(IHierarchy)] は、初めにフィルター ビュー モデルの取得を試みる必要があります。
+
+*C# の場合:*
+
+[source,csharp]
+----
+// スライサーおよびフィルター ツリーの両方が 
+// 同じ IFilterViewModel インスタンスを使用することを確認します
+IFilterViewModel filterViewModel = 
+    dataSource.GetFilterViewModelFromHierarchy(hierarchy);
+if (filterViewModel == null)
+{
+    filterViewModel = dataSource.CreateFilterViewModel(hierarchy);
+}
+// フィルター ツリーはスライサー項目の選択状態と 
+// 同期されます
+dataSource.Rows.Add(filterViewModel);
+----

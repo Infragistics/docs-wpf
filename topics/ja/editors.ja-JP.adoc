@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "editors",
+    "controlName": [],
+    "tags": [],
+    "guid": "eb670486-b7ca-4e2c-be69-0a8947962c18",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:13:53.6959781Z"
+}
+|metadata|
+////
+
+= エディター
+
+以下のエディターは WPF 固有で、WPF 固有コントロールのみに使用できます。XAML エディターを使用する代わりに、 link:xaminputs.html[xamInputs] を使用してください。
+
+* link:xamcheckeditor.html[xamCheckEditor]
+* link:xamcomboeditor.html[xamComboEditor]
+* link:xamcurrencyeditor.html[xamCurrencyEditor]
+* link:xamdatetimeeditor.html[xamDateTimeEditor]
+* link:xameditors.html[xamEditors]
+* link:xammaskededitor.html[xamMaskedEditor]
+* link:xamnumericeditor.html[xamNumericEditor]
+* link:xampropertygrid.html[xamPropertyGrid]
+* link:xamtexteditor.html[xamTextEditor]

@@ -1,0 +1,24 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammonthcalendar-using-xammonthcalendar",
+    "controlName": ["xamMonthCalendar"],
+    "tags": [],
+    "guid": "{72757C2E-3C20-4FFE-A5AA-09C1C10C10AA}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.9941519Z"
+}
+|metadata|
+////
+
+= xamMonthCalendar の使用
+
+
+
+このセクションは、xamMonthCalendar™ コントロールの重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+* link:xammonthcalendar-about-styling-xammonthcalendar.html[xamMonthCalendar のスタイリングについて]
+* link:xammonthcalendar-restrict-the-selectable-dates.html[選択可能な日付を制限]
+* link:xammonthcalendar-retrieve-the-selected-dates.html[選択された日付を取得]
+* link:xammonthcalendar-switch-to-a-different-calendar-view.html[異なるカレンダー ビューへの切り替え]

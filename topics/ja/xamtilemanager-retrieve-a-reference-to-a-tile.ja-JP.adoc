@@ -1,0 +1,82 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-retrieve-a-reference-to-a-tile",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I"],
+    "guid": "0aac3af8-0073-45c4-971d-b621267d3b34",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6493786Z"
+}
+|metadata|
+////
+
+= タイルへの参照を取得
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクト、UIElements および/またはデータ項目をその Items コレクションに追加するか、または xamTileManager をデータにバインドすることによって、タイルを xamTileManager に追加することができます。xamTileManager はタイルを作成するための幾つかの異なる方法を提供するため、 Items コレクションの項目を XamTile オブジェクトのインスタンスにキャストすると失敗する場合があります。代わりに、xamTileManager によって公開されている link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~tilefromitem.html[TileFromItem] メソッドを使用して、Items コレクションまたはユーザーのデータ ソース内の項目に基づいて XamTile オブジェクトへの参照を取得する必要があります。
+
+以下のコード例は、XamTile オブジェクトへの参照を取得する方法を示しています。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1" HeaderPath="Tag">
+    <TextBlock Tag="Tile 1" Text="Content Area" />
+    <Button Tag="Tile 2" Content="Content Area" />
+    <ig:XamTile Header="Tile 3" Content="Content Area" />
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+...
+Dim tile1 As XamTile = _
+    Me.xamTileManager1.TileFromItem(Me.xamTileManager1.Items(0))
+If tile1 IsNot Nothing Then
+    tile1.CloseAction = TileCloseAction.CollapseTile
+End If
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+...
+XamTile tile1 =
+    this.xamTileManager1.TileFromItem(this.xamTileManager1.Items[0]);
+if (tile1 != null)
+{
+    tile1.CloseAction = TileCloseAction.CollapseTile;
+}
+...
+----
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousellistbox-api-overview",
+    "controlName": ["xamCarouselListBox"],
+    "tags": ["API","Data Presentation"],
+    "guid": "{0E7D009E-E170-4765-96E8-0044F8B1A380}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0267585Z"
+}
+|metadata|
+////
+
+= API の概要
+
+
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== コントロールの名前空間:
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls_namespace.html[Infragistics.Windows.Controls]
+
+=== 主要な API:
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamcarousellistbox.html[XamCarouselListBox]
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.effectstop.html[EffectStop]
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[CarouselViewSettings]
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carousellistboxitem.html[CarouselListBoxItem]
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselpaneladorner.html[CarouselPanelAdorner]

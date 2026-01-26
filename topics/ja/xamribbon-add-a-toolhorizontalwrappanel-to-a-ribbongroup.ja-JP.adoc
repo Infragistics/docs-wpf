@@ -1,0 +1,79 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-add-a-toolhorizontalwrappanel-to-a-ribbongroup",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","Grouping","How Do I"],
+    "guid": "{AD0539B5-9528-4172-8956-41FD52B09C44}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1211773Z"
+}
+|metadata|
+////
+
+= ToolHorizontalWrapPanel を RibbonGroup に追加
+
+
+
+
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.toolhorizontalwrappanel.html[ToolHorizontalWrapPanel] は、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.toolhorizontalwrappanel~minrows.html[MinRows] および link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.toolhorizontalwrappanel~maxrows.html[MaxRows] プロパティの値に基づき行にそのツールを配列します。ToolHorizontalWrapPanel は、すべてのツールを最小行数に収めようとしますが、ツールが行の最小行数に収まらない場合、ToolHorizontalWrapPanel はそのツールを配列し直すために追加行を使用します。ToolHorizontalWrapPanel は、行数を MinRows プロパティの値よりも少なくすることも、行数を MaxRows プロパティの値よりも多くすることもしません。
+
+[NOTE]
+====
+*注:* ツールで link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~maximumsizeproperty.html[MaximumSize] 添付プロパティを link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbontoolsizingmode.html[ImageAndTextLarge] に設定する場合、ツールはそれ自体の列のパネルの先頭に置かれ、パネルによってサイズ変更されません。
+====
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup.html[RibbonGroup] がツールを配列するために使用するデフォルトのレイアウト パネルは、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.toolverticalwrappanel.html[ToolVerticalWrapPanel] です。ToolHorizontalWrapPanel の機能がほしい場合、ツールを追加する前に ToolHorizontalWrapPanel のインスタンスを RibbonGroup に追加する必要があります。
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:RibbonGroup Name="group1" Caption="Group 1">
+        <igRibbon:ToolHorizontalWrapPanel>
+                <igRibbon:ButtonTool 
+                        Id="btnTool1" 
+                        Caption="Button Tool 1" />
+        <!--TODO: ここでリボン ツールをさらに追加します-->
+        </igRibbon:ToolHorizontalWrapPanel>
+</igRibbon:RibbonGroup>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+...
+Dim horizontalWrapPanel As New ToolHorizontalWrapPanel() 
+Me.group1.Items.Add(horizontalWrapPanel) 
+Dim btnTool1 As New ButtonTool() 
+btnTool1.Id = "btnTool1" 
+btnTool1.Caption = "Button Tool 1" 
+horizontalWrapPanel.Children.Add(btnTool1) 
+'TODO: リボン ツールを ToolHorizontalWrapPanel の Children コレクションにさらに追加します。
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+...
+ToolHorizontalWrapPanel horizontalWrapPanel = new ToolHorizontalWrapPanel();
+this.group1.Items.Add(horizontalWrapPanel);
+ButtonTool btnTool1 = new ButtonTool();
+btnTool1.Id = "btnTool1";
+btnTool1.Caption = "Button Tool 1";
+horizontalWrapPanel.Children.Add(btnTool1);
+//TODO: リボン ツールを ToolHorizontalWrapPanel の Children コレクションにさらに追加します。
+...
+----
+
+== 関連トピック
+
+link:xamribbon-add-tools-to-a-buttongroup.html[ツールを ButtonGroup に追加]
+
+link:xamribbon-specify-a-sortorder-for-tools-in-a-toolhorizontalwrappanel.html[ツールの SortOrder を ToolHorizontalWrapPanel で指定]

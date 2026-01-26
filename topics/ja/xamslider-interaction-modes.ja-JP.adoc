@@ -1,0 +1,96 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamslider-interaction-modes",
+    "controlName": ["xamSlider"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{E342E2EE-DF2A-441C-AB86-4996D63DCE37}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0663774Z"
+}
+|metadata|
+////
+
+= 操作モード
+
+xamSlider コントロールによって、つまみが互いに反応して動作する方法を構成することができます。link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamslidernumericthumb.html[xamSliderNumericThumb] オブジェクトの link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderthumbbase~interactionmode.html[InteractionMode] プロパティを以下の link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.sliderthumbinteractionmode.html[SliderThumbInteractionMode] 列挙値のいずれかに設定することによってこれが可能になります。
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.sliderthumbinteractionmode.html[Lock] - アクティブのつまみはロックされたつまみを横切ったりプッシュすることはできません。
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.sliderthumbinteractionmode.html[Push] - アクティブのつまみは、モードがスライダーに沿ってプッシュするように設定されているつまみをプッシュでき、その位置をアクティブのつまみの位置に変更します。
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.sliderthumbinteractionmode.html[Free] - つまみのモードが free に設定されている場合、指定された反応動作はありません。
+
+複数のつまみの反応動作は、アクティブでないつまみの InteractionMode 値に依存します。たとえば、スライダーに沿ってつまみをドラッグし別のつまみに遭遇する場合、2 つのつまみの反応動作を決定するのは、2 番目のつまみの反応動作モードです。
+
+以下のコードは反応動作モードを設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamNumericRangeSlider 
+        Name="xamNumericRangeSlider1" 
+        MinValue="0" 
+        MaxValue="100">
+   <ig:XamSliderNumericThumb InteractionMode="Free" Value="25" />
+   <ig:XamSliderNumericThumb InteractionMode="Lock" Value="50" />
+   <ig:XamSliderNumericThumb InteractionMode="Push" Value="75" />
+</ig:XamNumericRangeSlider>
+----
+
+*Visual Basic の場合:*
+
+----
+'数値範囲スライダー
+Dim numericRangeThumb1 As New XamSliderNumericThumb()
+numericRangeThumb1.InteractionMode = SliderThumbInteractionMode.Free
+numericRangeThumb1.Value = 25
+Dim numericRangeThumb2 As New XamSliderNumericThumb()
+numericRangeThumb2.InteractionMode = SliderThumbInteractionMode.Lock
+numericRangeThumb2.Value = 50
+Dim numericRangeThumb3 As New XamSliderNumericThumb()
+numericRangeThumb3.InteractionMode = SliderThumbInteractionMode.Push
+numericRangeThumb3.Value = 75
+Me.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb1)
+Me.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb2)
+Me.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb3)
+----
+
+*C# の場合:*
+
+----
+//数値範囲スライダー
+XamSliderNumericThumb numericRangeThumb1 = new XamSliderNumericThumb
+{
+    InteractionMode= SliderThumbInteractionMode.Free,
+    Value = 25
+};
+xamSliderNumericThumb numericRangeThumb2 = new XamSliderNumericThumb
+{
+    InteractionMode = SliderThumbInteractionMode.Lock,
+    Value = 50
+};
+xamSliderNumericThumb numericRangeThumb3 = new XamSliderNumericThumb
+{
+    InteractionMode = SliderThumbInteractionMode.Push,
+    Value = 75
+};
+this.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb1);
+this.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb2);
+this.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb3);
+----
+
+== 関連トピック
+
+link:xamslider-xamslider-thumbs.html[xamSlider につまみを追加]
+
+link:xamslider-xamslider-tick-marks.html[xamSlider の目盛]
+
+ifdef::wpf,sl[]
+link:xamslider-tooltips.html[ツールチップ]
+endif::wpf,sl[]
+
+link:xamslider-value-tick-marks.html[目盛値]
+
+link:xamslider-retrieve-the-thumb-values.html[つまみの値の取得]
+
+link:xamslider-programmatically-add-or-remove-thumbs-at-runtime.html[プログラムによってランタイムでつまみを追加または削除]

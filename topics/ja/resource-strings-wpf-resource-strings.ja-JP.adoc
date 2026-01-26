@@ -1,0 +1,407 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-wpf-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "f607817e-2fa8-42d1-975a-14a236bc00e8",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:51:00.2615484Z"
+}
+|metadata|
+////
+
+= WPF リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列の名前を示しています。
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|CloseButtonToolTip
+|閉じる
+
+|ComparisonCondition_Bottom
+|ボトム {0}
+
+|ComparisonCondition_BottomPercentile
+|ボトム {0} %
+
+|ComparisonCondition_Contains
+|'{0}' を含む
+
+|ComparisonCondition_DoesNotContain
+|'{0}' を含まない
+
+|ComparisonCondition_DoesNotEndWith
+|'{0}' で終わらない
+
+|ComparisonCondition_DoesNotMatch
+|'{0}' と一致しない
+
+|ComparisonCondition_DoesNotStartWith
+|'{0}' で始まらない
+
+|ComparisonCondition_EndsWith
+|'{0}' で終わる
+
+|ComparisonCondition_Equals
+|`= '{0}'`
+
+|ComparisonCondition_GreaterThan
+|`> '{0}'`
+
+|ComparisonCondition_GreaterThanOrEqualTo
+|`>= '{0}'`
+
+|ComparisonCondition_LessThan
+|`< '{0}'`
+
+|ComparisonCondition_LessThanOrEqualTo
+|$$<=$$ '{0}'
+
+|ComparisonCondition_Like
+|'{0}' パターンと一致 (LIKE '{0}')
+
+|ComparisonCondition_Match
+|'{0}' と一致
+
+|ComparisonCondition_NotEquals
+|!= '{0}'
+
+|ComparisonCondition_NotLike
+|'{0}' パターンと一致しない (NOT LIKE '{0}')
+
+|ComparisonCondition_StartsWith
+|'{0}' で始まる
+
+|ComparisonCondition_Top
+|トップ {0}
+
+|ComparisonCondition_TopPercentile
+|トップ {0} %
+
+|ComparisonOperator_Bottom
+|ボトム
+
+|ComparisonOperator_BottomPercentile
+|ボトム パーセント位数
+
+|ComparisonOperator_Contains
+|～を含む
+
+|ComparisonOperator_DoesNotContain
+|～を含まない
+
+|ComparisonOperator_DoesNotEndWith
+|～で終わらない
+
+|ComparisonOperator_DoesNotMatch
+|一致しない
+
+|ComparisonOperator_DoesNotStartWith
+|～で始まらない
+
+|ComparisonOperator_EndsWith
+|～で終わる
+
+|ComparisonOperator_Equals
+|等しい
+
+|ComparisonOperator_GreaterThan
+|～より大きい
+
+|ComparisonOperator_GreaterThanOrEqualTo
+|～以上で
+
+|ComparisonOperator_LessThan
+|～より小さい
+
+|ComparisonOperator_LessThanOrEqualTo
+|～以下で
+
+|ComparisonOperator_Like
+|パターンと一致 (LIKE)
+
+|ComparisonOperator_Match
+|一致
+
+|ComparisonOperator_NotEquals
+|等しくない
+
+|ComparisonOperator_NotLike
+|パターンと一致しない (NOT LIKE)
+
+|ComparisonOperator_StartsWith
+|～で始まる
+
+|ComparisonOperator_Top
+|トップ
+
+|ComparisonOperator_TopPercentile
+|トップ パーセント位数
+
+|ComplementCondition
+|{0} ではない
+
+|ConditionGroup_Description
+|(カスタム)
+
+|ConditionGroup_Group
+|({0})
+
+|ConditionGroup_Logical_AND
+|{0} AND {1}
+
+|ConditionGroup_Logical_OR
+|{0} OR {1}
+
+|DesignTime_SampleData_String
+|テキスト
+
+|Filter_IncompatibleOperand
+|指定されたオペランドは比較演算子と互換性がありません。
+
+|Filter_Regex_InvalidPattern
+|無効な正規表現のパターン。
+
+|Filter_TopOperand_InvalidValue_GreaterThan100Percent
+|値は 100% 以上にできません。
+
+|Filter_TopOperand_InvalidValue_LessThanZero
+|値は 0 未満に設定できません。
+
+|Filter_TopOperand_InvalidValue_NaN
+|値を NaN に設定できません。
+
+|Filter_WildCard_Empty
+|無効なワイルドカード パターン。ワイルドカード パターンを空に設定できません。
+
+|Filter_WildCard_InvalidCharClass
+|無効なワイルドカード パターン。無効な文字クラスを含まれます。
+
+|LDR_About_GraceExpired
+|ライセンス - アクティベーション猶予期間が過ぎました。
+
+|LDR_About_InGrace
+|ライセンス - アクティベーションの猶予期間中です。
+
+|LDR_UltraProdInfo_Expiration1
+|アクティベーション猶予有効期限切れ
+
+|LDR_UltraProdInfo_Expiration10
+|セキュリティ権限不足
+
+|LDR_UltraProdInfo_Expiration2
+|トライアル有効期限切れ
+
+|LDR_UltraProdInfo_Expiration3
+|ベータ有効期限切れ
+
+|LDR_UltraProdInfo_Expiration4
+|{0} 日間または {1} 週間使用可能
+
+|LDR_UltraProdInfo_Expiration5
+|なし
+
+|LDR_UltraProdInfo_Expiration6
+|無効なライセンス情報
+
+|LDR_UltraProdInfo_Expiration7
+|ライセンス情報不足
+
+|LDR_UltraProdInfo_Expiration8
+|エラー
+
+|LDR_UltraProdInfo_Expiration9
+|製品のインストールが不完全
+
+|LicensedProductActivationGracePrompt
+|{2} の非アクティベート版の試用期間は {0} 日間の使用後、または {1} 週間が経過した時点で切れます。この製品は製品アクティベーションウィザードを使ってアクティベートする必要があります。
+
+|LicensedProductPromptDialogTitle
+|Infragistics {0}
+
+|LicensedProductTrialPeriodPrompt
+|この {2} トライアル版は {0} 日間の使用後、または {1} 週間が経過した時点で期限が切れます。
+
+|SampleData_XML
+|
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?> <SampleData> <users> <user> <name>佐藤 陽一</name> <department>人事</department> <salary>5,250,000</salary> <email>yoichiS@hotmail.co.jp</email> <user> <name>田島 洋子</name> <department>セールス</department> <salary>6,500,000</salary> <email>yokoT@hotmail.co.jp</email> <user> <name>竹内 久美</name> <department>事務</department> <salary>3,500,000</salary> <email>hisamiT@hotmail.co.jp</email> <user> <name>サラ ジョーンズ</name> <department>事務</department> <salary>3,700,000</salary> <email></email> <user> <name>佐々木 達也</name> <department>経理</department> <salary>5,300,000</salary> <email>tatsuS@hotmail.co.jp</email> <user> <name>豊田 幸一</name> <department>役員</department> <salary></salary> <email>koichiT@hotmail.co.jp</email> <user> <name>柳原 真理子</name> <department></department> <salary>9,500,000</salary> <email>MariYanagi@hotmail.co.jp</email> <user> <name>山崎 玲子</name> <department>セールス</department> <salary>6,900,000</salary> <email>reikoY@hotmail.co.jp</email> </user> </users> </SampleData>
+----
+
+|SpecialFilterOperand_AboveAverage_Description
+|平均以上のデータを検索する
+
+|SpecialFilterOperand_AboveAverage_DisplayContent
+|平均以上
+
+|SpecialFilterOperand_BelowAverage_Description
+|平均以下のデータを検索する
+
+|SpecialFilterOperand_BelowAverage_DisplayContent
+|平均以下
+
+|SpecialFilterOperand_Blanks_Description
+|空白データを検索する
+
+|SpecialFilterOperand_Blanks_DisplayContent
+|(空白)
+
+|SpecialFilterOperand_Bottom_Description
+|値に基づいてボトム {0} の項目。
+
+|SpecialFilterOperand_Bottom_DisplayContent
+|ボトム {0}
+
+|SpecialFilterOperand_BottomPercentile_Description
+|値に基づいてボトム {0}% の項目。
+
+|SpecialFilterOperand_BottomPercentile_DisplayContent
+|ボトムの {0}%
+
+|SpecialFilterOperand_LastMonth_Description
+|先月の日付を検索する
+
+|SpecialFilterOperand_LastMonth_DisplayContent
+|先月
+
+|SpecialFilterOperand_LastQuarter_Description
+|前四半期の日付を検索する
+
+|SpecialFilterOperand_LastQuarter_DisplayContent
+|前四半期
+
+|SpecialFilterOperand_LastWeek_Description
+|先週の日付を検索する
+
+|SpecialFilterOperand_LastWeek_DisplayContent
+|先週
+
+|SpecialFilterOperand_LastYear_Description
+|昨年の日付を検索する
+
+|SpecialFilterOperand_LastYear_DisplayContent
+|昨年
+
+|SpecialFilterOperand_Month_Description
+|任意の年の {0} である日付
+
+|SpecialFilterOperand_Month_DisplayContent
+|{0}
+
+|SpecialFilterOperand_NextMonth_Description
+|翌月の日付を検索する
+
+|SpecialFilterOperand_NextMonth_DisplayContent
+|翌月
+
+|SpecialFilterOperand_NextQuarter_Description
+|次四半期の日付を検索する
+
+|SpecialFilterOperand_NextQuarter_DisplayContent
+|次四半期
+
+|SpecialFilterOperand_NextWeek_Description
+|翌週の日付を検索する
+
+|SpecialFilterOperand_NextWeek_DisplayContent
+|翌週
+
+|SpecialFilterOperand_NextYear_Description
+|来年の日付を検索する
+
+|SpecialFilterOperand_NextYear_DisplayContent
+|来年
+
+|SpecialFilterOperand_NonBlanks_Description
+|非空白データを検索する
+
+|SpecialFilterOperand_NonBlanks_DisplayContent
+|(空白以外)
+
+|SpecialFilterOperand_Quarter_Description
+|任意の年の第 {0} 四半期である日付
+
+|SpecialFilterOperand_Quarter_DisplayContent
+|第 {0} 四半期
+
+|SpecialFilterOperand_ThisMonth_Description
+|今月の日付を検索する
+
+|SpecialFilterOperand_ThisMonth_DisplayContent
+|今月
+
+|SpecialFilterOperand_ThisQuarter_Description
+|今四半期の日付を検索する
+
+|SpecialFilterOperand_ThisQuarter_DisplayContent
+|今四半期
+
+|SpecialFilterOperand_ThisWeek_Description
+|今週の日付を検索する
+
+|SpecialFilterOperand_ThisWeek_DisplayContent
+|今週
+
+|SpecialFilterOperand_ThisYear_Description
+|今年の日付を検索する
+
+|SpecialFilterOperand_ThisYear_DisplayContent
+|今年
+
+|SpecialFilterOperand_Today_Description
+|今日の日付を検索する
+
+|SpecialFilterOperand_Today_DisplayContent
+|今日
+
+|SpecialFilterOperand_Tomorrow_Description
+|明日の日付を検索する
+
+|SpecialFilterOperand_Tomorrow_DisplayContent
+|明日
+
+|SpecialFilterOperand_Top_Description
+|値に基づくトップ {0} の項目。
+
+|SpecialFilterOperand_Top_DisplayContent
+|トップ {0}
+
+|SpecialFilterOperand_TopPercentile_Description
+|値に基づくトップ {0}% の項目。
+
+|SpecialFilterOperand_TopPercentile_DisplayContent
+|トップ {0}%
+
+|SpecialFilterOperand_YearToDate_Description
+|年度累計の日付を検索する
+
+|SpecialFilterOperand_YearToDate_DisplayContent
+|年度累計
+
+|SpecialFilterOperand_Yesterday_Description
+|昨日の日付を検索する
+
+|SpecialFilterOperand_Yesterday_DisplayContent
+|昨日
+
+|TrialKey_AboutDialogLabel
+|{トライアル}
+
+|UltraComponentDesignerVerbAbout
+|バージョン情報
+
+|UltraPropertyPageDialogButtonCancel
+|キャンセル(&C)
+
+|UltraPropertyPageDialogButtonOk
+|OK(&O)
+
+|====

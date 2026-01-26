@@ -1,0 +1,64 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-fix-fields",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Editing"],
+    "guid": "{685DA58E-4FEA-45E4-B208-E482F6CB1D36}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0039539Z"
+}
+|metadata|
+////
+
+= フィールドの固定
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~fixedlocation.html[FixedLocation] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fixedfieldlocation.html[FixedFieldLocation] 列挙値に設定することによって、xamDataPresenter™ コントロールまたは xamDataGrid™ コントロールのエッジにフィールドを固定できます。Field オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~allowfixingresolved.html[AllowFixingResolved] プロパティ値に関係なく、ランタイムにプログラム的に、またはデザインタイムに宣言的にフィールドを固定できます。
+
+image::images/xamDataPresenter_Fix_Fields.png[]
+
+以下のコード例は、フィールドをピン固定する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:FieldLayout.Fields>
+                <igDP:Field Name="name" FixedLocation="FixedToNearEdge" />
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+    </igDP:XamDataPresenter.FieldLayouts>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+'このコード行は、フィールド名 "name" を持つフィールド レイアウトがあると想定します
+Me.xamDataPresenter1.FieldLayouts(0).Fields("name").FixedLocation = FixedFieldLocation.FixedToNearEdge
+'またはコマンドを実行できます
+'Me.xamDataPresenter1.ExecuteCommand(DataPresenterCommands.FixFieldNear, Me.xamDataPresenter1.FieldLayouts(0).Fields("name"))
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldLayouts[0].Fields["name"].FixedLocation = FixedFieldLocation.FixedToNearEdge;
+//またはコマンドを実行できます
+//this.xamDataPresenter1.ExecuteCommand(DataPresenterCommands.FixFieldNear, this.xamDataPresenter1.FieldLayouts[0].Fields["name"])
+----
+
+== 関連トピック
+
+link:xamdatagrid-about-fixed-non-scrolling-fields.html[固定 (非スクロール) フィールドについて]
+
+link:xamdatagrid-enable-fixed-fields.html[固定フィールドを有効にする]

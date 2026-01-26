@@ -1,0 +1,24 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-undo-operations",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{6F5D24A1-FE5B-4F68-850E-F52645D24B3A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3440219Z"
+}
+|metadata|
+////
+
+= 元に戻す/やり直し操作 (xamDataPresenter)
+
+
+
+元に戻す操作についての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-enable-undo-operations.html[元に戻す操作を有効にする]
+* link:xamdatapresenter-limit-the-undo-history.html[元に戻す履歴を制限する]
+* link:xamdatapresenter-perform-an-undo-operation.html[元に戻す操作を実行する]
+* link:xamdatapresenter-about-restoring-deleted-records.html[削除したレコードのリストアについて]

@@ -1,0 +1,219 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-setting-the-xamcomboeditor-as-an-editor-of-a-field-programmatically",
+    "controlName": ["xamComboEditor"],
+    "tags": ["How Do I"],
+    "guid": "{D9E6AB77-B21C-4968-BF2E-376DE7065A02}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1049781Z"
+}
+|metadata|
+////
+
+= プログラムを使用して xamComboEditor をフィールドのエディターとして設定
+
+== 始める前に
+
+xamComboEditor を使用して、xamDataGrid の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] 内に項目のドロップダウン リストをエンド ユーザーに提示します。xamDataGrid 内で使用するために xamComboEditor を移植するための推奨されるアプローチは、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider.html[ComboBoxItemsProvider] オブジェクトをリソースとして作成し、マークアップ拡張を使用して参照することです。このパターンは、xamDataGrid の Field 内で ComboBoxItemsProvider オブジェクトの単一インスタンスを再利用することによりオーバーヘッドを最小限に抑えます。
+
+== 達成すること
+
+プロシージャー コードを使用して、Field のエディターを xamComboEditor に設定します。
+
+== 次の手順を実行します
+
+[start=1]
+. xamDataGrid の FieldLayoutInitialized イベントのイベント ハンドラを接続します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igDP:XamDataGrid … FieldLayoutInitialized="XamDataGrid1_FieldLayoutInitialized" />
+...
+----
+
+[start=2]
+. Resources セクションを Window で作成します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<Window.Resources>
+</Window.Resources>
+...
+----
+
+[start=3]
+. ComboBoxItemsProvider を Resources セクションに追加し、後で参照できるようにキーを指定します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igEditors:ComboBoxItemsProvider x:Key="cbipRatings">
+        <!--TODO: ここで ComboBoxDataItems を追加します-->
+</igEditors:ComboBoxItemsProvider>
+...
+----
+
+[start=4]
+. 5 つの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxdataitem.html[ComboBoxDataItem] オブジェクトを ComboBoxItemsProvider オブジェクトの Items コレクションに追加します。
+
+各 ComboBoxDataItem オブジェクトの DisplayText プロパティと Value プロパティを設定することが必要になります。DisplayText プロパティはエンドユーザーに表示するテキストを決定し、Value プロパティは基となるデータ モデルだけでなく Cell の Value プロパティに保存される値を決定します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igEditors:ComboBoxItemsProvider.Items>
+        <igEditors:ComboBoxDataItem DisplayText="5 Stars" Value="5 Stars" />
+        <igEditors:ComboBoxDataItem DisplayText="4 Stars" Value="4 Stars" />
+        <igEditors:ComboBoxDataItem DisplayText="3 Stars" Value="3 Stars" />
+        <igEditors:ComboBoxDataItem DisplayText="2 Stars" Value="2 Stars" />
+        <igEditors:ComboBoxDataItem DisplayText="1 Star" Value="1 Star" />
+</igEditors:ComboBoxItemsProvider.Items>
+...
+----
+
+[start=5]
+. コード ビハインドで using/imports のディレクティブを追加します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Imports Infragistics.Windows.DataPresenter
+Imports Infragistics.Windows.Editors
+----
+
+*C# の場合:*
+[source,csharp]
+----
+using Infragistics.Windows.DataPresenter;
+using Infragistics.Windows.Editors;
+----
+
+[start=6]
+. FieldLayoutInitialized イベントを処理するメソッドを作成します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Private Sub XamDataGrid1_FieldLayoutInitialized(ByVal sender As Object, _
+  ByVal e As _
+  Infragistics.Windows.DataPresenter.Events.FieldLayoutInitializedEventArgs) 
+End Sub
+----
+
+*C# の場合:*
+[source,csharp]
+----
+private void XamDataGrid1_FieldLayoutInitialized(object sender, 
+  Infragistics.Windows.DataPresenter.Events.FieldLayoutInitializedEventArgs e)
+{
+}
+----
+
+[start=7]
+. FieldLayoutInitialized イベント ハンドラで `Field` オブジェクトのインスタンスを作成します。
+
+Fields コレクションにインデックスを付けるためにキーとして使用できるように、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~name.html[Name] プロパティを設定する必要があります。`BindingType` プロパティを `Unbound` に設定します。Field の上のヘッダーにテキストを表示するために `Label` プロパティを設定することも可能です。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Dim uField as New Field()
+uField.Name = "rating"
+uField.Label = "Rating"
+uField.BindingType = BindingType.Unbound
+----
+
+*C# の場合:*
+[source,csharp]
+----
+Field uField = new Field();
+uField.Name = "rating";
+uField.Label = "Rating";
+uField.BindingType = BindingType.Unbound;
+----
+
+[start=8]
+. 非バインド フィールド オブジェクトを FieldLayout の Fields コレクションに追加します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+e.FieldLayout.Fields.Add(uField)
+----
+
+*C# の場合:*
+[source,csharp]
+----
+e.FieldLayout.Fields.Add(uField);
+----
+
+[start=9]
+. xamComboEditor をターゲットとする Style オブジェクトのインスタンスを作成します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Dim xamComboEditorStyle As New Style(GetType(XamComboEditor))
+----
+
+*C# の場合:*
+[source,csharp]
+----
+Style xamComboEditorStyle = new Style(typeof(XamComboEditor));
+----
+
+[start=10]
+. xamComboEditor の ItemsProviderProperty プロパティを手順 3 で作成した ComboBoxItemsProvider リソースに設定する Setter のインスタンスを作成します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Dim itemsProviderSetter As New Setter(XamComboEditor.ItemsProviderProperty, Me.FindResource("cbipRatings"))
+----
+
+*C# の場合:*
+[source,csharp]
+----
+Setter itemsProviderSetter = new Setter(XamComboEditor.ItemsProviderProperty, this.FindResource("cbipRatings"));
+----
+
+[start=11]
+. 手順 9 で作成した Style オブジェクトの Setters コレクションに Setter オブジェクトを追加します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+xamComboEditorStyle.Setters.Add(itemsProviderSetter)
+----
+
+*C# の場合:*
+[source,csharp]
+----
+xamComboEditorStyle.Setters.Add(itemsProviderSetter);
+----
+
+[start=12]
+. 非バインド フィールドの FieldSettings オブジェクトの EditorStyle プロパティを作成したばかりの Style に設定します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+uField.Settings.EditorStyle = xamComboEditorStyle
+----
+
+*C# の場合:*
+[source,csharp]
+----
+uField.Settings.EditorStyle = xamComboEditorStyle;
+----
+
+[start=13]
+. プロジェクトを実行します。'Rating' というラベルの Field で Cell をクリックし、xamComboEditor コントロールを使用して Cell の値を編集します。

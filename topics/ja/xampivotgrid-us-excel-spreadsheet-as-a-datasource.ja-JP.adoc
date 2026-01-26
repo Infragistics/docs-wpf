@@ -1,0 +1,220 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-us-excel-spreadsheet-as-a-datasource",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["How Do I"],
+    "guid": "5c71e164-c361-4860-a8f7-5f7377dac4bd",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.0722819Z"
+}
+|metadata|
+////
+
+= xamPivotGrid を Excel スプレッドシートにバインド
+
+Excel スプレッドシートを使用することによってデータ ソースを作成することは、通常の FlatData IEnumerable ソースを使用することに非常に似ています。DataSource も同じ (FlatDataSource) です。使用する ConnectionSettings の型を変更するだけです。ソースとして $$*$$.xlsx ファイルを使用する基本的な手順は以下の通りです。
+
+[start=1]
+. Excel ファイルでデータが含まれるシートを作成します。コンテンツは列に整理される必要があります。各列の最初の行は列のタイトル、つまりディメンション名でなければなりません。列のその他すべての行は、このディメンションに関連づけられたデータです。
+[start=2]
+. Excel ファイルの位置をポイントするストリームを作成します。これの実行方法の詳細は以下のコードを参照してください。
+[start=3]
+. ExcelDataConnectionSettings インスタンスを作成してプロパティを次のように設定します。前の手順で作成したストリームに FileStream、作成中のキューブ名に GeneratedTypeName、xlsx ファイルのシート名に WorksheetName を設定します。
+
+** データをフォーマットしたい場合には、アプリケーションに欲しい StringFormat に Excel フォーマットをマップするために ExcelDataConnectionSettings クラスの AddExcelCellFormatMapping メソッドを使用すべきです。
+** データが DateTime タイプの場合、必要なメソッドは AddExcelDateTimeCellFormatMapping です。
+
+[start=4]
+. FlatDataSource を作成し、接続設定を新たに作成した設定に設定し、次に GenerateInitialCube メソッドでキューブを選択します (正確なコードは以下のコードを参照してください)。
+[start=5]
+. 前述のトピックで概略を説明したようにメタデータと階層記述子を提供します。
+[start=6]
+. データ ソースを XamPivotGridと XamPivotDataSelector の両方またはいずれか一方に設定します。
+
+上記の手順のサンプル コードが続きます。LoadExcelFileData はボタンのための Click イベント ハンドラです。イベント ハンドラには 2 バージョンあります。最初のバージョンは、パスが分かっている時にファイルにアクセスする方法を示し、二番目のバージョンは [ファイルを開く] ダイアログでアクセスする方法を示します。次にコードはデータ ソースの作成ジョブを実際的に実行する CreateDataSource メソッドを示します。
+
+[ファイルを開く] ダイアログで:
+
+*C# の場合:*
+
+----
+    private void LoadExcelFileData(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        DialogResult showDialog = openFileDialog.ShowDialog();
+        if (showDialog == DialogResult.OK)
+        {
+            Stream stream = openFileDialog.OpenFile();
+            FlatDataSource dataSource = CreateDataSource(stream);
+            this.pivotGrid.DataSource = dataSource;
+            this.dataSelector.DataSource = dataSource;
+            stream.Close();
+        }
+    }
+----
+
+*Visual Basic の場合:*
+
+----
+    Private Sub LoadExcelFileData( _
+                    ByVal sender As Object, _
+                    ByVal e As RoutedEventArgs)
+        Dim openFileDialog As New OpenFileDialog()
+        Dim showDialog As DialogResult = openFileDialog.ShowDialog()
+        If showDialog = DialogResult.OK Then
+            Dim stream As Stream = openFileDialog.OpenFile()
+            Dim dataSource As FlatDataSource = CreateDataSource(stream)
+            Me.pivotGrid.DataSource = dataSource
+            Me.dataSelector.DataSource = dataSource
+            stream.Close()
+        End If
+    End Sub
+----
+
+ファイルへのパスが分かっていると:
+
+*C# の場合:*
+
+----
+     private void LoadExcelFileData(object sender, RoutedEventArgs e)
+     {
+         Stream stream =
+			new FileStream("Path\\to\\File\\DataToAnalyze.xls", FileMode.Open);
+         FlatDataSource dataSource = CreateDataSource(stream);
+         this.pivotGrid.DataSource = dataSource;
+         this.dataSelector.DataSource = dataSource;
+         stream.Close();
+     }
+----
+
+*Visual Basic の場合:*
+
+----
+    Private Sub LoadExcelFileData( _
+                    ByVal sender As Object, _
+                    ByVal e As RoutedEventArgs)
+        Dim stream As Stream = New FileStream("Path\to\File\DataToAnalyze.xls", FileMode.Open)
+        Dim dataSource As FlatDataSource = CreateDataSource(stream)
+        Me.pivotGrid.DataSource = dataSource
+        Me.dataSelector.DataSource = dataSource
+        stream.Close()
+    End Sub   
+----
+
+CreateDataSource メソッド - 4 つの状況すべてに同一:
+
+*C# の場合:*
+
+----
+        private FlatDataSource CreateDataSource(Stream fileStream)
+        {
+            FlatDataSource flatDataSource = new FlatDataSource();
+            ExcelDataConnectionSettings excelDataConnectionSettings =
+                new ExcelDataConnectionSettings
+                {
+                    FileStream = fileStream,
+                    GeneratedTypeName = "ExcelData",
+                    WorksheetName = "Sheet1"
+                };
+            string excelStringFormat = "\"$\"#,##0.00_);[Red]\\(\"$\"#,##0.00\\)";
+            string systemValueFormat = "{0:C3}";
+            ExcelDataConnectionSettings.AddExcelCellFormatMapping(
+				excelStringFormat, systemValueFormat);
+            flatDataSource.Cube = DataSourceBase.GenerateInitialCube("ExcelData");
+            //以下の 3 行は
+            //行と列の階層を選択します
+            //メジャーも選択します。自身の名前を使用する
+            //必要があります
+            flatDataSource.Rows = 
+               DataSourceBase.GenerateInitialItems("[Region].[Region]");
+            flatDataSource.Columns = 
+               DataSourceBase.GenerateInitialItems("[Date].[Date]");
+            flatDataSource.Measures = 
+               DataSourceBase.GenerateInitialItems("Units");
+            //これらをスキップしてデータ セレクターを使用することも可能です 
+            flatDataSource.ConnectionSettings = excelDataConnectionSettings;
+            flatDataSource.CubesSettings.Add(
+                new CubeMetadata
+                {
+                    DataTypeFullName = "ExcelData",
+                    DisplayName = "Sheet1 Data"
+                });
+            HierarchyDescriptor stringDataDescriptor =
+            new HierarchyDescriptor
+                {
+                    AppliesToPropertiesOfType = typeof(string)
+                };
+            stringDataDescriptor.AddLevel<string>(s => "All","All values");
+            stringDataDescriptor.AddLevel<string>(s => s, "Members");
+            HierarchyDescriptor dateTimeDescriptor =
+            new HierarchyDescriptor
+                {
+                    AppliesToPropertiesOfType = typeof(DateTime)
+                };
+            dateTimeDescriptor.AddLevel<DateTime>(date => "All Dates", "All Values");
+            dateTimeDescriptor.AddLevel<DateTime>(date => date.Year, "Years");
+            dateTimeDescriptor.AddLevel<DateTime>(date => date.Date, "Members");
+            flatDataSource.HierarchyDescriptors.Add(stringDataDescriptor);
+            flatDataSource.HierarchyDescriptors.Add(dateTimeDescriptor);
+            return flatDataSource;
+        }
+----
+
+*Visual Basic の場合:*
+
+----
+    Private Function CreateDataSource(ByVal fileStream As Stream) As FlatDataSource
+        Dim flatDataSource As New FlatDataSource()
+        Dim excelDataConnectionSettings As _
+            New ExcelDataConnectionSettings()
+        excelDataConnectionSettings.FileStream = fileStream
+        excelDataConnectionSettings.GeneratedTypeName = "ExcelData"
+        excelDataConnectionSettings.WorksheetName = "Sheet1"
+        Dim excelStringFormat As String = _
+            """$""#,##0.00_);[Red]\(""$""#,##0.00\)"
+        Dim systemValueFormat As String = "{0:C3}"
+        ExcelDataConnectionSettings.AddExcelCellFormatMapping( _
+            excelStringFormat, systemValueFormat)
+        flatDataSource.Cube = _
+            DataSourceBase.GenerateInitialCube("ExcelData")
+        '以下の 3 行は
+        '行と列の階層を選択します
+        'メジャーも選択します。自身の名前を使用する
+        '必要があります
+        flatDataSource.Rows = _
+            DataSourceBase.GenerateInitialItems("[Region].[Region]")
+        flatDataSource.Columns = _
+            DataSourceBase.GenerateInitialItems("[Date].[Date]")
+        flatDataSource.Measures = _
+            DataSourceBase.GenerateInitialItems("Units")
+        'これらをスキップしてデータ セレクターを使用することも可能です         
+        flatDataSource.ConnectionSettings = excelDataConnectionSettings
+        Dim cubeMetadata As New CubeMetadata()
+        cubeMetadata.DataTypeFullName = "ExcelData"
+        cubeMetadata.DisplayName = "Sheet1 Data"
+        flatDataSource.CubesSettings.Add(cubeMetadata)
+        Dim stringDataDescriptor As New HierarchyDescriptor()
+        stringDataDescriptor.AppliesToPropertiesOfType = GetType(String)
+        stringDataDescriptor.AddLevel( _
+                Of String)(Function(s) "All", "All values")
+        stringDataDescriptor.AddLevel( _
+                Of String)(Function(s) s, "Members")
+        Dim dateTimeDescriptor As New HierarchyDescriptor()
+        dateTimeDescriptor.AppliesToPropertiesOfType = GetType(DateTime)
+        dateTimeDescriptor.AddLevel( _
+                Of DateTime)(Function(d) "All Dates", "All Values")
+        dateTimeDescriptor.AddLevel( _
+                Of DateTime)(Function(d) d.Year, "Years")
+        dateTimeDescriptor.AddLevel( _
+                Of DateTime)(Function(d) d.Date, "Members")
+        flatDataSource.HierarchyDescriptors.Add(stringDataDescriptor)
+        flatDataSource.HierarchyDescriptors.Add(dateTimeDescriptor)
+        Return flatDataSource
+    End Function
+----
+
+=== 関連トピック
+
+link:xampivotgrid-us-filtering.html[フィルタリング]

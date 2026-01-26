@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-clipboard-operations",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing"],
+    "guid": "{F8AB05CA-FEF1-424A-99EE-C36D9021D554}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1159763Z"
+}
+|metadata|
+////
+
+= クリップボード操作
+
+
+
+DataPresenter コントロールによって、エンド ユーザーは、セル、データ レコード、またはフィールドを選択する際に、セルのコンテンツの切り取り、コピー、貼り付け、およびクリアなどの操作を実行できます。エンド ユーザーは、DataPresenter コントロールからデータをコピーし、それを Microsoft® Excel® スプレッドシートに貼り付けることができます (または逆の操作)。エンド ユーザーはまた、DataPresenter コントロール間、または DataPresenter コントロールの単一インスタンス内でデータをコピーすることもできます。実際、エンド ユーザーがデータを新規レコードの追加に貼り付けると、DataPresenter コントロールは自動的に新規レコードを作成します。
+
+クリップボード操作に関する詳細は、以下のトピックを参照してください。
+
+* link:xamdatapresenter-enable-clipboard-operations.html[クリップボード操作を有効にする]
+* link:xamdatapresenter-perform-clipboard-operations.html[クリップボード操作の実行]
+* link:xamdatapresenter-handle-clipboard-operation-errors.html[クリップボード操作エラーの処理]
+* link:xamdatapresenter-prevent-clipboard-operations-from-modifying-a-field.html[クリップボード操作でフィールドが変更されることを防止する]
+* link:xamdatapresenter-prevent-the-addition-of-specific-formats-to-the-clipboard.html[クリップボードへの特定の形式の追加を防止する]

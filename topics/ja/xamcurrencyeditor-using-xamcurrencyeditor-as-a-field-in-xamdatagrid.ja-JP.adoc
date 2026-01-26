@@ -1,0 +1,109 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcurrencyeditor-using-xamcurrencyeditor-as-a-field-in-xamdatagrid",
+    "controlName": ["xamCurrencyEditor"],
+    "tags": ["How Do I"],
+    "guid": "{C9AE328B-8A80-4FFC-9906-52CC00AFB733}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1339781Z"
+}
+|metadata|
+////
+
+= xamDataGrid でフィールドとして xamCurrencyEditor を使用
+
+xamCurrencyEditor コントロールの重要な機能は、xamDataGrid link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] に組み込むことができることです。この機能によって、セルの値を修正する間にエンドユーザーはエディターの機能を十分に活用することができます。xamCurrencyEditor はまた、マスクを使って値をフォーマットし、通貨記号を追加できるため、視覚的により目立ちます。
+
+これらの手順に従って、xamDataGrid の Field に xamCurrencyEditor を表示します。
+
+[start=1]
+. Microsoft® Windows® Presentation Foundation Window または Page プロジェクトを作成します。
+[start=2]
+. 以下の名前空間宣言を開始の Page タグまたは Window タグに配置します。これらの宣言によって、 xamDataGrid、xamCheckEditor を参照してタイプを定義することができます (つまり Int32、Boolean)。
+
+*XAML の場合:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+xmlns:igEditors="http://infragistics.com/Editors"
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
+----
+
+[start=3]
+. XmlDataProvider を定義するリソース セクションを作成します。XmlDataProvider は link:resources-orders.html[Orders] XML ファイルを参照します。Grid パネル内に以下の XAML を配置します。
+
+*XAML の場合:*
+
+----
+<Grid.Resources>
+        <XmlDataProvider Source="../Data/Orders.xml" 
+          x:Key="OrderData" XPath="/Orders" />
+</Grid.Resources>
+----
+
+[start=4]
+. XamDataGrid のインスタンスを作成して名前を指定し、前述の手順で作成された XmlDataProvider に DataSource プロパティを設定します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataGrid x:Name="XamDataGrid1" 
+  DataSource="{Binding Source={StaticResource OrderData}, XPath=Order}">
+        ...      
+</igDP:XamDataGrid>
+----
+
+[start=5]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[AutoGenerateFields] プロパティを False に設定します。前述の手順で作成されたタグの間に以下の XAML を配置します。
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataGrid.FieldLayoutSettings>
+  <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+</igDP:XamDataGrid.FieldLayoutSettings>
+...
+----
+
+[start=6]
+. Field のカスタム エディターを定義する時に、そのエディターのスタイルを指定するように link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editorstyle.html[EditorStyle] プロパティを設定しなければならない場合があります。これによって、マスクなどのエディターにプロパティを設定することも可能です。以下のXAML は XamCurrencyEditor のインスタンスをターゲットとするスタイルを設定し、このスタイルを EditorStyle に設定します。エディターの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor~mask.html[Mask] プロパティを設定するために setter を使用します。このコードを前述の手順のコードの下に配置します。
+
+[NOTE]
+====
+*注:* Mask を指定する時には、{} で {...} をエスケープする必要があります。
+====
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataGrid.FieldLayouts>
+  <igDP:FieldLayout>
+    <igDP:FieldLayout.Fields> 
+                <igDP:Field Name="ProductName" />
+                <igDP:Field Name="CostPerUnit" >
+                  <igDP:Field.Settings>
+                        <igDP:FieldSettings 
+                          EditAsType="{x:Type sys:Double}">
+                                <igDP:FieldSettings.EditorStyle>
+                                  <Style 
+                                        TargetType="{x:Type igEditors:XamCurrencyEditor}" >
+                                        <Setter Property="Mask" Value="{}{currency:7.2:c}" />
+                                  </Style>
+                                </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>                
+                  </igDP:Field.Settings>
+                </igDP:Field>
+          </igDP:FieldLayout.Fields>
+  </igDP:FieldLayout>
+</igDP:XamDataGrid.FieldLayouts>
+...
+----
+
+[start=7]
+. プロジェクトをビルドして実行します。以下の画像のように、CostPerUnit 列に通貨のマスクを使用してフォーマットされた値が表示されます。
+
+image::images/xamCurrencyEditor_Using_xamCurrencyEditor_as_a_Field_in_xamDataGrid_01.png[xamdatagrid フィールドでの xamcurrencyeditor の使用]

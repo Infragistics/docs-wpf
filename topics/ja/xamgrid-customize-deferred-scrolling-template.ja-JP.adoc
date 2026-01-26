@@ -1,0 +1,121 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-customize-deferred-scrolling-template",
+    "controlName": ["xamGrid"],
+    "tags": ["Getting Started","Grids","How Do I","Layouts","Performance","Selection"],
+    "guid": "{FF19D471-D9AC-4A34-9674-6EB3411BD963}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8171633Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 遅延スクロール テンプレートのカスタマイズ
+
+== 始める前に
+
+遅延スクロールを有効にすると、デフォルトのプレビューは xamGrid の最初の列の値を表示します。ただし、このプレビューをカスタマイズするために開発者自身のデータ テンプレートを作成することもできます。
+
+_前提_
+
+_このトピックは、ページ上のデータにバインドされた xamGrid コントロールがすでにあることが前提となっています。詳細は、 link:xamgrid-data-binding.html[xamGrid をデータにバインド]のトピックを参照してください。このトピックは遅延スクロールが有効になっていることも前提です。詳細は、 link:xamgrid-deferred-scrolling.html[遅延スクロール]を参照してください。_
+
+== 達成すること
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.deferredscrollingsettings.html[DeferredScrollingSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.deferredscrollingsettings~deferredscrolltemplate.html[DeferredScrollTemplate] プロパティをカスタム データ テンプレートに設定することによって、遅延スクロール設定をカスタマイズします。このデータ テンプレートは、ProductName の値を表示し、xamGrid コントロールを異なる色でシェードします。
+
+== 次の手順を実行します
+
+[start=1]
+. DeferredScrollTemplate プロパティのタグを xamGrid に追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid.DeferredScrollingSettings>
+   <ig:DeferredScrollingSettings AllowDeferredScrolling="Default">
+      <ig:DeferredScrollingSettings.DeferredScrollTemplate>
+         <!-- DataTemplate を追加します -->  
+      </ig:DeferredScrollingSettings.DeferredScrollTemplate>
+   </ig:DeferredScrollingSettings>
+</ig:XamGrid.DeferredScrollingSettings>
+----
+
+[start=2]
+. DataTemplate を作成します。遅延スクロール テンプレートのデータ コンテキストは ScrollTipInfo オブジェクトであるので、このデータ テンプレート内の ScrollTipInfo オブジェクトによって公開される以下のプロパティをバインドできます。
+
+** 行
+** FirstColumnValue
+** 列
+
+[start=3]
+. Grid パネルを DataTemplate に追加します。
+
+Rectangle を Grid パネルに追加します。この矩形はシェーディングの外観にするために xamGrid 上に表示されます。
+
+以下のプロパティを Rectangle に設定します。
+
+** Fill - Blue
+** Opacity - 0.65
+
+*XAML の場合:*
+
+----
+<DataTemplate>
+   <Grid>
+      <Rectangle Fill="Blue"  Opacity="0.65"/>
+      <!--StackPanel を追加します -->
+   </Grid>
+</DataTemplate>
+----
+
+[start=4]
+. StackPanel コンテナーを Grid パネルに追加します。以下のプロパティを設定します。
+
+** HorizontalAlignment - Center
+** VerticalAlignment - Center
+
+*XAML の場合:*
+
+----
+<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+   <!-- TextBlock を追加します -->
+</StackPanel>
+----
+
+[start=5]
+. TextBox コントロールを StackPanel コンテナーに追加します。この TextBox コントロールで ProductName 列から情報を表示します。
+
+以下のプロパティを設定します。
+
+** Text - {Binding Path = Row.Data.ProductName}
+** Foreground - White
+
+*XAML の場合:*
+
+----
+<TextBlock Text="{Binding Path=Row.Data.ProductName}" Foreground="White"/>
+----
+
+[start=6]
+. アプリケーションを保存して実行します。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Customize_Deferred_Scrolling_Tooltip_01.png[遅延スクロール テンプレートのカスタマイズ]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Customize_Deferred_Scrolling_Tooltip_01.png[遅延スクロール テンプレートのカスタマイズ]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-deferred-scrolling.html[遅延スクロール]
+
+link:xamgrid-customize-deferred-scrolling-template.html[遅延スクロール テンプレートのカスタマイズ]
+
+link:xamgrid-customize-groupby-deferred-scrolling-template.html[GroupBy の遅延スクロール テンプレートのカスタマイズ]

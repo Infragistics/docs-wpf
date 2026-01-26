@@ -1,0 +1,296 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-selection",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","Section 508"],
+    "guid": "a27fdcef-fdea-4abb-929f-7a43f726e2a6",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3753911Z"
+}
+|metadata|
+////
+
+= 選択 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor_™ コントロールの選択機能をコードで使用する方法を紹介します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-adding-to-your-page.html[ _xamSyntaxEditor_ をページに追加]
+|このトピックでは、 _xamSyntaxEditor_ を短時間で起動、実行するのに役立つ体系的な操作方法を紹介します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref337641462, はじめに >>
+* <<_Ref338056145, 選択の操作の概要 >>
+** <<_Ref338771866,現在選択されているテキストの取得>>
+** <<_Ref337641490,現在の選択の長さの取得>>
+** <<_Ref338782325,現在選択されているテキストの置き換え>>
+** <<_Ref338782349,選択の開始位置および終了位置の設定と取得>>
+
+* <<OLE_LINK48, コード例 >>
+** <<_Ref337710619,コード例: コードでテキストの選択>>
+** <<_Ref337641534,コード例: 選択の長さの取得>>
+
+* <<_Ref337641540, 関連コンテンツ >>
+
+[[_Ref337641462]]
+== はじめに
+
+=== 選択概要
+
+選択機能は、ドキュメントでテキストが隣接する部分を選択する機能を有効にします。選択は他の背景色によって強調表示されます。link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.editordocumentview_members.html[EditorDocumentView] クラスの link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.editordocumentview~selectionmanager.html[SelectionManager] プロパティを使用してコードでテキストを選択できます。`SelectionManager` のタイプは link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.viewselectionmanager_members.html[ViewSelectionManager] です。以下の操作を実行できます。
+
+* 現在選択されているテキストを取得します
+* 現在選択されているテキストを置き換えます
+* 現在の選択の開始、終了、および長さを取得します
+* `ViewSelectionManager` メソッドを使用して選択したテキストを操作します
+
+[[_Ref338056145]]
+== 選択の操作の概要
+
+=== 選択構成の概要表
+
+以下の表は  _xamSyntaxEditor_   の選択機能の構成可能な要素を表示します。
+
+[options="header", cols="a,a,a"]
+|====
+|タスク|詳細|プロパティ
+
+|<<_Ref338771866,現在選択されているテキストの取得>>
+|現在選択されているテキストを取得します
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.viewselectionmanager~selectedtext.html[SelectedText] 
+
+|<<_Ref337641490,現在の選択の長さの取得>>
+|現在の選択の長さを取得します
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.viewselectionmanager~selectionlength.html[SelectionLength] 
+
+|<<_Ref338782325,現在選択されているテキストの置き換え>>
+|現在の選択を置き換えるか、カレットの位置にテキストを挿入します
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.viewselectionmanager~selectedtext.html[SelectedText] 
+
+|<<_Ref338782349,選択の開始位置および終了位置の設定と取得>>
+|現在の選択の開始を取得または設定します
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.viewselectionmanager~selectionstart.html[SelectionStart] 
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.viewselectionmanager~selectionend.html[SelectionEnd] 
+
+|====
+
+[[_Ref338771866]]
+== 現在選択されているテキストの取得
+
+[[_Ref338685146]]
+
+=== 概要
+
+現在選択されているテキストを取得するには、`SelectedText` プロパティを使用します。
+
+[[_Ref338685152]]
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|現在選択されているテキストを取得または設定します
+|`SelectedText`
+|タイプ String の変数に設定します
+
+|====
+
+[[_Ref337641490]]
+== 現在の選択の長さの取得
+
+=== 概要
+
+`SelectionLength` プロパティは、現在の選択にある文字の数を表す整数を返します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|現在の選択の長さを取得します
+|`SelectionLength`
+|タイプ Integer の変数に設定します
+
+|====
+
+[[_Ref338782325]]
+== 現在選択されているテキストの置き換え
+
+=== 概要
+
+現在選択されているテキストを新しいテキストと置き換えるには、`SelectedText` プロパティを新しいテキストに設定します。選択されているテキストがない場合、`SelectedText` プロパティに設定した新しいテキストはカレット位置に挿入されます。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定する引数:
+
+|現在の選択を置き換えるか、カレットの位置にテキストを挿入します
+|`SelectedText`
+|
+* `文字列型の新しい値` 
+
+|====
+
+[[_Ref338782349]]
+== 選択の開始位置および終了位置の設定と取得
+
+=== 概要
+
+`SelectionStart` プロパティおよび `SelectionEnd` プロパティを使用すると、選択の開始位置および終了位置を取得または設定できます。このプロパティの値は link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot_members.html[TextDocumentSnapshot] の開始からのゼロから始まる開始または終了オフセットを表します。
+
+[[_Ref338685198]]
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定する引数:
+
+|現在の選択の開始/終了インデックスを取得または設定します
+|`SelectionStart` 
+
+`SelectionEnd`
+|
+* `startTextLocation` 
+
+* `endTextLocation` 
+
+または 
+
+* `startSnapshotPoint` 
+
+* `endSnapshotPoint` 
+
+|====
+
+== コード例
+
+=== コード例の概要
+
+以下の表は、このトピックで使用したコード例をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|例|解説
+
+|<<_Ref337710619,コード例: コードでテキストの選択>>
+|この例は、5 の開始インデックスおよび 60 の終了インデックスのテキストを選択するコードを紹介します。
+
+|<<_Ref337641534,コード例: 選択の長さの取得>>
+|選択されているテキストの長さを取得する方法を紹介します。
+
+|====
+
+[[_Ref337710619]]
+== コード例: コードでテキストの選択
+
+=== 説明
+
+この例は、5 の開始インデックスおよび 60 の終了インデックスのテキストを選択するコードを紹介します。
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+int startIndex = 5;
+int endIndex = 60;
+TextDocumentSnapshot tdsp = this.mySyntaxEditor.ActiveDocumentView.CurrentSnapshot;
+TextLocation stl = tdsp.LocationFromOffset(startIndex);
+TextLocation etl = tdsp.LocationFromOffset(endIndex);
+SnapshotPoint ssp = SnapshotPoint.FromTextLocation(stl, tdsp);
+SnapshotPoint esp = SnapshotPoint.FromTextLocation(etl, tdsp);
+this.mySyntaxEditor.ActiveDocumentView.SelectionManager.SelectionStart = ssp;
+this.mySyntaxEditor.ActiveDocumentView.SelectionManager.SelectionEnd = esp;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim startIndex As Integer = 5
+Dim endIndex As Integer = 60
+Dim tdsp As TextDocumentSnapshot = Me.mySyntaxEditor.ActiveDocumentView.CurrentSnapshot
+Dim stl As TextLocation = tdsp.LocationFromOffset(startIndex)
+Dim etl As TextLocation = tdsp.LocationFromOffset(endIndex)
+Dim ssp As SnapshotPoint = SnapshotPoint.FromTextLocation(stl, tdsp)
+Dim esp As SnapshotPoint = SnapshotPoint.FromTextLocation(etl, tdsp)
+Me.mySyntaxEditor.ActiveDocumentView.SelectionManager.SelectionStart = ssp
+Me.mySyntaxEditor.ActiveDocumentView.SelectionManager.SelectionEnd = esp
+----
+
+[[_Ref337641534]]
+== コード例: 選択の長さの取得
+
+=== 説明
+
+現在のテキスト選択の長さを取得する方法を紹介します。
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+int lengthOfSelection = this.xamSyntaxEditor1.ActiveDocumentView.SelectionManager.SelectionLength();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim lengthOfSelection As Integer
+lengthOfSelection = Me.xamSyntaxEditor1.ActiveDocumentView.SelectionManager.SelectionLength()
+----
+
+[[_Ref337641540]]
+== 関連コンテンツ
+
+このトピックにの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-events-and-commands.html[イベントとコマンド]
+|このトピックでは、 _xamSyntaxEditor_ アプリケーションの構築とともにユーザーが利用できるイベントとサポート対象コマンドを紹介します。
+
+| link:xamsyntaxeditor-splitting.html[分割]
+|このトピックでは、 _xamSyntaxEditor_ のドキュメント分割機能を解説し、カスタマイズする方法について解説します。
+
+|====

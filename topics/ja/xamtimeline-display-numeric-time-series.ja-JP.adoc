@@ -1,0 +1,149 @@
+﻿////
+|metadata|
+{
+    "name": "xamtimeline-display-numeric-time-series",
+    "controlName": ["xamTimeline"],
+    "tags": ["API","Data Presentation","How Do I"],
+    "guid": "{B425B6DC-3D04-4C89-9BA4-B6DCC4F14247}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.9733988Z"
+}
+|metadata|
+////
+
+= 数値時刻シリーズを表示
+
+== 始める前に
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールを使用して連続する数値データを表示できます。たとえば、Minute、Hour、または Year を表す数値などの DateTime 値ではないデータがある場合、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[NumericTimeSeries] オブジェクトを使用して連続的にこのデータを視覚化できます。
+
+== 達成すること
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[XamTimeline] コントロールで数値データを表示する方法を学習します。
+
+image::images/XamTimeline_Display_Numeric_Time_Series_01.png[]
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName} プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をアプリケーションに追加します。
+
+** Infragistics.WPF.Timeline
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. xamTimeline の以下の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:igtl="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Timelines
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Timelines;
+----
+
+[start=4]
+. link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[NumericTimeSeries] オブジェクトと共に link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[XamTimeline] コントロールを追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline x:Name="xamTimeline">
+    <ig:XamTimeline.Series>
+        <ig:NumericTimeSeries Title="Numeric Time Series">
+            <!--TODO: 数値時刻エントリを追加します -->
+        </ig:NumericTimeSeries>
+    </ig:XamTimeline.Series> 
+</ig:XamTimeline>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim xamTimeline As New XamTimeline()
+Me.LayoutRoot.Children.Add(xamTimeline)
+Dim numTimeSeries As New NumericTimeSeries()
+'TODO: 数値時刻エントリを追加します --> 
+xamTimeline.Series.Add(numTimeSeries)
+----
+
+*C# の場合:*
+
+----
+XamTimeline xamTimeline = new xamTimeline();
+this.LayoutRoot.Children.Add(xamTimeline);
+NumericTimeSeries numTimeSeries = new NumericTimeSeries();
+//TODO: 数値時刻エントリを追加します --> 
+xamTimeline.Series.Add(numTimeSeries);
+----
+
+[start=5]
+. link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeentry.html[NumericTimeEntry] オブジェクトを使用してデータをタイムラインに追加します。
+
+*XAML の場合:*
+
+----
+<ig:NumericTimeSeries.Entries>
+    <ig:NumericTimeEntry Time="500" Title="Numeric Time Entry 1" 
+                         Details="Details Time Entry 1"/>
+    <ig:NumericTimeEntry Time="1000" Title="Numeric Time Entry 2" 
+                         Details="Details Time Entry 2"/>
+    <ig:NumericTimeEntry Time="1500" Title="Numeric Time Entry 3" 
+                         Details="Details Time Entry 3"/>
+    <ig:NumericTimeEntry Time="2000" Title="Numeric Time Entry 4" 
+                         Details="Details Time Entry 4"/>
+    <ig:NumericTimeEntry Time="2500" Title="Numeric Time Entry 5" 
+                         Details="Details Time Entry 5"/>
+</ig:NumericTimeSeries.Entries>
+----
+
+*Visual Basic の場合:*
+
+----
+For ind As Integer = 1 To 5
+    Dim numTimeEntry As New NumericTimeEntry()
+    numTimeEntry.Time = ind * 500
+    numTimeEntry.Title = "Numeric Time Entry " + ind.ToString()
+    numTimeEntry.Details = "Details Time Entry " + ind.ToString()
+    numTimeSeries.Entries.Add(numTimeEntry)
+Next
+----
+
+*C# の場合:*
+
+----
+for (int ind = 1; ind <= 5; ind++)
+{      
+    var entry = new NumericTimeEntry();
+    entry.Time = ind * 500;
+    entry.Title = "Numeric Time Entry " + ind.ToString();
+    entry.Details = "Details Time Entry " + ind.ToString();
+    numTimeSeries.Entries.Add(entry);
+}
+----
+
+[start=6]
+. アプリケーションを実行します。xamTimeline コントロールはデータを表示します。そのイベントの詳細を確認するためにスライダーをイベントに移動できます。
+
+image::images/XamTimeline_Display_Numeric_Time_Series_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-binding-to-data-with-xamtimeline.html[データにバインドする]
+
+link:xamtimeline-display-date-time-series.html[日時シリーズを表示]
+
+link:xamtimeline-use-multiple-series-with-xamwebtimeline.html[xamTimeline と複数のシリーズを使用]

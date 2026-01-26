@@ -1,0 +1,719 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-performing-selection-programmatically",
+    "tags": ["Getting Started","How Do I","Selection"],
+    "controlName": ["xamComboEditor"],
+    "guid": "5a6ac02e-cdfb-4fdc-9b98-f93452d83dea",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7581042Z"
+}
+|metadata|
+////
+
+= プログラムによる選択の実行 (xamComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamComboEditor_™ コントロールの選択をプログラムで実行する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-adding-xamcomboeditor-to-your-page.html[xamComboEditor をページに追加]
+|このトピックでは、 _xamComboEditor_ コントロールを開始する方法、およびプロシージャ コードを使用してページに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref381950066,プログラムによる選択の概要>>
+* <<_Ref382398018,選択されたコンボ エディター項目の構成>>
+* <<_Ref382400374,インデックスで選択したコンボ項目の構成>>
+* <<_Ref382398058,選択した単一データ項目の構成>>
+* <<_Ref382398065,選択したデータ項目コレクションの構成>>
+* <<_Ref382398071,データ モデルのブール値プロパティの値で選択したデータ項目コレクションの変更>>
+* <<_Ref382398076,選択した単一の値の構成>>
+* <<_Ref382398080,選択した値のコレクションの構成>>
+* <<_Ref382398087,関連コンテンツ>>
+
+[[_Ref381950066]]
+== プログラムによる選択の概要
+
+=== プログラムによる選択の概要表
+
+以下の表は、 _xamComboEditor_   コントロールのプログラムによる選択の構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|プログラムによる選択タスク|詳細|プロパティ
+
+|<<_Ref382398018,選択したコンボ エディター項目の構成>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor.html[XamComboEditor] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~items.html[Items] コレクションを使用した操作で、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritembase`1~isselected.html[IsSelected] プロパティを使用して選択される特定の link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritem_members.html[ComboEditorItem] 項目を構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritembase`1~isselected.html[IsSelected]
+
+|<<_Ref382400374,インデックスで選択したコンボ項目の構成>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedindex.html[SelectedIndex] プロパティを使用して、選択した xamComboEditor 項目を構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedindex.html[SelectedIndex]
+
+|<<_Ref382398058,選択した単一データ項目の構成>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditem.html[SelectedItem] プロパティを使用して、選択した _xamComboEditor_ 項目を構成します。 
+
+複数選択が有効な場合、`SelectedItem` は最後に選択された項目を返します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditem.html[SelectedItem]
+
+|<<_Ref382398065,選択したデータ項目コレクションの構成>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditems.html[SelectedItems] プロパティを使用して、選択した項目コレクションを構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditems.html[SelectedItems]
+
+|<<_Ref382398071,データ モデルのブール値プロパティの値で選択したデータ項目コレクションの変更>>
+|_xamComboEditor_ で項目の現在の状態がブール値で決定される基本データ モデルのプロパティを使用して、選択済み/未選択のデータ項目を構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~isselectedmemberpath.html[IsSelectedMemberPath]
+
+|<<_Ref382398076,選択した単一の値の構成>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalue.html[SelectedValue] プロパティを使用して、選択した項目の値を構成します。 
+
+選択に使用されるデータ項目プロパティのパスは、`SelectedValuePath` によって指定されます。
+|
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvaluepath.html[SelectedValuePath] 
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalue.html[SelectedValue] 
+
+|<<_Ref382398080,選択した値のコレクションの構成>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalues.html[SelectedValues] プロパティを使用して、選択した項目の値のコレクションを構成します。 
+
+選択に使用されるデータ項目プロパティのパスは、`SelectedValuePath` によって指定されます。
+|
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvaluepath.html[SelectedValuePath] 
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalues.html[SelectedValues] 
+
+|====
+
+[[_Ref381885797]]
+[[_Ref382323081]]
+
+[[_Ref382398018]]
+== 選択したコンボ エディター項目の構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+`bool` link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritembase`1~isselected.html[IsSelected] プロパティを使用して、選択した  _xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritem_members.html[ComboEditorItem] を構成します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|選択したコンボ エディター項目の構成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritembase`1~isselected.html[IsSelected]
+|`bool`
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   がどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritembase`1~isselected.html[IsSelected]
+| _true_ 
+
+|====
+
+image::images/Selection_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor"
+                   ItemsSource="{Binding Path=Products}"
+                   DisplayMemberPath="ProductName"                 
+                   Height="30" Width="200">
+</ig:XamComboEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+ComboEditor.Items[2].IsSelected = true;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+ComboEditor.Items(2).IsSelected = True
+----
+
+[[_Ref381947051]]
+[[_Ref382388014]]
+
+[[_Ref382400374]]
+== インデックスで選択したコンボ項目の構成
+
+=== 概要
+
+インデックスと link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedindex.html[SelectedIndex] プロパティを使用して、選択した  _xamComboEditor_   項目を構成します。
+
+`SelectedIndex` プロパティの既定値は -1 で、選択された項目はありません。
+
+複数選択が有効な場合、`SelectedIndex` は最後に選択されたコンボ項目のインデックスを返します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|インデックスで選択したコンボ項目の構成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedindex.html[SelectedIndex]
+|`int`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   がどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedindex.html[SelectedIndex]
+| _2_ 
+
+|====
+
+image::images/Selection_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor"
+                   ItemsSource="{Binding Path=Products}"
+                   DisplayMemberPath="ProductName" 
+                   SelectedIndex="2"                
+                   Height="30" Width="200">
+</ig:XamComboEditor>
+----
+
+[[_Ref382398058]]
+== 選択した単一データ項目の構成
+
+=== 概要
+
+_xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditem.html[SelectedItem] プロパティを使用して、選択したデータ項目を構成します。この項目は、使用するデータ モデル内の項目への参照です。
+
+_xamComboEditor_   で項目を選択すると、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectionchanged_ev.html[SelectionChanged] イベントが発生します。このイベントには、セクションの link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.selectionchangedeventargs~addeditems.html[AddedItems]/ link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.selectionchangedeventargs~removeditems.html[RemovedItems] を公開するイベント引数 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.selectionchangedeventargs_members.html[SelectionChangedEventArgs] があります。
+
+_xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection] プロパティが true に設定されている場合:
+
+• `SelectedItem` が最後に選択された項目を返す
+
+• 新しいデータ オブジェクトに設定した `SelectedItem` により、既存の選択された項目コレクションがクリアされる
+
+注:
+
+[NOTE]
+====
+`AllowMultipleSelection` プロパティが `false` に設定され、1 つ以上の項目がランタイムで `SelectedItem` プロパティに設定されている場合は、例外が発生します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|選択したデータ項目の構成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditem.html[SelectedItem]
+|`object`
+
+|====
+
+=== 例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor" 
+                   ItemsSource="{Binding Path=Products}"
+                   DisplayMemberPath="ProductName"
+                   Height="30" Width="200" 
+                   SelectionChanged="ComboEditor_OnSelectionChanged"/>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void ComboEditor_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    if (ComboEditor.SelectedItem != null)
+    {
+        var selectedItem = ComboEditor.SelectedItem as Product;
+        System.Diagnostics.Debug.WriteLine(String.Format("Product info: {0} {1}", selectedItem.ProductID, selectedItem.ProductName));
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub ComboEditor_OnSelectionChanged(sender As Object, e As SelectionChangedEventArgs)
+    If ComboEditor.SelectedItem IsNot Nothing Then
+        Dim selectedItem = TryCast(ComboEditor.SelectedItem, Product)
+       System.Diagnostics.Debug.WriteLine([String].Format("Product info: {0} {1}", selectedItem.ProductID, selectedItem.ProductName))
+      End If
+End Sub
+----
+
+[[_Ref381947376]]
+[[_Ref382388032]]
+
+[[_Ref382398065]]
+== 選択したデータ項目コレクションの構成
+
+=== 概要
+
+_xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditems.html[SelectedItems] プロパティを使用して、選択したデータ項目コレクションを構成します。このプロパティは、複数の選択がコントロールで有効な場合に非常に便利です。
+
+双方向バインディングが可能な依存プロパティであるため、項目のコレクションを  _xamComboEditor_   に設定することもできます。このコレクションは `ObservableCollection<object>` 型であることが必要です。
+
+注:
+
+[NOTE]
+====
+_xamComboEditor_  コントロールで、複数選択が有効であることが必要です。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|選択したデータ項目コレクションの構成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditems.html[SelectedItems]
+|`ObservableCollection<object>`
+
+|====
+
+[[_Ref381948563]]
+[[_Ref382388082]]
+
+[[_Ref382398071]]
+== データ モデルのブール値プロパティの値で選択したデータ項目コレクションの変更
+
+=== 概要
+
+_xamComboEditor_   で項目の現在の状態がブール値で決定される基本データ モデルのプロパティを使用して、選択済み/未選択のデータ項目を構成します。基本データ モデルのプロパティ名が link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~isselectedmemberpath.html[IsSelectedMemberPath] プロパティに設定されます。
+
+`IsSelectedMemberPath` がデータ モデルのプロパティ パスに設定されると、指定プロパティの値が`true` に設定されたデータ項目で link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditems.html[SelectedItems] コレクションが生成されます。基本データ モデルが `INotifyPropertyChanged` インターフェイスをサポートする場合は、指定プロパティの値の変更が  _xamComboEditor_   項目の選択状態にも反映されます。
+
+注:
+
+[NOTE]
+====
+_xamComboEditor_   のデータ項目の選択済み/未選択を決定するデータ モデルのプロパティは、`bool` 型であることが必要です。
+====
+
+[NOTE]
+====
+複数選択を有効にし、`IsSelectedMemberPath` を指定する場合は、最初に `AllowMultipleSelection` プロパティを XAML で定義する必要があります。
+====
+
+[NOTE]
+====
+バインドされたデータ ソースのサイズによっては、`IsSelectedMemberPath` プロパティの使用が、 _xamComboEditor_   コントロールのパフォーマンスに影響を与えます。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|基本データ モデル プロパティのブール値による項目選択の構成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~isselectedmemberpath.html[IsSelectedMemberPath]
+|`string`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   の外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~isselectedmemberpath.html[IsSelectedMemberPath]
+| _IsAvailable_ 
+
+|====
+
+image::images/Selection_3.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <Grid.DataContext>
+        <local:DataProvider />
+    </Grid.DataContext>
+    <ig:XamComboEditor x:Name="DataCombo" Height="30" Width="250" 
+                       ItemsSource="{Binding Path=ProductItems}"
+                       CheckBoxVisibility="Visible"
+                       AllowMultipleSelection="True"                          
+                       IsSelectedMemberPath="IsAvailable">
+        <ig:XamComboEditor.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Path=ProductName}" />
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="10,0,0,0"
+                                Grid.Column="1">
+                        <TextBlock Text="is available" />
+                            <TextBlock Text="{Binding Path=IsAvailable}"
+                                       Margin="10,0,0,0"
+                                       FontWeight="Bold"/>
+                    </StackPanel>
+                </Grid>                    
+            </DataTemplate>
+        </ig:XamComboEditor.ItemTemplate>
+    </ig:XamComboEditor>
+</Grid>
+----
+
+例で使用されるデータ モデルのクラスは以下のとおりです。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class ProductItem : INotifyPropertyChanged
+    {
+        public ProductItem(string name, bool isAvailable)
+        {
+            _productName = name;
+            _isAvailable = isAvailable;
+        }
+        private string _productName;
+        public string ProductName
+        {
+            get { return this._productName; }
+            set
+            {
+                if (this._productName != value)
+                {
+                    this._productName = value;
+                    this.OnPropertyChanged("ProductName");
+                }
+            }
+        }
+        private bool _isAvailable;
+        public bool IsAvailable
+        {
+            get { return this._isAvailable; }
+            set
+            {
+                if (this._isAvailable != value)
+                {
+                    this._isAvailable = value;
+                    this.OnPropertyChanged("IsAvailable");
+                }
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (handler != null)
+                handler(sender, e);
+        }
+        protected void OnPropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class DataProvider : INotifyPropertyChanged
+    {
+        public DataProvider()
+        {
+            DownloadDataSource();
+        }
+        private ObservableCollection<ProductItem> _productItems = null;
+        public ObservableCollection<ProductItem> ProductItems
+        {
+            get { return this._productItems; }
+            set
+            {
+                if (this._productItems != value)
+                {
+                    this._productItems = value;
+                    this.OnPropertyChanged("ProductItems");
+                }
+            }
+        }
+        private void DownloadDataSource()
+        {
+            var data = new ObservableCollection<ProductItem>();
+            data.Add(new ProductItem("product item 1", true));
+            data.Add(new ProductItem("product item 2", false));
+            data.Add(new ProductItem("product item 3", true));
+            data.Add(new ProductItem("product item 4", true));
+            data.Add(new ProductItem("product item 5", false));
+            data.Add(new ProductItem("product item 6", true));
+            this._productItems = data;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (handler != null)
+                handler(sender, e);
+        }
+        protected void OnPropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+----
+
+[[_Ref381949728]]
+[[_Ref382397118]]
+
+[[_Ref382398076]]
+== 選択した単一の値の構成
+
+=== 概要
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvaluepath.html[SelectedValuePath] と共に  _xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalue.html[SelectedValue] プロパティを使用して選択された項目の値を構成し、選択に使用される link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditem.html[SelectedItem] メンバーへのパスを指定します。
+
+データ項目コレクションのいくつかの値が、指定された `SelectedValue` と同じ値である場合は、最初の項目が選択されます。
+
+注:
+
+[NOTE]
+====
+`SelectedValuePath` プロパティは、`SelectedValue` プロパティより前に設定する必要があります。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|選択に使用するデータ項目プロパティのパスの構成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvaluepath.html[SelectedValuePath]
+|`string`
+
+|選択したデータ項目プロパティの値を構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalue.html[SelectedValue]
+|`object`
+
+|====
+
+=== 例
+
+_xamComboEditor_   は `Person` 型のデータ項目コレクションを含み、そのデータ型は `ID` と `Name` の 2 つのプロパティを持ちます。_xamComboEditor_   は、人の名前や ID 操作の選択を表示できます。
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   コントロールがどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvaluepath.html[SelectedValuePath]
+| _ID_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalue.html[SelectedValue]
+| _4_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath]
+| _Name_ 
+
+|====
+
+image::images/Selection_4.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor" 
+                   ItemsSource="{Binding Path=People}"
+                   SelectedValuePath="ID"                         
+                   SelectedValue="4"
+                   DisplayMemberPath="Name"
+                   Height="30" Width="200"/>
+----
+
+[[_Ref381949993]]
+[[_Ref382397405]]
+
+[[_Ref382398080]]
+== 選択した値のコレクションの構成
+
+=== 概要
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalues.html[SelectedValues] プロパティを使用して、選択した項目の値のコレクションを構成します。複数の選択がコントロールで有効な場合に非常に便利です。
+
+選択に使用するデータ項目プロパティのパスは、`SelectedValuePath` によって指定されます。
+
+注:
+
+[NOTE]
+====
+`SelectedValuePath` で指定されたデータ項目プロパティには、一意の値が入ります。データ項目コレクションのいくつかの値が、指定された `SelectedValues` のいずれかと同じ値である場合は、最初の項目が選択されます。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|選択に使用するデータ項目プロパティのパスの構成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvaluepath.html[SelectedValuePath]
+|`string`
+
+|選択したデータ項目プロパティの値を構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalues.html[SelectedValues]
+|`object[]`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   の外観がどのようになるか示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalues.html[SelectedValues]
+| _new object[] { 1, 2, 3 }_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+| _True_ 
+
+|====
+
+image::images/Selection_5.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor"
+                   ItemsSource="{Binding Path=Categories}"
+                   AllowMultipleSelection="True"
+                   SelectedValuePath="CategoryID"
+                   Height="30" Width="200">                     
+    <ig:XamComboEditor.ItemTemplate>
+        <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding CategoryID}" Margin="0,0,5,0"/>
+                    <TextBlock Text="{Binding CategoryName}" />
+            </StackPanel>
+        </DataTemplate>
+    </ig:XamComboEditor.ItemTemplate>
+</ig:XamComboEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+ComboEditor.SelectedValues = new object[] {1, 2, 3};
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+ComboEditor.SelectedValues = New Object() {1, 2, 3}
+----
+
+[[_Ref381950104]]
+
+[[_Ref382398087]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-selection-overview.html[ユーザー選択インタラクションと操作性]
+|このトピックでは、 _xamComboEditor_ コントロールのユーザー選択インタラクションについて説明します。
+
+| link:xamcomboeditor-configuring-multiple-selection.html[複数選択の構成]
+|このトピックでは、 _xamComboEditor_ コントロールで複数選択を構成する方法を説明します。
+
+|====

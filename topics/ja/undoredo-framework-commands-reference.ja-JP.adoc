@@ -1,0 +1,128 @@
+﻿////
+
+|metadata|
+{
+    "name": "undoredo-framework-commands-reference",
+    "controlName": ["IG Undo Redo Framework"],
+    "tags": ["Commands","How Do I"],
+    "guid": "9cd4f06e-8192-49ec-9eb8-bdc758f7fdc5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.2961094Z"
+}
+|metadata|
+////
+
+= Undo/Redo Framework コマンド参照
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、Infragistics Undo/Redo Framework™ の使用可能なコマンドをリストします。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:undomanager-properties-and-methods-reference.html[UndoManager プロパティおよびメソッド参照]
+|このトピックは、UndoManager クラスの重要なプロパティおよびメソッドをいくつかリストします。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref321089677, コマンド参照 >>
+
+** <<_Ref321089697,概要>>
+** <<_Ref321089703,コマンド参照の概要>>
+
+* <<_Ref321089684, 関連コンテンツ >>
+
+[[_Ref321089677]]
+== コマンド参照
+
+[[_Ref321089697]]
+
+=== 概要
+
+Infragistics Undo/Redo Framework は XAML コード内で使用可能ないくつかのコマンドを提供します。
+
+[[_Ref321089703]]
+
+=== コマンド参照の概要
+
+以下の表で、Undo/Redo Framework のコマンドの目的と機能を簡単に説明します。
+
+[options="header", cols="a,a"]
+|====
+|コマンド|説明
+
+| link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanagercommandsource_members.html[UndoManagerCommandSource]
+|指定された CommandType に基づいてコマンドを提供するために使用されるカスタムの `CommandSource` で、これはタイプ link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanagercommandtype.html[UndoManagerCommandType] のカスタム列挙体です。
+
+| link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanagerundocommand_members.html[UndoManagerUndoCommand]
+|特定の link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager_members.html[UndoManager] インスタンスの link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager~undo.html[Undo] メソッドを実行します。 
+
+このコマンドは、`UndoManager` インスタンス、または link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager~registerreference.html[RegisterReference] メソッドを使用して登録されているオブジェクトをパラメーターとして取得します。
+
+| link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanagerredocommand_members.html[UndoManagerRedoCommand]
+|特定の `UndoManager` インスタンスの link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager~redo.html[Redo] メソッドを実行します。 
+
+このコマンドは、`UndoManager` インスタンス、または `RegisterReference` メソッドを使用して登録されているオブジェクトをパラメーターとして取得します。
+
+| link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanagerhistoryitemcommand_members.html[UndoManagerHistoryItemCommand]
+|特定の link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undohistoryitem_members.html[UndoHistoryItem] の元に戻す/やり直し操作を実行します。 
+
+このコマンドは、履歴項目のリストを表示する xamMenuItem のために xamMenu コントロールで使用できます。 
+
+このコマンドは、特定の `UndoManager` インスタンスの link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager~undohistory.html[UndoHistory]/ link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager~redohistory.html[RedoHistory] から `UndoHistoryItem` をパラメーターとして取得します。
+
+| link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanagerpreventmergecommand_members.html[UndoManagerPreventMergeCommand]
+|特定の UndoManager の link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager~preventmerge.html[PreventMerge] メソッドを実行します。 
+
+このコマンドは、`UndoManager` インスタンス、または `RegisterReference` メソッドを使用して登録されているオブジェクトをパラメーターとして取得します。
+
+|====
+
+[[_Ref321089684]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:methods-reference-for-adding-undounits-to-the-undo-history.html[UndoUnits を元に戻す履歴に追加するためのメソッド参照]
+|このトピックは、UndoUnit 派生クラス オブジェクトを元に戻す履歴に追加するために使用可能なメソッドをリストします。
+
+| link:methods-reference-for-removing-undounits-from-the-history.html[UndoUnits を履歴から削除するためのメソッド参照]
+|このトピックは、UndoUnit インスタンスを元に戻す/やり直し履歴から削除するために使用可能なメソッドをリストします。
+
+| link:methods-reference-for-registering-unregistering-objects.html[オブジェクトの登録/登録解除のためのメソッド参照]
+|このトピックは、UndoManager インスタンスに特定のオブジェクトを登録/登録解除するメソッドをリストします。
+
+| link:methods-reference-for-performing-undo-redo-operations.html[元に戻す/やり直し操作を実行するためのメソッド参照]
+|このトピックは、元に戻す/やり直し操作を実行するために使用可能なメソッドをリストします。
+
+| link:methods-and-properties-reference-for-performing-transactions.html[トランザクションを実行するためのメソッドおよびプロパティ参照]
+|このトピックは、元に戻す/やり直しトランザクションを実行するための使用可能なメソッドおよびプロパティをリストします。
+
+| link:methods-and-properties-reference-for-merging-undoredo-operations.html[元に戻す/やり直し操作の結合のメソッドおよびプロパティ参照]
+|このトピックは、元に戻す/やり直し操作の結合に関係する使用可能なメソッドおよびプロパティをリストします。
+
+| link:methods-reference-for-suspending-and-resuming-saving-history.html[履歴の保存を中断および再開するためのメソッド参照]
+|このトピックは、履歴に元に戻す/やり直し操作を保存することを中断および再開するために使用可能なメソッドをリストします。
+
+| link:methods-and-properties-reference-for-creating-custom-undounit.html[カスタム UndoUnit を作成するためのメソッドおよびプロパティ参照]
+|このトピックは、Infragistics Undo/Redo Framework™ でカスタム UndoUnit を作成することに関連する使用可能なメソッドおよびプロパティをリストします。
+
+|====

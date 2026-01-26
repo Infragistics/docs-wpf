@@ -1,0 +1,97 @@
+﻿////
+
+|metadata|
+{
+    "name": "designers-guide-styling-points-for-xamgeographicmap",
+    "controlName": [],
+    "tags": ["Styling","Templating"],
+    "guid": "2a5efb03-fcbb-4793-a370-058b7bf97e5a",  
+    "buildFlags": ["wpf","sl"],
+    "createdOn": "2012-04-05T16:16:26.1682759Z"
+}
+|metadata|
+////
+
+= xamGeographicMap のスタイリング ポイント
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.xamgeographicmap_members.html[xamGeographicMap]™ コントロールのスタイリング ポイントをデザイナーに提供します。
+
+[[_Ref320651776]]
+== スタイリング ポイント
+
+=== xamGeographicMap プロパティ
+
+以下の図は、_xamGeographicMap_ コントロールが使用するさまざまなコントロールを示しています。特定の項目を再スタイルするには、最初に図で TargetType を識別し、次にその後の表で対応する Style プロパティを識別します。
+
+image::images/Designers_Guide_Styling_Points_for_xamGeographicMap_1.png[]
+
+image::images/Designers_Guide_Styling_Points_for_xamGeographicMap_2.png[]
+
+以下の表は、_xamGeographicMap_ コントロールの視覚要素をスタイリングするためのプロパティを簡単に説明します。
+
+[options="header", cols="a,a,a"]
+|====
+|TargetType|Style プロパティ|説明
+
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.xamgeographicmap_members.html[xamGeographicMap]
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.xamgeographicmap_members.html[xamGeographicMap]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]
+|_xamGeographicMap_ コントロールのスタイルを指定します。
+
+| link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamoverviewplusdetailpane_members.html[xamOverviewPlusDetailPane]
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.xamgeographicmap_members.html[xamGeographicMap]. link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.seriesviewer~overviewplusdetailpanestyle.html[OverviewPlusDetailPaneStyle]
+|_xamGeographicMap_ コントロールのチャート概要ペインのスタイルを指定します。
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.shapes.line.aspx[Line]
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.xamgeographicmap_members.html[xamGeographicMap]. link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.seriesviewer~crosshairlinestyle.html[CrosshairLineStyle]
+|_xamGeographicMap_ コントロールの十字ポインターのスタイルを指定します。
+
+|Series (シリーズのすべてのタイプ) 
+
+例： 
+
+* link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.geographicsymbolseries_members.html[GeographicSymbolSeries] 
+
+* link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.geographicshapeseries_members.html[GeographicShapeSeries] 
+
+* link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.geographicpolylineseries_members.html[GeographicPolylineSeries] 
+
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.xamgeographicmap_members.html[xamGeographicMap]. link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.seriesviewer~series.html[Series][x]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]
+|_xamGeographicMap_ コントロールの link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.seriesviewer~series.html[Series] コレクションでシリーズのスタイルを指定します。
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.marker_members.html[Marker]
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.geographicsymbolseries_members.html[GeographicSymbolSeries]. link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries~markerstyle.html[MarkerStyle]
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries_members.html[MarkerSeries] クラスを継承するシリーズのマーカーのスタイルを指定します (たとえば、 _Geographic_ _Symbol_ )。
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.shapes.path.aspx[Path]
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.geographicshapeseries_members.html[GeographicShapeSeries]. link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.geographicshapeseries~shapestyle.html[ShapeStyle] 
+
+link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.geographicpolylineseries_members.html[GeographicPolylineSeries]. link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.geographicshapeseries~shapestyle.html[ShapeStyle]
+|地理的シリーズの図形のスタイルを指定します。
+
+|====
+
+[[_Ref320185294]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:geographicmap-visual-elements-of-geographicmap.html[xamGeographicMap の視覚要素]
+|このトピックは、 _xamGeographicMap_ コントロールの視覚要素についての情報を提供します。
+
+| link:geographicmap-using-geographic-series.html[地理的シリーズを使用]
+|このトピックは、 _xamGeographicMap_ コントロールの地理的シリーズのサポートされているタイプについての情報を提供します。
+
+| link:geographicmap-styling-shapes-in-geographic-series.html[地理的シリーズで図形をスタイル]
+|このトピックは、 _xamGeographicMap_ コントロールで地理的シリーズの図形をスタイルする方法を提供します。
+
+|====

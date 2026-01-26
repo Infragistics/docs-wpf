@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-barcodereader-api-overview",
+    "controlName": ["IG BarcodeReader","xamBarcodeReader"],
+    "tags": ["API"],
+    "guid": "fd261732-a0c7-49e0-8662-4df8e6cf032b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6460334Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションは Infragistics Barcode Reader に関連した各名前空間をリストします。また、このコンポーネントでプログラミングをする時に使用するいくつかのキー クラスも示します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== 名前空間：
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes_namespace.html[Infragistics.Controls.Barcodes]
+
+=== キー クラス:
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader.html[BarcodeReader]
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.readerdecodeargs.html[ReaderDecodeArgs]
+
+=== 重要な列挙体:
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.symbology.html[Symbology]
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.symbolorientation.html[SymbolOrientation]
+
+=== BarcodeReader のキー メンバー:
+
+==== メソッド
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~decode.html[Decode]
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~decodeasync.html[DecodeAsync]
+
+==== イベント
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~decodecomplete_ev.html[DecodeComplete]
+
+==== プロパティ
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~barcodeorientation.html[BarcodeOrientation]
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~filteredimage.html[FilteredImage]
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~maxnumberofsymbolstoread.html[MaxNumberOfSymbolsToRead]
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~minsymbolsize.html[MinSymbolSize]
+
+*関連トピック*
+
+link:ig-barcode-reader.html[Infragistics Barcode Reader]

@@ -1,0 +1,101 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-conf-indentation-per-level",
+    "tags": ["Formatting","How Do I"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "d07f44b9-7c8b-469a-8438-83f99e62dbb3",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:28:03.7302022Z"
+}
+|metadata|
+////
+
+= レベルごとのインデントの構成 (xamTreeGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、子レコードの表示に使用するインデントの設定方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-features-overview.html[機能の概要 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+== レベルごとのインデントの概要
+
+=== インデントの概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[xamTreeGrid] コントロールにより、レコードの各ネスト レベルに対して使用するインデントを指定できます。インデントは論理ピクセル数で指定します。
+
+=== インデントの構成の概要
+
+以下の表は、 _xamTreeGrid_   コントロールの構成可能な要素を簡単に説明し、それを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+インデント
+|子レベルごとのインデントを設定するために使用します。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treeviewsettings~indentperlevel.html[XamTreeGrid.ViewSettings.IndentPerLevel]
+
+|====
+
+=== コード例
+
+以下のコード例では、レベルごとのインデントを 35 ピクセルに設定する方法をを示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamTreeGrid>
+  <igDP:XamTreeGrid.ViewSettings>
+    <igDP:TreeViewSettings IndentPerLevel="35" />
+  </igDP:XamTreeGrid.ViewSettings>
+</igDP:XamTreeGrid>
+----
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-conf-tree-field.html[ツリー フィールドの構成 (xamTreeGrid)]
+|このトピックでは、コントロールのツリー フィールドを構成する方法を説明します。
+
+| link:xamtreegrid-conf-expansion-indicators.html[展開インジケーターの構成 (xamTreeGrid)]
+|このトピックでは、展開インジケーターの動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-selection.html[選択の構成 (xamTreeGrid)]
+|このトピックでは、子レベルのレコードに対して選択動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-filtering.html[フィルタリングの構成 (xamTreeGrid)]
+|このトピックでは、コントロールのフィルタリング機能を構成する方法を説明します。
+
+| link:xamtreegrid-conf-summaries.html[集計の構成 (xamTreeGrid)]
+|このトピックでは、コントロールの集計サポートの詳細を説明します。
+
+|====

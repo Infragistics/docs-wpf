@@ -1,0 +1,777 @@
+﻿////
+|metadata|
+{
+    "name": "default-xml-namespace-mappings",
+    "controlName": [],
+    "tags": ["API","Getting Started"],
+    "guid": "{DE0A8062-FCCA-4A14-9FF0-073AA3057678}",
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-01-31T16:16:07.8403347Z"
+}
+|metadata|
+////
+
+= XML 名前空間のデフォルト マッピング
+
+以下は、Infragistics for WPF NuGet パッケージで定義したデフォルトの名前空間のマッピングおよび生成された XAML のリストです。
+
+=== Infragistics.WPF
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Windows.Controls +
+Infragistics.Windows.Themes
+
+|
+---- 
+xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"
+
+<!-- Infragistics.Windows.Controls 名前空間 -->
+xmlns:igWindows="http://infragistics.com/Windows"
+
+<!-- Infragistics.Windows.Themes 名前空間 -->
+xmlns:igThemes="http://infragistics.com/Themes"
+----
+
+|====
+
+=== Infragistics.WPF.XamCalculationManager
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Calculations
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.BarcodeReader
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Barcodes
+
+| N/A
+
+|====
+
+
+=== Infragistics.WPF.Barcodes
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Barcodes
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.Charts
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|{DataChartNamespace}
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Diagram
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|{DataChartNamespace}
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.FinancialChart
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|{DataChartNamespace}
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.Sparkline
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|{DataChartNamespace}
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.SurfaceChart3D
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|{DataChartNamespace}
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Treemap
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|{DataChartNamespace}
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Calendar
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.ColorPicker
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Controls.Editors.XamComboEditor
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Controls.Editors.XamDateTimeInput
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Controls.Editors.XamMaskedInput
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.PropertyGrid
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.RichTextEditor
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Slider
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.SyntaxEditor
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Editors
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Gauges
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Gauges
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.Controls.Grids.XamGrid
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Grids
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.PivotGrid
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Grids
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Spreadsheet
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Grids
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.DialogWindow
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Interactions
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.FormulaEditor
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Interactions
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.SpellChecker
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Interactions
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.TileManager
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Layouts
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.GeographicMap
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Maps
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.Controls.Maps.XamMap
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Maps
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.NetworkNode
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Maps
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.OrgChart
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Maps
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.DataTree
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Menus
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Menus
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Menus
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.RadialMenu
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Menus
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.TagCloud
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Menus
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Schedules
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Schedules +
+Infragistics.Services.Schedules
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Gantt
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Schedules
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+
+=== Infragistics.WPF.Schedules.Exchange
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Schedules
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Timeline
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls.Timelines
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+
+=== Infragistics.WPF.DockManager
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Windows.DockManager
+
+|
+---- 
+xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"
+または
+xmlns:igDock="http://infragistics.com/DockManager"
+----
+
+|====
+
+=== Infragistics.WPF.DataGrids
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Windows.DataPresenter
+
+|
+---- 
+xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"
+または
+xmlns:igDP="http://infragistics.com/DataPresenter"
+----
+
+|====
+
+=== Infragistics.WPF.DataGrids.Excel
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Windows.DataPresenter.ExcelExporter
+
+|
+---- 
+xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"
+または
+xmlns:igExcel="http://infragistics.com/ExcelExporter"
+----
+
+|====
+
+=== Infragistics.WPF.DataVisualization
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Controls
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.DragDrop
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.DragDrop
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Math
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Math
+
+| N/A
+
+|====
+
+=== Infragistics.WPF.OutlookBar
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Windows.OutlookBar
+
+|
+---- 
+xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"
+または
+xmlns:igOutlookBar="http://infragistics.com/OutlookBar"
+----
+
+|====
+
+=== Infragistics.WPF.Persistence
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Persistence
+
+|
+---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====
+
+=== Infragistics.WPF.Reporting
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Windows.Reporting
+
+|
+---- 
+xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"
+または
+xmlns:igReporting="http://infragistics.com/Reporting"
+----
+
+|====
+
+=== Infragistics.WPF.Ribbon
+
+[options="header", width="100%", cols="a,a"]
+|====
+|CLR 名前空間|生成された XAML
+
+|Infragistics.Windows.Ribbon
+
+|
+---- 
+xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"
+または
+xmlns:igRibbon="http://infragistics.com/Ribbon"
+----
+
+|====

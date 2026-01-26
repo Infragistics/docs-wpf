@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-spe-grammar",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": [],
+    "guid": "f559c572-1801-4a1b-87f0-96db50501f4b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.959049Z"
+}
+|metadata|
+////
+
+= 文章校正 (Syntax Parsing Engine)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、Syntax Parsing Engine が行う解析について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-grammar-overview.html[文書校正の概要]
+|このトピックは、Syntax Parsing Engine の文章校正の概要を示します。
+
+| link:ig-spe-grammar-analysis.html[文章校正の解析]
+|このグループのトピックでは、Syntax Parsing Engine が行う文章校正解析について説明します。
+
+| link:ig-spe-lexical-analysis.html[字句解析]
+|このグループのトピックでは、Syntax Parsing Engine が行う字句解析について説明します。
+
+| link:ig-spe-syntax-analysis-overview.html[構文解析の概要]
+|このグループのトピックでは、Syntax Parsing Engine が行う構文解析について説明します。
+
+| link:ig-spe-restrictions.html[制限]
+|このトピックでは、文章校正の定義に関する制限を説明します。
+
+| link:ig-spe-ambiguities.html[あいまいさ]
+|このトピックでは、ドキュメントの解析中に発生しうる曖昧さおよびその取扱方法について説明します。
+
+|====

@@ -1,0 +1,370 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuration-overview",
+    "tags": ["Charting","Getting Started","How Do I","Summaries"],
+    "controlName": ["xamDiagram"],
+    "guid": "9d2269be-be68-4b5c-a279-502ff9d36c64",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:21:11.8798023Z"
+}
+|metadata|
+////
+
+= xamDiagram 構成の概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールの構成可能な要素の概要を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[ _xamDiagram_ の概要]
+|このトピックでは、 _xamDiagram_ コントロールの概要を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref391537902,  _xamDiagram_  構成の概要 >>
+
+** <<_Ref391537908, _xamDiagram_   構成の概要>>
+** <<_Ref391537913, _xamDiagram_   構成の概要表>>
+** <<_Ref391537923,レイアウト>>
+** <<_Ref391537950,表示部分>>
+
+* <<_Ref391537956,  _xamDiagram_  項目の構成の概要 >>
+
+** <<_Ref391537987, _xamDiagram_   項目の構成の概要表>>
+** <<_Ref391537992,ルック アンド フィール>>
+** <<_Ref391537997,テンプレート>>
+
+* <<_Ref391538003,  _xamDiagram_  ノードの構成の概要 >>
+
+** <<_Ref391538008, _xamDiagram_   ノードの構成の概要表>>
+** <<_Ref391538016,位置とサイズ>>
+** <<_Ref391538021,図形>>
+** <<_Ref391538026,接続ポイント>>
+
+* <<_Ref391538037,  _xamDiagram_  接続の構成の概要 >>
+
+** <<_Ref391538045, _xamDiagram_   接続の構成の概要表>>
+** <<_Ref391538049,始点および終点>>
+** <<_Ref391538053,接続キャップ>>
+
+* <<_Ref391538059,  _xamDiagram_  ユーザー インタラクションの構成の概要 >>
+
+** <<_Ref391538063, _xamDiagram_   ユーザー インタラクションの構成の概要表>>
+** <<_Ref391538068,コマンド>>
+** <<_Ref391538072,コンテキスト メニュー>>
+** <<_Ref391538076,マウス操作とツール>>
+** <<_Ref391538082,ナビゲーション ペイン>>
+** <<_Ref391538088,選択>>
+** <<_Ref391538095,キーボード ショートカット>>
+** <<_Ref391538100,ツールボックス>>
+** <<_Ref391538104,元に戻す / やり直し>>
+
+* <<_Ref388439099, 関連コンテンツ >>
+
+** <<_Ref386478106,トピック>>
+
+[[_Ref391537902]]
+== _xamDiagram_   構成の概要
+
+[[_Ref391537908]]
+
+=== xamDiagram 構成の概要
+
+include::xamdiagram-configuration-summary.ja-JP.adoc[]
+
+[[_Ref391537913]]
+
+=== xamDiagram 構成の概要表
+
+include::xamdiagram-configuration-summary-chart.ja-JP.adoc[]
+
+[[_Ref391537923]]
+
+=== レイアウト
+
+各ノードに対しそれぞれの位置が指定されていない場合は、グローバルなレイアウト アルゴリズムを使用してノードのレイアウトを設定できます。既存のレイアウト (力指向グラフ レイアウト、ツリー レイアウト、グリッド レイアウト) の 1 つの使用、または独自のレイアウトの実装ができます。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-layout.html[レイアウトの構成 ( _xamDiagram_ )]
+
+[[_Ref391537950]]
+
+=== 表示部分
+
+_xamDiagram_   コントロールは、現在表示されている部分を取得するためのプロパティのセットを公開します。_xamDiagram_   では、現在表示されている部分を位置とサイズによって決定する 3 つの四角形の概念を使用します。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram_members.html[XamDiagram] クラスは、これらの四角形を個別のプロパティで表示します。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~viewportrect.html[ViewportRect] は、現在コントロールで使用できるスペースを示します。コントロールのために確保される余白と link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~viewportrect.html[ViewportRect] は、 _xamDiagram_   と完全に同じサイズになります。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~worldrect.html[WorldRect] はダイアグラムのノードおよび接続が存在する領域を示しますが、その領域はダイアグラムの項目のすべての境界四角形の結合部分を表す四角形です。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect] は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~viewportrect.html[ViewportRect] で表示する link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~worldrect.html[WorldRect] の部分を決定します。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-visible-portion.html[ダイアグラムの表示部分の構成 ( _xamDiagram_ )]
+
+[[_Configuring_a_Custom]]
+[[_Ref388439055]]
+[[_Ref386478097]]
+[[_Ref391537956]]
+== _xamDiagram_   項目の構成の概要
+
+[[_Ref391537987]]
+
+=== xamDiagram 項目の構成の概要表
+
+include::xamdiagram-items-configuration-summary-chart.ja-JP.adoc[]
+
+[[_Ref391537992]]
+
+=== ルック アンド フィール
+
+_xamDiagram_   項目は、ルック アンド フィールのカスタマイズを有効にする複数のプロパティを公開します。
+
+==== 関連トピック:
+
+* link:xamdiagram-look-and-feel.html[ダイアグラム項目のルック アンド フィールの構成 ( _xamDiagram_ )]
+
+[[_Ref391537997]]
+
+=== テンプレート
+
+ダイアグラムの項目には、項目の内容に適用できる、表示テンプレートと編集テンプレートの 2 つのテンプレートがあります。表示テンプレートはコンテンツの表現を定義し、編集テンプレートは項目の内容を編集する場合に適用します。
+
+==== 関連トピック:
+
+* link:xamdiagram-styling-items-templates.html[ダイアグラム項目の内容の視覚化の構成 ( _xamDiagram_ )]
+
+[[_Ref391538003]]
+== _xamDiagram_   ノードの構成の概要
+
+[[_Ref391538008]]
+
+=== xamDiagram ノードの構成の概要表
+
+include::xamdiagram-nodes-configuration-summary-chart.ja-JP.adoc[]
+
+[[_Ref391538016]]
+
+=== 位置とサイズ
+
+_xamDiagram_   ノードは、ダイアグラムの領域の任意の位置に個別に配置、またはレイアウト アルゴリズム (link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~layout.html[Layout] プロパティを介して使用可能な設定) を適用して配置します。(レイアウト アルゴリズムの詳細は、 link:xamdiagram-configuring-the-layout.html[レイアウトの構成]のトピックを参照してください。)
+
+デフォルトでは、明示的なオーバーライドが適用されていない場合、座標系の原点 (0、0) に新たに作成されたノードが表示されます。
+
+ダイアグラムのノードのサイズは、幅と高さを設定すると明示的に制御できます。デフォルトのサイズはノードの図形に依存します。(デフォルト サイズの参照については、 link:xamdiagram-visual-elements-overview.html#_Ref389665128[ノードのデフォルト サイズ]を参照してください。)
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-position-and-size-of-diagram-nodes.html[ダイアグラム ノードの位置およびサイズの構成 ( _xamDiagram_ )]
+
+[[_Ref391538021]]
+
+=== 図形
+
+_xamDiagram_   には、定義済みのノードの図形が複数あります。(詳細は、 link:xamdiagram-general-overview.html[概要]のトピックを参照してください。)定義済みの図形は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[ShapeType] プロパティを使用して選択します。このプロパティは、`ShapeType` 列挙体として使用できる各ノードの図形を値として受け取ります。定義済みの図形に目的の図形がない場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[Geometry] プロパティでカスタム図形を設定できます。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-shape-of-diagram-nodes-overview.html[ダイアグラム ノードの図形の構成 ( _xamDiagram_ )]
+
+[[_Ref391538026]]
+
+=== 接続ポイント
+
+接続ポイントとは、ダイアグラム接続を開始 / 終了できるノードのポイントです。ノードの接続ポイントは、名前と座標により指定されます。
+
+*  *名前*  - 接続の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodeconnectionpointname.html[DiagramConnection.StartNodeConnectionPointName] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodeconnectionpointname.html[DiagramConnection.EndNodeConnectionPointName] プロパティを介して接続の接続ポイントを明示的に指定する場合に使用されます。このため、ノードの接続ポイントの名前は、すべて一意であることが必要です。
+*  *座標*  - ノードの長方形に対応しています。座標の範囲は 0,0 (左上) から 1,1 (右下) までです。
+
+各接続ポイントは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint_members.html[Name] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint~name.html[Position] プロパティを公開する link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint~position.html[DiagramConnectionPoint] オブジェクトによって表されます。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[DiagramNode.ShapeType] プロパティにより設定された定義済みの図形タイプを使用する場合、ノードの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~connectionpoints.html[ConnectionPoints] コレクションで、ノード タイプに応じていくつかのポイントが事前設定されます。カスタム ノードの図形では、デフォルトで接続ポイントが追加されません。
+
+==== 関連トピック:
+
+* link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )]
+
+[[_Ref391538037]]
+== _xamDiagram_   接続の構成の概要
+
+[[_Ref391538045]]
+
+=== xamDiagram 接続の構成の概要表
+
+include::xamdiagram-connections-configuration-summary-chart.ja-JP.adoc[]
+
+[[_Ref391538049]]
+
+=== 始点および終点
+
+_xamDiagram_   コントロールのダイアグラム接続の始点および終点は、2 つの方法で構成されます。
+
+*  *相対*  - 接続するノード、すなわち開始ノードと終了ノードを指定します。この方法では、接続を開始ノードおよび終了ノードに関連付ける必要があります。この場合、ノードが接続の始点と終点を制御します (ノードの位置を移動すると、接続は自動的に調整されます。)。
+*  *絶対*  - ダイアグラム上の接続の始点および終点の座標を指定します。
+
+接続の一端にノードを指定し、もう一端に座標を指定する方法もあります。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[ダイアグラム接続の開始および終了の構成 ( _xamDiagram_ )]
+
+[[_Ref391538053]]
+
+=== 接続キャップ
+
+ダイアグラム接続のキャップは、始点および終点を示す図形です。デフォルトでは、接続の開始点にキャップはなく、接続端は塗りつぶされた矢印キャップです。
+
+_xamDiagram_   には、定義済みのキャップの図形が複数あります。(詳細は、 link:xamdiagram-visual-elements-overview.html[視覚要素の概要 ( _xamDiagram_ )] のトピックを参照してください。)定義済みのキャップは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcaptype.html[StartCapType] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcaptype.html[EndCapType] プロパティを使用して選択します。これらのプロパティは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncaptype.html[DiagramConnectionCapType] 列挙体として選択できるキャップ図形を、値として受け取ります。任意の定義済みのキャップ タイプを使用する場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapsize.html[StartCapSize] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapsize.html[EndCapSize] プロパティでキャップ サイズも指定できます。
+
+カスタム キャップを全体的に使用する場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter_members.html[DiagramConnectionCapPresenter] のターゲット タイプのカスタム `スタイル`を link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapstyle.html[StartCapStyle] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapstyle.html[EndCapStyle] プロパティで設定できます。このスタイルでは、目的の外観を得るためにカスタムの `ControlTemplate` を指定できます。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-caps-of-diagram-connections.html[ダイアグラム接続のキャップの構成 ( _xamDiagram_ )]
+
+[[_Ref391538059]]
+== _xamDiagram_   ユーザー インタラクションの構成の概要
+
+[[_Ref391538063]]
+
+=== xamDiagram ユーザー インタラクションの構成の概要表
+
+include::xamdiagram-user-interactions-configuration-summary-chart.ja-JP.adoc[]
+
+[[_Ref391538068]]
+
+=== コマンド
+
+_xamDiagram_   コントロールは、ダイアグラム項目で実行されるアクションやコントロールの UI とのインタラクションを表すことができるコマンド セット、元に戻す / やり直し操作の履歴に影響を与えるコマンド セットをサポートします。コマンドは、キーボード ショートカット、その他のコントロールとのインタラクションなどを使用して呼び出すことができます。
+
+多くのコマンドは、一般的なインターフェイスの規格に従って、キーボードのキーやキーの組み合わせに関連付けられています (コピーする場合の Ctrl+Cなど)。ただし、プログラムによるオーバーライドで、キーボード ショートカット (またはキーの組み合わせ) を変更することができます。(詳細は、 link:xamdiagram-configuring-keyboard-shortcuts.html[キーボード ショートカットの構成]を参照してください。)
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-ui-elements-with-commands.html[ _xamDiagram_  コマンドを使用した UI 要素の構成]
+
+[[_Ref391538072]]
+
+=== コンテキスト メニュー
+
+_xamDiagram_   コントロールのダイアグラムの項目は、コントロールのコンテキスト メニューの機能を使用して構成できます。コンテキスト メニューはオプション ペインで表示することができます。ダイアグラムの項目 (複数可) を選択すると表示されるギア アイコンをクリックすると、オプション ペインが表示されます。デフォルトでは、コンテキスト メニューはダイアグラムで無効になっています。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-context-menu.html[コンテキスト メニューの構成 ( _xamDiagram_ )]
+
+[[_Ref391538076]]
+
+=== マウス操作とツール
+
+_xamDiagram_   では、マウスによる xamDiagram の複数の操作方法が提供されています。操作は link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~tool.html[Tool] と link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~defaultdraginteraction.html[DefaultDragInteraction] の 2 つのプロパティで設定されます。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~tool.html[Tool] の設定では、 _xamDiagram_   上でクリックとドラッグを実行した場合の状態を設定します。以下のツールを使用できます。
+
+* ポインター
+* コネクタ
+
+デフォルトはポインターです。これにより、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~defaultdraginteraction.html[DefaultDragInteraction] 設定で制御される複数の操作を実行できます。サポートされる操作は以下のとおりです。
+
+* なし
+* ズーム
+* パン
+* 選択  _(デフォルト)_  
+
+コネクタ ツールでは、接続をダイアグラムにドラッグすることで描画できます。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-mouse-tool-and-default-interaction.html[マウス ツールおよびデフォルト操作の構成 ( _xamDiagram_ )]
+
+[[_Ref391538082]]
+
+=== ナビゲーション ペイン
+
+_xamDiagram_   コントロールには、ダイアグラム スペース内 (デフォルトは右下隅) に配置された別のペインに、コンテンツ タイプ全体の概要を小さなサイズで表示できる機能があります。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-navigation-pane.html[ナビゲーション ペインの構成 ( _xamDiagram_ )]
+
+[[_Ref391538088]]
+
+=== 選択
+
+_xamDiagram_   コントロールでは、ダイアグラム領域にあるダイアグラムの項目をプログラムによって選択できるようにする機能が提供されています。使用できる選択機能には、「Single」、「Multiple」、「None」があり、いずれもプロパティの設定で構成できます。デフォルトでは、ダイアグラムの複数の項目の選択が有効になっています。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-selection.html[選択の構成 ( _xamDiagram_ )]
+
+[[_Ref391538095]]
+
+=== キーボード ショートカット
+
+_xamDiagram_   は、コマンドに関連付けられたキーボード ショートカットのセットを公開します。すべてのショートカットのリストについては、 link:xamdiagram-general-overview.html[概要]を参照してください。定義済みのショートカットの変更、または削除して新しいショートカットを定義することができます。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-keyboard-shortcuts.html[キーボード ショートカットの構成 ( _xamDiagram_ )]
+
+[[_Ref391538100]]
+
+=== ツールボックス
+
+_xamDiagram_   コントロールでは、定義済みの図形セットから直接ダイアグラムにダイアグラム項目をドラッグ アンド ドロップできる機能が提供されています。この機能は、 _xamDiagramToolbox_™ コントロールにより提供されます。デフォルトでは、2 つの事前構成済みの図形カテゴリ (ラベルを表すノードなど、現在サポートされているすべてのダイアグラム ノード タイプ、および 2 つのタイプのダイアグラム接続を含む  _Basic Shapes_   と  _Connections_  ) があります。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-toolbox.html[ツールボックスの構成 ( _xamDiagram_ )]
+
+[[_Ref391538104]]
+
+=== 元に戻す / やり直し
+
+_xamDiagram_   コントロールでは、操作履歴を保持して元に戻す / やり直し操作を実行することで、元に戻す / やり直し機能がサポートされています。
+
+Infragistics Undo/Redo Framework は、{ProductName} で元に戻す / やり直し機能を提供しています。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-undo-redo-operations.html[元に戻す / やり直し操作の構成 ( _xamDiagram_ )]
+
+[[_Ref388439099]]
+== 関連コンテンツ
+
+[[_Ref386478106]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-nodes.html[ _xamDiagram_ ノードの構成]
+|このグループのトピックでは、 _xamDiagram_ ノードに適用できるさまざまな構成を説明します。
+
+| link:xamdiagram-configuring-diagram-connections.html[ _xamDiagram_ 接続の構成]
+|このグループのトピックでは、 _xamDiagram_ 接続に適用できるさまざまな構成を説明します。
+
+| link:xamdiagram-configuring-user-interactions.html[ユーザー インタラクションの構成 ( _xamDiagram_ )]
+|このグループのトピックでは、 _xamDiagram_ ユーザー インタラクションに適用できるさまざまな構成を説明します。
+
+|====

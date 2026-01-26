@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "wp7-default-xml-namespace-mappings",
+    "controlName": [],
+    "tags": [],
+    "guid": "c16dad56-919c-4a63-a1a9-2f288128022b",  
+    "buildFlags": ["win-phone"],
+    "createdOn": "2012-04-12T08:35:28.5699049Z"
+}
+|metadata|
+////
+
+= XML 名前空間のデフォルト マッピング
+
+参照のために、{ProductName} アセンブリによって定義されたデフォルトの名前マッピングすべてのリストを以下に提供します。
+
+[options="header", cols="a,a,a"]
+|====
+|アセンブリ|Clr-名前空間|生成された XAML
+
+|{VersionedApiPlatform}.Controls.Grids.XamList.v{ProductVersion}
+|Infragistics.Controls.Grids
+|---- 
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+|====

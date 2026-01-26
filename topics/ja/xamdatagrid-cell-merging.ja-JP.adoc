@@ -1,0 +1,203 @@
+﻿= セル結合 (xamDataGrid)
+
+== トピックの概要
+=== 目的
+
+このトピックは、link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatagrid.html[xamDataGrid] コントロールのグループ化機能の概要を説明します。ユーザーがグループ データをより読みやすく、よりナビゲートしやすく配置できます。
+
+DataPresenter コントロールにこの機能のために複数のモードおよびプロパティがあります。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトで構成できます。 
+
+=== 前提条件
+
+このトピックを理解するためには、次のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックは、xamDataGrid コントロールとコントロールが構成されるさまざまな要素を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+
+* <<_Ref340222659, グループ化の概要 >>
+
+* <<_Ref340222669, 主要な設定の概要 >>
+
+** <<_Ref340222680,主要な設定の概要表>>
+
+** <<_Ref340236978,MergedCellMode>>
+
+** <<_Ref340236982,MergedCellEvaluator>>
+
+** <<_Ref340236985,MergedCellEvaluationCriteria>>
+
+* <<_Ref335407927, コード例 >>
+
+* <<_Ref335407928, 関連トピック >>
+
+[[_Ref340222659]]
+== グループ化の概要
+
+XamDataGrid コントロールなどの DataPresenter コントロールはオプションに特定の Field の隣の兄弟 DataRecord が同じ値を含むことを検出できます。セルが編集モードにない場合、値が DataRecord の間に表示され、MergedCellPresenter として表現されます。
+
+image::images/xamDataGrid_MergeCells_01.png[]
+
+[[_Ref340222669]]
+== 主要な設定の概要
+
+[[_Ref340222680]]
+
+=== 主要な設定の概要表
+
+xamDataGrid は、設定で詳細なユーザー構成が可能です。
+
+[options="header", cols="a,a"]
+
+|====
+
+|設定|説明
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~mergedcellmode.html[MergedCellMode]
+
+| セルを結合するかどうか、そしてセル結合の方法を指定する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] クラス プロパティ。
+
+このプロパティのデフォルト設定は Never です。
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~mergedcellevaluator.html[MergedCellEvaluator]
+
+| 2 つの隣接するレコードのセルが結合可能かどうかを決定するためのカスタム エバリュエーターを提供する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] クラス プロパティ。
+
+このプロパティのデフォルト設定は Never です。
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~mergedcellevaluationcriteria.html[MergedCellEvaluationCriteria]
+
+| セル値または表示テキストに基づいて結合可能なセルを決定する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] クラス プロパティ。
+
+このプロパティのデフォルト設定は Never です。
+|====
+
+[[_Ref340236978]]
+=== MergedCellMode
+
+セルを結合するかどうか、そしてセル結合の方法を指定するには、`MergedCellMode` プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~mergedcellmode.html[MergedCellMode] 型の列挙子に設定できます。
+
+.注:
+[NOTE]
+====
+
+セル結合を正しく有効にするには、`MergedCellMode` プロパティを `Always`、`Default`、`Never`、または `OnlyWhenSorted` に設定する必要があります。
+
+このプロパティの値に関係なく、セルを結合するには、グリッド ビューまたはツリー ビューの兄弟 DataRecords にあり、セルが垂直方向でレコードの高さに及ぶか、水平方向でレコードの幅に及ぶ必要があります。ツリー ビューのツリー フィールドはセル結合をサポートしません。
+====
+
+
+[[_Ref340236982]]
+
+=== MergedCellEvaluator
+
+このプロパティは、link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.imergedcellevaluator.html[IMergedCellEvaluator] インターフェイスのカスタム実装を設定できます。このインターフェイスは結合するセルを決定するカスタム ロジックを指定するために使用されます。
+
+[[_Ref340236985]]
+
+=== MergedCellEvaluationCriteria
+
+セル値または表示テキストに基づいて結合可能なセルを決定するためにこの `MergedCellEvaluationCriteria` プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~mergedcellevaluationcriteria.html[MergedCellEvaluationCriteria] 型の列挙子に設定できます。
+
+.注:
+[NOTE]
+====
+セル結合を正しく有効にするには、`MergedCellEvaluationCriteria` プロパティを `Converted`、`Default`、`DisplayText`、`EditAsType`、または `RawValue` に設定する必要があります。
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.imergedcellevaluator.html[IMergedCellEvaluator] iが指定されている場合、このプロパティは無視されます。
+====
+
+[[_Ref335407927]]
+== コード例
+以下のコード例は、すべてのフィールドでセルを結合する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataGrid.FieldSettings>
+        <igDP:FieldSettings MergedCellMode="Always" >
+        </igDP:FieldSettings>
+    </igDP:XamDataGrid.FieldSettings>
+</igDP:XamDataPresenter>
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldSettings.MergedCellMode = MergedCellMode.Always;
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldSettings.MergedCellMode = MergedCellMode.Always
+...
+----
+
+以下のスクリーンショットは、以上のサンプルの結果です。
+
+image::images/xamDataGrid_MergeCells_02.png[]
+
+以下のコード例は、特定のフィールドでセルを結合する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataGrid DataSource="{Binding}" >         
+    <igDP:XamDataGrid.FieldLayouts>
+        <igDP:FieldLayout Key="layout1">
+            <igDP:FieldLayout.Fields>
+                <igDP:Field x:Name="department">
+                    <igDP:Field.Settings>
+                        <igDP:FieldSettings MergedCellMode="Always" >                       
+                        </igDP:FieldSettings>
+                    </igDP:Field>
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>                
+    </igDP:XamDataGrid.FieldLayouts>
+</igDP:XamDataGrid>
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldLayouts["layout1"].Fields["department"].Settings.MergedCellMode = Infragistics.Windows.DataPresenter.MergedCellMode.Always;
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldLayouts("layout1").Fields("department").Settings.MergedCellMode = Infragistics.Windows.DataPresenter.MergedCellMode.Always
+...
+----
+
+[[_Ref335407928]]
+
+== 関連トピック
+
+link:xamdatapresenter-set-a-fields-width.html[フィールドの幅の設定]
+
+link:xamdatapresenter-modify-field-sizing-behaviors.html[フィールドのサイズ設定動作の修正]
+
+link:xamdatapresenter-perform-an-auto-sizing-operation.html[自動サイズ設定操作の実行]

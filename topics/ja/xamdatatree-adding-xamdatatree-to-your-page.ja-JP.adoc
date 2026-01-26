@@ -1,0 +1,236 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatatree-adding-xamdatatree-to-your-page",
+    "controlName": ["xamDataTree"],
+    "tags": ["Getting Started"],
+    "guid": "8f46afad-1398-419b-9948-95ff114d52c8",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8431082Z"
+}
+|metadata|
+////
+
+= xamDataTree をページに追加
+
+== 始める前に
+
+このトピックではユーザーができるだけ早く操作に慣れることができるよう、プロシージャー コードおよび XAML を使用して xamDataTree コントロールをページに追加するために必要な基本手順について説明します。
+
+前提:
+
+このトピックは、データ ソースが構成されていることが前提となっています。詳細は link:xamdatatree-xamdatatree-data-binding.html[「データ バインド」]を参照してください。
+
+== 達成すること
+
+チェックボックスおよび編集機能で基本的な xamDataTree コントロールを作成します。ドラッグ アンド ドロップなどの追加機能を追加したい場合、適切なトピックの手順に従い、コードをこの基本的な xamDataTree に追加します。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName}™ プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。 
+
+** Infragistics.WPF.DataTree
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. コード ビハインドに using/Imports のディレクティブを配置するか xamDataTree の XML 名前空間宣言を追加します。
+
+*XAML の場合:*
+
+[source, xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+[source, vb]
+----
+Imports Infragistics.Controls.Menus
+----
+
+*C# の場合:*
+
+[source, csharp]
+----
+using Infragistics.Controls.Menus;
+----
+
+[start=4]
+. xamDataTree コントロールのインスタンスを LayoutRoot という名前のデフォルトのグリッド レイアウト パネルに追加します。プロシージャー コードでこれを行う場合、ユーザー コントロールの Loaded イベントを処理し、イベント ハンドラーにこのコードを配置することができます。
+
+*XAML の場合:*
+
+[source, xaml]
+----
+<ig:XamDataTree x:Name="MyTree">
+</ig:XamDataTree>
+----
+
+*Visual Basic の場合:*
+
+[source, vb]
+----
+Dim MyTree As New XamDataTree()
+----
+
+*C# の場合:*
+
+[source, csharp]
+----
+XamDataTree MyTree = new XamDataTree();
+----
+
+[start=5]
+. link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~itemssource.html[ItemsSource] プロパティを設定することによって、xamDataTree コントロールをデータにバインドします。詳細は、 link:xamdatatree-xamdatatree-data-binding.html[xamDataTree をデータにバインド]を参照してください。データ ソースに基づき link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~globalnodelayouts.html[GlobalNodeLayouts] オブジェクトを構成します。このサンプルでは、CategoryName および ProductName プロパティを含む Category および Product オブジェクトがあることを前提とします。
+
+*XAML の場合:*
+
+[source, xaml]
+----
+<ig:XamDataTree
+    x:Name="MyTree" 
+    ItemsSource="{Binding Source={StaticResource DataUtil}, Path=CategoriesAndProducts}">
+    <ig:XamDataTree.GlobalNodeLayouts>
+        <ig:NodeLayout
+            Key="CategoryLayout"                             
+            TargetTypeName="Category"  
+            DisplayMemberPath="CategoryName">
+        </ig:NodeLayout>
+        <ig:NodeLayout
+            Key="ProductLayout" 
+            TargetTypeName="Product" 
+            DisplayMemberPath="ProductName">
+        </ig:NodeLayout>
+    </ig:XamDataTree.GlobalNodeLayouts>
+</ig:XamDataTree>
+----
+
+*Visual Basic の場合:*
+
+[source, vb]
+----
+MyTree.ItemsSource = DataUtil.CategoriesAndProducts
+
+Dim mylayout As New NodeLayout()
+mylayout.Key = "CategoryLayout"
+mylayout.TargetTypeName = "Category"
+mylayout.DisplayMemberPath = "CategoryName"
+
+Dim mylayout2 As New NodeLayout()
+mylayout2.Key = "ProductLayout"
+mylayout2.TargetTypeName = "Product"
+mylayout2.DisplayMemberPath = "ProductName"
+
+MyTree.GlobalNodeLayouts.Add(mylayout)
+MyTree.GlobalNodeLayouts.Add(mylayout2)
+----
+
+*C# の場合:*
+
+[source, csharp]
+----
+MyTree.ItemsSource = DataUtil.CategoriesAndProducts;
+
+NodeLayout mylayout = new NodeLayout();
+mylayout.Key = "CategoryLayout";
+mylayout.TargetTypeName = "Category";
+mylayout.DisplayMemberPath = "CategoryName";
+
+NodeLayout mylayout2 = new NodeLayout();
+mylayout2.Key = "ProductLayout";
+mylayout2.TargetTypeName = "Product";
+mylayout2.DisplayMemberPath = "ProductName";
+
+MyTree.GlobalNodeLayouts.Add(mylayout);
+MyTree.GlobalNodeLayouts.Add(mylayout2);
+----
+
+[start=6]
+. チェックボックスを有効にするために link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings.html[CheckBoxSettings] オブジェクトを xamDataTree コントロールに追加します。詳細については、 link:xamdatatree-xamdatatree-check-boxes.html[チェックボックスの表示状態の構成]を参照してください。link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings~checkboxvisibility.html[CheckBoxVisibility] プロパティを True に設定します。
+
+*XAML の場合:*
+
+[source, xaml]
+----
+<ig:XamDataTree.CheckBoxSettings>
+   <ig:CheckBoxSettings CheckBoxVisibility="Visible"/>
+</ig:XamDataTree.CheckBoxSettings>
+----
+
+*Visual Basic の場合:*
+
+[source, vb]
+----
+MyTree.CheckBoxSettings.CheckBoxVisibility = Visibility.Visible
+----
+
+*C# の場合:*
+
+[source, csharp]
+----
+MyTree.CheckBoxSettings.CheckBoxVisibility = Visibility.Visible;
+----
+
+[start=7]
+. 編集を有効にするために link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~editingsettings.html[EditingSettings] オブジェクトを xamDataTree コントロールに追加します。詳細については、 link:xamdatatree-xamdatatree-editing.html[編集の構成]を参照してください。link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeeditingsettings~allowediting.html[AllowEditing] プロパティを True に設定します。
+
+[NOTE]
+====
+*注:* 編集を有効にする場合、プロパティが取得可能/設定可能であることを確認してください。
+====
+
+*XAML の場合:*
+
+[source, xaml]
+----
+<ig:XamDataTree.EditingSettings>
+   <ig:TreeEditingSettings AllowEditing="True"/> 
+</ig:XamDataTree.EditingSettings>
+----
+
+*Visual Basic の場合:*
+
+[source, vb]
+----
+MyTree.EditingSettings.AllowEditing = True
+----
+
+*C# の場合:*
+
+[source, csharp]
+----
+MyTree.EditingSettings.AllowEditing = true;
+----
+
+[start=8]
+. プロシージャー コードを使用して xamDataTree コントロールを作成する場合、xamDataTree のインスタンスを Grid パネルの Children コレクションに追加します。
+
+*Visual Basic の場合:*
+
+[source, vb]
+----
+LayoutRoot.Children.Add(MyTree)
+----
+
+*C# の場合:*
+
+[source, csharp]
+----
+LayoutRoot.Children.Add(MyTree);
+----
+
+[start=9]
+. アプリケーションを保存して実行します。
+
+*関連トピック*
+
+link:xamdatatree-about-xamdatatree.html[xamDataTree について]
+
+link:xamdatatree-xamdatatree-data-binding.html[xamDataTree をデータにバインド]
+
+link:xamdatatree-using-xamdatatree.html[xamDataTree の構成]

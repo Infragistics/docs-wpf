@@ -1,0 +1,152 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-ribbon-tool-events",
+    "controlName": ["xamRibbon"],
+    "tags": ["Editing","Events","Selection"],
+    "guid": "{63619358-56C3-434A-A025-D9A3F02225D8}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.2021935Z"
+}
+|metadata|
+////
+
+= リボン ツール イベント
+
+
+
+
+
+xamRibbon™ コントロールに含まれるツールは、複数の共通イベントを持ちます。
+
+* *Cloned*  - このイベントは、ツールのインスタンスのコピーが作成されると起動されます。たとえば、メニューを右クリックするエンド ユーザーによってツールのインスタンスがクイック アクセス ツールバーに追加される場合です。これはクローンされるツールから発生するバブル イベントです。
+* *CloneDiscarded*  - このイベントは、ツールのクローンされたインスタンスがリリースされ、リボンによって使用されなくなった場合に起動されます。たとえば、ツールのインスタンスがクイック アクセス ツールバーから削除された場合です。これはバブル イベントで、破棄されるツールから発生します。
+
+さらに、ツールはそれ自体のカスタム イベントを公開します。以下は、さまざまなツール タイプで一般的に使用されるイベントのリストです。
+
+[options="header", cols="a,a"]
+|====
+|ToolType|ツール固有のイベント
+
+|GalleryTool
+|ItemActivated 
+
+ItemClicked 
+
+ItemSelected
+
+|MenuTool
+|Checked 
+
+Click 
+
+Unchecked
+
+|MenuToolBase
+|Opened 
+
+Opening 
+
+Closed
+
+|ButtonTool
+|Click
+
+|ToggleButtonTool
+|Click 
+
+Checked 
+
+Indeterminate 
+
+Unchecked
+
+|TextEditorTool 
+
+ComboEditorTool
+|ValueChanged 
+
+TextChanged 
+
+EditModeStarting 
+
+EditModeStarted 
+
+EditModeEnding 
+
+EditModeEnded
+
+|ComboEditorTool
+|DropDownOpened 
+
+DropDownClosed
+
+|====
+
+上記のすべてのイベントはバブル イベントとして定義されます。したがって、ツールまたは先祖要素で処理されます。たとえば、ツール自体でイベントを処理できます。
+
+*XAML の場合:*
+
+----
+<igRibbon:XamRibbon>
+	<igRibbon:XamRibbon.Tabs>
+		<igRibbon:RibbonTabItem Header="Home">
+			<igRibbon:RibbonGroup Caption="Clipboard">
+				<igRibbon:ButtonTool Id="PasteButton" 
+				  Caption="Paste" Click="OnPasteButtonClick"/>
+			</igRibbon:RibbonGroup>
+		</igRibbon:RibbonTabItem>
+	</igRibbon:XamRibbon.Tabs>
+</igRibbon:XamRibbon>
+----
+
+このイベントを処理するための C# コードは、以下のようになります。
+
+*C# の場合:*
+
+----
+private void OnPasteButtonClick(object sender, RoutedEventArgs e)
+{
+	// 貼り付けアクションを実行します。
+}
+----
+
+または、要素の先祖チェーンを遡ってそれを処理できます。たとえば、リボン自体でイベントを処理できます。
+
+*XAML の場合:*
+
+----
+<igRibbon:XamRibbon igRibbon:ButtonTool.Click="OnButtonToolClick">
+	<igRibbon:XamRibbon.Tabs>
+		<igRibbon:RibbonTabItem Header="Home">
+			<igRibbon:RibbonGroup Caption="Clipboard">
+				<igRibbon:ButtonTool Id="PasteButton" 
+				  Caption="Paste"/>
+			</igRibbon:RibbonGroup>
+		</igRibbon:RibbonTabItem>
+	</igRibbon:XamRibbon.Tabs>
+</igRibbon:XamRibbon>
+----
+
+このイベントを処理するための C# コードは、以下のようになります。
+
+*C# の場合:*
+
+----
+private void OnButtonToolClick(object sender, RoutedEventArgs e)
+{
+	// アクションを実行します。
+}
+----
+
+希望があれば、コードにイベントのハンドラも追加します。例:
+
+*C# の場合:*
+
+----
+this.AddHandler(ButtonTool.ClickEvent, 
+  new RoutedEventHandler(OnButtonToolClick));
+----
+
+以前のアプローチでは、ツールのイベントを直接フックするのが最善です。この方法では、イベントをキャッチするために使用されるメソッドは、ツールに関連付けられたアクションに固有となります。より高いレベルでイベントをキャッチする場合、イベントが起動されるツールを識別する手段を持ち、どのアクションが実行されるかを確認できるように、ID または Name を設定する必要があります。

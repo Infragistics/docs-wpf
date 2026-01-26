@@ -1,0 +1,215 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-create-a-custom-summary",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Styling","Summaries"],
+    "guid": "{9A9FFFDE-06FD-426D-82F2-F1B8F8B340DF}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0331667Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= カスタム サマリーの作成
+
+== 始める前に
+
+集計機能には、Count および Sum などの集計のデフォルト セットが含まれています。ただし、状況によっては、このデフォルト セットを拡張したり、固有のカスタム集計を追加したい場合があります。このトピックは、その方法を示します。
+
+このトピックは、集計が有効になったデータに xamGrid コントロールが既にバインドされていることが前提となっています。詳細は、 link:xamgrid-data-binding.html[データ バインディング]および link:xamgrid-summaries.html[集計]のトピックを参照してください。
+
+== 達成すること
+
+標準偏差を計算するためにカスタム集計を作成します。
+
+== 次の手順を実行します
+
+[start=1]
+. pick:[sl,win-rt=" link:{RootAssembly}{ApiVersion}~infragistics.synchronoussummarycalculator.html[SynchronousSummaryCalculator]"]  pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.synchronoussummarycalculator.html[SynchronousSummaryCalculator]"]  クラスから派生する独自のカスタム クラスを作成し、それに StandardDeviationCalc という名前を付けます。
+
+*Visual Basic の場合:*
+
+----
+Public Class StandardDeviationCalc
+Inherits SynchronousSummaryCalculator
+Public Overrides ReadOnly Property SummaryExecution As SummaryExecution
+   Get
+      Return Infragistics.SummaryExecution.PriorToFilteringAndPaging
+   End Get
+End Property
+Public Overrides Function Summarize(ByVal data As IQueryable, ByVal fieldKey As String) As Object
+   Dim convertedData As IQueryable = CType(data,IQueryable)
+   ' 中間計算に使用される変数
+   Dim sum As Double = 0
+   Dim count As Integer = 0
+   Dim squaredsum As Double = 0
+   Dim tempVal As Double = 0
+   For Each item As NorthwindServiceReference.Product In convertedData
+      ' UnitsInStock 列の値
+      tempVal = Convert.ToDouble(item.UnitsInStock)
+      count = (count + 1)
+      ' UnitsInStock 列の合計値
+      sum = (sum + tempVal)
+      ' UnitsInStock 列の二乗値
+      squaredsum = (squaredsum _
+      + (tempVal * tempVal))
+    Next
+     If ((count < 2) _
+     OrElse (sum = 0)) Then
+     Return 0
+   End If
+   ' UnitsInStock 列の平均を計算します
+   Dim theAverage As Double = (sum / count)
+   ' StandardDeviation 式
+   Dim theDeviation As Double = ((squaredsum _
+    - (sum * theAverage)) _
+   / (count - 1))
+   ' UnitsInStock 列の標準偏差を返します
+   Return Math.Sqrt(theDeviation)
+  End Function
+End Class
+----
+
+*C# の場合:*
+
+----
+public class StandardDeviationCalc : SynchronousSummaryCalculator
+{
+   public override SummaryExecution? SummaryExecution
+   {
+      get
+      {
+         return Infragistics.SummaryExecution.PriorToFilteringAndPaging;
+      }
+   }
+   public override object Summarize(IQueryable data, string fieldKey)
+   {
+       IQueryable<NorthwindServiceReference.Product> convertedData = (IQueryable<NorthwindServiceReference.Product>)data;
+       // 中間計算に使用される変数
+       double sum = 0;
+       int count = 0;
+       double squaredsum = 0;
+       double tempVal = 0;
+       foreach (NorthwindServiceReference.Product item in convertedData)
+       {
+          // UnitsInStock 列の値
+          tempVal = Convert.ToDouble(item.UnitsInStock);
+          count++;
+          // UnitsInStock 列の合計値
+          sum += tempVal;
+          // UnitsInStock 列の二乗値
+          squaredsum += tempVal * tempVal;
+       }
+       if (count < 2 || sum == 0)
+          return 0;
+       // UnitsInStock 列の平均を計算します
+       double theAverage = sum / count;
+       // StandardDeviation 式
+       double theDeviation = (squaredsum - sum * theAverage) / (count - 1);
+       // UnitsInStock 列の標準偏差を返します
+       return Math.Sqrt(theDeviation);
+    }
+ }
+----
+
+[start=2]
+. pick:[sl,win-rt=" link:{RootAssembly}{ApiVersion}~infragistics.summaryoperandbase.html[SummaryOperandBase]"]  pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.summaryoperandbase.html[SummaryOperandBase]"]  クラスから派生する独自のカスタム クラスを作成し、それに StandardDeviationOperand という名前を付けます。
+
+*Visual Basic の場合:*
+
+----
+Public Class StandardDeviationOperand
+   Inherits SummaryOperandBase
+   Private myCalc As StandardDeviationCalc
+   Protected Overrides ReadOnly Property DefaultRowDisplayLabel As String
+      Get
+         Return "Standard Deviation"
+      End Get
+   End Property
+   Protected Overrides ReadOnly Property DefaultSelectionDisplayLabel As String
+      Get
+         Return "Standard Deviation"
+       End Get
+   End Property
+   Public Overrides ReadOnly Property SummaryCalculator As SummaryCalculatorBase
+      Get
+         If (myCalc Is Nothing) Then
+            Me.myCalc = New StandardDeviationCalc
+         End If
+       Return Me.myCalc
+     End Get
+   End Property
+End Class
+----
+
+*C# の場合:*
+
+----
+public class StandardDeviationOperand : SummaryOperandBase
+{
+   StandardDeviationCalc myCalc;
+   protected override string DefaultRowDisplayLabel
+   {
+      get { return "Standard Deviation"; }
+   }
+   protected override string DefaultSelectionDisplayLabel
+   {
+      get { return "Standard Deviation"; }
+   }
+   public override SummaryCalculatorBase SummaryCalculator
+   {
+      get
+      {
+         if (myCalc == null)
+         {
+            this.myCalc = new StandardDeviationCalc();
+         }
+         return this.myCalc;
+         }
+      }
+   }
+}
+----
+
+[start=3]
+. 新しい集計オペランドである StandardDeviationOperand を UnitsInStock 列の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summarycolumnsettings~summaryoperands.html[SummaryOperands] コレクションに追加します。
+
+*Visual Basic の場合:*
+
+----
+Me.MyDataGrid.Columns.DataColumns("UnitsInStock").SummaryColumnSettings.SummaryOperands.Add(New StandardDeviationOperand)
+----
+
+*C# の場合:*
+
+----
+// 集計オペランドを UnitsInStock 列に追加します 
+ this.MyDataGrid.Columns.DataColumns["UnitsInStock"].SummaryColumnSettings.SummaryOperands.Add(new StandardDeviationOperand());
+----
+
+[start=4]
+. アプリケーションを保存して実行します。UnitsInStock 列の集計ドロップダウンにカスタム Standard Deviation オペランドが表示されます。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Create_Custom_Summary_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Create_Custom_Summary_01.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-programmatically-add-summaries.html[プログラムで集計を追加]
+
+link:xamgrid-retrieve-the-result-of-a-summary.html[集計結果を取得]
+
+link:xamgrid-summaries.html[集計]
+
+link:xamgrid-formatting-row-summaries.html[行集計の書式設定]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

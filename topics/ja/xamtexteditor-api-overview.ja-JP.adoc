@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtexteditor-api-overview",
+    "controlName": ["xamTextEditor"],
+    "tags": ["API"],
+    "guid": "{FE5C83F5-7262-453C-99B0-5824113A80BF}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2509781Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムする間に使用するいくつかのキークラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== Editors の名前空間:
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors_namespace.html[Infragistics.Windows.Editors]
+
+=== 主要な API:
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamtexteditor.html[XamTextEditor]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~value.html[Value]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuetype.html[ValueType]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuechanged_ev.html[ValueChanged]

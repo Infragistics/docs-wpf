@@ -1,0 +1,33 @@
+﻿= {DataGridName} 移行ガイド
+
+=== 目的
+
+既存の WPF アプリケーションで XamGrid を {DataGridName} と置き換える方法を説明します。これらの手順は、レガシ コントロールの置き換えで使用できます。XamGrid は複雑なコントロールで他のコントロールよりも置き換えに時間がかかるため、例として使用しています。
+
+=== はじめに
+
+{DataGridName} の使用を開始するには、まずプロジェクトの NuGet パッケージを設定する必要があります。設定すると、アプリケーションで {DataGridName} の現在のボリュームを使用できます。これを行うには、次の NuGet パッケージを追加する必要があります。
+
+* Infragistics.WPF.DataGrids
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+前述のアセンブリの以前のバージョンを参照していた場合は、新しい参照を追加するのではなく参照を置き換える必要があります。
+
+この時点でアプリケーションが問題なくビルドして動作する場合は、アプリケーションで {DataGridName} を使用して、XamGrid インスタンスの置き換えを開始できます。
+
+アプリケーションがビルドしない、あるいは正しく作動しない場合は、このトピックを読み、最も一般的なシナリオにおける対処法をご確認ください。
+
+=== 機能の比較
+
+XamGrid コントロールと {DataGridName} コントロールの間にはいくつかの構造的な違いがあるため、プロパティとイベントの間では 1 対 1 のマッピングができません。たとえば、以下は XamGrid および {DataGridName} の異なる機能の説明です。
+
+* ページング - {DataGridName} はページングを直接的にはサポートしません。XamGrid は元々 Silverlight 用にデザインされています。ページング機能はネットワーク トラフィックを減らすためにクライアントへ一度に送信するデータの制御するためにデザインされました。コード ベースが Silverlight と WPF で共有されていたため、WPF XamGrid にこの機能が継承されました。{DataGridName} は、link:xamdatagrid-asynchronouspagingdatasource.html[非同期ページング DataSource] をサポートし、読み込んだデータの量を制御できます。この機能は UI で使用するページャーを提供しないため、手動的に実装します。
+
+* 条件付き書式 - {DataGridName} の条件付き書式は XamGrid での実装と異なります。このトピックのサンプル プロジェクトは {DataGridName} で条件付き書式を適用する方法を紹介します: link:xamdatagrid-cellvaluepesenterstyleselector-reevaluated.html[{DataGridName} での条件付き書式]。
+
+XamGrid と {DataGridName} の間の機能比較の詳細については、link:differences-between-xamgrid-and-xamdatagrid.html[「xamGrid と xamDataGrid の重要な相違点」]トピックを参照してください。
+
+=== コントロール置き換え方法
+
+これらは異なるコントロールであるため、まず新しいコントロールで必要なビヘイビアを実装する方法、次に既存の再利用できるコードの量を評価します。すべてのコードを再利用する場合、置き換えたコントロールの使用で必要以上に複雑になる場合があります。XamGrid のような複雑なコントロールに大量の構造的な違いがあるためです。

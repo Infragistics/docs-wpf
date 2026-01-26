@@ -1,0 +1,185 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-style-legend-and-legend-items",
+    "controlName": ["xamTimeline"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{6B22CDE4-3866-4090-A1E7-8E38C32EAF0D}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1353981Z"
+}
+|metadata|
+////
+
+= 凡例および凡例項目のスタイル
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelinelegend.html[Legend] オブジェクトは、xamTimeline に時刻シリーズについての情報を表示します。link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.legenditem.html[LegendItem] オブジェクトは、凡例内のイベントを表すイベント点と共にシリーズのタイトルを表示します。
+
+この例は、Infragistics link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールのためにプロジェクトを設定する方法をユーザーが理解していることを前提としています。以下の xaml コードは、凡例および凡例項目をスタイルする方法を示します。また、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventpoint.html[EventPoint] オブジェクトのスタイルを変更して、イベントをマークするために矩形を表示します。イベント点は変更されるので、対応するイベント シリーズの凡例項目のスタイルも一致するために変更されます。
+
+[start=1]
+. 以下のタグをユーザー コントロールのリソース ディクショナリに追加します。
+
+*XAML の場合:*
+
+----
+    <UserControl.Resources>
+        <!-- EventPoint オブジェクトのスタイル -->
+        <Style x:Key="rscEventPointStyle" TargetType="igtl:EventPoint">
+            <Setter Property="Width" Value="12" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="igtl:EventPoint">
+                        <Grid>
+                            <!-- 点をマークするために矩形を使用します -->
+                            <Rectangle Fill="{TemplateBinding Fill}" 
+                                       Stroke="{TemplateBinding Stroke}" 
+                                       StrokeThickness="1" 
+                                       Width="{TemplateBinding Width}" 
+                                       Height="{TemplateBinding Width}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Legend オブジェクトのスタイル -->
+        <Style x:Key="rscLegendStyle" TargetType="igtl:Legend">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="IsTabStop" Value="/>
+            <Setter Property="TitleStyle">
+                <Setter.Value>
+                    <Style TargetType="igtl:Title">
+                        <Setter Property="Margin" Value="0,5,0,10"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="igtl:Legend">
+                        <Border Background="BlanchedAlmond"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                Padding="2" Margin="10,10,10,0" 
+                                Height="200" Width="150">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <igtl:Title Grid.Row="0"
+                                      Content="{TemplateBinding Title}"
+                                      Style="{TemplateBinding TitleStyle}"/>
+                                <ScrollViewer Grid.Row="1"
+                                        VerticalScrollBarVisibility="Auto"
+                                        BorderThickness="0"
+                                        Padding="0" IsTabStop=">
+                                    <StackPanel Grid.Column="1" x:Name="LegendItemsArea" Margin="10,0,10,10" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- LegendItem オブジェクトのスタイル -->
+        <Style x:Key="rscLegendItemSpanStyle" TargetType="igtl:LegendItem">
+            <Setter Property="IsTabStop" Value="/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="igtl:LegendItem">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <!-- スパン イベントを表すために Border として凡例項目を表示します -->
+                            <Border Width="22" Height="10" CornerRadius="5" 
+                                    Background="{TemplateBinding Fill}"
+                                    BorderBrush="{TemplateBinding Stroke}"
+                                    BorderThickness="1" Margin="6,4,6,6" >
+                            </Border>
+                            <igtl:Title Content="{TemplateBinding Content}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="rscLegendItemRectStyle" TargetType="igtl:LegendItem">
+            <Setter Property="IsTabStop" Value="/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="igtl:LegendItem">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <!-- 凡例項目を矩形として表示します -->
+                            <Rectangle Width="12" Height="12" Margin="12,2,12,6"
+                                     Fill="{TemplateBinding Fill}" 
+                                     Stroke="{TemplateBinding Stroke}" 
+                                     StrokeThickness="1.5" />
+                            <igtl:Title Content="{TemplateBinding Content}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+----
+
+[start=2]
+. link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[XamTimeline] コントロールの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelinelegend.html[Legend]、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.legenditem.html[LegendItem] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventpoint.html[EventPoint] シリーズのスタイルを設定します。
+
+*XAML の場合:*
+
+----
+        <igtl:XamTimeline x:Name="xamTimeline"  
+                             Width="1000" Height="580" Margin="15"
+                             LegendStyle="{StaticResource rscLegendStyle}">
+            <!-- TO DO: 軸プロパティを追加します -->-->
+            <!-- Timeline Series で Data を設定します -->
+            <igtl:XamTimeline.Series>
+                <!-- EventPoint および Legend Item のカスタム スタイルがある Historic Event Series -->
+                <igtl:NumericTimeSeries Title="Historic Events" Fill="White" Position="BottomOrRight"
+                                        EventPointStyle="{StaticResource rscEventPointStyle}" 
+                                        LegendItemStyle="{StaticResource rscLegendItemRectStyle}">
+                    <!--TODO: 数値時刻エントリを追加します -->-->
+                </igtl:NumericTimeSeries>
+                <!-- Legend Item のカスタム スタイルがある Persian Empire Event Series -->
+                <igtl:NumericTimeSeries Title="Persian Empire" Fill="Magenta" Position="BottomOrRight"  
+                                        LegendItemStyle="{StaticResource rscLegendItemSpanStyle}">
+                    <!--TODO: 数値時刻エントリを追加します -->-->
+                </igtl:NumericTimeSeries>
+                <!-- Legend Item のカスタム スタイルがある Mayan Empire Event Series -->
+                <igtl:NumericTimeSeries Title="Mayan Empire" Fill="Yellow" Position="BottomOrRight"  
+                                        LegendItemStyle="{StaticResource rscLegendItemSpanStyle}">
+                    <!--TODO: 数値時刻エントリを追加します -->-->
+                </igtl:NumericTimeSeries>
+                <!-- Legend Item のカスタム スタイルがある Roman Empire Event Series -->
+                <igtl:NumericTimeSeries Title="Roman Empire" Fill="Red" Position="TopOrLeft" 
+                                        LegendItemStyle="{StaticResource rscLegendItemSpanStyle}">
+                    <!--TODO: 数値時刻エントリを追加します -->-->
+                </igtl:NumericTimeSeries>
+                <!-- Legend Item のカスタム スタイルがある Egypt Empire -->
+                <igtl:NumericTimeSeries Title="Egypt Empire" Fill="Lime" Position="TopOrLeft"  
+                                        LegendItemStyle="{StaticResource rscLegendItemSpanStyle}">
+                    <!--TODO: 数値時刻エントリを追加します -->-->
+                </igtl:NumericTimeSeries>
+                <!-- Legend Item のカスタム スタイルがある Spanish Empire Event Series -->
+                <igtl:NumericTimeSeries Title="Spanish Empire" Fill="Coral" Position="TopOrLeft"  
+                                        LegendItemStyle="{StaticResource rscLegendItemSpanStyle}">
+                    <!--TODO: 数値時刻エントリを追加します -->-->
+                </igtl:NumericTimeSeries>
+                <!-- Legend Item のカスタム スタイルがある French Empire Event Series -->
+                <igtl:NumericTimeSeries Title="French Empire" Fill="Aqua" Position="TopOrLeft"  
+                                        LegendItemStyle="{StaticResource rscLegendItemSpanStyle}">
+                    <!--TODO: 数値時刻エントリを追加します -->-->
+                </igtl:NumericTimeSeries>
+            </igtl:XamTimeline.Series>
+          </igtl:XamTimeline>
+----
+
+image::images/XamTimeline_Style_Legend_and_LegendItems_01.png[]
+
+関連トピック
+
+link:xamtimeline-style-time-series.html[時刻シリーズのスタイル]
+
+link:xamtimeline-style-xamwebtimeline.html[xamTimeline のスタイル設定]

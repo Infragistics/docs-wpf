@@ -1,0 +1,304 @@
+﻿////
+|metadata|
+{
+    "name": "xampivotgrid-printing",
+    "tags": ["API","Exporting","Getting Started","Grids","Printing"],
+    "controlName": ["xamPivotGrid"],
+    "guid": "ad0953fd-b0f6-4111-8de0-a66eb8ecc83b",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.3123324Z"
+}
+|metadata|
+////
+
+= xamPivotGrid の印刷
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamPivotGrid™_   を印刷する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+|このトピックでは、 _xamPivotGrid_ コントロールを WPF アプリケーションに追加する手順を順を追って説明し、このコントロールで作業を開始する方法を説明します。コード例には、XAML およびプロシージャ コードのリストが含まれます。
+
+| link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+|このトピックでは、レポートを作成し印刷する方法を説明します。
+
+| link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]
+|このトピックでは、 _xamReportPreview_™ コントロールを使用して、エンド ユーザーによるレポートの印刷プレビューの表示方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref391456325, xamPivotGrid の印刷 >>
+
+** <<_Ref391456328,概要>>
+** <<OLE_LINK41,前提条件>>
+** <<OLE_LINK63,概要>>
+** <<_Ref391456331,手順>>
+** <<_Ref382317785,全コード>>
+
+* <<_Ref391456333, 関連トピック >>
+
+[[_Ref391456325]]
+== xamPivotGrid の印刷
+
+[[_Ref391456328]]
+
+=== 概要
+
+WPF レポート作成フレームワークを使用すると、 _xamPivotGrid_   の印刷、または XPS ドキュメントへのエクスポートができます。以下の手順では、XPS ファイルをエクスポートする方法およびピボット グリッドを印刷する方法を説明します。
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページに追加された _xamPivotGrid_  コントロール (link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid の概要] トピックを参照)
+
+* プロジェクトに追加された *Infragistics.WPF.Reporting* NuGet パッケージへの参照
+
+=== 概要
+
+以下はプロセスの概要です。
+
+*1.レポート プレビューのコントロールの追加*
+
+*2.*  *新規レポートの作成*
+
+*3.xamPivotGrid 用のセクションの追加*
+
+*4.ピボット グリッド レポートへのテーマの適用 (オプション)。*
+
+*5.*  *レポート設定の構成 (オプション)。*
+
+*6.プレビューの生成*
+
+*7.レポートの印刷またはエクスポート*
+
+[[_Ref391456331]]
+
+=== 手順
+
+以下の手順は、印刷プレビューを生成する方法およびxamPivotGrid を印刷する方法を示します。
+
+=== 1.レポート プレビューのコントロールの追加
+
+_xamReportPreview_   コントロールをページに追加します。`x:Name` プロパティを設定し、コード ビハインドからアクセスできるようにします。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igRep:XamReportPreview xmlns:igRep="http://infragistics.com/Reporting" x:Name="xamReportPreview" />
+----
+
+=== 2.新規レポートの作成
+
+コード ビハインドで、新しい link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report_members.html[Report] インスタンスを作成します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+var report = new Report();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim report = New Report()
+----
+
+=== 3.xamPivotGrid 用のセクションの追加
+
+1 つのレポートに複数の link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~sections.html[セクション]を関連付けることができます。新しい link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection_members.html[EmbeddedVisualReportSection] を作成し、 _xamPivotGrid_   インスタンスをコンストラクターの引数として入力します。セクションをレポートに追加します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+var section = new EmbeddedVisualReportSection(this.xamPivotGrid);
+report.Sections.Add(section);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim section = New EmbeddedVisualReportSection(Me.xamPivotGrid)
+report.Sections.Add(section)
+----
+
+=== 4.ピボット グリッド レポートへのテーマの適用 (オプション)。
+
+アプリケーションのリリースに追加された  _xamPivotGrid_   テーマは、印刷されたピボット グリッドに自動的に適用されます。アプリケーションのリリースにテーマを追加しない場合、またはアプリケーションのいずれかの視覚要素に別の `ResourceDictionary` を追加する場合は、ピボット グリッドのレポート セクションのリリースに、テーマを明示的に追加する必要があります。
+
+シンプルで印刷に適したテーマが、 _xamPivotGrid_   レポートで使用できます。テーマは、製品のインストール パスの下の  _Themes_   フォルダーにあります。
+
+印刷テーマを読み込むには、新しい `ResourceDictionary` を作成し、セクションの`Resources`に追加します。この例では、 _XamPivotGrid.Printing.xaml_   ファイルが  _Themes_   という名前のフォルダー内のプロジェクトに含まれ、そのビルド アクションが _Page_  に設定されていることを前提としています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+var printingTheme = new ResourceDictionary() { 
+    Source = new Uri("/AssemblyName;component/Themes/XamPivotGrid.Printing.xaml", UriKind.RelativeOrAbsolute) };
+section.Resources.MergedDictionaries.Add(printingTheme);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim printingTheme = New ResourceDictionary() With { _
+      .Source = New Uri("/AssemblyName;component/Folder/XamPivotGrid.Printing.xaml", UriKind.RelativeOrAbsolute) _
+}
+section.Resources.MergedDictionaries.Add(printingTheme)
+----
+
+=== 5.レポート設定の構成 (オプション)。
+
+レポート設定は、2 つのレベルで構成できます。1 つは、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report_members.html[Report] の link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~reportsettings.html[ReportSettings] プロパティを使用し、もう 1 つは link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid_members.html[XamPivotGrid] の link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~reportsettings.html[ReportSettings] プロパティを使用します。
+
+レポート レベルの設定には、ページ サイズ、向き、ページの印刷順序などの一般的なオプションがあります。
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotreportsettings_members.html[PivotReportSettings] では、印刷されたピボット グリッドに固有の複数の構成が可能です。この中には、カスタム テンプレートの印刷や、各ページに印刷する列ヘッダーを制御するための設定が含まれますが、それ以外にもさまざまな設定があります。
+
+以下の例では、前述した設定の一部を構成する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+report.ReportSettings.HorizontalPaginationMode = HorizontalPaginationMode.Mosaic;
+this.xamPivotGrid.ReportSettings.ColumnHeaderCellSettings.RepeatHeaders = true;
+this.xamPivotGrid.ReportSettings.RowHeaderCellSettings.RepeatHeaders = false;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+report.ReportSettings.HorizontalPaginationMode = HorizontalPaginationMode.Mosaic
+Me.pivotGrid.ReportSettings.ColumnHeaderCellSettings.RepeatHeaders = True
+Me.pivotGrid.ReportSettings.RowHeaderCellSettings.RepeatHeaders = False
+----
+
+=== 6.プレビューの生成
+
+レポートのプレビューを生成するには、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.xamreportpreview_members.html[XamReportPreview] の link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.xamreportpreview~generatepreview.html[GeneratePreview] メソッドを呼び出します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamReportPreview.GeneratePreview(report, false, false);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamReportPreview.GeneratePreview(report, False, False)
+----
+
+=== 7.レポートの印刷またはエクスポート
+
+レポートを XPS ドキュメントにエクスポートするには、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~export.html[Export] メソッドを呼び出します。または、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~print.html[Print] メソッドを呼び出してレポートを印刷します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+report.Export(OutputFormat.XPS, "PivotReport", true);
+// または
+report.Print(true, false);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+report.Export(OutputFormat.XPS, "PivotReport", True)
+' または
+report.Print(True, False)
+----
+
+[[_Ref382317785]]
+
+=== 全コード
+
+以下は、この手順の完全なコードです。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igRep:XamReportPreview xmlns:igRep="http://infragistics.com/Reporting" x:Name="xamReportPreview" />
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+var report = new Report();
+var section = new EmbeddedVisualReportSection(this.xamPivotGrid);
+report.Sections.Add(section);
+var printingTheme = new ResourceDictionary()
+{
+    Source = new Uri("/AssemblyName;component/Folder/XamPivotGrid.Printing.xaml", UriKind.RelativeOrAbsolute)
+};
+section.Resources.MergedDictionaries.Add(printingTheme);
+report.ReportSettings.HorizontalPaginationMode = HorizontalPaginationMode.Mosaic;
+this.pivotGrid.ReportSettings.ColumnHeaderCellSettings.RepeatHeaders = true;
+this.pivotGrid.ReportSettings.RowHeaderCellSettings.RepeatHeaders = false;
+this.xamReportPreview.GeneratePreview(report, false, false);
+report.Export(OutputFormat.XPS, "PivotReport", true);
+report.Print(true, false);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim report = New Report()
+Dim section = New EmbeddedVisualReportSection(Me.xamPivotGrid)
+report.Sections.Add(section)
+Dim printingTheme = New ResourceDictionary() With { _
+       .Source = New Uri("/AssemblyName;component/Folder/XamPivotGrid.Printing.xaml", UriKind.RelativeOrAbsolute) _
+}
+section.Resources.MergedDictionaries.Add(printingTheme)
+report.ReportSettings.HorizontalPaginationMode = HorizontalPaginationMode.Mosaic
+Me.pivotGrid.ReportSettings.ColumnHeaderCellSettings.RepeatHeaders = True
+Me.pivotGrid.ReportSettings.RowHeaderCellSettings.RepeatHeaders = False
+Me.xamReportPreview.GeneratePreview(report, False, False)
+report.Export(OutputFormat.XPS, "PivotReport", True)
+report.Print(True, False)
+----
+
+[[_Ref391456333]]
+== 関連トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-features.html[xamPivotGrid の機能]
+|このグループのトピックでは、 _xamPivotGrid_ の各機能を構成し使用する方法を説明します。
+
+|====

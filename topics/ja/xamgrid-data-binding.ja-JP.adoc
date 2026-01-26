@@ -1,0 +1,73 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-data-binding",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Binding","Grids","Performance"],
+    "guid": "{98328815-9766-4022-85C8-996BC167A9C2}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8651968Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= データ バインディング
+
+xamGrid コントロールによって、IEnumerable インターフェイスを実装する任意のオブジェクトにバインドすることができます。データへのバインドはシンプルで、コントロールの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~itemssource.html[ItemsSource] プロパティを設定することだけを必要とします。
+
+以下のコードは、xamGrid でデータにバインドする方法を示します。これは開発者に提供される link:resources-datautil.html[DataUtil クラス]を使用します。
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+    <local:DataUtil x:Key="DataUtil" />
+</UserControl.Resources>
+<Grid x:Name="LayoutRoot" Background="White">
+    <ig:XamGrid x:Name="xamGrid1" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=CategoriesAndProducts}">
+    </ig:XamGrid>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xamGrid1.ItemsSource = DataUtil.CategoriesAndProducts
+----
+
+*C# の場合:*
+
+----
+this.xamGrid1.ItemsSource = DataUtil.CategoriesAndProducts;
+----
+
+ifdef::sl,wpf[]
+image::images/sl_xamGrid_Data_Binding_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Data_Binding_01.png[]
+endif::win-rt[]
+
+*データ バインディングのパフォーマンス*
+
+バインドするコレクションのタイプによって、xamGrid のパフォーマンスで若干の違いが見られる場合があります。たいていの場合、ObservableCollection または IList オブジェクトを IEnumerable オブジェクトで使用する必要があります。その理由は、ObservableCollection および IList オブジェクトは行カウントをコントロールに提供しますが、IEnumerable オブジェクトのレコードは行カウントを確認するためにトラバースしなければならないということです。xamGrid でキャッシュすると、これらのコレクションではほぼ同様の速度が維持されますが、ObservableCollection などの INotifyCollectionChanged を実装するコレクションは、変更されたときに xamGrid に通知します。これによってコントロールは正しいデータを常に反映することができます。さらに IList では、最低でも xamGrid で作業するためのデータ機能 (追加および削除など) を必要とします。最高の結果を得るためには、データ ソースに IList および INotifyCollectionChanged インターフェイスを実装することを推奨します。
+
+*データ表示*
+
+xamGrid コントロールは、xamGrid でデータのバンドを表すために link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnlayout.html[ColumnLayout] オブジェクトを使用します。たとえば、オブジェクトのコレクションにバインドして各オブジェクトが パブリック IEnumerable プロパティを公開する場合、xamGrid は 2 つの ColumnLayout オブジェクトを作成します。ひとつはデータのルート バインド用で、もうひとつはデータの子バインド用となります。基本的に、各 IEnumerable プロパティでは、コントロールは ColumnLayout オブジェクトを作成します。ColumnLayout オブジェクトは、Columns コレクションまたは ColumnLayouts コレクションの xamGrid のルート レベルで定義できます。列の定義方法および xamGrid が列レイアウトを作成する方法の詳細は、 link:xamgrid-define-column-layout.html[列レイアウトの定義]を参照してください。
+
+*階層データ バインディング*
+
+xamGrid コントロールは、コントロールを修正せずに、階層データを提示できます。xamGrid コントロールの ItemSource プロパティを設定するだけでこれを実行できます。デフォルトでは、xamGrid の AutoGenerate プロパティは true に設定されています。これは、xamGrid がデータ ソースのデータと全く同じように表示されることを意味します。列レイアウトを定義してデータの変換方法を制御できます。詳細については、「ノード レイアウトの定義」を参照してください。
+
+pick:[sl="*WCF RIA データ バインディング サポート*"]
+
+pick:[sl="WCF RIA を使用して xamGrid コントロールをデータベースへバインドすることも可能です。この機能にコードを書く必要はありません。詳細については、link:c9fd3e89-4a5a-484f-82a8-799ad9f1df50[「xamGrid での WCF RIA の使用」]トピックを参照してください。"]
+
+== 関連トピック
+
+link:xamgrid-columns.html[列]

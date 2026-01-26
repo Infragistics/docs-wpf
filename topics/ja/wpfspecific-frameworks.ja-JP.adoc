@@ -1,0 +1,20 @@
+﻿////
+|metadata|
+{
+    "name": "wpfspecific-frameworks",
+    "controlName": [],
+    "tags": [],
+    "guid": "bc44fc23-8ccf-46a7-b5d1-fa8cf5a18a25",
+    "buildFlags": [],
+    "createdOn": "2012-02-07T14:22:27.280195Z"
+}
+|metadata|
+////
+
+= フレームワーク
+
+以下のフレームワーク コントロールは WPF 専用です。
+
+* link:excelengine.html[Infragistics Excel Engine]
+* link:thememanager.html[Infragistics テーマ マネージャー]
+* link:wpf-reporting.html[WPF Reporting]

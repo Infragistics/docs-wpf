@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcontextmenu-about-xamcontextmenu",
+    "controlName": ["xamContextMenu"],
+    "tags": ["Getting Started"],
+    "guid": "{649F91A6-5CDA-454D-98D4-18FE8BCB304A}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.7830975Z"
+}
+|metadata|
+////
+
+= xamContextMenu について
+
+xamContextMenu™ コントロールによって、Microsoft® {PlatformName}™ アプリケーションのためのコンテキスト メニューを作成することができます。xamContextMenu コントロールと xamMenu コントロールは両方とも共通の基本クラス (xamMenuBase) を共有するので、両方のコントロールで多くの同じプラクティスを活用できます。
+
+xamMenu コントロールと全く同じように、xamContextMenu コントロールはアプリケーション固有のコマンドまたはタスクを表す項目のリストを表示します。一般的にメニュー項目をクリックするとサブメニューが開くか、アプリケーション ロジックが実行されます。
+
+このコントロールの重要な機能の一部を以下にリストします。
+
+* *チェックボックス* - エンドユーザーが複数の項目を選択できるようにチェックボックスを追加します。
+* *構成可能* - エンドユーザーが右クリックまたは左クリックした時に開くように xamContextMenu を構成できます。Infragistics コマンディング フレームワークを使用して xamContextMenu を開くことさえできます。
+* *階層メニュー項目* - 階層データをバインドする、またはメニュー項目を追加して階層メニュー項目を表示します。
+* *アイコン* - 各メニュー項目の目的を示す支援をするためにアイコンを追加します。
+* *配置* - エンドユーザーがコンテキスト メニューを開いたときに指定した位置に表示するようにコンテキスト メニューの配置を設定できます。
+
+image::images/xamContextMenu_About_xamContextMenu_01.png[]
+
+== 関連トピック
+
+link:xamcontextmenu-getting-started-with-xamcontextmenu.html[xamContextMenu をページに追加]
+
+link:xamcontextmenu-using-xamcontextmenu.html[xamContextMenu の使用]

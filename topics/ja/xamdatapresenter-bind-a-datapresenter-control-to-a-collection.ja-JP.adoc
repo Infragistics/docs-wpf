@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-bind-a-datapresenter-control-to-a-collection",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "{E92D1E72-4597-4EE0-B315-1CBF483D5916}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0989729Z"
+}
+|metadata|
+////
+
+= DataPresenter コントロールをコレクションにバインド
+
+
+
+IEnumerable インターフェイスを実装するコレクションを含め、複数の異なるデータ ソースに DataPresenter コントロールをデータ バインドできます。ObjectDataProvider を使用して、アプリケーションのプレゼンテーション層にコレクションを公開できます。ObjectDataProvider をまだ作成していない場合、コード例に進む前に link:creating-an-objectdataprovider.html[ObjectDataProvider の作成]の手順を読みで、それに従ってください。
+
+以下の例のコードは、DataPresenter コントロールをコレクションにバインドする方法を示します。
+
+image::images/xamDataPresenter_Bind_xamDataPresenter_to_a_Collection.png[xamDataPresenter をコレクションにバインド]
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter 
+    Name="xamDataPresenter1" 
+    DataSource="{Binding Source={StaticResource CarData}}">
+</igDP:XamDataPresenter>
+----
+
+== 関連トピック
+
+link:xamdatapresenter-bind-a-datapresenter-control-to-an-xmldataprovider.html[DataPresenter コントロールを XmlDataProvider にバインド]
+
+link:xamdatapresenter-binding-a-datapresenter-control-to-a-dataset.html[DataPresenter コントロールを DataSet にバインド]
+
+link:xamdata-displaying-hierarchical-data.html[階層データを表示]

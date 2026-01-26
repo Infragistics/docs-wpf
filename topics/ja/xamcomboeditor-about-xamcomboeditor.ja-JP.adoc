@@ -1,0 +1,34 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-about-xamcomboeditor",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{937F0765-5AA5-45C4-B584-8967A03EC196}",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7021006Z"
+}
+|metadata|
+////
+
+= xamComboEditor について
+
+xamComboEditor コントロールには、エンド ユーザーの入力のための項目および値表示がついたドロップダウン コンテナーが含まれています。
+
+このコントロールは ItemsControl ではありません。XAML で項目を直接追加できません。これは、データに正確にバインドする必要があるコントロールです。このコントロールの重要な機能の一部は次のとおりです。
+
+* *モード* - 編集モードと選択モード。これらのモードは link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~iseditable.html[IsEditable] プロパティによって構成されます。デフォルトで編集モードが有効です。
+* *フィルタリング* - link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~allowfiltering.html[AllowFiltering] プロパティで有効になります。この機能は、デフォルトで有効になっています。さらに、xamComboEditor コントロールの link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemFilters] プロパティを使用してフィルターをカスタマイズできます。StartsWith、EndsWith、Contains および DoesNotContain という役に立つ比較演算子がいくつかあります。
+* 選択モードで、エンドユーザーはドロップダウン リストで項目をフィルターする 1 秒タイマー内のフィルター基準を入力できます。選択モードでは、エンドユーザーが入力したフィルター基準はコントロールのテキスト ボックスに表示されません。編集モードでは、テキスト ボックスに入力したものすべてがドロップダウン リストで項目をフィルターします。
+* *AutoComplete* - 編集モードで動作します。エンドユーザーが入力を開始すると、コントロールはデータをフィルターして、強調表示することによって残りの候補のテキストを表示します。この機能はコントロールの link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~autocomplete.html[AutoComplete] プロパティによって構成されます。この機能は、デフォルトで無効になっています。
+* *複数項目の選択* - link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection] プロパティを使用してこの機能を有効にします。Ctrl キーを使用することによって複数項目が選択されます。この機能は編集モードと選択モードの両方で使用できます。Edit モードで、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~multiselectvaluedelimiter.html[MultiSelectValueDelimiter] プロパティで固有の区切り文字を設定できます。このように、データをコントロールに入力する時にエンド ユーザーは複数の区切られた値を入力できます。
+* 項目を選択するために*チェック ボックス* を使用することも可能です。link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility] プロパティを Visible に設定することによってチェック ボックスを表示できます。この機能は編集モードと選択モードの両方で有効にできます。この方法は複数項目選択に非常に便利です。Ctrl キーを押す必要がないためです。また、xamComboEditor コントロールのトグル ボタンをクリックするか、Esc キーを押すまでドロップダウン リストは閉じません。
+* *新しい項目の追加* - xamComboEditor コントロールによって、値入力フィールドに入力して Enter キーを押すだけで項目としてカスタム値を入力できます。
+* コントロール項目で簡単に作業できます。これらを追加、削除、無効にできます。DataTemplate で完全にカスタマイズ可能です。
+
+== 関連トピック
+
+link:xamcomboeditor-adding-xamcomboeditor-to-your-page.html[xamComboEditor をページに追加]
+
+link:xamcomboeditor-using-xamcomboeditor.html[xamComboEditor の使用]

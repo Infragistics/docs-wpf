@@ -1,0 +1,167 @@
+﻿////
+
+|metadata|
+{
+    "name": "resources-sampledatautil",
+    "controlName": [],
+    "tags": ["Sample Data Source"],
+    "guid": "5d6050a5-0bd1-49c6-b90a-497485b1219f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.3820588Z"
+}
+|metadata|
+////
+
+= SampleDataUtil
+
+*Visual Basic の場合:*
+
+----
+Imports System.Data
+Imports System.Data.SqlClient
+Public NotInheritable Class SampleDataUtil
+    Private Sub New()
+    End Sub
+    'このメソッドは Northwind サンプル データベースがインストールされていることを前提とします 
+    'このメソッドは Northwind データベースから顧客情報のフラット DataSet を返します 
+    Public Shared Function GetCustomers(ByVal serverAddress As String) As DataSet
+        Dim connectionString As String = String.Format("Data Source={0}; Initial Catalog=Northwind; Integrated Security=True", serverAddress)
+        Dim customerDataSet As New DataSet("Northwind")
+        'SqlConnection を作成します。 
+        Using conn As New SqlConnection(connectionString)
+            'Customers テーブルですべてのフィールドを取得する select コマンドを作成します。 
+            Dim customerSelectCommand As New SqlCommand("SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax FROM Customers", conn)
+            '上記の作成した Command オブジェクトを使用してデータ アダプタを作成します。 
+            Dim customerAdapter As New SqlDataAdapter(customerSelectCommand)
+            Try
+                'DataSet を埋めます。 
+                customerAdapter.Fill(customerDataSet, "Customers")
+            Catch e As 例外
+                '問題があり、例外メッセージをデバッグ出力ウィンドウに書き込む場合、サイレントで失敗します。 
+                System.Diagnostics.Debug.WriteLine(e.Message)
+            End Try
+        End Using
+        Return customerDataSet
+    End Function
+    'このメソッドは Northwind サンプル データベースがインストールされていることを前提とします。 
+    'このメソッドは Northwind データベースから顧客/注文情報の階層的な DataSet を返します。 
+    Public Shared Function GetCustomersOrders(ByVal serverAddress As String) As DataSet
+        Dim connectionString As String = String.Format("Data Source={0}; Initial Catalog=Northwind; Integrated Security=True", serverAddress)
+        '顧客データで DataSet を初期化します。 
+        Dim customerOrderDataSet As DataSet = GetCustomers(serverAddress)
+        Using conn As New SqlConnection(connectionString)
+            Dim orderSelectCommand As New SqlCommand("SELECT OrderID, CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry FROM Orders", conn)
+            Dim orderAdapter As New SqlDataAdapter(orderSelectCommand)
+            Try
+                orderAdapter.Fill(customerOrderDataSet, "Orders")
+                'Orders DataTable を埋めた後、Customers DataTable と Orders DataTable の間に DataRelation を追加します。 
+                customerOrderDataSet.Relations.Add("Customer_Orders", customerOrderDataSet.Tables("Customers").Columns("CustomerID"), customerOrderDataSet.Tables("Orders").Columns("CustomerID"))
+            Catch e As Exception
+                System.Diagnostics.Debug.WriteLine(e.Message)
+            End Try
+        End Using
+        Return customerOrderDataSet
+    End Function
+    'このメソッドは Northwind サンプル データベースがインストールされていることを前提とします 
+    'このメソッドは在庫の上位 10 製品を返します 
+    Public Shared Function GetTop10ProductsInStock(ByVal serverAddress As String) As DataSet
+        Dim connectionString As String = String.Format("Data Source={0}; Initial Catalog=Northwind; Integrated Security=True", serverAddress)
+        Dim top10ProductsDataSet As New DataSet("Northwind")
+        Using conn As New SqlConnection(connectionString)
+            Dim productSelectCommand As New SqlCommand("SELECT TOP 10 UnitsInStock, ProductID FROM Products ORDER BY UnitsInStock DESC", conn)
+            Dim productAdapter As New SqlDataAdapter(productSelectCommand)
+            Try
+                productAdapter.Fill(top10ProductsDataSet, "Products")
+            Catch e As Exception
+                System.Diagnostics.Debug.WriteLine(e.Message)
+            End Try
+        End Using
+        Return top10ProductsDataSet
+    End Function
+End Class
+----
+
+*C# の場合:*
+
+----
+using System;
+using System.Data;
+using System.Data.SqlClient;
+namespace IGDocumentation
+{
+    public static class SampleDataUtil
+    {
+        //このメソッドは Northwind サンプル データベースがインストールされていることを前提とします
+        //このメソッドは Northwind データベースから顧客情報のフラット DataSet を返します
+        public static DataSet GetCustomers(string serverAddress)
+        {
+            string connectionString = string.Format("Data Source={0}; Initial Catalog=Northwind; Integrated Security=True", serverAddress);
+            DataSet customerDataSet = new DataSet("Northwind");
+            //SqlConnection を作成します。
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                //Customers テーブルですべてのフィールドを取得する select コマンドを作成します。
+                SqlCommand customerSelectCommand = new SqlCommand("SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax FROM Customers", conn);
+                //上記の作成した Command オブジェクトを使用してデータ アダプタを作成します。
+                SqlDataAdapter customerAdapter = new SqlDataAdapter(customerSelectCommand);
+                try
+                {
+                    //DataSet を埋めます。
+                    customerAdapter.Fill(customerDataSet, "Customers");
+                }
+                catch (Exception e)
+                {
+                    //問題があり、例外メッセージをデバッグ出力ウィンドウに書き込む場合、サイレントで失敗します。
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+            }
+            return customerDataSet;
+        }
+        //このメソッドは Northwind サンプル データベースがインストールされていることを前提とします。
+        //このメソッドは Northwind データベースから顧客/注文情報の階層的な DataSet を返します。
+        public static DataSet GetCustomersOrders(string serverAddress)
+        {
+            string connectionString = string.Format("Data Source={0}; Initial Catalog=Northwind; Integrated Security=True", serverAddress);
+            //顧客データで DataSet を初期化します。
+            DataSet customerOrderDataSet = GetCustomers(serverAddress);
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand orderSelectCommand = new SqlCommand("SELECT OrderID, CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry FROM Orders", conn);           
+                SqlDataAdapter orderAdapter = new SqlDataAdapter(orderSelectCommand);
+                try
+                {
+                    orderAdapter.Fill(customerOrderDataSet, "Orders");
+                    //Orders DataTable を埋めた後、Customers DataTable と Orders DataTable の間に DataRelation を追加します。
+                    customerOrderDataSet.Relations.Add("Customer_Orders", customerOrderDataSet.Tables["Customers"].Columns["CustomerID"], customerOrderDataSet.Tables["Orders"].Columns["CustomerID"]);
+                }
+                catch(Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+            }
+            return customerOrderDataSet;
+        }
+        //このメソッドは Northwind サンプル データベースがインストールされていることを前提とします
+        //このメソッドは在庫の上位 10 製品を返します
+        public static DataSet GetTop10ProductsInStock(string serverAddress)
+        {
+            string connectionString = string.Format("Data Source={0}; Initial Catalog=Northwind; Integrated Security=True", serverAddress);
+            DataSet top10ProductsDataSet = new DataSet("Northwind");
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand productSelectCommand = new SqlCommand("SELECT TOP 10 UnitsInStock, ProductID FROM Products ORDER BY UnitsInStock DESC", conn);
+                SqlDataAdapter productAdapter = new SqlDataAdapter(productSelectCommand);
+                try
+                {
+                    productAdapter.Fill(top10ProductsDataSet, "Products");
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+                }
+            }
+            return top10ProductsDataSet;
+        }
+    }
+}
+----

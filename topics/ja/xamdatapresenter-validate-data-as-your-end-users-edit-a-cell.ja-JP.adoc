@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-validate-data-as-your-end-users-edit-a-cell",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Validation"],
+    "guid": "{18DA436E-770C-4736-87E7-69F95F155767}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3480227Z"
+}
+|metadata|
+////
+
+= エンドユーザーがセルを編集するとデータを検証
+
+
+
+xamDataPresenter™ コントロールはセルがフォーカスを失うとデータ ソースを更新します。IDataErrorInfo インターフェイスのサポートを有効にすると、エンドユーザーがセルの値をアクティブに編集中は検証情報は表示されません。その代わりに、検証情報を見るためには、セルからフォーカスを移動する必要があります。ただし、xamDataPresenter の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~cellchanged_ev.html[CellChanged] イベントを処理してセルの値を手動で設定することによって、エンドユーザーがセルに入力する時にフィードバックを提供することもできます。
+
+以下のコード例は、エンドユーザーがセルを編集中にデータを検証する方法を示しています。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" CellChanged="xamDataPresenter1_CellChanged">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings SupportDataErrorInfo="RecordsAndCells" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter.Events
+...
+Private Sub xamDataPresenter1_CellChanged(ByVal sender As Object, ByVal e As CellChangedEventArgs)
+    Dim val As Object = e.Editor.Value
+    If Not (TypeOf e.Cell.Record Is FilterRecord) Then
+        If DBNull.Value = val Then
+            val = Nothing
+        End If
+        e.Cell.Value = val
+    End If
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter.Events;
+...
+private void xamDataPresenter1_CellChanged( object sender, CellChangedEventArgs e )
+{
+    object val = e.Editor.Value;
+    if (!(e.Cell.Record is FilterRecord))
+    {
+        if ( DBNull.Value == val )
+            val = null;
+        e.Cell.Value = val;
+    }
+}
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-enable-idataerrorinfo-interface-support.html[IDataErrorInfo インターフェイスのサポートを有効にする]
+
+link:xamdatapresenter-styling-data-errors.html[データ エラーのスタイリング]
+
+link:xamdatapresenter-validating-edited-cell-data-in-xamdatapresenter.html[xamDataPresenter で編集したセル データを検証]

@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-limiting-the-number-of-items-viewed-on-xamcarouselpanels-path",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["How Do I"],
+    "guid": "{BA8DC2AF-99DC-46EE-9D6E-F638D537B37E}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0767685Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel のパスで表示される項目数を制限
+
+
+
+xamCarouselPanel コントロールはパスに沿って多数の項目を表示します。link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~itemsperpage.html[CarouselViewSettings] オブジェクトの link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[ItemsPerPage] プロパティを修正することによって、パスに沿って表示される項目数を変更できます。
+
+以下のコードは一度に 3 項目表示します。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        <igWindows:CarouselViewSettings ItemsPerPage="3" />
+</igWindows:XamCarouselPanel.ViewSettings>
+----
+
+link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]の開始の XamCarouselPanel タグ内にこのコードを配置すると、以下の画像のような結果になります。
+
+image::images/xamCarousel_Limiting_the_Number_of_Items_Viewed_on_the_Path_01.png[xamcarouselpanel で項目数のビューを制限する]

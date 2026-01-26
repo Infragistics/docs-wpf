@@ -1,0 +1,66 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-enable-clipboard-operations",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Tips and Tricks"],
+    "guid": "{C285C874-0310-42C1-95F0-84C700A99685}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1719875Z"
+}
+|metadata|
+////
+
+= クリップボード操作を有効にする
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowclipboardoperations.html[AllowClipboardOperations] プロパティを AllowClipboardOperations 列挙値のビット単位の組み合わせに設定することによって、DataPresenter コントロールのクリップボード操作を有効にできます。ただし、AllowClipboardOperations プロパティ値は、フィールドレイアウト内のエディターのクリップボード操作に影響しません。たとえば、コピー操作を有効にする場合、エンド ユーザーは編集モードに入り、セルのエディターで切り取りまたは貼り付けなどの他のクリップボード操作を実行できます。
+
+クリップボード操作は、Microsoft® Excel® の対応する操作と同様に機能します。たとえば、エンド ユーザーは、切り取りまたはコピー操作を実行する前に矩形状のセル領域を選択する必要があります。セルは互いに隣接している必要はありませんが、クリップボードに追加するとき、DataPresenter コントロールはそれらを隣接セルとして扱います。さらに、貼り付け操作の動作は、Excel の場合と同様に、エンド ユーザーが選択したセルに応じて変化します。
+
+* エンド ユーザーが隣接セルを選択し、選択セルの大きさが、クリップボード内のデータの大きさの倍数である場合、DataPresenter コントロールはそのデータをタイル状に貼り付けます。たとえば、クリップボード内のデータが 2 x 1 の大きさのセルを含み、エンド ユーザーがそのデータを貼り付ける前に 6 x 1 の大きさのセルを選択する場合、DataPresenter コントロールはデータを 3 つの 2 x 1 のタイルに貼り付けます。
+* エンド ユーザーの選択が前述の条件を満たさない場合、DataPresenter コントロールは、クリップボード内の大きさと一致する矩形状のセルにデータを貼り付けようとします。最初のフィールドに最も近い選択セルとデータ レコードは、矩形の左上隅にあります。ただし、矩形に十分なスペースがない場合、DataPresenter コントロールは、データをクリップまたは貼り付け操作をキャンセルするためのオプションをエンド ユーザーに提供するダイアログ ボックスを表示します。
+
+DataPresenter コントロールは、エンド ユーザーがコピーまたは切り取り操作を実行するとき、選択に対応するフィールド ヘッダーをクリップボードに追加しません。ただし、FieldLayoutSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~copyfieldlabelstoclipboard.html[CopyFieldLabelsToClipboard] プロパティを True に設定することによって、フィールド ヘッダーをコピーまたは切り取り操作に含めることができます。
+
+以下のコード例は、クリップボード操作を有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AllowClipboardOperations="Copy, Paste" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldLayoutSettings.AllowClipboardOperations = AllowClipboardOperations.Copy Or AllowClipboardOperations.Paste;
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldLayoutSettings.AllowClipboardOperations = AllowClipboardOperations.Copy | AllowClipboardOperations.Paste;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-perform-clipboard-operations.html[クリップボード操作の実行]
+
+link:xamdatapresenter-handle-clipboard-operation-errors.html[クリップボード操作エラーの処理]
+
+link:xamdatapresenter-prevent-clipboard-operations-from-modifying-a-field.html[クリップボード操作でフィールドが変更されることを防止する]
+
+link:xamdatapresenter-prevent-the-addition-of-specific-formats-to-the-clipboard.html[クリップボードへの特定の形式の追加を防止する]

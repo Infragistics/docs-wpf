@@ -1,0 +1,354 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-clipboard",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "6171466c-dada-438f-8121-d9f6922df3d2",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.5263066Z"
+}
+|metadata|
+////
+
+= クリップボードの管理 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールのクリップボードの操作について、開発者の観点から説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362363405,xamRichTextEditor のクリップボード サポートとは>>
+* <<_Ref362363409,クリップボードによる切り取り>>
+* <<_Ref362363414,クリップボードによるコピー>>
+* <<_Ref362363419,クリップボードにより貼り付け>>
+* <<_Ref362363496,ClipboardOperationExecuting イベント>>
+* <<_Ref362363502,ClipboardOperationExecuted イベント>>
+* <<_Ref362363440,関連コンテンツ>>
+
+[[_Ref362363405]]
+== xamRichTextEditor のクリップボード サポートとは
+
+=== はじめに
+
+_xamRichTextEditor_   コントロールでは、クリップボード操作による切り取り、コピー、貼り付けができます。コンテンツの一部を異なる場所に移動またはコピーすると、ドキュメントのリッチ コンテンツを編集できるようになります。また、他のアプリケーションからのリッチ テキスト コンテンツの貼り付けおよび他のアプリケーションへの貼り付けもできます。
+
+切り取りおよびコピー操作を利用するには、 _xamRichTextEditor_   でコンテンツを選択する必要があります。貼り付け操作では、コンテンツの選択が不要な場合もあります。
+
+* ドキュメントに選択したコンテンツがない場合、クリップボードのコンテンツが現在のカレット位置の後ろに挿入されます。
+* ドキュメントに選択したコンテンツがある場合、クリップボードのコンテンツが現在選択されたコンテンツと置換されます。
+
+[[_Ref362363409]]
+== クリップボードによる切り取り
+
+=== 概要
+
+クリップボードによる切り取りでは、選択したコンテンツをドキュメントからクリップボードに移動します。コンテンツはドキュメントから削除されます。
+
+=== 詳細
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|実行する処理:|詳細:
+
+|コマンドを使用した切り取り操作の実行
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.primitives.richtexteditorcommandsource_members.html[RichTextEditorCommandSource] クラスのインスタンス化
+|以下のプロパティを設定します。 
+
+* link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.primitives.richtexteditorcommandsource~eventname.html[EventName] 
+
+* link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.primitives.richtexteditorcommandsource~commandtype.html[CommandType] 
+
+|メソッドを使用した切り取り操作の実行
+|切り取りメソッドの起動
+|
+
+|====
+
+=== コマンドを使用したコード例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Cut">
+    <ig:Commanding.Command>
+        <igPrim:RichTextEditorCommandSource EventName="Click" CommandType="Cut" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+=== メソッドを使用したコード例
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.ActiveDocumentView.Selection.Cut();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.ActiveDocumentView.Selection.Cut()
+----
+
+[[_Ref362363414]]
+== クリップボードによるコピー
+
+=== 概要
+
+クリップボードによるコピーでは、選択したコンテンツをドキュメントからクリップボードにコピーします。
+
+=== 詳細
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|実行する処理:|詳細:
+
+|コマンドを使用したコピー操作の実行
+|`RichTextEditorCommandSource` クラスのインスタンス化
+|以下のプロパティを設定します。 
+
+`EventName` 
+
+`CommandType`
+
+|メソッドを使用したコピー操作の実行
+|コピーメソッドの起動
+|
+
+|====
+
+=== コマンドを使用したコード例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Copy">
+    <ig:Commanding.Command>
+        <igPrim:RichTextEditorCommandSource EventName="Click" CommandType="Copy" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+=== メソッドを使用したコード例
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.ActiveDocumentView.Selection.Copy();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.ActiveDocumentView.Selection.Copy()
+----
+
+[[_Ref362363419]]
+== クリップボードにより貼り付け
+
+=== 概要
+
+クリップボードによる貼り付けでは、状況に応じて、 _xamRichTextEditor_   コントロールの現在のカレット位置にクリップボードのコンテンツを挿入する、またはドキュメントで選択したコンテンツと置換します。
+
+=== 詳細
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|実行する処理:|詳細:
+
+|コマンドを使用した貼り付け操作の実行
+|`RichTextEditorCommandSource` クラスのインスタンス化
+|以下のプロパティを設定します。 
+
+`EventName` 
+
+`CommandType`
+
+|メソッドを使用した貼り付け操作の実行
+|貼り付けメソッドの起動
+|
+
+|====
+
+=== コマンドを使用したコード例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Paste">
+    <ig:Commanding.Command>
+        <igPrim:RichTextEditorCommandSource EventName="Click" CommandType="Paste" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+=== メソッドを使用したコード例
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.ActiveDocumentView.Selection.Paste();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.ActiveDocumentView.Selection.Paste()
+----
+
+[[_Ref362363426]]
+[[_Ref362363496]]
+== ClipboardOperationExecuting イベント
+
+=== 概要
+
+このイベントは、クリップボード操作を実行する前に発生します。イベント ハンドラーは、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextclipboardoperationcanceleventargs.html[ClipboardOperationCancelEventArgs] 型の引数を提供します。引数は以下の目的に使用されます。
+
+=== 詳細
+
+[options="header", cols="a,a"]
+|====
+|目的:|実行する処理:
+
+|クリップボード操作の取得
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.clipboardoperationexecutingeventargs~clipboardoperation.html[ClipboardOperation] プロパティの値を取得します。
+
+|クリップボード操作を実行するデータ オブジェクトの取得
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.clipboardoperationexecutingeventargs~dataobject.html[DataObject] プロパティの値を取得します。
+
+|実行前にクリップボード操作のキャンセル
+|Cancel プロパティを True に設定します。
+
+|====
+
+=== コード例
+
+*C# の場合:*
+
+[source,csharp]
+----
+void xamRichTextEditor1_ClipboardOperationExecuting(object sender, ClipboardOperationCancelEventArgs e)
+{
+    // クリップボード操作を取得
+    ClipboardOperation operation = e.ClipboardOperation;
+    // コンテンツをテキストとして取得
+    string s = e.DataObject.GetData("Text") as string;
+    // 条件が発生した場合にクリップボード操作をキャンセル
+    e.Cancel = true;
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub xamRichTextEditor1_ClipboardOperationExecuting(sender As Object, e As ClipboardOperationCancelEventArgs)
+      ' クリップボード操作を取得
+      Dim operation As ClipboardOperation = e.ClipboardOperation
+      ' コンテンツをテキストとして取得
+      Dim s As String = TryCast(e.DataObject.GetData("Text"), String)
+      ' 条件が発生した場合にクリップボード操作をキャンセル
+      e.Cancel = True
+End Sub
+----
+
+[[_Ref362363434]]
+[[_Ref362363502]]
+== ClipboardOperationExecuted イベント
+
+=== 概要
+
+このイベントは、クリップボード操作の実行後に発生します。イベント ハンドラーは、 link:{RootAssembly}{ApiVersion}~infragistics.controls.editors.clipboardoperationeventargs_members.html[ClipboardOperationEventArgs] 型の引数を提供します。引数は以下の目的に使用されます。
+
+=== 詳細
+
+[options="header", cols="a,a"]
+|====
+|目的:|実行する処理:
+
+|クリップボード操作の取得
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextclipboardoperationeventargs~clipboardoperation.html[ClipboardOperation] プロパティの値を取得します。
+
+|クリップボード操作を実行したデータ オブジェクトの取得
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextclipboardoperationeventargs~dataobject.html[DataObject] プロパティの値を取得します。
+
+|====
+
+=== コード例
+
+*C# の場合:*
+
+[source,csharp]
+----
+void xamRichTextEditor1_ClipboardOperationExecuted(object sender, ClipboardOperationEventArgs e)
+{
+    // クリップボード操作を取得
+    ClipboardOperation operation = e.ClipboardOperation;
+    // コンテンツをテキストとして取得
+    string s = e.DataObject.GetData("Text") as string;
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub xamRichTextEditor1_ClipboardOperationExecuted(sender As Object, e As ClipboardOperationEventArgs)
+      ' クリップボード操作を取得
+      Dim operation As ClipboardOperation = e.ClipboardOperation
+      ' コンテンツをテキストとして取得
+      Dim s As String = TryCast(e.DataObject.GetData("Text"), String)
+End Sub
+----
+
+[[_Ref362363440]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-selection.html[選択の構成]
+|このトピックは、 _xamRichTextEditor_ コントロールの複数選択機能をオンにする方法を説明します。
+
+| link:xamrichtexteditor-managing-selection.html[選択の管理]
+|このトピックは、 _xamRichTextEditor_ コントロールの選択機能を、開発者の観点から説明します。
+
+|====

@@ -1,0 +1,49 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor",
+    "tags": [],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "3a13a4d0-6773-4334-ac11-d84b85d2587e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.3683375Z"
+}
+|metadata|
+////
+
+= xamRichTextEditor
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ クロス プラットフォーム コントロールに関する情報を提供します。
+
+=== トピック
+
+このセクションには、 _xamRichTextEditor_   の目的を説明し、使用方法および必要に応じてカスタマイズする方法を紹介するトピックが含まれています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-overview.html[ _xamRichTextEditor_ の概要]
+|このグループのトピックでは、 _xamRichTextEditor_™ 機能の概要を提供し、ドキュメントのコンテンツの論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[ _xamRichTextEditor_ をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するのに役立つ詳細な操作方法を紹介します。
+
+| link:xamrichtexteditor-binding-to-data.html[ _xamRichTextEditor_ とデータのバインド]
+|このトピックでは、 _xamRichTextEditor_ コントロールを各種データ ソースにバインドするドキュメント アダプターの使用方法を説明します。
+
+| link:xamrichtexteditor-configuring-xamrichtexteditor.html[ _xamRichTextEditor_ の構成]
+|このセクションのトピックでは、 _xamRichTextEditor_ の構成について追加の情報を提供します。
+
+| link:xamrichtexteditor-managing-programmatically.html[プログラムによる _xamRichTextEditor_ の管理]
+|このセクションのトピックでは、 _xamRichTextEditor_ をプログラムによって管理する詳しい方法を説明します。
+
+| link:xamrichtexteditor-api-overview.html[API の概要]
+|このトピックは、 _xamRichTextEditor_ を使用したプログラミング中に操作する名前空間とクラスをリストします。このトピックにリストされた名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]セクションにリンクしています。
+
+|====

@@ -1,0 +1,51 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-external-themepacks",
+    "controlName": [],
+    "tags": ["Styling","Templating"],
+    "guid": "{8BD105B1-3A40-4353-AD0E-8B0C81DC902F}",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-01-30T20:33:32.0600399Z"
+}
+|metadata|
+////
+
+= 外部のテーマパック
+
+コントロールで直接テーマを指定することに加えて、外部のテーマパック アセンブリでテーマを定義することができます。詳細は、 link:wpf-creating-a-themepack.html[「テーマパックの作成」]を参照してください。
+
+{ProductName} は、より多くのスタイル オプションを提供する多数のこれらのテーマパックが添付されて出荷されており、これらの中から選択することができます。コントロール アセンブリで定義されているテーマを適用したのと全く同じ方法で外部のテーマパックで定義されたテーマを適用します。詳細は、 link:wpf-referencing-your-themepack.html[「テーマパックの参照」]を参照してください。
+
+*外部のテーマパック アセンブリでテーマを定義するには、次の手順に従ってください。*
+
+[start=1]
+. テーマパック アセンブリの名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:igThemeForestGreen="http://infragistics.com/Themes/ForestGreen"
+----
+
+[start=2]
+. Window.Resources セクションを作成して、ResourceDictionary の MergedDictionaries コレクション内で Theme コントロールを作成します。
+
+*XAML の場合:*
+
+----
+<Window.Resources>
+	<ResourceDictionary>
+		<ResourceDictionary.MergedDictionaries>
+			<igThemeForestGreen:Primitives/>
+			<igThemeForestGreen:Editors/>
+			<igThemeForestGreen:DataPresenter/>
+		</ResourceDictionary.MergedDictionaries>
+	</ResourceDictionary>
+</Window.Resources>
+----
+
+== 外部のテーマパックの命名規則
+
+{ProductName} に添付されている各テーマパックには、DataPresenter、Editors、および Primitives の 3 つのコントロールが含まれています。これらのアセンブリのデフォルトの名前空間宣言は、"igTheme" +  _ThemeName:_  igThemeForestGreen です。

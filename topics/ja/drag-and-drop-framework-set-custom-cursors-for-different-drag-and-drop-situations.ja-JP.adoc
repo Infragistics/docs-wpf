@@ -1,0 +1,65 @@
+﻿////
+
+|metadata|
+{
+    "name": "drag-and-drop-framework-set-custom-cursors-for-different-drag-and-drop-situations",
+    "controlName": ["IG Drag and Drop Framework"],
+    "tags": ["Getting Started","How Do I","Templating"],
+    "guid": "{F51C19A6-ECB9-4E36-B4C7-783229CAED93}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6850337Z"
+}
+|metadata|
+////
+
+= さまざまなドラッグ アンド ドロップ状況のカスタム カーソルを設定
+
+== 始める前に
+
+エンドユーザーが Infragistics Drag and Drop Framework 内でアクションを実行する時に使用されるデフォルトのカーソルをオーバーライドできます。以下のカーソル テンプレートを使用できます。
+
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~copycursortemplate.html[CopyCursorTemplate]
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dropnotallowedcursortemplate.html[DropNotAllowedCursorTemplate]
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~movecursortemplate.html[MoveCursorTemplate]
+
+_前提:_
+
+_このトピックは、ドラッグ アンド ドロップ機能をページにすでに実装済みであることを前提としています。詳細については、 link:drag-and-drop-framework-getting-started-with-ig-drag-and-drop-framework.html[「Infragistics Drag and Drop Framework を使用した作業の開始」]を参照してください。_
+
+== 達成すること
+
+この詳細なガイドの手順を完了すると、MoveCursorTemplate と DropNotAllowedCursorTemplate をカスタマイズしたことになります。ユーザー エクスペリエンスを向上させ、ドラッグされた要素がどの状態にあるか明確に判断するため、カーソル テンプレートを変更できます。
+
+== 次の手順を実行します
+
+[start=1]
+. DragSource オブジェクトの MoveCursorTemplate および DropNotAllowedCursorTemplate を設定します。緑色と赤色の省略記号は、ドラッグされた要素が有効なドロップ ターゲットの上にあるかどうかを示します。
+
+*XAML の場合:*
+
+----
+<ig:DragDropManager.DragSource>
+    <ig:DragSource IsDraggable="True"  DragChannels="ChannelA"  
+        Drop="DragSource_Drop" >
+        <ig:DragSource.MoveCursorTemplate>
+            <DataTemplate>
+                <Ellipse Fill="Green" Width="50" Height="50" />
+            </DataTemplate>
+        </ig:DragSource.MoveCursorTemplate>
+        <ig:DragSource.DropNotAllowedCursorTemplate>
+            <DataTemplate>
+                <Ellipse Fill="Red" Width="50" Height="50" />
+            </DataTemplate>
+        </ig:DragSource.DropNotAllowedCursorTemplate>          
+    </ig:DragSource>
+ </ig:DragDropManager.DragSource>   
+----
+
+[start=2]
+. アプリケーションを保存して実行します。
+
+== 関連トピック
+
+link:drag-and-drop-framework-ig-drag-and-drop-framework-events.html[Infragistics Drag and Drop Framework イベント]
+
+link:drag-and-drop-framework-set-drag-and-drop-channels.html[ドラッグ アンド ドロップ チャネルを設定]

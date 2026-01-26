@@ -1,0 +1,153 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-setting-and-retrieving-the-active-element",
+    "controlName": ["xamGantt"],
+    "tags": ["Editing","Events","How Do I"],
+    "guid": "59241f9e-bca7-468b-b614-67b122015c04",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2781247Z"
+}
+|metadata|
+////
+
+= アクティブ要素の設定と取得
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   コントロール内の現在アクティブなセル、列または行の設定または取得に使用されるプロパティとイベントについて説明します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-adding-xamgantt-to-a-page.html[xamGantt をページに追加]
+|このトピックでは、 _xamGantt_ コントロールをページに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションから構成されます。
+
+* <<_Ref334390331, プロパティ構成の要旨 >>
+* <<_Ref334390337, イベント要旨 >>
+* <<_Ref334390343, コード例: アクティブなタスクの識別 >>
+* <<_Ref334390352, 関連コンテンツ >>
+
+[[_Ref334390331]]
+== プロパティ構成の要旨
+
+=== プロパティ構成の要旨表
+
+以下の表には、 _xamGantt_   コントロール内のアクティブな要素を設定および検索するための、構成可能な要素と対応するプロパティが挙げられています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な要素|詳細|プロパティ
+
+|現在アクティブなセルの取得または設定
+|_xamGantt_ `ActiveCell` プロパティを通して現在アクティブなセルを識別または変更します。 
+
+このプロパティは、アクティブなセルの link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcell~row.html[行]および link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcell~column.html[列]に関する情報を公開します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~activecell.html[ActiveCell]
+
+|現在アクティブな列の取得または設定
+|_xamGantt_ `ActiveColumn` プロパティを通して、現在アクティブな列を識別または変更します。 
+
+このプロパティは、アクティブな列の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcolumn~key.html[キー]に関する情報を公開します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~activecolumn.html[ActiveColumn]
+
+|現在アクティブな行の取得または設定
+|_xamGantt_ `ActiveRow` プロパティを通して、現在アクティブな行を識別または変更します。 
+
+このプロパティは、アクティブな link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridrow~task.html[タスク]に関する情報を公開します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~activerow.html[ActiveRow]
+
+|====
+
+[[_Ref334390337]]
+== イベント要旨
+
+=== イベントの要旨表
+
+以下の表では、 _xamGantt_   コントロール内のアクティブな要素を設定および取得するためのイベントが挙げられています。
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するイベント:
+
+|_xamGantt_ のアクティブなセルの変更を処理します
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~activecellchanged_ev.html[ActiveCellChanged]
+
+|====
+
+[[_Ref334390343]]
+== コード例: アクティブなタスクの識別
+
+=== 解説
+
+このコードは、 _xamGantt_   `ActiveCellChanged` イベントを使って、現在アクティブなタスクとその名前を識別する方法を示しています。_xamGantt_   セルで選択またはクリックすると、ActiveCellChanged イベントが常に自動的に発生します。
+
+[[_Ref334390352]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGantt x:Name="gantt" 
+             Project="{Binding Project}"
+             ActiveCellChanged="gantt_ActiveCellChanged"/>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void gantt_ActiveCellChanged(object sender, System.EventArgs e)
+{
+    if (this.gantt.ActiveRow.HasValue)
+    {
+        string msg = string.Format("The current active task is {0}.",this.gantt.ActiveRow.Value.Task.TaskName);
+        System.Diagnostics.Debug.WriteLine(msg);
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub gantt_ActiveCellChanged(sender As System.Object, e As System.EventArgs)
+    If Me.gantt.ActiveRow.HasValue Then
+        Dim msg As String = String.Format("The current active task is {0}.", Me.gantt.ActiveRow.Value.Task.TaskName)
+        System.Diagnostics.Debug.WriteLine(msg)
+    End If
+End Sub
+----
+
+[[_Ref334390352]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-retrieving-selected-elements.html[選択された要素の取得]
+|このトピックでは、 _xamGantt_ コントロール内の現在選択されているセル、列または行に関する情報の取得に使用されるイベントとその引数について説明します。
+
+| link:xamgantt-other-events-and-events-arguments.html[その他のイベントとイベント引数]
+|このトピックでは、 _xamGantt_ コントロールにおけ共通のユーザー インタラクションで起動して利用できるイベントについて解説します。
+
+|====

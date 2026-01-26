@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-integration-with-other-controls",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Charting","Getting Started","Grids"],
+    "guid": "55b8ff97-1253-476d-98ad-9e7ebcee4c05",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.142291Z"
+}
+|metadata|
+////
+
+= Integration with Other Controls (xamPivotGrid)
+
+=== Introduction
+
+The link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid_members.html[xamPivotGrid™], the link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector_members.html[xamPivotDataSelector™] and the data source ViewModels ( link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource_members.html[FlatDataSource], link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource_members.html[XmlaDataSource], etc.) can be used together with other Infragistics® controls.
+
+=== Topics
+
+Detailed information regarding integration of the pivot grid and its related components is covered in the following topics:
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xampivotgrid-integration-with-chart.html[Integration with Data Chart]
+|The topic demonstrates how to build interaction between the xamPivotGrid™ and the link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xamdatachart_members.html[xamDataChart™] controls.
+
+|====

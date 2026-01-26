@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-integration-with-other-controls",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Charting","Getting Started","Grids"],
+    "guid": "55b8ff97-1253-476d-98ad-9e7ebcee4c05",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.142291Z"
+}
+|metadata|
+////
+
+= 他のコントロールとの統合
+
+=== 概要
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid_members.html[xamPivotGrid™]、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector_members.html[xamPivotDataSelector™]、およびデータ ソース ViewModel (link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource_members.html[FlatDataSource]、 link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource_members.html[XmlaDataSource] など) は、他の Infragistics® コントロールと組み合わせて使用できます。
+
+=== トピック
+
+ピボット グリッドとその関連コンポーネントの統合に関する詳しい情報については、次のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-integration-with-chart.html[Data Chart との統合]
+|このトピックでは、xamPivotGrid™ と link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xamdatachart_members.html[xamDataChart™] コントロールの間のインタラクションの構築方法について説明しています。
+
+|====

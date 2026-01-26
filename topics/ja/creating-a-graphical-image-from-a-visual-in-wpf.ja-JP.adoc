@@ -1,0 +1,307 @@
+﻿////
+
+|metadata|
+{
+    "name": "creating-a-graphical-image-from-a-visual-in-wpf",
+    "controlName": [],
+    "tags": ["Exporting","How Do I"],
+    "guid": "b3e441f6-8cc9-4ffc-b3bc-7db2f8e1969f",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-03-26T14:59:01.5606054Z"
+}
+|metadata|
+////
+
+= WPF でグラフィックス画像をビジュアルから作成
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、WPF 組み込み機能を使用して、ビジュアルまたはビジュアル派生のオブジェクトを PNG または JPEG 画像にエクスポートする方法を示します。
+
+=== 必要な背景
+
+このトピックのコード例は、 link:datachart-datachart.html[xamDataChart™] を使用しているので、このコントロールの基本知識が必要です。
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref319052957, xamDataChart を画像にエクスポート >>
+** <<_Ref319052954,概要>>
+** <<_Ref319052987,要件>>
+** <<_Ref319052990,概要>>
+** <<_Ref319052993,手順>>
+
+* <<_Ref319053343, コード例: xamDataChart から画像を作成 >>
+** <<_Ref319053004,説明>>
+** <<_Ref319053007,コード>>
+** <<_Ref319053010,コード>>
+** <<_Ref319053012,コード>>
+
+* <<_Ref319053015, 関連コンテンツ >>
+** <<_Ref319053018,トピック>>
+** <<_Ref319053021,サンプル>>
+** <<_Ref319053024,リソース>>
+
+[[_Ref319052957]]
+== xamDataChart を画像にエクスポート
+
+[[_Ref319052954]]
+
+=== 概要
+
+内蔵機能を使用して、`Visual` クラスから派生しているクラスのインスタンスから簡単に画像を作成できます。このプロセスは、ビットマップの作成および PNG または JPEG などの一般的な圧縮画像フォーマットへのエクスポートで構成されます。以下のブロックは、この手順を概念的に説明しています。概念レベルのプロセスを理解しているのであれば、最後のコード例に進んでください。
+
+[[_Ref319052987]]
+
+=== 要件
+
+手順を完了するには、以下が必要です:
+
+* xamDataChart コントロールが使用される WPF アプリケーション。
+* Click イベントのイベント ハンドラーがあるボタン。イベント ハンドラーで、ビットマップ データをキャプチャし、画像ファイルをエンコードおよび保存するためのコードを配置します。
+
+[[_Ref319052990]]
+
+=== 概要
+
+以下はプロセスの概念的概要です。 
+
+*1. ビジュアルをビットマップに変換* 
+*2. ビットマップを画像ファイルにエンコードします。*
+
+[[_Ref319052993]]
+
+=== 手順
+
+以下の表で、手順を詳細に説明します。
+
+=== 1.ビジュアルをビットマップに変換します。
+
+*1. RenderTargetBitmap を作成します。*
+
+ビジュアルをビットマップに変換するには、ビットマップへの変換を実行するクラスのインスタンスを作成する必要があります。これは link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.imaging.rendertargetbitmap.aspx[RenderTargetBitmap] クラスです。この Class のコンストラクターでは、5 つの引数を使用できます。
+
+* 幅
+* 高さ
+* 水平方向の DPI
+* 垂直方向の DPI
+* ピクセル形式
+
+すべての引数は、`RenderTargetBitmap` インスタンスの作成に必要です。
+
+以下は、引数の使用についての考慮点です。
+
+* `FrameworkElement` 派生オブジェクトからビットマップを作成する場合、幅と高さ用に、`ActualWidth`/`ActualHeight` プロパティの値を取得します。
+* 水平方向と垂直方向の DPI 値は 96 である必要があります。これは WPF ではネイティブ DPI 値です。
+* ピクセル形式は、`System.Windows.Media.PixelFormats.Pbgra32` である必要があります。
+
+[start=2]
+*2. Visual オブジェクトを RenderTargetBitmap に描画します。*
+
+これは、`RenderTargetBitmap` クラスの `Render` メソッドを呼び出すことで実行されます。
+
+*コード例:* 
+
+以下のコード例は、コントロールのコンテンツを画像にエクスポートする方法を示します。(実際のコードでは、`ControlName` をコントロールの `Name` プロパティの実際の設定で置き換えます。たとえば、dataChart。
+
+*C# の場合:*
+
+[source,csharp]
+----
+RenderTargetBitmap bitmap = new RenderTargetBitmap((int)this.ControlName.ActualWidth, (int)this.ControlName.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+bitmap.Render(this.ControlName);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim bitmap As New RenderTargetBitmap(CInt(Me.ControlName.ActualWidth), CInt(Me.ControlName.ActualHeight), 96, 96, PixelFormats.Pbgra32)
+bitmap.Render(Me.ControlName)
+----
+
+=== 2.ビットマップ データを画像ファイルにエンコードします。
+
+*1. ファイル ストリームを作成します。*
+
+`File` クラスの静的 `Create` メソッドを、引数として出力ファイルへのパスで呼び出します。これによって `FileStream` … が作成され、エンコードされた画像データが書き込まれます。
+
+*C# の場合:*
+
+[source,csharp]
+----
+using (FileStream stream = File.Create(@"[path to file]\[file name].jpeg")) // または .png
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Using stream As FileStream = File.Create(@"[path to file]\[file name].jpeg") ' または .png
+----
+
+[start=2]
+*2. JpegBitmapEncoder または PngBitmapEncoder を作成します。*
+
+画像をエクスポートしたいファイル形式に基づいて、`JpegBitmapEncoder` または `PngBitmapEncoder` オブジェクトを作成します。JPEG にエクスポートする場合、`QualityLevel` プロパティを 1 から 100 の範囲の整数に設定することによって、画像品質を管理するオプションもあります (数値を高くすればするほど品質が良くなります。デフォルトは 75)。
+
+*コード例:*  画像品質を 90 に設定:
+
+*C# の場合:*
+
+[source,csharp]
+----
+JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+encoder.QualityLevel = 90;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim encoder As New JpegBitmapEncoder()
+                  encoder.QualityLevel = 90
+----
+
+[start=3]
+*3. RenderTargetBitmap のビットマップをエンコーダーの Frames コレクションに追加します。*
+
+*C# の場合:*
+
+[source,csharp]
+----
+encoder.Frames.Add(BitmapFrame.Create(bitmap));
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+encoder.Frames.Add(BitmapFrame.Create(bitmap))
+----
+
+[start=4]
+*4. エンコードされた画像を保存します。*
+
+メソッド マラメーターとしてストリームを渡すエンコーダーの Save メソッドを呼び出します。これは、エンコードされた画像を指定ファイルに保存します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+encoder.Save(stream);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+encoder.Save(stream)
+----
+
+[[_Ref319052998]]
+[[_Ref319053343]]
+== コード例: xamDataChart から画像を作成
+
+[[_Ref319053004]]
+
+=== 説明
+
+以下のコードは、ユーザーがボタンをクリックしたときに jpg/png エンコード画像として xamDataChart コントロールでチャートをエクスポートできる方法を示します。
+
+[[_Ref319053007]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+…
+<ig:XamDataChart xmlns:ig="http://schemas.infragistics.com/xaml"
+ x:Name="dataChart">
+…
+</ig:XamDataChart>
+<Button Click="SaveButton_Click" Content="Export Image"/>
+…
+----
+
+[[_Ref319053010]]
+
+*C# の場合:*
+
+[source,csharp]
+----
+using System.IO;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+…
+private void SaveButton_Click(object sender, RoutedEventArgs e)
+{
+    RenderTargetBitmap bitmap =
+        new RenderTargetBitmap((int)this.dataChart.ActualWidth, 
+            (int)this.dataChart.ActualHeight, 
+                  96, 96, PixelFormats.Pbgra32);
+    bitmap.Render(this.dataChart);
+    using (FileStream stream = File.Create(@"[file path]\[file name].[extension]"))
+    {
+        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+        encoder.QualityLevel = (int)this.qualitySlider.Value;
+        encoder.Frames.Add(BitmapFrame.Create(bitmap));
+        encoder.Save(stream);
+        // JPEG の代わりに、xamDataChart を PNG にエクスポートしたい場合 
+        // このコード ブロックを使用します
+        // PngBitmapEncoder encoder = new PngBitmapEncoder();
+        // encoder.Frames.Add(BitmapFrame.Create(bitmap));
+        // encoder.Save(stream);
+        }
+    }
+}
+----
+
+[[_Ref319053012]]
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports System.IO
+…
+Private Sub SaveButton_Click(sender As Object, e As RoutedEventArgs)
+      Dim bitmap As New RenderTargetBitmap(CInt(Me.SaveButtonButton.ActualWidth), CInt(Me.SaveButtonButton.ActualHeight), 96, 96, PixelFormats.Pbgra32)
+      bitmap.Render(Me.SaveButtonButton)
+      Using stream As Stream = File.Create((@"[file path]\[file name].[extension]")
+            Dim encoder As New JpegBitmapEncoder()
+            encoder.QualityLevel = 90
+            encoder.Frames.Add(BitmapFrame.Create(bitmap))
+                  encoder.Save(stream)
+            'JPEG の代わりに、xamDataChart を PNG にエクスポートしたい場合
+            'このコード ブロックを使用します
+            'Dim encoder As New PngBitmapEncoder()
+            'encoder.Frames.Add(BitmapFrame.Create(bitmap))
+            'encoder.Save(stream)
+      End Using
+End Sub
+----
+
+[[_Ref319053015]]
+== 関連コンテンツ
+
+[[_Ref319053018]]
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:datachart-getting-started-with-datachart.html[xamDataChart を使用した作業の開始]
+|Microsoft® Visual Studio® および Expression Blend® で単純なデータ バインディングを使用して xamDataChart コントロールを追加する方法を学習します。
+
+|====

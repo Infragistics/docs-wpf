@@ -1,0 +1,190 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-adding-xamorgchart-using-procedural-code",
+    "controlName": ["xamOrgChart"],
+    "tags": ["Getting Started"],
+    "guid": "fcb064f3-a350-4b05-97c5-dc59f9e5c74e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.663297Z"
+}
+|metadata|
+////
+
+= プロシージャ コードを使用して xamOrgChart を追加
+
+このトピックは、プロシージャ (C#、VB) コードを使用して xamOrgChart を追加する方法を説明します。最後に、完全なコードが個別のセクションに提供されます。手順を先に進める前に、 link:xamorgchart-adding-xamorgchart-to-your-application.html[「xamOrgChart をアプリケーションに追加」]トピックの要件を満たしていることを確認してください。
+
+== 概要
+
+追加手順の概念的な概要
+
+[start=1]
+. <<step_1,xamOrgChart コントロールをユーザーのアプリケーションに追加し、データ モデルにバインドします。>>
+[start=2]
+. <<step_2,ノード レイアウトを OrgChart に追加します。>>
+
+== 手順
+
+[[step_1]]
+[start=1]
+. xamOrgChart コントロールをユーザーのアプリケーションに追加し、データ モデルにバインドします。
+
+.. UserControl の Loaded イベントにイベント ハンドラーを追加します。
+
+*XAML の場合:*
+
+----
+<UserControl Loaded="UserControl_Loaded">
+----
+
+[start=2]
+.. コード ビハインドに using/Imports を配置します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Maps
+Imports UsingXamOrgChart
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Maps;
+using UsingXamOrgChart;
+----
+
+.. UserControl_Loaded イベント ハンドラー内で、DataContext を link:resources-departmentviewmodel.html[DepartmentViewModel] オブジェクトにバインドし、ItemsSource を Departments プロパティにバインドして、xamOrgChart コントロールのインスタンスを作成します。xamOrgChart の新しいインスタンスを Grid パネルの Children コレクションに追加します (初めて作成する時には、デフォルトで「LayoutRoot」という名前のグリッド パネルが定義されます)。
+
+*Visual Basic の場合:*
+
+----
+Dim data As New DepartmentViewModel()
+Dim OrgChart As New XamOrgChart()
+OrgChart.DataContext = data
+OrgChart.ItemsSource = data.Departments
+Me.LayoutRoot.Children.Add(OrgChart)
+----
+
+*C# の場合:*
+
+----
+DepartmentViewModel data = new DepartmentViewModel();
+XamOrgChart Org Chart = new XamOrgChart();
+OrgChart.DataContext = data;
+OrgChart.ItemsSource = data.Departments;
+this.LayoutRoot.Children.Add(OrgChart);
+----
+
+[[step_2]]
+[start=2]
+. ノード レイアウトを OrgChart に追加します。
+
+ノード レイアウト インスタンスを作成し、それらを xamOrgChart コントロールの GlobalNodeLayouts コレクションに追加します。
+
+*Visual Basic の場合:*
+
+----
+Dim departmentNodeLayout As New OrgChartNodeLayout()
+departmentNodeLayout.TargetTypeName = "Department"
+departmentNodeLayout.DisplayMemberPath = "Name"
+departmentNodeLayout.Key = "EmployeePositions"
+Dim positionNodeLayout As New OrgChartNodeLayout()
+positionNodeLayout.TargetTypeName = "EmployeePosition"
+positionNodeLayout.DisplayMemberPath = "JobTitle"
+positionNodeLayout.Key = "Employees"
+Dim employeeNodeLayout As New OrgChartNodeLayout()
+employeeNodeLayout.TargetTypeName = "Employee"
+employeeNodeLayout.DisplayMemberPath = "FirstName"
+OrgChart.GlobalNodeLayouts.Add(departmentNodeLayout)
+OrgChart.GlobalNodeLayouts.Add(positionNodeLayout)
+OrgChart.GlobalNodeLayouts.Add(employeeNodeLayout)
+----
+
+*C# の場合:*
+
+----
+OrgChartNodeLayout departmentNodeLayout = new OrgChartNodeLayout();
+departmentNodeLayout.TargetTypeName = "Department";
+departmentNodeLayout.DisplayMemberPath = "Name";
+departmentNodeLayout.Key = "EmployeePositions";
+OrgChartNodeLayout positionNodeLayout = new OrgChartNodeLayout();
+positionNodeLayout.TargetTypeName = "EmployeePosition";
+positionNodeLayout.DisplayMemberPath = "JobTitle";
+positionNodeLayout.Key = "Employees";
+OrgChartNodeLayout employeeNodeLayout = new OrgChartNodeLayout();
+employeeNodeLayout.TargetTypeName = "Employee";
+employeeNodeLayout.DisplayMemberPath = "FirstName";
+OrgChart.GlobalNodeLayouts.Add(departmentNodeLayout);
+OrgChart.GlobalNodeLayouts.Add(positionNodeLayout);
+OrgChart.GlobalNodeLayouts.Add(employeeNodeLayout);
+----
+
+== コード例: 完全なプロシージャ コード
+
+*Visual Basic の場合:*
+
+----
+Private Sub UserControl_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+   Dim data As New DepartmentViewModel()
+   Dim OrgChart As New XamOrgChart()
+   OrgChart.DataContext = data
+   OrgChart.ItemsSource = data.Departments
+   Me.LayoutRoot.Children.Add(OrgChart)
+   Dim departmentNodeLayout As New OrgChartNodeLayout()
+   departmentNodeLayout.TargetTypeName = "Department"
+   departmentNodeLayout.DisplayMemberPath = "Name"
+   departmentNodeLayout.Key = "EmployeePositions"
+   Dim positionNodeLayout As New OrgChartNodeLayout()
+   positionNodeLayout.TargetTypeName = "EmployeePosition"
+   positionNodeLayout.DisplayMemberPath = "JobTitle"
+   positionNodeLayout.Key = "Employees"
+   Dim employeeNodeLayout As New OrgChartNodeLayout()
+   employeeNodeLayout.TargetTypeName = "Employee"
+   employeeNodeLayout.DisplayMemberPath = "FirstName"
+   OrgChart.GlobalNodeLayouts.Add(departmentNodeLayout)
+   OrgChart.GlobalNodeLayouts.Add(positionNodeLayout)
+   OrgChart.GlobalNodeLayouts.Add(employeeNodeLayout)
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void UserControl_Loaded(object sender, RoutedEventArgs e)
+{
+   DepartmentViewModel data = new DepartmentViewModel();
+   XamOrgChart Org Chart = new XamOrgChart();
+   OrgChart.DataContext = data;
+   OrgChart.ItemsSource = data.Departments;
+   this.LayoutRoot.Children.Add(OrgChart);
+   OrgChartNodeLayout departmentNodeLayout = new OrgChartNodeLayout();
+   departmentNodeLayout.TargetTypeName = "Department";
+   departmentNodeLayout.DisplayMemberPath = "Name";
+   departmentNodeLayout.Key = "EmployeePositions";
+   OrgChartNodeLayout positionNodeLayout = new OrgChartNodeLayout();
+   positionNodeLayout.TargetTypeName = "EmployeePosition";
+   positionNodeLayout.DisplayMemberPath = "JobTitle";
+   positionNodeLayout.Key = "Employees";
+   OrgChartNodeLayout employeeNodeLayout = new OrgChartNodeLayout();
+   employeeNodeLayout.TargetTypeName = "Employee";
+   employeeNodeLayout.DisplayMemberPath = "FirstName";
+   OrgChart.GlobalNodeLayouts.Add(departmentNodeLayout);
+   OrgChart.GlobalNodeLayouts.Add(positionNodeLayout);
+   OrgChart.GlobalNodeLayouts.Add(employeeNodeLayout);
+}
+----
+
+== *関連トピック*
+
+link:xamorgchart-adding-xamorgchart-to-your-application.html[xamOrgChart をアプリケーションに追加]
+
+link:xamorgchart-adding-xamorgchart-using-xaml-code.html[XAML コードを使用して xamOrgChart を追加]
+
+link:xamorgchart-understanding-xamorgchart.html[xamOrgChart の理解]
+
+link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]
+
+link:xamorgchart-api-overview.html[API の概要]

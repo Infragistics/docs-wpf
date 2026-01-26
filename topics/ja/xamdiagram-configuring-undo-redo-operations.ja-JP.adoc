@@ -1,0 +1,159 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring- undo-redo-operations",
+    "tags": ["Charting","Commands","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "7367ae03-d272-459c-89c4-2f681ac328d7",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:41:18.056078Z"
+}
+|metadata|
+////
+
+= 元に戻す / やり直し操作の構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、   _xamDiagram_™ コントロールで元に戻す / やり直し操作を構成する方法を説明します。このトピックでは、 _xamDiagram_  コントロール専用の元に戻す / やり直しマネージャーを構成する方法を説明します。アプリケーションの複数のコントロールで共有するマネージャーの構成は、 link:undo-redo-framework.html[Infragistics® Undo/Redo Framework] を参照してください。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+| link:undo-redo-framework.html[Infragistics Undo/Redo Framework]
+|このトピックでは、 _Infragistics Undo/Redo Framework_™ の概要を説明し、元に戻す / やり直し機能を詳しく説明するトピックへのリンクを提供します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref389574920, 概要 >>
+* <<_Ref386642731, 元に戻す / やり直し機能の有効化 / 無効化 >>
+
+** <<_Ref385408417,概要>>
+** <<_Ref385408421,プロパティ設定>>
+
+* <<_Ref386630199, 元に戻す/やり直し履歴のクリア >>
+
+** <<_Ref385408401,概要>>
+** <<_PropertySettings,プロパティ設定>>
+
+* <<_Ref386642762, 関連コンテンツ >>
+
+** <<_Ref385408435,トピック>>
+
+[[_Ref389574920]]
+[[_Ref385408414]]
+== 概要
+
+[[_Ref386630190]]
+
+=== xamDiagram の元に戻す / やり直し機能の概要
+
+_xamDiagram_   コントロールでは、保持された操作履歴に基づいて元に戻す / やり直し操作を実行することで、元に戻す / やり直し機能をサポートしています。
+
+{ProductName} の元に戻す / やり直し機能は、 link:undo-redo-framework.html[Infragistics Undo/Redo Framework] により提供されます。このフレームワークはクロス プラットフォームで、UI による元に戻す / やり直し操作をコマンド制御によって呼び出すことができます。
+
+ダイアグラムは、元に戻す / やり直しの履歴を単独で処理できるダイアグラム固有の link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager_members.html[UndoManager] クラスのインスタンス ( _Infragistics Undo/Redo Framework_   の一部) を使用します。このユース ケースは、このヘルプ トピックで詳しく説明します。この他に、アプリケーション全体で共有する履歴をサポートするために、`UndoManager` の外部インスタンスを使用する方法もあります。
+
+デフォルトでは、元に戻す / やり直し操作は  _xamDiagram_   で有効になっています。この操作をトリガーするには、ユーザー定義によるキーの組み合わせを使用する (元に戻す操作は Ctrl+Z、やり直し操作は Ctrl+Y)、または明示的なコマンドを呼び出します。デフォルトでは、元に戻す / やり直しスタックに保存する操作の数に制限はありません。この数は、 link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager_members.html[UndoManager] クラスのプロパティの設定で制御できます。
+
+[[_Ref386642731]]
+== 元に戻す / やり直し機能の有効化 / 無効化
+
+[[_Ref385408417]]
+
+=== 概要
+
+_xamDiagram_   コントロールで元に戻す / やり直し操作を有効化または無効化するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~isundoenabled.html[IsUndoEnabled] プロパティを使用します。プロパティの値を「 _False_  」に設定すると、現在の履歴もクリアされます。
+
+[[_Ref385408421]]
+
+=== プロパティ設定
+
+以下の表は、任意の動作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ダイアグラムの元に戻す / やり直し操作の有効化
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~isundoenabled.html[IsUndoEnabled]
+|_True_
+
+|ダイアグラムの元に戻す / やり直し操作の無効化
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~isundoenabled.html[IsUndoEnabled]
+| _False_ 
+
+|====
+
+[[_Ref386630199]]
+[[_Ref385408430]]
+== 元に戻す / やり直し履歴のクリア
+
+[[_Ref385408401]]
+
+=== 概要
+
+_xamDiagram_   コントロールの現在の操作履歴をクリアするには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~clearundoredohistory.html[ClearUndoRedoHistory()] メソッドを呼び出します。このメソッドを呼び出すと、ダイアグラムのみについて元に戻す / やり直し履歴がクリアされます。(link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager_members.html[UndoManager] の外部インスタンスが作成されている場合は、このインスタンスによって管理されている他のコントロールは影響を受けません。)
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の動作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a"]
+|====
+|目的:|このメソッドを使用:
+
+|ダイアグラムの元に戻す / やり直し履歴のクリア
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~clearundoredohistory.html[XamDiagram.ClearUndoRedoHistory()]
+
+|====
+
+[[_Ref386642762]]
+== 関連コンテンツ
+
+[[_Ref385408435]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-user-interactions-configuration-overview.html[ユーザー インタラクションの構成の概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールで実行されるユーザー インタラクションのすべてのタスクの概要を説明します。
+
+| link:xamdiagram-commands-overview.html[コマンドの概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールで使用できるコマンドの動作ロジックを説明します。
+
+| link:xamdiagram-configuring-ui-elements-with-commands.html[ _xamDiagram_ コマンドを使用した UI 要素の構成]
+|このトピックでは、 _xamDiagram_ が提供するコマンドをメニューやボタンなどの UI 要素で使用する方法を説明します。
+
+| link:xamdiagram-configuring-keyboard-shortcuts.html[キーボード ショートカットの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コマンドに関連付けられたキーボード ショートカットを変更する方法について説明します。
+
+| link:undo-redo-framework-methods-and-properties-reference-by-task.html[Undo/Redo Framework メソッドおよびプロパティ参照]
+|このトピックのグループには、Infragistics Undo/Redo Framework の重要なメソッドおよびプロパティに関する参考情報が含まれます。含まれるトピックは、主要なフレームワーク クラスの参照情報、および Undo/Redo API で実行したいタスクに基づいた参照情報を解説します。
+
+|====

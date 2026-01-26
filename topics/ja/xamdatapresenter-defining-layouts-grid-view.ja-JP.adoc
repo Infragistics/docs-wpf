@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-defining-layouts-grid-view",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{93E4D6C1-54AD-4845-9360-0972E00A049D}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1389809Z"
+}
+|metadata|
+////
+
+= グリッド ビュー
+
+
+
+以下のリンクをクリックして、xamDataPresenter™ のグリッド ビューを使用してレイアウトを定義する支援を特に行うために記述されたトピックを表示します。
+
+link:xamdatagrid-about-field-moving.html[フィールドの移動について]
+
+xamDataGrid でのフィールドの移動について、および、それが可能な場面と無効にする方法について学習します。
+
+link:xamdatagrid-about-fixed-non-scrolling-fields.html[固定 (非スクロール) フィールドについて]
+
+固定フィールドおよびそれに影響するフロー方向について学習します。
+
+link:xamdatagrid-changing-the-default-column-and-row-definitions.html[デフォルトの列と行の定義を変更]
+
+フィールドの ColumnSpan および RowSpan を変更することにより、レコードのレイアウトを変更する方法を学習します。
+
+link:xamdatagrid-changing-the-record-orientation.html[レコードの方向の変更]
+
+レコードの方向を変更する方法および視覚的な表現がどのように変化するかを説明します。
+
+link:xamdatagrid-enable-fixed-fields.html[固定フィールドの有効化]
+
+エンド ユーザーにフィールドの固定を許可する際の様々なレベルを学習します。
+
+link:xamdatagrid-fix-fields.html[フィールドの固定]
+
+固定フィールドの場所を設定する方法を説明します。
+
+link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[フィールド レイアウトを xamDataPresenter に手動で割り当て]
+
+xamDataPresenter および同じデータを表示しながら、xamDataPresenter のレイアウトを動的に変更する方法を示すサンプル。

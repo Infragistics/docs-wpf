@@ -1,0 +1,675 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-binding-to-hierarchical-node-data-with-keys",
+    "tags": ["Charting","Data Binding","Data Presentation","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "22a12bbc-37ab-4f2a-b4db-63bcfd679703",  
+    "buildFlags": [],
+    "createdOn": "2014-06-25T10:59:05.0368385Z"
+}
+|metadata|
+////
+
+= キーを持つ階層ノード データへのバインド (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、_xamDiagram_™ コントロールを、キーを持つ階層ノード データにバインドする方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-binding-to-data.html[データへの _xamDiagram_ のバインド]
+|このトピックでは、 _xamDiagram_ コントロールがサポートするデータ バインディング シナリオの概要を説明します。
+
+|====
+
+=== このトピックの内容
+
+* <<_Ref391055893, キーを持つ階層ノード データへの _xamDiagram_ のバインド >>
+
+** <<_Ref391055896,概要>>
+** <<_Preview,プレビュー>>
+** <<_Prerequisites,前提条件>>
+** <<_Overview,概要>>
+** <<_Ref391055903,手順>>
+** <<_Ref382317785,全コード>>
+
+* <<_Ref391056408, 関連コンテンツ >>
+
+[[_Ref391055893]]
+== キーを持つ階層ノード データへの _xamDiagram_ のバインド
+
+[[_Ref391055896]]
+
+=== 概要
+
+以下の手順では、入力データ オブジェクトがノードを表し、各ノードが一意の文字識別子とその子オブジェクトのキーのコレクションを持つデータに _xamDiagram_ をバインドする方法を説明します。
+
+[[_Preview]]
+
+=== プレビュー
+
+以下のスクリーンショットは結果のプレビューです。
+
+image::images/xamDiagram_Binding_to_Hierarchical_Node_Data_with_Keys_1.png[]
+
+[[_Prerequisites]]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページに追加される空の _xamDiagram_ を持つ WPF アプリケーション
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~layout.html[ForceDirectedGraphDiagramLayout] のインスタンスに設定される _xamDiagram_ の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.forcedirectedgraphdiagramlayout_members.html[Layout] プロパティ
+
+[[_Overview]]
+
+=== 概要
+
+以下はプロセスの概要です。
+
+. `ItemsSource` プロパティの構成
+
+.  ノード定義の作成
+
+.  接続定義の作成
+
+[[_Ref391055903]]
+
+=== 手順
+
+以下の手順では、キーがある階層ノード データに _xamDiagram_ をバインドする方法を説明します。
+
+=== 1.ItemsSource プロパティの設定
+
+*サンプルのデータ クラスを追加します。*
+
+以下の `Person` クラスをコード ビハインドに追加します。`Person` クラスは、文字列型の Name プロパティ、整数型の Id プロパティ、および整数のリストに設定された Children プロパティを持ちます。  Children プロパティは、_xamDiagram_ の _Person-Person_ 関係を作成するために使用されます。親子のタイプの関係に対する要件はなく、任意の 2 つのタイプを使用することもできます。
+
+*C# の場合:*
+
+[source, CS]
+---- 
+public class Person : INotifyPropertyChanged
+{
+    public Person(int id, string name) { Id = id; Name = name; }
+
+    int _id;
+    public int Id
+    {
+        get { return _id; }
+        set
+        {
+            _id = value;
+            OnPropertyChanged();
+        }
+    }
+
+    string _name;
+    public string Name
+    {
+        get { return _name; }
+        set
+        {
+            _name = value;
+            OnPropertyChanged();
+        }
+    }
+
+    IList _children;
+    public IList Children
+    {
+        get { return _children; }
+        set
+        {
+            _children = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+----
+
+*VB の場合:*
+
+[source, VB]
+---- 
+Public Class Person
+    Implements INotifyPropertyChanged
+
+    Public Sub New(id As Integer, name As String)
+        Id = id
+        Name = name
+    End Sub
+
+    Private _id As Integer
+    Public Property Id() As Integer
+        Get
+            Return _id
+        End Get
+        Set
+            _id = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Private _name As String
+    Public Property Name() As String
+        Get
+            Return _name
+        End Get
+        Set
+            _name = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Private _children As IList
+    Public Property Children() As IList
+        Get
+            Return _children
+        End Get
+        Set
+            _children = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Public Event PropertyChanged As PropertyChangedEventHandler
+    Private Sub OnPropertyChanged( Optional propertyName As String = "")
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    End Sub
+End Class
+----
+
+[start=2]
+*ビュー モデル クラスを追加します。*
+
+_xamDiagram_ がバインドされる以下のリスト クラスを追加します。
+
+*C# の場合:*
+
+[source, CS]
+---- 
+public class FamilyTreeViewModel : INotifyPropertyChanged
+{
+    ObservableCollection<Person> _familyTree;
+    public ObservableCollection<Person> FamilyTree
+    {
+        get { return _familyTree; }
+        set
+        {
+            _familyTree = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public FamilyTreeViewModel()
+    {
+        var me = new Person(1, "Me");
+        var dad = new Person(2, "Dad") { Children = new List<int>() { 1 } };
+        var mom = new Person(3, "Mom") { Children = new List<int>() { 1 } };
+        var grandpa = new Person(4, "Grandpa") { Children = new List<int>() { 3 } };
+        var grandma = new Person(5, "Grandma") { Children = new List<int>() { 3 } };
+
+        FamilyTree = new ObservableCollection<Person>();
+        FamilyTree.Add(me);
+        FamilyTree.Add(dad);
+        FamilyTree.Add(mom);
+        FamilyTree.Add(grandpa);
+        FamilyTree.Add(grandma);
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+----
+
+*VB の場合:*
+
+[source, VB]
+---- 
+Public Class FamilyTreeViewModel
+    Implements INotifyPropertyChanged
+
+    Private _familyTree As ObservableCollection(Of Person)
+    Public Property FamilyTree() As ObservableCollection(Of Person)
+        Get
+            Return _familyTree
+        End Get
+        Set(value As ObservableCollection(Of Person))
+            _familyTree = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Public Sub New()
+        Dim [me] = New Person(1, "Me")
+        Dim dad = New Person(2, "Dad") With { _
+            .Children = New List(Of Integer)() From { _
+                1 _
+            } _
+        }
+        Dim mom = New Person(3, "Mom") With { _
+            .Children = New List(Of Integer)() From { _
+                1 _
+            } _
+        }
+        Dim grandpa = New Person(4, "Grandpa") With { _
+            .Children = New List(Of Integer)() From { _
+                3 _
+            } _
+        }
+        Dim grandma = New Person(5, "Grandma") With { _
+            .Children = New List(Of Integer)() From { _
+                3 _
+            } _
+        }
+
+        FamilyTree = New ObservableCollection(Of Person)()
+        FamilyTree.Add([me])
+        FamilyTree.Add(dad)
+        FamilyTree.Add(mom)
+        FamilyTree.Add(grandpa)
+        FamilyTree.Add(grandma)
+    End Sub
+
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+    Private Sub OnPropertyChanged(Optional propertyName As String = "")
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    End Sub
+End Class
+----
+
+*ItemsSource *プロパティを設定します。*
+
+`DataContext` プロパティを `FamilyTreeViewModel` クラスの新しいインスタンスに設定し、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~itemssource.html[ItemsSource] を`FamilyTree` プロパティにバインドします。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+<ig:XamDiagram ItemsSource="{Binding FamilyTree}">
+    <ig:XamDiagram.DataContext>
+        <local:FamilyTreeViewModel/>
+    </ig:XamDiagram.DataContext>
+</ig:XamDiagram>
+----
+
+=== 2.ノード定義の作成
+
+通常、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~itemssource.html[ItemsSource] および link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition_members.html[NodeDefinition] の各データ タイプが _xamDiagram_ に追加されます。1 つ以上のタイプに継承関係がある場合、最初に、最も具体的なタイプを指定する必要があります。_xamDiagram_ は、各データ項目のタイプをノード定義の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] に一致させようとします。その link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] が `IsAssignableFrom` への呼び出しに対し true を返す、最初のノード定義が選択されます。つまり、ノード定義の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] が完全に一致する場合、またはデータ項目のタイプが親タイプである場合、ノード定義が選択されます。
+
+キーを持つデータ バインディングを使用するには、ノード オブジェクトが link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~key.html[DiagramNode] クラスの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode_members.html[Key] プロパティとして設定する一意の識別子プロパティを持つ必要があります。
+
+.`Person` クラスの NodeDefinition を作成します。*
+pass:[<br/>]
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition_members.html[NodeDefinition] を作成し、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~nodedefinitions.html[NodeDefinitions] コレクションに追加します。
+
+. link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition_members.html[NodeDefinition] の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] を `Person` 型に設定します。
+
+. link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~keymemberpath.html[KeyMemberPath] を _Id_ に設定します。これは作成された link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode_members.html[DiagramNode] インスタンス の ink:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~key.html[Key] プロパティを `Id` プロパティの値に設定します。
+
+. link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~displaymemberpath.html[DisplayMemberPath] を _Name_ に設定します。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~displaymemberpath.html[DisplayMemberPath] を指定しないで、link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~nodestyle.html[NodeStyle] を介してカスタム link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] を設定しないと `ToString` メソッドはノードのコンテンツとして表示されます。
+
+. (オプション) link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~nodestyle.html[NodeStyle] を設定します。
+pass:[<br/>]
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~nodestyle.html[NodeStyle] プロパティを使用すると、ノード定義によって一致するすべての `DiagramNode` オブジェクトに適用するスタイルを設定できます。これにより、特定のデータ タイプに対して作成されたノードのカスタマイズが容易になります。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+<ig:XamDiagram.NodeDefinitions>
+    <ig:NodeDefinition
+        TargetType="{x:Type local:Person}"
+        KeyMemberPath="Id"
+        DisplayMemberPath="Name"
+        ChildKeysMemberPath="Children">
+    </ig:NodeDefinition>
+</ig:XamDiagram.NodeDefinitions>
+----
+
+=== 3.階層接続定義の作成
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectiondefinition_members.html[ConnectionDefinition] を作成し、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectiondefinitions.html[ConnectionDefinitions] コレクションに追加します。接続定義では、_xamDiagram_ が生成するデータ項目の親子関係の接続のカスタム スタイルを設定できます。接続定義は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectiondefinition~starttargettype.html[StartTargetType] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectiondefinition~endtargettype.html[EndTargetType] プロパティで一致が行われます。この例では、`Person` タイプに接続定義を設定します。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectiondefinitionbase~connectionstyle.html[ConnectionStyle] プロパティを、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection_members.html[DiagramConnection] をターゲットとするスタイルに設定します。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+<ig:XamDiagram.ConnectionDefinitions>
+    <ig:ConnectionDefinition
+        StartTargetType="{x:Type local:Person}"
+        EndTargetType="{x:Type local:Person}">
+        <ig:ConnectionDefinition.ConnectionStyle>
+            <Style TargetType="ig:DiagramConnection">
+                <Setter Property="ConnectionType" Value="Straight"/>
+                <Setter Property="Content" Value="Has Child"/>
+            </Style>
+        </ig:ConnectionDefinition.ConnectionStyle>
+    </ig:ConnectionDefinition>
+</ig:XamDiagram.ConnectionDefinitions>
+----
+
+[[_Ref382317785]]
+
+=== 全コード
+
+以下は、この手順の完全なコードです。
+
+*XAML の場合:*
+
+[source, XAML]
+---- 
+<UserControl x:Class="DiagramDocumentationSamples.HierararchicalKeysData"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ig="http://schemas.infragistics.com/xaml"
+    xmlns:local="clr-namespace:DiagramDocumentationSamples"
+    mc:Ignorable="d"
+    d:DesignHeight="600" d:DesignWidth="600">
+    <ig:XamDiagram x:Name="Diagram" ItemsSource="{Binding FamilyTree}">
+        <ig:XamDiagram.DataContext>
+            <local:FamilyTreeViewModel/>
+        </ig:XamDiagram.DataContext>
+
+        <ig:XamDiagram.NodeDefinitions>
+            <ig:NodeDefinition
+                TargetType="{x:Type local:Person}"
+                KeyMemberPath="Id"
+                DisplayMemberPath="Name"
+                ChildKeysMemberPath="Children">
+            </ig:NodeDefinition>
+        </ig:XamDiagram.NodeDefinitions>
+
+        <ig:XamDiagram.ConnectionDefinitions>
+            <ig:ConnectionDefinition
+                StartTargetType="{x:Type local:Person}"
+                EndTargetType="{x:Type local:Person}">
+                <ig:ConnectionDefinition.ConnectionStyle>
+                    <Style TargetType="ig:DiagramConnection">
+                        <Setter Property="ConnectionType" Value="Straight"/>
+                        <Setter Property="Content" Value="Has Child"/>
+                    </Style>
+                </ig:ConnectionDefinition.ConnectionStyle>
+            </ig:ConnectionDefinition>
+        </ig:XamDiagram.ConnectionDefinitions>
+
+        <ig:XamDiagram.Layout>
+            <ig:ForceDirectedGraphDiagramLayout/>
+        </ig:XamDiagram.Layout>
+    </ig:XamDiagram>
+</UserControl>
+----
+
+*C# の場合:*
+
+[source, CS]
+---- 
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
+
+namespace DiagramDocumentationSamples
+{
+    public partial class HierararchicalKeysData : UserControl
+    {
+        public HierararchicalKeysData()
+        {
+            InitializeComponent();
+        }
+    }
+
+    public class Person : INotifyPropertyChanged
+    {
+        public Person(int id, string name) { Id = id; Name = name; }
+
+        int _id;
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged();
+            }
+        }
+
+        string _name;
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        IList _children;
+        public IList Children
+        {
+            get { return _children; }
+            set
+            {
+                _children = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    public class FamilyTreeViewModel : INotifyPropertyChanged
+    {
+        ObservableCollection<Person> _familyTree;
+        public ObservableCollection<Person> FamilyTree
+        {
+            get { return _familyTree; }
+            set
+            {
+                _familyTree = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public FamilyTreeViewModel()
+        {
+            var me = new Person(1, "Me");
+            var dad = new Person(2, "Dad") { Children = new List<int>() { 1 } };
+            var mom = new Person(3, "Mom") { Children = new List<int>() { 1 } };
+            var grandpa = new Person(4, "Grandpa") { Children = new List<int>() { 3 } };
+            var grandma = new Person(5, "Grandma") { Children = new List<int>() { 3 } };
+
+            FamilyTree = new ObservableCollection<Person>();
+            FamilyTree.Add(me);
+            FamilyTree.Add(dad);
+            FamilyTree.Add(mom);
+            FamilyTree.Add(grandpa);
+            FamilyTree.Add(grandma);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+}
+----
+
+*VB の場合:*
+
+[source,VB]
+---- 
+Imports System.Collections
+Imports System.Collections.Generic
+Imports System.Collections.ObjectModel
+Imports System.ComponentModel
+Imports System.Runtime.CompilerServices
+Imports System.Windows.Controls
+
+Namespace DiagramDocumentationSamples
+
+    Public Partial Class HierararchicalKeysData
+        Inherits UserControl
+
+        Public Sub New()
+            InitializeComponent()
+        End Sub
+    End Class
+
+    Public Class Person
+        Implements INotifyPropertyChanged
+
+        Public Sub New(id As Integer, name As String)
+            Id = id
+            Name = name
+        End Sub
+
+        Private _id As Integer
+        Public Property Id() As Integer
+            Get
+                Return _id
+            End Get
+            Set
+                _id = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Private _name As String
+        Public Property Name() As String
+            Get
+                Return _name
+            End Get
+            Set
+                _name = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Private _children As IList
+        Public Property Children() As IList
+            Get
+                Return _children
+            End Get
+            Set
+                _children = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler
+        Private Sub OnPropertyChanged( Optional propertyName As String = "")
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+    End Class
+
+    Public Class FamilyTreeViewModel
+        Implements INotifyPropertyChanged
+
+        Private _familyTree As ObservableCollection(Of Person)
+        Public Property FamilyTree() As ObservableCollection(Of Person)
+            Get
+                Return _familyTree
+            End Get
+            Set(value As ObservableCollection(Of Person))
+                _familyTree = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Public Sub New()
+            Dim [me] = New Person(1, "Me")
+            Dim dad = New Person(2, "Dad") With { _
+                .Children = New List(Of Integer)() From { _
+                    1 _
+                } _
+            }
+            Dim mom = New Person(3, "Mom") With { _
+                .Children = New List(Of Integer)() From { _
+                    1 _
+                } _
+            }
+            Dim grandpa = New Person(4, "Grandpa") With { _
+                .Children = New List(Of Integer)() From { _
+                    3 _
+                } _
+            }
+            Dim grandma = New Person(5, "Grandma") With { _
+                .Children = New List(Of Integer)() From { _
+                    3 _
+                } _
+            }
+
+            FamilyTree = New ObservableCollection(Of Person)()
+            FamilyTree.Add([me])
+            FamilyTree.Add(dad)
+            FamilyTree.Add(mom)
+            FamilyTree.Add(grandpa)
+            FamilyTree.Add(grandma)
+        End Sub
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+        Private Sub OnPropertyChanged(Optional propertyName As String = "")
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+    End Class
+End Namespace
+----
+
+ 
+
+[[_Ref391056408]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-binding-to-nodes-and-connections-data-with-references.html[参照を持つノードおよび接続データへのバインド ( _xamDiagram_ )]
+|このトピックでは、入力データ オブジェクトがノードおよび接続を表し、各接続オブジェクトが開始ノードと終了ノードを表す 2 つのノード オブジェクトへの参照を持つデータに、 _xamDiagram_ コントロールをバインドする方法の手順を説明します。
+
+| link:xamdiagram-binding-to-nodes-and-connections-data-with-keys.html[キーを持つノードおよび接続データへのバインド ( _xamDiagram_ )]
+|このトピックでは、入力データ オブジェクトがノードおよび接続を表すデータに _xamDiagram_ コントロールをバインドする方法の手順を説明します。ノード オブジェクトはそれぞれ一意の文字列識別子を持ち、接続オブジェクトはそれぞれ開始ノードと終了ノードを表す 2 つのノード オブジェクトの識別子を保持する 2 つのプロパティを持ちます。
+
+| link:xamdiagram-binding-to-hierarchical-node-data-with-references.html[参照を持つ階層ノード データへのバインド ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールを階層ノード データにバインドする方法を説明します。
+
+|====

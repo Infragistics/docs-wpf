@@ -1,0 +1,148 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-the-listbackedproject-viewprovider-overview",
+    "controlName": ["xamGantt"],
+    "tags": ["Getting Started","Grids","Grouping","Scheduling"],
+    "guid": "b9810bb8-11de-4392-b8f4-1d5ecbe5e956",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.5271388Z"
+}
+|metadata|
+////
+
+= ListBackedProject ViewProvider の構成概要 (xamGantt)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 _xamGantt™_   ListBackedProject ViewProvider クラスの主要な機能の概要です。このクラスは、プロジェクト テーブルとプロジェクト ビュー インスタンスを  _xamGantt_   に提供するために使用されます。
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_ListBackedProject_ViewProvider_Overview, ListBackedProject ViewProvider の概要 >>
+
+** <<_Overview,概要>>
+
+** <<_Project_Column,プロジェクト列>>
+
+** <<_Project_Table,プロジェクト テーブル>>
+
+** <<_Project_View,プロジェクト ビュー>>
+
+* <<_Code_examples_overview, コード例の概要 >>
+
+* <<_Related_Content, 関連コンテンツ >>
+
+[[_ListBackedProject_ViewProvider_Overview]]
+== ListBackedProject ViewProvider の概要
+
+[[_Overview]]
+
+=== 概要
+
+link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider_members.html[ListBackedProjectViewProvider] は link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttable_members.html[ProjectTable] インスタンスと link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectview_members.html[ProjectView] インスタンスを  _xamGantt_   コントロールに提供するために使用されるクラスです。このクラスを使用すると、グリッド セクションに表示される列のセットをカスタマイズできます。
+
+以下の表に link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider_members.html[ListBackedProjectViewProvider] の主要なプロパティをまとめます:
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~columnitemssource.html[ColumnItemsSource]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumn_members.html[ProjectColumn] オブジェクトが作成されるデータ ソースを取得または設定します。これらのオブジェクトは ProjectTable.Columns コレクションを生成するために使用されます。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~columnpropertymappings.html[ColumnPropertyMappings]
+|`ProjectColumn` オブジェクトのデータ ソースのフィールド マッピングを指定します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~tableitemssource.html[TableItemsSource]
+|`ProjectViewProviderBase` のデータ ソースを取得または設定します`。` link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewproviderbase~tables.html[Tables] が生成されます。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~tablepropertymappings.html[TablePropertyMappings]
+|`ProjectTable` オブジェクトのデータ ソースのフィールド マッピングを指定します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~viewitemssource.html[ViewItemsSource]
+|`ProjectViewProviderBase` のデータ ソースを取得または設定します。link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewproviderbase~views.html[Views] が生成されます。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~viewpropertymappings.html[ViewPropertyMappings]
+|`ProjectView` オブジェクトのデータ ソースのフィールド マッピングを指定します。
+
+|====
+
+[[_Project_Column]]
+
+=== プロジェクト列
+
+プロジェクト列はプロジェクト テーブルで列を表すオブジェクトです。
+
+[[_Project_Table]]
+
+=== プロジェクト テーブル
+
+プロジェクト テーブルは  _xamGantt_   のグリッド部分内に表示される列のセットの定義です。
+
+[[_Project_View]]
+
+=== プロジェクト ビュー
+
+プロジェクト ビューはプロジェクト情報の特定のビューを表します。これには関連付けられたテーブル キーがあり、これはビューによって現在提供されるプロジェクト テーブルを識別します。
+
+以下の表は、プロジェクト ビューの主なプロパティについてまとめています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectview~key.html[Key]
+|ビューを一意に識別する文字列を取得または設定します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectview~settings.html[Settings]
+|ビューの設定を提供する link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings_members.html[ProjectViewSettings] タイプのオブジェクトを返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectview~sortedcolumns.html[SortedColumns]
+|グリッドで並べ替えられた列を表す link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsortdescriptioncollection_members.html[ProjectColumnSortDescriptionCollection] を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectview~tablekey.html[TableKey]
+|ビューで表示されるテーブルの ID を取得または設定します。
+
+|====
+
+[[_Code_examples_overview]]
+== コード例の概要
+
+=== コード例の概要
+
+以下の表に、ListBackedProjectViewProvider に関連付けられたコード例をまとめます。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+| link:xamgantt-code-example-changing-xamgantt-column-set.html[コード例 _xamGantt_ 列セットの変更]
+|ListBackedProjectViewProvider を使用して _xamGantt_ グリッド セクションに表示される定義済みの列のセットを指定できます。
+
+| link:xamgantt-code-example-creating-customized-view-for-xamgantt.html[コード例: _xamGantt_ のためにカスタマイズされたビューを作成]
+|ListBackedProject ViewProvider と定義済みプロジェクト列、プロジェクト テーブル、プロジェクト ビュー クラスを使用することによってカスタマイズされた xamGantt ビューを作成できます。
+
+| link:xamgantt-code-example-creating-view-for-xamgantt-using-custom-classes.html[コード例: カスタム クラスを使用して _xamGantt_ のビューを作成]
+|プロジェクト列、プロジェクト テーブルおよびプロジェクト ビューのカスタム クラスを作成し、これらのクラスを使用して xamGantt の外観をカスタマイズできます。
+
+|====
+
+[[_Related_Content]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックもあわせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-custom-calendars-for-xamgantt.html[ _xamGantt_ の ListBackedProjectViewProvider を構成]
+|このトピックは、ListBackedProjectViewProvider に関係する情報の開始点です。
+
+|====

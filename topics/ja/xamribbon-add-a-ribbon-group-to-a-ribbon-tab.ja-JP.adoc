@@ -1,0 +1,94 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-add-a-ribbon-group-to-a-ribbon-tab",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","Getting Started","Grouping","How Do I","Navigation","Selection"],
+    "guid": "{C771B6E6-7284-4279-9925-001A2E679852}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1081747Z"
+}
+|metadata|
+////
+
+= リボン タブにリボン グループを追加
+
+
+
+
+
+リボン タブを使用して、アプリケーション タスクの高いレベルの概要をエンドユーザーにまとめて提示することができます。各タブ内で、リボン グループを使用して、機能的に関連するタスクのサブセットにツールを分類することができます。
+
+以下のコード例は、2 つのリボン グループをリボン タブに追加する方法を示します。
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:XamRibbon Name="xamRibbon1">
+	<igRibbon:XamRibbon.Tabs>
+		<igRibbon:RibbonTabItem Header="Home">
+			<igRibbon:RibbonGroup 
+				Caption="Data" 
+				Id="grpData">                      
+			<!--TODO:ツールをここで追加します-->
+			</igRibbon:RibbonGroup>
+			<igRibbon:RibbonGroup 
+				Caption="Styles" 
+				Id="grpStyles">
+			<!--TODO:ツールをここで追加します-->
+			</igRibbon:RibbonGroup>
+		</igRibbon:RibbonTabItem>
+	</igRibbon:XamRibbon.Tabs>
+</igRibbon:XamRibbon>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+...
+Dim group As RibbonGroup 
+Dim tab As New RibbonTabItem() 
+tab.Header = "Home" 
+Me.xamRibbon1.Tabs.Add(tab) 
+group = New RibbonGroup() 
+group.Caption = "Data" 
+group.Id = "grpData" 
+tab.RibbonGroups.Add(group) 
+group = New RibbonGroup() 
+group.Caption = "Styles" 
+group.Id = "grpStyles" 
+tab.RibbonGroups.Add(group) 
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+...
+RibbonGroup group;
+RibbonTabItem tab = new RibbonTabItem();
+tab.Header = "Home";
+this.xamRibbon1.Tabs.Add(tab);
+group = new RibbonGroup();
+group.Caption = "Data";
+group.Id = "grpData";
+tab.RibbonGroups.Add(group);
+group = new RibbonGroup();
+group.Caption = "Styles";
+group.Id = "grpStyles";
+tab.RibbonGroups.Add(group);
+...
+----
+
+== 関連トピック
+
+link:xamribbon-adding-xamribbon-to-your-application-.html[xamRibbon をアプリケーションに追加]
+
+link:xamribbon-about-group-resizing.html[リボン グループのリサイズについて]
+
+link:xamribbon-using-the-dialog-box-launcher-to-display-a-dialog-box.html[ダイアログ ボックス ランチャーを使用してダイアログ ボックスを表示]

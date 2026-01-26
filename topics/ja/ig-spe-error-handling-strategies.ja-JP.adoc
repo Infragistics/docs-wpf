@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-spe-error-handling-strategies",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": ["Editing","Error Handling"],
+    "guid": "d62f58b3-d344-4e13-bb1c-2fcc1d76309b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.0400931Z"
+}
+|metadata|
+////
+
+= エラー処理方法 (Syntax Parsing Engine)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、構文エラーを識別するためにドキュメントの構文解析中に使用する方法について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-synchronizer-symbol-strategy.html[シンクロナイザー記号方法]
+|このトピックは、シンクロナイザー記号によるエラー処理方法について説明します。
+
+| link:ig-spe-error-production-strategy.html[エラー生産方法]
+|このトピックは、エラー生産によるエラー処理方法について説明します。
+
+| link:ig-spe-synchronizer-pair-strategy.html[シンクロナイザー ペア方法]
+|このトピックは、シンクロナイザーのペアによるエラー処理方法について説明します。
+
+| link:ig-spe-backtracking-strategy.html[バックトラッキング方法]
+|このトピックは、バックトラッキングによるエラー処理方法について説明します。
+
+|====

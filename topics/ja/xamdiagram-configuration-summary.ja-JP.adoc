@@ -1,0 +1,21 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram configuration summary",
+    "controlName": [],
+    "tags": [],
+    "guid": "5fb1d26d-e938-446d-8c40-2d3ce05eae4b",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-27T07:09:55.574831Z"
+}
+|metadata|
+////
+
+_xamDiagram_   の構成要素は、以下のカテゴリに分割できます。
+
+*  *ダイアグラムの構成*
+*  *項目の構成*  – ノードおよび接続に適用可能な構成
+*  *ノードの構成* 
+*  *接続の構成* 
+*  *ユーザー インタラクションの構成*

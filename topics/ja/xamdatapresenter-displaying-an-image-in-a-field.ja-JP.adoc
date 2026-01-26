@@ -1,0 +1,107 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-displaying-an-image-in-a-field",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Tips and Tricks"],
+    "guid": "{1A48F7B6-29D4-40EA-906C-E9EE20020C3B}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1579847Z"
+}
+|metadata|
+////
+
+= フィールドに画像を表示
+
+
+
+xamDataPresenter で、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[フィールド] に画像を表示したい場合があります。これを実行するには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] のテンプレートをオーバーライドする必要があります。
+
+以下の手順は、フィールドに画像を配置したいデータ バインドした xamDataPresenter を持っていることが前提となります。詳細については、 link:xamdatapresenter-getting-started-with-xamdatapresenter.html[xamDataPresenter をアプリケーションに追加]を参照してください。
+
+*フィールドに画像を表示するには、次の手順に従ってください。*
+
+[start=1]
+. このトピックは、ロードしたい画像をポイントする属性を持つ、 link:resources-products.html[Products.xml] ファイルを実際には使用します。 
+
+[NOTE]
+====
+注: 画像がご使用のマシンで配置される場所を反映するには、Products.xml ファイルを修正して、ロゴのパスを変更します。
+====
+
+[start=2]
+. グリッドのリソース セクションにある CellValuePresenter クラスをターゲットとするスタイルを作成する必要があります。スタイルに「ProductImage」の Key を提供する必要もあります。スタイルは以下の例のコードのようになります。
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type igDP:CellValuePresenter}" x:Key="ProductImage">
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type igDP:CellValuePresenter}">
+                <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                    <Image Margin="{TemplateBinding Padding}" 
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"/>
+                </Grid>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+[start=3]
+. 以下の XAML コードを使用して、XamDataPresenter のインスタンスを作成し名前を指定します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter x:Name="XamDataPresenter1" ... >
+  ...
+</igDP:XamDataPresenter>
+----
+
+[start=4]
+. XamDataPresenter タグ内に、以下の XAML コードを配置します。これによってフィールドのレイアウトを行い、さらに「Logo」 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] を上記で作成したスタイル、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellvaluepresenterstyle.html[CellValuePresenterStyle] に設定します。
+
+[NOTE]
+====
+*注:* フィールド レイアウトへの変更は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatapresenter~view.html[View] から独立しているため、以下のコードは GridView または CarouselView のいずれかと動作します。
+====
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter.FieldLayoutSettings>
+    <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+</igDP:XamDataPresenter.FieldLayoutSettings>
+<igDP:XamDataPresenter.FieldLayouts>
+    <igDP:FieldLayout>
+        <igDP:FieldLayout.Fields>
+            <igDP:Field Name="ProductName" Label="Product Name" >
+                <igDP:Field.Settings>
+                    <igDP:FieldSettings CellMinWidth="200" 
+                        CellWidth="200" />
+                </igDP:Field.Settings>
+            </igDP:Field> 
+            <igDP:Field Name="Logo" Label="Product Logo">
+                <igDP:Field.Settings>
+                    <igDP:FieldSettings CellMinWidth="200" CellWidth="200" 
+                        CellValuePresenterStyle="{StaticResource ProductImage}" />
+                </igDP:Field.Settings>
+            </igDP:Field>
+        </igDP:FieldLayout.Fields>
+    </igDP:FieldLayout>
+</igDP:XamDataPresenter.FieldLayouts>
+----
+
+[start=5]
+. プロジェクトをビルドして実行します。CarouselView を使用している場合には、以下の画像のようになります。
+
+image::images/xamDataPresenter_Displaying_an_Image_in_a_Field_01.png[xamDataPresenter フィールドに画像を表示]
+
+== 関連トピック
+
+link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]

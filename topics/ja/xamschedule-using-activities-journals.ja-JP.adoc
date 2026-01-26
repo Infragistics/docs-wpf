@@ -1,0 +1,101 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-activities-journals",
+    "controlName": ["xamSchedule"],
+    "tags": ["Data Presentation","How Do I","Scheduling"],
+    "guid": "277d2ea2-64f4-4466-9610-1a8671399ba4",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.8053235Z"
+}
+|metadata|
+////
+
+= 履歴
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.journal.html[Journal] エンティティは、xamSchedule がサポートするアクティビティ タイプで、メモを表示するために使用されます。Journal は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[ActivityBase] クラスから作成されるため、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment] や link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task.html[Task] などその他のアクティビティ タイプのプロパティと動作を継承します。データ コネクターによって異なりますが、Journal は、オプションで link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~end.html[End] 時間をサポートできます。
+
+*注* : End がサポートされない場合、アクティビティは 0 分アクティビティのように扱われて、サイズ変更はサポートされなくなります。
+
+== Journal インスタンスの作成
+
+開発者は Journal の新しいインスタンスを作成して、コードまたは xaml で Journal エンティティの IEnumerable コレクションを作成できます。このコレクションを link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~journalitemssource.html[JournalItemsSource] プロパティにバインドすることによって、データを link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] に、次にビューに転送できます。
+
+*XAML の場合:*
+
+----
+<ig:Journal
+    Id="j1"
+    OwningCalendarId="cal1"
+    OwningResourceId="own1"
+    Start="9/9/2010 9:12:00"
+    End="9/9/2010 10:12:00" 
+    Subject="Journal 1"
+    Description="My first Journal in XAML" />
+----
+
+*Visual Basic の場合:*
+
+----
+Dim journal = New Infragistics.Controls.Schedules.Journal() With { _
+    Key .Id = "j1", _
+    Key .OwningCalendarId = "cal1", _
+    Key .OwningResourceId = "own1", _
+    Key .Start = New DateTime(2010, 9, 9).AddHours(9).AddMinutes(12).
+        ToUniversalTime(), _
+    Key .[End] = New DateTime(2010, 9, 9).AddHours(10).AddMinutes(12).
+        ToUniversalTime(), _
+    Key .Subject = "Journal 1", _
+    Key .Description = "My first Journal in XAML" _
+}
+----
+
+*C# の場合:*
+
+----
+var journal = new Infragistics.Controls.Schedules.Journal 
+{
+    Id = "j1",
+    OwningCalendarId = "cal1",
+    OwningResourceId = "own1",
+    Start = new DateTime(2010,9,9).AddHours(9).AddMinutes(12).
+        ToUniversalTime(),
+    End = new DateTime(2010,9,9).AddHours(10).AddMinutes(12).
+        ToUniversalTime(),
+    Subject = "Journal 1",
+    Description = "My first journal in XAML"
+};
+----
+
+*注* : Journal の開始時間/終了時間は UTC 時間として指定されます。詳細は、 link:xamschedule-using-timezone-support.html[「タイム ゾーンのサポート」]を参照してください。
+
+2 番目の作成の状況は、ListScheduleDataConnector または link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector.html[WcfListScheduleDataConnector] にカスタム エンティティと link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~journalpropertymappings.html[JournalPropertyMappings] を提供する場合です。この場合、ListScheduleDataConnector は提供されるデータに基づいて Journal エンティティを作成し、それらを DataManager に渡します。
+
+== 変更
+
+UI によってエンドユーザーは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~subject.html[Subject] のダイアログまたは「インプレース」編集を使用し、Start/End プレースホルダーのドラッグ (End 時間がサポートされている場合)、または Journal 全体の表現のドラッグによって Journal エンティティを変更できます。アクティビティ ダイアログを介すか、アクティビティを選択して Delete キーを押して、アクティビティを削除する機能も提供されます。これらのケースでは、変更は UI から link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[DataManager] に渡されます。DataManager は DataConnector と通信し、変更はデータ ソースに適用されます。
+
+*注:*
+
+XamScheduleDataManager 上のカスタム link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~dialogfactory.html[DialogFactory] を使用して、独自のアクティビティ編集ダイアログを得ることが可能です。
+
+== ビジュアリゼーション
+
+その他すべてのアクティビティと同様に、Journal の視覚的な表現は矩形を使用します。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~start.html[Start] (オプションで End) を指定すると、先頭に「交差」の図形要素を付けてブロックが表示されます。
+
+image::images/xamScheduleActivities.png[]
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[ActivityBase] の派生クラスとして、Journal はアラーム、タイム ゾーンのサポートおよび繰り返し機能などの設定をサポートします。詳細は以下の関連トピックを参照してください。
+
+== 関連トピック
+
+link:xamschedule-using-activities-tzna.html[タイム ゾーン ニュートラルなアクティビティとは]
+
+link:xamschedule-using-activities-appointments.html[予定]
+
+link:xamschedule-using-activities-tasks.html[タスク]
+
+link:xamschedule-using-activities-recurrent.html[繰り返しアクティビティ]
+
+link:xamschedule-using-activities-reminders.html[アラーム]

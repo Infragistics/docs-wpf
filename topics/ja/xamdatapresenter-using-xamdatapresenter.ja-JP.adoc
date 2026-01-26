@@ -1,0 +1,50 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-using-xamdatapresenter",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{54B9B30C-1491-43D7-80B4-68385B1F9AAB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3460223Z"
+}
+|metadata|
+////
+
+= xamDataPresenter での作業
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、 _xamDataPresenter_™ コントロールの使用方法を説明し、コードで管理する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-clipboard-operations.html[クリップボード操作 ( _xamDataPresenter_ )]
+|このトピックのグループは、 _xamDataPresenter_ コントロールでクリップボード操作を構成し、コードで実行する方法を説明します。
+
+| link:xamdatapresenter-working-with-views.html[ビューの構成 ( _xamDataPresenter_ )]
+|このグループのトピックは、 _xamDataPresenter_ の定義済みのビューを構成し、カスタム ビューを作成する方法を説明します。
+
+| link:xamdatapresenter-data-operations.html[データ操作 ( _xamDataPresenter_ )]
+|このトピックのグループは、 _xamDataPresenter_ のデータの印刷およびエクスポート、およびデータの外部処理を説明します。
+
+| link:xamdatapresenter-field-operations.html[フィールド操作 ( _xamDataPresenter_ )]
+|このトピックのグループは、 _xamDataPresenter_ のフィールドのコンテンツ編集、列集計の構成、フィールド レイアウト、およびフィールド表示状態などのフィールドに関連する操作を説明します。
+
+| link:xamdatapresenter-navigating-and-selecting.html[ナビゲーションと選択 ( _xamDataPresenter_ )]
+|このトピックのグループは、 _xamDataPresenter_ コントロールでのナビゲーション (マウスおよびキーボード) および選択を説明します。
+
+| link:xamdatapresenter-record-operations.html[レコード操作 ( _xamDataPresenter_ )]
+|このトピックのグループは、 _xamDataPresenter_ で並べ替え、フィルタリング、グループ化、行番号、行および列の固定などのレコード操作を説明します。
+
+| link:xamdatapresenter-undo-operations.html[元に戻す/やり直し操作 ( _xamDataPresenter_ )]
+|このトピックのグループは、元に戻す/やり直し操作およびその機能のカスタマイズ化について説明します。
+
+|====

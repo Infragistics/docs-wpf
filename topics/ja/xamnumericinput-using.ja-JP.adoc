@@ -1,0 +1,334 @@
+﻿////
+|metadata|
+{
+    "name": "xamnumericinput-using",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing","Getting Started"],
+    "guid": "5648e377-1be7-4fd0-82fc-f540a0eeb039",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.0392633Z"
+}
+|metadata|
+////
+
+{XamNumericInputHeader}
+
+= xamNumericInput の使用
+
+== 目的
+
+このトピックでは、xamNumericInput コントロールをアプリケーションに追加し、その有益なプロパティのいくつかを使用する方法について説明します。
+
+== 前提条件
+
+まず以下のトピックを読む必要があります。
+
+* link:xamnumericinput-about.html[xamNumericInput について]
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+== xamNumericInput の構成の概要
+
+== コントロールの構成チャート
+
+以下の表は、xamNumericInput コントロールの構成可能な動作の一部を示しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な動作|構成の詳細|構成プロパティ
+
+|xamNumericInput コントロールをアプリケーションに追加
+|xamNumericInput コントロールをアプリケーションに追加するために必要な手順。
+|なし
+
+|xamNumericInput の修正
+|コントロールの主なプロパティの一部を構成します。
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~clipmode.html[ClipMode] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~nulltext.html[NullText] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~promptchar.html[PromptChar] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinbuttondisplaymode.html[SpinButtonDisplayMode] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinincrement.html[SpinIncrement] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~trimfractionalzeros.html[TrimFractionalZeros]
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~isundoenabled.html[IsUndoEnabled]
+
+|====
+
+== xamNumericInput コントロールをアプリケーションに追加
+
+=== xamNumericInput コントロールをアプリケーションの詳細に追加
+
+[start=1]
+. *Infragistics 名前空間を追加します。*
+
+.. *必要な参照を追加します。*
+
+xamNumericInput コントロールをアプリケーションに追加するには、以下の NuGet パッケージへの参照をプロジェクトに追加する必要があります。
+
+*** Infragistics.WPF.Controls.Editors.XamMaskedInput
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+.. *Infragistics 名前空間を追加します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+[start=2]
+. *xamNumericInput コントロールを追加します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamNumericInput/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim input As XamNumericInput = New XamNumericInput()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamNumericInput NumericInput = new XamNumericInput();
+----
+
+== xamNumericInput の修正
+
+=== xamNumericInput プロパティ設定の修正
+
+以下の表は、プロパティ設定の推奨構成をマップしています。プロパティには xamNumericInput コントロールから直接アクセスします。
+
+[cols="a,a,a"]
+|====
+|*目的*
+|*プロパティ*
+|*設定値*
+
+|<<SetMask,マスクの設定>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+|任意の文字列
+
+|<<InvalidValueBehavior,無効な場合は、入力された値を取り消す>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+|RevertValue
+
+|<<ClipMode,ユーザーがすべての追加記号を含む、コントロールのコンテンツのコピー>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~clipmode.html[ClipMode]
+|IncludeBoth
+
+|<<NullText,値が null の場合、特定の文字列を表示します>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~nulltext.html[NullText]
+|任意の文字列
+
+|<<PromptChar,下線以外の様々なプロンプト文字を表示します>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~promptchar.html[PromptChar]
+|任意の文字列
+
+|<<SpinButtons,値を増加/減少するためのボタンを表示します>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinbuttondisplaymode.html[SpinButtonDisplayMode]
+|Always/Focused/MouseOver
+
+|<<SpinIncrement,増加値の変更>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinincrement.html[SpinIncrement]
+|任意の数値
+
+|<<TrimFractionalZeros,値の最後にある小数のゼロを保持するように入力を設定>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~trimfractionalzeros.html[TrimFractionalZeros]
+|False
+
+|<<IsUndoEnabled,元に戻す/やり直し操作の有効化/無効化>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~isundoenabled.html[IsUndoEnabled]
+|True/False
+
+|====
+
+== xamNumericInput の詳細を修正
+
+[[SetMask]]
+[start=1]
+. *Mask の設定*
+
+入力コントロールの設定の最も重要な要素は、Mask プロパティの構成です。によって、自分のニーズに合ったマスクを設定します:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamNumericInput Mask="[Your Mask]"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+NumericInput.Mask = "[Your Mask]"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+NumericInput.Mask = "[Your Mask]";
+----
+
+マスクの作成方法の詳細は、 link:xaminputs-masks.html[マスク]トピックを参照してください。
+
+[[InvalidValueBehavior]]
+[start=2]
+. *無効な場合は、入力された値を取り消します。*
+
+ユーザーが無効な値を入力したときの xamNumericInput の動作方法には、複数のオプションがあります。InvalidValueBehavior プロパティを RevertValue に設定すると、ユーザーが無効な値を入力して入力コントロールを終了すると、常にその値は元の値に戻ります。
+
+[[ClipMode]]
+[start=3]
+. *すべての追加記号を含め、ユーザーはコントロールのコンテンツをコピーできます。*
+
+ClipMode プロパティを IncludeBoth に設定すると、すべてのプロンプト文字とマスク リテラルを含む、入力コントロールのコンテンツがクリップボードにコピーされます。
+
+[[NullText]]
+[start=4]
+. *値が null の場合、特定の文字列を表示します。*
+
+コントロールに値が入力されない場合、または値が null 値にバインドされている場合、表示される文字列を設定することができます。NullText プロパティを希望の文字列に設定することで、これを実行することができます。このように、入力内容や、値が入力されていないことを明示的にユーザーに知らせることができます。
+
+[[PromptChar]]
+[start=5]
+. *下線以外の様々なプロンプト文字を表示します。*
+
+xamNumericInput で使用されるデフォルトのプロンプト文字は下線ですが、PromptChar プロパティを自分が選択した文字に設定することによって、この動作を変更することができます。
+
+[[SpinButtons]]
+[start=6]
+. *値を増加/減少するためのボタンを表示します。*
+
+xamNumericInput コントロールの値を増加または減少させるためのボタンを表示したい場合、SpinButtonDisplayMode を Always、Focused、または MouseOver に設定する必要があります。
+
+[[SpinIncrement]]
+[start=7]
+. *増加値の変更。*
+
+SpinIncrement プロパティを指定しない場合は、SpinButtons がクリックされたときに使用されるデフォルトの増加/減少値は 1 になります。ただし、別の値を使用したい場合は、SpinIncrement として希望の値を設定することによって、値を変えることができます。
+
+[[SetMask]]
+[[TrimFractionalZeros]]
+[start=8]
+. *値の最後にある小数のゼロを保持するように入力を設定します。*
+
+xamNumericInput コントロールの値の小数の場所の最後のゼロを表示したい場合は、TrimFractionalZeros プロパティを False に設定します。
+
+[[IsUndoEnabled]]
+[start=9]
+. *元に戻す/やり直し操作を有効/無効にします。*
+
+xamInputs は CTRL + Z および CTRL + Y キーの組み合わせによってトリガーされた元に戻す/やり直し操作をデフォルトでサポートします。この機能を無効にするには、IsUndoEnabled プロパティを False に設定します。
+
+注:
+
+[NOTE]
+====
+`IsUndoEnabled` プロパティを無効にすると、元に戻す/やり直すスタックをクリアします。元に戻す/やり直すを無効にした後に再び有効にする場合、元に戻す/やり直すの履歴がクリアされるためコマンドは実行されません。
+====
+
+== xamNumericInput の修正例
+
+以下の画像は、以下の設定の結果として、編集モードと表示モードの xamNumericInput コントロールを示しています。
+
+[cols="a,a"]
+|====
+|*プロパティ*
+|*設定*
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+|{double:-5.3:c}
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+|RevertValue
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~clipmode.html[ClipMode]
+|IncludeBoth
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~nulltext.html[NullText]
+|Enter double
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~promptchar.html[PromptChar]
+|n
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinbuttondisplaymode.html[SpinButtonDisplayMode]
+|Focused
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinincrement.html[SpinIncrement]
+|0.01
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~trimfractionalzeros.html[TrimFractionalZeros]
+|False
+
+|====
+
+[cols="a,a"]
+|====
+|編集モード:
+|表示モード:
+
+|image::images/xamInputs_xamNumericInput_Using_2.png[] 
+|image::images/xamInputs_xamNumericInput_Using_1.png[] 
+
+|====
+
+=== xamNumericInput プロパティの参照の修正
+
+これらのプロパティの詳細情報は、プロパティ参照セクションのリストを参照してください。
+
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~clipmode.html[ClipMode]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~nulltext.html[NullText]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~promptchar.html[PromptChar]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinbuttondisplaymode.html[SpinButtonDisplayMode]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinincrement.html[SpinIncrement]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~trimfractionalzeros.html[TrimFractionalZeros]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+ifdef::sl,wpf,win-rt[]
+* link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[データ編集用の xamGrid セルにおける xamInput コントロールの使用]
+
+endif::sl,wpf,win-rt[]

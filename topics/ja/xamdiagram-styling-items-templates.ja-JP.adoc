@@ -1,0 +1,404 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-styling-items-templates",
+    "tags": [],
+    "controlName": ["xamDiagram"],
+    "guid": "f6106f4a-669b-4838-856e-228743a03b8b",  
+    "buildFlags": [],
+    "createdOn": "2014-09-25T11:14:59.8322955Z"
+}
+|metadata|
+////
+
+= ダイアグラム項目の内容の視覚化の構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、ダイアグラムの項目の内容についてDataTemplates を設定する方法、およびこれらの内容を編集するためにDataTemplates を設定する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref386568673, 概要 >>
+
+** <<_DiagramItemsTemplatesSummary,ダイアグラムの項目テンプレートの概要>>
+** <<_Ref386568682,ダイアグラム項目の内容の可視化構成の概要>>
+** <<_Ref386568688,ダイアグラム項目の内容の可視化構成の概要表>>
+
+* <<_Ref391037139, カスタム表示テンプレートの構成 >>
+
+** <<_Ref386568700,概要>>
+** <<_PropertySettings,プロパティ設定>>
+** <<_Ref386568709,例>>
+
+* <<_Ref391037158, カスタム編集テンプレートの構成 >>
+
+** <<_Ref391037160,概要>>
+** <<_Ref391037163,プロパティ設定>>
+** <<_Ref391037165,例>>
+
+* <<_Ref386568715, 関連コンテンツ >>
+
+[[_Ref386568673]]
+== 概要
+
+[[_DiagramItemsTemplatesSummary]]
+
+=== ダイアグラムの項目テンプレートの概要
+
+ダイアグラムの項目には、項目の内容に適用できる、表示テンプレートと編集テンプレートの 2 つのテンプレートがあります。表示テンプレートはコンテンツの表現を定義し、編集テンプレートは項目の内容を編集する場合に適用します。
+
+以下のスクリーンショットは、デフォルトの項目内容とダイアグラムのノードに適用された編集テンプレートを示しています。
+
+[options="header", cols="a,a"]
+|====
+|表示テンプレート|編集テンプレート
+
+|image::images/xamDiagram_Configuring_the_Diagram_Items_Content_Visualization_1.png[]
+|image::images/xamDiagram_Configuring_the_Diagram_Items_Content_Visualization_2.png[]
+
+|====
+
+[[_Ref386568682]]
+
+=== ダイアグラム項目の内容の可視化構成の概要
+
+表示テンプレートを使用して、ダイアグラム項目の内容 (ノードおよび接続) の視覚的表現を管理します。また、ノード レベルの一連のプロパティは、水平方向の配置や余白、コンテナー要素 (はめ込み / オーバーラップ) に関連する要素のフローなどと言った、コンテンツの可視化の細かな要素の処理に大変便利です。
+
+表示テンプレートは定義済みで提供され、デフォルトでダイアグラムの項目に適用されます。デフォルトのデータ テンプレートは、コンテンツ コンテナー用のテンプレートを指定します。ノードおよび接続の両方で同じテンプレートを使用します。`Text` プロパティが `DiagramItem.Content` 値にバインドされた `TextBlock` コントロール (ノードの場合のみ、テキスト ブロックの周囲の余白は 2 ピクセル)。
+
+ノードには、コンテンツ コンテナー内でノードのコンテンツの配置を制御する、一連の明示的なプロパティがあります。これらのプロパティによって、配置をテンプレートで定義せずに構成できます。これらのプロパティは、以下のとおりです。
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~leftcontentoffset.html[LeftContentOffset]
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~rightcontentoffset.html[RightContentOffset]
+* `HorizontalContentAlignment`
+* `VerticalContentAlignment`
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~contentlayoutbehavior.html[ContentLayoutBehavior]
+
+ダイアグラム接続の場合、コンテンツは常に接続線の中央に配置します。
+
+.注:
+[NOTE]
+====
+データ テンプレートに定義されているコンテンツ コンテナーと、ダイアグラム ノードの図形を混同しないでください。これらは、2 つの異なるエンティティです。一般的なダイアグラム作成ソフトウェアにおけるノードとは異なり、ノード図形そのものがコンテンツを表します。コンテンツ コンテナーは、ノード図形は同じではありませんが、高度なシナリオではノード コンテナーをノード図形の代わりとして、テンプレートで構成できます。
+====
+
+.注:
+[NOTE]
+====
+ダイアグラム ノードの場合、`DisplayTemplate` は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[ShapeType] プロパティおよび link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[Geometry] プロパティの設定に関係なく、常に適用されます。ノードの図形の設定では、これらのプロパティが使用されることを前提としています。`DisplayTemplate` でコンテンツのプレゼンテーションを定義し、必要に応じて、前述のプロパティを使用してこのプレゼンテーションを微調整してください。(ノード図形を構成する方法の詳細は、 link:xamdiagram-configuring-the-shape-of-diagram-nodes-overview.html[ダイアグラム ノードの図形の構成]を参照してください。)
+====
+
+[[_Ref386568688]]
+
+=== ダイアグラム項目の内容の可視化構成の概要表
+
+以下の表は、ダイアグラムのノードおよび接続のコンテンツの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a,a"]
+|====
+|モード|構成可能な項目|詳細|プロパティ
+
+|表示
+|コンテンツの水平方向の余白
+|水平方向の余白 (コンテンツの左端と右端の間およびコンテナーの端の空白スペース) は、個別のプロパティを使用して左の余白と右の余白を構成します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~leftcontentoffset.html[LeftContentOffset] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~rightcontentoffset.html[RightContentOffset] 
+
+|
+|コンテンツの配置
+|水平方向および垂直方向の配置は、個別のプロパティを使用して構成します。
+|
+* `HorizontalContentAlignment` 
+
+* `VerticalContentAlignment` 
+
+|
+|コンテンツ レイアウトの動作
+|コンテンツ サイズがノード サイズよりも大きい場合は、コンテナーが収まるようにトリミングする、または (link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] に基づいて) 調整なしの状態で表示します。調整なしの状態で表示する場合、コンテンツは重なるコンテナーの外側にはみ出します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~contentlayoutbehavior.html[ContentLayoutBehavior] 
+
+|
+|すべての要素 (テンプレート)
+|`DataTemplate` を使用して、ダイアグラムのノードまたは接続のコンテンツの表示方法を設定します。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] が明示的に設定されていない場合、前述のデフォルトのテンプレートが適用されます。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[Content] 
+
+|編集
+|すべての要素 (テンプレート)
+|`DataTemplate` を使用して、編集モードでのダイアグラムのノードまたは接続のコンテンツの表示方法を設定できます。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~edittemplate.html[EditTemplate] が明示的に設定されていない場合、前述のデフォルトのテンプレートが適用されます。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~edittemplate.html[EditTemplate] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[Content] 
+
+|====
+
+[[_Ref391037139]]
+== カスタム表示テンプレートの構成
+
+[[_Ref386568700]]
+
+=== 概要
+
+ダイアグラムのノードまたは接続用のカスタム テンプレートを適用するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] プロパティを、  link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[Content] プロパティの値がデータ テンプレートの `DataContext` として内部で設定されている `DataTemplate` に設定します。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|カスタム表示テンプレートの設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DiagramItem.DisplayTemplate]
+|目的の `DataTemplate`
+
+|====
+
+[[_Ref386568709]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamDiagram_   でノードおよび接続がどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[DiagramNode.Content]
+| _「ボタンのコンテンツ テンプレート」_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DiagramNode.DisplayTemplate]
+|*XAML の場合:* 
+
+[source,XAML]
+---- 
+<DataTemplate> 
+    <Button Content="{Binding}" /> 
+</DataTemplate>
+----
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[DiagramConnection.Content]
+| _Orange_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DiagramConection.DisplayTemplate]
+|*XAML の場合:* 
+
+[source,XAML]
+---- 
+<DataTemplate> 
+    <Ellipse 
+        Fill="{Binding}" 
+        Stroke="{Binding Stroke, RelativeSource={RelativeSource AncestorType=ig:DiagramConnection}}" 
+        Width="20" Height="20"/> 
+</DataTemplate>
+----
+
+|====
+
+image::images/xamDiagram_Configuring_the_Diagram_Items_Content_Visualization_3.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+<ig:XamDiagram>
+    <ig:DiagramNode Content="Button Content Template" Width="160">
+        <ig:DiagramNode.DisplayTemplate>
+            <DataTemplate>
+                <Button Content="{Binding}" />
+            </DataTemplate>
+        </ig:DiagramNode.DisplayTemplate>
+    </ig:DiagramNode>
+    <ig:DiagramConnection Content="Orange" StartPosition="0,150" EndPosition="120,150">
+        <ig:DiagramConnection.DisplayTemplate>
+            <DataTemplate>
+                <!-- Binding the ellipse's fill to the connection's
+                Content and the Stroke to the connection's Stroke -$$->$$
+                <Ellipse
+                    Fill="{Binding}"
+                    Stroke="{Binding Stroke, RelativeSource={RelativeSource AncestorType=ig:DiagramConnection}}"
+                    Width="20" Height="20"/>
+            </DataTemplate>
+        </ig:DiagramConnection.DisplayTemplate>
+    </ig:DiagramConnection>
+</ig:XamDiagram>
+----
+
+[[_Ref391037158]]
+[[_Ref386568694]]
+== カスタム編集テンプレートの構成
+
+[[_Ref391037160]]
+
+=== 概要
+
+ダイアグラム ノードまたはダイアグラム接続用にカスタム編集テンプレートを適用するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~edittemplate.html[EditTemplate] プロパティを `DataTemplate` に設定します。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[Content] プロパティの値は、データ テンプレートの `DataContext` として内部で設定されています。
+
+[[_Ref391037163]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|カスタム コンテンツ編集テンプレートの設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~edittemplate.html[DiagramItem.EditTemplate]
+|目的の `DataTemplate`
+
+|====
+
+[[_Ref391037165]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamDiagram_   のノードおよび接続が編集モードでどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[DiagramNode.Content]
+| _New Content?_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~edittemplate.html[DiagramNode.EditTemplate]
+|*XAML の場合:* 
+
+[source,XAML]
+---- 
+<DataTemplate> 
+    <StackPanel> 
+        <TextBlock Text="Enter Display Text:" Foreground="WhiteSmoke" /> 
+        <TextBox Text="{Binding Content, RelativeSource={RelativeSource AncestorType=ig:DiagramNode}}"/> 
+    </StackPanel> 
+</DataTemplate>
+----
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[DiagramConnection.Content]
+| _Orange_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~edittemplate.html[DiagramConection.EditTemplate]
+|*XAML の場合:* 
+
+[source,XAML]
+---- 
+<DataTemplate> 
+    <ComboBox SelectedItem="{Binding .}"> 
+        <sys:String>Orange</sys:String> 
+        <sys:String>Green</sys:String> 
+        <sys:String>Blue</sys:String> 
+        <sys:String>Red</sys:String> 
+        <ComboBox.ItemTemplate> 
+            <DataTemplate> 
+                <Ellipse Fill="{Binding Content, RelativeSource={RelativeSource AncestorType=ig:DiagramConnection}}" Width="20" Height="20"/> 
+            </DataTemplate> 
+        </ComboBox.ItemTemplate> 
+    </ComboBox> 
+</DataTemplate>
+----
+
+|====
+
+image::images/xamDiagram_Configuring_the_Diagram_Items_Content_Visualization_4.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,XAML]
+----
+<ig:XamDiagram xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <ig:DiagramNode Content="Button Content Template" Width="160">
+        <ig:DiagramNode.EditTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <TextBlock Text="Enter Display Text:" Foreground="WhiteSmoke" />
+                    <TextBox Text="{Binding Content, RelativeSource={RelativeSource AncestorType=ig:DiagramNode}}"/>
+                </StackPanel>
+            </DataTemplate>
+        </ig:DiagramNode.EditTemplate>
+        <ig:DiagramNode.DisplayTemplate>
+            <DataTemplate>
+                <Button Content="{Binding}" />
+            </DataTemplate>
+        </ig:DiagramNode.DisplayTemplate>
+    </ig:DiagramNode>
+    <ig:DiagramConnection Content="Orange" StartPosition="0,150" EndPosition="120,150">
+        <ig:DiagramConnection.EditTemplate>
+            <DataTemplate>
+                <!-- ComboBox の SelectedItemを接続のコンテンツにバインドします複合オブジェクトを接続のコンテンツとして設定する場合は、編集対象のプロパティのプロパティのパスに設定されたパスへの単純なバインディングだけで十分です。-$$->$$
+                <ComboBox SelectedItem="{Binding Content, RelativeSource={RelativeSource AncestorType=ig:DiagramConnection}}">
+                    <sys:String>Orange</sys:String>
+                    <sys:String>Green</sys:String>
+                    <sys:String>Blue</sys:String>
+                    <sys:String>Red</sys:String>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Ellipse Fill="{Binding}" Width="20" Height="20"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </DataTemplate>
+        </ig:DiagramConnection.EditTemplate>
+        <ig:DiagramConnection.DisplayTemplate>
+            <DataTemplate>
+                <!-- 楕円の塗りつぶしを接続のコンテンツに、
+                ストロークを接続のストロークにバインドします-$$->$$
+                <Ellipse
+                    Fill="{Binding}"
+                    Stroke="{Binding Stroke, RelativeSource={RelativeSource AncestorType=ig:DiagramConnection}}"
+                    Width="20" Height="20"/>
+            </DataTemplate>
+        </ig:DiagramConnection.DisplayTemplate>
+    </ig:DiagramConnection>
+</ig:XamDiagram>
+----
+
+[[_Ref386568715]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-the-shape-of-diagram-nodes-overview.html[ダイアグラム ノードの図形の構成 ( _xamDiagram_ )]
+|このトピックでは、定義済みの図形を選択、またはカスタム図形を適用して、 _xamDiagram_ コントロールのダイアグラム ノードの図形を構成する方法を説明します。
+
+|====

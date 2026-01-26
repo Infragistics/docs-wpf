@@ -1,0 +1,138 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtoolbar",
+    "controlName": ["xamToolbar"],
+    "tags": [],
+    "guid": "b7b69219-1c79-4b89-93bd-f143d0342dff",  
+    "buildFlags": [],
+    "createdOn": ""
+}
+|metadata|
+////
+
+= xamToolbar [ベータ版]
+
+Toolbar コンポーネントは、スタンドアロンで、または link:datachart-datachart.html[XamDataChart] および `link:categorychart-overview.html[XamCategoryChart]` コンポーネントと対話するための UI 操作のコンパニオン コンテナーです。これにより、事前定義された SVG アイコンを使用して `XamDataChart` など上のプロパティのプリセットから簡単に選択できるようになりますが、プロジェクト用のカスタム ツールを作成する機能も提供されます。多数の属性を利用して、使用中のアイコンを定義または変更したり、さまざまなスタイルをアイコンに適用したりできます。`Toolbar` には独自の SVG アイコンが表示されます。
+
+image:images/toolbar_01.png[]
+
+Toolbar には `Target` プロパティが含まれています。これは、DataChart などの別のコンポーネントをリンクするために使用されます。
+
+*XAML の場合:* +
+[source,xaml]
+----
+<Grid Grid.Row="0">
+    <ig:XamToolbar
+        Name="Toolbar"
+        Target="{Binding ElementName=chart}"
+        Orientation="Horizontal">
+    </ig:XamToolbar>
+</Grid>
+<Grid Grid.Row="2">
+    <ig:XamDataChart  Name="chart">
+    ...
+    </ig:XamDataChart>
+ </Grid>
+----
+
+チャートが Toolbar にリンクされると、いくつかの既存の `ToolAction` 項目とメニューが使用可能になります。次の名前は、ツールの追加、編集、表示/非表示の切り替えなどのさらなるカスタマイズに必要な Tool/Tool `OverlayId` 名のリストです。これらの名前は、`OverlayId`、`BeforeId`、`AfterId` に割り当てることができます。
+
+以下は、提供されている DataChart ツール操作とそれに関連付けられた `OverlayId` のリストです。
+
+ズーム操作 
+
+* `ZoomReset`: チャート上で `ResetZoom` メソッドを呼び出し、ズーム レベルをデフォルトの位置にリセットする `ToolActionLabel`。
+* `ZoomMenu`: チャートのズーム レベルを増減するためにチャート上で `ZoomIn` および `ZoomOut` メソッドを呼び出す 2 つの `ToolActionLabel` 項目を公開する `ToolActionIconMenu`。
+
+トレンド操作  
+
+* `AnalyzeMenu`: チャートのさまざまなオプションを構成するためのいくつかのオプションを含む `ToolActionIconMenu`。
+ ** `AnalyzeHeader`: サブ セクションのヘッダー。
+  *** `LinesMenu`: チャート上で水平破線を表示するためのさまざまなツールが含まれるサブ メニュー。
+    **** `LinesHeader`: 次の 3 つのツールのサブメニュー セクション ヘッダー:
+      ***** `MaxValue`: シリーズの最大値で yAxis に沿って水平破線を表示する `ToolActionCheckbox`。
+      ***** `MinValue`: シリーズの最小値で yAxis に沿って水平破線を表示する `ToolActionCheckbox`。
+      ***** `Average`: シリーズの平均値で yAxis に沿って水平破線を表示する `ToolActionCheckbox`。
+  *** `TrendsMenu`: さまざまな近似曲線を `XamDataChart` プロット領域に適用するためのツールを含むサブ メニュー。
+    **** `TrendsHeader`: 次の 3 つのツールのサブメニュー セクション ヘッダー:
+      ***** `Exponential`: チャート内の各シリーズの `TrendLineType` を `Exponential Fit` に設定する `ToolActionRadio`。
+      ***** `Linear`: チャート内の各シリーズの `TrendLineType` を `LinearFit` に設定する `ToolActionRadio`。
+      ***** `Logarithmic`: チャート内の各シリーズの `TrendLineType` を `LogarithmicFit` に設定する `ToolActionRadio`。
+      ***** `None`: すべての近似曲線を削除するための `ToolActionRadio`。
+ ** `HelpersHeader`:  サブ セクションのヘッダー。
+  *** `SeriesAvg`: `Average` タイプの `ValueLayerValueMode` を使用して、チャートのシリーズ コレクションに `ValueLayer` を追加または削除する `ToolActionCheckbox`。
+  *** `ValueLabelsMenu`:  `XamDataChart` のプロット領域に注釈を表示するためのさまざまなツールを含むサブ メニュー。
+    **** `ValueLabelsHeader`: 次のツールのサブ メニュー セクション ヘッダー:
+      ***** `ShowValueLabels`: `CalloutLayer` を使用してデータ ポイント値を切り替える `ToolActionCheckbox`。
+      ***** `ShowLastValueLabel`: `FinalValueLayer` を使用して最終値軸の注釈を切り替える `ToolActionCheckbox`。
+ ** `ShowCrosshairs`: チャートの `CrosshairsDisplayMode` プロパティを介してマウスオーバー十字線の注釈を切り替える `ToolActionCheckbox`。
+ ** `ShowGridlines`: X-Axis に `MajorStroke` を適用することで追加のグリッド線を切り替える `ToolActionCheckbox`。
+
+コピー動作
+
+* `Copy as Image` (画像としてコピー): このメニューには、チャートの画像をクリップボードにコピーするオプションが提供されます。
+
+### ツール操作
+
+以下は、ツールバーに追加できる `ToolAction` 項目のリストです。
+
+- `ToolActionButton`
+- `ToolActionCheckbox`
+- `ToolActionColorEditor`
+- `ToolActionCombo`
+- `ToolActionIconButton`
+- `ToolActionIconMenu`
+- `ToolActionLabel`
+- `ToolActionNumberInput`
+- `ToolActionRadio`
+
+これらの各ツールは、マウスのクリックとしてツールと対話するとトリガーできる `OnCommand` イベントを公開します。
+
+`ToolAction` オブジェクトの `OverlayId`、`BeforeId`、および `AfterId` プロパティを使用して、新規および既存のツールの位置を変更したり、非表示にマークしたりすることができます。ToolActions は `Visibility` プロパティも公開します。
+
+### カラー エディター
+
+image:images/color-editor.png[]
+
+### カスタムツール操作
+
+*XAML の場合:* +
+[source,xaml]
+----
+<ig:ToolActionLabel
+    IconName="MyCustomIcon"
+    IconCollectionName="MyCustomCollection"
+    CommandId="MyCustomAction"
+    OnCommand="myTool_OnCommand"
+    Name="toolActionLabel2">
+</ig:ToolActionLabel>
+----
+
+*C# の場合:*
+[source,csharp]
+----
+SvgIconRegistry.Instance.AddSvgPathString("MyCustomCollection", "MyCustomIcon",
+@"
+<svg>Custom Icon</svg>
+");
+
+
+private void myTool_OnCommand(object sender, ToolCommandEventArgs e)
+{
+    switch (e.Command.CommandId)
+    {
+        case "MyCustomAction":
+           //Custom Action Logic Here
+    }
+}
+----
+
+### 垂直方向
+
+デフォルトでは、ツールバーは水平の `Orientation` 位置で表示されますが、垂直に表示する機能もあります。
+
+### テーマ/スタイル設定 
+
+アイコン コンポーネントは、その `BaseTheme` プロパティを `Toolbar` に直接使用することでスタイル設定できます。

@@ -1,0 +1,150 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","How Do I","Layouts","Templating"],
+    "guid": "{E3875378-8348-4C67-8307-4BC6055A8BA3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2520035Z"
+}
+|metadata|
+////
+
+= フィールド レイアウトを xamDataPresenter を手動で割り当て
+
+
+
+DataPresenter コントロールの複数の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] を作成できます。これによってひとつのソースからデータを取得し、ひとつの DataPresenter コントロール内に異なった表示を行うことができます。
+
+以下の手順は、データ バインドされた xamDataPresenter があり、フィールド レイアウトを手動で割り当てることを想定しています。詳細については、 link:xamdatapresenter-getting-started-with-xamdatapresenter.html[xamDataPresenter をアプリケーションに追加]を参照してください。
+
+以下の手順は、すべてのデータが link:resources-quarterbacks.html[Quarterbacks.xml] と呼ばれるひとつのファイルから来ているというようなシナリオの設定を説明します。このデータから 3 つの FieldLayouts が作成され、passing、rushing、mistakes というグループにデータを分割します。
+
+[start=1]
+. 以下の XAML は xamDataPresenter のインスタンスを作成し名前を指定します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter x:Name="XamDataPresenter1" 
+  ...
+  AssigningFieldLayoutToItem="XamDataPresenter1_AssigningFieldLayoutToItem">
+        ...      
+</igDP:XamDataPresenter>
+----
+
+[start=2]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[AutoGenerateFields] プロパティを False に設定することによって、自動フィールド生成をオフにします。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~labellocation.html[LabelLocation] プロパティを InCells に設定することによって、個々のセルに置かれているラベルの場所を変更できます。以下の XAML は、FieldLayoutSettings オブジェクトにあるこれらの 2 つのプロパティを設定します。
+
+*XAML の場合:*
+
+----
+...
+        <igDP:XamDataPresenter.FieldLayoutSettings>
+                <igDP:FieldLayoutSettings AutoGenerateFields="False" 
+                  LabelLocation="InCells"/>
+        </igDP:XamDataPresenter.FieldLayoutSettings>
+...
+----
+
+[start=3]
+. 設定の 2 番目のグループで、希望するすべての個別の FieldLayouts を定義します。前述のように、3 つの個別のグループがあり、関連する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] がそれらの下に配列されています。さらに、Label が指定されていない場合に使用される、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~label.html[Name] だけよりも詳細に説明する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~name.html[Label] を各フィールドに提供しました。
+
+*XAML の場合:*
+
+----
+...
+        <igDP:XamDataPresenter.FieldLayouts>
+                <igDP:FieldLayout Key="passing">
+                        <igDP:FieldLayout.Fields>
+                                <igDP:Field Name="passingyards" 
+                                  Label="Total Passing Yards" />
+                                <igDP:Field Name="passingyardsperattempt" 
+                                  Label="Passing Yards/Attempt" />
+                                <igDP:Field Name="passingyardspergame" 
+                                  Label="Passing Yards/Game" />
+                                <igDP:Field Name="passingtd" 
+                                  Label="Passing Touchdowns" />
+                                <igDP:Field Name="int" Label="Interceptions" />
+                        </igDP:FieldLayout.Fields>
+                </igDP:FieldLayout>
+                <igDP:FieldLayout Key="rushing">
+                        <igDP:FieldLayout.Fields>
+                                <igDP:Field Name="rushs" Label="Rushes" />
+                                <igDP:Field Name="rushyrds" 
+                                  Label="Rushing Yards" />
+                                <igDP:Field Name="rushyardspergame" 
+                                  Label="Rushing Yard/Game" />
+                                <igDP:Field Name="rushavg" 
+                                  Label="Rushing Average" />
+                                <igDP:Field Name="rushtd" 
+                                  Label="Rushing Touchdowns" />
+                                <igDP:Field Name="sack" Label="Sacks" />
+                        </igDP:FieldLayout.Fields>
+                </igDP:FieldLayout>
+                <igDP:FieldLayout Key="mistakes">
+                        <igDP:FieldLayout.Fields>
+                                <igDP:Field Name="yardslost" 
+                                  Label="Yards Lost" />
+                                <igDP:Field Name="fum" 
+                                  Label="Fumbles" />
+                                <igDP:Field Name="fuml" 
+                                  Label="Fumbles Lost" />
+                        </igDP:FieldLayout.Fields>
+                </igDP:FieldLayout>
+        </igDP:XamDataPresenter.FieldLayouts>
+...
+----
+
+[start=4]
+. xamDataPresenter の XAML 宣言で、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~assigningfieldlayouttoitem_ev.html[AssigningFieldLayoutsToItem] イベントのイベント ハンドラ メソッドを設定します。このイベントで、最初に表示される FieldLayout を変更します。スクロールバーを移動すると、このサンプルでこのイベントが発生します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter.Events
+...
+Private index As Integer = 0
+Sub XamDataPresenter1_AssigningFieldLayoutToItem(ByVal sender As Object, _
+  ByVal e As AssigningFieldLayoutToItemEventArgs)
+        .FieldLayout = Me.XamDataPresenter1.FieldLayouts(index)
+        index += 1
+        If index > 2 Then
+                index = 0
+        End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter.Events;
+...
+private int index = 0;
+...
+void XamDataPresenter1_AssigningFieldLayoutToItem(object sender, 
+  AssigningFieldLayoutToItemEventArgs e)
+{
+        e.FieldLayout = this.XamDataPresenter1.FieldLayouts[index];
+        index++;
+        if (index > 2)
+        {
+			index = 0; 
+		}
+}
+----
+
+[start=5]
+. プロジェクトをビルドして実行します。以下の図のようになります。
+
+image::images/xamDataGrid_Manually_Assigning_a_Field_Layout_to_xamDataGrid_01.png[フィールド レイアウトを手動的に割り当てする]
+
+== 関連トピック
+
+link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+
+link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+
+link:xamdatapresenter-add-unbound-fields-to-a-datapresenter-control.html[DataPresenter コントロールにバインドされていないフィールドを追加]

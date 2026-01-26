@@ -1,0 +1,83 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-enable-row-summaries",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Summaries"],
+    "guid": "{F2EFF2DC-A479-4699-8C5C-2A3726B67167}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1839899Z"
+}
+|metadata|
+////
+
+= 行集計を有効
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowsummaries.html[AllowSummaries] プロパティを True に設定することによって、xamDataPresenter™ のフィールドで行集計を選択する機能をエンド ユーザーに与えることができます。AllowSummaries プロパティを True に設定すると、xamDataPresenter はフィールドラベルに集計ボタンを表示します。エンドユーザーは集計ボタンをクリックして、集計選択ダイアログ ボックスを表示できます。集計選択ダイアログ ボックスで、表示したい行集計を選択できます。AllowSummaries プロパティを True に設定しなくとも、XAML またはプロシージャコードを使用してフィールドの集計を手動で追加できます。
+
+FieldSettings オブジェクトの AllowSummaries プロパティに加えて、以下のプロパティを使用して集計に関連する動作を修正することもできます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~summarydisplayarea.html[SummaryDisplayArea] - このプロパティは、XamDataPresenter が集計結果を表示する場所を決定します。
+
+[NOTE]
+====
+*注:* 場所も指定しないと、TopLevelOnly に SummaryDisplayArea プロパティを設定できません。たとえば、SummaryDisplay 領域を TopLevelOnly | C# では BottomFixed または Visual Basic では TopLevelOnly または BottomFixed に設定できます。
+====
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~summaryuitype.html[SummaryUIType] - このプロパティは、エンド ユーザーがフィールドでひとつの集計または複数の集計を選択でいるかどうかを決定します。このプロパティのデフォルト値は MultiSelectForNumericsOnly です。非数値フィールドの集計を有効にしたい場合、このプロパティを SingleSelect または MultiSelect に設定する必要があります。
+
+xamDataPresenter の FieldSettings プロパティおよび/または link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの FieldSettings プロパティで集計関連のプロパティを設定できます。フィールド レベルに明示的に設定する集計関連のプロパティは、xamDataPresenter コントロール レベルに設定された対応する集計関連のプロパティをオーバーライドします。
+
+以下のコード例は、行集計を有効する方法を示します。
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldSettings>
+        <igDP:FieldSettings 
+            AllowSummaries="True" 
+            SummaryUIType="MultiSelect"  
+            SummaryDisplayArea="InGroupByRecords, BottomFixed" />
+    </igDP:XamDataPresenter.FieldSettings>
+</igDP:XamDataPresenter>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldSettings.AllowSummaries = True
+Me.xamDataPresenter1.FieldSettings.SummaryUIType = SummaryUIType.MultiSelect
+Me.xamDataPresenter1.FieldSettings.SummaryDisplayArea = SummaryDisplayAreas.InGroupByRecords Or SummaryDisplayAreas.BottomFixed
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldSettings.AllowSummaries = true;
+this.xamDataPresenter1.FieldSettings.SummaryUIType = SummaryUIType.MultiSelect;
+this.xamDataPresenter1.FieldSettings.SummaryDisplayArea = SummaryDisplayAreas.InGroupByRecords | SummaryDisplayAreas.BottomFixed;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-apply-default-summary-formats.html[デフォルトの集計フォーマットを適用]
+
+link:xamdatapresenter-creating-a-custom-summary-calculator.html[カスタム集計計算を作成]
+
+link:xamdatapresenter-format-the-value-of-a-summary.html[集計の値をフォーマット]
+
+link:xamdatapresenter-programmatically-add-summaries-to-a-field.html[集計をフィールドにプログラムで追加]
+
+link:xamdatapresenter-retrieve-the-result-of-a-summary.html[集計結果を取得]

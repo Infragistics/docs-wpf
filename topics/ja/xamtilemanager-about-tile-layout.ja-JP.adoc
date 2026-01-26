@@ -1,0 +1,67 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-about-tile-layout",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "8ad6b825-c074-42b0-a710-6e54e71bf6f5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6623709Z"
+}
+|metadata|
+////
+
+= タイル レイアウトについて
+
+xamTileManager は、垂直 WrapPanel コンテナーのように通常のタイルを配列します。ただし、xamTileManager の link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~normalmodesettings.html[NormalModeSettings] プロパティによって公開されている link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~tilelayoutorder.html[TileLayoutOrder] プロパティを以下の link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.tilelayoutorder.html[TileLayoutOrder] 列挙値のいずれかに設定することによって、このデフォルト動作を変更できます。
+
+* *Horizontal* - タイルは左から右、そして上から下に配列されます。タイルは、個々の行で統一された高さおよび個々の列で統一された幅になります。
+
+image::images/xamTilesControl_About_Tile_Layout_01.png[]
+
+* *HorizontalVariable* - タイルは Horizontal 設定と同じように配列されます。ただし、タイルの高さは個々の行で統一されますが、幅はコンテンツに基づいて異なる場合があります。
+
+image::images/xamTilesControl_About_Tile_Layout_02.png[]
+
+* *Vertical* - タイルは上から下、そして左から右に配列されます。タイルは、個々の行で統一された高さおよび個々の列で統一された幅になります。
+
+image::images/xamTilesControl_About_Tile_Layout_03.png[]
+
+* *VerticalVariable* - タイルは Vertical 設定と同じように配列されます。ただし、タイルはコンテンツに基づいて個々の行で異なる高さとなりますが、幅は個々の列で統一された状態のままです。
+
+image::images/xamTilesControl_About_Tile_Layout_04.png[]
+
+* *UseExplicitRowColumnOnTile* - Grid パネルのレイアウト メカニズムと同じ概念を使用してタイルの配列を完全に制御します。これによって、さまざまなサイズのタイルを作成することもできます。
+
+image::images/xamTilesControl_About_Tile_Layout_05.png[]
+
+上記の 4 つのレイアウト オプションに加え、各 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトは、XamTileManager の添付プロパティ -  link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~columnweightproperty.html[ColumnWeight] および link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~rowweightproperty.html[RowWeight] プロパティを設定することができます。これらのプロパティは、余分のスペースまたは不足のスペースがタイルに指定される方法を決定します。デフォルトで、タイルはコンテンツに適合するようにサイズ設定されます。ただし、NormalModeSettings オブジェクトの link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~horizontaltileareaalignment.html[HorizontalTileAreaAlignment] または link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~verticaltileareaalignment.html[VerticalTileAreaAlignment] プロパティを Stretch に設定すると、xamTileManager はすべての使用できるスペースを埋めるように自動的にタイルのサイズを変更します。ColumnWeight および RowWeight プロパティを設定しない場合、xamTileManager はすべてのタイルでスペースを均等に配分します。ただし、このプロパティを設定すると、xamTileManager はウェイトを指定するタイルに余分なスペースを配分してしまいます。
+
+ColumnWeight プロパティは、一行のタイル全体の列ウェイトの合計の割合として機能します。RowWeight プロパティは、一列のタイル全体の行ウェイトの合計の割合として機能します。たとえば、一行に 4 つのタイルがあり、最初のタイルの ColumnWeight プロパティを 1 に設定し、2 つ目のタイルの ColumnWeight プロパティを 2 に設定すると、xamTileManager は最初のタイルに余分な幅の 1/3 を指定し、2 つ目のタイルに余分の幅の 2/3 を指定します。一方、xamTileManager がタイルのサイズを削減する必要がある場合、正しい割合を維持しながら最初のタイルと 2 つ目のタイルの幅のサイズを変更しますが、他の 2 つのタイルのサイズは変更しません。
+
+== 関連トピック
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

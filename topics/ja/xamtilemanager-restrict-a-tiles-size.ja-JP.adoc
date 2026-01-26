@@ -1,0 +1,149 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-restrict-a-tiles-size",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I"],
+    "guid": "2e0d94bd-bcc2-43b3-bada-d2cd7849de35",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6883717Z"
+}
+|metadata|
+////
+
+= XamTile のサイズ制限
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager.html[xamTileManager] によって、ユーザーはタイルの状態に基づいてサイズを制限することができます。link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings.html[NormalModeSettings] オブジェクトは、通常モードでタイルの高さと幅を制限するために使用できる link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~tileconstraints.html[TileConstraints] プロパティを公開します。link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings.html[MaximizedModeSettings] オブジェクトは、最大化モード、最小化モード、および展開モードのそれぞれでタイルの高さと幅を制限するために使用できる link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~maximizedtileconstraints.html[MaximizedTileConstraints]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~minimizedtileconstraints.html[MinimizedTileConstraints] および link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~minimizedexpandedtileconstraints.html[MinimizedExpandedTileConstraints] プロパティを公開します。
+
+NormalModeSettings または MaximizedModeSettings オブジェクトのプロパティを設定すると、設定はすべてのタイルに適用されます。ただし、各タイルの制限に対して詳細なコントロールを希望する場合、xamTileManager に添付の  link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~constraintsproperty.html[Constraints]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~constraintsmaximizedproperty.html[ConstraintsMaximized]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~constraintsminimizedproperty.html[ConstraintsMinimized] および link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~constraintsminimizedexpandedproperty.html[ConstraintsMinimizedExpanded] プロパティを設定することによって、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトに制限を直接設定できます。この方法を使って、DependencyObject クラスから派生する項目を追加することもできます。
+
+このサイズ制限は、他のサイズに関連するすべての設定よりも優先されます。xamTileManager であってもエンドユーザーであっても、その制限を越えてタイルのサイズを変更することはできません。xamTileManager 機能でタイルのサイズを変更するためのコントロールが求められる場合、そのサイズ制限はその機能の動作に影響を及ぼします。たとえば、NormalModeSettings オブジェクトの link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~showalltiles.html[ShowAllTiles] プロパティを True にして最小サイズの制限を設定すると、タイルはタイル制限を越えてサイズ変更ができないため、xamTileManager は表示可能な領域にすべてのタイルを収めることができない場合があります。
+
+以下のコード例は、タイル制限を使用してタイルのサイズを制限する方法を示しています。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1">
+    <ig:XamTileManager.NormalModeSettings>
+        <ig:NormalModeSettings>
+            <ig:NormalModeSettings.TileConstraints>
+                <ig:TileConstraints 
+                    PreferredHeight="300" 
+                    PreferredWidth="300" 
+                    MaxHeight="400" 
+                    MaxWidth="400" 
+                    MinWidth="200" 
+                    MinHeight="200" />
+                </ig:NormalModeSettings.TileConstraints>
+        </ig:NormalModeSettings>
+    </ig:XamTileManager.NormalModeSettings>
+    <ig:XamTileManager.MaximizedModeSettings>
+        <ig:MaximizedModeSettings>
+            <ig:MaximizedModeSettings.MinimizedTileConstraints>
+                <ig:TileConstraints MaxHeight="100" MinHeight="100" />
+            </ig:MaximizedModeSettings.MinimizedTileConstraints>
+            <ig:MaximizedModeSettings.MinimizedExpandedTileConstraints>
+                <ig:TileConstraints MaxHeight="200" MinHeight="100" />
+            </ig:MaximizedModeSettings.MinimizedExpandedTileConstraints>
+        </ig:MaximizedModeSettings>
+    </ig:XamTileManager.MaximizedModeSettings>
+    <!-- TODO: ここにタイルを追加-->
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+...
+Dim normTileConstraints As New TileConstraints With _
+    {.PreferredWidth = 300, .PreferredHeight = 300, .MinHeight = 200, .MinWidth = 200, MaxHeight = 400, .MaxWidth = 400}
+Dim minTileConstraints As New TileConstraints With _
+    {.MaxHeight = 100, .MaxWidth = 100}
+Dim minExpTileConstraints As New TileConstraints With _
+    {.MaxHeight = 200, .MaxWidth = 100}
+If Me.xamTileManager.MaximizedModeSettings Is Nothing Then
+    Me.xamTileManager1.MaximizedModeSettings = New MaximizedModeSettings()
+End If
+If Me.xamTileManager1.NormalModeSettings Is Nothing Then
+    Me.xamTileManager1.NormalModeSettings = New NormalModeSettings()
+End If
+Me.xamTileManager1.NormalModeSettings.TileConstraints = _
+    normTileConstraints
+Me.xamTileManager1.MaximizedModeSettings.MinimizedTileConstraints = _
+    minTileConstraints
+Me.xamTileManager1.MaximizedModeSettings.MinimizedExpandedTileConstraints = _
+    minExpTileConstraints
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+...
+TileConstraints normTileConstraints = new TileConstraints
+{
+    PreferredWidth = 300,
+    PreferredHeight = 300,
+    MinHeight = 200,
+    MinWidth = 200,
+    MaxHeight = 400,
+    MaxWidth = 400
+};
+TileConstraints minTileConstraints = new TileConstraints
+{
+    MaxHeight = 100,
+    MinHeight = 100
+};
+TileConstraints minExpTileConstraints = new TileConstraints
+{
+    MaxHeight = 200,
+    MinHeight = 100
+};
+if (this.xamTileManager1.MaximizedModeSettings == null)
+{
+    this.xamTileManager1.MaximizedModeSettings =
+        new MaximizedModeSettings();
+}
+if (this.xamTileManager1.NormalModeSettings == null)
+{
+    this.xamTileManager1.NormalModeSettings =
+        new NormalModeSettings();
+}
+this.xamTileManager1.NormalModeSettings.TileConstraints =
+    normTileConstraints;
+this.xamTileManager1.MaximizedModeSettings.MinimizedTileConstraints =
+    minTileConstraints;
+this.xamTileManager1.MaximizedModeSettings.MinimizedExpandedTileConstraints =
+    minExpTileConstraints;
+...
+----
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

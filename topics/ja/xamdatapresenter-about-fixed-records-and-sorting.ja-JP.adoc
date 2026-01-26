@@ -1,0 +1,65 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-fixed-records-and-sorting",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Presentation"],
+    "guid": "{DCD546A2-2BD3-4283-92C8-68CE7E77ACD4}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0469625Z"
+}
+|metadata|
+////
+
+= 固定されたレコードと並べ替えについて
+
+
+
+エンド ユーザーが、固定レコードを含む DataPresenter コントロールを並べ替えると、固定レコードは相互に並べ替えられます。並べ替え操作によって固定レコードの順序を変更したくない場合は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~fixedrecordsortorder.html[FixedRecordSortOrder] プロパティを FixOrder に設定できます。
+
+並べ替え操作のあとで、エンド ユーザーがレコードを固定する場合、DataPresenter コントロールは固定レコードを再度並べ替えます。固定レコードは、固定レコード リストに追加され、DataPresenter コントロールのスクロール可能領域の一番近くになります。つまり、上部に固定されたレコードは、固定レコード リストの下部に追加され、下部に固定されたレコードは、固定レコード リストの上部に追加されることを意味します。ただし、現在の並べ替え条件に基づいて、レコードをその適切なスロットに挿入したい場合は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordfixedlocationchanged_ev.html[RecordFixedLocationChanged] イベントを処理し、イベント ハンドラーで link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record.html[Record] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record~refreshsortposition.html[RefreshSortPosition] メソッドを呼び出します。
+
+以下のコード例は、並べ替え順に固定レコードを追加する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter 
+    Name="xamDataPresenter1" 
+    RecordFixedLocationChanged="OnRecordFixedLocationChanged">
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter.Events
+...
+Private Sub OnRecordFixedLocationChanged(ByVal sender As Object, ByVal e As RecordFixedLocationChangedEventArgs) 
+    e.Record.RefreshSortPosition() 
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter.Events;
+...
+private void OnRecordFixedLocationChanged(object sender, RecordFixedLocationChangedEventArgs e)
+{
+    e.Record.RefreshSortPosition();
+}
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-fixed-non-scrolling-records.html[固定 (非スクロール) レコードについて]
+
+link:xamdatapresenter-enable-fixed-records.html[固定されたレコードを有効にする]
+
+link:xamdatapresenter-fix-records.html[レコードの固定]
+
+link:xamdatapresenter-limit-the-number-of-fixed-records.html[固定されたレコード数の制限]

@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-impact-styles-have-on-performance-of-controls",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Performance","Styling"],
+    "guid": "{EC19A27C-6980-4CA7-80A9-A19D9ED585F6}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5198571Z"
+}
+|metadata|
+////
+
+= スタイルがコントロールのパフォーマンスに与える影響
+
+Microsoft® Windows® Presentation Foundation の優れた機能のひとつは、要素の視覚的ツリーを定義する、テンプレートをはじめとするコントロールのスタイルをカスタマイズする機能です。
+
+xamDataGrid、xamDataCarousel、および xamDataPresenter で作業をする時、何を変更しているのか、またそれがパフォーマンスに与える影響を正確に知ることは賢明です。これらのコントロールは、いくつかの「スタイリング ポイント」を公開し、コントロール内に含まれる個々の要素の外観や動作をカスタマイズできます (link:wpf-working-with-xamdatagrid-xamdatacarousel-and-xamdatapresenter-styling-points.html[「xamDataGrid、xamDataCarousel、および xamDataPresenter スタイリング ポイントでの作業」]を参照してください)。ただし、これらのスタイリング ポイントのテンプレートを修正するときには、ユーザー エクスペリエンスを悪化させるパフォーマンスの問題を持ち込まないように注意が必要です。特定のスタイリング ポイントは特に注意を要します。これらが表す要素が多数あるためです。
+
+たとえば、BitmapEffects (これらは非常に高価)、多数のグラデーション ブラシまたは多数の要素を視覚的ツリーに追加するために link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] のテンプレートを変更する場合、このスタイルがコントロール内のあらゆる CellValuePresenter によって使用されることを留意すべきです。ビューに 10 個の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] (データ列) と 20 個の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] (データ行) がある xamDataGrid がある場合、実際には 200 個の CellValuePresenter のインスタンスがビューにあります。25 個の UI 要素を持つツリーに Template プロパティを設定する CellValuePresenter のスタイルが定義されている場合、セル値を表示するためだけに 5000 個の要素が作成されていることになります。これには、コントロールを描画するために使用されるその他の要素が含まれます。
+
+xamDataGrid または xamDataCarousel で特定のスタイリング ポイントが使用される概念については、構成図を参照してください。
+
+== 関連トピック
+
+link:wpf-working-with-xamdatagrid-xamdatacarousel-and-xamdatapresenter-styling-points.html[xamDataGrid、xamDataCarousel、および xamDataPresenter スタイリング ポイントでの作業]
+
+link:xamdatapresenter-xamdatapresenters-carousel-view-composition-diagram.html[xamDataPresenter のカルーセル ビューの構成図]
+
+link:xamdatapresenter-xamdatapresenters-grid-view-composition-diagram.html[xamDataPresenter のグリッド ビューの構成図]
+
+link:http://msdn2.microsoft.com/ja-jp/library/bb613559(v=vs.100).aspx[WPF のアプリケーションのパフォーマンスを最適化]

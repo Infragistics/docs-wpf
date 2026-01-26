@@ -1,0 +1,191 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-binding-xamtilemanager-to-data",
+    "controlName": ["xamTileManager"],
+    "tags": ["Data Binding"],
+    "guid": "4cc111d0-16b6-488c-9807-7d487632f71d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7253744Z"
+}
+|metadata|
+////
+
+= xamTileManager をデータにバインド
+
+== 始める前に
+
+データ ソースにバインド、または Items コレクションにオブジェクトを直接追加することによって、タイルを xamTileManager に追加できます。ただし、XAML のデータ バインドされたコントロールと全く同じように、xamTileManager をデータ ソースにバインドするか、Items コレクションに項目を直接追加するかのいずれかを選択する必要があります。*両方を行うことはできません。*
+
+xamTileManager をデータにバインドすると、データ ソースの各ルート レベルのデータ項目に link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトが作成されます。ただし、XamTile オブジェクトのビジュアル ツリーを定義するデータ テンプレートを作成する必要があります。
+
+== 達成すること
+
+xamTileManager をカテゴリ データ項目のコレクションにバインドして各カテゴリごとのタイルを作成します。各タイルは、そのヘッダーにカテゴリ名を表示します。各タイルのコンテンツは、タイルの状態に基づいて異なります。通常モードでは、タイルはカテゴリの説明を表示します。最大化モードでは、タイルは xamGrid コントロールを使用して製品リストを表示します。最小化モードでは、タイルはカテゴリに含まれる製品の数を表示します。最後に、展開モードでは、タイルはカテゴリに属する製品名のリストを表示します。
+
+link:resources-datautil.html[DataUtil] クラスは、C# および VB.NET で提供され、このトピックで作業をする間にプロジェクトにコピーして使用することができます。
+
+プロジェクトを実行すると、以下のスクリーン ショットのような xamTileManager が表示されます。
+
+image::images/xamTilesControl_Binding_xamTilesControl_to_Data_01.png[]
+
+== 次の手順を実行します
+
+[start=1]
+. link:resources-datautil.html[DataUtil] クラスのコピーをプロジェクトに追加します。
+[start=2]
+. ページのリソース ディクショナリのタグを追加します。
+
+*XAML の場合:*
+
+----
+<Page.Resources>
+    <!-- TODO: ここにデータ テンプレートを追加します-->
+</Page.Resources>
+----
+
+[start=3]
+. DataTemplate オブジェクトをリソース ディクショナリに追加します。通常の状態にあるタイルにこのテンプレートを使用します。
+
+** Key プロパティを normalTemplate に設定します。
+** TextBlock コントロールをデータ テンプレートに追加し、その Text プロパティを Category オブジェクトの Description プロパティにバインドします。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="normalTemplate"> 
+    <TextBlock Text="{Binding Description}" />
+</DataTemplate>
+----
+
+[start=4]
+. 2 つ目の DataTemplate オブジェクトをリソース ディクショナリに追加します。最大化された状態にあるタイルにこのテンプレートを使用します。
+
+** Key プロパティを maximizedTemplate に設定します。
+** xamGrid コントロールをデータ テンプレートに追加し、その ItemsSource プロパティを Category オブジェクトの Products コレクションにバインドします。xamGridを使用するために必要となるアセンブリおよび名前空間についての詳細は、「 link:xamgrid-adding-xamgrid-to-your-page.html[xamGrid を Your Page に追加]」を参照してください。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="maximizedTemplate"> 
+    <ig:XamGrid ItemsSource="{Binding Products}" />
+</DataTemplate>
+----
+
+[start=5]
+. 3 つ目の DataTemplate オブジェクトをリソース ディクショナリに追加します。最小化された状態にあるタイルにこのテンプレートを使用します。
+
+** Key プロパティを minimizedTemplate に設定します。
+** TextBlock コントロールをデータ テンプレートに追加し、その Text プロパティを Products コレクションの Count プロパティにバインドします。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="minimizedTemplate"> 
+    <TextBlock Text="{Binding Products.Count,
+            StringFormat=This category contains {0} products}" />
+</DataTemplate>
+----
+
+[start=6]
+. 4 つ目の DataTemplate オブジェクトをリソース ディクショナリに追加します。展開の状態にあるタイルにこのテンプレートを使用します。
+
+** Key プロパティを minimizedExpandedTemplate に設定します。
+** ListBox コントロールをデータ テンプレートに追加します。
+
+*** ItemsSource プロパティを Products コレクションに設定します。
+*** DisplayMemberPath プロパティを ProductName に設定します。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="minimizedExpandedTemplate">
+    <ListBox ItemsSource="{Binding Products}"
+        DisplayMemberPath="ProductName" />    
+</DataTemplate>
+----
+
+[start=7]
+. xamTileManager をデフォルトの Grid パネルに追加します。
+
+** DataUtil クラスによって公開される CategoriesAndProducts プロパティに ItemsSource プロパティを設定します。
+** link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~headerpath.html[HeaderPath] プロパティを CategoryName に設定します。
+** ItemTemplate プロパティを手順 3 で定義した通常のテンプレートに設定します。
+** link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~itemtemplatemaximized.html[ItemTemplateMaximized] プロパティを手順 4 で定義した最大化されたテンプレートに設定します。
+** link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~itemtemplateminimized.html[ItemTemplateMinimized] プロパティを手順 5 で定義した最小化されたテンプレートに設定します。
+** link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~itemtemplateminimizedexpanded.html[ItemTemplateMinimizedExpanded] プロパティを手順 6 で定義した最小化および展開されたテンプレートに設定します。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager 
+    xmlns:data="clr-namespace:IGDocumentation" 
+    Name="xamTileManager1" 
+    ItemsSource="{Binding Source={x:Static data:DataUtil.CategoriesAndProducts}}" 
+    HeaderPath="CategoryName" 
+    ItemTemplate="{StaticResource normalTemplate}" 
+    ItemTemplateMaximized="{StaticResource maximizedTemplate}" 
+    ItemTemplateMinimized="{StaticResource minimizedTemplate}" 
+    ItemTemplateMinimizedExpanded="{StaticResource minimizedExpandedTemplate}">
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xamTileManager1.ItemsSource = DataUtil.CategoriesAndProducts;
+Me.xamTileManager1.HeaderPath = "CategoryName"
+Me.xamTileManager1.ItemTemplate = _
+    TryCast(Me.Resources("normalTemplate"), DataTemplate)
+Me.xamTileManager1.ItemTemplateMaximized = _
+    TryCast(Me.Resources("maximizedTemplate"), DataTemplate)
+Me.xamTileManager1.ItemTemplateMinimized = _
+    TryCast(Me.Resources("minimizedTemplate"), DataTemplate)
+Me.xamTileManager1.ItemTemplateMinimizedExpanded = _
+    TryCast(Me.Resources("minimizedExpandedTemplate"), DataTemplate)
+----
+
+*C# の場合:*
+
+----
+this.xamTileManager1.ItemsSource = IGDocumentation.DataUtil.CategoriesAndProducts;
+this.xamTileManager1.HeaderPath= "CategoryName";
+this.xamTileManager1.ItemTemplate =
+    this.Resources["normalTemplate"] as DataTemplate;
+this.xamTileManager1.ItemTemplateMaximized =
+    this.Resources["maximizedTemplate"] as DataTemplate;
+this.xamTileManager1.ItemTemplateMinimized =
+    this.Resources["minimizedTemplate"] as DataTemplate;
+this.xamTileManager1.ItemTemplateMinimizedExpanded =
+    this.Resources["minimizedExpandedTemplate"] as DataTemplate;
+----
+
+[start=8]
+. プロジェクトを実行します。
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

@@ -1,0 +1,106 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-custom-margins",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "43579925-9b22-4ece-8c81-0b9dc1f83712",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4583989Z"
+}
+|metadata|
+////
+
+= カスタム余白 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、カスタム余白の作成方法を解説します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref331672218, カスタム余白の作成 >>
+** <<_Ref331672225,はじめに>>
+** <<_Ref331672233,手順>>
+
+* <<_Ref331672247, 関連コンテンツ >>
+
+[[_Ref331672218]]
+== カスタム余白の作成
+
+[[_Ref331672225]]
+
+=== はじめに
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor.html[ _xamSyntaxEditor_  ]™ は、テキスト編集領域の端に沿った任意の 4 箇所での余白の配置をサポートしています。任意の 4 箇所 (上下左右) に余白を配置できるようにするため、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.marginbase.html[MarginBase] クラスは link:{RootAssembly}{ApiVersion}~infragistics.isupportpositioning_members.html[ISupportPositioning] インターフェイスを実装します。一般的に、左右に配置された余白を使ってテキスト行に関連する情報を表示し、上下に配置された余白を使ってテキスト列に関連する情報を表示します。
+
+_xamSyntaxEditor_   は、すべての余白を適切な場所に配置します。_xamSyntaxEditor_   はまた、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.marginbase~createpresenter.html[CreatePresenter] メソッドを起動し、関連する link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.documentviewbase_members.html[DocumentViewBase] を引数として渡すことによって、すべての余白がプレゼンターを持つようにします。`DocumentViewBase` はプレゼンターに、ビューとコントロール情報にアクセスするために必要とされるコンテキストを提供します (たとえば、表示された行へのアクセス、さまざまなユーザー インタラクション用のイベントなど)。
+
+[[_Ref331672233]]
+
+=== 手順
+
+以下の手順は、カスタム余白を作成する方法を示しています。
+
+=== 1.Margin クラスの作成
+
+`MarginBase` クラスから拡張することによって、カスタムの Margin クラスを作成します。
+
+=== 2.余白の位置の設定
+
+`MarginBase` の link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.marginbase~location.html[Location] プロパティをオーバーライドして、希望の場所に余白を配置します。
+
+=== 3.余白の配置の設定
+
+`ISupportPositioning` インターフェイスの link:{RootAssembly}{ApiVersion}~infragistics.isupportpositioning~after.html[After] および link:{RootAssembly}{ApiVersion}~infragistics.isupportpositioning~before.html[Before] メソッドをオーバーライドして、この場所のその他の余白に沿って余白を配置します。
+
+=== 4.一意の余白キーの提供
+
+`MarginBase` の link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.marginbase~key.html[Key] プロパティをオーバーライドして、余白に一意のキーを与えます。これによって他の余白は、あなたの余白に相対して位置付けることができます。
+
+=== 5.余白にプレゼンターを提供
+
+`MarginBase` の `CreatePresenter` メソッドをオーバーライドして、余白にプレゼンターを提供します。プレゼンターは、 link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.aspx[FrameworkElement] から拡張する任意のクラスになり得ます。
+
+=== 6.ロジックをプレゼンターに追加して、余白のコンテンツを描画します
+
+カスタムの余白プレゼンターは通常、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.documentviewbase~layoutchanged_ev.html[DocumentViewBase.LayoutChanged] イベントをオーバーライドして、カスタム余白のコンテンツの描画をトリガします。
+
+=== 7.xamSyntaxEditor にマージンを追加します
+
+_xamSyntaxEditor_   の link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~custommargins.html[CustomMargins] コレクションに余白を追加します。
+
+[[_Ref331672247]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-line-number-margin.html[行番号の余白]
+|このトピックでは、 _xamSyntaxEditor_ コントロールの組み込み行番号余白の使用方法と構成方法を解説します。
+
+| link:xamsyntaxeditor-ruler-margin.html[ルーラー マージン]
+|このトピックでは、ルーラー マージン機能を構成する方法を解説します。
+
+|====

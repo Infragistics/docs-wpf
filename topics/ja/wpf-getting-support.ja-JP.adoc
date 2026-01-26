@@ -1,0 +1,82 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-getting-support",
+    "controlName": [],
+    "tags": ["FAQ","Getting Started"],
+    "guid": "{011E1BF6-370A-40EB-BA76-A0DE3800CC9C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.5716675Z"
+}
+|metadata|
+////
+
+= サポートについて
+
+{ProductName} のコピーを所有している場合、Infragistics が提供するサポート サービスを受けることができます。
+
+アカウント、製品の所有権、登録に関する問題は、JapanSalesGroup@infragistics.com 宛てに電子メールでご連絡ください。その際には、ユーザー名と製品キー (お分かりの場合) を明記されると、迅速な対応が可能です。また、月曜～金曜 9:00～12:00、13:00～18:00 に 050-1745-6258 (IP 電話) までお電話いただくことも可能です。
+
+*利用可能なサポート オプション*
+
+[start=1]
+. link:http://forums.infragistics.com[フォーラム サイト (英語)] - このユーザー フレンドリーなコミュニティでは、ブログ、記事、メディア、コード サンプル、さらに、ピア ツー ピア フォーラムが 1 つにまとまっています。
+[start=2]
+. デベロッパー サポート エンジニアが、ユーザーの問題解決をサポートいたします。
+
+利用可能なサポート オプションへの詳細は、 link:http://jp.infragistics.com/support/default.aspx#SupportOptions[Infragistics サポート]をご覧ください。
+
+*技術サポートに連絡する前に*
+
+_プロフィールを作成する:_
+
+link:https://jp.infragistics.com/Login.aspx?ReturnUrl=%2fMembership%2fDefault.aspx%3fpanel%3dDownloads&panel=Downloads[Infragistics ホームページ]のトップメニューから登録者情報 > プロフィールへアクセスし [新規メンバー] ボタンをクリックして link:https://jp.infragistics.com/Membership/NewMemberSignUp.aspx?ReturnUrl=/Membership/Default.aspx?panel=Downloads[新規アカウント]を作成してください。最新の情報がメンバープロフィールに入力されていることを確認してください。詳細は、「メンバー プロフィールの作成」を参照してください。
+
+_製品の登録:_
+
+メンバー プロファイルを作成したら、製品の登録ページで製品キーを MemberID に登録します。MemberID はユーザー アカウントに紐付いています。登録を行ったユーザーは、登録した Infragistics 製品に対するサポートを受けることができます。
+
+_以下の情報を準備してください:_
+
+メンバー プロフィール情報と製品キー (分かる場合) を準備してください。
+
+*サポート通信の確認*
+
+メンバー プロフィール情報を使って Infragistics ウェブサイトの [My Infragistics] エリアにログインすると、自分のサポート通信を確認できます。
+
+*製品のライフサイクルの確認*
+
+Infragistics 製品のライフサイクルには、各製品のリリースに関する情報が含まれており、サポート期間などの項目を確認するのに役立ちます。この情報は PDF 形式で利用することができ、以下のような情報が記載されています。
+
+* Infragistics ツールの名前とバージョン
+* 製品保守 (バグ フィックス適用) 期間
+* 製品サポート期間
+* 製品の状態
+
+詳細は、 link:http://jp.infragistics.com/support/product-lifecycle[「製品のライフサイクル」]をご参照ください。
+
+== メンバー プロフィールの作成
+
+*メリット*
+
+[start=1]
+. メンバー プロフィールを作成すると、当社のサポートサービス部署が、サポートのお知らせや登録のアップグレード情報をお客様にお届けすることができます。
+[start=2]
+. 製品キーを Infragistics に登録されると、優れた技術サポート サービスを迅速にタイミング良く受けることができます。
+
+*確認できる情報*
+
+メンバー キーを使ってサポート サイトにログインすると、製品キー、登録サービスやステータスなどの重要な情報を確認することができます。
+
+*サポート要件*
+
+コミュニティ サイト、フォーラム、オンラインマニュアルおよびサンプルは、すべてのメンバーに無料でご利用いただけますが、電話サポートを利用するには有効なプライオリティ サポートが必要です。
+
+*メンバー プロフィールの作成方法*
+
+link:https://jp.infragistics.com/Membership/NewMemberSignUp.aspx?ReturnUrl=/Membership/Default.aspx?panel=Profile?id=PROFILE[ここ] をクリックして、必要な情報を入力します。
+
+*ログイン方法*
+
+ユーザー名とパスワードを使ってサインアップした後、 link:https://jp.infragistics.com/Login.aspx?ReturnUrl=%2fMembership%2fDefault.aspx%3fpanel%3dProfile%3fid%3dPROFILE&panel=Profile?id=PROFILE[ここ]からアカウントへログインできます。最新の情報がメンバープロフィールに入力されていることを確認してください。

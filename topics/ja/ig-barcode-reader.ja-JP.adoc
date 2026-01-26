@@ -1,0 +1,375 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-barcode-reader",
+    "controlName": ["IG BarcodeReader","xamBarcodeReader"],
+    "tags": [],
+    "guid": "7a286aca-f320-4a20-8bf3-b015aa2d1caa",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6520337Z"
+}
+|metadata|
+////
+
+= Infragistics Barcode Reader
+
+このトピックでは、Infragistics Barcode Reader ライブラリを紹介し、C# と VB で作業をする方法を説明します。プロパティ、クラス、メソッドだけでなく、Symbology 列挙体のオプションの使用も説明します。最後に、完全なコード サンプルが個別のセクションに提供されます。このトピックの内容は次のようにセクションで構成されます。
+
+* <<introduction,概要>>
+* <<supported_symbologies,サポートされる記号>>
+
+サポートされる記号のリスト。
+
+* <<implementing_decoding,画像デコード機能の実装>>
+
+手順ごとの説明。
+
+** <<overview,概要>>
+** <<steps,手順>>
+
+* <<using_barcode_reader,Infragistics Barcode Reader の使用>>
+
+プロパティ、クラス、メソッド、列挙体。
+
+** <<properties,バーコード リーダーのプロパティ>>
+
+*** <<descriptions,バーコード リーダーのプロパティの説明>>
+*** <<example_settings,バーコード リーダーのプロパティの設定例>>
+
+** <<decode_async,マルチスレッド画像のデコード (メソッド DecodeAsync)>>
+** <<decode_args,DecodeComplete 引数 (クラス ReaderDecodeArgs)>>
+** <<symbology_types,記号タイプに列挙体を使用>>
+
+* <<code_samples,サンプル コード>>
+
+新しい Barcode Reader オブジェクトのインスタンスを作成してプロパティを構成します。
+
+[[introduction]]
+== 概要
+
+Infragistics Barcode Reader は画像からバーコードをデコードするためのライブラリです。
+
+[[supported_symbologies]]
+== サポートされる記号
+
+Infragistics Barcode Reader は以下のバーコード記号をサポートします。
+
+* link:http://en.wikipedia.org/wiki/Code_39[Code 39]
+* link:http://en.wikipedia.org/wiki/Code_128[Code 128]
+* link:http://en.wikipedia.org/wiki/European_Article_Number[EAN]/ link:http://en.wikipedia.org/wiki/Universal_Product_Code[UPC]:
+
+** EAN-13
+** EAN-8
+** UPC-A
+** UPC-E
+
+* link:http://en.wikipedia.org/wiki/Interleaved_2_of_5[Interleaved 2 of 5]
+* link:http://en.wikipedia.org/wiki/Qr_code[QR Code]
+
+image::images/Infragistics_Barcode_Reader_01.png[]
+
+図 1: バーコードを含む画像の例
+
+[[implementing_decoding]]
+== 画像デコード機能の実装
+
+[[overview]]
+== 概要
+
+[start=1]
+. <<step_1,必要なアセンブリの追加>>
+[start=2]
+. <<step_2,必要な名前空間の追加>>
+[start=3]
+. <<step_3,新しい Barcode Reader インスタンスの作成、イベント ハンドラーの添付、デコード プロセスの開始>>
+[start=4]
+. <<step_4,デコードされたデータの処理>>
+
+[[steps]]
+== 手順
+
+以下の手順で画像デコード機能つまり、バーコード用の画像をスキャンする機能を実装します。
+
+[[step_1]]
+[start=1]
+. 必要なアセンブリを追加します。
+
+以下の NuGet パッケージをアプリケーションに追加します。NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+* Infragistics.WPF.BarcodeReader
+
+[[step_2]]
+[start=2]
+. 必要な名前空間を追加します。
+
+コード ビハインドに using/Imports を配置します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Barcodes
+----
++
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Barcodes;
+----
+
+[[step_3]]
+[start=3]
+. 新しい link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader.html[Barcode Reader インスタンス]を作成し、イベント ハンドラーを添付して、デコード プロセスを開始します。
+
+コード ビハインドで Barcode Reader の新しいインスタンスを追加します。Barcode Reader がバーコードをデコードする、または画像のスキャニングを終了すると、バーコード記号が画像で認識される回数だけ link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~decodecomplete_ev.html[DecodeComplete] イベントが発生します。DecodeComplete イベントのイベント ハンドラーを添付して、次に link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~decode.html[Decode] メソッドまたは link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~decodeasync.html[DecodeAsync] (スレッドセーフ) メソッドを使用して、デコード プロセスを開始します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim barcodeReader As New BarcodeReader()
+AddHandler barcodeReader.DecodeComplete, New EventHandler(Of ReaderDecodeArgs)(AddressOf BarcodeReader_DecodeComplete)
+barcodeReader.Decode(aBitmapSourceObject)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+BarcodeReader barcodeReader = new BarcodeReader();
+barcodeReader.DecodeComplete += new EventHandler<ReaderDecodeArgs>(BarcodeReader_DecodeComplete);
+barcodeReader.Decode(aBitmapSourceObject);
+----
+
+[[step_4]]
+[start=4]
+. デコードされたデータを処理します。
+
+DecodeComplete イベント ハンドラーでデコードされたデータを処理します。Barcode Reader が画像のスキャニングを終了した後で、指定された画像で検出されたバーコード記号ごとに DecodeComplete イベントが発生することに注意してください。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub BarcodeReader_DecodeComplete(sender As Object, e As ReaderDecodeArgs)
+    If e.SymbolFound Then
+        Dim result As String = e.Symbology & " " & e.Value
+    End If
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void BarcodeReader_DecodeComplete(object sender, ReaderDecodeArgs e)
+{ 
+    if (e.SymbolFound)
+    {
+        string result = e.Symbology + " " + e.Value;
+    }
+}
+----
+
+[[using_barcode_reader]]
+== Infragistics Barcode Reader の使用
+
+[[properties]]
+== バーコード リーダーのプロパティ
+
+[[descriptions]]
+=== バーコード リーダーのプロパティの説明
+
+Barcode Reader ライブラリには、以下のプロパティがあります。
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~maxnumberofsymbolstoread.html[MaxNumberOfSymbolsToRead] - 画像で予想されるバーコードの最大数 (すべては -1、デフォルト: 1、推奨: 1÷5) 
+
+しきい値に達すると、Barcode Reader はデコードを中止します。認識するバーコードの数が少ないとアプリケーションのパフォーマンスが向上します。-1 が割り当てられると、Barcode Reader はそれらすべてが見つかるまで記号を取得します。
+
+.注:
+[NOTE]
+====
+スキャニングが完了した後、デコードされたバーコード記号ごとに link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~decodecomplete_ev.html[DecodeComplete] イベントが発生します。
+====
+
+以下の画像は、MaxNumberOfSymbolsToRead を 1 に設定して、スキャニングされた画像 (FilteredImage プロパティによって取得) を示します。認識される記号はひとつだけです (その上に緑の矩形が付いている記号 Code 128)。
+
+image::images/Infragistics_Barcode_Reader_02.png[]
+
+図 2: 取得したバーコードでの MaxNumberOfSymbolsToRead 設定の効果
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~minsymbolsize.html[MinSymbolSize] - 認識可能な記号の最小サイズ (ピクセル単位) (リニア バーコードのみの幅と高さ) - (デフォルト: -1、推奨: 画像サイズに釣り合う値。たとえば、高さ 500px の画像では 50)。 
+
+デフォルト値が -1 であると、認識可能な記号の最小サイズは、スキャンされた画像サイズに比例して内部で計算されることになります。MinSymbolSize 値が小さいと、画像はより多くのゾーンに分割されます (これにより、小さい記号の認識が可能になりますが、パフォーマンスに対してマイナスの効果が生じます)。値が大きくなると反対になるだけです (ゾーンの数が減るため記号は大きくなり、パフォーマンスは向上します)。記号のサイズ (ピクセル単位) が MinSymbolSize の指定よりも小さくなると、画像はデコードされなくなります。
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~barcodeorientation.html[BarcodeOrientation] - スキャンされたバーコードの方向 (リニア バーコードのみ) 
+
+link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.symbolorientation.html[有効な値]:
+
+* Horizontal
+* Vertical
+* Unspecified (デフォルト) 
+
+方向が Unspecified の場合、バーコードは方向に関係なくデコードされることになります。
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~filteredimage.html[FilteredImage] - 認識されたバーコード記号を持つ画像。 (図 3: フィルターされたバーコード画像) Decode メソッドのみと併用される。
+
+image::images/Infragistics_Barcode_Reader_03.png[]
+
+図 3: フィルターされたバーコード画像
+
+[NOTE]
+====
+注: プロパティの値に対する制限が多くなるほど、Barcode Reader のパフォーマンスは向上します。
+====
+
+[[example_settings]]
+=== バーコード リーダーのプロパティの設定例
+
+以下のコード サンプルでは、バーコード リーダーのプロパティを次のように構成します。
+
+* 読み込む記号の最大数: 3
+* 記号の最小サイズ: 20 ピクセル
+* 水平方向
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Dim barcodeReader As New BarcodeReader()
+barcodeReader.MaxNumberOfSymbolsToRead = 3
+barcodeReader.MinSymbolSize = 20
+barcodeReader.BarcodeOrientation = SymbolOrientation.Horizontal
+----
+
+*C# の場合:*
+[source,csharp]
+----
+BarcodeReader barcodeReader = new BarcodeReader();
+barcodeReader.MaxNumberOfSymbolsToRead = 3;
+barcodeReader.MinSymbolSize = 20;
+barcodeReader.BarcodeOrientation = SymbolOrientation.Horizontal;
+----
+
+[[decode_async]]
+== マルチスレッド画像のデコード (メソッド DecodeAsync) 
+
+link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.barcodereader~decodeasync.html[DecodeAsync] メソッドによって、画像をスレッドセーフでデコードできます。つまり、いくつかの画像を異なるスレッドで同時にデコードできます。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Deployment.Current.Dispatcher.BeginInvoke(
+    Function()
+        barcodeReader.DecodeAsync(inputImage)
+    End Function)
+----
+
+*C# の場合:*
+[source,csharp]
+----
+Deployment.Current.Dispatcher.BeginInvoke(() =>
+{
+    barcodeReader.DecodeAsync(aBitmapSourceObject);
+});
+----
+
+[[decode_args]]
+== DecodeComplete 引数 (クラス ReaderDecodeArgs)
+
+DecodeComplete イベントで、 link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.readerdecodeargs.html[ReaderDecodeArgs] クラスはパラメーターとして渡されます。クラスには、以下の情報が含まれます。
+
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.readerdecodeargs~filteredimage.html[FilteredImage] - 認識されたバーコード記号を持つ画像
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.readerdecodeargs~symbolfound.html[SymbolFound] - バーコードが見つかったかどうかを示すブール引数
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.readerdecodeargs~symbology.html[Symbology] - デコードされたバーコード記号の記号
+* link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.readerdecodeargs~value.html[Value] - バーコード記号のエンコードされた文字列情報
+
+[[symbology_types]]
+== 記号タイプに列挙体を使用
+
+Barcode Reader が検索するタイプは、 link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes.symbology.html[記号列挙体]を使用してオプションで指定できます。
+
+[NOTE]
+====
+注*:* 記号列挙体には Flags 属性があり、値を組み合わせることができます。列挙体には、すでに組み合わせたフラグ、Linear と All が含まれています。
+====
+
+* 未指定 - 記号が指定されていないため、すべてを検索します
+* Code39
+* Code39Ext - Code 39 Extended。
+* Code128
+* Ean13
+* Ean8
+* UpcA
+* UpcE
+* EanUpc - UPC-A、UPC-E、EAN-8、EAN-13 記号論のファミリ。
+* Interleaved2Of5
+* QRCode
+* Linear (Code39Ext | Code128 | EanUpc | Interleaved2Of5) - すべてのサポートされるリニア記号。
+* All (Linear | QRCode) - すべてのサポートされる記号。
+
+以下の例は、Code39 および Code128 の列挙体を指定します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Dim symbologyTypes As Symbology = Symbology.Code39 Or Symbology.Code128
+barcodeReader.Decode(aBitmapSourceObject, symbologyTypes)
+----
+
+*C# の場合:*
+[source,csharp]
+----
+Symbology symbologyTypes = Symbology.Code39 | Symbology.Code128;
+barcodeReader.Decode(aBitmapSourceObject, symbologyTypes);
+----
+
+[[code_samples]]
+== コード サンプル
+
+以下は例で使用される完全なコードです。サンプルは、新しい Barcode Reader オブジェクトのインスタンスを作成してプロパティを構成する方法を示します。サンプルの Barcode Reader は最高 3 つの Code 39 記号 Code 128 記号を最小サイズ 200 ピクセルで水平方向でスキャンします。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Private Sub ButtonDecode_Click(sender As Object, e As RoutedEventArgs)
+    Dim barcodeReader As New BarcodeReader()
+    barcodeReader.MaxNumberOfSymbolsToRead = 3
+    barcodeReader.MinSymbolSize = 200
+    barcodeReader.BarcodeOrientation = SymbolOrientation.Horizontal
+    AddHandler barcodeReader.DecodeComplete, New EventHandler(Of ReaderDecodeArgs)(AddressOf BarcodeReader_DecodeComplete)
+    Dim symbologyTypes As Symbology = Symbology.Code39 Or Symbology.Code128
+    barcodeReader.Decode(aBitmapSourceObject, symbologyTypes)
+End Sub
+Private Sub BarcodeReader_DecodeComplete(sender As Object, e As ReaderDecodeArgs)
+    If e.SymbolFound Then
+        Dim result As String = e.Symbology & “ “ & e.Value
+    End If
+End Sub
+----
+
+*C# の場合:*
+[source,csharp]
+----
+void ButtonDecode_Click(object sender, RoutedEventArgs e)
+{
+    BarcodeReader barcodeReader = new BarcodeReader();
+    barcodeReader.MaxNumberOfSymbolsToRead = 3;
+    barcodeReader.MinSymbolSize = 200;
+    barcodeReader.BarcodeOrientation = SymbolOrientation.Horizontal;
+    barcodeReader.DecodeComplete += new        EventHandler<ReaderDecodeArgs>(BarcodeReader_DecodeComplete);
+    Symbology symbologyTypes = Symbology.Code39 | Symbology.Code128;
+    barcodeReader.Decode(aBitmapSourceObject, symbologyTypes);
+}
+void BarcodeReader_DecodeComplete(object sender, ReaderDecodeArgs e)
+{
+    if(e.SymbolFound)
+    {
+        string result = e.Symbology + “ “ + e.Value;
+    }
+}
+----
+
+*関連トピック*
+
+link:ig-barcodereader-api-overview.html[API の概要]

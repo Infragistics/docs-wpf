@@ -1,0 +1,112 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamradialmenu-configuring-center-button",
+    "tags": ["How Do I","Layouts"],
+    "controlName": ["xamRadialMenu"],
+    "guid": "169f3baf-23ae-48c1-b11a-402f61c3fce3",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.8753102Z"
+}
+|metadata|
+////
+
+= 中央ボタンの構成 (xamRadialMenu)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[ _xamRadialMenu_  ]™ コントロールの中央ボタンを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-features.html[xamRadialMenu の機能]
+|このトピックでは、コントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamradialmenu-visual-elements.html[xamRadialMenu の視覚要素]
+|このトピックでは、コントロールの視覚要素の概要を紹介します。
+
+| link:xamradialmenu-user-interaction.html[ユーザー相互作用と操作性]
+|このトピックでは、ユーザーが実行できる操作を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref378254351,はじめに>>
+* <<_Ref378254358,中央ボタンの構成の概要>>
+* <<_Ref378254365,関連コンテンツ>>
+
+[[_Ref378254351]]
+== はじめに
+
+=== 中央ボタンの概要
+
+中央ボタンは  _xamRadialMenu_   コントロールが閉じている場合に唯一表示されている要素です。中央ボタンをクリックするとメニューを開くことができます。中央ボタンは、ルート レベルではメニューを閉じるために使用し、サブ項目の他のすべてのレベルでは前の項目レベルに戻るために使用します。
+
+_xamRadialMenu_   には中央ボタンを構成/カスタマイズできる複数のプロパティがあります。そのすべては「CenterButton」で始まります。
+
+[[_Ref378254358]]
+== 中央ボタンの構成の概要
+
+=== 中央ボタンの構成の概要表
+
+以下の表は、 _xamRadialMenu_   中央ボタンの構成可能な主要な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+コンテンツ
+|中央ボタンのコンテンツの設定または取得
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~centerbuttoncontent.html[CenterButtonContent]
+
+|コンテンツ幅
+|中央ボタンのコンテンツ幅の設定または取得
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~centerbuttoncontentwidth.html[CenterButtonContentWidth]
+
+|コンテンツ高さ
+|中央ボタンのコンテンツ高さの設定または取得
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~centerbuttoncontentheight.html[CenterButtonContentHeight]
+
+|バック テンプレート
+|サブ項目の表示で中央ボタンに使用されたテンプレートの設定または取得
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~centerbuttonbacktemplate.html[CenterButtonBackTemplate]
+
+|オープン/クローズ
+|_xamRadialMenu_ のオープン/クローズ
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~isopen.html[IsOpen]
+
+|====
+
+[[_Ref378254365]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-configuration-overview.html[xamRadialMenu 構成の概要]
+|このトピックでは、 _xamRadialMenu_ コントロールを構成する方法を説明します。
+
+| link:xamradialmenu-configuring-tooltips.html[ツールチップの構成]
+|このトピックでは、項目のツールチップを構成する方法を説明します。
+
+| link:xamradialmenu-configuring-key-tips.html[キー チップの構成]
+|このトピックでは、項目のキー チップを構成する方法を説明します。
+
+|====

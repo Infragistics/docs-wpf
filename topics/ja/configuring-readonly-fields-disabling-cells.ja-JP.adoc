@@ -1,0 +1,200 @@
+﻿////
+
+|metadata|
+{
+    "name": "configuring-readonly-fields-disabling-cells",
+    "controlName": [],
+    "tags": [],
+    "guid": "e9c7306d-30e4-4bb1-a656-15aeb90c7a36",  
+    "buildFlags": [],
+    "createdOn": "2014-06-26T13:32:52.8055414Z"
+}
+|metadata|
+////
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDataPresenter_™ コントロールで、特定のフィールドのセルを無効化する方法、およびフィールドを読み取り専用として設定する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:wpf-terms-and-concepts.html[用語と概念]
+|このセクションでは、Data Presenter Family のコントロールを構成する主要な要素を定義します。
+
+| link:xamdatagrid-getting-started-with-xamdatagrid.html[xamDataGrid をページに追加]
+|このトピックでは、 _xamDataGrid_ コントロールをページに追加する方法について説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref388548388, 読み取り専用フィールドの構成 >>
+* <<_Ref388548392, セルまたはフィールドの無効化 >>
+* <<_Ref388548402, 関連コンテンツ >>
+
+** <<_Ref388548405,トピック>>
+
+[[_Ref388548388]]
+== 読み取り専用フィールドの構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+状況によっては、ユーザーに  _xamDataPresenter_   の UI を使用した `Field` データの編集を許可しないように設定することが必要な場合があります。このような場合は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[Field] `IsReadOnly` プロパティを `true` に設定します。
+
+この設定でもコートを使用すると、エディターの値を変更できます。
+
+`IsReadOnly` プロパティのデフォルト値は `null` で、この値は false に変換されます。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|`Field` を読み取り専用に設定
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~isreadonly.html[IsReadOnly]
+|`true`
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TextField Name="SKU" Label="Product SKU" IsReadOnly="True" />
+----
+
+[[_Ref388548392]]
+== フィールドのセルの無効化
+
+=== 概要
+
+_xamDataPresenter_   コントロールでは、`フィールド`のセルを無効にできます。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|追加レコード内の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[フィールド]のセルの無効化
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~isenabledinaddrecord.html[IsEnabledInAddRecord]
+|`false`
+
+|データ レコード (追加レコードまたはフィルター レコードではなく) 内の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[フィールド]のセルの無効化
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~isenabled.html[IsEnabled]
+|`false`
+
+|====
+
+=== 例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TextField Name="ProductID" Label="ID" IsEnabled=" IsEnabledInAddRecord=" />
+----
+
+== 特定のセルの有効化または無効化
+
+=== 概要
+
+セルに関連付けられた`フィールド`の設定をオーバーライドするには、 _xamDataPresenter_   コントロールで特定の`セル`を有効または無効にします。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell_members.html[セル]の有効化
+|`IsEnabled`
+|`true`
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell_members.html[セル]の無効化
+|`IsEnabled`
+|`false`
+
+|====
+
+=== 例
+
+以下のコードはこの例を実装します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+void XDG1_InitializeRecord(object sender, InitializeRecordEventArgs e)
+{
+    var dr = e.Record as DataRecord;
+    if (dr != null)
+    {
+        dr.Cells["SKU"].IsEnabled = false;
+        dr.Cells["ProductID"].IsEnabled = true;
+    }
+}
+----
+
+[[_Ref388548402]]
+== 関連コンテンツ
+
+[[_Ref388548405]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdata-about-xamdatapresenter-and-xameditors.html[xamDataPresenter および xamEditors について]
+|このトピックでは、 _xamDataPresenter_ コントロールおよび _xamEditors_ コントロールについて説明します。
+
+| link:xamdatapresenter-accessing-cell-values-in-the-active-record.html[アクティブ レコード内のセル値へのアクセス]
+|このトピックでは、XAML を使用して、データ入力のためのセクションをウィンドウに作成する方法を説明します。
+
+| link:xamdatapresenter-accessing-cell-values-in-the-recordactivated-event.html[RecordActivated イベントによるセル値へのアクセス]
+|このトピックでは、 _xamDataPresenter_ の RecordActivated イベントを介してアクティブなレコード内のセル値にアクセスする方法について説明します。
+
+| link:xamdata-changing-field-record-cell-selection-behavior.html[フィールド、レコード、またはセルの選択動作の変更]
+|このトピックでは、 _xamDataPresenter_ コントロールでセル、レコードおよびフィールドの選択動作を変更する方法を説明します。
+
+| link:xamdata-default-editor-types-for-different-data-types.html[さまざまなデータ型に対するデフォルトのエディター タイプ]
+|このトピックでは、データ タイプ、および _xamDataPresenter_ コントロールのデフォルトでデータ タイプを編集するために登録されるエディターの一覧を示します。
+
+| link:xamdatapresenter-embedding-a-custom-control-in-a-field.html[フィールドへのカスタム コントロールの埋め込み]
+|このトピックでは、カスタム テンプレートを作成して任意のコントロールをセルに埋め込む方法を説明します。
+
+| link:xamdatapresenter-embedding-a-xameditor-in-a-field.html[フィールドへの xamEditor の埋め込み]
+|このトピックでは、カスタム スタイルを作成して、 _xamEditor_ コントロールをセルに埋め込む方法を説明します。
+
+|====

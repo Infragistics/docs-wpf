@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards",
+    "controlName": ["xamDataCards"],
+    "tags": [],
+    "guid": "{5173A275-E859-49A6-9826-EBF628A78F9B}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5878707Z"
+}
+|metadata|
+////
+
+= xamDataCards
+
+
+
+このセクションは、コントロールの機能とアプリケーションでのコントロールの使用についてのステップバイステップの手順に至るまで xamDataCards™ を説明します。
+
+以下のリンクをクリックして、xamDataCards コントロールについての重要な情報にアクセスします。
+
+== link:xamdatacards-about-xamdatacards.html[xamDataCards について]
+
+このセクションでは、xamDataCards コントロールの機能の理解を深める支援となる情報を提供します。
+
+== link:xamdatacards-adding-xamdatacards-to-your-application.html[xamDataCards をアプリケーションに追加]
+
+xamDataCards コントロールでできる限り素早く起動して実行するために、コントロールを使用して開始する方法 (たとえば、アプリケーションに xamDataCards を追加) についての情報を提供します。
+
+== link:xamdatacards-using-xamdatacards.html[xamDataCards の使用]
+
+このセクションには、xamDataCards コントロールで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamdatacards-api-overview.html[API の概要]
+
+このトピックは、xamDataCards/xamDataPresenter コントロールを使用して開発する際の名前空間とクラスについて説明します。このトピックに挙げられている名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]セクションにリンクされています。

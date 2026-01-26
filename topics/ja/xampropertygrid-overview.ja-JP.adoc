@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-overview",
+    "tags": [],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "b8d0d7fd-580c-4a9b-bae9-ad4f1e10301c",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T08:41:17.6304097Z"
+}
+|metadata|
+////
+
+= 概要 (xamPropertyGrid)
+
+== このグループのトピックについて
+
+=== 概要
+
+このトピックのグループでは、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[ _xamPropertyGrid_  ]™ コントロールの機能、視覚要素およびユーザー インタラクションの概要を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+| link:xampropertygrid-user-interactions.html[ユーザー インタラクションと操作性 (xamPropertyGrid)]
+|これは、ユーザーが実行できる操作を説明するトピックのグループです。
+
+| link:xampropertygrid-list-of-attributes.html[サポートされる属性のリスト (xamPropertyGrid)]
+|このトピックでは、オブジェクトからプロパティのリストを取得する場合に、コントロールで使用される属性の一覧を示します。
+
+|====

@@ -1,0 +1,59 @@
+﻿////
+
+|metadata|
+{
+    "name": "using-the-data-context-for-data-binding",
+    "controlName": [],
+    "tags": [],
+    "guid": "{AA95C760-5E3F-429B-BA39-DEAF435FE396}",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-02-01T16:01:19.6228366Z"
+}
+|metadata|
+////
+
+= データ バインドでデータ コンテキストを使用
+
+データ コンテキストは、Microsoft® Windows® Presentation Foundation の新しい概念で、データ バインディングと密接に協力して特定のデータ セットへのアクセスを要素のツリーに提供します。要素で設定すると、DataContext プロパティ (FrameworkElement で定義された) はその要素とすべての子孫要素でのデータ バインディングのためのコンテキストを提供します。これらの要素に存在する Binding ステートメントは指定された DataContext を使用して Binding の値を解決します。
+
+たとえば、1 ページに複数のコントロールがあり、各コントロールをデータの同じ部分にバインドしたい場合、すべてのコントロールの先祖である要素 (たとえば Window のルート要素) で DataContext プロパティを設定して、次に DataContext でデータの特定の部分にバインドするこれらのコントロールのプロパティでバインディングを指定することができます。DataContext が要素に指定されると、新しい DataContext が子孫要素で設定されない限り、それはすべての子孫要素のデータ バインディングのためのコンテキストとしての役割を果たします。この場合、新しい DataContext は、その要素およびその子孫のすべてのデータ バインディングのためのコンテキストとしての役割を果たします。
+
+このトピックでは、xamDataGrid™ および xamDataCarousel™ に割り当てる XmlDataProvider を使用します。
+
+[start=1]
+. Microsoft Windows Presentation Foundation Window または Page プロジェクトを作成します。
+[start=2]
+. xamDataGrid により簡単にアクセスするために、以下の名前空間宣言を開始の Page タグまたは Window タグ内に配置します。
+
+*XAML の場合:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+----
+
+[start=3]
+. link:resources-orders.html[Orders] XML ファイルを参照する XmlDataProvider を定義します。Page の Resources 内に以下の XAML コードを配置します。StackPanel の Data Context を設定する予定なので、Page の Resources セクションに定義を配置します。例外が発生するので、StackPanel の Resources セクションにこの定義を作成できませんでした。この例外は、検索するために WPF が Visual Tree を使用するので発生します。StackPanel でキーを通して XmlDataProvider を参照しているため、プログラムは StackPanel から遡ります。したがって、StackPanel の Resources セクション内で XmlDataProvider を定義しようとした場合には、XmlDataProvider を見つけ出しません。これは StackPanel の親ではなく子であるためです。
+
+*XAML の場合:*
+
+----
+<Page.Resources>
+        <XmlDataProvider Source="../Data/Orders.xml" 
+          x:Key="OrderData" XPath="/Orders" />
+</Page.Resources>
+----
+
+[start=4]
+. XamDataGrid と XamDataCarousel のインスタンスを作成して、名前を指定し、XML ファイルからデータ コレクションを検索するために link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~datasource.html[DataSource] プロパティを XPath クエリに設定します。以下の XAML コードは、DataContext バインディングを前述の手順で定義した XmlDataProvider に定義して、xamDataGrid および xamDataCarousel の初期化を示します。
+
+*XAML の場合:*
+
+----
+<StackPanel DataContext="{Binding Source={StaticResource OrderData}}">
+        <igDP:XamDataGrid x:Name="XamDataGrid1" DataSource="{Binding XPath=Order}"/>
+        <igDP:XamDataCarousel x:Name="XamDataCarousel1" DataSource="{Binding XPath=Order}"/>
+</StackPanel>
+----
+
+[start=5]
+. プロジェクトをビルドして実行します。一番上にデータ バインドされた xamDataGrid が、一番下に xamDataCarousel が表示されます。

@@ -1,0 +1,246 @@
+﻿////
+|metadata|
+{
+    "name": "xamgrid-sparkline-column",
+    "controlName": ["xamGrid"],
+    "tags": ["Charting","Grids","How Do I","Layouts"],
+    "guid": "00672021-d5fd-4cfc-ac48-d77d21a6e7a6",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.6042003Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= スパークライン列
+
+=== 使用目的
+
+このトピックでは、 _xamGrid_™ コントロールのスパークライン列タイプを紹介し、その使用方法を説明します。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|_トピック_|_目的_
+
+| link:xamgrid-define-column-layout.html[列レイアウトの定義]
+|このトピックは、 _xamGrid_ コントロールを使用して列を定義および構成する方法を説明します。
+
+|====
+
+=== 本トピックの内容
+
+* <<_Ref319936439,概要>>
+* <<_Ref319936463,スパークライン列の構成 - 概念的概要>>
+
+** <<_Ref320113737,スパークライン列の構成の概要>>
+** <<_Ref320001215,プロパティ設定>>
+
+* <<_Ref319936488,スパークライン列の構成 - コード例>>
+
+** <<_Ref320001149,説明>>
+** <<_Ref320001161,プロパティ設定>>
+** <<_Ref320001172,プレビュー>>
+** <<_Ref320001184,コード>>
+
+* <<_Ref319936499,関連コンテンツ>>
+
+** <<Topics,トピック>>
+
+[[_Ref319936439]]
+== 概要
+
+[[_Ref320001030]]
+
+=== スパークライン列の概要
+
+スパークライン列タイプでは、 _xamSparkline_™ コントロールを挿入することによって、グリッド セルにスパークライン チャートを表示できます。_xamSparkline_   は、軽量のチャート コントロールであり、最高値および最低値、高速/低速/負の数および全てのデータ ポイントのマーカーに対してデータ マーカーを表示できます。詳細は link:sparkline-sparkline-overview.html[xamSparkline の概要]トピックを参照してください。
+
+xamGrid コントロールでスパークライン列を作成するには、`<ig:SparklineColumn>` タグを使用してグリッドに列を追加する必要があります。列は、Key プロパティを持つか、 link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~itemssourcepath.html[ItemsSourcePath] プロパティを設定する必要があります。link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~itemssourcepath.html[ItemsSourcePath] プロパティが設定される場合には、スパークライン列のデータはそのプロパティから取得されます。設定されないと、スパークライン列のデータは Key プロパティから取得されます。列定義の詳細は、 link:xamgrid-define-column-layout.html[列レイアウトの定義]トピックを参照してください。
+
+=== 要件
+
+Sparkline 列を XamGrid コントロールに追加するには、以下の NuGet パッケージを参照する必要があります。
+
+* Infragistics.WPF.Controls.Grids.SparklineColumn
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[[_Ref319936463]]
+== スパークライン列の構成 - 概念的概要
+
+[[_Ref320113737]]
+
+=== スパークライン列の構成の概要
+
+スパークライン列を構成するには、列のデータ ソースを、 _xamGrid_   内の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~itemssource.html[ItemsSource] プロパティからのキーに設定する必要があります。xamGrid コントロールのデータへのバインドに関する詳細は、 link:xamgrid-data-binding.html[データ バインディング] トピックを参照してください。グリッド内のすべての列は、データ ソースからの一意のキーを含む必要があります。
+
+スパークライン データ ポイントとして使用する値を決定するには、データ ポイントとして使用する、データ ソースからの値を指定する必要があります。これを行うには、 link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~valuememberpath.html[ValueMemberPath] プロパティを希望の値に設定します。
+
+X 軸にラベルを表示するには、ラベルとして使用するデータ ソースからの値を指定する必要があります。これを行うには、 link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~labelmemberpath.html[LabelMemberPath] プロパティを希望の値に設定します。
+
+link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~itemssourcepath.html[ItemsSourcePath] プロパティによって Sparkline のためにデータ ソースを設定することが可能となります。列の Key プロパティの代わりにこのプロパティを使用する主な利点は、複数の Sparkline を同じプロパティにバインドできることです。
+
+[[_Ref320001215]]
+
+=== プロパティ設定
+
+以下の表は、推奨の構成/ビヘイビアーをプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|プロパティ|次に設定
+
+|列の一意の識別子を設定します
+|Key
+|列の`キー`値。この値は一意である必要があります。
+
+|データ ソースを設定します
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~itemssourcepath.html[ItemsSourcePath]
+|`ItemsSource` からのキー。
+
+|スパークライン データ ポイントとして、基本データからの数値を特定します
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~valuememberpath.html[ValueMemberPath]
+|`ItemsSource` からのキー。これは非 null 値になりますが、空にすることもできます。
+
+|X 軸にラベルを表示します (水平軸が表示されている場合)
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~labelmemberpath.html[LabelMemberPath]
+|`ItemsSource` からのキー。
+
+|====
+
+.注
+[NOTE]
+====
+チャートをスタイリングし、追加プロパティを設定するには、スタイルを作成して Sparkline コントロールに適用します。Sparkline chart プロパティの詳細については、 link:sparkline-sparkline-property-reference.html[xamSparkline プロパティ参照]トピックを参照してください。
+====
+
+[[_Ref319936488]]
+== スパークライン列の構成 - コード例
+
+[[_Ref320001149]]
+
+=== 説明
+
+以下のコードは、会社ごとに注文を視覚化する、xamGrid 内のスパークライン列の構成方法を示します。
+
+[[_Ref320001161]]
+
+=== プロパティ設定
+
+この例では、スパークライン列が以下の設定で構成されています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+|Key
+|注文
+
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~itemssourcepath.html[ItemsSourcePath]
+|注文
+
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~valuememberpath.html[ValueMemberPath]
+|数量
+
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids.sparklinecolumn~labelmemberpath.html[LabelMemberPath]
+|輸送
+
+|====
+
+[[_Ref320001172]]
+
+=== プレビュー
+
+以下は、この例でコードによって生成された、スパークライン列のプレビューです。
+
+image::images/Sparkline_Column_1.png[]
+
+[[_Ref320001184]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid x:Name="dataGrid" AutoGenerateColumns="False" ColumnWidth="*">
+   <ig:XamGrid.Columns>
+      <ig:TextColumn Key="Company">
+         <ig:TextColumn.HeaderTemplate>
+            <DataTemplate>
+               <TextBlock Text="{Binding Path=XWG_Customers_Company, Source={StaticResource Strings}}" />
+            </DataTemplate>
+         </ig:TextColumn.HeaderTemplate>
+      </ig:TextColumn>
+      <ig:TextColumn Key="ContactName">
+         <ig:TextColumn.HeaderTemplate>
+            <DataTemplate>
+               <TextBlock Text="{Binding Path=XWG_Customers_ContactName, Source={StaticResource Strings}}" />
+            </DataTemplate>
+         </ig:TextColumn.HeaderTemplate>
+      </ig:TextColumn>
+      <ig:TextColumn Key="Country">
+         <ig:TextColumn.HeaderTemplate>
+            <DataTemplate>
+               <TextBlock Text="{Binding Path=XWG_Customers_Country, Source={StaticResource Strings}}" />
+            </DataTemplate>
+         </ig:TextColumn.HeaderTemplate>
+      </ig:TextColumn>
+      <ig:SparklineColumn Key="Orders" ItemsSourcePath="Orders" LabelMemberPath="Freight" ValueMemberPath="Quantity" >
+         <ig:SparklineColumn.HeaderTemplate>
+            <DataTemplate>
+               <TextBlock Text="{Binding Path=XWG_OrderDetails_Quantity, Source={StaticResource Strings}}" />
+            </DataTemplate>
+         </ig:SparklineColumn.HeaderTemplate>
+      </ig:SparklineColumn>
+   </ig:XamGrid.Columns>
+</ig:XamGrid>
+----
+
+*C# の場合:*
+
+[source,c#]
+----
+SparklineColumn Sparkline_Column = new SparklineColumn();
+Sparkline_Column.Key = "Orders";
+Sparkline_Column.LabelMemberPath = "Freight";
+Sparkline_Column.ValueMemberPath = "Quantity";
+Sparkline_Column.ItemsSourcePath = "Orders";
+this.dataGrid.Columns.Add(Sparkline_Column);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim Sparkline_Column As SparklineColumn = New SparklineColumn
+Sparkline_Column.Key = "Orders"
+Sparkline_Column.LabelMemberPath = "Freight"
+Sparkline_Column.ValueMemberPath = "Quantity"
+Sparkline_Column.ItemsSourcePath = "Orders"
+Me.dataGrid.Columns.Add(Sparkline_Column)
+----
+
+[[_Ref319936499]]
+== 関連コンテンツ
+
+===  トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-columns.html[列]
+|このセクションでは、 _xamGrid_ コントロールで利用可能な列タイプを説明します。
+
+| link:sparkline-sparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+|====

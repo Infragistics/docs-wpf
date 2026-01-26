@@ -1,0 +1,181 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager-overview",
+    "tags": ["Getting Started","Theming"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "430039bd-6a7d-4716-8b54-44ae0ac0a6bc",  
+    "buildFlags": [],
+    "createdOn": "2014-09-03T11:15:58.9008936Z"
+}
+|metadata|
+////
+
+= 機能の概要 (ThemeManager)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _Infragistics ThemeManager_™ およびその機能の概要を説明します。
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref397164233,概要>>
+* <<_Ref397330117,使用可能なテーマと必要なアセンブリ>>
+* <<_Ref397330130,主要な機能>>
+* <<_Ref397330162,関連コンテンツ>>
+
+[[_Ref397164233]]
+== 概要
+
+=== ThemeManager の概要
+
+_Infragistics ThemeManager_   の主な目的は、1 行のコードを使用して、指定されたテーマをアプリケーションまたはコントロールに簡単に適用する方法を提供することです。
+
+[[_Ref397330117]]
+== 使用可能なテーマと必要なアセンブリ
+
+=== 概要
+
+テーマをアプリケーション、ページまたはコントロールに適用する場合、付属する 5 つのテーマ パッケージから選択できます。テーマ パッケージには、使用可能な Infragistics のすべての WPF コントロールのリリース ディクショナリと、サポートされる Microsoft の WPF コントロールのテーマが含まれています。
+
+=== 要件の概要表
+
+以下の表は、使用可能なテーマ パッケージとそのテーマを使用するために必要な NuGet パッケージをまとめたものです。 NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|テーマ|必要なアセンブリ
+
+|`IgTheme`
+|Infragistics.WPF.Themes.IG
+
+|`MetroDarkTheme`
+|Infragistics.WPF.Themes.MetroDark
+
+|`MetroTheme`
+|Infragistics.WPF.Themes.Metro
+
+|`Office2010BlueTheme`
+|Infragistics.WPF.Themes.Office2010Blue
+
+|`Office2013Theme`
+|Infragistics.WPF.Themes.Office2013
+
+|`RoyalDark`
+|Infragistics.WPF.Themes.RoyalDark
+
+|`RoyalLight`
+|Infragistics.WPF.Themes.RoyalLight
+
+|====
+
+[[_Ref397330130]]
+== 主要な機能
+
+[[_Ref397352743]]
+
+=== FrameworkElement レベルのテーマの適用
+
+ウィンドウ、ページまたはグリッド レベルのテーマを適用します。_ThemeManager_   により、1 行のコードを使用して、ビジュアル ツリーの任意の場所と、そのレベルに含まれるコントロールのスタイルが、それに応じて設定されます。
+
+特定のコントロールのみに適用することで、テーマの範囲を制限することもできます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid ItemsSource="{Binding Path=Customers}" >
+    <ig:ThemeManager.Theme>
+        <ig:Office2013Theme />
+    </ig:ThemeManager.Theme>
+</ig:XamGrid>
+----
+
+image::images/Theme_Manager_Overview_1.png[]
+
+==== 関連トピック:
+
+* link:thememanager-applying-theme-to-control.html[FrameworkElement レベルのテーマの適用]
+
+[[_Ref397352750]]
+
+=== アプリケーション レベルへのテーマの適用
+
+必要なすべてのリリース ディクショナリを含め、参照せずに、1 行のコードを使用して、特定のテーマを WPF アプリケーションに適用します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ThemeManager.ApplicationTheme = new Office2013Theme();
+----
+
+image::images/Theme_Manager_Overview_2.png[]
+
+==== 関連トピック:
+
+* link:thememanager-applying-theme-to-application.html[アプリケーション レベルへのテーマの適用]
+
+=== サポートされる Microsoft の WPF コントロールへのテーマの適用
+
+テーマをアプリケーションに適用します。サポートされる Microsoft のWPF コントロールを含む、使用可能なすべてのコントロールのスタイルが、それに応じて設定されます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ThemeManager.Theme>
+    <ig:Office2013Theme StyleMicrosoftControls="True" />
+</ig:ThemeManager.Theme>
+----
+
+image::images/Theme_Manager_Overview_3.png[]
+
+==== 関連トピック:
+
+* link:thememanager-applying-theme-to-supported-ms-wpf-controls.html[サポートされる Microsoft の WPF コントロールへのテーマの適用]
+
+=== 新規のカスタム テーマの作成
+
+ThemeManager を使用して、カスタム テーマを作成し、Infragistics の WPF コントロールおよび Microsoft の一般的な WPF コントロールに適用します。
+
+image::images/Theme_Manager_Overview_4.png[]
+
+==== 関連トピック:
+
+* link:thememanager-creating-new-custom-theme.html[新規のカスタム テーマの作成]
+
+=== 既存のコントロール テーマの拡張
+
+ThemeManager を使用して、既存のビルトイン テーマを拡張し適用します。
+
+image::images/Theme_Manager_Overview_5.png[]
+
+==== 関連トピック:
+
+* link:thememanager-extending-existing-control-theme.html[既存のコントロール テーマの拡張]
+
+[[_Ref397330162]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-working-with-thememanager.html[ThemeManager の操作]
+|このグループのトピックでは、 _Infragistics ThemeManager_ のさまざまな機能を構成する方法を説明します。
+
+| link:thememanager-known-issues-and-limitations.html[既知の問題と制限]
+|このトピックでは、 _Infragistics ThemeManager_ の既知の問題と制限事項について説明します。
+
+| link:thememanager-api-reference.html[API リファレンス]
+|このトピックでは、 _Infragistics ThemeManager_ に関連したキー クラスに関する参考情報を提供します。
+
+|====

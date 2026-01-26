@@ -1,0 +1,46 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-theoryofoperation",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started"],
+    "guid": "{1C1D6364-1B8B-47C4-865A-C7768D4A45D3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5758683Z"
+}
+|metadata|
+////
+
+= 操作の理論
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] は、xamDataCarousel、xamDataGrid、xamTreeGrid、xamDataCards、および、xamDataPresenter コントロールの抽象基本クラスです。
+
+以下のリストは、コントロールのデータ描画を説明します。
+
+* xamDataCarousel - 指定したパスを使用してカルーセル ビューでデータを表示します。
+* xamDataGrid - 標準のグリッド ビューでデータを表示します。
+* xamTreeGrid - ツリー グリッド ビューでデータを表示します。これは、コントロールにバインドされる階層データを表すためのツリー フィールドを持つグリッド ビューです。
+* xamDataCards - Microsoft® Outlook 2007 の連絡先フォルダーのように「カード」を使用してフラット データを表示します。
+* xamDataPresenter - 上記で説明したコントロールの定義済みビューより表示の拡張が可能なビュー アーキテクチャを公開します。xamDataPresenter コントロールもランタイムでビューの切り替えをサポートします。
+
+ただし、すべての DataPresenter のコントロールは共通の操作理論を共有します。`DataPresenterBase` クラスは、以下の 4 つの本質的な機能を提供します。
+
+* データにバインディング、構造を分析、その構造に対応する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayouts] を生成。
+* 各 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] を表すセル レイアウトを生成するためにビューと調整。
+* データ ソースから発生する変更をリッスンして、一致するようにコントロールを同期。
+* UI によってデータへの更新を容易にする (たとえば、新しいレコードの追加、既存のレコードの削除、セル値の編集)。
+
+*関連トピック:*
+
+* link:xamdata-supplying-data.html[データの提供]
+* link:xamdata-wrapping-the-data.html[データのラッピング]
+* link:xamdata-assigning-a-fieldlayout.html[FieldLayout の割り当て]
+* link:xamdata-specifying-settings-for-fieldlayouts.html[FieldLayout の設定を指定]
+* link:xamdata-specifying-settings-for-fields.html[Fields の設定を指定]
+* link:xamdata-cells-cellvaluepresenters-and-cell-virtualization.html[Cells、CellValuePresenters、および Cell の仮想化]
+* link:xamdata-hierarchical-heterogenous-and-free-form-data-structures.html[階層、異種、およびフリーフォームのデータ構造]
+* link:xamdata-arranging-cells-within-the-record.html[レコード内にセルを配置]
+* link:xamdata-adding-records.html[レコードの追加]
+* link:xamdata-deleting-records.html[レコードの削除]
+* link:xamdata-editing-cell-values.html[セル値の編集]

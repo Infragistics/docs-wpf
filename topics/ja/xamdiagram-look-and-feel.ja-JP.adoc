@@ -1,0 +1,279 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-look-and-feel",
+    "tags": [],
+    "controlName": ["xamDiagram"],
+    "guid": "28f92f22-6d9f-4ee3-8f19-221ad89d2d87",  
+    "buildFlags": [],
+    "createdOn": "2014-09-25T11:03:18.2855724Z"
+}
+|metadata|
+////
+
+= ダイアグラム項目のルック アンド フィールの構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールでダイアグラム項目の基本的なルック アンド フィール プロパティを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref387509075, ダイアグラム項目のルック アンド フィールの構成の概要 >>
+
+** <<_DiagramItemsLookAndFeelConfigSummaryChart,ダイアグラム項目のルック アンド フィールの構成の概要表>>
+
+* <<_Ref386478000, ダイアグラム項目のルック アンド フィールの構成 >>
+
+** <<_Ref386478019,概要>>
+** <<_Ref386478080,プロパティ設定>>
+** <<_Ref387509095,例>>
+
+* <<_Ref386478097, 関連コンテンツ >>
+
+[[_Ref387509075]]
+== ダイアグラム項目のルック アンド フィールの構成の概要
+
+[[_DiagramItemsLookAndFeelConfigSummaryChart]]
+
+=== ダイアグラム項目のルック アンド フィールの構成の概要表
+
+以下の表は、ダイアグラム項目をルック アンド フィールに関連する構成可能な項目を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|塗りつぶし
+|項目を塗りつぶす色
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~fill.html[Fill] 
+
+|ストローク
+|ノード図形 / 接続線、ストロークの色、太さ、ダッシュ配列
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~stroke.html[Stroke] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~strokedasharray.html[StrokeDashArray] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~strokethickness.html[StrokeThickness] 
+
+|フォント
+|使用可能なフォントに関連した設定
+|
+* link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.foreground(v=vs.110).aspx[Foreground] 
+
+* link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontfamily(v=vs.110).aspx[FontFamily] 
+
+* link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontsize(v=vs.110).aspx[FontSize] 
+
+* link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontstyle(v=vs.110).aspx[FontStyle] 
+
+* link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontweight(v=vs.110).aspx[FontWeight] 
+
+|不透明度
+|項目の不透明度
+|
+* link:http://msdn.microsoft.com/ja-jp/library/system.windows.uielement.opacity.aspx[Opacity] 
+
+|接続線のタイプ (接続のみ)
+|接続に対して描画される線のタイプ (直線または直角)
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~connectiontype.html[DiagramConnection.ConnectionType] 
+
+|====
+
+[[_Ref386478000]]
+== ダイアグラム項目のルック アンド フィールの構成
+
+[[_Ref386478019]]
+
+=== 概要
+
+ダイアグラム項目の外観をカスタマイズするには、ルック アンド フィールに関連するプロパティを使用します。
+
+[[_Ref386478080]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ノード図形 / 接続線の塗りつぶしに使用する色の設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~fill.html[Fill]
+|目的のブラシ
+
+|ノード図形 / 接続線のストロークに使用する色の設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~stroke.html[Stroke]
+|目的のブラシ
+
+|ストロークの太さの設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~strokethickness.html[StrokeThickness]
+|目的の太さ
+
+|フォントの色の設定
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.foreground(v=vs.110).aspx[Foreground]
+|目的のブラシ
+
+|フォント ファミリの設定
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontfamily(v=vs.110).aspx[FontFamily]
+|目的のフォント ファミリ
+
+|フォント サイズの設定
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontsize(v=vs.110).aspx[FontSize]
+|目的のサイズ
+
+|フォント スタイルの設定
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontstyle(v=vs.110).aspx[FontStyle]
+|目的のスタイル
+
+|フォント ウェイトの設定
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontweight(v=vs.110).aspx[FontWeight]
+|目的のフォント ウェイト
+
+|不透明度の設定
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.uielement.opacity.aspx[Opacity]
+|0～1 の範囲内の目的の値
+
+|接続の種類の設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~connectiontype.html[DiagramConnection.ConnectionType]
+|_直線_ または _直角_
+
+|====
+
+[[_Ref387509095]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、ダイアグラムのノードおよび接続がどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~fill.html[Fill]
+| _Azure_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~stroke.html[Stroke]
+| _Aquamarine_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~strokethickness.html[StrokeThickness]
+| _5_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~strokedasharray.html[StrokeDashArray]
+| _5 1_ 
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.foreground(v=vs.110).aspx[Foreground]
+| _Chocolate_ 
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontfamily(v=vs.110).aspx[FontFamily]
+| _Comic Sans MS_ 
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontsize(v=vs.110).aspx[FontSize]
+| _30_ 
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontstyle(v=vs.110).aspx[FontStyle]
+| _Italic_ 
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.controls.control.fontweight(v=vs.110).aspx[FontWeight]
+| _Bold_ 
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.uielement.opacity.aspx[Opacity]
+| _0.7_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~connectiontype.html[ConnectionType]
+| _Straight_ 
+
+|====
+
+image::images/xamDiagram_Configuring_The_Look_And_Feel_Of_Diagram_Items_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram>
+    <ig:DiagramNode
+        Fill="Azure"
+        Stroke="Aquamarine"
+        StrokeThickness="5"
+        StrokeDashArray="5 1"
+        Foreground="Chocolate"
+        FontFamily="Comic Sans MS"
+        FontSize="30"
+        FontStyle="Italic"
+        FontWeight="Bold"
+        Opacity="0.7"
+        Content="Hi!"/>
+    <ig:DiagramConnection
+        Fill="Azure"
+        Stroke="Aquamarine"
+        StrokeThickness="5"
+        StrokeDashArray="5 1"
+        Foreground="Chocolate"
+        FontFamily="Comic Sans MS"
+        FontSize="30"
+        FontStyle="Italic"
+        FontWeight="Bold"
+        Opacity="0.7"
+        Content="Hi!"
+        ConnectionType="Straight"
+        StartPosition="0,200"
+        EndPosition="200,200"/>
+</ig:XamDiagram>
+----
+
+[[_Ref386478097]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-the-position-and-size-of-diagram-nodes.html[ダイアグラム ノードの位置およびサイズの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールのダイアグラム ノードのサイズと位置を制御する方法を説明します。
+
+| link:xamdiagram-configuring-the-shape-of-diagram-nodes-overview.html[ダイアグラム ノードの図形の構成 ( _xamDiagram_ )]
+|このトピックでは、定義済みの図形を選択、またはカスタム図形を適用して、 _xamDiagram_ コントロールのダイアグラム ノードの図形を構成する方法を説明します。
+
+| link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )]
+|このトピックでは、ダイアグラム ノードの接続ポイントを構成する方法を説明します。
+
+| link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[ダイアグラム接続の開始および終了の構成 ( _xamDiagram_ )]
+|このトピックでは、ダイアグラムの接続を開始する位置と終了する位置を構成する方法について説明します。
+
+| link:xamdiagram-configuring-the-caps-of-diagram-connections.html[ダイアグラム接続のキャップの構成 ( _xamDiagram_ )]
+|このトピックでは、定義済みのキャップを選択、またはカスタム キャップを適用して、 _xamDiagram_ コントロールのダイアグラム接続のキャップを構成する方法を説明します。
+
+| link:xamdiagram-binding-to-data.html[データへのバインド ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールをデータにバインドする方法を説明します。
+
+|====

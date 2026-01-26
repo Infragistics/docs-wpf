@@ -1,0 +1,147 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-configuring-restricting-user-interactions",
+    "tags": ["Charting"],
+    "controlName": ["xamDiagram"],
+    "guid": "5ce646b9-0e8c-47b6-a30c-9989cf2ea0f4",
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:37:02.0484523Z"
+}
+|metadata|
+////
+
+= ユーザー インタラクションの制限の構成 (xamDiagram)
+
+[[_topic_overview]]
+== トピックの概要
+
+[[_purpose]]
+=== 目的
+
+このトピックは、 _xamDiagram_™ コントロールで特定のユーザー インタラクションを制限する方法を説明します。
+
+[[_required_background]]
+=== 前提条件
+
+本トピックの理解を深めるために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[ _xamDiagram_ の概要] 
+
+|このトピックでは、 _xamDiagram_ コントロールの概要を説明します。 
+
+|====
+
+[[_in_this_topic]]
+=== このトピックの内容
+
+* <<Ref00001,制限の概要>>
+* <<Ref00002,編集の制限>>
+* <<Ref00003,サイズ変更の制限>>
+* <<Ref00004,削除の制限>>
+* <<Ref00005,関連トピック>>
+
+[[Ref00001]]
+== 制限の概要
+
+[options="header", cols="a,a"]
+|====
+|制限|概要
+
+|<<Ref00002,編集の制限>> 
+
+|任意の _xamDiagram_ のノードおよび接続で編集モードの開始を制限できます。 
+
+|<<Ref00003,サイズ変更の制限>> 
+
+|任意の _xamDiagram_ のノードおよび接続でサイズ変更を制限できます。 
+
+|<<Ref00004,削除の制限>> 
+
+|任意の _xamDiagram_ のノードおよび接続で削除を制限できます。 
+
+|====
+
+[[Ref00002]]
+== 編集の制限
+
+デフォルトで、コントロールはすべての項目の編集を許可します。編集するには、ノードをダブルクリックするか、ノードを選択して *F2* キーを押すか、`EnterEditMode` コマンドを実行します。グローバル レベルで項目の編集を制限するには、 _xamDiagram_  の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~allowedit.html[AllowEdit] ブール型プロパティを false に設定します。デフォルトでこのプロパティは true に設定されます。
+
+ノード レベルで編集を制限するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~allowedit.html[AllowEdit] Nullable ブール型プロパティを使用します。デフォルトでこのプロパティは null 値に設定されるため、解決された値は  _xamDiagram_  の `AllowEdit` プロパティから取得されます。
+
+.注:
+[NOTE]
+====
+ダイアグラム項目が編集モードにあり、`AllowEdit` プロパティが false に解決する場合、項目は編集モードをすぐに終了します。また、終了をキャンセル可能になるため、`ExitingEditMode` イベントは発生されません。
+====
+
+[[Ref00003]]
+== サイズ変更の制限
+
+デフォルトで、コントロールはユーザー インターフェイスで項目のサイズ変更を許可します。グローバル レベルで項目のサイズ変更を制限するには、 _xamDiagram_  の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~allowresize.html[AllowResize] ブール型プロパティを false に設定します。デフォルトでこのプロパティは true に設定されます。
+
+項目レベルでサイズ変更を制限するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~allowresize.html[AllowResize] Nullable ブール型プロパティを使用します。デフォルトでこのプロパティは null 値に設定されるため、解決された値は  _xamDiagram_  の `AllowResize` プロパティから取得されます。
+
+.注:
+[NOTE]
+====
+ダイアグラム接続でサイズ変更が無効な場合、接続されているノードを移動するか、サイズ変更すると、ノードの接続を保持するために接続はサイズ変更します。
+====
+
+[[Ref00004]]
+== 削除の制限
+
+デフォルトで、コントロールは *Delete* キーの押し、クリップボードの `Cut`、`Undo`、および `Redo` コマンドの実行で項目の削除を許可します。グローバル レベルで項目の削除を制限するには、 _xamDiagram_  の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~allowdelete.html[AllowDelete] ブール型プロパティを false に設定します。デフォルトでこのプロパティは true に設定されます。
+
+項目レベルで削除を制限するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~allowdelete.html[AllowDelete] Nullable ブール型プロパティを使用します。デフォルトでこのプロパティは null 値に設定されるため、解決された値は  _xamDiagram_  の `AllowDelete` プロパティから取得されます。
+
+.注:
+[NOTE]
+====
+以下の操作を実行すると: 
+
+* 項目を削除します 
+* 項目の削除を元に戻します 
+* ノードの削除を制限します 
+
+この操作の後、やり直し操作を実行しても成功しません。削除が無効にされるため、操作でノードを削除できないためです。
+====
+
+[[Ref00005]]
+== 関連トピック
+
+このトピックに関連する追加情報については、以下のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-user-interactions-configuration-overview.html[ユーザー インタラクションの構成の概要 ( _xamDiagram_ )] 
+
+|このトピックでは、 _xamDiagram_ コントロールで実行されるユーザー インタラクションのすべてのタスクの概要を説明します。 
+
+| link:xamdiagram-configuring-ui-elements-with-commands.html[ _xamDiagram_ コマンドを使用した UI 要素の構成] 
+
+|このトピックでは、 _xamDiagram_ が提供するコマンドを、メニューやボタンなどの UI 要素で使用する方法を説明します。 
+
+| link:xamdiagram-configuring-the-context-menu.html[コンテキスト メニューの構成 ( _xamDiagram_ )] 
+
+|このトピックでは、 _xamDiagram_ コントロールが提供するコンテキスト メニューを使用する方法を説明します。 
+
+| link:xamdiagram-configuring-the-mouse-tool-and-default-interaction.html[マウス ツールおよびデフォルトのドラッグ操作の構成 ( _xamDiagram_ )] 
+
+|このトピックでは、 _xamDiagram_ のマウス操作とツールを構成する方法を説明します。 
+
+| link:xamdiagram-configuring-keyboard-shortcuts.html[キーボード ショートカットの構成 ( _xamDiagram_ )] 
+
+|このトピックでは、 _xamDiagram_ コマンドに関連付けられたキーボード ショートカットを変更する方法について説明します。 
+
+| link:xamdiagram-configuring-undo-redo-operations.html[元に戻す / やり直し操作の構成 ( _xamDiagram_ )] 
+
+|このトピックでは、 _xamDiagram_ コントロールで元に戻す / やり直し操作を構成する方法を説明します。 
+
+|====

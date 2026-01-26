@@ -1,0 +1,181 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-styling-data-errors",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{065295C7-2E01-4565-A5ED-4A9AA5A214C3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3390209Z"
+}
+|metadata|
+////
+
+= データ エラーのスタイリング
+
+
+== 始める前に
+
+DataPresenter コントロールは、データ エラーをスタイルするために 2 種類の方法を提供します。エラー アイコンの外観を変更したいだけの場合、エラー アイコンのテンプレートを変更するスタイルを作成できます。ただし、セル内のエラー アイコンの配置を制御したい場合やセルの高さを変更したい場合、データエラーの表示を定義するためにデータ テンプレートを作成できます。
+
+== 達成すること
+
+エラー アイコンのスタイルとセルの値の右側にエラー アイコンを配置するデータ テンプレートを作成します。スタイルおよびデータ テンプレートを作成する時に link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] クラスによって公開された定義済みのリソースキーも使用します。そうすれば、DataPresenter コントロールは自動的にすべてのデータ エラーにそれらを適用します。
+
+スタイルおよびデータ テンプレートを含むリソース ディクショナリの範囲は、どの DataPresenter コントロールが影響を受けるのかを決定します。たとえば、ウィンドウのリソース ディクショナリにスタイルとデータ テンプレートを追加すると、ウィンドウのすべての DataPresenter コントロールに影響します。スタイルとデータ テンプレートをコントロールのローカル リソース ディクショナリに追加することによって、DataPresenter コントロールを選択的にスタイルするために、この動作を使用することができます。さらに、スタイルとデータテンプレートをひとつのフィールドのみに影響させたい場合には、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] クラスを対象とするキースタイルを作成して、それらをリソース ディクショナリに追加できます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] プロパティによって公開されている link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellvaluepresenterstyle.html[CellValuePresenterStyle] プロパティを設定すると、スタイルとデータ テンプレートはそのフィールドのデータ エラーだけに影響を及ぼします。
+
+== 次の手順を実行します
+
+[start=1]
+. エラー アイコンのスタイルを作成し、それをウィンドウのリソース ディクショナリに追加します。
+
+.. TargetType プロパティを "{x:Type Control}" に設定します。
+.. Key プロパティを "{x:Static igDP:DataPresenterBase.DataErrorIconStyleKey}" に設定します。DataPresenterBase クラスによって公開されたリソース キーを使用しているので、DataPresenter コントロールは自動的にこのスタイルをエラー アイコンに適用します。
+.. Template プロパティの Setter 要素を追加します。
+.. Ellipse オブジェクトをコントロールのテンプレートに追加します。
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type Control}" x:Key="{x:Static igDP:DataPresenterBase.DataErrorIconStyleKey}">
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type Control}">
+                <Ellipse Fill="Red" Width="10" Height="10" /> 
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+[start=2]
+. データ エラーのデータ テンプレートを作成し、それをウィンドウのリソース ディクショナリに追加します。
+
+.. Key プロパティを "{x:Static igDP:DataPresenterBase.DataErrorContentTemplateKey}" に設定します。
+.. データ テンプレートの Triggers コレクション用のタグを追加します。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="{x:Static igDP:DataPresenterBase.DataErrorContentTemplateKey}">
+    <!--TODO: ここにビジュアル ツリーを追加します -->
+    <DataTemplate.Triggers>
+        <!--TODO: エラー アイコンを表示するには MultiDataTrigger を追加します -->
+        <!--: ハイライトを表示するのに MultiDataTrigger を追加します -->
+    </DataTemplate.Triggers>
+</DataTemplate>
+----
+
+[start=3]
+. Grid パネルをデータ テンプレートに追加します。Grid パネルはデータ エラーのルート レイアウト パネルになります。
+
+.. ColumnDefinition オブジェクトを追加し、その Width プロパティを $$*$$ に設定します。
+.. ColumnDefinition オブジェクトを追加し、その Width プロパティを Auto に設定します。
+
+*XAML の場合:*
+
+----
+<Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <!--: セルの値を表示するのにコンテンツ プレゼンターを追加します -->
+    <!--: エラー アイコンのためのコントロールを追加します -->
+    <!--: ハイライトのための境界線を追加します -->
+</Grid>
+----
+
+[start=4]
+. ContentPresenter オブジェクトを Grid パネルの最初の列に追加し、その ContentTemplate プロパティを NULL に設定します。コンテンツ プレゼンターは、セルの値を表示します。
+
+*XAML の場合:*
+
+----
+<ContentPresenter ContentTemplate="{x:Null}" />
+----
+
+[start=5]
+. Control オブジェクトを Grid パネルの 2 番目の列に追加します。
+
+.. errorIcon と名前を付けます。
+.. Visibility プロパティを Collapsed に設定します。
+.. DataPresenterBase クラスによって公開された link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~dataerroriconstylekey.html[DataErrorIconStyleKey] プロパティを使用して、その Style プロパティを動的なリソースに設定します。
+.. その ToolTip プロパティを CellValuePresenter オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter~dataerror.html[DataError] プロパティに設定します。
+
+*XAML の場合:*
+
+----
+<Control 
+    Grid.Column="1" 
+    Name="errorIcon" 
+    Visibility="Collapsed" 
+    Style="{DynamicResource {x:Static igDP:DataPresenterBase.DataErrorIconStyleKey}}" 
+    ToolTip="{Binding Host.DataError}" />
+----
+
+[start=6]
+. Border オブジェクトを Grid パネルの最初の列に追加します。この時点でプロジェクトをビルドおよび実行する場合、エラー アイコンおよびエラーの強調表示は、データ項目がエラーを含む場合であっても表示されません。データ エラーが発生する場合、それらを表示するためにデータ テンプレートにトリガーを追加する必要があります。
+
+.. errorHighlight と名前を付けます。
+.. BorderBrush プロパティを赤に設定します。
+.. BorderThickness プロパティを 1 に設定します。
+.. Visibility プロパティを Collapsed に設定します。
+
+*XAML の場合:*
+
+----
+<Border Name="errorHighlight" BorderBrush="Red" BorderThickness="1" Visibility="Collapsed" />
+----
+
+[start=7]
+. データ テンプレートの Triggers コレクションに MultiDataTrigger 要素を追加します。セルにデータ エラーがありエラー アイコンが表示される場合、"errorIcon" と名前を付けられたコントロールの Visibility プロパティを True に設定します。
+
+.. CellValuePresenter オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter~hasdataerror.html[HasDataError] プロパティの Condition 要素を Conditions コレクションに追加します。
+.. CellValuePresenter オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter~isdataerrordisplaymodeicon.html[IsDataErrorDisplayModeIcon] プロパティの Condition 要素を Conditions コレクションに追加します。
+.. エラー アイコンの Visibility プロパティを Visible に設定する Setter 要素を追加します。
+
+*XAML の場合:*
+
+----
+<MultiDataTrigger>
+    <MultiDataTrigger.Conditions>
+        <Condition Binding="{Binding Host.HasDataError}" Value="True" />
+        <Condition Binding="{Binding Host.IsDataErrorDisplayModeIcon}" Value="True" />
+    </MultiDataTrigger.Conditions>
+    <Setter TargetName="errorIcon" Property="Visibility" Value="Visible" />
+</MultiDataTrigger>
+----
+
+[start=8]
+. データ テンプレートの Triggers コレクションに MultiDataTrigger 要素を追加します。セルにデータ エラーがありエラーが強調表示される場合、"errorHighlight" と名前を付けられた Border オブジェクトの Visibility プロパティを True に設定します。
+
+.. CellValuePresenter オブジェクトの HasDataError プロパティの Condition 要素を Conditions コレクションに追加します。
+.. CellValuePresenter オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter~isdataerrordisplaymodehighlight.html[IsDataErrorDisplayModeHighlight] プロパティの Condition 要素を Conditions コレクションに追加します。
+.. Border オブジェクトの Visibility プロパティを Visible に設定する Setter 要素を追加します。
+
+*XAML の場合:*
+
+----
+<MultiDataTrigger>
+    <MultiDataTrigger.Conditions>
+        <Condition Binding="{Binding Host.HasDataError}" Value="True" />
+        <Condition Binding="{Binding Host.IsDataErrorDisplayModeHighlight}" Value="True" />
+    </MultiDataTrigger.Conditions>
+    <Setter TargetName="errorHighlight" Property="Visibility" Value="Visible" />
+</MultiDataTrigger>
+----
+
+[start=9]
+. プロジェクトを実行します。データ項目にエラーが含まれる場合、以下のスクリーンショットのように DataPresenter コントロールはデータ エラーを表示します。
+
+image::images/xamDataPresenter_Styling_Data_Errors_01.png[]
+
+== 関連トピック
+
+link:xamdatapresenter-enable-idataerrorinfo-interface-support.html[IDataErrorInfo インターフェイスのサポートを有効にする]
+
+link:xamdatapresenter-validate-data-as-your-end-users-edit-a-cell.html[エンドユーザーがセルを編集するとデータを検証]
+
+link:xamdatapresenter-validating-edited-cell-data-in-xamdatapresenter.html[xamDataPresenter で編集したセル データを検証]

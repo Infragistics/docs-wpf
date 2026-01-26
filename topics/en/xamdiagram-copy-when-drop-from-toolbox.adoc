@@ -1,0 +1,127 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-copy-when-drop-from-toolbox",
+    "tags": ["Charting"],
+    "controlName": ["xamDiagram"],
+    "guid": "",
+    "buildFlags": [],
+    "createdOn": "2017-03-14T09:37:02.0484523Z"
+}
+|metadata|
+////
+
+= Dropping an Item from the Toolbox (xamDiagram)
+
+== Topic Overview
+
+=== Purpose
+
+This topic explains how a diagram item is copied when dropped on the diagram surface from the toolbox.
+
+=== Required background
+
+The following topics are prerequisites to understanding this topic:
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdiagram-general-overview.html[_xamDiagram_ General Overview]
+|This topic provides a general overview of the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-the-toolbox.html[Configuring the Toolbox (_xamDiagram_)]
+|This topic explains how to configure and use the _xamDiagram_ diagram toolbox.
+
+|====
+
+=== In this topic
+
+* <<Ref00001, Overview>>
+* <<Ref00002, Prevent Content Property Coping>>
+* <<Ref00003, Related Topics>>
+
+[[Ref00001]]
+== Overview
+
+When the user drags a link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem.html[DiagramItem] from the toolbox and drops it on the diagram's surface or performs a copy-paste operation, the control creates a copy of this item. In addition the following item's properties are also copied:
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~dragdropdata.html[DragDropData] - this property is copied using "shallow copy" - this process create a reference copies of the same object instance.
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[Content] - this property is copied using "deep copy" - this process create object duplication using reflection by taking the advantage of the `Activator.CreateInstance()` method which means the duplicated diagram items will have their own instances of the mentioned property's values. Keep in mind however that bindings and event handlers are not copied.
+
+.Note
+[NOTE]
+====
+The "deep copy" duplication process involves creating of unknown (to the control) types. Such types can only be instantiated if a parameterless constructor is present.
+====
+
+[[Ref00002]]
+== Prevent Content Property Coping
+
+In certain cases you may need to disable the deep coping of the diagram item's `Content` property. To achieve this you need to follow these steps:
+
+. Create a custom class which extends from either `DiagramNode` or `DiagramConnection`
+. Override the `Clone` method
+. In the new `Clone` method invoke respectively the `CloneDiagramNodeProperties` or the `CloneDiagramConnectionProperties` method
+. Set the last `boolean` argument to false
+
+The following code example demonstrate how to prevent coping of the `Content` property of a `DiagramNode`:
+
+*In C#:*
+[source, csharp]
+----
+public class CustomDiagramNode : DiagramNode
+{
+    public override DiagramItem Clone()
+    {
+        var newCustomDiagramNode = new CustomDiagramNode();
+        CloneDiagramNodeProperties(this, newCustomDiagramNode, false);
+        return newCustomDiagramNode;
+    }
+}
+----
+
+*In VB:*
+[source, vb]
+----
+Public Class CustomDiagramNode
+    Inherits DiagramNode
+    Public Overrides Function Clone() As DiagramItem
+        Dim newCustomDiagramNode = New CustomDiagramNode()
+        CloneDiagramNodeProperties(Me, newCustomDiagramNode, False)
+        Return newCustomDiagramNode
+    End Function
+End Class
+----
+
+[[Ref00003]]
+== Related Topics
+
+The following topics provide additional information related to this topic.
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdiagram-user-interactions-configuration-overview.html[User Interactions Configuration Overview ( _xamDiagram_ )]
+|This topic provides a summary of all user interaction tasks in the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-ui-elements-with-commands.html[Configuring UI Elements with _xamDiagram_ Commands]
+|This topic explains how to use the commands provided by _xamDiagram_ in UI elements such as menus and buttons.
+
+| link:xamdiagram-configuring-the-context-menu.html[Configuring the Context Menu ( _xamDiagram_ )]
+|This topic explains how to use the context menu provided by the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-the-mouse-tool-and-default-interaction.html[Configuring the Mouse Tool and Default Drag Interaction ( _xamDiagram_ )]
+|This topic explains how to configure the mouse interaction and tool for the _xamDiagram_ surface.
+
+| link:xamdiagram-configuring-keyboard-shortcuts.html[Configuring Keyboard Shortcuts ( _xamDiagram_ )]
+|This topic explains how to change the keyboard shortcuts associated with _xamDiagram_ commands.
+
+| link:xamdiagram-configuring-undo-redo-operations.html[Configuring Undo/Redo Operations ( _xamDiagram_ )]
+|This topic explains how to configure the Undo/Redo operations in the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-restricting-user-interactions.html[Configuring User Interactions Restrictions ( _xamDiagram_ )]
+|This topic provides information on how to restrict certain user interactions of the _xamDiagram_ control.
+|====

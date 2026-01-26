@@ -1,0 +1,175 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-configuring-overview",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "60a072d0-901a-4a6d-bf73-378692e4539f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.410338Z"
+}
+|metadata|
+////
+
+= xamRichTextEditor の概要の構成
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールで複数の有用なコンテンツ編集機能を構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加する]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362448869,XamRichTextEditor 構成の概要>>
+* <<_Ref361832497,編集モード>>
+* <<_Ref361832502,非表示の記号>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref362448869]]
+== XamRichTextEditor 構成の概要
+
+=== XamRichTextEditor 構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、生成に使用するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref361832497,編集モード>>
+|新しいテキストをドキュメントに追加する方法を構成します。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~textupdatemode.html[TextUpdateMode]
+
+|<<_Ref361832502,非表示の記号>>
+|非表示の記号を表示するかどうかを構成します。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~hiddensymboldisplaymode.html[HiddenSymbolDisplayMode]
+
+|====
+
+[[_Ref361832497]]
+== 編集モード
+
+=== 概要
+
+以下のプロパティを使用して、新しいテキストをドキュメントに追加する方法の取得と設定をします。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|新しいテキストをドキュメントのコンテンツに追加する方法を取得する。
+|`TextUpdateMode`
+|値を読み取る
+
+|新しいテキストをドキュメントのコンテンツに適用する方法を設定する。
+|`TextUpdateMode`
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.richdocumentviewtextupdatemode.html[RichDocumentViewTextUpdateMode] 型の値に設定します。
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下の例では、新しいテキストをドキュメントのコンテンツに適用する際の、新しいテキストの挿入モードを設定する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.TextUpdateMode = RichTextDocumentViewTextUpdateMode.Insert;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.TextUpdateMode = RichTextDocumentViewTextUpdateMode.Insert
+----
+
+[[_Ref361832502]]
+== 非表示の記号
+
+=== 概要
+
+以下のプロパティを使用して、 _xamRichTextEditor_   で描画する非表示の段落記号を取得し設定します。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|コントロールにより、非表示の記号を表示されるかどうかを取得する。
+|`HiddenSymbolDisplayMode`
+|値を読み取る
+
+|コントロールにより、非表示の記号を表示するかどうかを設定する。
+|`HiddenSymbolDisplayMode`
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.hiddensymboldisplaymode.html[HiddenSymbolDisplayMode] の型の値に設定する。
+
+|====
+
+=== 例
+
+以下の例では、非表示の記号の表示する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.HiddenSymbolDisplayMode = HiddenSymbolDisplayMode.DisplayAllHiddenSymbols;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.HiddenSymbolDisplayMode = HiddenSymbolDisplayMode.DisplayAllHiddenSymbols
+----
+
+[[_Ref359594803]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-view-zoom-level.html[ビューのズーム レベルの構成]
+|このトピックでは、 _xamRichTextEditor_ コントロールでビューのズーム レベルを設定する方法および取得する方法を説明します。
+
+| link:xamrichtexteditor-configuring-caret-color.html[カレット カラーの構成]
+|このトピックは、 _xamRichTextEditor_ コントロールのカレット カラーを変更する方法を説明します。
+
+|====

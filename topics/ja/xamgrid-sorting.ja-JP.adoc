@@ -1,0 +1,57 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-sorting",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Sorting"],
+    "guid": "{5D2C6A95-3471-478B-918C-D51F6213E111}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.668184Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 並べ替え
+
+並べ替えは xamGrid が提供する重要な機能です。xamGrid コントロールは、ユーザーに代わって並べ替えを自動的に表示および処理します。エンド ユーザーは、列ヘッダーをクリックすることによって列を並べ替えでき、これによって希望の順序でグリッド データを表示できます。
+
+デフォルトで、xamGrid において並べ替えは有効です。ただし、以下のコードが示すように、xamGrid で並べ替えを無効にすることができます。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid.SortingSettings>
+   <ig:SortingSettings AllowSorting="/>
+</ig:XamGrid.SortingSettings>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.SortingSettings.AllowSorting = False
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.SortingSettings.AllowSorting = false;
+----
+
+image::images/SL_xamGrid_Sorting_01.png[並べ替え]
+
+== 関連トピック
+
+link:xamgrid-multi-column-sorting.html[複数列の並べ替え]
+
+link:xamgrid-remove-sort-indicator.html[並べ替えインジケーターの削除]
+
+link:xamgrid-disable-sorting-on-certain-columns.html[特定の列の並べ替えを無効にする]
+
+link:xamgrid-sorting-events.html[並べ替えイベント]
+
+link:xamgrid-custom-sort.html[カスタム並べ替え]
+
+pick:[win-rt=" link:xamgrid-touch-support.html[タッチ サポート]"]

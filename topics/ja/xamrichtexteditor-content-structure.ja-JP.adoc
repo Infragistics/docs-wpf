@@ -1,0 +1,153 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-content-structure",
+    "tags": ["Getting Started"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "48a1bbbf-80b2-4e48-b647-5367bbe14fe2",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.386337Z"
+}
+|metadata|
+////
+
+= コンテンツの構造 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref364263675,リッチ コンテンツの階層>>
+* <<_Ref364263676,RichTextDocument の主な要素>>
+* <<_Ref364263687,DocumentRootNode の主な要素>>
+* <<_Ref364263690,DocumentBodyNode の主な要素>>
+* <<_Ref364263697,関連コンテンツ>>
+
+[[_Ref364263675]]
+== リッチ コンテンツの階層
+
+=== リッチ コンテンツの概要
+
+_xamRichTextEditor_   は、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument.html[RichTextDocument] 内に置かれた異なるタイプの階層によって内部で表現されるリッチ コンテンツを描画できます。リッチ コンテンツには、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~document.html[XamRichTextEditor.Document] プロパティを使用してアクセスします。
+
+[[_Ref364263676]]
+== RichTextDocument の主な要素
+
+=== ドキュメントの主な要素の概要表
+
+`RichTextDocument` は、リッチ コンテンツの追加、挿入および削除で使用する各種のメソッドを提供します。パラグラフやテーブルなどのコンテナーやルートのノード (テキスト ノードや画像など) で構成された、リッチ コンテンツの子孫階層にアクセスするには、ルート ノードを使用します。
+
+[options="header", cols="a,a,a"]
+|====
+|主な要素|詳細|プロパティ
+
+|使用可能なスタイル
+|ルート ノードの `Styles` コレクションに適応できる、すべて設定済みの標準スタイルを含むコレクション。
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~availablestyles.html[AvailableStyles]
+
+|[[_Hlk356484826]] 
+
+ルート ノード
+|ドキュメントの子孫コンテンツ階層に対する主要エントリ ポイント。
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~rootnode.html[RootNode]
+
+|====
+
+[[_Ref364263687]]
+== DocumentRootNode の主な要素
+
+=== ルート ノードの主な要素の概要表
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode_members.html[DocumentRootNode] は、デフォルトの文字やパラグラフの設定のように、ドキュメントのリッチ コンテンツを構成するプロパティを提供します。リッチ コンテンツの子孫階層にアクセスするには、ボディ ノードを使用します。
+
+[options="header", cols="a,a,a"]
+|====
+|主な要素|詳細|プロパティ
+
+|リスト コレクション
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextlist_members.html[RichTextList] コレクションには、ドキュメント内のすべての項目番号付きおよび箇条書きのリスト スタイルが含まれています。
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~lists.html[Lists]
+
+|スタイル コレクション
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextstylebase_members.html[RichTextStyleBase] コレクションには、ドキュメントで使用できるすべてのスタイルが含まれています。
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~styles.html[Styles]
+
+|設定
+|デフォルトの文字とパラグラフを設定します。
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~settings.html[Settings]
+
+|ボディ ノード
+|ボディ ノードには、リッチ コンテンツのすべての子孫ノードが含まれています。
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentbodynode_members.html[BodyNode]
+
+|====
+
+[[_Ref364263690]]
+== DocumentBodyNode の主な要素
+
+=== ボディ ノードの主な要素の概要表
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentbodynode_members.html[DocumentBodyNode] には、すべての子孫リッチ コンテンツが含まれています。リッチ コンテンツを追加するには、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes] コレクションを使用し、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode_members.html[ParagraphNode] または link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tablenode_members.html[TableNode] タイプを追加します。
+
+注:
+
+[NOTE]
+====
+他のリッチ コンテンツの`ChildNodes` コレクションに追加する必要があるタイプの説明は、<<_Ref364263697,関連コンテンツ>> のセクションのリンクを参照してください。
+====
+
+[options="header", cols="a,a,a"]
+|====
+|主な要素|詳細|プロパティ
+
+|子ノード
+|エディターから直接見ることができるリッチ コンテンツにアクセスするために使用されます。
+|`ChildNodes`
+
+|====
+
+[[_Ref364263697]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-adding-text.html[テキストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテキストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-hyperlinks.html[ハイパーリンクの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してハイパーリンクを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-lists.html[リストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してリストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-images.html[画像の追加]
+|このトピックは、 _xamRichTextEditor_ を使用して画像を作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-tables.html[表の追加]
+|このトピックは、 _xamRichTextEditor_ を使用して表を作成する方法を、開発者の観点から説明します。
+
+|====

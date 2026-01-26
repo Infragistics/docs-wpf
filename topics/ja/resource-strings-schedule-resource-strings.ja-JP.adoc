@@ -1,0 +1,1345 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-schedule-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "d6f5c6d2-5215-4f63-8c24-5e0e37789385",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:54:15.447065Z"
+}
+|metadata|
+////
+
+= スケジュール リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列名をリストします。
+
+== xamSchedule の場合
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|Afghanistan Standard Time
+|(UTC+04:30) カブール
+
+|Alaskan Standard Time
+|(UTC-09:00) アラスカ
+
+|Arab Standard Time
+|(UTC+03:00) クウェート、リャド
+
+|Arabian Standard Time
+|(UTC+04:00) アブダビ、マスカット
+
+|Arabic Standard Time
+|(UTC+03:00) バグダッド
+
+|Argentina Standard Time
+|(UTC-03:00) ブエノスアイレス
+
+|Atlantic Standard Time
+|(UTC-04:00) 大西洋標準時 (カナダ)
+
+|AUS Central Standard Time
+|(UTC+09:30) ダーウィン
+
+|AUS Eastern Standard Time
+|(UTC+10:00) キャンベラ、メルボルン、シドニー
+
+|Azerbaijan Standard Time
+|(UTC+04:00) バクー
+
+|Azores Standard Time
+|(UTC-01:00) アゾレス諸島
+
+|Bangladesh Standard Time
+|(UTC+06:00) ダッカ
+
+|BlockingErrorLiteral
+|エラー
+
+|CalendarCloseButtonToolTip
+|予定表を閉じる
+
+|CalendarHeaderCurrentUserDefaultCalendar
+|{1}
+
+|CalendarHeaderCurrentUserNonDefaultCalendar
+|{1}
+
+|CalendarHeaderOtherUserDefaultCalendar
+|{0}
+
+|CalendarHeaderOtherUserNonDefaultCalendar
+|{0} - {1}
+
+|CalendarNavigateBackToolTip
+|戻る
+
+|CalendarNavigateForwardToolTip
+|進む
+
+|Canada Central Standard Time
+|(UTC-06:00) サスカッチウァン
+
+|Cape Verde Standard Time
+|(UTC-01:00) カボベルデ島
+
+|Caucasus Standard Time
+|(UTC+04:00) エレバン
+
+|Cen. Australia Standard Time
+|(UTC+09:30) アデレード
+
+|Central America Standard Time
+|(UTC-06:00) 中央アメリカ
+
+|Central Asia Standard Time
+|(UTC+06:00) アスタナ
+
+|Central Brazilian Standard Time
+|(UTC-04:00) クイアバ
+
+|Central Europe Standard Time
+|(UTC+01:00) ベオグラード、ブラチスラヴァ、ブダペスト、リュブリャナ、プラハ
+
+|Central European Standard Time
+|(UTC+01:00) サラエボ、スコピエ、ワルシャワ、ザグレブ
+
+|Central Pacific Standard Time
+|(UTC+11:00) マガダン、ソロモン諸島、ニューカレドニア
+
+|Central Standard Time
+|(UTC-06:00) 中央標準時 (米国およびカナダ)
+
+|Central Standard Time (Mexico)
+|(UTC-06:00) グアダラハラ、メキシコシティ、モンテレー
+
+|China Standard Time
+|(UTC+08:00) 北京、重慶市、香港、ウルムチ
+
+|ClickToAddActivityPrompt
+|アクティビティの追加
+
+|ClickToAddAppointmentPrompt
+|クリックして予定を追加してください。
+
+|ClickToAddEventPrompt
+|クリックしてイベントを追加してください。
+
+|ClickToAddJournalPrompt
+|ジャーナルの追加
+
+|ClickToAddTaskPrompt
+|タスクの追加
+
+|CTL_ActivityCategoryColorPicker_B
+|B:
+
+|CTL_ActivityCategoryColorPicker_G
+|G:
+
+|CTL_ActivityCategoryColorPicker_None
+|なし
+
+|CTL_ActivityCategoryColorPicker_R
+|R:
+
+|CTL_ActivityCategoryColorPicker_RGBValues
+|RGB 値
+
+|Dateline Standard Time
+|(UTC-12:00) 国際日付変更線西
+
+|DLG_Activity_Core_ClearAllCategories
+|すべてのカテゴリをクリア
+
+|DLG_Activity_Core_ClearCategory
+|'{0}' をクリア
+
+|DLG_Activity_Core_DescriptionFormatOverwriteDefinite
+|警告：このアクティビティの説明には特別な書式が含まれています。説明を変更してアクティビティを保存すると書式は失われます。
+
+|DLG_Activity_Core_DescriptionFormatOverwritePossible
+|注:このアクティビティの説明には特別な書式が含まれている可能性があります。説明を変更してアクティビティを保存すると書式は失われます。特別な書式を検出しています...
+
+|DLG_Activity_Core_DisplayCategoriesDialog
+|全カテゴリ...
+
+|DLG_Activity_Core_Owner
+|オーナー: {0}
+
+|DLG_Activity_Core_Reminder
+|アラーム：
+
+|DLG_ActivityCategory_Btn_Delete
+|削除
+
+|DLG_ActivityCategory_Btn_New
+|追加...
+
+|DLG_ActivityCategory_Btn_Rename
+|名前の変更
+
+|DLG_ActivityCategory_Caption
+|色カテゴリー
+
+|DLG_ActivityCategory_HelpText
+|色カテゴリーを現在選択されている項目に割り当てるには、各カテゴリーの隣のチェックうボックスを使用します。カテゴリーを編集するには、カテゴリー名を選択し、右のコマンドを使用します。
+
+|DLG_ActivityCategory_Literal_Color
+|色：
+
+|DLG_ActivityCategory_Literal_NotInMasterList
+|{0} (Master Category List 以外)
+
+|DLG_ActivityCategory_NameColumnHeader
+|名前
+
+|DLG_ActivityCategoryCreation_Name
+|名前：
+
+|DLG_ActivityCategoryCreation_Title
+|新規カテゴリの追加
+
+|DLG_ActivityType_Appointment
+|予定
+
+|DLG_ActivityType_Journal
+|履歴
+
+|DLG_ActivityType_Task
+|タスク
+
+|DLG_ActivityTypeChooser_NewActivityMessage
+|作成するアクティビティのタイプ。
+
+|DLG_ActivityTypeChooserDialog_Title_NewActivity
+|新しいアクティビティ
+
+|DLG_Appointment_Core_AdjacentAppointmentConflictMessage
+|予定表には、この時間帯の前後に別の予定が入っています。
+
+|DLG_Appointment_Core_AllDayEvent
+|終日イベント
+
+|DLG_Appointment_Core_AppointmentConflictMessage
+|カレンダーにある既存の予定と競合しています。
+
+|DLG_Appointment_Core_ButtonTool_Categorize
+|カテゴリ化
+
+|DLG_Appointment_Core_ButtonTool_Delete
+|削除
+
+|DLG_Appointment_Core_ButtonTool_Recurrence
+|繰り返し
+
+|DLG_Appointment_Core_ButtonTool_SaveClose
+|保存して閉じる
+
+|DLG_Appointment_Core_ButtonTool_TimeZones
+|タイムゾーン
+
+|DLG_Appointment_Core_ComboTool_Reminder
+|アラーム：
+
+|DLG_Appointment_Core_EndTime
+|終了時刻:
+
+|DLG_Appointment_Core_Location
+|場所:
+
+|DLG_Appointment_Core_OccurrenceDescription
+|繰り返しパターンに基づいて定期的な予定を設定します。
+
+|DLG_Appointment_Core_RecurrenceRootDescription
+|繰り返しパターンに基づいて定期的な予定を設定します。
+
+|DLG_Appointment_Core_RecurrenceRootLabel
+|定期的な予定：
+
+|DLG_Appointment_Core_RibbonGroup_Actions
+|アクション
+
+|DLG_Appointment_Core_RibbonGroup_Options
+|オプション
+
+|DLG_Appointment_Core_RibbonGroup_Tags
+|タグ
+
+|DLG_Appointment_Core_StartTime
+|開始時刻:
+
+|DLG_Appointment_Core_Subject
+|件名：
+
+|DLG_Appointment_Reminder_Days
+|{0} 日間
+
+|DLG_Appointment_Reminder_Hours
+|{0} 時間
+
+|DLG_Appointment_Reminder_Literal_Day
+|日
+
+|DLG_Appointment_Reminder_Literal_Hour
+|時
+
+|DLG_Appointment_Reminder_Literal_Minute
+|分
+
+|DLG_Appointment_Reminder_Literal_Now
+|現在
+
+|DLG_Appointment_Reminder_Literal_Week
+|週
+
+|DLG_Appointment_Reminder_Minutes
+|{0} 分
+
+|DLG_Appointment_Reminder_None
+|なし
+
+|DLG_Appointment_Reminder_OneDay
+|1 日
+
+|DLG_Appointment_Reminder_OneHour
+|1 時間
+
+|DLG_Appointment_Reminder_OneMinute
+|1 分間
+
+|DLG_Appointment_Reminder_OneWeek
+|1 週間
+
+|DLG_Appointment_Reminder_Weeks
+|{0} 週間
+
+|DLG_Journal_Core_Duration
+|期間:
+
+|DLG_Recurrence_Core_ActivityRecurrenceTitle
+|定期的なアクティビティ
+
+|DLG_Recurrence_Core_ActivityTime
+|アクティビティ時間
+
+|DLG_Recurrence_Core_Duration
+|期間:
+
+|DLG_Recurrence_Core_End
+|終了日：
+
+|DLG_Recurrence_Core_RecurrencePattern
+|パターンの設定
+
+|DLG_Recurrence_Core_RecurrenceRange
+|期間
+
+|DLG_Recurrence_Core_RemoveRecurrence
+|定期的な設定を解除
+
+|DLG_Recurrence_Core_Start
+|開始日：
+
+|DLG_Recurrence_DailyPattern_Literal_Days
+|日ごと
+
+|DLG_Recurrence_DailyPattern_Literal_Every
+|間隔
+
+|DLG_Recurrence_DailyPattern_Literal_EveryWeekday
+|すべての平日
+
+|DLG_Recurrence_Duration_Days
+|{0} 日間
+
+|DLG_Recurrence_Duration_Hours
+|{0} 時間
+
+|DLG_Recurrence_Duration_Literal_Day
+|日
+
+|DLG_Recurrence_Duration_Literal_Hour
+|時
+
+|DLG_Recurrence_Duration_Literal_Minute
+|分
+
+|DLG_Recurrence_Duration_Literal_MinutesBeforeStart
+|分後
+
+|DLG_Recurrence_Duration_Literal_Week
+|週
+
+|DLG_Recurrence_Duration_Minutes
+|{0} 分
+
+|DLG_Recurrence_Duration_None
+|なし
+
+|DLG_Recurrence_Duration_OneDay
+|1 日
+
+|DLG_Recurrence_Duration_OneHour
+|1 時間
+
+|DLG_Recurrence_Duration_OneMinute
+|1 分間
+
+|DLG_Recurrence_Duration_OneWeek
+|1 週間
+
+|DLG_Recurrence_Duration_Weeks
+|{0} 週間
+
+|DLG_Recurrence_MonthlyPattern_Complex_ElementOrder
+|1,2,3,4,5,6
+
+|DLG_Recurrence_MonthlyPattern_Literal_ComplexTextField2
+|
+
+|DLG_Recurrence_MonthlyPattern_Literal_ComplexTextField4
+|か月ごとの
+
+|DLG_Recurrence_MonthlyPattern_Literal_ComplexTextField6
+|に設定
+
+|DLG_Recurrence_MonthlyPattern_Literal_Day
+|日
+
+|DLG_Recurrence_MonthlyPattern_Literal_DayCapitalized
+|日
+
+|DLG_Recurrence_MonthlyPattern_Literal_Ordinal_First
+|第 1
+
+|DLG_Recurrence_MonthlyPattern_Literal_Ordinal_Fourth
+|第 4
+
+|DLG_Recurrence_MonthlyPattern_Literal_Ordinal_Last
+|最後
+
+|DLG_Recurrence_MonthlyPattern_Literal_Ordinal_Second
+|第 2
+
+|DLG_Recurrence_MonthlyPattern_Literal_Ordinal_Third
+|第 3
+
+|DLG_Recurrence_MonthlyPattern_Literal_The
+|曜日(&E)
+
+|DLG_Recurrence_MonthlyPattern_Literal_WeekDay
+|平日
+
+|DLG_Recurrence_MonthlyPattern_Literal_WeekendDay
+|週末
+
+|DLG_Recurrence_Pattern_Literal_Daily
+|日
+
+|DLG_Recurrence_Pattern_Literal_Monthly
+|月
+
+|DLG_Recurrence_Pattern_Literal_Weekly
+|週
+
+|DLG_Recurrence_Pattern_Literal_Yearly
+|年
+
+|DLG_Recurrence_Range_Literal_EndAfter
+|反復回数:
+
+|DLG_Recurrence_Range_Literal_EndBy
+|終了日:
+
+|DLG_Recurrence_Range_Literal_NoEndDate
+|終了日なし
+
+|DLG_Recurrence_Range_Literal_Occurrences
+|回
+
+|DLG_Recurrence_Range_Literal_Start
+|開始日：
+
+|DLG_Recurrence_ShouldShowRecurrenceDescription
+|true
+
+|DLG_Recurrence_WeeklyPattern_Literal_RecurEvery
+|間隔
+
+|DLG_Recurrence_WeeklyPattern_Literal_WeeksOn
+|週ごと
+
+|DLG_Recurrence_YearlyPattern_Complex_ElementOrder
+|1,2,3,4,5,6
+
+|DLG_Recurrence_YearlyPattern_Literal_ComplexTextField2
+|nbsp;
+
+|DLG_Recurrence_YearlyPattern_Literal_ComplexTextField4
+|/
+
+|DLG_Recurrence_YearlyPattern_Literal_ComplexTextField6
+|>nbsp;
+
+|DLG_Recurrence_YearlyPattern_Literal_On
+|指定日：
+
+|DLG_Recurrence_YearlyPattern_Literal_OnThe
+|指定曜日：
+
+|DLG_Recurrence_YearlyPattern_Literal_RecurEvery
+|間隔
+
+|DLG_Recurrence_YearlyPattern_Literal_SimpleTextField
+|nbsp;
+
+|DLG_Recurrence_YearlyPattern_Literal_Years
+|年ごと
+
+|DLG_Recurrence_YearlyPattern_Simple_ElementOrder
+|1,2,3
+
+|DLG_RecurrenceChooser_Literal_DeleteCurrentTaskOccurrence
+|これを削除
+
+|DLG_RecurrenceChooser_Literal_DeleteCurrentTaskSeries
+|すべて削除
+
+|DLG_RecurrenceChooser_Literal_DeleteOccurrence
+|これのみを削除する
+
+|DLG_RecurrenceChooser_Literal_DeleteSeries
+|全ての定期的な予定を削除する
+
+|DLG_RecurrenceChooser_Literal_DeletingCurrentTaskMessage
+|タスク '{0}' は定期的なタスクとして設定されます。今後のすべてのタスクの発生を削除しますか。それともこの発生のみを削除しますか？
+
+|DLG_RecurrenceChooser_Literal_DeletingMessage
+|定期的なアクティビティ '{0}' をすべて削除しますか？または、このアイテムのみを削除しますか？
+
+|DLG_RecurrenceChooser_Literal_OpeningMessage
+|'{0}' は定期的なアクティビティです。この予定のみ、もしくはこれを定期予定として開きますか?
+
+|DLG_RecurrenceChooser_Literal_OpenOccurrence
+|このアイテムのみを開く
+
+|DLG_RecurrenceChooser_Literal_OpenSeries
+|定期的なアイテムとして開く
+
+|DLG_RecurrenceChooserDialog_Title_Delete
+|削除の確認
+
+|DLG_RecurrenceChooserDialog_Title_DeleteRecurringTask
+|定期的なタスクの削除
+
+|DLG_RecurrenceChooserDialog_Title_Open
+|定期的な項目を開く
+
+|DLG_Reminder_Literal_Dismiss
+|アラームを消す
+
+|DLG_Reminder_Literal_DismissAll
+|すべてのアラームを消す
+
+|DLG_Reminder_Literal_DueIn
+|期限：
+
+|DLG_Reminder_Literal_OpenItem
+|アイテムを開く
+
+|DLG_Reminder_Literal_RemindersSelected
+|{0} 個のアラームが選択されています
+
+|DLG_Reminder_Literal_Snooze
+|再通知
+
+|DLG_Reminder_Literal_SnoozePrompt
+|[再通知] をクリックしてアラームを再表示します:
+
+|DLG_Reminder_Literal_StartTimeDescription
+|開始時刻：{0}
+
+|DLG_Reminder_Literal_Subject
+|件名
+
+|DLG_Reminder_Overdue
+|{0} 日期限を過ぎています
+
+|DLG_Reminder_Title
+|アラーム
+
+|DLG_ScheduleDialog_Btn_Cancel
+|キャンセル
+
+|DLG_ScheduleDialog_Btn_Ok
+|OK
+
+|DLG_Task_Core_DueDate
+|期日：
+
+|DLG_Task_Core_DueInDays
+|期限：{0} 日
+
+|DLG_Task_Core_DueToday
+|期限：今日
+
+|DLG_Task_Core_DueTomorrow
+|期限：明日
+
+|DLG_Task_Core_DueYesterday
+|期限：昨日
+
+|DLG_Task_Core_OverdueByDays
+|期限切れ：{0} 日
+
+|DLG_Task_Core_PercentComplete
+|達成率：
+
+|DLG_Task_Core_StartDate
+|開始日：
+
+|DLG_TimeZoneChooser_Header
+|ローカル タイムゾーンを指定する
+
+|DLG_TimeZoneChooser_Literal_Message
+|ローカル タイムゾーンを選択してください
+
+|DLG_TimeZoneChooser_Literal_Selector
+|タイムゾーン：
+
+|E. Africa Standard Time
+|(UTC+03:00) ナイロビ
+
+|E. Australia Standard Time
+|(UTC+10:00) ブリスベン
+
+|E. Europe Standard Time
+|(UTC+02:00) ミンスク
+
+|E. South America Standard Time
+|(UTC-03:00) ブラジリア
+
+|Eastern Standard Time
+|(UTC-05:00) 東部標準時 (米国およびカナダ)
+
+|Egypt Standard Time
+|(UTC+02:00) カイロ
+
+|Ekaterinburg Standard Time
+|(UTC+05:00) エカテリンブルグ
+
+|EndDateOutOfView
+|{0} まで
+
+|Fiji Standard Time
+|(UTC+12:00) フィジー
+
+|FLE Standard Time
+|(UTC+02:00) ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス
+
+|Georgian Standard Time
+|(UTC+04:00) トビリシ
+
+|GMT Standard Time
+|(UTC) ダブリン、エジンバラ、リスボン、ロンドン
+
+|Greenland Standard Time
+|(UTC-03:00) グリーンランド
+
+|Greenwich Standard Time
+|(UTC) モンロビア、レイキャビク
+
+|GTB Standard Time
+|(UTC+02:00) アテネ、ブカレスト、イスタンブール
+
+|Hawaiian Standard Time
+|(UTC-10:00) ハワイ
+
+|India Standard Time
+|(UTC+05:30) チェンナイ、コルカタ、ムンバイ、ニューデリー
+
+|Iran Standard Time
+|(UTC+03:30) テヘラン
+
+|Israel Standard Time
+|(UTC+02:00) エルサレム
+
+|Jordan Standard Time
+|(UTC+02:00) アンマン
+
+|Kamchatka Standard Time
+|(UTC+12:00) ペトロパブロフスクカムチャツキー - 旧名
+
+|Korea Standard Time
+|(UTC+09:00) ソウル
+
+|LD_TimePicker_Hours
+|時間
+
+|LD_TimePicker_Minutes
+|分
+
+|LE_ActivityBeingEdited
+|アクティビティは既に編集されています。
+
+|LE_ActivityCategoryCreationDialog_1
+|リソースの更新エラー
+
+|LE_ActivityCategoryHelper_1
+|リソースの所有は異なります。アクティビティ リストのカテゴリーを管理するには、リストのすべてのアクティビティが同じ所有リソースに属す必要があります。
+
+|LE_ActivityCategoryHelper_2
+|アクティビティに所有リソースがありません。
+
+|LE_ActivityHasInvalidTZ
+|id '{0}' のアクティビティは、無効なタイムゾーン id 値である '{1}' があります。指定した ID のタイムゾーンは存在しません。
+
+|LE_ActivityNotAClone
+|指定したアクティビティは、BeginEditWithCopy からの呼び出しによって返されたクローン アクティビティではありません。
+
+|LE_AddNotSupportedByDataSource
+|基本データソース {0} リストは、追加の操作をサポートしません。
+
+|LE_AddNotSupportedByList
+|追加はリストでサポートされません。
+
+|LE_AddOperationFailed
+|{0} の基本データソース リストの追加操作に失敗しました。
+
+|LE_AdjustRuleMustHave
+|トランジション期間の調整には {0} が必要です。
+
+|LE_AlreadyDeleted
+|実行は削除されています。
+
+|LE_AppConfigError
+|アプリケーション構成エラー。この機能はサポートされていません。
+
+|LE_BadDayOfWeekRule
+|無効な曜日のルール: {0}
+
+|LE_BeginUpdateBeforeEnd
+|EndUpdate を呼び出す前に BeginUpdate を呼び出すことが必要です。
+
+|LE_BrushIdNotFound
+|CalendarBrushId を見つけませんでした。
+
+|LE_BrushProvider_1
+|もう一度 BeginProviderAssigments を呼び出す前に EndProviderAssigments を呼び出す必要があります。
+
+|LE_BrushProvider_2
+|EndProviderAssigments を呼び出す前に BeginProviderAssigments を呼び出す必要があります。
+
+|LE_BrushProvider_3
+|ブラシ プロバイダーを割り当てまたは割り当て解除する前に BeginProviderAssigments を呼び出す必要があります。
+
+|LE_CancelEditFailed
+|未指定のエラー。編集操作のキャンセルに失敗しました。
+
+|LE_CanNotAddANullItem
+|null 項目を追加できません。
+
+|LE_CanNotCancelCompletedOp
+|完了した操作はキャンセルできません。
+
+|LE_CanNotConvertValue
+|{0} 値をターゲット型 {1} へ変換できません。
+
+|LE_CanNotDelete
+|既にに編集モードであるか編集できないために発生を削除できません。
+
+|LE_CannotFindDataItemOnServer
+|バックアップしたデータ項目はサーバーに存在しません。
+
+|LE_CanNotInitCancelledOp
+|キャッシュされた操作の結果を初期化できません。
+
+|LE_CanNotUpdateSeries
+|シリーズを更新できません。
+
+|LE_CanNotUpdateSeries_Full
+|バリアント アクティビティのルート アクティビティを更新できません。MaxOccurrenceDateTime プロパティは、バリアント アクティビティの新しい時間を反映するために更新する必要があります。MaxOccurrenceDateTime は、シリーズが発生する最大の終了時間以上の値です。
+
+|LE_CantCreateObject
+|'{0}' オブジェクトを作成することができません。パブリック パラメーター コンストラクターが必要です。また、型もパブリックである必要があります。
+
+|LE_CurrentUserNotSet
+|{0}.CurrentUserId が設定されていません。アラームを表示しません。
+
+|LE_DataMgrNotSet
+|{0}.DataManager が設定されていません。
+
+|LE_DateAlreadySelected
+|指定した日付「{0}」が既に選択されています。
+
+|LE_DateOutOfRange
+|指定した日付「{0}」が利用可能な範囲外 ({1}-{2}) です。
+
+|LE_DeltaHasSeconds
+|デルタに秒があります。
+
+|LE_DoesNotImplementInterface
+|{0} を実装しません。
+
+|LE_EndBeforeStart
+|終了は開始の後にする必要があります。
+
+|LE_ErrorDetailsHeader
+|エラーの詳細:
+
+|LE_HasTimeOfDay
+|日付に時間があります
+
+|LE_IListNotImplemented
+|{0} データ ソース リストは、IList または追加および削除をサポートするのに必要な IList を実装しません。
+
+|LE_InavlidDelta
+|無効なデルタ
+
+|LE_InnerExceptionHeader
+|InnerException:
+
+|LE_InvalidCategoryColor
+|アクティビティ カテゴリ名 '{0}' の色はサポートされません。
+
+|LE_InvalidDayOfWeekRule
+|週のルールに関連付けられた無効な日を持ちます。月ごと、年ごと、間隔でのみ有効です。
+
+|LE_InvalidReminderContext
+|ReminderInfo コンテキストは ActivityBase ではありません。
+
+|LE_InvalidRemoteAddressType
+|{0}.{1} プロパティを文字列、Uri または EndpointAddress に設定する必要があります。
+
+|LE_InvalidTZId
+|'{0}' タイムゾーン ID が無効です。指定した ID のタイムゾーンは存在しません。
+
+|LE_InvalidViewId
+|{0} は、サポートされているビュー コレクションのメンバーではありません。
+
+|LE_ItemIsNotProperType
+|項目は {0} インスタンスであることが必要です。
+
+|LE_LinQSerializeFailure
+|サービスの呼び出しに LINQ 構文をシリアル化できませんでした。
+
+|LE_MappingDoesNotExist
+|プロパティ マッピングで指定された '{0}' は、{1} のデータ ソース リストの項目タイプのディレクト プロパティとしては存在しません。正しいテンプレート型のあるデータ ソース ジェネリック リストですか？
+
+|LE_MissingMapping
+|{1} プロパティ マッピングは、{0} データソースに指定する必要があります。
+
+|LE_MissingMappingEnd
+|アクティビティの終了時間に対応するには End フィールドが必要です。
+
+|LE_MissingMappingHeader
+|{0} 項目について以下のプロパティ マッピングが見つかりません。
+
+|LE_MissingMappingRecurrence
+|定期的なアクティビティに対応するには、Recurrence フィールドが必要です。
+
+|LE_MissingMappingReminder
+|アラームに対応するには、下記のフィールドが必要です。
+
+|LE_MissingMappings
+|{0} にプロパティ マッピングが指定されていません。
+
+|LE_MissingMappingTimeZoneNeutral
+|タイムゾーン ニュートラル アクティビティに対応するには、IsTimeZoneNeutral フィールドが必要です。
+
+|LE_MissingMappingVariance
+|バリアンス (定期的なアクティビティ発生の変更) に対応するには、下記のフィールドが必要になります。
+
+|LE_MissingTemplatePart
+|名前が '{0}' で '{1}' 型のテンプレート部分が '{2}' テンプレートに必要です。
+
+|LE_MustBeAfterSeries
+|発生の開始時間をシリーズの開始時間よりも早い時間へ変更することはできません。
+
+|LE_MustBeOfType
+|{0} は型 {1} でなければなりません。
+
+|LE_MustBeUnspecified
+|型を未定義にする必要があります。
+
+|LE_MustImplementLinq
+|{0} の派生リスト マネージャーは、CreateLinqStatement メソッドをオーバーライドする必要があります。
+
+|LE_NoConnectorSpecifed
+|{0}.DataConnector は設定されませんでした。表示するアクティビティまたは予定表はありません。
+
+|LE_NoDataItemForViewItem
+|{0} ビューは基本データ項目がありませんので、データソースから削除できません。
+
+|LE_NoDataRange
+|少なくとも日付範囲を 1 つ指定する必要があります。
+
+|LE_NoEndPointConfig
+|WCF サービスに接続できません。エンドポイント構成またはリモート バインディングおよびアドレスを指定する必要があります。{0}.{1} を有効なエンドポイント構成に設定、あるいは {0}.{2} または {0}.{3} を有効なリモート バインディングおよびアドレスに設定する必要があります。
+
+|LE_NoLOcalTimeZones
+|ローカル タイムゾーンが確認できません。{0}.{1}.{2} を有効なタイムゾーン ID に設定します。
+
+|LE_NotConnectedToService
+|{0} が WCP サービスに接続されていません。
+
+|LE_NoTimeZones
+|{0}.{1} に定義されているタイムゾーンはありません。
+
+|LE_NoUTCTimeZone
+|UTC タイムゾーン情報を確認できません。{0}.{1} を UTC ID に設定されている {2} がある CustomTimeZoneInfoProvider に設定します。
+
+|LE_NoUTCTimeZone_OS
+|UTC タイムゾーン情報を確認できません。TimeZonInfo.Utc.Id は '{0}' 値を返しました。この値は TimeZoneInfo.GetSystemTimeZones() から返されたコレクションで見つかりませんでした。
+
+|LE_NoVisibleCalendars
+|{0} に表示される予定表はありません。{0}.DataManager.CurrentUserID を PrimaryCalendar のある ResourceID へ設定するか、表示される ResourceCalendars を含む CalendarGroups を {0}.DataManager.CalendarGroups コレクションまたは {0}.CalendarGroupsOverride コレクションへ追加します。
+
+|LE_PropertyIsReadOnly
+|プロパティは読み取り専用です。
+
+|LE_QuerySealed
+|ActivityQuery を実行した後に変更できません。
+
+|LE_RecurrenceParsing
+|エラー解析パターン。コンテキスト：{0}
+
+|LE_RecurrenceSerializing
+|エラーシリアル化パターン：コンテキスト：{0}
+
+|LE_RemoteServiceCantBeReached
+|リモート サービスにアクセスできません。
+
+|LE_RequiredMappingHeader
+|マッピング コレクションに明示的に定義された以下のプロパティ マッピングが正しく機能するためには、次のマッピングが必要です。 
+
+明示的にマップされたプロパティ: 
+
+{0} 
+
+必須プロパティ: 
+
+{1}
+
+|LE_ResourceBeingEdited
+|リソースは既に編集されています。
+
+|LE_RootActivityNotFound
+|アクティビティのシリーズは見つかりませんでした。
+
+|LE_RootActivityNotFound_Full
+|バリアント アクティビティのルート アクティビティ参照が初期化されていません。ルート アクティビティの MaxOccurrenceDataTime が、バリアント アクティビティの終了時間の変更を MaxOccurrenceDateTime 以上の値に反映するために更新されない場合に通常発生します。このエラーは、バリアント アクティビティの開始がのルート アクティビティの開始より前の値へ変更された場合に発生します。
+
+|LE_ThreadAccess
+|別のスレッドのオブジェクトにアクセスできません。
+
+|LE_TimeNotAmbiguous
+|日時が明瞭です
+
+|LE_TimeShouldHaveTicks
+|時間に目盛が必要です。
+
+|LE_TokenNotFound
+|トークンが見つかりません。
+
+|LE_TokenNotFromProvier
+|この TimeZoneInfoProvider はトークン {0} を作成しませんでした。
+
+|LE_TZProviderMissing
+|タイムゾーン情報プロバイダーが見つかりません。{0}.{1} プロパティを設定します。
+
+|LE_UnknownAddError
+|{0} リストに追加した際の不明なエラー
+
+|LE_UnknownQueryType
+|{0} のクエリの不明な型。
+
+|LE_UnknownTargetType
+|不明なターゲット型: {0}
+
+|LE_WorkingHoursSpanTooBige
+|稼働時間は 24 時間以内にする必要があります。
+
+|Mauritius Standard Time
+|(UTC+04:00) ポートルイス
+
+|Mid-Atlantic Standard Time
+|(UTC-02:00) 中部大西洋
+
+|Middle East Standard Time
+|(UTC+02:00) ベイルート
+
+|Montevideo Standard Time
+|(UTC-03:00) モンテビデオ
+
+|Morocco Standard Time
+|(UTC) カサブランカ
+
+|Mountain Standard Time
+|(UTC-07:00) 山岳部標準時 (米国およびカナダ)
+
+|Mountain Standard Time (Mexico)
+|(UTC-07:00) チワワ、ラパス、マサトラン
+
+|MSG_TEXT_AppointmentDateConflict
+|入力した終了日付は開始日付の前です。
+
+|MSG_TEXT_CantEditResource
+|選択したアクティビティの所有リソースは編集できません。特定の機能が無効になります。
+
+|MSG_TEXT_DeleteAppointmentPrompt
+|この予定を削除しますか?
+
+|MSG_TEXT_DeleteCategory
+|カテゴリー '{0}' を削除してもよろしいですか?このカテゴリーを削除するとカテゴリー リストから削除されますが、以前のカテゴリー項目には影響しません。
+
+|MSG_TEXT_DeleteJournalPrompt
+|このジャーナルを削除しますか?
+
+|MSG_TEXT_DeleteTaskPrompt
+|このタスクを削除しますか?
+
+|MSG_TEXT_DescriptionFormatOverwriteMessage
+|このアクティビティの説明が変更されています。元の説明にはダイアログに保存できない特別な書式を含むため、アクティビティを保存すると元の書式は上書きされます。アクティビティを保存しますか?
+
+|MSG_TEXT_DismissAllReminders
+|すべてのアラームを消してよろしいですか?
+
+|MSG_TEXT_DuplicateCategoryName
+|カテゴリー名 '{0}' は既に作成されています。別のカテゴリー名を選んでください。
+
+|MSG_TEXT_RenameCategory
+|カテゴリー名を '{0}' から '{1}' へ変更してもよろしいですか？
+
+|MSG_TEXT_SavePrompt
+|変更を保存しますか？
+
+|MSG_TEXT_UpdateRecurrenceDurationConflict
+|アクティビティの期間は反復回数より短くなければなりません。期間を短くするか、定期的なアクティビティのダイアログボックスから定期的な予定パターンを変更してください。
+
+|MSG_TEXT_UpdateRecurrenceInvalidPattern
+|定期的な予定パターンは有効ではありません。
+
+|MSG_TITLE_AddActivity
+|アクティビティの追加
+
+|MSG_TITLE_AddAppointment
+|予定の追加
+
+|MSG_TITLE_AddJournal
+|ジャーナルの追加
+
+|MSG_TITLE_AddTask
+|タスクの追加
+
+|MSG_TITLE_AppointmentDateConflict
+|予定日付の競合
+
+|MSG_TITLE_CantEditResource
+|所有リソース
+
+|MSG_TITLE_DeleteAppointment
+|予定の削除
+
+|MSG_TITLE_DeleteCategory
+|アクティビティ カテゴリーの削除
+
+|MSG_TITLE_DeleteJournal
+|ジャーナルの削除
+
+|MSG_TITLE_DeleteTask
+|タスクの削除
+
+|MSG_TITLE_DescriptionFormatOverwriteMessage
+|書式の警告の説明
+
+|MSG_TITLE_DismissAllReminders
+|すべてのアラームを消す(&A)
+
+|MSG_TITLE_DragActivity
+|アクティビティのドラッグ
+
+|MSG_TITLE_DuplicateCategoryName
+|カテゴリー名の重複
+
+|MSG_TITLE_EditActivity
+|アクティビティの編集
+
+|MSG_TITLE_EditAppointment
+|予定の編集
+
+|MSG_TITLE_EditJournal
+|ジャーナルの編集
+
+|MSG_TITLE_EditTask
+|タスクの編集
+
+|MSG_TITLE_ErrorEditingCategories
+|アクティビティ カテゴリーの編集エラー
+
+|MSG_TITLE_RenameCategory
+|アクティビティ カテゴリー名の変更
+
+|MSG_TITLE_ResizeActivity
+|アクティビティのサイズ変更
+
+|MSG_TITLE_UpdateActivity
+|アクティビティの更新
+
+|MSG_TITLE_UpdateAppointment
+|予定の更新
+
+|MSG_TITLE_UpdateJournal
+|ジャーナルの更新
+
+|MSG_TITLE_UpdateRecurrence
+|定期的な予定を更新する
+
+|MSG_TITLE_UpdateTask
+|タスクの更新
+
+|MSGBOX_Cancel
+|キャンセル
+
+|MSGBOX_No
+|いいえ
+
+|MSGBOX_Ok
+|OK
+
+|MSGBOX_Yes
+|はい
+
+|Myanmar Standard Time
+|(UTC+06:30) ヤンゴン (ラングーン)
+
+|N. Central Asia Standard Time
+|(UTC+06:00) ノボシビルスク
+
+|Namibia Standard Time
+|(UTC+02:00) ビントフック
+
+|Nepal Standard Time
+|(UTC+05:45) カトゥマンズ
+
+|New Zealand Standard Time
+|(UTC+12:00) オークランド、ウェリントン
+
+|Newfoundland Standard Time
+|(UTC-03:30) ニューファンドランド
+
+|North Asia East Standard Time
+|(UTC+08:00) イルクーツク
+
+|North Asia Standard Time
+|(UTC+07:00) クラスノヤルスク
+
+|OverlayButtonIsInOverlayModeToolTip
+|並べて表示
+
+|OverlayButtonIsNotInOverlayModeToolTip
+|重ねて表示
+
+|Pacific SA Standard Time
+|(UTC-04:00) サンチアゴ
+
+|Pacific Standard Time
+|(UTC-08:00) 太平洋標準時 (米国およびカナダ)
+
+|Pacific Standard Time (Mexico)
+|(UTC-08:00) バハ カリフォルニア
+
+|Pakistan Standard Time
+|(UTC+05:00) イスラマバード、カラチ
+
+|Paraguay Standard Time
+|(UTC-04:00) アスンシオン
+
+|Romance Standard Time
+|(UTC+01:00) ブリュッセル、コペンハーゲン、マドリッド、パリ
+
+|Russian Standard Time
+|(UTC+03:00) モスクワ、サンクトペテルブルグ、ボルゴグラード
+
+|SA Eastern Standard Time
+|(UTC-03:00) カイエンヌ、フォルタレザ
+
+|SA Pacific Standard Time
+|(UTC-05:00) ボゴタ、リマ、キト
+
+|SA Western Standard Time
+|(UTC-04:00) ジョージタウン、ラパス、マナウス、サンファン
+
+|Samoa Standard Time
+|(UTC-11:00) サモア
+
+|SE Asia Standard Time
+|(UTC+07:00) バンコク、ハノイ、ジャカルタ
+
+|Singapore Standard Time
+|(UTC+08:00) クアラルンプール、シンガポール
+
+|South Africa Standard Time
+|(UTC+02:00) ハラレ、プレトリア
+
+|Sri Lanka Standard Time
+|(UTC+05:30) スリジャヤワルダナプラ
+
+|StartDateOutOfView
+|{0} から
+
+|Syria Standard Time
+|(UTC+02:00) ダマスカス
+
+|Taipei Standard Time
+|(UTC+08:00) 台北
+
+|Tasmania Standard Time
+|(UTC+10:00) ホバート
+
+|TimeSpan_Literal_Days
+|{0} 日間
+
+|TimeSpan_Literal_DaysAndHours
+|{0} 日 {1} 時間
+
+|TimeSpan_Literal_Hours
+|{0} 時間
+
+|TimeSpan_Literal_HoursBeforeStart
+|開始する {0} 時間前
+
+|TimeSpan_Literal_Minutes
+|{0} 分
+
+|TimeSpan_Literal_MinutesBeforeStart
+|開始する {0} 分前
+
+|TimeSpan_Literal_OneDay
+|1 日
+
+|TimeSpan_Literal_OneDayAndHours
+|{0} 日 {1} 時間
+
+|TimeSpan_Literal_OneHour
+|1 時間
+
+|TimeSpan_Literal_OneMinute
+|1 分間
+
+|TimeSpan_Literal_OneWeek
+|1 週間
+
+|TimeSpan_Literal_Weeks
+|{0} 週間
+
+|Tokyo Standard Time
+|(UTC+09:00) 大阪、札幌、東京
+
+|Tonga Standard Time
+|(UTC+13:00) ヌークアロファ
+
+|ToolTipErrorLabel
+|エラー:
+
+|Ulaanbaatar Standard Time
+|(UTC+08:00) ウランバートル
+
+|US Eastern Standard Time
+|(UTC-05:00) インディアナ州 (東部)
+
+|US Mountain Standard Time
+|(UTC-07:00) アリゾナ州
+
+|UTC
+|(UTC) 万国標準時
+
+|UTC+12
+|(UTC+12:00) 万国標準時 +12
+
+|UTC-02
+|(UTC-02:00) 万国標準時 -02
+
+|UTC-11
+|(UTC-11:00) 万国標準時 -11
+
+|Venezuela Standard Time
+|(UTC-04:30) カラカス
+
+|Vladivostok Standard Time
+|(UTC+10:00) ウラジオストック
+
+|W. Australia Standard Time
+|(UTC+08:00) パース
+
+|W. Central Africa Standard Time
+|(UTC+01:00) 中西部アフリカ
+
+|W. Europe Standard Time
+|(UTC+01:00) アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン
+
+|West Asia Standard Time
+|(UTC+05:00) タシケント
+
+|West Pacific Standard Time
+|(UTC+10:00) グアム、ポートモレスビー
+
+|Yakutsk Standard Time
+|(UTC+09:00) ヤクーツク
+
+|====
+
+== xamSchedule フル機能ダイアログの場合
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|DLG_Appointment_ButtonTool_Categorize
+|カテゴリ化
+
+|DLG_Appointment_ButtonTool_Delete
+|削除
+
+|DLG_Appointment_ButtonTool_Recurrence
+|繰り返し
+
+|DLG_Appointment_ButtonTool_SaveClose
+|保存して閉じる
+
+|DLG_Appointment_ButtonTool_TimeZones
+|タイムゾーン
+
+|DLG_Appointment_ComboTool_Reminder
+|アラーム：
+
+|DLG_Appointment_RibbonGroup_Actions
+|アクション
+
+|DLG_Appointment_RibbonGroup_Options
+|オプション
+
+|DLG_Appointment_RibbonGroup_Tags
+|タグ
+
+|DLG_Appointment_RibbonTabItem_Activity
+|Activity
+
+|DLG_Appointment_RibbonTabItem_Appointment
+|予定
+
+|DLG_Appointment_RibbonTabItem_Journal
+|履歴
+
+|DLG_Appointment_RibbonTabItem_Task
+|タスク
+
+|====

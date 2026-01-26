@@ -1,0 +1,289 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-cellvaluepesenterstyleselector-reevaluated",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Events","Grids"],
+    "guid": "f4628410-f325-44cf-88b4-4b7933162286",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0309593Z"
+}
+|metadata|
+////
+
+= 条件付きの書式設定 (xamDataGrid)
+
+== トピックの概要
+
+=== 目的
+
+xamDataGrid コントロールでセルの値を変更する際、様々なスタイルを適用することができます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellvaluepresenterstyleselector.html[CellValuePesenterStyleSelector] は link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] で任意のレベルを指定することができます。使用可能なレベルは以下の通りです。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatagrid.html[XamDataGrid]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field]
+
+セルの値が変更されるときは常に、`CellValuePesenterStyleSelector` の `SelectStyle` メソッドを使用して特定のスタイルを設定します。以下の場合にこれが発生します。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] の値が変更され、セルが編集モードではない。
+* 編集モードでユーザーが `CellValuePresenter` の値を変更し、変更が承認された。
+
+=== 前提条件
+
+[options="header", cols="a,a"]
+|====
+|背景タイプ|コンテンツ
+
+|概念
+|次の概念をよく理解することが必要です: 
+
+- StyleSelector クラス (http://msdn.microsoft.com/ja-jp/library/ms612988.aspx)
+
+|トピック
+|まず以下のトピックを読む必要があります。 
+
+* link:xamdatapresenter-getting-started-with-xamdatapresenter.html[xamDataPresenter をアプリケーションに追加] 
+
+* link:xamdatapresenter-defining-layouts.html[フィールド レイアウトの定義] 
+
+* link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について] 
+
+|====
+
+== CellValuePresenter の値の変更時に様々なスタイルを適用
+
+=== はじめに
+
+以下のコードは、特定の Field オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~settings.html[設定]で指定された CellValuePesenterStyleSelector を使用して、カスタム ロジックに従ってセルのスタイルがどのように変更されるかを示しています。
+
+=== プレビュー
+
+以下の画像は、50,000 を超える値が赤、他のすべての値が青で示された、最終結果のプレビューです。
+
+image::images/xamDataGrid_CVPStyleSelectorUpdatedOnValueChanged.png[]
+
+=== 要件
+
+手順を完了するには、以下が必要です:
+
+* link:resources-car-business-logic.html[CarsBusinessLogic] クラスをプロジェクトに追加します。このクラスには、この例で使用するサンプル データが含まれています。
+
+=== 概要
+
+以下はプロセスの概念的概要です。
+
+[start=1]
+. *<<step1,カスタム スタイルを作成し、Window リソースとして追加>>*
+[start=2]
+. *<<step2,xamDataGrid コントロールおよびボタンを WPF アプリケーションに追加>>*
+[start=3]
+. *<<step3,StyleSelector クラスのサブクラスを作成し、SelectStyle メソッドを実装>>*
+[start=4]
+. *<<step4,「BasePrice」フィールドの設定に CellValuePresenterStyleSelector プロパティを設定>>*
+[start=5]
+. *<<step5,Button Click イベントを処理して、「BasePrice」フィールドのセル値を変更>>*
+[start=6]
+. *<<step6,アプリケーションを保存>>*
+[start=7]
+. _<<step7,(オプション) 結果を確認します。>>_ 
+
+=== 手順
+
+[[step1]]
+[start=1]
+. *カスタム スタイルを作成し、Window リソースとして追加します。*
+
+2 つのカスタム スタイルを Window リソースとして追加します。これらはセルの値が変更された時に、特定のルールに従って適用されます。50,000 未満の値は前景が青になり、50,000 を超える値は前景が赤になります。
+
+*XAML の場合:*
+
+----
+<Window.Resources>
+...
+<Style x:Key="CVP_RedField" TargetType="{x:Type igDP:CellValuePresenter}">
+    <Setter Property="Foreground" Value="Red" />
+</Style>
+<Style x:Key="CVP_BlueField" TargetType="{x:Type igDP:CellValuePresenter}">
+    <Setter Property="Foreground" Value="Blue" />
+</Style>
+...
+</Window.Resources>
+----
+
+[[step2]]
+[start=2]
+. *xamDataGrid コントロールおよびボタンを追加し、特定の値を増加させます。*
+
+ボタンが追加され、その Click イベント ハンドラーは xamDataGrid フィールド (「BasePrice」) の 1 つのセルの値を変更するための機能を実行します。
+
+*XAML の場合:*
+
+----
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <igDP:XamDataGrid x:Name="dataGrid" DataSource="{Binding}"/>
+    <Button Content="Increase Price by 10000" Grid.Row="1"
+            Width="150" Height="22" Margin="10"
+            HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            Click="Button_Click" />
+</Grid>
+----
+
+[[step3]]
+[start=3]
+. *StyleSelector クラスのサブクラスを作成し、SelectStyle メソッドを実装します。*
+
+SelectStyle は、ベース価格が変更されると様々なスタイルを返します。
+
+*Visual Basic の場合:*
+
+[source]
+----
+Friend Class CVPStyleSelector_Field
+  Inherits StyleSelector
+    Private _redStyle As Style
+    Private _blueStyle As Style
+  Friend Sub New(redStyle As Style, blueStyle As Style)
+    Me._redStyle = redStyle
+    Me._blueStyle = blueStyle
+  End Sub
+  Public Overrides Function SelectStyle(item As Object, container As DependencyObject) As Style
+    Dim over50K As Boolean = (50000 < Decimal.Parse(item.ToString()))
+    If over50K Then
+      Return _redStyle
+    Else
+      Return _blueStyle
+    End If
+  End Function
+End Class
+----
+
+*C# の場合:*
+
+----
+internal class CVPStyleSelector_Field : StyleSelector
+{
+  private Style _redStyle;
+  private Style _blueStyle;
+  internal CVPStyleSelector_Field(Style redStyle, Style blueStyle)
+  {
+    this._redStyle = redStyle;
+    this._blueStyle = blueStyle;
+  }
+  public override Style SelectStyle(object item, DependencyObject container)
+  {
+    bool over50K = (50000 < decimal.Parse(item.ToString()));
+    if (over50K)
+    {
+		return _redStyle;
+	}
+    else
+    { 
+		return _blueStyle;
+	}
+  }
+}
+----
+
+[[step4]]
+[start=4]
+. *CellValuePresenterStyleSelector プロパティを設定し、xamDataGrid のサンプル データをロードします。*
+
+*Visual Basic の場合:*
+
+----
+Public Sub New()
+  InitializeComponent()
+  Me.LoadData()
+  AddHandler Loaded, AddressOf Me.MainWindow_Loaded
+End Sub
+Private Sub LoadData()
+  Dim businessData As New CarsBusinessLogic()
+  Me.DataContext = TryCast(businessData.GetCars(), ObservableCollection(Of Car))
+End Sub
+Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs)
+  Dim redForegroundStyle As Style _
+      = TryCast(Me.Resources("CVP_RedField"), Style)
+  Dim blueForegroundStyle As Style _
+      = TryCast(Me.Resources("CVP_BlueField"), Style)
+  Me.dataGrid.DefaultFieldLayout.Fields("BasePrice").Settings.CellValuePresenterStyleSelector = _
+	New CVPStyleSelector_Field(redForegroundStyle, blueForegroundStyle)
+End Sub
+----
+
+*C# の場合:*
+
+----
+public MainWindow()
+{
+    InitializeComponent();
+    this.LoadData();
+    Loaded += new RoutedEventHandler(MainWindow_Loaded);
+}
+private void LoadData()
+{
+    CarsBusinessLogic businessData = new CarsBusinessLogic();
+    this.DataContext = businessData.GetCars() as ObservableCollection;
+}
+private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+{
+  Style redForegroundStyle = this.Resources["CVP_RedField"] as Style;
+  Style blueForegroundStyle = this.Resources["CVP_BlueField"] as Style;
+  this.dataGrid.DefaultFieldLayout.Fields["BasePrice"].Settings.CellValuePresenterStyleSelector = 
+	new CVPStyleSelector_Field(redForegroundStyle, blueForegroundStyle);
+}
+----
+
+[[step5]]
+[start=5]
+. *Button Click イベントを処理して、「BasePrice」フィールドのセル値を変更します。*
+
+ボタンをクリックすると、BasePrice 列のセル値が 10,000 増加します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+  Dim temp As ObservableCollection(Of Car) = TryCast(Me.DataContext, 
+  ObservableCollection(Of Car))
+  For Each car As Car In temp
+    car.BasePrice += 10000
+  Next
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void Button_Click(object sender, RoutedEventArgs e)
+{
+    ObservableCollection<Car> temp = 
+    this.DataContext as ObservableCollection<Car>;
+    foreach (Car car in temp)
+    {
+        car.BasePrice += 10000;
+    }
+}
+----
+
+[[step6]]
+[start=6]
+. *アプリケーションを保存します。*
+[[step7]]
+[start=7]
+. (オプション) 結果を確認します。
+
+アプリケーションを実行してから「増加...」ボタンをクリックします。コードが正しく実装されると「BasePrice」セルの値が増加し、そのいくつかが 50,000 に達すると、その前景が赤に変わります。
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xamdata-terms-fields-field-settings.html[フィールド設定]
+* link:xamdata-specifying-settings-for-fields.html[Fields の設定を指定]
+* link:xamdata-assigning-a-fieldlayout.html[FieldLayout の割り当て]
+* link:wpf-working-with-xamdatagrid-xamdatacarousel-and-xamdatapresenter-styling-points.html[xamDataGrid、xamDataCarousel、および xamDataPresenter スタイリング ポイントでの作業]

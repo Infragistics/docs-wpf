@@ -1,0 +1,109 @@
+﻿= Configuring Image Field ({DataGridName})
+
+=== Purpose
+
+This topic describes how to create a field to display an image using an ImageField in the {DataGridName} control.
+
+=== Required Background
+
+The following topics are prerequisites to understanding this topic:
+
+|====
+|Topic|Purpose
+
+|link:wpf-terms-and-concepts.html[Terms and Concepts]
+|This section defines the major elements that constitute the controls that make up The Data Presenter Family.
+
+|link:xamdatagrid-getting-started-with-xamdatagrid.html[Adding {DataGridName} to Your Page]
+|This topic describes how to add a {DataGridName} control to your page.
+
+|link:xamdata-generating-fields-manually-versus-automatically.html[Generating Fields Manually Versus Automatically]
+|This topic describes how to specify manually FieldLayouts and Fields in the {DataGridName} control.
+
+|====
+
+=== In this Topic
+
+This topic contains the following sections:
+
+* <<ImageFieldConfig, Image Field Configuration Summary>>
+* <<CodeExample, Code Example: Using an Image Field>>
+* <<Related, Related Topics>>
+
+
+[[ImageFieldConfig]]
+== Image Field Configuration Summary
+
+An ImageField can be associated with a property on an underlying data item whose value represents any of the following types:
+
+* An ImageSource instance.
+* A Uri instance that describes the location of a local or remote image resource.
+* A string that represents a properly formatted Uri that describes the location of a local or remote image resource.
+* A byte array (byte[]) that represents a BitmapImage.
+
+The ImageField's associated editor is an element of the type ImageEditor. This editor is always read-only and was designed to render images. As such, it can never enter edit mode.
+
+The following table briefly details the configurable aspects and properties of the ImageField that control the way the image is rendered:
+
+[options="header", cols="a,a,a"]
+|====
+|Property Name|Property Type|Description
+
+|link:{DataGridLink}.imagefield{ApiProp}BaseUri.html[BaseUri]
+|`Uri`
+|Gets or sets the base Uri to use for locating the image.  This value will be used to construct a fully resolved Uri when a cell's bound data contains a Uri or UriString.
+
+|link:{DataGridLink}.imagefield{ApiProp}ImageHeight.html[ImageHeight]
+|`double`
+|Returns or sets the height that the editor should use to render the image.  If set to double.NaN (the default value) the image will be rendered using its intrinsic height.
+
+
+|link:{DataGridLink}.imagefield{ApiProp}ImageWidth.html[ImageWidth]
+|`double`
+|Returns or sets the width that the editor should use to render the image.  If set to double.NaN (the default value) the image will be rendered using its intrinsic width.
+
+|link:{DataGridLink}.imagefield{ApiProp}Stretch.html[Stretch]
+|`Stretch`
+|Returns or sets a value that describes how the rendered image should be stretched to fill the destination rectangle.
+
+|link:{DataGridLink}.imagefield{ApiProp}StretchDirection.html[StretchDirection]
+|`StretchDirection`
+|Returns or sets a value that indicates how the rendered image is scaled.
+
+|====
+
+
+[[CodeExample]]
+== Code Example: Using an Image Field
+
+The screenshot below demonstrates how the ImageField would look as a result of the following code example.
+
+image:images/XamDataGrid_Image_Field.png[]
+
+The following is the code to implement the ImageField in the {DataGridName}, where "Photo" is a property of one of the types listed above in the underlying data item.
+
+*In XAML:*
+[source,xaml]
+----
+<igDP:ImageField Name="Photo" ImageHeight="100" ImageWidth="100" />
+----
+
+[[Related]]
+== Related Topics
+
+The following topics provide additional information related to this topic.
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdatapresenter-define-a-field-layout.html[Define a Field Layout]
+|This topic describes how to define field layouts to specify which fields to display and to set properties related to those fields in the {DataGridName} control.
+
+| link:xamdata-generating-fields-manually-versus-automatically.html[Generating Fields Manually Versus Automatically]
+|This topic describes the difference between automatic and manual Fields generation in the {DataGridName} control.
+
+| link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[Manually Assigning a Field Layout to {DataGridName}]
+|This topic describes how you can create multiple FieldLayouts for the {DataGridName} control.
+
+|====

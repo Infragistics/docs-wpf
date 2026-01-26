@@ -1,0 +1,63 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammonthcalendar-switch-to-a-different-calendar-view",
+    "controlName": ["xamMonthCalendar"],
+    "tags": ["Editing","How Do I"],
+    "guid": "{91D5EC5C-4A8E-4D02-999E-56259E712BCF}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.9921515Z"
+}
+|metadata|
+////
+
+= 異なるカレンダー ビューへの切り替え
+
+
+
+エンド ユーザーは、カレンダー項目のヘッダーをクリックすることで、異なるカレンダー ビューを縮小できます。または、カレンダー項目をクリックすることで拡大できます。また、xamMonthCalendar™ コントロールの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~currentcalendarmode.html[CurrentCalendarMode] プロパティを link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.calendarmode.html[CalendarMode] 値に設定するか、組み込みの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.monthcalendarcommands~zoomoutcalendarmode.html[ZoomOutCalendarMode] コマンドまたは link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.monthcalendarcommands~zoomincalendarmode.html[ZoomInCalendarMode] コマンドを実行することで、プログラム的に異なるビューに切り替えることもできます。
+
+以下のコード例は、異なるカレンダー ビューに切り替える方法を示します。
+
+*XAML の場合:*
+
+----
+<StackPanel>
+    <Button 
+        Content="Zoom Out" 
+        Command="{x:Static igEditors:MonthCalendarCommands.ZoomOutCalendarMode}" 
+        CommandTarget="{Binding ElementName=xamMonthCalendar1}" />
+    <igEditors:XamMonthCalendar Name="xamMonthCalendar1" />
+</StackPanel>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Editors
+...
+' CurrentCalendarMode プロパティを CalendarMode 値に設定するか、または、組み込みコマンドを使用できます。
+'Me.xamMonthCalendar1.CurrentCalendarMode = CalendarMode.Years
+Me.xamMonthCalendar1.ExecuteCommand(MonthCalendarCommands.ZoomOutCalendarMode)
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Editors;
+...
+// CurrentCalendarMode プロパティを CalendarMode 値に設定するか、または、組み込みコマンドを使用できます。
+//this.xamMonthCalendar1.CurrentCalendarMode = CalendarMode.Years;
+this.xamMonthCalendar1.ExecuteCommand(MonthCalendarCommands.ZoomOutCalendarMode);
+----
+
+== 関連トピック
+
+link:xammonthcalendar-about-xammonthcalendar.html[xamMonthCalendar について]
+
+link:xammonthcalendar-getting-started-with-xammonthcalendar.html[xamMonthCalendar をページに追加]
+
+link:xammonthcalendar-restrict-the-selectable-dates.html[選択可能な日付を制限]
+
+link:xammonthcalendar-retrieve-the-selected-dates.html[選択された日付を取得]

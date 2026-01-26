@@ -1,0 +1,325 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-us-customaggregators",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Calculations","Grids","How Do I"],
+    "guid": "2720962a-4f32-4cbe-817c-13a2bd640193",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.046318Z"
+}
+|metadata|
+////
+
+= カスタム アグリゲーターの作成と構成
+
+このトピックは、カスタム アグリゲーターとは何かを説明し、コード例を示して、カスタム アグリゲーターを作成して使用する方法を示します。
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>>
+* <<Creating_a_Custom_Aggregator,カスタム アグリゲーターを作成>>
+
+** <<Steps,手順>>
+** <<Code_Example,コード例>>
+
+* <<Using_the_Aggregator,アグリゲーターの使用>>
+* <<Related_Topics,関連トピック>>
+
+[[Introduction]]
+== 概要
+
+アグリゲーターは、すべてのディメンションのスライスと適用されるフィルターに基づいて、基本データを評価し、PivotGrid のセルごとに値を提供するアルゴリズムつまり関数です。表示されるデータのほとんどはある方法で集計されます。link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatamodelprovider_members.html[FlatDataModelProvider] の事前に定義されたアグリゲーターのデフォルト セットは、Sum、Min、Max、Average および Count です。これらのアグリゲーターはかなり有用ですが、いずれのシナリオにも適さない場合があります。このため、XamPivotGrid はカスタム アグリゲーターを作成する方法を提供します。
+
+[[Creating_a_Custom_Aggregator]]
+== カスタム アグリゲーターを作成
+
+[[Steps]]
+== 手順
+
+[start=1]
+. link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.iaggregator_members.html[IAggregator] インターフェイスを実装します。
+
+開発者固有のカスタム アグリゲーターを作成する最初の手順は、IAggregator インターフェイスの実装です。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public interface IAggregator
+    {
+        string Identity { get; }
+        IAggregationResult Evaluate(IAggregationResult, 
+                                    IAggregateable, 
+                                    IEnumerable);
+        IAggregationResult Evaluate(IAggregationResult, 
+                                    IEnumerable);
+    }
+----
+
+link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.iaggregator~evaluate.html[Evaluate] メソッドは、実際の計算が行われる場所です。これは、セル項目ソースに関連して、グリッドのセルごとに呼び出されます。項目ソースは、メソッドで最後のパラメーターとして渡されます。link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.iaggregateable_members.html[IAggregateable] インターフェイスの実装は、セルの項目ソースで検出された各項目から正しい値を抽出することを担当します。最初のパラメーターは常に null です。
+
+返されたタイプ link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.iaggregationresult_members.html[IAggregationResult] には、Value と Cache の 2 つのプロパティがあります。Value プロパティは、PivotGrid のセルに表示されるべき結果 (実際の結果) を格納するために使用されます。Cache プロパティは、より洗練されたロジックが使用される場合に必要とされる付属の情報の記憶域のために提供されます。この記事の後半の例を参照してください。
+
+Evaluate メソッドの IAggregateable パラメーターはアグリゲーターのインスタンスを保持します。これは、アグリゲーターのインスタンスにアクセスするために必要な再帰ロジック、またはいくつかのアグリゲーターの複合のために使用できます。
+
+.注:
+[NOTE]
+====
+以下の項目は、20{ProductVersion} リリースでサポートされず、今後の使用のために取っておきます。
+
+* Identity プロパティ - 現在何も実行しないため、変更する必要はありません。
+* IAggregationResult IAggregator.Evaluate(IAggregationResult, IEnumerable)
+====
+
+[start=2]
+. 集計された値を抽出します。
+
+.. IAggregateable インターフェイスを実装します。
+
+IAggregateable インプリメンターの目的はアグリゲーターによって集計される値を抽出することです。これはひとつのプロパティとひとつのメソッドデータ構成されるシンプルなインターフェイスです。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public interface IAggregateable
+    {
+        IAggregator Aggregator { get; set; }
+        object GetValue(object instance);
+    }
+----
+
+.. IAggregateable インプリメンターのインスタンスを FlatDataModelProvider に提供します。
+
+FlatDataModelProvider は、IAggregateable インターフェイスを実装し、異なる集計条件を評価するために IAggregateable.Aggregator プロパティで検出されたアグリゲーターを使用するインスタンスと機能します。
+
+[[Code_Example]]
+== コード例
+
+カスタム アグリゲーターの実装をより明らかに示すために、以下のコードは、各セルの背後に最も頻繁に現れるデータを示すアグリゲーターを作成する方法を示します。
+
+[start=1]
+. Cache オブジェクトを作成します。
+
+以下のクラスは、Result に Cache オブジェクトとして使用されます。特定のデータ セットに最も頻繁に現れる項目を見つけます。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public class TopCountCache<T>
+    {
+        private IDictionary<T, int> _itemsCache = 
+            new Dictionary<T, int>();
+        public T TopItem
+        {
+            get
+            {
+                int maxValue = 
+                    this._itemsCache.Max(kvp => kvp.Value);
+                return this._itemsCache
+                    .Where(kvp => kvp.Value == maxValue).First().Key;
+            }
+        }
+        public void AddCount(T item)
+        {
+            var value = item as ValueType;
+            if (value == null && item == null)
+            {
+                return;
+            }
+            if (!this._itemsCache.ContainsKey(item))
+            {
+                this._itemsCache.Add(item, 1);
+            }
+            else
+            {
+                this._itemsCache[item]++;
+            }
+        }
+    }
+----
+
+ご覧のとおり、すべての項目とディクショナリに発生する回数を保持する _itemsCache ディクショナリができました。最も頻繁に発生するものを返す TopItem プロパティもあります。AddCount メソッドで項目をコレクションに追加します。項目がすでにある場合、カウントを増やします。そうでない場合には項目を追加するだけです。クラスはジェネリック型を使用することに注意してください。このトピックのすべての実装はジェネリック型を使用しているため、どのような必要性が生じても最後の結果は汎用的になります。
+[start=2]
+. 最終クラスを作成します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public class TopCountResult<T> : 
+        IAggregationResult<T, TopCountCache<T>>
+    {
+        private readonly TopCountCache<T> _cache;
+        public TopCountResult()
+        {
+            this._cache = new TopCountCache<T>();
+        }
+        public TopCountCache<T> Cache
+        {
+            get
+            {
+                return this._cache;
+            }
+        }
+        public T Value
+        {
+            get
+            {
+                return this.Cache.TopItem;
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+        object IAggregationResult.Value
+        {
+            get
+            {
+                return this.Value;
+            }
+        }
+        object IAggregationResult.Cache
+        {
+            get
+            {
+                return this.Cache;
+            }
+        }
+    }
+----
+
+このクラスが実行するのは、基本的にキャッシュを作成し、キャッシュ自体によって計算された一番上の項目を抽出することです。これは、セルごとに値を提供するために XamPivotGrid が使用するクラスとなります。
+[start=3]
+. アグリゲーターを実装します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public class TopCountAggregator<T> : 
+        IAggregator<T, TopCountCache<T>>
+    {
+        public string Identity
+        {
+            get;
+            set;
+        }
+        public IAggregationResult<T, TopCountCache<T>> 
+            Evaluate(IAggregationResult<T, TopCountCache<T>> oldResult, 
+                     IAggregateable aggregateable, 
+                     IEnumerable items)
+        {
+            var result = new TopCountResult<T>();
+            foreach (var item in items)
+            {
+                var value = (T)aggregateable.GetValue(item);
+                result.Cache.AddCount(value);
+            }
+            return result;
+        }
+        public IAggregationResult 
+            Evaluate(IAggregationResult oldResult, 
+                     IAggregateable aggregateable, 
+                     IEnumerable items)
+        {
+            return this.Evaluate((oldResult as TopCountResult<T>), 
+                aggregateable, items);
+        }
+        public IAggregationResult<T, TopCountCache<T>> 
+            Evaluate(IAggregationResult<T, TopCountCache<T>> oldResult, 
+                     T value)
+        {
+            throw new NotImplementedException();
+        }
+        public IAggregationResult 
+            Evaluate(IAggregationResult oldResult, object value)
+        {
+            throw new NotImplementedException();
+        }
+    }
+----
+
+手順 3 からこのクラスで最も重要な部分は以下のとおりです。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public IAggregationResult<T, TopCountCache<T>> 
+        Evaluate(IAggregationResult<T, TopCountCache<T>> oldResult, 
+                 IAggregateable aggregateable, 
+                 IEnumerable items)
+    {
+        var result = new TopCountResult<T>();
+        foreach (var item in items)
+        {
+            var value = (T)aggregateable.GetValue(item);
+            result.Cache.AddCount(value);
+        }
+        return result;
+    }
+----
+
+項目のコレクションは、特定のセルごとにキューに対応する raw データから生じます。Evaluate メソッドのロジックは最初にセルごとに新しいキャッシュを作成し、次に項目コレクションの各要素を調べてキャッシュのロジックに基づいて最高の結果を返します。
+
+3 つの手順がすべて完了した後、XamPivotGrid の各セルの背後にデータで最も頻繁に発生する要素を集計して表示するアグリゲーターを完全に実装します。これはジェネリック型と動作するので、アグリゲーターを実際に使用する前に、操作したいタイプを選択する必要があります。これを実行するには、アグリゲーターを継承し、ジェネリック型を提供する新しいクラスを作成する必要があります。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public class TopCountOfStringAggregator : TopCountAggregator<string>
+    {
+    }
+----
+
+[[Using_the_Aggregator]]
+== アグリゲーターの使用
+
+アグリゲーターは、特定のディメンションに指定できます。XAML またはコード ビハインドで実行できます。以下のコードは、各セルの下にあるデータでどの都市が最も一般的であるかを示すためにアグリゲーターを使用するデータの City プロパティのメジャーを作成する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igOlap:DimensionMetadata 
+	SourcePropertyName="City" 
+    DisplayName="City"
+    DimensionType="Measure">
+    <igOlap:DimensionMetadata.Aggregator>
+        <local:TopCountOfStringAggregator/>
+    </igOlap:DimensionMetadata.Aggregator>
+</igOlap:DimensionMetadata>
+----
+
+ローカルの名前空間は、アグリゲーターが定義される場所です。このコードは CubeMetadata コンテンツ領域に入りますが、順々に FlatDataSource の CubeSettings に配置されます。
+
+コード ビハインドでは同じコードは以下のようになります。
+
+*C# の場合:*
+
+[source,csharp]
+----
+    DimensionMetadata topCityMeasuteMetadata = new DimensionMetadata
+    {
+        SourcePropertyName = "City",
+        DisplayName = "City",
+        DimensionType = DimensionType.Measure,
+        Aggregator = new TopCountOfStringAggregator()
+    };
+	
+    flatDataSource.CubesSettings[0]
+        .DimensionSettings.Add(topCityMeasuteMetadata);
+----
+
+アプリケーションを実行すると、XamPivotGrid は各セルに最も人気のある都市を表示します。
+
+[[Related_Topics]]
+== 関連トピック
+
+link:xampivotgrid-using-xampivotgrid.html[XamPivotGrid の使用]

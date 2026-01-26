@@ -1,0 +1,192 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-calculators-standard-error-calculator",
+    "controlName": ["IG Math Calculators"],
+    "tags": ["Calculations"],
+    "guid": "5572d957-83f5-4b5b-9689-dd6d0c37d871",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.7690403Z"
+}
+|metadata|
+////
+
+= Infragistics 標準誤差計算式
+
+このトピックでは link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Infragistics Math Calculators]™ ライブラリの一部である link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarderrorcalculator.html[StandardErrorCalculator] を紹介し、コード例と共に数の集合に対する link:http://en.wikipedia.org/wiki/Standard_error_(statistics)[標準誤差]の計算方法を説明します。
+
+== 概要
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>>
+* <<StandardErrorFormula,標準誤差式>>
+* <<StandardErrorCalculatorProperties,標準誤差計算プロパティ>>
+* <<Requirements,要件>
+
+** NuGet パッケージの要件
+** データ要件
+
+* <<Example,例>>
+* <<RelatedTopics,関連トピック>>
+
+== 概要
+
+link:http://en.wikipedia.org/wiki/Standard_error_(statistics)[標準誤差]概算は平均の標本分布の標準偏差です。標本の標準誤差は標本サイズによって変わり、標本のサイズが大きいほど標準誤差は小さくなります。
+
+== 標準誤差式
+
+標本統計において、標準誤差は link:http://en.wikipedia.org/wiki/Standard_deviation#With_sample_standard_deviation[標本標準偏差]を標本サイズの平方根で割って計算します。標本標準偏差は変数と平均の間の平方差の合計 (link:ig-calculators-mean-calculator.html[Infragistics Mean Calculator] トピックを参照) の平方根を集合の総数マイナス 1 で割って得られます。
+
+image::images/IG_Math_Std_Error_Calculators_01.png[]
+
+図 1 - 標準誤差計算のための式
+
+[cols="a"]
+|====
+|凡例
+
+|image::images/IG_Math_Std_Error_Calculators_02.png[]
+|- データセットの標準誤差を表す
+
+|image::images/IG_Math_Std_Error_Calculators_03.png[]
+|- データセットの標本標準偏差を表す
+
+|image::images/IG_Math_Std_Error_Calculators_04.png[]
+|- データセットの平均を表す
+
+|image::images/IG_Math_Std_Error_Calculators_05.png[]
+|- データセットの i インデックスでの変数を表す
+
+|image::images/IG_Math_Std_Error_Calculators_06.png[]
+|- データセットの合計数を表す
+
+|====
+
+== 標準誤差計算プロパティ
+
+このセクションでは link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarderrorcalculator.html[StandardErrorCalculator] クラスのプロパティのリストを提供します。
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ名|プロパティ タイプ|説明
+
+|ItemsSource
+| link:http://msdn.microsoft.com/ja-jp/library/system.collections.ienumerable.aspx[IEnumerable] 
+|計算のためのデータ項目のソースを取得または設定します。
+
+|ValueMemberPath
+|string
+|データ項目の Value メンバー パスを取得または設定します。このプロパティはデータ項目の数値プロパティの名前にマップされなければなりません。
+
+|Value
+|double
+|計算の ItemsSource プロパティにバインドされたデータ項目の標準誤差を取得または設定します。
+
+|====
+
+== 要件
+
+== NuGet パッケージの要件
+
+link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarderrorcalculator.html[StandardErrorCalculator] を使用するためには、次の NuGet パッケージ参照を {PlatformName} プロジェクトに追加する必要があります。
+
+** Infragistics.WPF.Math.Calculators
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+== データ要件
+
+StandardErrorCalculator はデータ バインディングのための ItemsSource プロパティとデータ マッピングのための ValueMemberPath プロパティを使用します。次の要件に合致するオブジェクトはすべてこのプロパティにバインドできます。
+
+* データ モデルは link:http://msdn.microsoft.com/ja-jp/library/system.collections.ienumerable.aspx[IEnumerable] インターフェイス (たとえば link:http://msdn.microsoft.com/ja-jp/library/6sh2ey19.aspx[リスト]、 link:http://msdn.microsoft.com/ja-jp/library/ms132397.aspx[コレクション]、 link:http://msdn.microsoft.com/ja-jp/library/7977ey2c.aspx[キュー]、 link:http://msdn.microsoft.com/ja-jp/library/system.collections.stack.aspx[スタック]) を実装しなければなりません。
+* データ モデルには標準誤差を計算するために少なくとも 1 つの数値データ列をもつ項目がなければなりません。
+
+上記の条件を満たすオブジェクトの例が次のコード例に示されています。
+
+*Visual Basic の場合:*
+
+----
+Imports System.Collections.Generic
+'...
+Public Class DataPointList
+    Inherits List(Of DataPoint)
+    Public Sub New(dataValues As IEnumerable(Of Double))
+        For Each value As Double In dataValues
+            Me.Add(New DataPoint() With { Key .Value = value })
+        Next
+    End Sub
+End Class
+Public Class DataPoint
+    Public Property Value() As Double
+        Get
+            Return _value
+        End Get
+        Set
+            _value = Value
+        End Set
+    End Property
+    Private _value As Double
+End Class
+----
+
+*C# の場合:*
+
+----
+using System.Collections.Generic;
+//...
+public class DataPointList : List<DataPoint>
+{
+    public DataPointList(IEnumerable<double> dataValues)
+    {
+        foreach (double value in dataValues)
+        {
+            this.Add(new DataPoint { Value = value});
+        }
+    }
+}
+public class DataPoint
+{
+    public double Value { get; set; }
+}
+----
+
+== 例
+
+この例は StandardErrorCalculator を用いて数値の集合の標準誤差を計算する方法を説明しています。StandardErrorCalculator は視覚的な要素で、データ ソースまたは変数を定義するのと同じようにアプリケーション、ページ、コントロール、またはコード ビハインドに関してリソースセクションに定義する必要があります。さらに、Series オブジェクトの誤差範囲を計算するために、StandardErrorCalculator を link:datachart-datachart.html[xamDataChart]™ コントロールに統合する方法を例示する link:datachart-series-error-bars.html[シリーズ誤差範囲]トピックを参照してください。
+
+[NOTE]
+====
+*注:* 以下の例は、プロジェクトで必要なすべてのアセンブリを追加したことが前提となっています。
+====
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Math.Calculators
+'...
+Dim data As New DataPointList(New List(Of Double)() From {     5.0, 1.0, 2.0, 3.0, 4.0 })
+Dim calculator As New StandardErrorCalculator()
+calculator.ValueMemberPath = "Value"
+calculator.ItemsSource = data
+Dim standardError As Double = calculator.Value
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Math.Calculators;
+//...
+DataPointList data = new DataPointList(new List<double> { 5.0, 1.0, 2.0, 3.0, 4.0 });
+StandardErrorCalculator calculator = new StandardErrorCalculator();
+calculator.ValueMemberPath = "Value";
+calculator.ItemsSource = data;
+double standardError = calculator.Value;
+----
+
+== 関連トピック
+
+* link:ig-math-calculators-api-overview.html[API の概要]
+* link:datachart-series-error-bars.html[シリーズ誤差範囲]
+* link:datachart-series-value-overlay.html[値オーバーレイ]

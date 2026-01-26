@@ -1,0 +1,141 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-the-xamdialogwindow-controls-behavior",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["Editing","How Do I","Layouts"],
+    "guid": "{259B9704-829A-4BBE-A515-CB4B00F095D6}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.0221104Z"
+}
+|metadata|
+////
+
+= xamDialogWindow コントロールの動作
+
+ifdef::sl[]
+xamDialogWindow™ コントロールには 2 つの動作モードがあります。動作モードの切り替えは、このコントロールの link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~restrictincontainer.html[RestrictInContainer] プロパティによって行います。
+endif::sl[]
+
+ifdef::sl[]
+xamDialogWindow コントロールは次のような形で動作します:
+endif::sl[]
+
+ifdef::sl[]
+RestrictInContainer が True に設定されると:
+endif::sl[]
+
+ifdef::sl[]
+* xamDialogWindow コントロールはそのコンテナーの外側に移動できません。
+* xamDialogWindow コントロールはそのコンテナーより大きいサイズにリサイズできません。
+* エンドユーザーが xamDialogWindow コントロールを最大化すると、コントロールはコンテナー一杯に最大化します。そのコンテナーが動的なサイズ変更に対応したものである場合、コンテナーのサイズを変更すると、それに伴って xamDialogWindow コントロールのサイズも変化し、コンテナー内で最大化した状態を維持しつづけます。
+* xamDialogWindow コントロールがフォーカスを取得できるのは同じコンテナーのその他のダイアログ ウィンドウのみです。
+
+endif::sl[]
+
+ifdef::sl[]
+RestrictInContainer が False に設定されると:
+endif::sl[]
+
+ifdef::sl[]
+* xamDialogWindow コントロールの表示位置は、アプリケーション内の任意の場所に移動できます。
+* xamDialogWindow コントロールのサイズは、コンテナーよりも大きなサイズに変更できます。
+* エンド ユーザーが xamDialogWindow コントロールを最大化すると、コントロールはアプリケーションの表示領域全体に拡大します。アプリケーションが動的なサイズ変更に対応したものである場合、アプリケーションのサイズを変更すると、それに伴って xamDialogWindow コントロールのサイズも変化し、アプリケーション内で最大化した状態を維持しつづけます。
+* xamDialogWindow コントロールは、アプリケーション内で表示される他のどのダイアログ ウィンドウでもフォーカスを取得できます。
+
+endif::sl[]
+
+ifdef::wpf[]
+xamDialogWindow™ コントロールの動作には次のような制約や特徴があります。
+endif::wpf[]
+
+ifdef::wpf[]
+* xamDialogWindow コントロールはそのコンテナーの外側に移動できません。
+* xamDialogWindow コントロールはそのコンテナーより大きいサイズにリサイズできません。
+* エンドユーザーが xamDialogWindow コントロールを最大化すると、コントロールはコンテナー一杯に最大化します。そのコンテナーが動的なサイズ変更に対応したものである場合、コンテナーのサイズを変更すると、それに伴って xamDialogWindow コントロールのサイズも変化し、コンテナー内で最大化した状態を維持しつづけます。
+* xamDialogWindow コントロールがフォーカスを取得できるのは同じコンテナーのその他のダイアログ ウィンドウのみです。
+
+endif::wpf[]
+
+xamDialogWindow コントロールの Canvas.Top、Canvas.Left、Grid.Row、Grid.Column といった添付プロパティを設定すると、望ましくない動作が発生します。ダイアログ ウィンドウをコンテナーに制限したい場合、ダイアログを含むコンテナーで添付プロパティを設定する必要があります。
+
+以下のコードは、グリッド パネルの 2 番目の列と 2 番目の行にダイアログ ウィンドウを制限する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid x:Name="LayoutRoot" Background="White" ShowGridLines="True">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="100"></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition Width="400"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition></RowDefinition>
+        <RowDefinition Height="200"></RowDefinition>
+        <RowDefinition Height="50"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Border Grid.Column="1" Grid.Row="1"
+        BorderBrush="Black" BorderThickness="2">
+        <ig:XamDialogWindow x:Name="Dialog1" Header="Dialog1">
+        </ig:XamDialogWindow>
+    </Border>
+</Grid>
+----
+
+同じコンテナーに制限されたダイアログ ウィンドウを複数持つことも可能です。これはコンテナー内でもうひとつのパネルを使用することによって実行できます。
+
+次のコードは、これを実現する方法を示しています。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid x:Name="LayoutRoot" Background="White" ShowGridLines="True">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="100"></ColumnDefinition>
+        <ColumnDefinition ></ColumnDefinition>
+        <ColumnDefinition Width="400"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition></RowDefinition>
+        <RowDefinition Height="200"></RowDefinition>
+        <RowDefinition Height="50"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" 
+        BorderThickness="2">
+        <Grid>
+            <ig:XamDialogWindow x:Name="Dialog1">
+            </ig:XamDialogWindow>
+            <ig:XamDialogWindow x:Name="Dialog2">
+            </ig:XamDialogWindow>
+        </Grid>
+    </Border>
+</Grid>
+----
+
+== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

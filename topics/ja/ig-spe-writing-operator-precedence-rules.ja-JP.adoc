@@ -1,0 +1,214 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-spe-writing-operator-precedence-rules",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": [],
+    "guid": "6d280230-88d7-4576-bb4e-ec4c0f458126",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.1800643Z"
+}
+|metadata|
+////
+
+= 演算子の優先順位ルールの作成 (Syntax Parsing Engine)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、演算子の優先順位ルールの作成方法について説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-overview.html[Syntax Parsing Engine の概要]
+|このトピックは、Syntax Parsing Engine の概要を示します。
+
+| link:ig-spe-non-terminal-symbols.html[非終端記号]
+|このトピックは、文章校正の非終端記号について説明します。
+
+| link:ig-spe-defining-productions.html[生成コードの定義]
+|このトピックでは、非終端記号を作成するコードについて説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+*  *<<_Ref352319649,演算子の優先順位ルール>>*
+*  *<<_Ref352319655,概要>>* 
+*  *<<_Ref352319658,例>>* 
+*  *<<_Ref352319662,ソリューション>>* 
+*  *<<_Ref352319665,完全なコード サンプル>>* 
+*  *<<_Ref352319668,関連コンテンツ>>* 
+
+[[_Ref352319649]]
+== 演算子の優先順位ルール
+
+[[_Ref352319655]]
+
+=== 概要
+
+バイナリ演算子ルールを定義する場合、グローバルなあいまいさを作成する可能性があります。詳細については、 link:ig-spe-ambiguities.html[あいまいさ]トピックを参照してください。
+
+このあいまいさは、加算演算、乗算演算などの基本ルールを定義するときにも可能です。
+
+[[_Ref352319658]]
+
+=== 例
+
+この例は、変数の加算演算と乗算演算を処理する文章校正です。
+
+----
+Expression =
+    Identifier
+    | AddExpression
+    | MultiplyExpression;
+AddExpression = Expression, PlusToken, Expression;
+MultiplyExpression = Expression, AsteriskToken, Expression;
+----
+
+ドキュメントが「x + y $$*$$ z」などのテキストを含む場合に問題があります。この場合、レクサーは次のトークンを生成します:
+
+<Identifier, x> <PlusToken> <Identifier, y> <AsteriskToken> <Identifier, z>
+
+以下のサブツリーの生成時にグローバルであいまいな結果になります。演算子トークンおよび「式」ノードがツリーから解除されます。
+
+image::images/SPE_Writing01.png[]
+
+右のツリーが正しいです。乗算は加算より優先度が高く、式は x+(y$$*$$z) になります。これをサポートするには、優先度の低い演算がより優先度の高い演算の親ノードになる必要があります。
+
+[[_Ref352319662]]
+
+=== ソリューション
+
+修正するには、優先レベルまたはより高い優先レベルにある演算のみである各優先レベルのオペランドを使用してルールを定義します。より優先度の高い演算は、より優先度の低い演算をオペランドとして持つことができません。また、ルールは演算子の関係を使用します。たとえば、C# の「+」は左関係です。「x + y + z」などの式は、以下の構文ツリーを生成します。
+
+image::images/SPE_Writing02.png[]
+
+演算子の優先度および関係に基づいて、各優先レベルでルールを作成できます。以下のルールは、左関係の演算優先順位のルールです。
+
+----
+LowerPrecedenceExpression =
+    HigherPrecedenceExpression
+    | LowerPrecedenceExpression , OperatorToken, HigherPrecedenceExpression;
+----
+
+このルールは、右関係の演算のルールです。
+
+----
+LowerPrecedenceExpression =
+    HigherPrecedenceExpression
+    | HigherPrecedenceExpression, OperatorToken, LowerPrecedenceExpression ;
+----
+
+すべてのレベルが定義された後、ルートの「式」ルールは一番低い優先度を持つルールを参照する必要があります。優先度の一番低いルールは、優先度の一番低い演算またはより優先度の高い演算を表すことができます。この概念を単項、3 項、またはその他の演算に拡張できます。
+
+[[_Ref352319665]]
+=== 完全なコード サンプル
+
+以下の例は、複数の演算子を正しい優先に定義する方法を紹介します。
+
+演算子、優先、関係
+
+[start=1]
+. 識別子、定数 - 実際のデータ
+[start=2]
+. (...) - カッコ
+[start=3]
+. 「+、-」 - 単項プラス、マイナス (右関係)
+[start=4]
+. ^ - 指数 (右関係)
+[start=5]
+. 「$$*$$、/」- 乗算、除算 (左関係)
+[start=6]
+. 「+、-」 - バイナリのプラス、マイナス (左関係)
+
+演算子の優先順位ルールの定義:
+
+----
+AssignmentExpression =
+    Identifier, Equals, Expression ;
+(* メイン式記号は最低優先度を持つ記号のみを使用します * )
+Expression =
+    AddSubtractExpression;
+(* 優先レベル 6 * )
+AddSubtractExpression =
+    MultiplyDivideExpression
+    | AddExpression
+    | SubtractExpression;
+AddExpression =
+    AddSubtractExpression, PlusToken, MultiplyDivideExpression;
+SubtractExpression =
+    AddSubtractExpression, MinusToken, MultiplyDivideExpression;
+(* 優先レベル 5 * )
+MultiplyDivideExpression =
+    ExponentExpression
+    | MultiplyExpression
+    | DivideExpression;
+MultiplyExpression =
+    MultiplyDivideExpression, AsteriskToken, ExponentExpression;
+DivideExpression =
+    MultiplyDivideExpression, SlashToken, ExponentExpression;
+(* 優先レベル 4 * )
+ExponentExpression =
+    UnaryExpression
+    | UnaryExpression, CaretToken, ExponentExpression;
+(* 優先レベル 3 * )
+UnaryExpression =
+    ParenthesizedExpression
+    | UnaryPlusExpression
+    | UnaryMinusExpression;
+UnaryPlusExpression =
+    PlusToken, UnaryExpression;
+UnaryMinusExpression =
+    MinusToken, UnaryExpression;
+(* 優先レベル 2 * )
+ParenthesizedExpression =
+    PrimaryExpression
+    | OpenParen, Expression, CloseParen;
+(* 優先レベル 1 * )
+PrimaryExpression =
+    Identifier
+    | Constant;
+----
+
+この方法のマイナス面は、「x = y」などの簡単な式の場合に大きい構文ツリーを作成します。
+
+image::images/SPE_Writing03.png[]
+
+.注:
+[NOTE]
+====
+構文ツリーのノードを解除する方法については、link:ig-spe-pruning-the-syntax-tree.html[構文ツリーのプルーニング]トピックを参照してください。
+====
+
+[[_Ref352319668]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-improve-ebnf-files-readability.html[EBNF ファイルの読みやすさの向上]
+|このトピックは、EBNF ファイルの読みやすさを向上する方法を説明します。
+
+| link:ig-spe-optimize-non-terminal-symbol-definitions.html[非終端記号の定義の最適化]
+|このトピックは、生成コードを最小限にするために非終端記号の定義を最適化する方法を説明します。
+
+| link:ig-spe-use-symbolnames-constants-instead-of-strings.html[String の代わりに SymbolName 定数を使用]
+|このトピックは、SymbolName 定数の使用の利点について説明します。
+
+|====

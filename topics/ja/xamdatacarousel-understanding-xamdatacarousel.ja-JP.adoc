@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacarousel-understanding-xamdatacarousel",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started"],
+    "guid": "{C9EE9F10-A0E1-41BC-B145-E44F0C4D1D7C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6698871Z"
+}
+|metadata|
+////
+
+= xamDataCarousel について
+
+
+
+xamDataCarousel コントロールは、 link:xamdata-terms-presentation-formats-carousel-view.html[カルーセル ビュー]を使用して、指定した link:xamcarousel-path.html[パス]に沿ってデータ項目を配置します。link:xamdata-terms-records.html[Record] は各データ項目を表すために使用され、 link:xamdata-terms-fields.html[Field] は各レコードを構成する属性/プロパティを記述するために使用されます。データ ソース内でレコードの各タイプを自動的に検出し、タイプごとに特定の FieldLayouts を生成します。これによって、DataSets や DataViews のような従来のデータ ソースだけでなく、XML のようなよりフリーフォームのデータ ソースの両方をサポートすることができます。
+
+* link:xamcarousel-path-effects.html[パス エフェクト] - 普通は可能ではない特定の視覚的なフレアを項目に付与するいくつかの効果を xamDataCarousel のパスに沿って使用できます。これらのパス エフェクトは項目を拡大縮小することによって、3 次元の外観をパス自体に与えることができます。または不透明効果は一度に 1 項目だけを目立たせたい場合に有効です。または傾斜効果は項目に動きの感覚を提供できます。
+* 項目テンプレート - xamDataCarousel の各項目は特別なコンテナー、CarouselItem 内に含まれます。このひとつのコンテナーの視覚的スタイルを設定することによって、各項目は同じスタイルで表示されます。また、DataTemplate を作成することによって、xamDataCarousel コントロールをデータ ソースにバインドして、項目ごとにより多くの情報を表示できます。
+* link:xamdata-terms-fields-field-layout.html[フィールド レイアウト] - データの提示方法を定義する支援を行う Fields のコレクション。
+* カルーセル ブレッドクラム - カルーセル ブレッドクラムによって、エンドユーザーはデータの中で二度と迷うことはありません。階層的なデータに沿って自動的に表示するブレッドクラムは、データをドリルダウンする時に現在の位置をエンドユーザーに知らせます。
+* link:xamcarousel-terms-carousel-panel-navigator.html[CarouselPanelNavigator] - xamCarouselPanel コントロールの右下隅に、xamDataCarousel として集合的に知られている 4 つのボタン セットがあります。クラスタの中央の 2 つの大きいボタンは、1 項目ずつパスを前後にスクロールするために使用されます。2 つの大きいボタンの両側にある小さい 2 つのボタンは、それぞれパスの最初の項目と最後の項目にスクロールします。
+
+image::images/xamDataCarousel_About_xamDataCarousel_01.png[xamDataCarousel の実例]
+
+== 構成図
+
+xamDataCarousel™ コントロールはさまざまな要素で構成されています。以下の図は、要素の関係を表しています。これによって xamDataCarousel の全体的な構成をより的確に理解できます。
+
+image::images/xamDataCarousel_Composition_Diagrams.png[xamDataCarousel 構成図]
+
+== 関連トピック
+
+link:wpf-terms-and-concepts.html[用語と概念]
+
+link:xamdata-theoryofoperation.html[操作の理論]

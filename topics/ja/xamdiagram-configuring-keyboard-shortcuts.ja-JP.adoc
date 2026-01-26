@@ -1,0 +1,133 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-keyboard-shortcuts",
+    "tags": ["Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "e4499ad6-fe8f-4ce5-a953-b69bb5634030",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:40:55.369264Z"
+}
+|metadata|
+////
+
+= キーボード ショートカットの構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コマンドに関連付けられたキーボード ショートカットを変更する方法について説明します。
+
+[[_Ref387303433]]
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-commands-overview.html[コマンドの概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールで使用できるコマンドの動作ロジックを説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを {PlatformName} アプリケーションに追加する方法を説明します。
+
+|====
+
+[[_Ref387491193]]
+[[_Ref385408385]]
+== キーボード ショートカットの構成
+
+[[_Ref387491196]]
+
+=== 概要
+
+事前に設定されたコマンドのキーボード ショートカットを変更するには、新しい設定を指定する新規の   link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.keybinding%28v=vs.110%29.aspx[KeyBinding] オブジェクトを作成する必要があります。既存の設定を完全に上書きするには、必ず既存の入力ジェスチャをクリアしてください。
+
+[[_Ref387491200]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|Copy コマンドに対する   link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.keybinding%28v=vs.110%29.aspx[KeyBinding] の作成
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.keybinding%28v=vs.110%29.aspx[KeyBinding] 
+|新しいキーのショートカットおよびコマンドのターゲットに関する情報を含む `KeyBinding` オブジェクト。 
+
+このオブジェクトは、ウィンドウの   link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.inputbinding(v=vs.110).aspx[InputBindings] コレクションに追加する必要があります。
+
+|====
+
+[[_Ref387491204]]
+
+=== 例
+
+この例では、標準の Ctrl キーと C キーの組み合わせに加え、ダイアグラムの Copy コマンドの新しいショートカット (F4) を構成するために必要なプロパティ設定を示します。ダイアグラムをアプリケーションに追加する方法のチュートリアルについては、  link:xamdiagram-adding-to-a-page.html[ _xamDiagram_  をページに追加]を参照してください。
+
+.注:
+[NOTE]
+====
+以下の設定は、Copy コマンドの新しいキーのショートカット ( _F4_ ) を追加しますが、デフォルトのショートカット ( _Ctrl+C_  ) はオーバーライドされません。上書きするには、コマンドに関連付けられた既存の link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.routedcommand.inputgestures(v=vs.110).aspx[InputGestures] をクリアする必要があります。
+====
+
+以下のスクリーンショットは、以下の設定の結果、 _xamDiagram_   がどのように動作するかを示します。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.keybinding(v=vs.110).aspx[KeyBinding]
+|*XAML の場合:* 
+
+[source,xaml]
+---- 
+<KeyBinding Command="Copy" Key="F4" CommandTarget="{Binding ElementName=diagram}"/> 
+---- 
+
+|====
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Window.InputBindings>
+      <KeyBinding Command="Copy" Key="F4" CommandTarget="{Binding ElementName=diagram}"/>
+</Window.InputBindings>
+----
+
+[[_Ref385408430]]
+== 関連コンテンツ
+
+[[_Ref385408435]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-user-interactions-configuration-overview.html[ユーザー インタラクションの構成の概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールで実行されるユーザー インタラクションのすべてのタスクの概要を説明します。
+
+| link:xamdiagram-configuring-undo-redo-operations.html[元に戻す / やり直しの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロール専用の元に戻す / やり直しマネージャーの構成を説明します。
+
+| link:xamdiagram-configuring-ui-elements-with-commands.html[コマンドを使用した UI 要素の構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ が提供するコマンドをメニューやボタンなどの UI 要素で使用する方法を説明します。
+
+|====

@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "designers-guide-styling-points-for-xamtagcloud",
+    "controlName": [],
+    "tags": ["Styling","Templating"],
+    "guid": "{71C3ED4A-13B1-41EE-BE1A-B335A31336CF}",  
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-01-30T16:46:26.9858012Z"
+}
+|metadata|
+////
+
+= xamTagCloud のスタイリング ポイント
+
+== xamTagCloud プロパティ
+
+以下の図は、xamTagCloud コントロールによって使用されるさまざまなコントロールを取り上げます。特定の項目を再スタイルするには、最初に図で TargetType を識別し、次にその後の表で対応する Style プロパティを識別します。
+
+image::images/SL_DesignersGuide_Styling_Points_for_xamTagCloud_01.png[]
+
+== xamTagCloud スタイル プロパティおよび TargetType
+
+以下の表は xamTagCloud によって使用されるさまざまなセル コントロールをリストし、カスタム スタイルを設定するために使用できるプロパティを識別します。
+
+[options="header", cols="a,a,a"]
+|====
+|TargetType|Style プロパティ|説明
+
+|xamTagCloud
+|xamTagCloud.Style
+|TagCloud コントロールをスタイルします。
+
+|xamTagCloudItem
+|xamTagCloudItem.Style
+|TagCloud 項目コントロールをスタイルします。
+
+|
+|xamTagCloud.ItemContainerStyle
+|TagCloud コントロールのすべての項目コントロールをスタイルします。
+
+|====

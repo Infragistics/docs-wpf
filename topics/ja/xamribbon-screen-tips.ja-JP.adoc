@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-screen-tips",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation"],
+    "guid": "{2D60C813-0251-48FA-B67A-10BC695ABFE1}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.2071945Z"
+}
+|metadata|
+////
+
+= 画面ヒント
+
+
+
+画面ヒントは拡張されたツールチップと考えることができます。エンドユーザーが特定の時間要素上にマウスポインタを置くと、ツールチップと同様に画面ヒントが特定の要素上に表示されます。標準ツールチップと画面ヒントの違いは、画面ヒントにはヘッダー、本文およびフッターが含まれることです。ヘッダーと本文間、そして本文とフッター間にセパレータ (水平の線) を追加することもできます。link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamscreentip.html[XamScreenTip] クラス自体は、Infragistics.Windows アセンブリに配置されますが、開発者のためにより良い画面ヒントを弊社は用意しています。
+
+xamRibbon 画面ヒントは、標準画面ヒントの強化されたバージョンです。XamScreenTip クラス自体から派生した link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbonscreentip.html[XamRibbonScreenTip] は、画像のサポートだけでなく、Microsoft® Office® 2007 ガイドラインの補足的なサポートを追加します。link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbonscreentip~contentimage.html[ContentImage] プロパティを設定すると、xamRibbon 画面ヒントはそれ自体の幅を 318 ピクセルに制限していますが、画像が指定されていない場合には、210 ピクセルに制限します。
+
+興味がある場合、xamRibbon の画面ヒントについての詳細は、以下のトピックを参照してください。
+
+* link:xamribbon-about-xamribbonscreentip.html[xamRibbonScreenTip について]
+* link:xamribbon-add-a-xamribbonscreentip-to-a-ribbon-tool.html[xamRibbonScreenTip を Ribbon ツールに追加]
+* link:xamribbon-add-a-simple-tooltip-to-a-ribbon-tool.html[単純なツールチップをリボン ツールに追加]

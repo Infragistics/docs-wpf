@@ -1,0 +1,228 @@
+﻿////
+
+|metadata|
+{
+    "name": "binding-cell-settings-data-item-properties",
+    "controlName": [],
+    "tags": [],
+    "guid": "8d08373e-9e40-477a-a821-3a7185d7d0af",
+    "buildFlags": [],
+    "createdOn": "2014-06-26T13:31:23.8017039Z"
+}
+|metadata|
+////
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDataPresenter_™ コントロールの CellBindings コレクション プロパティを使用して、セルの設定をデータ項目プロパティにバインドする方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:wpf-terms-and-concepts.html[用語と概念]
+|このセクションでは、Data Presenter Family のコントロールを構成する主要な要素を定義します。
+
+| link:xamdatagrid-getting-started-with-xamdatagrid.html[xamDataGrid をページに追加]
+|このトピックでは、 _xamDataGrid_ コントロールをページに追加する方法について説明します。
+
+| link:xamdatagrid-accessing-data.html[xamDataGrid をデータにバインド]
+|このセクションには、 _xamDataGrid_ コントロールを使用してデータにアクセスする上で特に役立つトピックが記載されています。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_BindingCellSettings,セル設定のデータ項目プロパティへのバインド>>
+* <<_Ref390172044,関連コンテンツ>>
+
+[[_BindingCellSettings]]
+== セル設定のデータ項目プロパティへのバインド
+
+[[_Hlk368069110]]
+
+=== 概要
+
+`CellBindings` コレクション プロパティを使用すると、関連付けられたデータ項目から公開されたプロパティへのセル設定のバインドが容易になります。
+
+データ項目プロパティにバインドする、すべてのフィールドのセル プロパティの `CellBinding` インスタンスを作成し、`CellBindings` コレクションに追加します。
+
+注:
+
+[NOTE]
+====
+CellBinding のコンテキストはセルの DataRecord であるため、構文「 *DataItem.MyProperty* 」を使用して、「MyProperty」という名前のデータ項目プロパティへのパスを指定します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:
+|使用するプロパティ:
+|設定値:
+
+|フィールドのセルのコレクションの MVVM プロパティへのバインドの構成
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~cellbindings.html[CellBindings]
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellbindingcollection_members.html[CellBindingCollection]
+
+|`CellBinding` がセルの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter_members.html[CellValuePresenter] 内の link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor_members.html[ValueEditor] インスタンスをターゲットにするよう指定
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellbinding~target.html[Target]
+|`Editor`
+
+|`CellBinding` がセルの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter_members.html[CellValuePresenter] をターゲットにするよう指定
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellbinding~target.html[Target]
+|`CellValuePresenter`
+
+|バインドするターゲットのプロパティ名の指定
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellbinding~property.html[Property]
+|`string` 
+
+このプロパティは、非読み取り専用の `DependencyProperty` にする必要があります。
+
+|実際のバインディング マークアップの指定
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellbinding~binding.html[Binding]
+|`BindingBase`
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のスクリーンショットは、以下の `CellBinding` の設定の結果、フィールドのセルの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellbinding~target.html[Target]
+| _CellValuePresenter_ 
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellbinding~property.html[Property]
+| _Foreground_ 
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellbinding~binding.html[Binding]
+| _{Binding Path=DataItem.Color}_ 
+
+|====
+
+image::images/Binding_Cell_Settings_to_MVVM_properties_1.png[]
+
+以下のコードはこの例を実装します。
+
+*C# の場合:*
+[source,csharp]
+----
+public class Car : INotifyPropertyChanged
+{
+    private string _make;
+    public string Make
+    {
+        get { return _make; }
+        set
+        {
+            if (_make != value)
+            {
+                _make = value;
+                NotifyPropertyChanged("Make");
+            }
+        }
+    }
+    private Brush _color;
+    public Brush Color
+    {
+        get { return _color; }
+        set
+        {
+            if (_color != value)
+            {
+                _color = value;
+                NotifyPropertyChanged("Color");
+            }
+        }
+    }
+    #region INotifyPropertyChanged Members
+    public event PropertyChangedEventHandler PropertyChanged;
+    private void NotifyPropertyChanged(String info)
+    {
+        if (PropertyChanged != null)
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(info));
+        }
+    }
+    #endregion
+}
+----
+
+*XAML の場合:*
+[source,xaml]
+----
+<igDP:XamDataGrid x:Name="XamDataGrid1"
+                  DataSource="{Binding Path=Cars}">
+    <igDP:XamDataGrid.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+    </igDP:XamDataGrid.FieldLayoutSettings>
+    <igDP:XamDataGrid.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:FieldLayout.Fields>
+                <igDP:TextField Name="Make">
+                    <igDP:TextField.CellBindings>
+                        <igDP:CellBinding Property="Foreground"
+                                          Target="CellValuePresenter"
+                                          Binding="{Binding Path=DataItem.Color}" />
+                    </igDP:TextField.CellBindings>
+                </igDP:TextField>
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+    </igDP:XamDataGrid.FieldLayouts>
+</igDP:XamDataGrid>
+----
+
+[[_Ref390172044]]
+=== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-bind-a-datapresenter-control-to-an-xmldataprovider.html[DataPresenter Control の XmlDataProvider へのバインド]
+|このトピックでは、 _xamDataPresenter_ コントロールを XmlDataProvider にデータ バインドして、XML ファイルをアプリケーションのプレゼンテーション レイヤーに公開する方法を説明します。
+
+| link:xamdatapresenter-bind-a-datapresenter-control-to-a-collection.html[DataPresenter Control の Collection へのバインド]
+|このトピックでは、 _xamDataPresenter_ コントロールを ObjectDataProvider にデータ バインドして、コレクションをアプリケーションのプレゼンテーション レイヤーに公開する方法を説明します。
+
+| link:xamdatapresenter-binding-a-datapresenter-control-to-a-dataset.html[DataPresenter Control の DataSet へのバインド]
+|このトピックでは、 _xamDataPresenter_ コントロールを DataSet にデータ バインドする方法を説明します。
+
+| link:xamdatagrid-binding-field-fieldlayout-to-mvvm.html[Field、FieldSettings、FieldLayout および FieldLayoutSettings の MVVM プロパティへのバインド]
+|このトピックでは、 _xamDataPresenter_ コントロールの FieldBinding マークアップ拡張子を使用して、Field、FieldSettings、FieldLayout および FieldLayoutSettings を MVVM プロパティにバインドする方法を説明します。
+
+| link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]
+|このトピックでは、データ項目に対応する DataRecord オブジェクトを検索する方法を説明します。
+
+| link:xamdatapresenter-add-items-manually-to-a-datapresenter-control.html[DataPresenter コントロールへの項目の手動による追加]
+|このトピックでは、 _xamDataPresenter_ コントロールの DataItems コレクションにデータ項目を直接追加する方法を説明します。
+
+| link:xamdata-displaying-hierarchical-data.html[階層データの表示]
+|このトピックでは、 _xamDataPresenter_ コントロールによる階層データの表示方法を説明します。
+
+| link:xamdatapresenter-displaying-an-image-in-a-field.html[フィールドへの画像の表示]
+|このトピックでは、フィールドに画像を表示し、CellValuePresenter のテンプレートをオーバーライドする方法を説明します。
+
+| link:xamdatapresenter-iterate-through-the-records-collection.html[レコード コレクションの反復]
+|このトピックでは、レコードのネストされた構造を反復する方法および発生するレコード タイプの種類を説明します。
+
+|====

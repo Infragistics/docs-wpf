@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-working",
+    "tags": [],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "6a5c0fb2-e95d-4adb-929a-69645dae89c1",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:49:49.4178688Z"
+}
+|metadata|
+////
+
+= xamPropertyGrid の操作
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションのトピックでは、コントロールをプログラムによって管理する詳しい方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-work-expandable-properties.html[展開可能なプロパティのサポート (xamPropertyGrid)]
+|このトピックでは、コントロールが展開可能なプロパティを識別し表示する方法を説明します。
+
+| link:xampropertygrid-property-item-generators.html[プロパティ項目ジェネレーター (xamPropertyGrid)]
+|このトピックでは、コントロールが選択されたオブジェクトのプロパティを検出する方法、プロパティ項目のリストを作成する方法、およびプロセスを構成しカスタマイズする方法を説明します。
+
+| link:xampropertygrid-resetting-property-value.html[プロパティ値のリセット (xamPropertyGrid)]
+|このトピックでは、プロパティの既定値を定義する方法と、オプション メニューをカスタマイズする方法を説明します。
+
+| link:xampropertygrid-commands.html[コマンドの操作 (xamPropertyGrid)]
+|このトピックでは、コマンドによりコントロールを使用してさまざまな操作を実行する方法を説明します。
+
+|====

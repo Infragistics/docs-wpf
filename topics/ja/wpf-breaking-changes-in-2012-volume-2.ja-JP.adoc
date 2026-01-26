@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-breaking-changes-in-2012-volume-2",
+    "controlName": [],
+    "tags": ["Breaking Changes","Known Issues"],
+    "guid": "a9470281-fdc5-474f-ada6-0fc4a52731b7",  
+    "buildFlags": [],
+    "createdOn": "2012-08-23T21:12:06.1368581Z"
+}
+|metadata|
+////
+
+= 2012 Volume 2 の重大な変更点
+
+== WPF で廃止されたコントロール
+
+=== 廃止されたコントロール
+
+2012 Volume 2 リリースでは、以下のコントロールは {ProductName} 製品で提供されていません。
+
+* xamChart™
+* xamTileView™
+
+== WPF の XAML 名前空間マッピング
+
+=== 概要
+
+2012 volume 2 のリリースでは、WPF アセンブリの更新をマッピング XAML 名前空間で統一性を提供します。各アセンブリによって定義されるため、特に (静的) `Resources` クラスが変更されています。新しく作成し、共有する名前空間は link:{RootAssembly}{ApiVersion}~infragistics.shared.dynamicresourcestring_members.html[DynamicResourceString] プロパティのコピーを含みます。
+
+以下は、廃止された URL です。
+
+* http://infragistics.com/DataPresenter
+* http://infragistics.com/DockManager
+* http://infragistics.com/Editors
+* http://infragistics.com/OutlookBar
+* http://infragistics.com/Reporting
+* http://infragistics.com/Themes
+* http://infragistics.com/Windows
+
+WPF 名前空間へのマッピングの新しい URL:
+
+* `http://schemas.infragistics.com/xaml/wpf`
+
+以下のテーブルは、以前のクラス名を本リリースの新しいクラス名にマッピングするリストです。
+
+== `DynamicResourceString` プロパティの新しいクラス
+
+[options="header", cols="a,a"]
+|====
+|古いクラス名|新しいクラス名
+
+|Infragistics.Windows.DataPresenter.Resources
+|link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.resourcesdatapresenter_members.html[Infragistics.Windows.DataPresenter.ResourcesDataPresenter]
+
+|Infragistics.Windows.DockManager.Resources
+|link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.resourcesdockmanager_members.html[Infragistics.Windows.DockManager.ResourcesDockManager]
+
+|Infragistics.Windows.Editors.Resources
+|link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.resourceseditors_members.html[Infragistics.Windows.Editors.ResourcesEditors]
+
+|Infragistics.Windows.OutlookBar.Resources
+|link:{ApiPlatform}outlookbar{ApiVersion}~infragistics.windows.outlookbar.resourcesoutlookbar_members.html[Infragistics.Windows.OutlookBar.ResourcesOutlookBar]
+
+|Infragistics.Windows.Reporting.Resources
+|link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.resourcesreporting_members.html[Infragistics.Windows.Reporting.ResourcesReporting]
+
+|Infragistics.Windows.Resources
+|link:{RootAssembly}{ApiVersion}~infragistics.windows.resourceswindows_members.html[Infragistics.Windows.Resources]
+
+|====

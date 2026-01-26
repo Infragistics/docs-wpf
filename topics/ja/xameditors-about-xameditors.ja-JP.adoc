@@ -1,0 +1,24 @@
+﻿////
+
+|metadata|
+{
+    "name": "xameditors-about-xameditors",
+    "controlName": [],
+    "tags": ["Getting Started"],
+    "guid": "{04EAF0D4-6D96-47FA-A2B0-C8ACFF9F9508}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1629781Z"
+}
+|metadata|
+////
+
+= xamEditor について
+
+このグループ化の一部である 6 つのコントロールは次のとおりです。
+
+* link:xamcheckeditor.html[xamCheckEditor]™ -- True、False、および Indeterminate の各状態をサポートするシンプルなチェックボックス コントロールです。
+* link:xamcurrencyeditor.html[xamCurrencyEditor]™ -- 通貨のフォーマットでフォーマットされた数値を表示および編集するためにマスクを使用するシンプルなテキスト ボックス コントロールです。
+* link:xamdatetimeeditor.html[xamDateTimeEditor]™ -- エンド ユーザーが正しいフォーマットで日付/時刻の値を入力する支援をするためにマスクを使用するシンプルなテキスト ボックス コントロールです。
+* link:xammaskededitor.html[xamMaskedEditor]™-- エンド ユーザーのデータ入力を支援するためにマスクを使用するシンプルなテキスト ボックス コントロールです。複数のデータ タイプをサポートします。
+* link:xamnumericeditor.html[xamNumericEditor]™ -- エンド ユーザーの数値入力を支援するためにマスクを使用するシンプルなテキスト ボックス コントロールです。
+* link:xamtexteditor.html[xamTextEditor]™ -- エンド ユーザーが任意のタイプのテキストを入力できるシンプルなテキスト ボックス コントロールです。

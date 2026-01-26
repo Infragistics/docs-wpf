@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-terms-and-concepts",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{079A4A95-8A41-4638-BE25-2BB9D24E63C6}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.5356603Z"
+}
+|metadata|
+////
+
+= 用語と概念
+
+
+
+このセクションは、Data Presenter Family を形成するコントロールを構成する主要な要素を定義します。以下のリンクをクリックして、これらの要素を学習して、Data Presenter Family との関連を確認します。
+
+* link:xamcarousel-terms-architecture.html[アーキテクチャ]
+* link:xamcarousel-terms-carousel-panel-navigator.html[CarouselPanelNavigator]
+* link:xamdata-terms-data-sources.html[データ ソース]
+* link:xamdata-terms-editors.html[エディター]
+* link:xamdata-terms-fields.html[フィールド]
+* link:xamcarousel-path.html[パス]
+* link:xamcarousel-path-effects.html[パス エフェクト]
+* link:xamdata-terms-views.html[ビュー]
+* link:xamdata-terms-presenters.html[プレゼンター]
+* link:xamdata-terms-records.html[レコード]
+* link:xamdata-terms-record-manager.html[レコード マネージャ]
+* link:xamdata-terms-themepacks.html[テーマパック]
+* link:wpf-datapresenter-resource-strings.html[リソース文字列]

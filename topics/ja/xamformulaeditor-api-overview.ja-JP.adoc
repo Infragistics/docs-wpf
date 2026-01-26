@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamformulaeditor-api-overview",
+    "controlName": ["xamFormulaEditor"],
+    "tags": ["API","Calculations"],
+    "guid": "d90f5c6e-78bf-4628-9c4b-2db28b5b19ca",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.096152Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[cols="a,a"]
+|====
+|*コントロールの名前空間:*
+|*主要な API:*
+
+| link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions_namespace.html[Infragistics.Controls.Interactions]
+| link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions.xamformulaeditor.html[XamFormulaEditor] 
+
+link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions.formulaeditordialog.html[FormulaEditorDialog] 
+
+link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions.formulaeditorbase~formula.html[Formulaプロパティ] 
+
+link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions.formulaeditorbase~target.html[Target プロパティ]
+
+|====

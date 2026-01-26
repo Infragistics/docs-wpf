@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards-printing",
+    "controlName": ["xamDataCards"],
+    "tags": ["Printing"],
+    "guid": "{463843DC-B127-4D54-944E-9A1F0F5CCB0F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6158763Z"
+}
+|metadata|
+////
+
+= 印刷
+
+
+
+xamDataCards™ の印刷に関する情報の詳細は、以下のリンクを参照してください。
+
+* link:xamdatapresenter-exclude-datapresenter-settings-when-printing.html[印刷時に DataPresenter 設定を除外]
+* link:xamdatapresenter-fit-all-fields-on-a-single-page.html[単一ページにすべてのフィールドを収める]
+* link:xamdatapresenter-handling-events-to-customize-print-operations.html[印刷操作をカスタマイズするためにイベントを処理]
+* link:xamdatapresenter-print-all-records-in-a-hierarchy.html[階層のすべてのレコードを印刷]
+* link:xamdatapresenter-repeat-field-headers-on-all-pages.html[すべてのページでフィールド ヘッダーを繰り返す]

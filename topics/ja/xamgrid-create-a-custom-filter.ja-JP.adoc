@@ -1,0 +1,162 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-create-a-custom-filter",
+    "controlName": ["xamGrid"],
+    "tags": ["Filtering","Grids","How Do I","Styling"],
+    "guid": "{C7A7416E-8F96-4E7A-943E-0066CDBB617A}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0282047Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= カスタム フィルターの作成
+
+== 始める前に
+
+フィルター機能には、より大きい、等しいなどのフィルターのデフォルト セットが含まれています。ただし、状況によっては、このデフォルト セットを拡張したり、固有のカスタム フィルターを追加したい場合があります。このトピックは、その方法を示します。
+
+この詳細なガイドは、ドロップダウン メニューでカスタム フィルターの隣りにアイコンを表示する方法も示します。
+
+このトピックは、フィルタリングを有効にした状態でデータにバインドされた xamGrid コントロールがすでにあることが前提となっています。詳細は、 link:xamgrid-data-binding.html[データ バインディング]および link:xamgrid-filtering.html[フィルタリング]のトピックを参照してください。
+
+== 達成すること
+
+ID が 5 より大きいすべての製品を表示するカスタム フィルターを作成します。
+
+== 次の手順を実行します
+
+[start=1]
+. link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filteroperand.html[FilterOperand] からプロパティを継承する独自のカスタム クラスを作成し、それに GreaterThan5 という名前を付けます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filteroperand~defaultdisplayname.html[DefaultDisplayName] メソッドは、カスタム フィルターのドロップダウン メニューに表示される文字列を取得します。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filteroperand~requiresfilteringinput.html[RequiresFilteringInput] メソッドは、フィルターがそれに適用される入力を必要とするか、スタンドアローンであるかを判断します。
+
+*Visual Basic の場合:*
+
+----
+Public Class GreaterThan5
+   Inherits FilterOperand
+   Protected Overrides ReadOnly Property DefaultDisplayName As String
+      Get
+         Return "Greater Than 5"
+      End Get
+   End Property
+   Public Overrides ReadOnly Property RequiresFilteringInput As Boolean
+      Get
+         Return false
+      End Get
+   End Property
+   ' ID が 5 より大きいすべての製品を返すフィルター表現を作成します。
+   Public Overrides Function FilteringExpression(ByVal value As Object) As System.Linq.Expressions.Expression
+      Dim expr As System.Linq.Expressions.Expression
+      ((Not (product) Is Nothing) _
+      AndAlso (product.ProductID > 5))
+      Return expr
+   End Function
+End Class
+----
+
+*C# の場合:*
+
+----
+public class GreaterThan5 : FilterOperand
+{
+   protected override string DefaultDisplayName
+   {
+      get
+      {
+         return "Greater Than 5";
+      }
+   }
+   public override bool RequiresFilteringInput
+   {
+      get
+      {
+         return false;
+      }
+   }
+   // ID が 5 より大きいすべての製品を返すフィルター表現を作成します。
+   public override System.Linq.Expressions.Expression FilteringExpression(object value)
+   {                 
+      System.Linq.Expressions.Expression<Func<Product, bool>> expr = product => product != null && product.ProductID > 5;
+      return expr;
+   }
+}
+----
+
+[start=2]
+. データ テンプレートをリソース タグに追加します。このデータ テンプレートは、カスタム フィルターの隣りのドロップダウン メニューに表示されます。
+
+*注:* このテンプレートのストリング値は、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filteroperand~icon.html[Icon] プロパティに設定されることになるため、2 文字以上の長さにすることはできません。
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+   <DataTemplate x:Key="GreaterThanFiveIcon">
+      <StackPanel>
+         <TextBlock Text="&gt;5" FontWeight="Bold"></TextBlock>
+      </StackPanel>
+   </DataTemplate>
+</UserControl.Resources>
+----
+
+[start=3]
+. コード ビハインドでメンバー変数を作成します。
+
+*Visual Basic の場合:*
+
+----
+Dim _greaterThanFiveIcon As DataTemplate = Nothing
+----
+
+*C# の場合:*
+
+----
+// メンバー変数
+private DataTemplate _greaterThanFiveIcon = null;
+----
+
+[start=4]
+. Loaded イベントで、データ テンプレートをメンバー変数に割り当て、新しいフィルター オペランド、GreaterThan5 を ProductID 列の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filtercolumnsettings~rowfilteroperands.html[RowFilterOperands] コレクションに追加します。また Icon プロパティを新しいデータ テンプレートに設定します。
+
+*Visual Basic の場合:*
+
+----
+' XAML で作成したデータ テンプレートを指定します。
+_greaterThanFiveIcon = CType(Me.Resources("GreaterThanFiveIcon"),DataTemplate)
+Dim fcs As FilterColumnSettings = Me.MyDataGrid.Columns.DataColumns("ProductID").FilterColumnSettings
+fcs.RowFilterOperands.Add(New GreaterThan5())
+----
+
+*C# の場合:*
+
+----
+// XAML で作成したデータ テンプレートを指定します。
+_greaterThanFiveIcon = this.Resources["GreaterThanFiveIcon"] as DataTemplate;
+FilterColumnSettings fcs = this.MyDataGrid.Columns.DataColumns["ProductID"].FilterColumnSettings;
+fcs.RowFilterOperands.Add(new GreaterThan5(){Icon = this._greaterThanFiveIcon});
+----
+
+[start=5]
+. アプリケーションを保存して実行します。ProductID 列のドロップダウン オプションにオペランドおよびアイコンが表示されます。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Custom_Filter_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Custom_Filter_01.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-filtering.html[フィルタリング]
+
+link:xamgrid-filtering-events.html[イベントのフィルタリング]
+
+link:xamgrid-programmatically-create-a-filter.html[プログラムによってフィルターを作成]
+
+link:xamgrid-filter-operands.html[フィルター オペランド]

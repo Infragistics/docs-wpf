@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-netadvantage-win-client-wpf",
+    "controlName": [],
+    "tags": ["Getting Started"],
+    "guid": "{9041122F-2640-4BB0-AC36-C11B21BE21CA}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.5896711Z"
+}
+|metadata|
+////
+
+= {ProductNameVersion}
+
+{ProductName} は、Microsoft® Windows® Presentation Foundation をベースにして洗練された商用の UI を作成するために設計された次世代コントロール スイートです。
+
+{ProductName} のフル バージョンでは、以下を作成することを可能にするコントロールの完全なスイートを取得します:
+
+* Windows 環境用の enterprise-ready のアプリケーション
+* テーマパックを使用する完全にスタイリングされたアプリケーション
+* 企業のデザイン標準を実行するためのカスタムのスタイルパック
+
+{ProductName} コントロールは、Windows Presentation Foundation が提供する能力を活用するために徹底的に設計および記述されています。このコントロールは、高解像度のグラフィックス、豊富なスタイリングおよびアニメーション機能、ならびに統合された UI 仮想化技術をはじめとする Windows Presentation Foundation 機能を利用しています。事実、すべての Windows Presentation Foundation コントロールは、100% 管理された C# コードで記述されており、デフォルトのスタイルおよびテンプレートは XAML リソースで定義されています。

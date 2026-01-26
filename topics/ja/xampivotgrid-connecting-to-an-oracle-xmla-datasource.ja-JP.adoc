@@ -1,0 +1,114 @@
+﻿////
+|metadata|
+{
+    "name": "xampivotgrid-connecting-to-an-oracle-xmla-datasource",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Data Binding","Data Presentation","Grids"],
+    "guid": "f89b8dbd-4ba7-4408-aacb-fff61f8326f7",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.0403173Z"
+}
+|metadata|
+////
+
+= xamPivotGrid を Oracle XMLA DataSource にバインド
+
+Oracle XMLA は、 link:xampivotgrid-getting-started-with-xampivotgrid.html[XamPivotGrid によってサポートされるデータ ソース タイプ]です。このトピックはそれを使用する方法をコード例とともに説明します。
+
+トピックは以下のとおりです。
+
+* 要件
+* データ ソースの追加
+* データ ソースを使用するためにピボット グリッドを構成
+* ClientAccessPolicy の構成
+* 関連トピック
+
+== 要件
+
+* データ ソースの位置を含む名前空間を追加します。
+
+*XAML の場合:*     
+
+[source]
+----
+xmlns:igOlap=http://schemas.infragistics.com/olap
+----
+
+* *Infragistics.WPF.Olap.Xmla.Oracle* NuGet パッケージへの参照を追加します。
+
+== データ ソースの追加
+
+データ ソースのコードをアプリケーションに追加するための一般的な作業は、リソース セクションに配置し、次に静的リソースを XamPivotGrid の DataSource に追加することです (link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource.html[FlatDataSource] または link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource.html[XMLADataSource] で実行するのと全く同じ)。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+ <igOlap:XmlaOracleConnectionSettings 
+        x:Key="oracleSettings"
+        ServerUri="http://server/XMLAServicePath">
+ <igOlap:XmlaOracleConnectionSettings.DiscoverProperties>
+            <igOlap:XmlaQueryProperty 
+                PropertyName="DataSourceInfo" 
+                Value="Provider=Essbase;Data Source=igbgsoforacle"/>
+        </igOlap:XmlaOracleConnectionSettings.DiscoverProperties>
+ <igOlap:XmlaOracleConnectionSettings.ExecuteProperties>
+            <igOlap:XmlaQueryProperty 
+                PropertyName="DataSourceInfo" 
+                Value="Provider=Essbase;Data Source=igbgsoforacle"/>
+        </igOlap:XmlaOracleConnectionSettings.ExecuteProperties>
+ </igOlap:XmlaOracleConnectionSettings>
+ <igOlap:XmlaOracleDataSource 
+        x:Key="oracleXmla"
+        Database="Demo"
+        Cube="Demo.Basic"
+        ConnectionSettings="{StaticResource oracleSettings}">
+ <igOlap:XmlaOracleDataSource.Credentials>
+ <igOlap:XmlaNetworkCredential 
+                UserName="User" 
+                Password="Password" />
+ </igOlap:XmlaOracleDataSource.Credentials>
+ </igOlap:XmlaOracleDataSource>
+----
+
+上記のコードで、XmlaOracleDataSource は、Cube、Database、Measures、Rows、Columns、Filters、Credentials などの DataSource のすべての標準的なプロパティを持つ拡張された XmlaDataSource です。Oracle 独自の指示がシーンの背後で実行されます。これらは実装されています。ただし、上記に示すように XmlaOracleConnectionSettings を構成し、 Discover プロパティと Execute プロパティを提供することはこれまで通り必要です。それらは接続の適切な操作に必要です。これは、機能する接続を開始するために最小限必要です。さらに必要に合うように変更できます。
+
+== データ ソースを使用するためにピボット グリッドを構成
+
+上記で示すようにリソースでデータ ソースを作成したら、以下の行により、ピボット グリッドとデータ セレクターで使用できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+    <ig:XamPivotGrid 
+        x:Name="pivotGrid" 
+        DataSource="{StaticResource oracleXmla}" />
+    <ig:Expander Grid.Column="1">
+        <ig:XamPivotDataSelector 
+            x:Name="dataSelector" 
+            DataSource="{StaticResource oracleXmla}" />
+    </ig:Expander>
+----
+
+== ClientAccessPolicy の構成
+
+最後に、正しい ClientAccessPolicy ファイルを提供することを検討したいと思います。これらは、上記のコードで使用されるサンプルのサーバーと連携するコンテンツです。
+
+*ClientAccessPolicy.xml の場合:*
+
+----
+   <?xml version="1.0" encoding="utf-8"?>
+   <access-policy>
+     <cross-domain-access>
+       <policy>
+         <allow-from http-request-headers="*">
+           <domain uri="*"/>
+         </allow-from>
+         <grant-to>
+           <resource path="/aps/XMLA" include-subpaths="true"/>
+         </grant-to>
+       </policy>
+     </cross-domain-access>
+   </access-policy>
+----

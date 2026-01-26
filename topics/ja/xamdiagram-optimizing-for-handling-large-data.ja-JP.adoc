@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-optimizing-for-handling-large-data",
+    "tags": [],
+    "controlName": ["xamDiagram"],
+    "guid": "5ebf7a8d-b551-4259-83e3-6ebfc9e30c96",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:44:37.0993974Z"
+}
+|metadata|
+////
+
+= 大規模なデータ処理のための xamDiagram の最適化
+
+== 大規模なデータ処理のための xamDiagram の最適化
+
+=== 概要
+
+このトピックでは、大規模なデータを処理するために  _xamDiagram_™ コントロールを調整する方法を説明します。
+
+_xamDiagram_  は大規模なデータを処理できますが、パフォーマンスの問題は依然として発生します。パフォーマンスの問題が発生する場合は、パフォーマンスの改善に必要な以下の候補を試すことを検討してください。
+
+.注:
+[NOTE]
+====
+これは通常必要ありません。またいくつもの候補を適用すると、ダイアグラム全体の操作性が低下する可能性があります。そのためには、候補を注意深く検討して実際にテストし、最適な結果となる組み合わせを見つけてください。
+====
+
+=== xamDiagram のパフォーマンスの最適化に関する候補の一覧表
+
+include::xamdiagram-performance-optimization-reference-chart.ja-JP.adoc[]

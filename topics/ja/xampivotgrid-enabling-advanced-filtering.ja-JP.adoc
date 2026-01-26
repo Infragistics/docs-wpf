@@ -1,0 +1,97 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-enabling-advanced-filtering",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Drilldown","Filtering","Grids","How Do I"],
+    "guid": "6d27b2ae-5fe0-4ac9-a3e0-37ce2b6250ee",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.2703315Z"
+}
+|metadata|
+////
+
+= Excel スタイル フィルタリングを有効にする (xamPivotGrid、xamPivotDataSelector)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamPivotGrid_™/ _xamPivotDataSelector_™ コントロールの Microsoft® Excel® スタイル フィルタリングを有効にする方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-understanding-xampivotgrid.html[xamPivotGrid の概要]
+|このトピックでは、 _xamPivotGrid_ コントロールとその主要機能を紹介します。
+
+| link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+|このトピックでは、 _xamPivotGrid_ コントロールを使用して作業を開始する方法について説明するため、このコントロールを Silverlight® アプリケーションに追加するための手順を順を追って説明しています。
+
+| link:xampivotgrid-dataselector.html[DataSelector]
+|このトピックでは、 _xamPivotDataSelector_ コントロールを紹介します。
+
+| link:xampivotgrid-excel-style-filtering-overview-and-user-functionality.html[Excel スタイル フィルタリングの概要とユーザー機能 (xamPivotGrid、xamPivotDataSelector)]
+|このトピックでは、 _xamPivotGrid_ の Excel スタイル フィルタリング機能とそのユーザー機能および操作を説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref332040821,概要>>
+* <<_Ref333607318,Excel スタイル フィルタリングを有効にする>>
+
+** <<_Ref332040869,プロパティ設定>>
+** <<_Ref333607340,考慮事項>>
+
+[[_Ref332040821]]
+== 概要
+
+=== Excel スタイル フィルタリングを有効にする概要
+
+_xamPivotGrid_   コントロールの Excel スタイル フィルタリングとデータ セレクターが有効な時、ユーザーはメジャー値と行および列階層からのメンバーのキャプションに対してカスタムのフィルター条件を追加できます。
+
+デフォルトで、 _xamPivotGrid_   の Excel スタイル フィルタリングは有効ではありません。したがって、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector~enableadvancedfiltering.html[EnableAdvancedFiltering] プロパティを  _True_   に設定することによって明示的に有効にする必要があります。このプロパティは、 _xamPivotGrid_   と link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector_members.html[XamPivotDataSelector] の両方に使用できます。
+
+[[_Ref332040841]]
+[[_Ref333607318]]
+== Excel スタイル フィルタリングを有効にする
+
+[[_Ref332040869]]
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|次に設定:
+
+|ピボット グリッドで Excel スタイル フィルタリングの UI を有効にする
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~enableadvancedfiltering.html[XamPivotGrid.EnableAdvancedFiltering]
+|`True`
+
+|データ セレクターで Excel スタイル フィルタリングの UI を有効にする
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector~enableadvancedfiltering.html[XamPivotDataSelector.EnableAdvancedFiltering]
+|`True`
+
+|====
+
+[[_Ref333607340]]
+
+=== 考慮事項
+
+Excel スタイル フィルタリングを使用する時に留意すべき点がいくつかあります。
+
+* Excel スタイル フィルタリングを有効にするために、ピボット グリッド/データ セレクターの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~datasource.html[DataSource] プロパティとして設定されたデータ ソースは link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.isupportfilters_members.html[ISupportFilters] インターフェイスを実装する必要があります。現在このインターフェイスは link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource_members.html[XmlaDataSource] に実装されています。
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector~enableadvancedfiltering.html[EnableAdvancedFiltering] のデフォルト値は `False` です。
+* 項目がピボット グリッドまたはデータ セレクターの列、行、フィルター、またはメジャーに追加される前に、`EnableAdvancedFiltering` プロパティを設定する必要があります。コード (XAML ではなく) でプロパティを設定したいが、列、行などに初期の項目がある場合、ピボット グリッドが初期化される前に設定する必要があります。たとえば、コードでプロパティを設定するのに適した場所は Page/UserControl のコンストラクターで、ここではピボット グリッドまたはデータ セレクターが使用されます。このプロパティの設定は、`InitializeComponent``(``)` が呼び出された後でなければなりません。
+* ランタイムに `EnableAdvancedFiltering` プロパティの値を変更しても、グリッドまたはデータ セレクターで既存の UI フィルタリング コントロールを変更しません。ただし、その後で行、列、フィルター、メジャーに追加されるすべての階層は Excel スタイル フィルタリングをサポートし、`EnableAdvancedFiltering` に設定された値に基づきません。

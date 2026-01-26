@@ -1,0 +1,419 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-features-overview",
+    "tags": ["Getting Started"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "58eb1c7a-fa8c-480a-bdbc-5645e195af4e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.3803367Z"
+}
+|metadata|
+////
+
+= 機能の概要 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールがサポートする機能の概要を説明します。
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref366674967,はじめに>>
+* <<_Ref366072664,ユーザー インタラクションと操作性>>
+* <<_Ref366072715,関連コンテンツ>>
+
+[[_Ref366674967]]
+== はじめに
+
+=== コントロールの概要
+
+_xamRichTextEditor™_   は、テキスト、リスト、画像およびテーブルに限定せず、全般的なリッチ テキスト コンテンツの機能の表示および編集をするクロス プラットフォーム コントロールです。
+
+_xamRichTextEditor_   は、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] のコンテンツを表示および編集する機能を提供します。`RichTextDocument` クラスにより、複数のファイル形式 (プレーン テキスト、RTF、DOCX) でリッチ コンテンツのインポートおよびエクスポートができます。
+
+以下のスクリーンショットは、リッチ コンテンツを編集するスプリット モードの  _xamRichTextEditor_   を示しています。
+
+image::images/xamRichTextEditor_Features01.png[]
+
+[[_Ref366072664]]
+== ユーザー インタラクションと操作性
+
+=== ユーザー インタラクションの概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールのユーザー インタラクション機能を簡単に説明します。このメソッドについては、表の下にある解説もご参照ください。
+
+[options="header", cols="a,a,a"]
+|====
+|機能|説明|構成方法
+
+|<<_Ref360701796,コンテキスト メニュー>>
+|コンテキスト メニューからクリップボードの操作やテーブルの作成ができます。
+|image::images/Yes.png[] 
+
+link:xamrichtexteditor-managing-context-menu.html[コンテキスト メニューの管理]
+
+|<<_Ref360701797,クリップボード>>
+|キーボード ショートカットを使用して、クリップボードの操作ができます。
+|image::images/Yes.png[] 
+
+link:xamrichtexteditor-managing-clipboard.html[クリップボードの管理]
+
+|<<_Ref366066795,ハイパーリンク>>
+|ハイパーリンクをクリックして、開くことができます。
+|image::images/Yes.png[] 
+
+link:xamrichtexteditor-managing-adding-hyperlinks.html[ハイパーリンクの追加]
+
+|<<_Ref366066796,画像>>
+|このコントロールは、各種形式の画像の表示をサポートしています。
+|image::images/Yes.png[]
+
+|<<_Ref360785178,キーボード ナビゲーション>>
+|キーボードを使用してドキュメントのコンテンツをナビゲートできます。
+|image::images/No.png[]
+
+|<<_Ref360701808,選択>>
+|ドキュメントの単一の内容または複数の内容の範囲を選択することができます。
+|image::images/Yes.png[] 
+
+* link:xamrichtexteditor-configuring-selection.html[選択の構成] 
+
+* link:xamrichtexteditor-managing-selection.html[選択の管理] 
+
+|<<_Ref366066785,テーブルのサイズ変更>>
+|テーブルの列と行のサイズ変更ができます。
+|image::images/No.png[]
+
+|<<_Ref360788236,テキストの書式設定>>
+|テキスト内容の書式を変更できます。
+|image::images/No.png[]
+
+|<<_Ref360702454,元に戻す / やり直し>>
+|直近の変更を元に戻したり、やり直すことができます。
+|image::images/Yes.png[] 
+
+* link:xamrichtexteditor-configuring-undo-redo.html[元に戻す / やり直しの構成] 
+
+* link:xamrichtexteditor-managing-undo-redo.html[元に戻す / やり直しの管理] 
+
+|<<_Ref360702448,ビューの分割>>
+|ドキュメント ビューを 2 つに分割できます。
+|image::images/Yes.png[] 
+
+* link:xamrichtexteditor-configuring-view-split.html[ビュー分割の構成] 
+
+* link:xamrichtexteditor-managing-view-splitting.html[ビュー分割の管理] 
+
+|<<_Ref366069219,ビューのズーム>>
+|ビューの内容の描画サイズを増減できます。
+|image::images/Yes.png[] 
+
+link:xamrichtexteditor-configuring-view-zoom-level.html[ビューのズーム レベルの構成]
+
+|====
+
+[[_Ref360701796]]
+
+=== コンテキスト メニュー
+
+_xamRichTextEditor_   コントロールは、クリップボード操作や表作成ができるコンテキスト メニューをサポートしています。コンテキスト メニューの内容をカスタマイズしたり、非表示にできます。
+
+==== 関連トピック:
+
+link:xamrichtexteditor-managing-context-menu.html[コンテキスト メニューの管理]
+
+[[_Ref360701797]]
+
+=== クリップボード
+
+_xamRichTextEditor_   コントロールでは、クリップボード操作による切り取り、コピー、貼り付けができます。コンテンツの一部を異なる場所に移動またはコピーすると、ドキュメントのリッチ コンテンツを編集できるようになります。また、他のアプリケーションからのリッチ テキスト コンテンツの貼り付けおよび他のアプリケーションへの貼り付けもできます。
+
+切り取りとコピー操作をするには、 _xamRichTextEditor_   でコンテンツを選択する必要があります。コンテンツを選択せずに、貼り付け操作が実行できます。
+
+* コンテンツが選択されていない場合、クリップボードのコンテンツが現在のカレット位置の後ろに挿入されます。
+* コンテンツが選択されている場合は、クリップボードのコンテンツが現在選択されたコンテンツと置換されます。
+
+以下の表に、キーボードを使用したクリップボード サポートで利用できる操作をリストします。
+
+[options="header", cols="a,a"]
+|====
+|作業|キーボード ショートカット
+
+|クリップボードによる切り取り
+|Ctrl + X
+
+|クリップボードによるコピー
+|Ctrl + C、Ctrl + Insert
+
+|クリップボードにより貼り付け
+|Ctrl + V、Shift + Insert
+
+|====
+
+==== 関連トピック:
+
+link:xamrichtexteditor-managing-clipboard.html[クリップボードの管理]
+
+[[_Ref366066795]]
+
+=== ハイパーリンク
+
+_xamRichTextEditor_   は、ドキュメントのコンテンツに挿入されたハイパーリンクをサポートします。リンクをクリックすると、既定のシステム ブラウザで URI を開くことができます。
+
+==== 関連トピック:
+
+link:xamrichtexteditor-managing-adding-hyperlinks.html[ハイパーリンクの追加]
+
+[[_Ref366066796]]
+
+=== 画像
+
+このコントロールにより、BMP、DIB、EMF、GIF、JPEG、PNG、TIFF、および WMF の各種形式の画像を表示できます。
+
+==== 関連トピック:
+
+link:xamrichtexteditor-managing-adding-images.html[画像の追加]
+
+[[_Ref360785178]]
+
+=== キーボード ナビゲーション
+
+キーボード ナビゲーション機能により、リッチ テキスト ドキュメントのコンテンツをナビゲートできます。
+
+以下の表は、使用可能なすべてのショートカットです。
+
+[options="header", cols="a,a"]
+|====
+|ショートカット|説明
+
+|上矢印
+|カレットを 1 行上に移動する、またはドキュメントをスクロール アップします。
+
+|下矢印
+|カレットを 1 行下に移動する、またはドキュメントをスクロール ダウンします。
+
+|左矢印
+|カレットを前の文字に移動します。
+
+|右矢印
+|カレットを次の文字に移動します。
+
+|Ctrl + 左矢印
+|カレットを前の単語の開始位置に移動します。
+
+|Ctrl + 右矢印
+|カレットを次の単語の開始位置に移動します。
+
+|ページ アップ
+|1 ページ分スクロール アップします。
+
+|ページ ダウン
+|1 ページ分スクロール ダウンします。
+
+|Home
+|カレットを現在の行の始点に移動します。
+
+|End
+|カレットを現在の行の終点に移動します。
+
+|Ctrl + Home
+|カレットをドキュメントの始点に移動します。
+
+|Ctrl + End
+|カレットをドキュメントの終点に移動します。
+
+|====
+
+[[_Ref360701808]]
+
+=== 選択
+
+選択機能により、 _xamRichTextEditor_   のコンテンツの単一または複数の範囲を選択することができます。
+
+[[_Ref359594770]]
+==== キーボードによる単一選択
+
+キーボードによる単一選択では、キーボードを使用して _xamRichTextEditor_   のコンテンツを単一範囲で選択することができます。
+
+[start=1]
+. カレットを選択する範囲の始点に移動します。
+[start=2]
+. シフトキーを押した状態で、カレットを選択する範囲の終点に移動します。
+[start=3]
+. 選択範囲の終点まで選択したら、シフトキーを放します。
+
+[[_Ref359594775]]
+==== マウスによる単一選択
+
+マウスによる単一選択では、マウスを使用して _xamRichTextEditor_   のコンテンツを単一範囲で選択することができます。
+
+[start=1]
+. マウスポインターを選択する範囲の始点に移動します。
+[start=2]
+. マウスの左ボタンを押した状態で、マウスポインターを選択する範囲の終点に移動します。
+[start=3]
+. 選択範囲の終点まで選択したら、マウスの左ボタンを放します。
+
+==== マウスによる複数選択
+
+マウスによる複数選択では、マウスを使用して _xamRichTextEditor_   のコンテンツを複数範囲で選択することができます。
+
+[start=1]
+. マウスポインターを選択する範囲の始点に移動します。
+[start=2]
+. マウスの左ボタンを押した状態で、マウスポインターを選択する範囲の終点に移動します。
+[start=3]
+. 選択範囲の終点まで選択したら、マウスの左ボタンを放します。
+[start=4]
+. キーボードの Ctrl キーを押し続けます。
+[start=5]
+. キーボードの Ctrl キーを押した状態で、選択する追加範囲で前述の手順 1 ～ 3 を繰り返します。
+
+注:
+
+[NOTE]
+====
+単一および複数選択のいずれの場合でも、単語をダブルクリックして、コンテンツから単語を選択できます。
+====
+
+注:
+
+[NOTE]
+====
+マウスによる複数選択は、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~ismultiselectenabled.html[IsMultiSelectEnabled] プロパティがtrueに設定されている場合のみ機能します。
+====
+
+==== 関連トピック:
+
+* link:xamrichtexteditor-configuring-selection.html[選択の構成]
+* link:xamrichtexteditor-managing-selection.html[選択の管理]
+
+[[_Ref366066785]]
+
+=== テーブルのサイズ変更
+
+テーブルのサイズ変更機能により、1 つの列または 1 つの行のすべてのセルのサイズ変更、またはテーブル全体のサイズ変更ができます。テーブルの右下隅からマウスでドラッグして、テーブル全体を選択します。
+
+==== 関連トピック:
+
+link:xamrichtexteditor-managing-adding-tables.html[テーブルの追加]
+
+[[_Ref360702441]]
+
+=== テキストの書式設定
+
+テキストのスタイル設定機能により、テキスト内容のプロパティの一部を変更できます。
+
+注:
+
+[NOTE]
+====
+テキスト内容のスタイル設定すべてに、ショートカットが設定されているわけではありません。しかし、パブリック API 経由で、それらのすべてが利用できます。
+====
+
+以下の表では、任意の動作とキーボートの各ショートカットのマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|作業|ショートカット|説明
+
+|太字の切り替え
+|Ctrl + B
+|選択したテキストの太字書式のオン / オフを切り替えます。
+
+|斜体の切り替え
+|Ctrl + I
+|選択したテキストの斜体書式のオン / オフを切り替えます。
+
+|下線の切り替え
+|Ctrl + U
+|選択したテキストの下線書式のオン / オフを切り替えます。
+
+|下付き文字の切り替え
+|Ctrl + =
+|選択した下付き文字書式のオン / オフを切り替えます。
+
+|上付き文字の切り替え
+|Ctrl + Shift + =
+|選択したテキストの上付き文字書式のオン / オフを切り替えます。
+
+|大文字の切り替え
+|Ctrl + Shift + A
+|選択したテキストの各文字の大文字表示のオン / オフを切り替えます。
+
+|小文字の切り替え
+|Ctrl + Shift + K
+|選択したテキストの各文字の小文字表示のオン / オフを切り替えます。小文字機能は、すべての小文字を大文字に置き換えますが、文字の高さは小文字と同じになります。
+
+|====
+
+[[_Ref360702454]]
+
+=== 元に戻す / やり直し
+
+直近の変更を元に戻したり、やり直すことができます。
+
+以下の表に、キーボードを使用した [元に戻す]/[やり直し] 機能で利用できる操作をリストします。
+
+[options="header", cols="a,a"]
+|====
+|作業|キーボード ショートカット
+
+|元に戻す
+|Ctrl + Z
+
+|やり直し
+|Ctrl + Y
+
+|====
+
+==== 関連トピック:
+
+* link:xamrichtexteditor-configuring-undo-redo.html[元に戻す / やり直しの構成]
+* link:xamrichtexteditor-managing-undo-redo.html[元に戻す / やり直しの管理]
+
+[[_Ref360702448]]
+
+=== ビューの分割
+
+分割機能により、ドキュメント ビューを水平に分割できます。分割では、 _xamRichTextEditor_   はドキュメントの内容の異なる部分を、2 つの異なるビューで表示できます。この機能は構成可能で、設定されたドキュメント ビューの分割を無効にすることができます。
+
+==== 関連トピック:
+
+* link:xamrichtexteditor-configuring-view-split.html[ビュー分割の構成]
+* link:xamrichtexteditor-managing-view-splitting.html[ビュー分割の管理]
+
+[[_Ref366069219]]
+
+=== ビューのズーム
+
+ビューの内容の描画サイズを増減できます。ビューのズーム機能は、Ctrl キーを押した状態でマウス ホイールを回転させます。
+
+==== 関連トピック:
+
+link:xamrichtexteditor-configuring-view-zoom-level.html[ビューのズーム レベルの構成]
+
+[[_Ref366072715]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加する]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====

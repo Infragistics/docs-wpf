@@ -1,0 +1,204 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistenceframework-getting-started-with-infragistics-control-persistence-framework",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["Getting Started","Persistence"],
+    "guid": "ffd7c9ee-5103-4a99-9ce8-7ba27104a275",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6390335Z"
+}
+|metadata|
+////
+
+= Infragistics Control Persistence Framework を使用した作業の開始
+
+== 始める前に
+
+Infragistics Control Persistence Framework の主な目的は、コントロールの状態を保存および読み込みを可能にする統一された API を提供することです。1 つのコントロールの設定を保存でき、グループを使用すると複数のコントロールの設定を保存できます。
+
+== 達成すること
+
+このトピックは Infragistics Control Persistence Framework で作業を開始する方法を説明します。xamDialogWindow コントロールの設定を保存および読み込むための機能を実装します。この設定は分離ストレージで保存されます。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName}™ プロジェクトを作成します。
+
+[start=2]
+. ソリューション エクスプローラーで以下の NuGet パッケージ参照をプロジェクトに追加します。NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+* Infragistics.WPF.Persistence
+* Infragistics.WPF.DialogWindow
+
+[start=3]
+. 以下の名前空間を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+[start=4]
+. xamDialogWindow コントロールおよび 2 つのボタンがページにあります。コントロールは Grid コンテナーの 2 行に配置されます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid x:Name="LayoutRoot">
+   <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+ 
+   </Grid.RowDefinitions>
+   <!-- Add more elements -->
+</Grid>
+---- 
+
+[start=5]
+. xamDialogWindow コントロールを追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDialogWindow x:Name="myDialog" Height="200" Width="300" 
+    IsMoveable="True" IsResizable="True" RestrictInContainer="True"   
+    StartupPosition="Center" Grid.Row="0" />
+----
+
+[start=6]
+. StackPanel コンテナーに 2 つのボタンを追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<StackPanel Orientation="Horizontal" Grid.Row="1">
+    <Button x:Name="BtnSave" Click="BtnSave_Click" Height="22" Width="100" Content="Save" />
+    <Button x:Name="BtnLoad" Click="BtnLoad_Click" Height="22" Width="100" Content="Load" />
+</StackPanel>
+----
+
+[start=7]
+. 以下の using/Import のディレクティブを追加します。これでメンバーの完全に記述された名前を入力する必要がなくなります。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports System.IO
+Imports System.IO.IsolatedStorage
+Imports Infragistics
+Imports Infragistics.Controls.Interactions
+Imports Infragistics.Persistence
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using System.IO;
+using System.IO.IsolatedStorage;
+using Infragistics;
+using Infragistics.Controls.Interactions;
+using Infragistics.Persistence;
+----
+
+[start=8]
+. コード ビハインドで、xamDialogWindow コントロールのプロパティを保存し、BtnSave_Click イベントを処理するための機能を追加します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private fileName As String = "tempFile"
+Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+' xamDialogWindow 設定を MemoryStream に保存します
+Dim memoryStream As MemoryStream = PersistenceManager.Save(myDialog)
+' アプリケーションによって使用するためにユーザー スコープの独立したストレージを取得します
+Using iso As IsolatedStorageFile = IsolatedStorageFile.GetUserStoreForApplication()
+    If iso.FileExists(fileName) Then
+        iso.DeleteFile(fileName)
+    End If
+    Using stream As New IsolatedStorageFileStream(fileName, FileMode.OpenOrCreate, iso)
+       ' 分離ストレージにファイルを書き込みます
+       stream.Write(memoryStream.ToArray(),0,CInt(memoryStream.Length))
+    End Using
+End Using
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private const string fileName = "tempFile";
+private void BtnSave_Click(object sender, RoutedEventArgs e)
+{
+   // xamDialogWindow 設定を MemoryStream に保存します
+   MemoryStream memoryStream = PersistenceManager.Save(myDialog);
+   // アプリケーションによって使用するためにユーザー スコープの独立したストレージを取得します
+   using (IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication())
+   {
+      if (iso.FileExists(fileName))
+         iso.DeleteFile(fileName);
+      using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(fileName, FileMode.OpenOrCreate, iso))
+      {
+         // 分離ストレージにファイルを書き込みます
+         stream.Write(memoryStream.ToArray(), 0, (int)memoryStream.Length);
+      }
+   }
+}
+----
+
+[start=9]
+. xamDialogWindow コントロールのプロパティをロードして BtnLoad_Click イベントを処理するための機能を追加します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub BtnLoad_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+Using iso As IsolatedStorageFile = IsolatedStorageFile.GetUserStoreForApplication()
+    If iso.FileExists(fileName) Then
+        Using stream As New IsolatedStorageFileStream(fileName, FileMode.OpenOrCreate, iso)
+            PersistenceManager.Load(myDialog, stream)
+        End Using
+    End If
+End Using
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void BtnLoad_Click(object sender, RoutedEventArgs e)
+{
+    using (IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication())
+    {
+        if (iso.FileExists(fileName))
+        {
+            using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(fileName, FileMode.OpenOrCreate, iso))
+            {
+                PersistenceManager.Load(myDialog, stream);
+            }
+        }   
+    }
+}
+----
+
+[start=10]
+. アプリケーションを保存して実行します。[保存] ボタンを押すことによって xamDialogWindow プロパティを保存できます。その後、xamDialogWindow を移動し、サイズ変更したり、[読み込む] ボタンをクリックしてコントロールの以前の状態を復元できます。
+
+== 関連トピック
+
+link:persistence-about-ig-control-persistence-framework.html[Infragistics Control Persistence Framework について]
+
+link:persistence-using-ig-control-persistence-framework.html[Infragistics Control Persistence Framework の使用]

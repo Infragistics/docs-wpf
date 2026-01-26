@@ -1,0 +1,143 @@
+﻿////
+|metadata|
+{
+    "name": "xamrichtexteditor-import-export-html",
+    "controlName": ["Exporting","Getting Started","How Do I"],
+    "tags": [],
+    "guid": "475b4601-4a0b-44ff-85d3-30b53c06fea5",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.5753097Z"
+}
+|metadata|
+////
+
+= HTML のインポート/エクスポート (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamRichTextEditor_™ コントロールを使用して、HTML データをインポートおよびエクスポートする方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-binding-to-data.html[xamRichTextEditor とデータのバインド]
+|このトピックでは、 _xamRichTextEditor_ コントロールを各種データ ソースにバインドするドキュメント アダプターの使用方法を説明します。
+
+| link:xamrichtexteditor-managing-serialization-providers.html[シリアル化プロバイダーの概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールのシリアル化プロバイダーについて説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref381276558,HTML をインポート/エクスポートする構成の概要>>
+* <<_Ref381276559,HTML コンテンツのインポート>>
+* <<_Ref381276560,HTML コンテンツのエクスポート>>
+* <<_Ref381276577,関連トピック>>
+
+[[_Ref381276558]]
+== HTML をインポート/エクスポートする構成の概要
+
+=== プレーン テキストをインポート / エクスポートする構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、各プロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|メソッド
+
+|<<_Ref381276559,HTML コンテンツのインポート>>
+|HTML コンテンツをストリームからインポートします。
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.htmlserializationproviderextensions~loadfromhtml.html[LoadFromHtml]
+
+|<<_Ref381276560,HTML コンテンツのエクスポート>>
+|HTML コンテンツをストリームにエクスポートします。
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.htmlserializationproviderextensions~savetohtml.html[SaveToHtml]
+
+|====
+
+注:
+
+[NOTE]
+====
+最初に、以下の HTML シリアル化プロバイダー NuGet パッケージへの参照をプロジェクトに追加する必要があります:
+
+*Infragistics.WPF.RichTextDocument.Html*
+====
+
+[[_Ref381276559]]
+== HTML コンテンツのインポート
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] の `LoadFromHtml` 拡張メソッドを使用して、 _xamRichTextEditor_   コントロール内の HTML コンテンツをストリームからインポートします。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|次の引数を提供:
+
+|HTML コンテンツのインポート
+|`LoadFromHtml`
+|
+* HTML 形式のコンテンツ pick:[wpf="または HTML 形式でコンテンツを読み込むためのファイル パス文字列"] を含むストリーム オブジェクト 
+
+* link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.html.htmlloadoptions_members.html[HtmlLoadOptions] タイプのオプション オブジェクトを読み込むコンテンツ。必須ではない。 
+
+|====
+
+[[_Ref381276560]]
+== HTML コンテンツのエクスポート
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] の `SaveToHtml` 拡張メソッドを使用して、 _xamRichTextEditor_   のコンテンツを HTML ファイル形式でストリームにエクスポートします。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|次の引数を提供:
+
+|HTML 形式のコンテンツのエクスポート
+|`SaveToHtml`
+|
+* HTML 形式のコンテンツ pick:[wpf="または HTML 形式のコンテンツを保存するためのファイル パス文字列"] がエクスポートされるストリーム オブジェクト 
+
+* link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.html.htmlsaveoptions_members.html[HtmlSaveOptions] タイプのオプション オブジェクトを保存するコンテンツ。必須ではない。 
+
+|====
+
+[[_Ref381276577]]
+== 関連トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-import-export-text.html[プレーン テキストのインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、プレーン テキストのデータをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-managing-import-export-rtf.html[RTF のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、RTF データをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-managing-import-export-docx.html[DOCX のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して DOCX 形式のデータをインポートおよびエクスポートする方法を説明します。
+
+|====

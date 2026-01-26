@@ -1,0 +1,54 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-about-the-data-presenter-family",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started"],
+    "guid": "{13EA7A8B-C8E0-41B9-B27D-0DD6193199DA}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.5336599Z"
+}
+|metadata|
+////
+
+= DataPresenter コントロールについて
+
+
+
+Infragistics Data Presenter Family (DPF) によって、データのプレゼンテーションおよび編集がこれまでで最も容易になりました。Infragistics Data Presenter Family は、{ProductName} コントロールの新しいファミリーで、データ バインディングと自動要素生成のための共有の基礎と API を活用すると同時に、新しく感動的なユーザー エクスペリエンスを短時間で実現する機能を提供します。DPF は、データ プレゼンテーション コントロールのための 4 つの基本的な機能を提供します:
+
+* データ ソース構造に基づいてフィールド レイアウトを自動生成。
+* 表示に合わせて、データ レコードごとにセルのレイアウトを生成。
+* データ ソースとプレゼンテーション間の整合性を保証。
+* 基本的なデータ ソースへのデータ修正を容易にする。
+
+== メリット
+
+link:http://www.infragistics.com/help/windows-forms/Win_PLF_Overview.html[Windows Forms の Infragistics Presentation Layer Framework (PLF)™] と同様に、DPF は {ProductName} を使用した構成に多大なメリットを提供します:
+
+* 整合性の高いプログラミング モデル -- データ プレゼンタ コントロールを使用する場合、API と概念に対する知識の多くを再利用して、どのコントロールを使用していても生産性を高めることができます。
+* 継承可能なアーキテクチャ -- DPF は新しいプレゼンタ コントロールと表示の作成を可能にするオープンでプラガブルなアーキテクチャであり、新しく豊かなユーザー エクスペリエンスを提供すると同時に DPF サービスを活用します。
+* 質の高いデザイン -- WPF を念頭において土台から構築されており、また数十年におよぶコントロール デザインの経験をベースに構築された DPF が提供するノブとスイッチは、整合性に優れ直感的なデザインで Infragistics のコントロールにお客様が期待してこられたものばかりです。
+* 高信頼性 -- WPF は新しい技術ですが、UI コントロールのメタフォとパターンは新しくはありません。UI デザインの長年の経験によって培われた自信をもって DPF を使用できます。
+
+== 中核的な概念
+
+DPF を構成する主要な要素の一部は以下の通りです:
+
+* link:xamdata-terms-views.html[ビュー]
+* link:xamcarousel-terms-architecture.html[アーキテクチャ]
+* link:xamdata-terms-fields.html[フィールド]
+* link:xamdata-terms-records.html[レコード]
+* link:xamdata-terms-presenters.html[プレゼンタ]
+* link:wpf-terms-and-concepts.html[用語と概念]
+
+== ボックス内のデータ プレゼンタ コントロールおよび表示
+
+以下は DPF を構成するデータ プレゼンタ コントロールのリストです。
+
+* link:xamdatapresenter.html[xamDataPresenter]™
+* link:xamdatagrid.html[xamDataGrid]™
+* link:xamdatacards.html[xamDataCards]™
+* link:xamdatacarousel.html[xamDataCarousel]™
+* link:xamtreegrid.html[xamTreeGrid]™

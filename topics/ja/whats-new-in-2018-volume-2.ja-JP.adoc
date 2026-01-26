@@ -1,0 +1,193 @@
+﻿= 2018 Volume 2 の新機能
+
+このトピックでは、{ProductName} 2018 Volume 2 リリースで導入された新しいコントロールと機能の概要について説明します。以下は主な機能、次のセクションではその詳細について説明します。
+
+toc::[]
+
+== Excel Engine の機能
+=== チャート サポート
+
+image:images/whats_new_excel_charts.png[]
+
+Excel ライブラリにチャーティング サポートが追加されました。70 タイプを超えるチャートは、ダッシュボード レポートでデータを簡単に可視化します。Excel チャーティング API は、凡例、タイトル、軸タイトル、その他グリッドライン、目盛線、色などのスタイル設定オプションを多数含むチャートの描画を完全に制御できます。簡単に Excel チャート機能を再現できます。MS Excel をインストール必要はありません。
+
+Excel ドキュメントにチャートを追加することは簡単です。Infragistics Excel ライブラリは、Worksheet オブジェクトのインスタンスを取得し、Shapes コレクションで AddChart メソッドを呼び出します。作成するチャートのタイプ (70 タイプ)、チャートのサイズと位置、チャートに適用する書式設定を提供します。
+
+{ExcelEngineName} の Excel チャートの詳細情報に関してlink:excelengine-workingwithcharts.html[チャートの作業 {ExcelEngineName}] トピックを参照きださい。
+
+=== スパークライン サポート
+
+image:images/whats_new_excel_sparklines.png[]
+
+スパークラインは、ワークシート セル内に小さなチャートを表示します。スパークラインは、時期的な増加や減少、景気循環、最大値や最小値のハイライトなど値シリーズでトレンドを表示するために使用します。ワークシート データでトレンドを表示、共有できます。
+
+Infragistics Worksheet のインスタンスは、SparklineGroups コレクションで Add メソッドを呼び出します。作成するスパークラインのタイプ (Column、Line、Stacked)、スパークラインを挿入するセル、スパークラインを使用してデータを表示するセル範囲を提供します。
+
+スパークラインを作成後、Infragistics Excel Library の直感的な API でスパークラインをビジュアル要件に合わせてスタイル設定できます。API は、ポイントの高/低、マイナス ポイント、最初のポイント、最終ポイントの色を制御できます。
+
+{ExcelEngineName} の Excel スパークラインの詳細情報に関して、link:excelengine-adding-a-sparkline-to-an-excel-worksheet.html[スパークラインをワークシートに追加 {ExcelEngineName}] トピックを参照ください。
+
+== {SpreadsheetName} 機能
+=== {SpreadsheetName} のカスタム並べ替えダイアログ}
+
+image:images/spreadsheet_sort_dialog_whats_new.png[]
+
+Excel ドキュメントで並べ替えは重要な機能ですが、ユーザー設定の並べ替えダイアログでは Excel データのカスタムな並べ替えが可能です。たとえば、Department 列と Employee 列がある場合に Department (すべての従業員を同じ部署でグループ化) で並べ替えてから名前 (各部署内でアルファベット順) で並べ替えるなどの設定が可能です。
+
+{SpreadsheetName} の並べ替えダイアログの詳細については、 link:spreadsheet-uiu-custom-sort-dialog.html[並べ替えダイアログのインタラクション {SpreadsheetName}] トピックを参照してください。
+
+=== トップ 10 フィルター ダイアログ
+
+image:images/whats_new_excel_top_10.png[]
+
+トップ 10 機能を使用してリストをフィルター時に上位 10 項目または 10 パーセントのみが表示されます。また、数値またはパーセンテージが下位のレコードを表示することも可能です。たとえば、企業のトップ給与を示す場合、Salary 列をフィルターしてトップ 10 の給与のレコードのみ表示できます。トップ 10 パーセントの給与所得者をフィルターした場合は、合計の 10 % の収入を得た人のみが含まれます。
+
+トップ 10 は、任意のパーセンテージでフィルターできます。 
+
+=== フィルタリングと並べ替えの改善
+
+18.1 でオートフィルター ドロップダウンを追加しました。ドロップダウンは昇順/降順に並べ替えるメニュー項目が含まれ、列に適用されたフィルターをクリアして数値/日付/テキスト フィルターを適用できます。ただし、前景色、塗りつぶし、アイコンにもどついて並べ替えやフィルターする機能はサポートされませんでした。18.2 では、ドロップダウンの項目を前景、塗りつぶし、列内のセル アイコンに基づいてフィルタリング、並べ替えできます。
+
+=== フィルタリング メニュー
+
+image:images/whats_new_excel_filter_menu.png[] 
+
+=== 並べ替えメニュー
+
+image:images/whats_new_excel_sorting_menu.png[] 
+
+=== 選択の解除
+
+Excel で複数のセルまたは範囲の選択時に必要のないセルを選択した場合、選択解除機能で選択範囲内のセルの選択を解除できます。Ctrl キーを押しならがらクリック、あるいはクリックアンドドラッグで選択したセルまたは範囲の選択を解除できます。セルを再度選択する場合は、Ctrl キーを押しながらセルをクリックして選択します。
+
+== XamFinancialChart
+
+=== 凡例  
+
+image:images/whats_new_financial_chart_legend.png[]
+
+ファイナンシャル チャートは、ツールバーとプロット領域の間に表示する凡例がビルトインで含まれます。凡例はデータソースのタイトル、最終値、最初と最後の値間のパーセンテージの変更を示します。
+
+=== コールアウト注釈  
+
+image:images/whats_new_financial_chart_callouts.png[]
+
+コールアウト注釈は重要なデータポイントに注釈を追加したり、ロジックに基づくコールアウト ボックスの値をカスタマイズしたりできます。たとえば、株式分割や配当を表示して、データ ソース内の最大値段を計算できます。
+
+コールアウト レイヤーの詳細情報に関して、link:financial-chart-annotation-and-interaction-layers.html#CalloutLayer[注釈とインタラクション レイヤー]トピックを参照ください。
+
+=== 十字線の注釈
+
+image:images/whats_new_financial_chart_crosshair.png[]
+
+カーソルの位置に水平線、垂直線またはその両方で十字線の表示を設定できます。十字線注釈はカーソルの位置に一致するデータ ポイントを表示し、X 軸と Y 軸ラベルの上にカラーボックスで値を表示できます。
+
+十字線 レイヤーの詳細情報に関して、link:financial-chart-annotation-and-interaction-layers.html#CrosshairLayer[注釈とインタラクション レイヤー]トピックを参照ください。
+
+=== 最終値の注釈  
+
+image:images/whats_new_financial_chart_final_values.png[]
+
+ファイナンシャル チャートでは、データ ソース内の最終データ ポイントの値に最終値注釈を追加する方法を示します。この注釈は Y 軸ラベルの上にカラーボックスとして描画されます。
+
+最終値 レイヤーの詳細情報に関して、link:financial-chart-annotation-and-interaction-layers.html#FinalValueLayer[注釈とインタラクション レイヤー]トピックを参照ください。
+
+=== ツールチップ タイプ
+
+image:images/whats_new_financial_chart_tooltips.png[]
+
+ファイナンシャル チャートの ToolTipType プロパティは 2 つのツールチップタイプが追加されました。
+
+*  特定の日付のすべてのシリーズのツールチップを組み合わせて描画するカテゴリ ツールチップ。
+
+*  特定の日付で各シリーズの個々のツールチップを描画する項目ツールチップ。
+
+ツールチップ レイヤーの詳細情報に関して、link:financial-chart-annotation-and-interaction-layers.html#CategoryTooltipLayer[注釈とインタラクション レイヤー]トピックを参照ください。
+
+=== X-軸スケール区切り  
+
+image:images/whats_new_financial_chart_scale_breaks.png[]
+
+ファイナンシャル チャートに X-軸でスケール区切りを定義してデータソースや曜日で任意の範囲を除外できます。たとえば、週末に分類されるすべてのデータ項目を除外できます。 
+
+X-軸スケール区切りの詳細情報に関して、link:financial-chart-configuring-axis-scale-breaks[軸スケール区切りの設定]トピックを参照ください。
+
+== XamCategoryChart
+
+=== コールアウト注釈 
+
+image:images/whats_new_category_chart_callouts.png[]
+
+コールアウト注釈は重要なデータポイントに注釈を追加、あるいはロジックに基づくコールアウト ボックスの値をカスタマイズできます。たとえば、データ ソース内の最大値を計算できます。
+
+コールアウト レイヤーの詳細情報に関して、ink:categorychart-annotation-and-overlays.html#CalloutLayer[注釈とオーバーレイ]トピックを参照ください。
+
+=== 十字線レイヤー 
+
+image:images/whats_new_category_chart_crosshair.png[]
+
+カーソルの位置に水平線、垂直線またはその両方で十字線の表示を設定できます。十字線注釈はカーソルの位置に一致するデータ ポイントを表示し、X 軸と Y 軸ラベルの上にカラーボックスで値を表示できます。
+
+十字線 レイヤーの詳細情報に関して、link:categorychart-annotation-and-overlays.html#CrosshairLayer[注釈とオーバーレイ]トピックを参照ください。
+
+=== 最終値の注釈
+
+image:images/whats_new_category_chart_final_value.png[]
+
+カテゴリ チャートでは、データ ソース内の最終データ ポイントの値に最終値注釈を追加する方法を示します。この注釈は Y 軸ラベルの上にカラーボックスとして描画されます。
+
+最終値 レイヤーの詳細情報に関して、link:categorychart-annotation-and-overlays.html#FinalValueLayer[注釈とオーバーレイ]トピックを参照ください。
+
+=== 強調表示レイヤー
+
+image:images/whats_new_category_chart_highlight.png[]
+
+カテゴリ チャートは、ユーザーがプロットしたデータ ポイントをホバーする 2 つのハイライト レイヤーを表示できます。 
+
+*  カテゴリ ハイライト レイヤーは、マウスカーソルに最も近いカテゴリの最初から最後に拡張する垂直の長方形を描画します。この長方形は、デフォルトで半透明な灰色で塗りつぶされます。  
+
+*  項目強調表示レイヤーは、マウスカーソルに最も近いカテゴリの各データ項目の垂直長方形を描画します。この長方形は、デフォルトでシリーズの色と一致する半透明色で塗りつぶされます。
+
+強調表示レイヤーの詳細情報に関して、link:categorychart-annotation-and-overlays.html#CategoryHighlightLayer[注釈とオーバーレイ]トピックを参照ください。
+
+=== ツールチップ タイプ 
+
+image:images/whats_new_category_chart_tooltip.png[]
+
+カテゴリ チャートの ToolTipType プロパティは 2 つのツールチップタイプが追加されました。
+
+*  データ カテゴリ内のすべてのシリーズのツールチップを組み合わせて描画するカテゴリ ツールチップ。
+
+*  データ カテゴリの各シリーズの個々のツールチップを描画する項目ツールチップ。
+
+ツールチップ レイヤーの詳細情報に関して、link:categorychart-annotation-and-overlays.html#CategoryTooltipLayer[注釈とオーバーレイ]トピックを参照ください。
+
+== XamDataChart
+
+=== コールアウト レイヤー  
+
+image:images/whats_new_datachart_callout.png[]
+
+コールアウト レイヤーは、データ チャートの新機能です。データ ポイントに注釈したり、値を表示したりできます。コールアウト レイヤーは複数データ シリーズまたは単一のデータ シリーズで使用できます。このコールアウト レイヤーの外観をカスタマイズして、コールアウト ラベルをデータ項目にバインドや連続したデータ ポイント間の変更を計算します。
+
+コールアウト レイヤーの詳細情報に関して、link:datachart-calloutlayer.html[コールアウト レイヤー]トピックを参照ください。
+
+=== 十字線レイヤー 
+
+image:images/whats_new_datachart_crosshair.png[]
+
+十字線レイヤーの注釈機能は、マウス カーソルの位置にデータ ポイントの値を表示し、X 軸と Y 軸ラベルの上にカラーボックスで値を表示できます。
+
+十字線 レイヤーの詳細情報に関して、link:datachart-crosshairlayer.html[十字線レイヤー]トピックを参照ください。
+
+=== 最終値レイヤー
+
+image:images/whats_new_datachart_final_value.png[]
+
+最終値レイヤーは、データソースの最後のデータポイントの値を示す注釈レイヤーです。この注釈は Y 軸ラベルで各データソースにカラーボックスとして描画されます。
+
+コールアウト レイヤーの詳細情報に関して、link:datachart-finalvaluelayer.html[最終値レイヤー]トピックを参照ください。
+
+== StatusBar のテーマ サポート
+
+定義済みの WPF StatusBar コントロールにテーマ サポートを追加しました。StatusBar コントロールに IG、Metro、MetroDark、Office2010Blue、Office2013、RoyalDark、または RoyalLight テーマを適用できます。

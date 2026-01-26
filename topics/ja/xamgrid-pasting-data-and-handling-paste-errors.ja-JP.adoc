@@ -1,0 +1,246 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-pasting-data-and-handling-paste-errors",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Presentation","Error Handling","Grids"],
+    "guid": "ddf451f4-00c4-4d26-9bac-0a2b289cddb5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.5762065Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= データの貼り付け、および貼り付けエラーの処理
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、xamGrid™ コントロールでコピーされたデータを貼り付ける方法、およびデータの貼り付け中に発生するエラーの処理方法について説明します。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-paste-event-and-event-arguments.html[貼り付けイベントおよびイベント引数]
+|このトピックは、貼り付けイベントを処理して、貼り付けプロセスを制御する方法を示します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref320026561, データの貼り付けおよび貼り付けエラー処理 >>
+* <<_Ref320026567, 関連コンテンツ >>
+
+[[_Ref320026561]]
+== データの貼り付け、および貼り付けエラーの処理
+
+=== 概要
+
+この手順では、クリップボードのデータが xamGrid コントロール内でどのように貼り付けられるのかを示します。エラーが発生すると通知ダイアログが表示され、エンド ユーザーは進め方を決定できます。
+
+以下の例では、貼り付けヘルパー メソッド link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardpastingeventargs~pasteasexcel.html[PasteAsExcel] および link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~clipboardpasteerror_ev.html[ClipboardPasteError] イベントを使用しています。これらは {ProductName} 2012 Volume 1 リリースで導入された機能です。
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Pasting_Data_and_Handling_Paste_Errors_-_Copy_1.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Pasting_Data_and_Handling_Paste_Errors.png[]
+endif::win-rt[]
+
+=== 要件
+
+手順を実行するには、サンプル データ ソースとして提供された link:resources-datautil.html[DataUtil] クラスをプロジェクトに含める必要があります。
+
+=== 概要
+
+このトピックでは、xamGrid でデータを貼り付け、また貼り付けエラーを処理する方法を、ステップごとに説明します。以下はプロセスの概念的概要です。
+
+[start=1]
+. *<<_ref1,xamGrid コントロールをアプリケーションに追加>>* 
+[start=2]
+. <<_ref2,コピーと貼り付け機能の有効化>>
+[start=3]
+. <<_ref3,複数セル選択の有効化>>
+[start=4]
+. <<_ref4,ClipboardPasting イベントの処理>>
+[start=5]
+. <<_ref5,ClipboardPasteError イベントの処理>>
+
+=== 手順
+
+以下の手順では、貼り付けヘルパー メソッド PasteAsExcel の使用方法および ClipboardPasteError イベントの処理方法を示します。
+
+=== xamGrid コントロールをアプリケーションに追加
+
+xamGrid コントロールをアプリケーションに追加し、データ ソースにバインドします。
+
+`ClipboardPasting` および `ClipboardPasteError` イベントのハンドラを追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid x:Name="dataGrid"
+ClipboardPasting="dataGrid_ClipboardPasting"
+ClipboardPasteError="dataGrid_ClipboardPasteError">
+<!-- ここにさらにコードを追加します -->
+</ig:XamGrid>
+----
+
+=== コピーと貼り付け機能の有効化
+
+xamGrid コピーと貼り付け機能を有効にします。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid.ClipboardSettings>
+  <ig:ClipboardSettings AllowCopy="True" 
+      CopyOptions="ExcludeHeaders" 
+      CopyType="SelectedCells"
+      AllowPaste="True"/>
+</ig:XamGrid.ClipboardSettings>
+----
+
+=== 複数セル選択の有効化
+
+複数セル選択を xamGrid で有効にできます。これによって、エンド ユーザーはコピーする xamGrid セルをその中で選択することができます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid.SelectionSettings>
+  <ig:SelectionSettings 
+      CellClickAction="SelectCell" 
+      CellSelection="Multiple" />
+</ig:XamGrid.SelectionSettings>
+----
+
+=== ClipboardPasting イベントの処理
+
+`PasteAsExcel` メソッドを使用して、xamGrid 内で貼り付けを実行します。xamGrid または Excel セルの内容を貼り付けることができます。
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void dataGrid_ClipboardPasting(object sender, Infragistics.Controls.Grids.ClipboardPastingEventArgs e)
+{
+  //  xamGrid のセルの四角形選択を貼り付けます
+  e.PasteAsExcel();   
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub dataGrid_ClipboardPasting(sender As Object, e As Infragistics.Controls.Grids.ClipboardPastingEventArgs)
+  ' xamGrid のセルの四角形選択を貼り付けます
+  e.PasteAsExcel()
+End Sub
+----
+
+=== ClipboardPasteError イベントの処理
+
+`ClipboardPasteError` ハンドラーでエラー タイプが確認され、エラーが回復可能な場合は、貼り付けを続行できます。
+
+エラーが回復可能な場合は確認ダイアログが表示され、エンド ユーザーは、エラーの発生に関係なく貼り付けを続行するかどうかを決定します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void dataGrid_ClipboardPasteError(object sender, Infragistics.Controls.Grids.ClipboardPasteErrorEventArgs e)
+{
+  // 貼り付けエラーのタイプを取得します
+  string strErrorType = e.ErrorType.ToString();
+  // 貼り付けがエラーの後に続行できるかを確認します
+  bool isRecoverableError = e.IsRecoverable;
+  if (isRecoverableError)
+  {
+    MessageBoxButton button = MessageBoxButton.OKCancel;
+    string errorMsg = string.Format("An error occured during the paste process of type {0}", strErrorType);
+    string questionMsg = "Do you want to continue?";
+    MessageBoxResult result = MessageBox.Show(errorMsg + "\n" + questionMsg, "Error Dialog", button);
+    switch (result)
+    {
+      case MessageBoxResult.OK:
+        e.AttemptRecover = true;
+        break;
+      case MessageBoxResult.Cancel:
+        e.AttemptRecover = false;
+        break;
+    }
+  }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub dataGrid_ClipboardPasteError(sender As Object, e As Infragistics.Controls.Grids.ClipboardPasteErrorEventArgs)
+  ' 貼り付けエラーのタイプを取得します
+  Dim strErrorType As String = e.ErrorType.ToString()
+  ' 貼り付けがエラーの後に続行できるかを確認します
+  Dim isRecoverableError As Boolean = e.IsRecoverable
+  If isRecoverableError Then
+    Dim button As MessageBoxButton = MessageBoxButton.OKCancel
+    Dim errorMsg As String = String.Format("An error occured during the paste process of type {0}", strErrorType)
+    Dim questionMsg As String = "Do you want to continue?"
+    Dim result As MessageBoxResult = MessageBox.Show(errorMsg & vbLf & questionMsg, "Error Dialog", button)
+    Select Case result
+      Case MessageBoxResult.OK
+        e.AttemptRecover = True
+        Exit Select
+      Case MessageBoxResult.Cancel
+        e.AttemptRecover = False
+        Exit Select
+    End Select
+  End If
+End Sub
+----
+
+[[_Ref320026567]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-enable-copy-and-paste-support.html[コピーと貼り付けサポートの有効化]
+|このトピックは、xamGrid コントロールでコピー/貼り付け機能を有効にする方法を示します。
+
+| link:xamgrid-copy-options.html[コピー オプション]
+|このトピックは、利用可能なコピー オプションを示します。
+
+| link:xamgrid-specify-the-content-to-be-copied.html[コピーされるコンテンツを指定]
+|このトピックは、コピーされるもの (xamGrid コントロール内で選択されたセルまたは行) の指定方法を示します。
+
+| link:xamgrid-copy-events-and-events-arguments.html[コピー イベントおよびイベント引数]
+|このトピックは、コピー イベントを処理してコピー プロセスを制御する方法を示します。
+
+|====

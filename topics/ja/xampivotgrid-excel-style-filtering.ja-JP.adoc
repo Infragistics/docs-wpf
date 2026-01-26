@@ -1,0 +1,50 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-excel-style-filtering",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Drilldown","Filtering","Grids"],
+    "guid": "8bb2c5b5-a25a-4435-8f40-faf1bedfdaf3",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.2583308Z"
+}
+|metadata|
+////
+
+= Excel スタイル フィルタリング (xamPivotGrid、xamPivotDataSelector)
+
+== このグループのトピックについて
+
+=== 概要
+
+このトピックでは、 _xamPivotGrid_™/ _xamPivotDataSelector_™ コントロールの Microsoft® Excel® スタイル フィルタリング機能を有効にする方法を説明します。
+
+=== トピック
+
+このセクションには、ピボット グリッドでの高度なフィルタリングを説明するトピックが含まれています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-excel-style-filtering-overview-and-user-functionality.html[Excel スタイル フィルタリングの概要とユーザー機能 (xamPivotGrid、xamPivotDataSelector)]
+|このトピックでは、 _xamPivotGrid_ / _xamPivotDataSelector_ コントロールの Excel スタイル フィルタリング機能とそのユーザー機能および操作を紹介します。
+
+link:xampivotgrid-enabling-advanced-filtering.html[Excel スタイル フィルタリングを有効にする (xamPivotGrid、xamPivotDataSelector)]
+|このトピックでは、 _xamPivotGrid_ / _xamPivotDataSelector_ コントロールの Excel スタイル フィルタリング機能を有効にする方法を説明します。
+
+|====
+
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-filtering-and-sorting.html[フィルター処理と並べ替え]
+|このトピックでは、 _xamPivotGrid_ コントロールのデータ並べ替えおよびフィルタリング機能を説明します。
+
+|====

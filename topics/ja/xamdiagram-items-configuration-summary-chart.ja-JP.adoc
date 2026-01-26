@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram items configuration summary chart",
+    "controlName": [],
+    "tags": [],
+    "guid": "ffff638d-2d66-4228-b710-39633b473450",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-27T07:12:47.1089827Z"
+}
+|metadata|
+////
+
+以下の表は、 _xamDiagram_   コントロールのダイアグラム項目 (ノードおよび接続) の構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+| link:xamdiagram-configuration-overview.html#_Ref391537992[ルック アンド フィール]
+|ダイアグラムのノードおよび接続の構成可能な要素に関連するルック アンド フィール。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~fill.html[DiagramItem.Fill] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~stroke.html[DiagramItem.Stroke] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~strokedasharray.html[DiagramItem.StrokeDashArray] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~strokethickness.html[DiagramItem.StrokeThickness] 
+
+* link:http://msdn.microsoft.com/library/system.windows.controls.control.foreground.aspx[DiagramItem.Foreground] 
+
+* link:http://msdn.microsoft.com/library/system.windows.controls.control.fontfamily.aspx[DiagramItem.FontFamily] 
+
+* link:http://msdn.microsoft.com/library/system.windows.controls.control.fontsize.aspx[DiagramItem.FontSize] 
+
+* link:http://msdn.microsoft.com/library/system.windows.controls.control.fontstyle.aspx[DiagramItem.FontStyle] 
+
+* link:http://msdn.microsoft.com/library/system.windows.controls.control.fontweight.aspx[DiagramItem.FontWeight] 
+
+* link:http://msdn.microsoft.com/library/system.windows.uielement.opacity.aspx[DiagramItem.Opacity] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~connectiontype.html[DiagramConnection.ConnectionType] 
+
+| link:xamdiagram-configuration-overview.html#_Ref391537997[テンプレート]
+|ダイアグラム項目の内容を提示および編集する場合に使用されるテンプレート。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DiagramItem.DisplayTemplate] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~edittemplate.html[DiagramItem.EditTemplate] 
+
+|====

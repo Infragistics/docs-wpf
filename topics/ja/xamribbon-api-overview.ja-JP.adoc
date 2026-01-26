@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-api-overview",
+    "controlName": ["xamRibbon"],
+    "tags": ["API"],
+    "guid": "{ED6A25AF-7F7B-4E63-B905-38FFAF92B752}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1421815Z"
+}
+|metadata|
+////
+
+= API の概要
+
+
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== リボンの名前空間：
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon_namespace.html[Infragistics.Windows.Ribbon]
+
+=== 主要な API:
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbon.html[XamRibbon]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbontabitem.html[RibbonTabItem]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup.html[RibbonGroup]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenu.html[ApplicationMenu]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenu2010.html[ApplicationMenu2010]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbonscreentip.html[XamRibbonScreenTip]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbonwindow.html[XamRibbonWindow]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.groupvariant.html[GroupVariant]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.quickaccesstoolbar.html[QuickAccessToolbar]
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.qatplaceholdertool.html[QatPlaceholderTool]

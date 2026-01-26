@@ -1,0 +1,185 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-calculators-mean-calculator",
+    "controlName": ["IG Math Calculators"],
+    "tags": ["Calculations"],
+    "guid": "9d36f23b-fb67-422a-b816-a9e834b54242",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.7400401Z"
+}
+|metadata|
+////
+
+= Infragistics 平均計算式
+
+このトピックは、 link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Infragistics Math Calculators]™ ライブラリの一部である link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.meancalculator.html[MeanCalculator] を紹介し、コード例を示して、数値セットの平均を計算するために使用する方法を説明します。
+
+== 概要
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>>
+* <<MeanFormula,平均式>>
+* <<Properties,Mean Calculator プロパティ>>
+* <<Requirements,要件>>
+
+** NuGet パッケージの要件
+** データ要件
+
+* <<Example,例>>
+* <<RelatedTopics,関連トピック>>
+
+== 概要
+
+Mean は数字セットの「一般的な」値または「平均」値を決定するために使用される算術計算です。平均は代表値のひとつで、その他はモードと中央値です (「Infragistics Median Calculator」トピックを参照)。
+
+== 平均式
+
+平均値は、データ セットの数字の合計をセットの数字の総数で割って計算されます。
+
+image::images/IG_Math_Mean_Calculators_01.png[]
+
+図 1 - 平均計算式
+
+[cols="a"]
+|====
+|凡例
+
+|image::images/IG_Math_Mean_Calculators_02.png[]
+|- データセットの平均を表す
+
+|image::images/IG_Math_Mean_Calculators_03.png[]
+|- データ セットの i インデックスで変数を表します
+
+|image::images/IG_Math_Mean_Calculators_04.png[]
+|- データセットの合計数を表す
+
+|====
+
+== Mean Calculator プロパティ
+
+このセクションは、 link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.meancalculator.html[MeanCalculator] クラスのプロパティのリストを提供します。
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ名|プロパティ タイプ|説明
+
+|ItemsSource
+| link:http://msdn.microsoft.com/ja-jp/library/system.collections.ienumerable.aspx[IEnumerable] 
+|計算のためのデータ項目のソースを取得または設定します。
+
+|ValueMemberPath
+|string
+|データ項目の Value メンバー パスを取得または設定します。このプロパティはデータ項目の数値プロパティの名前にマップされなければなりません。
+
+|Value
+|double
+|計算式の ItemsSource プロパティにバインドされるデータ項目の平均値を取得します。
+
+|====
+
+== 要件
+
+== NuGet パッケージの要件
+
+link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.meancalculator.html[MeanCalculator] を使用するためには、次の NuGet パッケージ参照を {PlatformName} プロジェクトに追加する必要があります。
+
+** Infragistics.WPF.Math.Calculators
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+== データ要件
+
+link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.meancalculator.html[MeanCalculator] は、データバインド用 ItemsSource プロパティおよびデータ マッピング用 ValueMemberPath プロパティを使用します。次の要件に合致するオブジェクトはすべてこのプロパティにバインドできます。
+
+* データ モデルは link:http://msdn.microsoft.com/ja-jp/library/system.collections.ienumerable.aspx[IEnumerable] インターフェイス (たとえば link:http://msdn.microsoft.com/ja-jp/library/6sh2ey19.aspx[リスト]、 link:http://msdn.microsoft.com/ja-jp/library/ms132397.aspx[コレクション]、 link:http://msdn.microsoft.com/ja-jp/library/7977ey2c.aspx[キュー]、 link:http://msdn.microsoft.com/ja-jp/library/system.collections.stack.aspx[スタック]) を実装しなければなりません。
+* データ モデルは、平均値を計算するために 1 つ以上の数値データ列のある項目を含める必要があります。
+
+上記の条件を満たすオブジェクトの例が次のコード例に示されています。
+
+*Visual Basic の場合:*
+
+----
+Imports System.Collections.Generic
+'...
+Public Class DataPointList
+    Inherits List(Of DataPoint)
+    Public Sub New(dataValues As IEnumerable(Of Double))
+        For Each value As Double In dataValues
+            Me.Add(New DataPoint() With { Key .Value = value })
+        Next
+    End Sub
+End Class
+Public Class DataPoint
+    Public Property Value() As Double
+        Get
+            Return _value
+        End Get
+        Set
+            _value = Value
+        End Set
+    End Property
+    Private _value As Double
+End Class
+----
+
+*C# の場合:*
+
+----
+using System.Collections.Generic;
+//...
+public class DataPointList : List<DataPoint>
+{
+    public DataPointList(IEnumerable<double> dataValues)
+    {
+        foreach (double value in dataValues)
+        {
+            this.Add(new DataPoint { Value = value});
+        }
+    }
+}
+public class DataPoint
+{
+    public double Value { get; set; }
+}
+----
+
+== 例
+
+この例は、MeanCalculator を使用する数値のセット用に平均値を計算する方法を示します。MeanCalculator は非視覚的要素であり、データ ソースまたは変数を定義する時と同じやり方で、アプリケーション、ページ、コントロールレベル上のリソースセクション、またはコードビハインドで定義してください。MeanCalculator を link:datachart-datachart.html[xamDataChart] コントロールと統合する方法の例については、 link:datachart-series-value-overlay.html[値オーバーレイ]のトピックを参照してください。
+
+[NOTE]
+====
+*注:* 以下の例は、プロジェクトで必要なすべてのアセンブリを追加したことが前提となっています。
+====
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Math.Calculators
+'...
+Dim data As New DataPointList(New List(Of Double)() From {     5.0, 1.0, 2.0, 3.0, 4.0 })
+Dim calculator As New MeanCalculator()
+calculator.ValueMemberPath = "Value"
+calculator.ItemsSource = data
+Dim mean As Double = calculator.Value ' 3 に等しいという意味です
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Math.Calculators;
+//...
+DataPointList data = new DataPointList(new List<double> { 5.0, 1.0, 2.0, 3.0, 4.0 });
+MeanCalculator calculator = new MeanCalculator();
+calculator.ValueMemberPath = "Value";
+calculator.ItemsSource = data;
+double mean = calculator.Value; // 3 に等しいという意味です
+----
+
+== 関連トピック
+
+* link:ig-math-calculators-api-overview.html[API の概要]
+* link:datachart-series-value-overlay.html[値オーバーレイ]

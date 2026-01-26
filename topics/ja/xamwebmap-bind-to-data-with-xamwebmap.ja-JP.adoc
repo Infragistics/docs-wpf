@@ -1,0 +1,90 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-bind-to-data-with-xamwebmap",
+    "controlName": ["xamMap"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "{29BB02BC-3DF2-42CA-A2D1-DA63DFF1C1BC}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2002706Z"
+}
+|metadata|
+////
+
+= XML データへのバインド
+
+xamMap コントロールにバインドしたいデータがある場合、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer.html[MapLayer] link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~datasource.html[オブジェクトで DataSource] プロパティを設定することでこれを実行することができます。さらに、レイヤーでデータ マップを設定して、レイヤーのプロパティとデータ ソースのフィールド間のバインドを指定することができます。
+
+たとえば、国の名前だけにデータと共に Shapefile を使用する世界マップを検討します。固有のデータ ソースを使用して各国に追加情報を関連付けてもいいでしょう。データソースに各国の人口、出生率、石油生産量などの情報を含むこともできます。
+
+適切な  link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement.html[MapElement] オブジェクトとデータ ソースからのデータを関連付ける方法は、Map Element ごとのキーとして MapLayer オブジェクトの Name プロパティを使用することです。これを行うには、データ ソースは、Name プロパティにバインドできる国名などの Shapefile からのフィールドに一致するフィールドを持つ必要があります。この方法で、フィールドは Map Elements の値を取得するために使用されるプライマリ キー列のように振る舞います。
+
+上記の例に引き続き、マップの国にデータ ソースからの出生率を関連付けたい場合、MapLayer オブジェクトの Name プロパティをデータ ソースの Country Name フィールドに割り当てます。次に、ShapeFile の Country Name 列をデータ マップする時に Name プロパティを使用して、ShapeFile から適切な国にデータ ソースから割り当てられた値を関連付けます。
+
+以下のコードは、データ ソースにバインドして各要素のツールチップに出生率情報を表示する方法を示します。コード ビハインドは、BirthRate データの XML ファイルを使用します。さらに、カスタム クラスがデータを保持するために使用されます。link:resources-countrydata.html[CountryData] および link:resources-countrydatamodel.html[CountryDataModel] はファイルへリンクします。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<igMap:XamMap x:Name="map1">
+   <igMap:XamMap.Layers>
+      <!-- データ ソースで Name プロパティを CountryName 列にバインドします。Name はキーとして使用されるため、BirthRate を Value に割り当てると各 Map Element の適切な Value プロパティに BirthRate 情報を指定します。 
+                ツールチップは Value プロパティを使用して国ごとに BirthRate を示します。  -->
+      <igMap:MapLayer x:Name="worldLayer" DataMapping="Name=CountryName; Value=BirthRate" ToolTip="Birth Rate: {Value}">
+         <igMap:MapLayer.Reader>
+            <!-- Name プロパティを使用して特定の要素の値を識別します。ここでは、Name プロパティは CNTRY_NAME 列と使用されます -->
+            <igMap:ShapeFileReader Uri="/../../Shapefiles/world" DataMapping="Name, Caption=CNTRY_NAME" />
+         </igMap:MapLayer.Reader>
+      </igMap:MapLayer>
+   </igMap:XamMap.Layers>
+   <igMap:MapNavigationPane igMap:XamDock.Edge="InsideRight" Margin="0,150,0,0" />
+</igMap:XamMap>
+----
+
+endif::wpf[]
+
+*Visual Basic の場合:*
+
+----
+Public Sub New()
+        InitializeComponent()
+        Dim xmlFile As System.Xml.Linq.XDocument = System.Xml.Linq.XDocument.Load("countryData.xml")
+        Dim result = From el In xmlFile.Descendants("Table") _
+            Where el.Element("BirthRate") IsNot Nothing _
+            Select New CountryRecordItem With {.CountryCode = el.Element("CountryCode"), _
+                                               .CountryName = el.Element("CountryName"), _
+                                               .BirthRate = el.Element("BirthRate")}
+        Me.map1.Layers(0).DataSource = result.ToList()
+        Me.map1.Layers(0).DataBind()
+End Sub
+----
+
+*C# の場合:*
+
+----
+public MapUserControl()
+{
+        InitializeComponent();
+        System.Xml.Linq.XDocument xmlFile = System.Xml.Linq.XDocument.Load("countryData.xml");
+        var result =
+                from el in xmlFile.Descendants("Table")
+                where el.Element("BirthRate") != null
+                select new CountryRecordItem
+                {
+                        CountryCode = (string)el.Element("CountryCode"),
+                        CountryName = (string)el.Element("CountryName"),
+                        BirthRate = (Double)el.Element("BirthRate"),
+                };
+        this.map1.Layers[0].DataSource = result.ToList<CountryRecordItem>();
+        this.map1.Layers[0].DataBind();
+}
+----
+
+image::images/SL_DV_XamMap_Set_Custom_Format_String_01.png[]
+
+== 関連トピック
+
+link:xamwebmap-display-map-using-shapefiles.html[シェープファイルをバインド]

@@ -1,0 +1,207 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-changing-default-classification-types-appearance",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["How Do I","Layouts","Templating"],
+    "guid": "09021071-1b08-46e4-9867-b6b3787f9a01",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4203948Z"
+}
+|metadata|
+////
+
+= デフォルト分類タイプの外観の変更 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   によって言語要素に割り当てられる、色およびその他の外観属性の変更方法に関する情報を提供します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+| link:xamsyntaxeditor-supported-languages.html[サポート対象言語]
+|このトピックでは、 _xamSyntaxEditor_ がサポートしている言語を紹介し、それぞれの使用方法を解説します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref330805833, はじめに >>
+* <<_Ref330805843, ClassificationAppearanceMap エントリの追加 >>
+* <<_Ref330805859, ClassificationAppearanceMap エントリの削除 >>
+* <<_Ref330805915, 関連コンテンツ >>
+
+[[_Ref330805833]]
+== はじめに
+
+=== 分類外観マッピングを使った事前定義済み言語のカスタマイズ
+
+_xamSyntaxEditor_   は link:xamsyntaxeditor-supported-languages.html[いくつかの事前定義済み言語]をサポートしており、それぞれの言語は、文書のテキストの個々の部分を分類および色付けするための特定の文法を定義します。
+
+link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument_members.html[TextDocument] の字句解析後、内部 `ClassificationTagger` サービスが各テキスト部分への link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.classificationtype_members.html[ClassificationType] の割り当てを開始します。`ClassificationTypes` は、"Keyword"、"Operator" および "Literal" などの、基本的な言語要素タイプを表します。
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.textdocumentappearance_members.html[TextDocumentAppearance] は、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.textdocumentappearance~foreground.html[Foreground]、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.textdocumentappearance~fontitalic.html[FontItalic] および link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.textdocumentappearance~fontbold.html[FontBold] などのプロパティを公開するオブジェクトです。
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.classificationappearancemap_members.html[ClassificationAppearanceMap] は `ClassificationTypes` を `TextDocumentAppearance` インスタンスに関連付けます。_xamSyntaxEditor_   は、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~classificationappearancemap.html[ClassificationAppearanceMap] プロパティを通してこのマップのインスタンスを公開します。デフォルトの `ClassificationAppearanceMap` `は`  _xamSyntaxEditor_   によって提供され、Visual Studio が割り当てるデフォルト色に類似した色を `ClassificationTypes` に割り当てます。
+
+_xamSyntaxEditor_   は、`ClassificationAppearanceMap` と共に、各言語要素に割り当てられた `ClassificationTypes` を使って、ディスプレイ上で描画する際に各言語要素に色付けします。
+
+場合によっては、事前定義された色付けとスタイリングを変更する必要があります。これを行うには、 _xamSyntaxEditor_   が提供するデフォルトの `ClassificationAppearanceMap` を変更して、新しいマッピングを提供、または既存のマッピングを削除します。あるいは、希望の外観とマッピングを含む新しい `ClassificationAppearanceMap` インスタンスを作成し、それを `xamSyntaxEditor.ClassificationAppearanceMap` プロパティに割り当てることもできます。このシナリオでは、カスタム マップに特定の `ClassificationType` が含まれない場合、 _xamSyntaxEditor_   はその `ClassificationType` に対してデフォルトの `ClassificationAppearanceMap` を再度使用します。
+
+注:
+
+[NOTE]
+====
+`ClassificationApperanceMap` プロパティで追加されたマッピングエントリは、ハイライト表示言語が定義するスタイリングおよび色付けよりも高い優先順位を持ちます。
+====
+
+[options="header", cols="a,a"]
+|====
+|引数のタイプ|詳細
+
+|`ClassificationType`
+|分類タイプは、変更したい言語の部分を指定します (コメント、キーワード、演算子、文字列リテラルなど)。
+
+|`TextDocumentAppearance`
+|このクラスは、テキスト スタイリングのさまざまな要素を変更するために使用される値を保持します (色、フォント ファミリー、フォント スタイルなど)。
+
+|====
+
+[[_Ref330805843]]
+== ClassificationAppearanceMap エントリの追加
+
+=== 概要
+
+現在の言語が設定したハイライト表示セットを修正するための、新しい分類外観マップ エントリを追加します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するメソッド|以下を指定
+
+|新しい分類外観マップ エントリの追加
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.appearancemap%601~addmapentry.html[AddMapEntry]
+|
+* `ClassificationType` 
+
+* `TextDocumentAppearance` 
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+// 新しい分類外観マップを作成する 
+ClassificationAppearanceMap classMap =
+    new ClassificationAppearanceMap();
+// 新しいテキスト文書の外観オブジェクトを作成する
+TextDocumentAppearance tda = new TextDocumentAppearance();
+// 前景色のみを変更する
+tda.Foreground = new SolidColorBrush(Colors.Red);
+// "keyword" 分類タイプ用に
+// 分類マップに新規エントリを追加する
+// 同じ分類タイプを
+// 既存エントリで置き換える場合、
+// 最後の引数は true
+classMap.AddMapEntry(
+    ClassificationType.Keyword,
+    tda,
+    true
+);
+// 分類マップの xamSyntaxEditor への割り当て
+this.xamSyntaxEditor1.ClassificationAppearanceMap = classMap;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' 新しい分類外観マップの作成 
+Dim classMap As New ClassificationAppearanceMap()
+' 新しいテキスト文書の外観オブジェクトの作成
+Dim tda As New TextDocumentAppearance()
+' 前景色のみを変更
+tda.Foreground = New SolidColorBrush(Colors.Red)
+' "keyword" 分類タイプ用に
+' 分類マップに新規エントリを追加する
+' 同じ分類タイプを
+' 既存エントリで置き換える場合、
+' 最後の引数は true
+classMap.AddMapEntry(ClassificationType.Keyword, tda, True)
+' 分類マップを xamSyntaxEditor への割り当てる
+Me.xamSyntaxEditor1.ClassificationAppearanceMap = classMap
+----
+
+[[_Ref330805859]]
+== ClassificationAppearanceMap エントリの削除
+
+=== 概要
+
+分類外観マップ エントリを削除して、カスタムの定義済みハイライト表示を削除します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するメソッド|以下を指定
+
+|分類外観マップ エントリの削除
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.appearancemap%601~removemapentry.html[RemoveMapEntry]
+|
+* `ClassificationType` 
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+classMap.RemoveMapEntry(ClassificationType.Keyword);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+classMap.RemoveMapEntry(ClassificationType.Keyword)
+----
+
+[[_Ref330805915]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-syntax-highlighting.html[構文のハイライト表示]
+|このトピックでは、`TextDocument` の関連言語に基づくテキストの色付けについて解説します。
+
+| link:xamsyntaxeditor-customizing.html[構文エディターのカスタマイズ]
+|このグループのこのトピックでは、 _xamSyntaxEditor_ のカスタマイズ方法を解説します。
+
+|====

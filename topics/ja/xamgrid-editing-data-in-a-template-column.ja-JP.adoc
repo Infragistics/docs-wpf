@@ -1,0 +1,76 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-editing-data-in-a-template-column",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids"],
+    "guid": "{404535DC-BE02-4B97-A416-9371ABB77063}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9471998Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= テンプレート列でデータを編集
+
+xamGrid コントロールは、テンプレート列でのデータ編集をサポートします。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn.html[TemplateColumn] オブジェクトは、エディターを編集モードで使用するように定義するために使用できる link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn~editortemplate.html[EditorTemplate] プロパティを提供します。データ オブジェクトが INotifyPropertyChanged インターフェイスを実装している場合、データを更新できるようにするためにエディターとデータ オブジェクト間で適切なデータ バインディングを構成します。バインディングする時は、必ず UpdateSourceTrigger プロパティを Explicit に設定してください。そうすれば、xamGrid はこの更新が発生するタイミングを完全に制御でき、ユーザーが Escape キーを押すとキャンセルすることができます。
+
+テンプレート列でデータを編集するためのもうひとつのオプションはイベントを使用して行います。データ ソースへの更新を処理するために、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellenterededitmode_ev.html[CellEnteredEditMode] および link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellexitingeditmode_ev.html[CellExitingEditMode] の 2 つのイベントを使用できます。
+
+以下のコードは、xamGrid でテンプレート列のエディターとして Slider コントロールを設定する方法を示します。link:resources-datautil.html[DataUtil] クラスが提供されます。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="xamGrid1" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=Products}">
+    <ig:XamGrid.EditingSettings>
+        <ig:EditingSettings AllowEditing="Row" />
+    </ig:XamGrid.EditingSettings>
+    <ig:XamGrid.Columns>
+        <ig:TextColumn Key="ProductID" />
+        <ig:TextColumn Key="ProductName" />
+        <ig:TemplateColumn Key="UnitPrice">
+            <ig:TemplateColumn.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding UnitPrice}" />
+                </DataTemplate>
+            </ig:TemplateColumn.ItemTemplate>
+            <!--列のカスタム エディターを設定します -->
+            <ig:TemplateColumn.EditorTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <!-- ソースの更新が行われる時をグリッドが制御できるように UpdateSourceTrigger を Explicit に設定します -->
+                        <Slider x:Name="slider1" Minimum="0" Maximum="100" SmallChange="1" LargeChange="5" Value="{Binding UnitPrice, Mode=TwoWay, UpdateSourceTrigger=Explicit}"></Slider>
+                        <TextBlock Text="{Binding Value, ElementName=slider1}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ig:TemplateColumn.EditorTemplate>
+        </ig:TemplateColumn>
+    </ig:XamGrid.Columns>
+    </ig:XamGrid>
+----
+
+endif::wpf[]
+
+ifdef::sl,wpf[]
+image::images/sl_xamGrid_Editing_Data_in_a_Template_Column_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Editing_Data_in_a_Template_Column_01.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-changing-cell-values-in-code-behind.html[コード ビハインドでセル値を変更]
+
+ifdef::sl,wpf[]
+link:xamgrid-validating-data.html[データの検証]
+endif::sl,wpf[]
+
+link:xamgrid-editing-data.html[データの編集]

@@ -1,0 +1,96 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-add-event-entries",
+    "controlName": ["xamTimeline"],
+    "tags": ["API","Data Presentation","How Do I"],
+    "guid": "{F7EB7B6B-AEAE-41A8-ACD7-6F47A167D876}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.9314261Z"
+}
+|metadata|
+////
+
+= イベント エントリの追加
+
+イベント エントリは、xamTimeline での時間シリーズのデータ ポイントです。各イベントに関連付けられた時刻、タイトル、時間、詳細などの情報を提供します。イベントエントリには 2 つのタイプ、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeentry.html[NumericTimeSeries] オブジェクトの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[NumericTimeEntry] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeentry.html[DateTimeSeries] オブジェクトの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeseries.html[DateTimeEntry] があります。
+
+[NOTE]
+====
+注: 異なるタイプの時刻シリーズについては、「時刻シリーズ」を参照してください。
+====
+
+この例は、Infragistics link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールのためにプロジェクトを設定する方法をユーザーが理解していることを前提としています。以下の xaml コードは、Numeric Time Series に数値時刻エントリを追加する方法を示します。
+
+*XAML の場合:*
+
+----
+        <igtl:XamTimeline x:Name="xamTimeline" 
+                             Width="1000" Height="400" Margin="15">
+            <igtl:XamTimeline.Series>
+                <igtl:NumericTimeSeries Title="xaml Series">
+                    <igtl:NumericTimeSeries.Entries>
+                        <!-- 数値時刻エントリを追加します -->
+                        <igtl:NumericTimeEntry Time="500" Title="Numeric Time Entry 1" 
+                                 Details="Details Time Entry 1"/>
+                        <igtl:NumericTimeEntry Time="1000" Title="Numeric Time Entry 2" 
+                                 Details="Details Time Entry 2"/>
+                        <igtl:NumericTimeEntry Time="1500" Title="Numeric Time Entry 3" 
+                                 Details="Details Time Entry 3"/>
+                        <igtl:NumericTimeEntry Time="2000" Title="Numeric Time Entry 4" 
+                                 Details="Details Time Entry 4"/>
+                        <igtl:NumericTimeEntry Time="2500" Title="Numeric Time Entry 5" 
+                                 Details="Details Time Entry 5"/>
+                    </igtl:NumericTimeSeries.Entries>
+                </igtl:NumericTimeSeries>
+            </igtl:XamTimeline.Series>
+        </igtl:XamTimeline>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim xamTimeline As New xamTimeline()
+Me.LayoutRoot.Children.Add(xamTimeline)
+'数値時刻エントリを追加します 
+Dim numTimeSeries As New NumericTimeSeries()
+For ind As Integer = 1 To 5
+            Dim numTimeEntry As New NumericTimeEntry()
+            numTimeEntry.Time = ind * 500
+            numTimeEntry.Title = "Numeric Time Entry " + ind.ToString()
+            numTimeEntry.Details = "Details Time Entry " + ind.ToString()
+            numTimeSeries.Entries.Add(numTimeEntry)
+Next
+Me.xamTimeline.Series.Add(numTimeSeries)
+----
+
+*C# の場合:*
+
+----
+XamTimeline xamTimeline = new xamTimeline();
+this.LayoutRoot.Children.Add(xamTimeline);
+// 数値時刻エントリを追加します 
+NumericTimeSeries numTimeSeries = new NumericTimeSeries();
+for (int ind = 1; ind <= 5;="" ind++)="" temp_line_break="" {="" numerictimeentry="" numtimeentry="<SPAN" class="blue">new NumericTimeEntry()
+                {
+                    Time = ind * 500,
+                    Title = "Numeric Time Entry " + ind.ToString(),
+                    Details = "Details Time Entry " + ind.ToString()
+                };
+                numTimeSeries.Entries.Add(numTimeEntry);
+}
+xamTimeline.Series.Add(numTimeSeries);
+----
+
+image::images/XamTimeline_Add_Event_Entries_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-display-date-time-series.html[日時シリーズを表示]
+
+link:xamtimeline-display-numeric-time-series.html[数値時刻シリーズを表示]
+
+link:xamtimeline-style-time-series.html[時刻シリーズのスタイル]
+
+link:xamtimeline-use-multiple-series-with-xamwebtimeline.html[xamTimeline と複数のシリーズを使用]

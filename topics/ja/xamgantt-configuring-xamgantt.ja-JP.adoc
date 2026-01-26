@@ -1,0 +1,62 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-xamgantt",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "420e731b-af85-4fc9-96fb-4edb17bfea72",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2391313Z"
+}
+|metadata|
+////
+
+= xamGantt の構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのこのトピックでは、 _xamGantt™_   コントロールの主要な構成可能な項目について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-sections.html[セクションの構成]
+|このトピックでは、 _xamGantt_ コントロールのグリッドおよびチャートのセクションの幅を構成する方法について説明します。
+
+| link:xamgantt-configuring-project.html[プロジェクトの構成]
+|このグループのトピックでは、 _xamGantt_ Project クラス、その構成可能な項目およびこのクラスが提供する主要機能を説明します。
+
+| link:xamgantt-configuring-project-settings.html[プロジェクト設定の構成]
+|このグループのトピックでは、 _xamGantt_ ProjectSettings クラス、その構成可能な項目およびこのクラスが提供する主要機能を説明します。
+
+| link:xamgantt-configuring-project-view-settings.html[プロジェクト ビュー設定の構成]
+|このグループのトピックでは、 _xamGantt_ ProjectViewSettings クラス、その構成可能な項目およびこのクラスが提供する主要機能を説明します。
+
+| link:xamgantt-configuring-tasks.html[タスクの構成]
+|このグループのトピックでは、 _xamGantt_ ProjectTask クラス、その構成可能な項目およびこのクラスが提供する主要機能を説明します。
+
+| link:xamgantt-configuring-the-xamgantt-calendars.html[xamGantt カレンダーの構成]
+|このグループのトピックには、 _xamGantt_ カレンダーの情報が含まれています。
+
+| link:xamgantt-enabling-disabling-user-interactions.html[ユーザー インタラクションの有効化/無効化]
+|このトピックでは、 _xamGantt_ コントロールの構成可能なユーザー インタラクションについて解説します。
+
+| link:xamgantt-configuring-resources.html[リソースの構成]
+|このグループのこのトピックでは、 _xamGantt_ コントロールのリソースの構成について説明します。
+
+| link:xamgantt-configuring-the-xamgantt-timescale.html[xamGantt タイムスケールの構成]
+|このグループのトピックには、 _xamGantt_ タイムスケールの情報が含まれています。
+
+| link:xamgantt-configuring-the-listbackedproject-viewprovider-for-xamgantt.html[ListBacked ViewProvider の構成]
+|このグループのトピックには、 _xamGantt_ ListBackedProjectViewProvider の情報が含まれています。
+
+| link:xamgantt-configuring-xamgantt-additional-context-menus.html[xamGantt 追加のコンテキスト メニューの構成]
+|このトピックでは、 _xamGantt_ のコンテキスト メニューを構成し、 _xamGantt_ コントロールの定義済みの領域の追加のコンテキスト メニューを追加する方法を説明します。
+
+|====

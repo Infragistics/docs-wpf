@@ -1,0 +1,67 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-apply-default-summary-formats",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Styling","Summaries","Templating"],
+    "guid": "{9914F652-229E-421D-A4E8-0F817F3A4088}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0919715Z"
+}
+|metadata|
+////
+
+= デフォルトの集計フォーマットを適用
+
+
+
+フィールド レイアウトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~summarydefinitions.html[SummaryDefinitions] コレクションで link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarydefinition.html[SummaryDefinition] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarydefinition~stringformat.html[StringFormat] プロパティを設定して集計値をフォーマットできますが、 xamDataPresenter は、非常に僅かなコードを使用して集計値をフォーマットする代用方法を提供します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~summarystringformats.html[SummaryStringFormats] プロパティを設定して、そのフィールドの集計にデフォルトフォーマッティングを適用できます。
+
+SummaryStringFormats プロパティを異なる計算でフォーマットのコンマで区切られたリストに設定できます。コンマで区切られた文字列の各トークンは、集計計算の名前で始まり、コロン、そしてコンポジットフォーマット文字列が続く必要があります。たとえば、集計と平均計算の値をフォーマットした場合、Field オブジェクトの SummaryStringFormats プロパティを "sum:Total Revenue = {0:c}, average: Mean Revenue = {0:c}" に設定できます。('0') プレースホルダに加えて、コンポジットフォーマット文字列に以下のプレースホルダを使用することもできます。
+
+* {0} - 集計の実際の値を表します。
+* {1} - この集計を計算するために使用される集計計算の名前を表します。
+* {2} - SummaryDefinition オブジェクトの Key プロパティを表します。
+* {3} - この集計を計算するために使用されるフィールド名を表します。
+
+以下のコード例は、デフォルトの集計フォーマットを適用する方法を示します。このコード例は、フィールド レイアウトに「売上」という名前のフィールドがあることを前提とします。
+
+*XAML の場合:*
+
+----
+...
+<igDP:Field 
+    Name="revenue" 
+    Label="Revenue" 
+    SummaryStringFormats="{}sum:Revenue = {0:c}, average:Mean Revenue = {0:c}" />
+...
+----
+
+*Visual Basic の場合:*
+
+----
+...
+Me.xamDataPresenter1.FieldLayouts(0).Fields("revenue").SummaryStringFormats = "sum:Revenue = {0:c}, average: Mean Revenue = {0:c}"
+...
+----
+
+*C# の場合:*
+
+----
+...
+this.xamDataPresenter1.FieldLayouts[0].Fields["revenue"].SummaryStringFormats = "sum:Revenue = {0:c}, average: Mean Revenue = {0:c}";
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-creating-a-custom-summary-calculator.html[カスタム集計計算を作成]
+
+link:xamdatapresenter-enable-row-summaries.html[行集計を有効]
+
+link:xamdatapresenter-format-the-value-of-a-summary.html[集計の値をフォーマット]
+
+link:xamdatapresenter-programmatically-add-summaries-to-a-field.html[集計をフィールドにプログラムで追加]
+
+link:xamdatapresenter-retrieve-the-result-of-a-summary.html[集計結果を取得]

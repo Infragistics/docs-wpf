@@ -1,0 +1,25 @@
+﻿= 2020 Volume 2 の新機能
+
+=== .NET 5.0 サポート
+
+
+Infragistics コントロールの使用で新しい環境がサポートされます。バージョン 2020.2 以降、アセンブリで NuGet を介した .NET 5.0 環境がサポートされます。 
+NET 5.0 は、3.1 に続く .NET Core の次のメジャー リリースです。
+
+$$.NET$$ 5.0 については、link:https://docs.microsoft.com/en-us/dotnet/core/dotnet-five[Microsoft サイト]をご確認ください。
+
+Infragistics NuGet パッケージを使用するための環境設定については、link:nuget-feeds.html[NuGet フィード]および link:nuget-packages.html[NuGet パッケージ]のトピックを参照してください。
+
+
+=== Visual Studio 2019 プレビューでの新しい WPF デザイナーのサポート
+
+
+Infragistics for WPF ツールセットのバージョン 2020.2 には、Visual Studio 2019 プレビューに含まれるプレビュー機能である .NETCore および .NETFramework の新しいサーフェイス分離デザイナーのサポートが含まれるようになりました。
+
+新しいプレビュー デザイナーを有効にするには、Visual Studio 2019 プレビューでこのプレビュー機能をオプトインする必要があります。これを行うには、以下の手順に従います:
+
+- [ツール] メニューを開き、[オプション] をクリックします。
+- 表示されるダイアログで、親の [環境] 項目の下にある [プレビュー機能] メニュー項目をクリックします。
+- [プレビュー機能] には、[.NET Framework 用の新しい WPF XAML デザイナー] のチェックボックスがあります。これをチェックすると、Visual Studio 2019 プレビューの再起動後に新しいデザイナーを使用できるようになります。
+
+$$.NET$$ Core でのこれらのデザイナーの使用に関しては、ツールをツールボックスに表示するために、Infragistics for WPF 2020.2 NuGet パッケージを追加する必要があります。Infragistics NuGet パッケージを使用するための環境設定については、link:nuget-feeds.html[NuGet フィード]および link:nuget-packages.html[NuGet パッケージ]のトピックを参照してください。

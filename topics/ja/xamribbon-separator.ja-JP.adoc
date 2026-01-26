@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-separator",
+    "controlName": ["xamRibbon"],
+    "tags": ["Getting Started"],
+    "guid": "{B798DF8E-1EEC-49DE-8DDA-A40C73053B45}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.2101951Z"
+}
+|metadata|
+////
+
+= セパレーター
+
+
+
+
+
+Separator ツールは、アプリケーション メニューまたはメニュー ツール内でツールを視覚的に分割して整理する線です。セパレーター ツールは、Microsoft® Windows® Presentation Foundation の System.Windows.Controls.Separator class クラスから派生します。したがって、標準の .NET Framework Separator コントロールと同じ機能をすべて得られます。
+
+他のリボン ツールと異なり、セパレーター ツールはエンド ユーザーにアプリケーション タスクを表示するためのものではありません。したがって、Separator ツールはユーザー操作に応答しません。さらに、セパレーター ツールは、ボタン ツールなどのツールにある一般的なリボン ツール プロパティを一切提供しません。

@@ -1,0 +1,70 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-manager-logical-events",
+    "controlName": ["xamSchedule"],
+    "tags": ["Events","Scheduling"],
+    "guid": "89c33901-889b-4099-9ca2-d75cdc3cd46d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7533287Z"
+}
+|metadata|
+////
+
+= データ マネージャー イベントの処理
+
+xamSchedule ビュー コントロールである link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdayview.html[xamDayView]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview.html[xamMonthView] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduleview.html[xamScheduleView] は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[xamScheduleDataManager] クラスによってデータにアクセスします。複数のビュー コントロールは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~datamanager.html[DataManager] プロパティを同じインスタンスに設定することによって、xamScheduleDataManager を共有することができます。
+
+DataManager は、UI の操作、ビュー コントロールまたはダイアログでの操作、またはコードによって、DataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~beginedit.html[BeginEdit]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~begineditwithcopy.html[BeginEditWithCopy] または link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~createnew.html[CreateNew] メソッドを呼び出してから、アクティビティでいくつのプロパティを設定し、次に link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~endedit.html[EndEdit] メソッドを呼び出すことによって、アクティビティが変更された時に発生する一連のイベントを公開します。DataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~remove.html[Remove] メソッドも関連付けられたアクティビティ イベントを発生します。
+
+ダイアログまたはエラーが表示される前に発生するイベントもあります。
+
+*注* : 「...ing」で終わるイベントは、イベント引数の Cancel プロパティを True に設定することによってキャンセルできます。イベントをキャンセルすると、データ マネージャーは実行中の操作を続行できなくなります。
+
+以下の xaml は xamScheduleDataManager から公開されるさまざまなイベントをリッスンする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamScheduleDataManager
+    ActivityDialogDisplaying=
+        "XamScheduleDataManager_ActivityDialogDisplaying"
+    ActivityRecurrenceChooserDialogDisplaying=
+        "XamScheduleDataManager_ActivityRecurrenceChooserDialogDsplyng"                    
+    ActivityAdding=
+        "XamScheduleDataManager_ActivityAdding"
+    ActivityAdded=
+        "XamScheduleDataManager_ActivityAdded"
+    ActivityChanging=
+        "XamScheduleDataManager_ActivityChanging"
+    ActivityChanged=
+        "XamScheduleDataManager_ActivityChanged"                   
+    ActivityRemoving=
+        "XamScheduleDataManager_ActivityRemoving"
+    ActivityRemoved=
+        "XamScheduleDataManager_ActivityRemoved"
+    ActivitiesDragged=
+        "XamScheduleDataManager_ActivitiesDragged"
+    ActivitiesDragging=
+        "XamScheduleDataManager_ActivitiesDragging"
+    ActivityResized=
+        "XamScheduleDataManager_ActivityResized"
+    ActivityResizing=
+        "XamScheduleDataManager_ActivityResizing"
+    Error=
+        "XamScheduleDataManager_Error"
+    ErrorDisplaying=
+        "XamScheduleDataManager_ErrorDisplaing"
+    ReminderActivated=
+        "XamScheduleDataManager_ReminderActivated"
+    ReminderDialogDisplaying=
+        "XamScheduleDataManager_ReminderDialogDisplaying"
+>
+----
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-activities.html[アクティビティについて]

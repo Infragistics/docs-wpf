@@ -1,0 +1,228 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-xamdatatree-node-layouts",
+    "controlName": ["xamDataTree"],
+    "tags": ["How Do I","Layouts","Styling"],
+    "guid": "fc57f16b-d3cf-4d79-a438-affd1497f039",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.9281208Z"
+}
+|metadata|
+////
+
+= ノード レイアウトの構成
+
+表示するノードを決定し、ノードが表示される位置を決定するには、xamDataTree™ コントロールは「ノード レイアウト」と呼ばれる機能を使用します。xamDataTree の link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~globalnodelayouts.html[GlobalNodeLayouts] コレクション内でひとつ以上の link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.nodelayout.html[NodeLayout] オブジェクトを定義できます。NodeLayouts はツリーのデータ タイプに対応するオブジェクトです。
+
+NodeLayout オブジェクトを生成するためのデフォルトで最もシンプルな方法は、コントロールに任せることです。行う必要があるのは、コントロールで link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~itemssource.html[ItemsSource] プロパティを設定し、xamDataTree コントロールの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~displaymemberpath.html[DisplayMemberPath] プロパティを設定することだけです。
+
+*XAML の場合:*
+
+----
+<ig:XamDataTree x:Name="MyTree" DisplayMemberPath="FirstName">
+----
+
+データはオブジェクトのリストであり、上記のコードはフラットで展開できないツリー情報 (基本的にリスト) を表示していることを前提しています。
+
+image::images/xamDataTree_Data_Binding_0.png[]
+
+*グローバル レイアウト*
+
+ノードが xamDataTree コントロール内でどのように表示されるかを定義するために GlobalNodeLayouts コレクションにノード レイアウトを追加できます。
+
+ツリーのノード レイアウトを定義するには、NodeLayout オブジェクトの以下のプロパティを設定する必要があります。
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.nodelayoutbase~key.html[Key] - このプロパティは、ノード レイアウトの一意の識別子を定義します。ツリーで子ノードの自動作成を有効にしたい場合は、このプロパティを初期コレクション内で当該のオブジェクトのプロパティに設定できます。実例については、<<LocalLayouts,「ローカル レイアウト」>>のセクションを参照してください。
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.nodelayout~targettypename.html[TargetTypeName] - このプロパティによって、データ ソース プロパティによって公開されるコレクションに含まれるオブジェクトである Type 名にこのプロパティ値を一致させるように xamWebTree を指示することで、NodeLayout とデータソース プロパティ間のマッピングを指定することができます。
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.nodelayout~displaymemberpath.html[DisplayMemberPath] - このプロパティは、ツリーで表示されるオブジェクト タイプのプロパティを指定します。
+
+以下のデータ オブジェクトがあることを前提とします。
+
+*Visual Basic の場合:*
+
+----
+Public Class Parent        
+   Private _children As ObservableCollection
+   Public Property FirstName As String    
+   End Property        
+   Public Property LastName As String
+   End Property        
+   Public ReadOnly Property Children As ObservableCollection
+      Get
+         If (Me._children Is Nothing) Then 
+            Me._children = New ObservableCollection     
+         End If
+         Return Me._children   
+      End Get    
+   End Property
+End Class
+----
+
+*C# の場合:*
+
+----
+public class Parent
+{
+   ObservableCollection<Parent> _children;
+   public string FirstName { get; set; }
+   public string LastName { get; set; }
+   public ObservableCollection<Parent> Children
+   {
+      get
+      {
+         if (this._children == null)
+            this._children = new ObservableCollection<Parent>();
+         return this._children;
+      }
+   }
+}
+----
+
+ノード レイアウトは以下のように定義されます。
+
+*XAML の場合:*
+
+----
+<ig:XamDataTree.GlobalNodeLayouts>
+   <ig:NodeLayout Key="ParentLayout" TargetTypeName="Parent" 
+                  DisplayMemberPath="FirstName">
+   </ig:NodeLayout>
+</ig:XamDataTree.GlobalNodeLayouts>
+----
+
+xamDataTree コントロールが TargetTypeName プロパティで定義される Parent オブジェクトのリストを検索する場合、必ずこの ParentLayout が使用されます。上記のコードは、以下のスクリーンショットで示すように、ParentThe の FirstName を示し、各 Parent の Children も表示します。
+
+image::images/xamDataTree_Data_Binding_01.png[]
+
+*追加レイアウトの定義*
+
+xamDataTree コントロール内に表示される多くの異なるレイアウトを定義できます。これは、追加レイアウトを GlobalNodeLayout コレクションに追加することによって行うことができます。
+
+以下のデータ オブジェクトがあることを前提とします。
+
+*Visual Basic の場合:*
+
+----
+Public Class Parent        
+   Private _children As ObservableCollection
+   Private _cars As ObservableCollection        
+   Public Property FirstName As String 
+   End Property
+   Public Property LastName As String
+   End Property
+   Public ReadOnly Property Children As ObservableCollection 
+      Get
+         If (Me._children Is Nothing) Then
+            Me._children = New ObservableCollection
+         End If 
+         Return Me._children
+      End Get
+   End Property
+   Public ReadOnly Property Cars As ObservableCollection
+      Get
+         If (Me._cars Is Nothing) Then
+            Me._cars = New ObservableCollection
+         End If 
+         Return Me._cars
+      End Get
+   End Property
+End Class
+Public Class Cars        
+   Public Property Name As String
+   End Property
+End Class
+----
+
+*C# の場合:*
+
+----
+public class Parent
+{
+   ObservableCollection<Parent> _children;
+   public string FirstName { get; set; }
+   public string LastName { get; set; }
+   public ObservableCollection<Parent> Children
+   {
+      get
+      {
+         if (this._children == null)
+            this._children = new ObservableCollection<Parent>();
+         return this._children;
+      }
+   }
+   ObservableCollection<Cars> _cars;
+   public ObservableCollection<Cars> Cars
+   {
+      get
+      {
+         if (this._cars == null)
+         {
+            this._cars = new ObservableCollection<Cars>();
+         }
+         return this._cars;
+      }
+   }
+}
+public class Cars
+{
+   public string Name { get; set; }
+}
+----
+
+以下のコードは、CarLayout という名前の新しいレイアウトを GlobalNodeLayout コレクションに追加する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamDataTree.GlobalNodeLayouts>
+   <ig:NodeLayout Key="ParentLayout" TargetTypeName="Parent" 
+                  DisplayMemberPath="FirstName"/>
+   <ig:NodeLayout Key="CarLayout" TargetTypeName="Cars" DisplayMemberPath="Name"/>
+</ig:XamDataTree.GlobalNodeLayouts>
+----
+
+以下のスクリーンショットは、2 つの定義されたレイアウトでツリーを示します。
+
+image::images/xamDataTree_Data_Binding_02.png[]
+
+[[LocalLayouts]]
+
+*ローカル レイアウト*
+
+GlobalNodeLayouts コレクションにないノード レイアウトを定義することもできます。これによってノードがどのように表示されるかをさらに制御することができ、個々のノードをカスタマイズする機能も提供します。
+
+たとえば、以下のコードでは、ローカル ノード レイアウトが定義されて、最初のコレクションでオブジェクトの Children プロパティにバインドされ、それらのオブジェクトの LastName を表示します。この状況では TargetTypeName を設定する必要はありません。
+
+*XAML の場合:*
+
+----
+<ig:XamDataTree x:Name="MyTree" DisplayMemberPath="FirstName">
+   <ig:XamDataTree.NodeLayouts>
+      <ig:NodeLayout Key="Children" DisplayMemberPath="LastName"/>
+   </ig:XamDataTree.NodeLayouts>
+</ig:XamDataTree>
+----
+
+image::images/xamDataTree_Data_Binding_03.png[]
+
+*関連トピック*
+
+link:xamdatatree-xamdatatree-activation.html[xamDataTree のアクティブ化]
+
+link:xamdatatree-active-data-item.html[アクティブなデータ アイテムの構成]
+
+link:xamdatatree-xamdatatree-check-boxes.html[チェックボックスの表示状態の構成]
+
+link:xamdatatree-expanded-and-collapsed-xamdatatree-nodes.html[ノードの展開と縮小状態の構成]
+
+link:xamdatatree-xamdatatree-drag-and-drop.html[ドラッグ アンド ドロップの構成]
+
+link:xamdatatree-xamdatatree-editing.html[編集の構成]
+
+link:xamdatatree-xamdatatree-node-connectors.html[ノード コネクターの表示状態の構成]
+
+link:xamdatatree-xamdatatree-selection.html[選択]

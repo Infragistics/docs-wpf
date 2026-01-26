@@ -1,0 +1,90 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-allow-end-users-to-close-tiles",
+    "controlName": ["xamTileManager"],
+    "tags": ["Editing"],
+    "guid": "ea0b537e-1f73-4bb7-b0b5-83df49137bd5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6813714Z"
+}
+|metadata|
+////
+
+= エンド ユーザーにタイルを閉じることを許可
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトによって公開された link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager.html[xamTileManager] または link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~closeaction.html[CloseAction] プロパティによって公開された link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~tilecloseaction.html[TileCloseAction] プロパティを設定することによって、エンドユーザーがタイルを閉じることを許可できます。XamTile オブジェクトの CloseAction プロパティは、xamTileManager の TileCloseAction プロパティをオーバーライドします。TileCloseAction プロパティまたは CloseAction プロパティを RemoveItem に設定する場合、xamTileManager は Items コレクション (バインドされていない場合) または基本データ ソース (データ バインドされている場合) から項目を削除しようとします。コレクションが削除をサポートしていない場合、xamTileManager は代わりにタイルを非表示にします。
+
+エンドユーザーが閉じたタイルを再び開くことを許可したい場合、それを実行する手段を提供する必要があります。たとえば、再オープンする閉じられたタイルのコードについては、xamTileManager サンプルの「Tile Closing Actions」サンプルを調べます。
+
+最後に、各 XamTile オブジェクトは、閉じるボタンを非表示に設定できる link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~closebuttonvisibility.html[CloseButtonVisibility] プロパティも公開します。ただし、CloseAction プロパティの設定は、閉じるボタンの表示/非表示を自動的に切り替えます。
+
+image::images/xamTilesControl_Allow_End_Users_to_Close_Tiles_01.png[]
+
+以下のコード例は、エンドユーザーにタイルを閉じることを許可する方法を示しています。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1" TileCloseAction="CollapseTile">
+    <ig:XamTile Header="Tile 1" />
+    <ig:XamTile Header="Tile 2" />
+    <ig:XamTile Header="Tile 3" CloseAction="DoNothing" />
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+...
+Me.xamTileManager1.TileCloseAction = TileCloseAction.CollapseTile
+Dim nonClosableTile As Tile = _
+    xamTilesControl1.TileFromItem(xamTilesControl1.Items(2))
+If nonClosableTile IsNot Nothing Then
+    nonClosableTile.CloseAction = TileCloseAction.DoNothing
+End If
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+...
+this.xamTileManager1.TileCloseAction = TileCloseAction.CollapseTile;
+XamTile nonClosableTile =
+    this.xamTilesControl1.TileFromItem(xamTilesControl1.Items[2]);
+if (nonClosableTile != null)
+{ 
+    nonClosableTile.CloseAction = TileCloseAction.DoNothing;
+}
+...
+----
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

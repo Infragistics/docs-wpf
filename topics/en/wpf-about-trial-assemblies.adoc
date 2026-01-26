@@ -1,0 +1,7 @@
+﻿== About Infragistics Trial Version
+
+We are confident in our controls, and we want you to be, too. You may use the Trial version of Infragistics for WPF to evaluate and become comfortable and confident with our tools suite. This is done by utilizing the public NuGet feed https://api.nuget.org/v3/index.json. The full list of the packages link:nuget-packages.html[listed here] are on the public NuGet feed with a .Trial suffix appended to them.
+
+While using the trial NuGet packages, a watermark will render at run-time notifying the user that the application was developed with a trial version of the toolset. If you need support, we’ll provide Trial support for up to thirty days.
+
+Once an Infragistics license is purchased and registered to your user account, you will need to set up the link:nuget-feeds.html[licensed NuGet feed] and use the packages from there. These are of the same name as the Trial packages, but without the .Trial suffix. This will remove the trial watermark.

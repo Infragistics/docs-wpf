@@ -1,0 +1,156 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcalculationmanager-overview-of-list-calculator",
+    "controlName": ["xamCalculationManager"],
+    "tags": ["Calculations"],
+    "guid": "67b276ad-75c0-4adf-8a1a-a5b728ee41cf",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.572123Z"
+}
+|metadata|
+////
+
+= リスト計算式の概要
+
+== ListCalculator
+
+link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator.html[ListCalculator] コンポーネントではデータ シリーズで計算ができます。
+
+ListCalculator は link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~itemssource.html[ItemsSource] プロパティと link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~items.html[Items] プロパティおよび 2 つのコレクションを公開します。1 つ目のコレクションには、リストの各項目に個別で適用される link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~itemcalculations.html[ItemCalculations] が入っています。もう 1 つのコレクションは、リストのすべての項目に適用される link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~listcalculations.html[ListCalculations] のコレクションです。
+
+xamCalculationManager コントロールは、 link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculatorbase~referenceid.html[ReferenceId] プロパティにアクセスすることにより ListCalculator 値を使用して計算を実行できます。
+
+== ListCalculator コントロール プロパティ表
+
+下の表は、ItemCalculator の各プロパティの意味とそれぞれのデフォルト設定値をまとめたものです。
+
+[options="header", cols="a,a,a,a"]
+|====
+|プロパティ|タイプ|説明|デフォルト値
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~itemcalculations.html[ItemCalculations]
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculationcollection.html[ItemCalculationCollection]
+|このプロパティは、リスト内の 1 つの項目にわたって実行される計算を指定します。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~items.html[Items]
+|IList
+|このプロパティは、計算が実行される項目のコレクションを指定します。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~itemssource.html[ItemsSource]
+|IEnumerable
+|このプロパティは、Items コレクションを生成するために使用される列挙子を返すか設定します。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~listcalculations.html[ListCalculations]
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculationcollection.html[ListCalculationCollection]
+|このプロパティは、リスト内のすべての項目にわたって実行される計算を指定します。
+|
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator~listresults.html[ListResults]
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.calculationresultsdictionary.html[CalculationResultsDictionary]
+|このプロパティは読み取り専用であり、リストを計算した結果を含むディクショナリ結果を返します。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculatorbase~calculationmanager.html[CalculationManager]
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.xamcalculationmanager.html[XamCalculationManager]
+|このプロパティは、計算を実行するために使用される CalculationManager を指定します。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculatorbase~propertiestoexclude.html[PropertiesToExclude]
+|String
+|計算の実行対象から除外する項目のプロパティのリスト。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculatorbase~propertiestoinclude.html[PropertiesToInclude]
+|String
+|計算の実行を許可する項目のプロパティのリスト。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculatorbase~valueconverter.html[ValueConverter]
+|IValueConverter
+|このプロパティは、計算ネットワークで使用される値にソース項目の値を変換するために使用する変換機能を指定します。
+|null
+
+|====
+
+== ListCalculation サブコントロール プロパティ表
+
+下の表は、ListCalculation の各プロパティの意味とそれぞれのデフォルト設定値をまとめたものです。
+
+[options="header", cols="a,a,a,a"]
+|====
+|プロパティ|タイプ|説明|デフォルト値
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculationbase~formula.html[Formula]
+|String
+|このプロパティは、項目の値を計算するために使用される数式を指定する文字列を取得または設定します。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculatorbase~referenceid.html[ReferenceId]
+|String
+|このプロパティは、計算ネットワークに対して項目計算を識別する ID を指定します。
+|null
+
+|====
+
+== コード例: リスト計算式の利用
+
+== 例の詳細
+
+以下の例は、ListCalculator を使用して計算を作成する方法を示しています。
+
+以下のコード スニペットでは、ListCalculator を使用して出荷の詳細をバインドします。次に、ListCalculation コンポーネントを使用して数式を定義します。数式の結果には 2 通りの方法でアクセスできます。
+
+最初のテキストブロックは、ListCalcutor の ListResults ディクショナリに Text プロパティをバインドします。
+
+xamCalculationManager は、ListCalculation の ReferenceId にアクセスし、 ReferenceId を使用して計算を実行します。
+
+*XAML の場合:*
+
+----
+<StackPanel Name="stackPanel">
+   <StackPanel.Resources>
+      <ig:XamCalculationManager x:Key="CalcManager">
+      </ig:XamCalculationManager>
+   </StackPanel.Resources>
+   <!--データ ソースへのバインド --> 
+   <ig:ListCalculatorElement x:Name="listCalcElement" 
+                             CalculationManager="{StaticResource CalcManager}"
+                             ItemsSource="{Binding Path=AllShippingDetails}">
+      <ig:ListCalculatorElement.Calculator>
+         <ig:ListCalculator ReferenceId="AllShippingDetailsCalculator">
+            <!--ItemCalculations がリスト内の各 OrderDetail に適用されます。 -->
+            <ig:ListCalculator.ItemCalculations>
+               <ig:ItemCalculation TargetProperty="Shipping" 
+                                   Formula="([Price] * [Quantity])"/>
+               <ig:ItemCalculation ReferenceId="Total" 
+                                   Formula="([Price] * [Quantity]) + [Shipping]"/>
+            </ig:ListCalculator.ItemCalculations>
+            <!--ListCalculations がリスト内のすべての OrderDetail にいったん適用されます。 -->
+            <ig:ListCalculator.ListCalculations>
+               <ig:ListCalculation ReferenceId="GrandTotal" Formula="Sum([Total])"/>
+            </ig:ListCalculator.ListCalculations>
+         </ig:ListCalculator>
+      </ig:ListCalculatorElement.Calculator>
+   </ig:ListCalculatorElement>
+<!--このテキストブロックは、calculator の ListResults ディクショナリに Text プロパティをバインドします。-->
+   <TextBlock Text="Results from List Result”/>
+   <TextBlock x:Name="Result1" Text="{Binding ElementName=listCalcElement, Path=Calculator.ListResults[GrandTotal].Value}"/>
+<!--このテキストブロックは ListCalculator の ReferenceID を使用しており、数式を設定することにより GrandTotal 付きで取得します。 --> 
+   <TextBlock Text="Results from Reference ID”/>
+   <TextBlock x:Name="Result2" ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}">
+      <ig:XamCalculationManager.ControlSettings>
+         <ig:ControlCalculationSettings Formula="[AllShippingDetailsCalculator/GrandTotal]" />
+      </ig:XamCalculationManager.ControlSettings>
+   </TextBlock>
+</StackPanel>
+----
+
+== *関連トピック:*
+
+* link:xamcalculationmanager-overview-of-named-references.html[名前付き参照の概要]
+* link:xamcalculationmanager-overview-of-item-calculator.html[項目計算式の概要]

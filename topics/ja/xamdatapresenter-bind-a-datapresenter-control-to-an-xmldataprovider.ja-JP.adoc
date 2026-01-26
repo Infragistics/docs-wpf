@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-bind-a-datapresenter-control-to-an-xmldataprovider",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "{44AABBD1-E40E-44A1-ABD3-B2905DCA32BF}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1019735Z"
+}
+|metadata|
+////
+
+= DataPresenter コントロールを XmlDataProvider にバインド
+
+
+
+XML ファイルを含め、複数の異なるデータ ソースに DataPresenter コントロールをバインドできます。XmlDataProvider を使用して、アプリケーションのプレゼンテーション層に XML を公開できます。XmlDataProvider を未だ作成していない場合、このトピックのコード例に進む前に link:creating-an-xmldataprovider.html[XmlDataProvider の作成]の手順を読んで、それに従う必要があります。
+
+image::images/xamDataPresenter_Bind_xamDataPresenter_to_an_XmlDataProvider.png[xamDataPresenter を XmlDataProvider にバインド]
+
+以下の例のコードは、DataPresenter コントロールを XmlDataProvider にバインドする方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter 
+    Name="xamDataPresenter1" 
+    DataSource="{Binding Source={StaticResource OrderData}, XPath=/Orders/Order}"></igDP:XamDataPresenter>
+----
+
+== 関連トピック
+
+link:xamdatapresenter-bind-a-datapresenter-control-to-a-collection.html[DataPresenter コントロールをコレクションにバインド]
+
+link:xamdatapresenter-binding-a-datapresenter-control-to-a-dataset.html[DataPresenter コントロールを DataSet にバインド]
+
+link:xamdata-displaying-hierarchical-data.html[階層データを表示]

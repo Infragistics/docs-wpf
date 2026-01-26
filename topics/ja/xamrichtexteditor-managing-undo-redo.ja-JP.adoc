@@ -1,0 +1,204 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-undo-redo",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "7194dcc7-9a8d-465c-b78c-49cddc1cbbaa",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.5503084Z"
+}
+|metadata|
+////
+
+= 元に戻す / やり直しの管理 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールの [元に戻す] および [やり直し] の操作について、開発者の観点から説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362429462,はじめに>>
+* <<_Ref362429466,コントロールの構成の概要>>
+* <<_Ref332719506,元に戻す操作>>
+* <<_Ref332719522,やり直し操作>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref362429462]]
+== はじめに
+
+=== 元に戻す / やり直しのサポートの紹介
+
+link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager.html[UndoManager] は、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument.html[RichTextDocument] の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~undomanager.html[UndoManager] プロパティを使用してプログラムで利用可能です。デフォルトで、各 `RichTextDocument` には個別の `UndoManager` があります。これは、アプリケーションの各 `RichTextDocument` への変更の履歴が個別にあることを意味します。または、複数の `RichTextDocument` に単一の `UndoManager` を構成できます。この場合、すべての `RichTextDocument` への変更を共有履歴から追跡できます。
+
+[[_Ref362429466]]
+== コントロールの構成の概要
+
+=== コントロール構成の要点チャート
+
+以下の表は、元に戻す / やり直し操作の詳細を示しています。
+
+[options="header", cols="a,a"]
+|====
+|作業|詳細
+
+|<<_Ref332719506,元に戻す操作>>
+|指定された _xamRichTextEditor_ インスタンス上で元に戻す操作を実行します。
+
+|<<_Ref332719522,やり直し操作>>
+|指定された _xamRichTextEditor_ インスタンスでやり直し操作を実行します。
+
+|====
+
+[[_Undo_Operation]]
+[[_Ref332719506]]
+== 元に戻す操作
+
+=== 概要
+
+元に戻す操作は、`RichTextDocument` への直前の変更を増分でロール バックします。テキストを元の状態に戻し、元に戻す履歴スタックから元に戻す操作記録を取り出し、やり直し履歴スタックの一番上に追加します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a"]
+|====
+|目的:|実行する処理:
+
+|コマンドを使用して元に戻す操作を実行する
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.primitives.richtexteditorcommandsource_members.html[RichTextEditorCommandSource] クラスを作成し、以下のプロパティを設定します: 
+
+* link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.primitives.richtexteditorcommandsource~eventname.html[EventName] 
+
+* link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.primitives.richtexteditorcommandsource~commandtype.html[CommandType] 
+
+* link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.primitives.richtexteditorcommandsource~targetname.html[TargetName] 
+
+|コードを使用して元に戻す操作を実行する
+|各 _xamRichTextEditor_ ドキュメントの `UndoManager` の Undo メソッドを起動します。
+
+|====
+
+=== 例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+Example
+<Button Content="Undo">
+    <ig:Commanding.Command>
+        <igPrim:RichTextEditorCommandSource 
+            EventName="Click" CommandType="Undo" TargetName="xamRichTextEditor1" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.Document.UndoManager.Undo();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.Document.UndoManager.Undo()
+----
+
+[[_Redo_Operation]]
+[[_Ref332719522]]
+== やり直し操作
+
+=== 概要
+
+やり直し操作は、`RichTextDocument` への元に戻す操作により挿入された変更を増分でバック アウトします。テキストを最新の編集状態に戻し、やり直し履歴スタックから元に戻す操作記録を取り出し、元に戻す履歴スタックの一番上に追加します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a"]
+|====
+|目的:|実行する処理:
+
+|コマンドを使用して元に戻す操作を実行する
+|`RichTextEditorCommandSource` クラスを作成し、以下のプロパティを設定します: 
+
+* `EventName` 
+
+* `CommandType` 
+
+* `TargetName` 
+
+|コードを使用して元に戻す操作を実行する
+|各 _xamRichTextEditor_ ドキュメントの `UndoManager` の Redo メソッドを起動します。
+
+|====
+
+=== 例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+Example
+<Button Content="Redo">
+    <ig:Commanding.Command>
+        <igPrim:RichTextEditorCommandSource 
+            EventName="Click" CommandType="Redo" TargetName="xamRichTextEditor1" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.Document.UndoManager.Redo();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.Document.UndoManager.Redo()
+----
+
+[[_Ref359594803]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-undo-redo.html[元に戻す / やり直しの構成]
+|このトピックは、 _xamRichTextEditor_ コントロールの「元に戻す」のログ機能をオン / オフする方法を説明します。
+
+|====

@@ -1,0 +1,221 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-verifying-rectangular-cell-selection-when-copying-data",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Presentation","Events","Exporting","Grids","How Do I","Layouts","Selection"],
+    "guid": "6b7854af-c228-4e40-96aa-737cdd9725e5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.5692062Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= データ コピー時の、長方形セル選択の検証
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、エンド ユーザーが選択したセルを Microsoft® Excel® ワークシートに正しく貼り付けることができるかどうかを検証する方法を説明します。長方形のセル選択のみが、有効な領域として承認されます。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-copy-events-and-events-arguments.html[コピー イベントおよびイベント引数]
+|このトピックでは、コピー イベントを処理してコピー プロセスを制御する方法を示します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref319963865, xamGrid 内の長方形セル選択の検証 >>
+* <<_Ref319963871, 関連コンテンツ >>
+
+[[_Ref319963865]]
+== xamGrid 内の長方形セル選択の検証
+
+=== 概要
+
+Excel 文書では、長方形の領域を形成しない複数のデータ セルを選択し、それらをコピーしようとすると、その操作が不可能であることを示すメッセージが表示されます。コピーのための唯一の有効なセル選択における長方形の選択。
+
+xamGrid コントロールでは、コピー/貼り付けを行うセルの選択を確認できます。これを行うには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingeventargs_members.html[ClipboardCopyingEventArgs] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingeventargs~validateselectedrectangle.html[ValidateSelectedRectangle] メソッドを使用します。
+
+以下の手順は、セル選択の確認方法を示しています。セル選択が有効でない場合、選択したセルは赤で示されます。領域が長方形ではないためコピー操作がキャンセルされることを示すメッセージが表示されます。
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Verifying_Rectangular_Cell_Selection_When_Copying_Data_-_Copy_1.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Verifying_Rectangular_Cell_Selection_Copying_Data.png[]
+endif::win-rt[]
+
+=== 要件
+
+手順を実行するには、サンプル データ ソースとして提供された link:resources-datautil.html[DataUtil] クラスをプロジェクトに含める必要があります。
+
+=== 概要
+
+このトピックは、xamGrid コントロール内の長方形のセル選択の検証方法について、ステップごとに説明します。以下はプロセスの概念的概要です。
+
+[start=1]
+. <<_Ref1, xamGrid コントロールをアプリケーションに追加 >>
+[start=2]
+. <<_Ref2, コピー機能を有効にする >>
+[start=3]
+. <<_Ref3, 複数のセル選択を有効にする >>
+[start=4]
+. <<_Ref4, 無効な領域内のセルに印を付ける Style を作成し、それを LayoutRoot グリッド リソースとして追加 >>
+[start=5]
+. <<_Ref5, ClipboardCopying イベントの処理 >>
+
+=== 手順
+
+以下のステップは、長方形領域の検証方法を示します。
+
+=== xamGrid コントロールをアプリケーションに追加
+
+xamGrid コントロールをアプリケーションに追加し、データ ソースにバインドします。長方形のセル選択の検証は、ClipboardCopying イベント ハンドラ内で実行されます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid x:Name="dataGrid"
+    ClipboardCopying="dataGrid_ClipboardCopying">
+<!-- ここにさらにコードを追加します -->
+</ig:XamGrid>
+----
+
+=== コピー機能を有効にします
+
+エンド ユーザーが複数のセル コンテンツをコピーできるように、選択したセルに対して xamGrid のコピー機能を有効にします。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid.ClipboardSettings>
+  <ig:ClipboardSettings AllowCopy="True" 
+      CopyOptions="ExcludeHeaders" 
+      CopyType="SelectedCells"
+      AllowPaste="True"/>
+</ig:XamGrid.ClipboardSettings>
+----
+
+=== 複数セル選択の有効化
+
+複数のセル選択を xamGrid 内で有効にすると、エンド ユーザーはコピーするセルを選択できるようになります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid.SelectionSettings>
+    <ig:SelectionSettings 
+        CellClickAction="SelectCell" 
+        CellSelection="Multiple" />
+</ig:XamGrid.SelectionSettings>
+----
+
+=== 無効な領域内のセルに印を付ける Style を作成し、それを LayoutRoot グリッド リソースとして追加します。
+
+作成された Style は、セルの前景と境界線の色を赤にし、セルのテキストを太字フォントに設定します。このようにして、エンド ユーザーは、無効な選択に含まれたセルが分かります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Style x:Key="InvalidSelectionCellStyle" 
+       TargetType="ig:CellControl">
+<Setter Property="Foreground" Value="#FFc62d36" />
+<Setter Property="BorderBrush" Value="#FFc62d36" />
+<Setter Property="BorderThickness" Value="1" />
+<Setter Property="FontWeight" Value="Bold" />
+</Style>
+----
+
+=== ClipboardCopying イベントを処理します
+
+セルの選択が有効な場合、確認が行われます。選択が長方形ではない場合、選択したセルは赤で示され、メッセージが表示されます。コピー イベントはキャンセルされます。
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void dataGrid_ClipboardCopying(object sender, ClipboardCopyingEventArgs e)
+{
+  // 選択したセル領域が貼り付けに有効かどうかを確認します
+  bool isValidSelection = e.ValidateSelectedRectangle();
+  if (!isValidSelection)
+  {
+    foreach (CellBase cell in e.SelectedItems)
+    {
+      // 新しいスタイルをコピーされるセルに設定します
+      cell.Style = this.LayoutRoot.Resources["InvalidSelectionCellStyle"] as Style;
+    }
+    // 選択したセル領域が長方形以外の場合はコピー イベントをキャンセルします 
+    e.Cancel = true;
+    MessageBox.Show("Selected cell region is not valid for pasting.");
+  } 
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub dataGrid_ClipboardCopying(sender As System.Object, e As Infragistics.Controls.Grids.ClipboardCopyingEventArgs)
+  ' 選択したセル領域が貼り付けに有効かどうかを確認します
+  Dim isValidSelection As Boolean = e.ValidateSelectedRectangle()
+  If Not isValidSelection Then
+    For Each cell As CellBase In e.SelectedItems
+      ' 新しいスタイルをコピーされるセルに設定します
+      cell.Style = TryCast(Me.LayoutRoot.Resources("InvalidSelectionCellStyle"), Style)
+    Next
+    ' 選択したセル領域が長方形以外の場合はコピー イベントをキャンセルします 
+    e.Cancel = True
+  End If
+  MessageBox.Show("Selected cell region is not valid for pasting.")
+  End Sub
+----
+
+[[_Ref319963871]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-enable-copy-and-paste-support.html[コピーと貼り付けサポートの有効化]
+|このトピックは、xamGrid コントロールでコピー/貼り付け機能を有効にする方法を示します。
+
+| link:xamgrid-copy-options.html[コピー オプション]
+|このトピックは、利用可能なコピー オプションを示します。
+
+| link:xamgrid-specify-the-content-to-be-copied.html[コピーされるコンテンツを指定]
+|このトピックは、コピーされるもの (xamGrid コントロール内で選択されたセルまたは行) の指定方法を示します。
+
+| link:xamgrid-paste-event-and-event-arguments.html[貼り付けイベントおよびイベント引数]
+|このトピックは、貼り付けイベントを処理して、貼り付けプロセスを制御する方法を示します。
+
+|====

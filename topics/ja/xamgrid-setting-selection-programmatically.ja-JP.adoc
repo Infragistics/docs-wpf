@@ -1,0 +1,97 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-setting-selection-programmatically",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Selection"],
+    "guid": "{E7ED0E54-DA61-4F92-8853-6332A6F1DD1A}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.76219Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 選択をプログラムで設定
+
+エンド ユーザーは、マウスまたはキーボードを使用して xamGrid でセル、列または行を選択できます。ただし、選択したセル、列または行がエンド ユーザーに表示されるように設定することもできます。
+
+セル、列または行をコードで選択するために、必要なセル、列または行を選択したコレクションに追加できます。対応する選択されたコレクションから削除することによって、セル、列または行の選択を解除することもできます。
+
+次のコードは、これを実現する方法を示しています。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+'選択したセル コレクションにセルを追加します
+Dim SelectedCell As Cell = CType(Me.MyGrid.Rows(0).Cells(1), Cell)
+Me.MyGrid.SelectionSettings.SelectedCells.Add(SelectedCell)
+'選択したセル コレクションからセルを削除します
+'Me.MyGrid.SelectionSettings.SelectedCells.Remove(SelectedCell)
+'選択した列コレクションに列を追加します
+Dim SelectedColumn As Column = Me.MyGrid.Columns.DataColumns("ProductName")
+Me.MyGrid.SelectionSettings.SelectedColumns.Add(SelectedColumn)
+'選択した列コレクションからを列を削除します
+'Me.MyGrid.SelectionSettings.SelectedColumns.Remove(SelectedColumn)
+'選択した行コレクションに行を追加します
+Dim SelectedRow = Me.MyGrid.Rows(0)
+Me.MyGrid.SelectionSettings.SelectedRows.Add(SelectedRow)
+'選択した行コレクションから行を削除します
+'Me.MyGrid.SelectionSettings.SelectedRows.Remove(SelectedRow)
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+//選択したセル コレクションにセルを追加します
+Cell SelectedCell = (Cell)this.MyGrid.Rows[0].Cells[1];
+this.MyGrid.SelectionSettings.SelectedCells.Add(SelectedCell);
+//選択したセル コレクションからセルを削除します
+//this.MyGrid.SelectionSettings.SelectedCells.Remove(SelectedCell);
+//選択した列コレクションに列を追加します
+Column SelectedColumn = this.MyGrid.Columns.DataColumns["ProductName"];
+this.MyGrid.SelectionSettings.SelectedColumns.Add(SelectedColumn);
+//選択した列コレクションからを列を削除します
+//this.MyGrid.SelectionSettings.SelectedColumns.Remove(SelectedColumn);
+//選択した行コレクションに行を追加します
+Row SelectedRow = this.MyGrid.Rows[0];
+this.MyGrid.SelectionSettings.SelectedRows.Add(SelectedRow);
+//選択した行コレクションから行を削除します
+//this.MyGrid.SelectionSettings.SelectedRows.Remove(SelectedRow);
+----
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_SettingSelectionProgrammatically1.png[]
+endif::win-rt[]
+
+IsSelected プロパティを使用して選択を設定できます。Cell、Column および Row オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~isselected.html[IsSelected] プロパティは、そのオブジェクトが選択されているかどうかを判断します。
+
+以下のコードは、IsSelected プロパティを使用して、選択された行を設定する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.Rows(0).IsSelected = True
+Me.MyGrid.Columns.DataColumns(0).IsSelected = True
+Me.MyGrid.Rows(0).Cells(1).IsSelected = True
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.Rows[0].IsSelected = true;
+this.MyGrid.Columns.DataColumns[0].IsSelected = true;
+this.MyGrid.Rows[0].Cells[1].IsSelected = true; 
+----
+
+== 関連トピック
+
+link:xamgrid-selection.html[選択]
+
+link:xamgrid-selection-events.html[選択イベント]

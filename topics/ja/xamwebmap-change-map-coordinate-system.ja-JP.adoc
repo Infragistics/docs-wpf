@@ -1,0 +1,49 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-change-map-coordinate-system",
+    "controlName": ["xamMap"],
+    "tags": ["Application Blocks","How Do I"],
+    "guid": "{CF79C482-80B2-49B8-8D7C-1CADA78B637A}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.0972269Z"
+}
+|metadata|
+////
+
+= マップ座標システムを変更
+
+xamMap コントロールは、すべての shapefile が投影されていない測地座標にあり、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~mapprojectiontype.html[MapProjectionType] プロパティで指定された投影法を使用してそれらを表示することを前提とします。正距円筒図法はデフォルト値です。SphericalMercator はデフォルト値です。投影法の詳細については、 link:xamwebmap-understanding-xamwebmap.html[xamMap について] のセクションを参照してください。
+
+Shapefile が投影されていない座標を含む場合、ユーザーが実行しなければならないのは Shapefile を読み込むだけで、xamMap はデータを表示します。ただし、Shapefile の座標系がマップ投影法を使用する場合、ユーザーは Shapefile を読み取る時にこの入力投影法を指定する必要があります。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.reader~coordinatesystem.html[CoordinateSystem] を指定することで、xamMap はマップを正確に解釈および視覚化することができます。これによって、複数のマップ データ (州、市、道路) を座標系に依存せずに結合することができます。
+
+以下のコードは、インディアナ東地区の US State Plane Coordinate System を使用して指定したインディアナ州の Shapefile を読み取る方法を示します。通常、.prj または .txt Shapefiles でマップの座標系についての情報を検索できます。この情報がどのように見えるかの例は link:resources-indianashapefile.html[IndianaShapefile] で確認できます:
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer x:Name="Indiana">
+<igMap:MapLayer.Reader>
+   <igMap:ShapeFileReader Uri="/../../Shapefiles/IndianaShapefile">
+      <!-- 入力投影法のタイプで座標系を指定します。
+           .txt Shapefile から取得される各属性の設定 -->
+      <igMap:ShapeFileReader.CoordinateSystem>
+         <igMap:CoordinateSystem UnitType="M" FalseEasting="500000.0">
+            <igMap:CoordinateSystem.Projection>
+               <!-- Shapefile は横メルカトルマップ投影法を使用します -->
+               <igMap:TransverseMercator EllipsoidType="NAD83" 
+                                         ScaleFactor="0.9996" CentralMeridian="-87.0" LatitudeOrigin="0.0"     />
+               </igMap:CoordinateSystem.Projection>
+            </igMap:CoordinateSystem>
+         </igMap:ShapeFileReader.CoordinateSystem>
+      </igMap:ShapeFileReader>
+   </igMap:MapLayer.Reader>
+</igMap:MapLayer>
+----
+
+endif::wpf[]
+
+image::images/SL_DV_XamMap_Change_Map_Coordinate_System_01.png[]

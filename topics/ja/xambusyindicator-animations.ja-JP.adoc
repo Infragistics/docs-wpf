@@ -1,0 +1,322 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-animations",
+    "tags": ["Getting Started","How Do I"],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "d214f3c6-f372-4845-a277-fc14bbb40164",  
+    "buildFlags": [],
+    "createdOn": "2015-08-04T11:49:04.9766533Z"
+}
+|metadata|
+////
+
+= アニメーション (xamBusyIndicator)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamBusyIndicator_   コントロールで使用可能なビルド済みのアニメーションについて簡単に説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-features-overview.html[機能の概要]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xambusyindicator-visual-elements.html[視覚要素]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref426456818, ビルド済みアニメーションの指定 >>
+* <<_Ref426456819, ビルド済みのアニメーション >>
+* <<_Ref426457443, 関連コンテンツ >>
+
+** <<_Ref426457447,トピック>>
+
+[[_Ref426456818]]
+== ビルド済みアニメーションの指定
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator_members.html[XamBusyIndicator] の link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~animation.html[Animation] プロパティを使用して、特定のビルド済みアニメーションを  _xamBusyIndicator_   コントロールに設定します。
+
+デフォルトで、`Animation` プロパティの初期値は “SpinnerBars” です。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|_xamBusyIndicator_ アニメーションの指定
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~animation.html[Animation]
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.busyanimation_members.html[BusyAnimation]
+
+|====
+
+=== 例
+
+_xamBusyIndicator_   アニメーションは、以下のいずれかの方法で指定できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="Gears" />
+----
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" >
+    <ig:XamBusyIndicator.Animation>
+        <ig:GearsBusyAnimation />
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+BusyIndicator.Animation = new GearsBusyAnimation();
+----
+
+[[_Ref426456819]]
+== ビルド済みのアニメーション
+
+=== ビルド済みアニメーションの概要表
+
+以下の表で、 _xamBusyIndicator_   コントロールのビルド済みアニメーションとサポートされている確定モードと非確定モードを簡単に説明します。詳細は、概要表の後に記載されています。
+
+[options="header", cols="a,a"]
+|====
+|アニメーション|確定状態を使用可能
+
+|<<_Azure,Azure>>
+|image::images/No.png[]
+
+|<<_Ref426404474,Gears>>
+|image::images/No.png[]
+
+|<<_Ref426404481,ProgressBar>>
+|image::images/Yes.png[]
+
+|<<_Ref427698916,ProgressRing>>
+|image::images/Yes.png[]
+
+|<<_Ref426404496,SpinnerBalls>>
+|image::images/No.png[]
+
+|<<_Ref426404505,SpinnerBars>>
+|image::images/No.png[]
+
+|<<_Ref426404514,SpinnerBarsWave>>
+|image::images/No.png[]
+
+|<<_Ref427700108,SpinnerSegmented>>
+|image::images/No.png[]
+
+|====
+
+[[_Azure]]
+
+=== Azure
+
+以下のスクリーンショットは、“Azure” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_99.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="Azure"  />
+----
+
+[[_Ref426404474]]
+
+=== Gears
+
+以下のスクリーンショットは、“Gears” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_8.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="Gears"  />
+----
+
+[[_Ref426404481]]
+
+=== ProgressBar
+
+以下のスクリーンショットは、非確定モードの “ProgressBar” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_9.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="ProgressBar" IsIndeterminate="True"  />
+----
+
+以下のスクリーンショットは、確定モードの “ProgressBar” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_10.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="ProgressBar" IsIndeterminate=" ProgressValue="0.5" />
+----
+
+[[_Ref427698916]]
+
+=== ProgressRing
+
+以下のスクリーンショットは、非確定モードの “ProgressRing” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_11.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="ProgressRing" IsIndeterminate="True"/>
+----
+
+以下のスクリーンショットは、確定モードの “ProgressRing” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_12.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="ProgressRing" IsIndeterminate=" ProgressValue=".5"/>
+----
+
+[[_Ref426404496]]
+
+=== SpinnerBalls
+
+以下のスクリーンショットは、“SpinnerBalls” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_13.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="SpinnerBalls" />
+----
+
+[[_Ref426404505]]
+
+=== SpinnerBars
+
+以下のスクリーンショットは、“SpinnerBars” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_14.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="SpinnerBars" />
+----
+
+[[_Ref426404514]]
+
+=== SpinnerBarsWave
+
+以下のスクリーンショットは、“SpinnerBarsWave” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_15.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="SpinnerBarsWave" />
+----
+
+[[_Ref427700108]]
+
+=== SpinnerSegmented
+
+以下のスクリーンショットは、“SpinnerSegmented” アニメーションのデフォルトの外観を示しています。
+
+image::images/Animations_16.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Animation="SpinnerSegmented" />
+----
+
+[[_Ref426457443]]
+== 関連コンテンツ
+
+[[_Ref426457447]]
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-configuring-animations-brushes.html[アニメーション ブラシの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールのデフォルトのアニメーション ブラシをカスタマイズする方法を説明します。
+
+| link:xambusyindicator-applying-custom-animation.html[カスタム アニメーションの適用]
+|このトピックでは、 _xamBusyIndicator_ コントロールにカスタム アニメーションを適用する方法について説明します。
+
+| link:xambusyindicator-api-reference.html[API リファレンス]
+|このトピックでは、コントロールに関連したキー クラスに関する参考情報を提供します。
+
+|====

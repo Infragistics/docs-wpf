@@ -1,0 +1,61 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistence-persistence-settings",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["How Do I"],
+    "guid": "{2F252AF5-FC64-4C6E-9CB1-908571A9F5B4}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6090314Z"
+}
+|metadata|
+////
+
+= 保持の設定
+
+すべてのプロパティまたは特定のプロパティを保存する、またはその一部を無視することによって、どのコントロールのプロパティを保持するかを、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence_namespace.html[Infragistics Persistence Framework]™ を使って構成できます。このような構成を有効にするには、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings.html[PersistenceSettings] オブジェクトを使用します。
+
+PersistenceSettings オブジェクトの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings~savepersistenceoptions.html[SavePersistenceOptions] および link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings~loadpersistenceoptions.html[LoadPersistenceOptions] プロパティによって、どのコントロールの設定を保存およびロードするのかを指定できます。
+
+2 つの保持オプションは、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.primitives.persistenceoption.html[AllButIgnored] および link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.primitives.persistenceoption.html[OnlySpecified] です。
+
+オプション AllButIgnored が設定されると、無視するようにマークされたプロパティを除き、すべてのコントロールのプロパティが保存またはロードされます。
+
+オプション OnlySpecified が設定されると、指定されたプロパティのみが保存またはロードされます。
+
+名前でプロパティを識別し、PropertyNamePersistenceInfo オブジェクトを作成できます。
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertynamepersistenceinfo.html[PropertyNamePersistenceInfo] オブジェクトの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertynamepersistenceinfo~options.html[Options] プロパティは、プロパティ名の検索方法を定義します。
+
+オプションは以下の通りです。
+
+* link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.primitives.propertynamepersistenceoptions.html[PropertyName] - 指定された名前を探します
+* link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.primitives.propertynamepersistenceoptions.html[PropertyPath] - プロパティ パスで特定の名前を探します
+* link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.primitives.propertynamepersistenceoptions.html[Contains] - プロパティ パスを調べて、名前がそこにあるかどうかを確認します
+
+ひとつのプロパティまたはプロパティのリストはタイプでも区別できます。この場合、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertytypepersistenceinfo.html[PropertyTypePersistenceInfo] オブジェクトを使用します。
+
+== 関連トピック
+
+link:persistence-exclude-specific-control-properties.html[特定のコントロールのプロパティを除外]
+
+ifdef::sl,win-rt,win-phone[]
+link:3ff664bc-2a4b-459d-8184-4ddca70ed809[識別子]
+endif::sl,win-rt,win-phone[]
+
+link:persistence-persistence-groups.html[保持グループ]
+
+link:persistence-persisting-specific-control-properties.html[特定のコントロールのプロパティを保持]
+
+ifdef::win-phone[]
+link:persistence-using-propertynamepersistenceinfo-typeconverter-property.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+endif::win-phone[]
+
+ifdef::sl,wpf,win-rt[]
+link:persistence-using-typeconverte.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+endif::sl,wpf,win-rt[]
+
+link:persistence-handle-persistencesaved-and-persistenceloaded-events.html[PersistenceSaved イベントと PersistenceLoaded イベントの処理]
+
+link:persistence-handle-savepropertypersistence-and-loadpropertypersistence-events.html[SavePropertyPersistence イベントと LoadPropertyPersistence イベントの処理]

@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtagcloud-api-overview",
+    "controlName": ["xamTagCloud"],
+    "tags": ["API"],
+    "guid": "{FECE0C70-832E-43C1-B267-C4F49A75E7CA}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5353635Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションでは xamTagCloud™ コントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[cols="a,a"]
+|====
+|*xamTagCloud 名前空間*
+|*キー クラス*
+
+| link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers] 
+
+link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus_namespace.html[Infragistics.Controls.Menus]
+| link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud.html[XamTagCloud] 
+
+link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagclouditem.html[XamTagCloudItem]
+
+|====

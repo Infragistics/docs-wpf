@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-rows",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Layouts"],
+    "guid": "{A12DFFB4-7884-4ACE-AF03-0FF14F773658}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0941711Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 行
+
+このセクションは、xamGrid コントロールの行オブジェクトを使用して作業をする際の、タスクベースの手順に関する有益な情報を提供します。
+
+link:xamgrid-add-new-row.html[新規行の追加]
+
+このトピックでは、xamGrid コントロールに新しい行を追加する方法を示します。
+
+link:xamgrid-add-row-commands.html[行コマンドの追加]
+
+このトピックでは、xamGrid コントロールの行にコマンドを追加する方法を示します。
+
+link:xamgrid-auto-expand-data-rows-and-child-bands.html[データ行と子バンドの自動展開]
+
+このトピックでは、IsExpanded プロパティおよび RowExpansionChanged イベントを使用して、データ行および子バンドを自動的に展開する方法を示します。
+
+link:xamgrid-change-row-hover-type.html[行ホバー タイプの変更]
+
+このトピックでは、行のホバー タイプのデフォルト値を変更する方法を示します。
+
+link:xamgrid-remove-alternative-row-styling.html[代替え行スタイリングの削除]
+
+このトピックでは、代替行に適用されるデフォルトのスタイル設定を削除する方法を示します。
+
+link:xamgrid-row-deletion.html[行の削除]
+
+このトピックでは、xamGrid コントロールから行を削除する方法を示します。
+
+link:xamgrid-requireemptyconstructor-exception.html[RequireEmptyConstructor 例外]
+
+このトピックでは、RequireEmptyConstrutor 例外を回避する方法を示します。

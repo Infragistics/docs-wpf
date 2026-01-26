@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-xamcomboeditor-about-xamcomboeditor",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{E5E4E3C6-75AF-4D54-971D-ABA8990DB4B9}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0679781Z"
+}
+|metadata|
+////
+
+{XamComboEditorInputHeader}
+
+= xamComboEditor について
+
+xamComboEditor™ コントロールは、.NET Framework によって提供される ComboBox コントロールに似たエディターです。.NET Framework ComboBox コントロールとまったく同じように、xamComboEditor コントロールはエンドユーザーが単一の項目を選択することができるドロップダウン リストを表示できます。ComboBox コントロールのデフォルト機能とともに、xamComboEditor は link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor] クラスによって提供される機能も継承します。.Net Framework と xamComboEditor によって提供される ComboBox コントロールの最大の違いは、データをコントロールにバインドする方法です。
+
+== データ バインディング
+
+$$.NET$$ Framework によって提供される ComboBox コントロールと異なり、xamComboEditor は link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider.html[ComboBoxItemsProvider] オブジェクトのインスタンスに設定できる link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamcomboeditor~itemsprovider.html[ItemsProvider] プロパティを公開します。ComboBoxItemsProvider オブジェクトは、その他の任意の Microsoft® Windows® Presentation Foundation ItemsControl と全く同様に使用できる link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider~items.html[Items] プロパティと link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider~itemssource.html[ItemsSource] プロパティを公開します。
+
+データ バインディング機能を提供する ComboBoxItemsProvider オブジェクトを持つことによって、xamComboEditor は xamComboEditor の複数のインスタンスで ComboBoxItemsProvider オブジェクトの単一のインスタンスを共有できます。これによって xamComboEditor の複数のインスタンスが同じデータ ソースを使用する状況においてオーバーヘッドを大幅に削減します。たとえば、xamDataGrid™ で xamComboEditor を link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] のエディターとして使用する場合、単一の ComboBoxItemsProvider オブジェクトが、Field の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cells] 内で全ての xamComboEditors コントロールによって共有されます。
+
+xamComboEditor の開始および終了の ItemsProvider プロパティ タグ内で ComboBoxItemsProvider オブジェクトの新しいインスタンスを宣言できます。ResourceDictionary で ComboBoxItemsProvider の新しいインスタンスを宣言して、このリソースを参照するマークアップ拡張に xamComboEditor の ItemsProvider プロパティを設定することができます。同じデータ ソースを使用する複数の xamComboEditors を持つ場合、オーバーヘッドを削除するために Resource として ComboBoxItemsProvider オブジェクトのインスタンスを宣言する必要があります。

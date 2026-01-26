@@ -1,0 +1,54 @@
+﻿////
+
+|metadata|
+{
+    "name": "drag-and-drop-framework-set-drag-and-drop-channels",
+    "controlName": ["IG Drag and Drop Framework"],
+    "tags": ["Data Presentation","Getting Started","How Do I"],
+    "guid": "{0767BD66-A402-4D10-8494-5B19E57A9B2C}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6780338Z"
+}
+|metadata|
+////
+
+= ドラッグ アンド ドロップ チャネルを設定
+
+Infragistics Drag and Drop Framework を使用してドラッグできる項目とドロップできる場所を決定できます。特定の項目のみを特定の領域にドラッグできる、または特定の項目を複数の領域にドラッグできるように指定できます。Drag and Drop Framework は非常に柔軟であるため、ドラッグされる項目とドロップ領域間に固有の関係を作成できます。1 対 1、1 対多、多対 1、多対多の関係を作成できます。これは link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource.html[DragSource] オブジェクトの link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragchannels.html[DragChannels] プロパティおよび link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget.html[DropTarget] オブジェクトの link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget~dropchannels.html[DropChannels] プロパティを設定して行うことができます。
+
+たとえば、アプリケーションにショッピング カート、項目リスト、ごみ箱が含まれる場合、エンドユーザーが項目を項目リストからショッピング カートに、また項目をショッピング カートからゴミ箱にドラッグすることのみを許可し、その他の組み合わせを制限するように、ドラッグ アンド ドロップ動作を設定できます。
+
+以下のコードは画像をさまざまなドロップ領域のドラッグするように設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<Border>
+   <Image Source="/Images/select.png" Stretch="Fill">
+      <ig:DragDropManager.DragSource>
+        <ig:DragSource IsDraggable="True"
+          DragChannels="ChannelA, ChannelB, ChannelC" Drop="DragSource_Drop">
+        </ig:DragSource>
+     </ig:DragDropManager.DragSource>
+  </Image>
+</Border>
+----
+
+以下のコードはドロップ領域を設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<StackPanel x:Name="TargetPanel" Background="White" Orientation="Vertical">
+   <ig:DragDropManager.DropTarget>
+      <ig:DropTarget IsDropTarget="True" DropChannels="ChannelA">
+      </ig:DropTarget>
+   </ig:DragDropManager.DropTarget>
+</StackPanel>
+----
+
+== 関連トピック
+
+link:drag-and-drop-framework-ig-drag-and-drop-framework-events.html[Infragistics Drag and Drop Framework イベント]
+
+link:drag-and-drop-framework-set-custom-cursors-for-different-drag-and-drop-situations.html[さまざまなドラッグ アンド ドロップ状況のカスタム カーソルを設定]

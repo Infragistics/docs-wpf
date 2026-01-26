@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-sorting",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{A39D1B2E-2A4C-4B7A-A6E8-983C57556F35}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0219575Z"
+}
+|metadata|
+////
+
+= レコードの並べ替え (xamDataGrid)
+
+
+
+xamDataGrid™ コントロールを使用してデータを並べ替えることに特化したトピックをご覧になるには、以下のリンクをクリックしてください。
+
+* link:xamdatagrid-sorting-overview.html[並べ替えの概要]
+* link:xamdatapresenter-disable-sorting.html[並べ替えを無効にする]
+* link:xamdatagrid-external-sorting.html[外部並べ替え]
+* link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[フィールドのプログラムによる並べ替えおよびグループ化]
+* link:xamdatagrid-sorting-grouping-process-overview.html[並べ替えとグループ化プロセスの概要]
+* link:xamdatagrid-user-interaction-sorting-records.html[レコード並べ替え時のユーザー操作]

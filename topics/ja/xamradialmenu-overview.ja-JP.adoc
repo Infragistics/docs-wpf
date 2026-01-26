@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamradialmenu-overview",
+    "tags": [],
+    "controlName": ["xamRadialMenu"],
+    "guid": "51444d7c-e216-47b8-8083-4089818035ac",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.8143065Z"
+}
+|metadata|
+////
+
+= xamRadialMenu の概要
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、 link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[ _xamRadialMenu_  ]™ コントロールの機能、視覚要素とその操作について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-features.html[xamRadialMenu の機能]
+|このトピックでは、 _xamRadialMenu_ コントロールでサポートされる機能を開発者の観点から説明します。
+
+| link:xamradialmenu-visual-elements.html[xamRadialMenu の視覚要素]
+|このトピックでは、 _xamRadialMenu_ コントロールの視覚要素の概要を紹介します。
+
+| link:xamradialmenu-user-interaction.html[ユーザー相互作用と操作性]
+|このトピックでは、ユーザーが実行できる操作を紹介します。
+
+|====

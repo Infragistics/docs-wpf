@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xameditors-working-with-the-isalwaysineditmode-property-and-the-editors",
+    "controlName": [],
+    "tags": ["Editing"],
+    "guid": "{9AD315AE-C6C3-4EBF-984B-5A1BBC79BA3B}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1869781Z"
+}
+|metadata|
+////
+
+= IsAlwaysInEditMode プロパティとエディターによる作業
+
+
+
+{ProductName} エディターの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~isalwaysineditmode.html[IsAlwaysInEditMode] プロパティはデフォルトで True です。ただし、このエディターがもうひとつのコントロール (xamDataGrid、xamDataCarousel、xamDataPresenter の ValuePresenter) に埋め込まれる時に IsAlwaysInEditMode プロパティは無視されます。したがって、コントロールがロードされる時に、エディターが編集モードになって、フォーカスを失う時でも編集モードのまま変わりません。
+
+IsAlwaysInEditMode プロパティが False に設定されている、またはエディターがもうひとつのコントロール内にホストされる場合には、フォーカスを受け取ると編集モードになり、フォーカスを失うと編集モードを終了します。このルールの例外は、エディターに無効な値が含まれており、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~invalidvaluebehavior.html[InvalidValueBehavior] プロパティが RetainValue に設定されている時です。この場合、エディターは編集モードの間に無効な値を持つことができないため、エディターは編集モードのまま変わりません。これに加えて、IsAlwaysInEditMode が False に設定されると、以下の 4 つのイベントが発生します。
+
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~editmodestarting_ev.html[EditModeStarting]
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~editmodestarted_ev.html[EditModeStarted]
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~editmodeending_ev.html[EditModeEnding]
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~editmodeended_ev.html[EditModeEnded]

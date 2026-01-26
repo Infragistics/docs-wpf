@@ -1,0 +1,469 @@
+﻿////
+
+|metadata|
+{
+    "name": "resources-indianashapefile",
+    "controlName": [],
+    "tags": ["Sample Data Source"],
+    "guid": "{2C53D429-A05C-4474-B79B-E8DEF6049445}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.3140541Z"
+}
+|metadata|
+////
+
+= IndianaShapefile
+
+*シェープファイルの場合:*
+
+[source,shp]
+----
+IDENTIFICATION_INFORMATION
+  Citation:
+    Citation_Information:
+      Originator: Indiana Geological Survey
+      Originator: Karen K. Like (デジタル コンパイラー)
+      Publication_Date: 20020621
+      Title: INDIANA_TR_24K_IGS_P: インディアナのタウンシップまたはレンジ線
+        (Indiana Geological Survey、1:24,000、ポリゴン シェープファイル)
+      Edition: 1.0
+      Geospatial_Data_Presentation_Form: マップ
+      Publication_Information:
+        Publication_Place: インディアナ州ブルーミントン
+        Publisher: Indiana Geological Survey
+      Other_Citation_Details: なし
+      Online_Linkage: なし
+  Description:
+    Abstract: INDIANA_TR_24K_IGS_P はユニバーサル横メルカトル図法 (UTM) および北米測地座標系 (NAD) 1983、ゾーン 16 による 1:24,000 スケールのポリゴン シェープファイル。
+    Purpose: このシェープファイルは、ポリゴン形式でインディアナ州のタウンシップまたはレンジ線を
+      定義するフレームワーク層として作成されました。この情報は
+      1:24,000 またはそれより小さいスケールで地理的に表示または分析するためのものです。
+    Supplemental_Information: このシェープファイルは、"IN_LANDSURVEY" という名前の前任者の範囲から派生しました。IN_LANDSURVEY は、USGS 1:24,000 デジタル ラスター グラフィックス (DRG) シリーズで表される、Indiana
+      Geological Survey によって作成された土地調査機能のデジタル表現です。ESRI ArcEdit 8.1 および ESRI ArcView 3.2 は、以下のシェープファイルから抽出されました。IN_LANDSURVEY:
+      Indiana_CountyBdy_24k_IGS_l, Indiana_CountyBdy_24k_IGS_p,
+      Indiana_LandSurvey_24k_IGS_l, Indiana_LandSurvey_24k_IGS_p,
+      Indiana_StateBdy_24k_IGS_l, Indiana_StateBdy_24k_IGS_p,
+      Indiana_TR_24k_IGS_l, and Indiana_TR_24k_IGS_p.
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Range_of_Dates/Times: 
+        Beginning_Date: 1952
+        Ending_Date: 1998
+    Currentness_Reference: 発行日
+  Status:
+    Progress: 完了
+    Maintenance_and_Update_Frequency: 計画なし
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: -88.1607
+      East_Bounding_Coordinate: -84.6882
+      North_Bounding_Coordinate: 41.7753
+      South_Bounding_Coordinate: 37.7554
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: IGS メタデータ キーワードの類語
+      Theme_Keyword: Indiana Geological Survey
+      Theme_Keyword: IGS
+      Theme_Keyword: 議会が定めたタウンシップ
+      Theme_Keyword: タウンシップ
+      Theme_Keyword: レンジ
+      Theme_Keyword: 土地調査
+      Theme_Keyword: 公共調査
+    Place:
+      Place_Keyword_Thesaurus: IGS メタデータ キーワードの類語
+      Place_Keyword: インディアナ
+      Place_Keyword: アダムス郡
+      Place_Keyword: アレン郡
+      Place_Keyword: バーソロミュー郡
+      Place_Keyword: ベントン郡
+      Place_Keyword: ブラックフォード郡
+      Place_Keyword: ブーン郡
+      Place_Keyword: ブラウン郡
+      Place_Keyword: キャロル郡
+      Place_Keyword: カス郡
+      Place_Keyword: クラーク郡
+      Place_Keyword: クレイ郡
+      Place_Keyword: クリントン郡
+      Place_Keyword: クロフォード郡
+      Place_Keyword: デービス郡
+      Place_Keyword: ディアボーン郡
+      Place_Keyword: ディケーター郡
+      Place_Keyword: デカルブ郡
+      Place_Keyword: デラウェア郡
+      Place_Keyword: デュボイス郡
+      Place_Keyword: エルクハート郡
+      Place_Keyword: フェイエット郡
+      Place_Keyword: フロイド郡
+      Place_Keyword: ファウンテン郡
+      Place_Keyword: フランクリン郡
+      Place_Keyword: フルトン郡
+      Place_Keyword: ギブソン郡
+      Place_Keyword: グラント郡
+      Place_Keyword: グリーン郡
+      Place_Keyword: ハミルトン郡
+      Place_Keyword: ハンコック郡
+      Place_Keyword: ハリソン郡
+      Place_Keyword: ヘンドリックス郡
+      Place_Keyword: ヘンリー郡
+      Place_Keyword: ハワード郡
+      Place_Keyword: ハンティントン郡
+      Place_Keyword: ジャクソン郡
+      Place_Keyword: ジャスパー郡
+      Place_Keyword: ジェイ郡
+      Place_Keyword: ジェファーソン郡
+      Place_Keyword: ジェニングス郡
+      Place_Keyword: ジョンソン郡
+      Place_Keyword: ノックス郡
+      Place_Keyword: コジアスコ郡
+      Place_Keyword: ラグランジュ郡
+      Place_Keyword: レイク郡
+      Place_Keyword: ラポート郡
+      Place_Keyword: ローレンス郡
+      Place_Keyword: マディソン郡
+      Place_Keyword: マリオン郡
+      Place_Keyword: マーシャル郡
+      Place_Keyword: マーティン郡
+      Place_Keyword: マイアミ郡
+      Place_Keyword: モンロー郡
+      Place_Keyword: モンゴメリー郡
+      Place_Keyword: モーガン郡
+      Place_Keyword: ニュートン郡
+      Place_Keyword: ノーブル郡
+      Place_Keyword: オハイオ郡
+      Place_Keyword: オレンジ郡
+      Place_Keyword: オーエン郡
+      Place_Keyword: パーク郡
+      Place_Keyword: ペリー郡
+      Place_Keyword: パイク郡
+      Place_Keyword: ポーター郡
+      Place_Keyword: ポージー郡
+      Place_Keyword: プラスキ郡
+      Place_Keyword: パトナム郡
+      Place_Keyword: ランドルフ郡
+      Place_Keyword: リプリー郡
+      Place_Keyword: ラッシュ郡
+      Place_Keyword: セントジョセフ郡
+      Place_Keyword: スコット郡
+      Place_Keyword: シェルビー郡
+      Place_Keyword: スペンサー郡
+      Place_Keyword: シュタルケ郡
+      Place_Keyword: シュトイベン郡
+      Place_Keyword: サリバン郡
+      Place_Keyword: スイス郡
+      Place_Keyword: ティペカヌー郡
+      Place_Keyword: ティプトン郡
+      Place_Keyword: ユニオン郡
+      Place_Keyword: バンダーバーグ郡
+      Place_Keyword: バーミリオン郡
+      Place_Keyword: ビゴ郡
+      Place_Keyword: ウォバシュ郡
+      Place_Keyword: ウォーレン郡
+      Place_Keyword: ウォーリック郡
+      Place_Keyword: ワシントン郡
+      Place_Keyword: ウェイン郡
+      Place_Keyword: ウェルズ郡
+      Place_Keyword: ホワイト郡
+      Place_Keyword: ホイットリー郡
+  Access_Constraints: このファイルは誰でも使用できますが、書類の提出が条件となり、特定の条件を満たした組織または個人がインディアナ州の現在の情報公開法に基づきアクセスできます。
+  Use_Constraints:
+    DATA DISCLAIMER:
+    本データはインディアナ大学、Indiana Geological
+    Survey によってまとめられました。すべてのデータには正確を期していますが、エラーがある場合があります。本製品は、特定の目的または使用に対する適用性の保証を含みそれに限定されることなく、明示的にも暗示的にも、如何なる保証を行わず、「現状」のままで配布されます。連邦、州、または地方政府の制限または司法管轄権を定義するためにこれらのデータのデザインまたは制作は行われませんでした。これらのデータは、発行されたスケール以下に限り使用することを意図しており、参照のみを目的としています。法律文書や調査手段として作成されていません。ひとつの場所の地盤調査および履歴分析についての詳細は、これらのデータと異なる場合があります。
+    COPYRIGHT 2002, THE TRUSTEES OF INDIANA UNIVERSITY,
+    INDIANA GEOLOGICAL SURVEY, ALL RIGHTS RESERVED
+    これらのメディアの情報は、インディアナ大学、
+    Indiana Geological Survey に属します。インディアナ大学、Indiana Geological Survey による書面による承諾なしに、本情報をコピー、適用、配布、公共における公開、または表示することは禁止されています。
+    CREDIT:
+    本データから作成したいかなる製品にも、Indiana Geological Survey のクレジットを表示する必要があります。以下の引用を含めてください: INDIANA_TR_24K_IGS_P: Township or range lines of Indiana
+    (Indiana Geological Survey, 1:24,000, Polygon Shapefile), digital
+    compilation by Karen K. Like, 2002.
+    WARRANTY:
+    本製品が保存されているメディアは、取得した日から 90 日を限度として欠陥がないことをインディアナ大学、Indiana Geological Survey は保証します。欠陥が見つかった場合は、メディアを以下の住所まで返却してください。無料で交換させていただきます。Publication Sales, Indiana
+    Geological Survey, 611 North Walnut Grove, Bloomington, Indiana 47405
+    2208
+    LIMITATION OF WARRANTIES AND LIABILITY:
+    上記の明示的な保証を除き、本製品は、明示的にも暗示的にも、その他の保証や条件を付けることなく、製品の品質または特定の目的または使用に対する適用性の保証を含みそれに限定することなく、「現状」のままで配布されます。本製品の使用に起因するリスクまたは責任は使用者にあります。インディアナ大学、Indiana Geological Survey は、間接的、偶発的、特別、または結果的な如何なる損害に対しても、収入または利益の喪失、データの紛失または損害、または他の商業的または経済的損害を含みそれに限定されることなく、いかなる責任も負いません。インディアナ大学、Indiana
+    Geological Survey は、第三者の如何なる申し立てに対して責任を負いません。元々の購入者に対する最大限の債務総額は、製品に対して購入者が支払った額を超えないものとします。
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Indiana Geological Survey
+      Contact_Address:
+        Address_Type: 郵送先と実際の住所
+        Address: 611 North Walnut Grove
+        City: Bloomington
+        State_or_Province: Indiana
+        Postal_Code: 47405 2208
+        Country: USA
+      Contact_Voice_Telephone: 812 855 7636
+      Contact_Facsimile_Telephone: 812 855 2862
+      Contact_Electronic_Mail_Address: IGSinfo@indiana.edu
+      Hours_of_Service: 0800～1700 (東部標準時間)
+      Contact_Instructions: 月～金 (休日を除く)
+  Browse_Graphic:
+    Browse_Graphic_File_Name: INDIANA_TR_24K_IGS_P
+    Browse_Graphic_File_Description: ポリゴン シェープファイルおよび表サンプル
+    Browse_Graphic_File_Type: PDF
+  Native_Data_Set_Environment:
+    ESRI ArcView バージョン 3.2 シェープファイル形式、Microsoft Windows 2000
+    INDIANA_TR_24K_IGS_P.shp, approximately 1.18 Mb
+DATA_QUALITY_INFORMATION
+  Attribute_Accuracy:
+    Attribute_Accuracy_Report: このシェープファイルに収められているすべての情報は、IN_LANDSURVEY という前任者の範囲から抽出されました。
+  Logical_Consistency_Report: ぶらさがっているノードで検証が行われ、問題はありませんでした。
+  Completeness_Report: オリジナルの IN_LANDSURVEY ライン範囲は、layer_1 = STATE-BDY、T-R、T-R-CLOSE、OLSS-BDY、OLSS-BDY-CLOSE および
+    layer_2 = T-R, LM-SHORE、OLSS-BDY、または OLSS-BDY-CLOSE に対して問い合わされました。タウンシップおよびレンジの境界は、前任者の範囲である IN_LANDSURVEY に含まれている
+    タウンシップおよびレンジの境界と同一であることが検証されました。 
+  Positional_Accuracy:
+    Horizontal_Positional_Accuracy:
+      Horizontal_Positional_Accuracy_Report: IN_LANDSURVEY をまとめるために使用された元の素材を使用することが最も正確です。IN_LANDSURVEY に含まれているベクトル線は、1:5,000 以上の画面スケールで DRG ラスター線に補正されています。
+    Vertical_Positional_Accuracy:
+      Vertical_Positional_Accuracy_Report: 垂直の精度は、データセットのデジタル制作上の要因ではありません。
+  Lineage:
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: Indiana Geological Survey
+          Publication_Date: 20020510
+          Title: IN_LANDSURVEY: Land Survey Information of Indiana (Indiana
+            Geological Survey, 1:24,000、線およびポリゴン範囲)
+          Edition: 1.0 (20020510)
+          Geospatial_Data_Presentation_Form: Map
+          Publication_Information:
+            Publication_Place: インディアナ州ブルーミントン郡
+            Publisher: Indiana Geological Survey
+          Other_Citation_Details: なし
+          Online_Linkage: なし
+      Source_Scale_Denominator: 24000
+      Type_of_Source_Media: ネットワーク ドライブ
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times: 
+            Beginning_Date: 1952
+            Ending_Date: 1998
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: IN_LANDSURVEY
+      Source_Contribution: すべての線の作業および属性情報。
+    Process_Step:
+      Process_Description: IN_LANDSURVEY は ESRI ArcEdit で公開され、
+         layer_1 = STATE-BDY または layer_1 = T-R または layer_1 =
+        T-R-CLOSE または layer_1 = OLSS-BDY または layer_1 = OLSS-BDY-CLOSE または
+        layer_2 = T-R or layer_2 = LM-SHORE または layer_2 = OLSS-BDY または
+        layer_2 = OLSS-BDY-CLOSE に対して問い合わされました。新しい範囲は、ラベル オプションを複製せずに作成されました。Type、Parcel_ID、および Source の属性フィールドは、
+        PAT ファイルから削除されました。その結果の範囲は ESRI ArcView で公開され、
+        INDIANA_TR_24K_IGS_P と名前が付けられたポリゴン シェープファイルとして保存されています。
+      Source_Used_Citation_Abbreviation: IN_LANDSURVEY
+      Process_Date: 20020614
+      Source_Produced_Citation_Abbreviation: INDIANA_TR_24K_IGS_P.SHP
+      Process_Contact:
+        Contact_Information: 
+          Contact_Organization_Primary:
+            Contact_Organization: Indiana Geological Survey
+            Contact_Person: Karen K. Like
+          Contact_Position: 地図製作の専門家
+          Contact_Address:
+            Address_Type: 郵送先および実際の住所
+            Address: 611 North Walnut Grove
+            City: Bloomington
+            State_or_Province: Indiana
+            Postal_Code: 47405 2208
+            Country: USA
+          Contact_Voice_Telephone: 812 855 5893
+          Contact_Facsimile_Telephone: 812 855 2862
+          Contact_Electronic_Mail_Address: klike@indiana.edu
+          Hours_of_Service: 0800～1700 (東部標準時間)
+          Contact_Instructions: 月～金 (休日を除く)
+SPATIAL_DATA_ORGANIZATION_INFORMATION
+  Indirect_Spatial_Reference: インディアナ
+  Direct_Spatial_Reference_Method: ベクトル
+  Point_and_Vector_Object_Information:
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: チェーンで構成される GT ポリゴン
+      Point_and_Vector_Object_Count: 1278 
+SPATIAL_REFERENCE_INFORMATION
+  Horizontal_Coordinate_System_Definition:
+    Planar:
+      Grid_Coordinate_System:
+        Grid_Coordinate_System_Name: ユニバーサル横メルカトル図法
+        Universal_Transverse_Mercator:
+          UTM_Zone_Number:  16
+          Transverse_Mercator:
+            Scale_Factor_at_Central_Meridian: 0.999600
+            Longitude_of_Central_Meridian: -87.000000
+            Latitude_of_Projection_Origin: 0.000000
+            False_Easting: 500000.000000
+            False_Northing: 0.000000
+      Planar_Coordinate_Information:
+        Planar_Coordinate_Encoding_Method: 座標の組
+        Coordinate_Representation:
+          Abscissa_Resolution: 
+          Ordinate_Resolution: 
+        Planar_Distance_Units: メートル
+    Geodetic_Model:
+      Horizontal_Datum_Name: 北米測地座標系 1983
+      Ellipsoid_Name: GRS 80
+      Semi-major_Axis: 6378137.0000000
+      Denominator_of_Flattening_Ratio: 298.26
+ENTITY_AND_ATTRIBUTE_INFORMATION
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: indiana_tr_24k_igs_p.dbf
+      Entity_Type_Definition: シェープファイル属性テーブル
+      Entity_Type_Definition_Source: なし
+    Attribute:
+      Attribute_Label: 領域
+      Attribute_Definition: ポリゴンの領域
+      Attribute_Definition_Source: 生成されたソフトウェア
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          計算されたソフトウェア
+    Attribute:
+      Attribute_Label: プリメーター
+      Attribute_Definition: ポリゴンのプリメーター
+      Attribute_Definition_Source: 生成されたソフトウェア
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          計算されたソフトウェア
+    Attribute:
+      Attribute_Label: T_r_igs_in
+      Attribute_Definition: 内部の機能番号
+      Attribute_Definition_Source: 生成されたソフトウェア
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 2
+          Range_Domain_Maximum: 1279
+    Attribute:
+      Attribute_Label: T_r_igs_in
+      Attribute_Definition: 機能 ID 番号
+      Attribute_Definition_Source: 生成されたソフトウェア
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 2
+          Range_Domain_Maximum: 1279
+    Attribute:
+      Attribute_Label: 経線
+      Attribute_Definition: 主経線
+      Attribute_Definition_Source: USGS 7.5-minute quadrangle
+      Attribute_Domain_Values:
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: FIRST
+          Enumerated_Domain_Value_Definition: 最初の主経線
+          Enumerated_Domain_Value_Definition_Source: USGS quadrangle
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: SECOND
+          Enumerated_Domain_Value_Definition: 2 番目の主経線
+          Enumerated_Domain_Value_Definition_Source: USGS quadrangle
+    Attribute:
+      Attribute_Label: Twp
+      Attribute_Definition:タウンシップ番号
+      Attribute_Definition_Source: USGS 7.5-minute quadrangle
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 1
+          Range_Domain_Maximum: 99
+    Attribute:
+      Attribute_Label: Twpd
+      Attribute_Definition: タウンシップの方向
+      Attribute_Definition_Source: USGS 7.5-minute quadrangle
+      Attribute_Domain_Values:
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: 
+          Enumerated_Domain_Value_Definition: 公共地盤調査システムにない
+          Enumerated_Domain_Value_Definition_Source: USGS quadrangle
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: N
+          Enumerated_Domain_Value_Definition: 北
+          Enumerated_Domain_Value_Definition_Source: USGS quadrangle
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: S
+          Enumerated_Domain_Value_Definition: 南
+          Enumerated_Domain_Value_Definition_Source: USGS quadrangle
+    Attribute:
+      Attribute_Label: Rng
+      Attribute_Definition: レンジ番号
+      Attribute_Definition_Source: USGS 7.5-minute quadrangle
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 1
+          Range_Domain_Maximum: 99
+    Attribute:
+      Attribute_Label: Rngd
+      Attribute_Definition: レンジの方向
+      Attribute_Definition_Source: USGS 7.5-minute quadrangle
+      Attribute_Domain_Values:
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: 
+          Enumerated_Domain_Value_Definition: 公共地盤調査システムにない
+          Enumerated_Domain_Value_Definition_Source: USGS quadrangle
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: E
+          Enumerated_Domain_Value_Definition: 東
+          Enumerated_Domain_Value_Definition_Source: USGS quadrangle
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: W
+          Enumerated_Domain_Value_Definition: 西
+          Enumerated_Domain_Value_Definition_Source: USGS quadrangle
+DISTRIBUTION_INFORMATION
+  Distributor:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Indiana Geological Survey
+        Contact_Person: 出版営業
+      Contact_Position: 事務員
+      Contact_Address:
+        Address_Type: 郵送先および実際の住所
+        Address: 611 North Walnut Grove
+        City: Bloomington
+        State_or_Province: Indiana
+        Postal_Code: 47405 2208
+        Country: USA
+      Contact_Voice_Telephone: 812 855 7636
+      Contact_Facsimile_Telephone: 812 855 2862
+      Contact_Electronic_Mail_Address: IGSinfo@indiana.edu
+      Hours_of_Service: 0800～1700 (東部標準時間)
+      Contact Instructions: 月～金 (休日を除く)
+  Resource_Description: INDIANA_TR_24K_IGS_P:  Indiana (Indiana Geological Survey、
+    1:24,000、ポリゴン シェープファイル) の区画またはレンジ線
+  Distribution_Liability:
+    COPYRIGHT 2002, THE TRUSTEES OF INDIANA UNIVERSITY,
+    INDIANA GEOLOGICAL SURVEY, ALL RIGHTS RESERVED
+    これらのメディアの情報は、Indiana University,
+    Indiana Geological Survey に属します。インディアナ大学、Indiana Geological Survey による書面による承諾なしに、本情報をコピー、適用、配布、公共における公開、または表示することは禁止されています。
+    CREDIT:
+    本データから作成したいかなる製品にも、Indiana Geological Survey のクレジットを表示する必要があります。以下の引用を含めてください: INDIANA_TR_24K_IGS_P: Township or range lines of Indiana
+    (Indiana Geological Survey, 1:24,000, Polygon Shapefile), digital
+    compilation by Karen K. Like, 2002.
+    WARRANTY:
+    本製品が保存されているメディアは、取得した日から 90 日を限度として欠陥がないことをインディアナ大学、Indiana Geological Survey は保証します。欠陥が見つかった場合は、メディアを以下の住所まで返却してください。無料で交換させていただきます。Publication Sales, Indiana
+    Geological Survey, 611 North Walnut Grove, Bloomington, Indiana 47405
+    2208
+    LIMITATION OF WARRANTIES AND LIABILITY:
+    上記の明示的な保証を除き、本製品は、明示的にも暗示的にも、その他の保証や条件を付けることなく、製品の品質または特定の目的または使用に対する適用性の保証を含みそれに限定することなく、「現状」のままで配布されます。本製品の使用に起因するリスクまたは責任は使用者にあります。インディアナ大学、Indiana Geological Survey は、間接的、偶発的、特別、または結果的な如何なる損害に対しても、収入または利益の喪失、データの紛失または損害、または他の商業的または経済的損害を含みそれに限定されることなく、いかなる責任も負いません。インディアナ大学、Indiana
+    Geological Survey は、第三者の如何なる申し立てに対して責任を負いません。元々の購入者に対する最大限の債務総額は、製品に対して購入者が支払った額を超えないものとします。
+METADATA_REFERENCE_INFORMATION
+  Metadata_Date: 20020617
+  Metadata_Review_Date: 20020619
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Indiana Geological Survey
+        Contact_Person: Karen K. Like
+      Contact_Position: 地図製作の専門家
+      Contact_Address:
+        Address_Type: 郵送先および実際の住所
+        Address: 611 North Walnut Grove
+        City: Bloomington
+        State_or_Province: Indiana
+        Postal_Code: 47405 2208
+        Country: USA
+      Contact_Voice_Telephone: 812 855 5893
+      Contact_Facsimile_Telephone: 812 855 2862
+      Contact_Electronic_Mail_Address: klike@indiana.edu
+      Hours_of_Service: 0800～1700 (東部標準時間)
+      Contact_Instructions: 月～金 (休日を除く)
+  Metadata_Standard_Name: FGDC CSDGM
+  Metadata_Standard_Version: FGDC-STD-001-1998
+  Metadata_Access_Constraints: なし
+  Metadata_Use_Constraints: このメタデータ ファイルは、
+    IGS から承認され受領したデータセットを添付することを意図しています。これは変更されたり要約されません。IGS は二次的な配布をサポートしません。このデータセットを IGS に限らす誰でも受け取った場合には、このメタデータ ファイルとそれが記述するデータ セットは整合性を失う可能性があります。
+----

@@ -1,0 +1,193 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-whitespacehighlighting",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Data Presentation","Editing"],
+    "guid": "c329eec9-78fa-401d-8218-51d03b10a39b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5033615Z"
+}
+|metadata|
+////
+
+= 空白のハイライト表示 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは空白の強調表示機能について説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref343683034, はじめに >>
+* <<_Ref343683007, 機能の構成の概要 >>
+* <<_Ref343682982, 空白の強調表示の有効化または無効化 >>
+* <<_Ref343682991, 空白強調表示ブラシの設定 >>
+* <<_Ref343683027, 関連コンテンツ >>
+
+[[_Ref343683034]]
+== はじめに
+
+=== 空白の強調表示のサマリー
+
+空白強調表示機能は、記号、色つきドットおよび矢印によってそれぞれ表示し、その場所を強調表示することによりスペースやタブで占められる `TextDocument` 内のすべての場所を示します。これらの記号はドキュメント内に含まれるスペースまたはタブを置換しません。
+
+以下のスクリーンショットは、空白強調表示機能が有効で描画ブラシがマゼンタである  _xamSyntaxEditor_   を表示します。
+
+image::images/xamSyntaxEditor_Whitespace_Highlighting_1.png[]
+
+[[_Ref343683007]]
+== 機能の構成のサマリー
+
+=== 機能構成のサマリーチャート
+
+以下の表は  _xamSyntaxEditor_   コントロールの空白強調表示機能の構成可能な要素を表示します。表に続いて追加情報が提供されます。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref343682982,空白の強調表示の有効化または無効化>>
+|空白の強調表示を表示または非表示にします
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~whitespaceindicatorvisibility.html[WhitespaceIndicatorVisibility] 
+
+|<<_Ref343682991,空白強調表示ブラシの設定>>
+|空白の強調表示に使用するブラシを設定します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~whitespaceindicatorbrush.html[WhitespaceIndicatorBrush] 
+
+|====
+
+[[_Ref343682982]]
+== 空白の強調表示の有効化または無効化
+
+=== 概要
+
+_xamSyntaxEditor_   コントロールの `WhitespaceIndicatorVisibility` プロパティを使用し、空白の強調表示を有効または無効にできます。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|空白の強調表示機能を有効に浸ます。
+|`WhitespaceIndicatorVisibility`
+|`Visibility.Visible`
+
+|空白の強調表示機能を無効にします
+|`WhitespaceIndicatorVisibility`
+|`Visibility.Collapsed`
+
+|====
+
+=== コード
+
+以下のコード スニペットは空白の強調表示を有効にする方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.WhitespaceIndicatorVisibility = Visibility.Visible;
+----
+
+*Visual Basic の場合:*
+
+[source,csharp]
+----
+Me.xamSyntaxEditor1.WhitespaceIndicatorVisibility = Visibility.Visible
+----
+
+[[_Ref343682991]]
+== 空白強調表示ブラシの設定
+
+=== 概要
+
+_xamSyntaxEditor_   コントロールの `WhitespaceIndicatorBrush` プロパティを使用し、空白の強調表示を設定できます。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|空白の強調表示機能のブラシを設定します。
+|`WhitespaceIndicatorBrush`
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.brush.aspx[Brush] タイプのオブジェクト。
+
+|====
+
+注:
+
+[NOTE]
+====
+`WhitespaceIndicatorBrush` プロパティは、  _空白_   link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.classificationtype_members.html[Classification Type] で設定された前景ブラシより高い優先順位です。link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~whitespaceindicatorbrushresolved.html[WhiteSpaceIndicatorBrushResolved] プロパティを使用して、空白インジケーターを描画するために使用するブラシを取得することもできます。その値は以下のように決定されます。
+
+* `WhitespaceIndicatorBrush` が明示的に設定される場合、その値は `WhitespaceIndicatorBrushResolved` プロパティで返されます。
+* そうでない場合、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~classificationappearancemapresolved.html[XamSyntaxEditor.ClassificationAppearanceMapResolved] 内の `ClassificationType.Whitespace` エントリに関連づけられた前景ブラシの値が返されます。
+
+====
+
+=== コード
+
+以下のコード例は、空白の強調表示用に単色のマゼンタ カラー ブラシの設定方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.WhitespaceIndicatorBrush = new SolidColorBrush(Colors.Magenta);
+----
+
+*Visual Basic の場合:*
+
+[source,csharp]
+----
+Me.xamSyntaxEditor1.WhitespaceIndicatorBrush = New SolidColorBrush(Colors.Magenta)
+----
+
+[[_Ref343683027]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-changing-font-and-styles.html[フォントとスタイルの変更]
+|このトピックでは、 _xamSyntaxEditor_ 内のドキュメントのコンテンツの表示の変更方法を説明します。
+
+| link:xamsyntaxeditor-changing-default-classification-types-appearance.html[デフォルト分類タイプの外観の変更]
+|このトピックでは、 _xamSyntaxEditor_ によって言語要素に割り当てられた色および他の外観属性を変更する方法を解説します。
+
+| link:xamsyntaxeditor-splitting.html[分割]
+|このトピックでは、 _xamSyntaxEditor_ のドキュメント分割機能を解説し、カスタマイズする方法について解説します。
+
+| link:xamsyntaxeditor-syntax-highlighting.html[構文のハイライト表示]
+|このトピックでは、`TextDocument` の関連言語に基づくテキストの色付けについて解説します。
+
+|====

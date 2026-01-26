@@ -1,0 +1,194 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-copy-events-and-events-arguments",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I"],
+    "guid": "6b68cf2d-2b0c-4028-b58f-4a6176030bc4",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.2521794Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= コピー イベントおよびイベント引数
+
+xamGrid コントロールでコピー操作を開始すると、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~clipboardcopyingitem_ev.html[ClipboardCopyingItem] イベントと link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~clipboardcopying_ev.html[ClipboardCopying] イベントという 2 つのイベントが起動します。
+
+* <<item1,ClipboardCopyingItem イベント>>
+* <<item2,ClipboardCopying イベント>>
+
+[[item1]]
+== ClipboardCopyingItem イベント
+
+ClipboardCopyingItem イベントは、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardsettings~copytype.html[CopyType] プロパティ (SelectedCells または SelectedRows) の値に関係なく、クリップボードにコピーされる前に、すべての選択された xamGrid セルに対して起動されます。このイベントはキャンセルできます。これは xamGrid ヘッダー セルに対しても起動されます。
+
+ClipboardCopyingItem イベント引数 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingitemeventargs.html[ClipboardCopyingItemEventArgs] には 2 つのプロパティがあります。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingitemeventargs~cell.html[Cell] - コピーされる現在のセルへの参照が含まれます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingitemeventargs~clipboardvalue.html[ClipboardValue] - クリップボードにコピーされるセルの値が含まれます。このプロパティは設定可能なので、コピーされる文字列を変更できます。
+
+以下のコードは、ClipboardCopyingItem イベントを使用してコピーされるセルをスタイルする方法を示します。コピー前にセル コンテンツを検証したり、固有のセルのイベントをキャンセルすることもできます。
+
+この例では、開発者に提供される link:resources-datautil.html[DataUtil] クラスを使用します。
+
+1.最初に、ページで xamGrid コントロールを追加し、複数のセルに対してコピー操作を有効にして、Resources コレクションでカスタム セル スタイルを作成します。
+
+*XAML の場合:*
+
+----
+<Page.Resources>
+    <data:DataUtil x:Key="DataUtil" />
+    <!-- カスタム スタイルをコピーされるセルに追加します-->
+    <Style x:Name="grayCellStyle" TargetType="ig:CellControl" >
+        <Setter Property="Foreground" Value="LightGray" />
+    </Style>
+</Page.Resources>
+...
+<ig:XamGrid x:Name="xamGrid" ColumnWidth="Auto" 
+AutoGenerateColumns="False" Width="600" Height="400"
+ItemsSource="{Binding Source={StaticResource DataUtil}, Path=Products}"
+ClipboardCopyingItem="xamGrid_ClipboardCopyingItem" 
+ClipboardCopying="xamGrid_ClipboardCopying">
+    <ig:XamGrid.Columns>
+        <ig:TextColumn Key="ProductID" />
+        <ig:TextColumn Key="ProductName" />
+        <ig:TextColumn Key="UnitPrice" FormatString="{}{0:C}" />
+        <ig:TextColumn Key="UnitsOnOrder" />
+    </ig:XamGrid.Columns>
+    <ig:XamGrid.SelectionSettings>
+        <ig:SelectionSettings CellSelection="Multiple" />
+    </ig:XamGrid.SelectionSettings>
+    <ig:XamGrid.ClipboardSettings>
+        <ig:ClipboardSettings AllowCopy="True" />
+    </ig:XamGrid.ClipboardSettings>
+</ig:XamGrid>
+----
+
+2.コード ビハインドで次の using/Import のディレクティブを追加します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+----
+
+3.イベント ハンドラーを追加して、コピーされる選択された xamGrid セルをスタイルします。UnitsOnOrder 列の正の数に対する単純な検証が実行され、パスしないセルはスタイルもコピーもされません。
+
+*Visual Basic の場合:*
+
+----
+Private Sub xamGrid_ClipboardCopyingItem(ByVal sender As Object, ByVal e As ClipboardCopyingItemEventArgs)
+' コピーされるセルに対する参照を取得します
+Dim selectedCell As CellBase = e.Cell
+' ヘッダー セル スタイルは変更されません
+If selectedCell.Row.RowType <>  RowType.HeaderRow Then
+' データ セルの有効なデータの検証を追加します
+' このケースでは、UnitsOnOrder 列の負の値のセルはコピーされません    If selectedCell.Column.Key.Equals("UnitsOnOrder") 
+        AndAlso Convert.ToInt32(e.Cell.Value) <= 0 Then
+            e.Cancel = True
+            Return
+    End If
+    ' 新しいスタイルをコピーされるセルに設定します
+    selectedCell.Style = TryCast(Me.Resources("grayCellStyle"), Style)
+    End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+void xamGrid_ClipboardCopyingItem(object sender, 
+ClipboardCopyingItemEventArgs e)
+{
+    // コピーされるセルに対する参照を取得します
+    CellBase selectedCell = e.Cell;
+    // ヘッダー セル スタイルは変更されません
+    if (selectedCell.Row.RowType != RowType.HeaderRow)
+    {
+    // データ セルの有効なデータの検証を追加します
+    // このケースでは、UnitsOnOrder 列の負の値のセルは コピーされません        if (selectedCell.Column.Key.Equals("UnitsOnOrder") 
+             && Convert.ToInt32(e.Cell.Value) <= 0)
+        {
+            e.Cancel = true;
+            return;
+        }
+        // 新しいスタイルをコピーされるセルに設定します
+        selectedCell.Style = this.Resources["grayCellStyle"] as Style;
+     }
+}
+----
+
+4.プロジェクトを実行します。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_CopyPaste_Example02.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_CopyPaste_Example02.png[]
+endif::win-rt[]
+
+[[item2]]
+== ClipboardCopying イベント
+
+ClipboardCopying イベントは、コピー操作を開始する時や選択された xamGrid データ (セルまたは行) がクリップボードにコピーされる前に発生します。このイベントはキャンセル可能で、すべての選択されたセルに対して ClipboardCopyingItem イベントが起動される後に一度だけ起動されます。
+
+ClipboardCopying イベント引数 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingeventargs.html[ClipboardCopyingEventArgs] には 2 つのプロパティがあります。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingeventargs~selecteditems.html[SelectedItems] - コピーされる xamGrid コントロール セルへの参照の読み取り専用コレクション。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardcopyingeventargs~clipboardvalue.html[ClipboardValue] - Microsoft Excel ワークシートに貼り付けられる正しい形式でクリップボードにコピーされる最終テキスト文字列を含みます。このプロパティは設定可能なので、コピーされるデータを変更できます。
+
+以下のコードは、このイベントが使用される方法を示します。
+
+1.ClipboardCopying イベント ハンドラー メソッドを追加します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub xamGrid_ClipboardCopying(ByVal sender As Object,
+ ByVal e As ClipboardCopyingEventArgs)
+    Dim headerCells As Integer = 0
+    Dim dataCells As Integer = 0
+    For Each cell In e.SelectedItems
+        If cell.Row.RowType.Equals(RowType.HeaderRow) Then
+            headerCells += 1
+        End If
+        If cell.Row.RowType.Equals(RowType.DataRow) Then
+            dataCells += 1
+        End If
+    Next
+    System.Diagnostics.Debug.WriteLine("The total number of cells being copied:" & Convert.ToString(e.SelectedItems.Count))
+    System.Diagnostics.Debug.WriteLine("The number of header cells being copied: " & headerCells)
+    System.Diagnostics.Debug.WriteLine("The number of data cells being copied: " & dataCells)
+End Sub
+----
+
+*C# の場合:*
+
+----
+void xamGrid_ClipboardCopying(object sender, ClipboardCopyingEventArgs e)
+{
+    int headerCells = 0;
+    int dataCells = 0;
+    foreach (var cell in e.SelectedItems)
+    {
+        if (cell.Row.RowType.Equals(RowType.HeaderRow))
+            headerCells++;
+        if (cell.Row.RowType.Equals(RowType.DataRow))
+            dataCells++;
+    }
+    System.Diagnostics.Debug.WriteLine("The total number of cells being copied:" + e.SelectedItems.Count);
+    System.Diagnostics.Debug.WriteLine("The number of header cells being copied:" + headerCells);
+    System.Diagnostics.Debug.WriteLine("The number of data cells being copied:" + dataCells);
+}
+----

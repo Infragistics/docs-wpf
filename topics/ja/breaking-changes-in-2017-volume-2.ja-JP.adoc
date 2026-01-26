@@ -1,0 +1,182 @@
+﻿////
+|metadata|
+{
+    "name": "breaking-changes-in-2017-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "d03c1f2a-72f5-44e4-b766-366ce6a89fbc",
+    "buildFlags": [],
+    "createdOn": "2016-12-15T11:57:27.7825621Z"
+}
+|metadata|
+////
+
+= 2017 Volume 2 の重大な変更
+
+== 重大な変更の概要
+
+以下の表は、{ProductName} 2017 Volume 2 新機能の概要を示します。問題の詳細な説明は、概要表の後に記載されています。
+
+==== 凡例:
+image:images/Yes.png[] - 回避策あり +
+image:images/No.png[] - 既知の回避策なし +
+image:images/Fix.png[] - 既知の回避策はありません。修正予定です。
+
+[options="header", cols="a,a,a"]
+|====
+|コントロール|問題|状態
+
+|<<_Ref012,xamDataChart>>
+|<<_Ref013,WindowResponse のデフォルト値の変更>>
+|image::images/Yes.png[]
+
+.2+|<<_Ref001,xamDataPresenter>>
+|<<_Ref002,UI オートメーション ピアの仮想化>>
+|image::images/Yes.png[]
+
+|<<_Ref003,SimpleTextBlock で GlyphRuns が FormattedText の代わりに使用されます。>>
+|image::images/Yes.png[]
+
+|<<_Ref014,xamDoughnutChart>>
+|<<_Ref015,IsSurfaceInteractionEnabled プロパティ型の変更>>
+|image::images/Yes.png[]
+
+|<<_Ref008, xamGauge>>
+|<<_Ref009, xamGauge コントロールの削除>>
+|image::images/No.png[]
+
+|<<_Ref006, xamGeographicMap/xamMap>>
+|<<_Ref007, CloudMade サポートの終了>>
+|image::images/No.png[]
+
+|<<_Ref004,xamGrid>>
+|<<_Ref005,初期表示される列を描画前に測定>>
+|image::images/Yes.png[]
+
+|<<_Ref010,xamRadialGauge>>
+|<<_Ref011,イベント ハンドラーの名前変更>>
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref012]]
+== xamDataChart
+
+[[_Ref013]]
+==== WindowResponse のデフォルト値の変更
+
+link:{ApiPlatform}{DataChartAssembly}{ApiVersion}~Infragistics.Controls.SeriesViewer{ApiProp}WindowResponse.html[WindowResponse] のデフォルトの値を `Deferred` から `Immediate` に変更しました。つまり、パンとズーム操作はユーザーがこの操作でポインター位置を変更するとただちに実行されます。以前の `Deferred` 動作は、ユーザーが移動完了したときにビューを更新しました。
+
+[[_Ref001]]
+== xamDataPresenter
+
+[[_Ref002]]
+==== UI オートメーション ピアの仮想化
+セルの UI オートメーション ピアが仮想化されました。つまり、描画されているセルのピアのみを取得できます。UI オートメーションに依存関係のある自動テストが失敗する可能性があります。以前の動作に戻すには、静的な `DataPresenterBaseAutomationPeer.ProcessCellsInViewOnly` プロパティを `false` に設定します。
+
+[[_Ref003]]
+==== SimpleTextBlock で GlyphRun が FormattedText の代わりに使用されます。
+セル テンプレートのエディター テンプレートで使用される `SimpleTextBlock` は、セルのテキストを表示するために `FormattedText` の代わりに `GlyphRun` を使用します。セルの描画でパフォーマンスを向上しますが、合字などの高度な機能はサポートされません。以前の動作に戻るには、データ プレゼンター コントロールまたは祖先要素で継承された `SimpleTextBlock.GlyphRunMode` 添付プロパティを `Never` に設定します。注: `GlyphRunMode` 列挙体は、表示されているテキストに基づいて `GlyphRun` または `FormattedText` を使用するオプションも提供します。
+
+*関連トピック:* +
+link:xamdata-performance-optimizations-overview.html[パフォーマンスの最適化の概要 (xamDataPresenter)]
+
+[[_Ref014]]
+== xamDoughnutChart
+
+[[_Ref015]]
+==== IsSurfaceInteractionDisabled プロパティ型の変更
+
+link:{DoughnutChartLink}.{DoughnutChartName}{ApiProp}IsSurfaceInteractionDisabled.html[IsSurfaceInteractionDisabled] は null 許容型ブール値でしたが、ジェネリック ブール値に変更されました (bool? -> bool)。link:piechart.html[xamPieChart] の link:{PieChartLink}.{PieChartBase}{ApiProp}IsSurfaceInteractionDisabled.html[IsSurfaceInteractionDisabled] プロパティと同様になります。プロパティを link:{DoughnutChartLink}.RingSeries_Members.html[RingSeries] で設定する場合、link:{DoughnutChartLink}.{DoughnutChartName}.html[xamDoughnutChart] で設定されるプロパティより優先されます。
+
+[[_Ref008]]
+== xamGauge
+
+[[_Ref009]]
+==== xamGauge コントロールの削除
+
+2017 Volume 2 リリースより InfragisticsWPF.Controls.Charts.XamGauge アセンブリが利用できなくなります。以下のコントロールが削除されます。
+
+* xamLinearGauge
+* xamRadialGauge
+* xamSegmentedDisplay
+
+.注:
+[NOTE]
+====
+削除された xamLinearGauge および xamRadialGauge コントロールは xamGauge ファミリのコントロールのゲージです。このゲージの新バージョンを含む InfragisticsWPF.Controls.Gauges アセンブリは引き続き 2017 Volume 2 に含まれます。このゲージの新バージョンの詳細については、link:lineargauge.html[xamLinearGauge] および link:radialgauge.html[xamRadialGauge] のヘルプを参照してください。
+====
+
+[[_Ref006]]
+== xamGeographicMap/xamMap
+
+[[_Ref007]]
+==== CloudMade サポートの終了
+
+link:geographicmap.html[XamGeographicMap] および link:xammap.html[XamMap] コントロールは *CloudMade* 画像およびタイル ソースを使用していましたが、*CloudMade* による画像およびタイル ソースの提供が終了しました。そのため、`XamGeographicMap` および `XamMap` コントロールの CloudMade のサポートも終了となります。
+
+以下の表は、廃止されたクラス、影響されるコントロール、および廃止されたクラスを含むアセンブリを示します。
+
+|===
+|コントロール|廃止されたクラス|アセンブリ
+
+|link:geographicmap.html[XamGeographicMap]
+|`CloudMadeMapImagery`
+|InfragisticsWPF.Controls.Maps.XamGeographicMap 
+
+|link:xammap.html[XamMap]
+|`CloudMadeTileSource`
+|InfragisticsWPF.DataVisualization
+
+|===
+
+==== 移動したクラス
+link:datachart-datachart.html[XamDataChart] コントロールで新しい散布シリーズをサポートし、link:shapechart-overview.html[XamShapeChart] コントロールでシェープファイルの読み込みをサポートするために *InfragisticsWPF.Controls.Maps.XamGeographicMap* アセンブリからクラスを移動しました。以下の表は、すべての移動されたクラスを示します。
+
+[options="header", cols="20a,30a,50a"]
+|===
+|コントロール|移動したクラス|新しいアセンブリ
+
+|link:geographicmap.html[XamGeographicMap]
+|名前空間のすべてのクラス +
+`Infragistics.Controls.Charts`
+
+|`InfragisticsWPF.Controls.Charts.XamDataChart`
+
+|link:geographicmap.html[XamGeographicMap]
+|
+`AdvancedScatterSeriesRule` +
+`AdvancedSubCollectionsRule`
+|InfragisticsWPF.Controls.Charts.XamDataChart 
+ 
+|link:geographicmap.html[XamGeographicMap]
+|
+`ShapefileConverter` +
+`ShapefileRecord` +
+`ShapefileRecordFields` +
+`ShapeType` +
+`StyleVisibilityConverter` +
+`ItfConverter` +
+`XBaseDataType` +
+`XBaseField` +
+
+|InfragisticsWPF.DataVisualization
+|===
+
+
+[[_Ref004]]
+== xamGrid
+
+[[_Ref005]]
+==== 初期表示される列を描画前に測定
+
+コントロールは、デフォルトでビューにある列のみを描画します。ビューの範囲外の列は、ビューに入ったとき (水平にスクロール時) に描画されます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~minimumnumberofcolumnsrendered.html[MinimumNumberOfColumnsRendered] プロパティを使用してこの動作を制御できます。デフォルト値は 0 です。ビューにある列のみが描画されます。ただし、仮想化の代わりに前測定する列数を示す値を設定できます。
+このプロパティを高い値に設定すると、パフォーマンスが低下することに注意してください。
+
+[[_Ref010]]
+== xamRadialGauge
+
+[[_Ref011]]
+==== イベント ハンドラーの名前変更
+
+link:{RadialGaugeLink}.{RadialGaugeName}{ApiProp}AlignLabel_ev.html[AlignLabel] イベント ハンドラーのスペルミスを修正しました。以前の名前は AlignRadialGaugeLabelHangler ですが、新しい名前は AlignRadialGaugeLabelHandler になります。

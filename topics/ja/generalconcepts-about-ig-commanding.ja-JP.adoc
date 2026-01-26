@@ -1,0 +1,93 @@
+﻿////
+
+|metadata|
+{
+    "name": "generalconcepts-about-ig-commanding",
+    "controlName": [],
+    "tags": [],
+    "guid": "1f4acc73-9d46-4281-b5dd-355485b9db84",  
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-01-30T15:19:06.2412649Z"
+}
+|metadata|
+////
+
+= Infragistics コマンディングについて
+
+*コマンディングの概念*
+
+ルーティング コマンドは、動作が処理される方法を拡張する、WPF で利用可能な機能です。後で待ち行列に入れて起動することができるアクションのリクエストをカプセル化するためにオブジェクトが使用されるコマンドデザインパターンに従います。オブジェクト、特にコマンドはアクションの動作とソースを実際的なロジックと分離するために使用されます。これは、各ターゲット オブジェクト固有のコマンドの実際的な実行に伴い、ひとつ以上のソースがサポートする任意のオブジェクトでコマンドを呼び出すことを意味します。たとえば、Paste コマンドの場合、このコマンドをサポートする任意のアプリケーションがこのコマンドを使用できます。つまりスプレッドシートアプリケーション、テキスト エディターまたは画像編集アプリケーションですが、貼り付け操作の実際のロジックは各アプリケーション固有です。
+
+Infragistics は WPF にあるコマンドの基本的概念に従うコマンド フレームワークを提供しています。Infragistics コマンディング システムは以下で構成されます:
+
+[start=1]
+. ソース - コマンドを呼び出すオブジェクト
+[start=2]
+. ターゲット - コマンドが実行するオブジェクト
+[start=3]
+. コマンド - アクション
+
+ソースが生じるイベントをセットアップするときにコマンドが実行します。
+
+*ターゲットを見つける*
+
+コマンドのターゲットは ICommandTarget インターフェイスを実装しコマンドをサポートするオブジェクトです。イベントが発生する時、コマンド フレームワークはコマンドのターゲットを解決しようとします。これが生じる基本的な方法は 3 通りあります。
+
+[start=1]
+. CommandSource のターゲット プロパティは直接的に設定されます。
+[start=2]
+. CommandSource は添付コマンドをサポートするすべてのグローバルに登録された ICommandTarget オブジェクトを調べます。コマンド ソースには TargetName プロパティがあり、グローバルに登録されたターゲット名を指定してコマンドを実行することができます。
+[start=3]
+. CommandSource は添付コマンドをサポートするすべてのグローバルに登録された ICommandTarget オブジェクトを調べます。コマンド ソースには TargetName プロパティがあり、グローバルに登録されたターゲット名を指定してコマンドを実行することができます。ターゲット名を設定しない場合、コマンドはそのコマンドをサポートするすべてのグローバルに登録された ICommandTarget オブジェクトで実行します。
+[start=4]
+. コマンドをサポートするターゲットが見つけられるまでコマンド ソースから開始して親エレメントに至るまで視覚ツリーはトラバースします。
+
+*コード例*
+
+xamGrid コントロールは使用できるさまざまなコマンドを公開します。このようなコマンドのひとつがページングのための NextPage コマンドです。コマンドを実行するには、xamGridPagingCommandSource オブジェクトなどのコマンド ソースを使用して、オブジェクトの EventName プロパティと CommandType プロパティをそれぞれ使用してイベントとコマンド タイプを設定します。視覚ツリーのターゲットでコマンドが実行されます。以下の XAML では、ボタンがクリックされると NextPage コマンドが実行します。コマンドをサポートする視覚ツリーの最初のオブジェクトであるため、コマンドは PagerCellControl オブジェクトで実行します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:igPrim="http://schemas.infragistics.com/xaml/primitives"
+----
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Style x:Name="CustomPager1" TargetType="gridParts:PagerCellControl">
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="igPrim:PagerCellControl">
+                <Button x:Name="NextPageButton" Content="Next">
+                <!-- 使用するコマンドを指定します。コマンドはボタン内にあるため、EventName プロパティはボタンのイベントを参照します。-->     
+                    <ig:Commanding.Command>
+                        <ig:XamGridPagingCommandSource EventName="Click" CommandType="NextPage"/>
+                    </ig:Commanding.Command>
+                </Button>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+以下のコードは、xamSpellChecker で正しいターゲットを見つけるためにコマンド ソースの TargetName プロパティを使用する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSpellChecker x:Name="spellChecker">                
+    <ig:XamSpellChecker.SpellCheckTargets>
+        <Binding ElementName="Note" Path="Text" Mode="TwoWay"/>
+    </ig:XamSpellChecker.SpellCheckTargets>
+</ig:XamSpellChecker>
+<Button Content="Spell Check" >
+    <ig:Commanding.Command>
+        <ig:XamSpellCheckerCommandSource CommandType="SpellCheck" TargetName="spellChecker" EventName="Click"/>
+    </ig:Commanding.Command>
+</Button>
+----

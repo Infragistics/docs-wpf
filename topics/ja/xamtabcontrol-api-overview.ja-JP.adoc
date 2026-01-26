@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtabcontrol-api-overview",
+    "controlName": ["xamTabControl"],
+    "tags": ["API"],
+    "guid": "{066E1614-601E-4A87-B972-5F18A23B6FA1}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.4552441Z"
+}
+|metadata|
+////
+
+= API の概要
+
+
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== コントロールの名前空間:
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls_namespace.html[Infragistics.Windows.Controls]
+
+=== 主要な API:
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol.html[XamTabControl]
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.tabitemex.html[TabItemEx]

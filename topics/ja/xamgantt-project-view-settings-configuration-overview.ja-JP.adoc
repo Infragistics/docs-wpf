@@ -1,0 +1,113 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-project-view-settings-configuration-overview",
+    "controlName": ["xamGantt"],
+    "tags": ["API","Data Presentation","How Do I"],
+    "guid": "fd8f0683-679b-48bf-972b-e99b3eb07e11",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.3511687Z"
+}
+|metadata|
+////
+
+= プロジェクト ビュー設定の構成概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings_members.html[ProjectViewSettings] クラスとその構成可能な項目の概要を提供します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-overview.html[xamGantt の概要]
+|このトピックでは、 _xamGantt_ 、プロジェクト、タスクおよびその他の _xamGantt_ 要素についての基本的な概念的な情報を説明します。
+
+| link:xamgantt-xamgantt-in-detail.html[xamGantt の詳細]
+|このグループのトピックでは、 _xamGantt_ コントロールの詳細について説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref334894028, 概要 >>
+* <<_Ref334823701, プロジェクト ビューのプロパティ概要構成設定 >>
+* <<_Ref334823713, 関連コンテンツ >>
+
+[[_Ref334894028]]
+== 概要
+
+=== ProjectViewSettings クラスの概要
+
+`ProjectViewSettings` クラスは  _xamGantt_   のビューに影響するこれらの設定を提供します。
+
+これらの構成可能な項目は以下の通りです。
+
+* クリティカル タスクの強調表示
+* 非稼働日/時間の強調表示
+*  _xamGantt_   のチャート セクションにおけるスラック表示表現
+
+[[_Ref334823701]]
+== プロジェクト ビューのプロパティ概要構成設定
+
+=== プロジェクト ビューのプロパティ構成概要設定表
+
+以下の表は、 _xamGantt_   `ProjectViewSettings` の主要な構成可能な項目の一部を説明しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|説明|プロパティ
+
+|クリティカル タスクの強調表示の構成
+|クリティカル タスクが強調表示として表示するかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings~arecriticaltaskshighlighted.html[AreCriticalTasksHighlighted]
+
+|サマリー タスクの表示状態の構成
+|サマリー タスクが表示されるかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings~aresummarytasksvisible.html[AreSummaryTasksVisible]
+
+|スラックの表示状態の構成
+|0 より大きいフリーのスラックを持つタスクのスラックを表すバーが表示されるかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings~isslackvisible.html[IsSlackVisible]
+
+|非稼働日の強調表示の構成
+|非稼働日/時間が強調表示として表示するかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings~nonworkingtimehighlightstyle.html[NonWorkingTimeHighlightStyle]
+
+|タイムスケールの構成
+|ビューのタイムスケールを返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings~timescale.html[Timescale]
+
+|====
+
+[[_Ref334823713]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-showing-hiding-summary-tasks.html[サマリー タスクの表示/非表示]
+|このトピックでは、 _xamGantt_ コントロールを使用してサマリー タスクの表示状態を構成する方法を説明します。
+
+| link:xamgantt-showing-hiding-tasks-slack.html[タスク スラックの表示/非表示]
+|このトピックは、 _xamGantt_ コントロールのチャート セクションでスラックの表示状態を構成する方法について紹介します。
+
+| link:xamgantt-showing-hiding-non-work-days-hours-background.html[非作業日/非作業時間バックグラウンドの表示/非表示]
+|このトピックは、 _xamGantt_ コントロールを使用して非作業日/非作業時間の強調表示を構成する方法を説明します。
+
+|====

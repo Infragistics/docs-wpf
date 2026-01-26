@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-multi-column-resizing",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Layouts"],
+    "guid": "{3B6EA0F1-CD63-4469-B5D8-70AEB0514184}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8351643Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 複数列のリサイズ
+
+xamGrid コントロールによって、エンド ユーザーは一度に複数の列のサイズを変更できます。これを実行するには、複数列を選択してから、選択した列の 1 つのサイズを変更します。選択されたすべての列のサイズは同じ幅に変更されます。
+
+複数列のサイズ変更を使用するための選択を有効にする必要があります。詳細については、 link:xamgrid-selection.html[選択]トピックを参照してください。
+
+これを有効にするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnresizingsettings.html[ColumnResizingSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnresizingsettings~allowmultiplecolumnresize.html[AllowMultipleColumnResize] プロパティを True に設定します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyGrid">
+   <ig:XamGrid.ColumnResizingSettings>
+      <ig:ColumnResizingSettings AllowColumnResizing="Indicator" 
+             AllowMultipleColumnResize="True"/>
+   </ig:XamGrid.ColumnResizingSettings>
+   <!-- 列選択を有効にします -->
+   <ig:XamGrid.SelectionSettings>
+      <ig:SelectionSettings CellSelection="Multiple" 
+         ColumnSelection="Multiple" RowSelection="Multiple"/>
+   </ig:XamGrid.SelectionSettings>
+…
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.ColumnResizingSettings.AllowMultipleColumnResize = True
+' 列選択を有効にします
+Me.MyGrid.SelectionSettings.ColumnSelection = SelectionType.Multiple
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.ColumnResizingSettings.AllowMultipleColumnResize = true;
+// 列選択を有効にします
+this.MyGrid.SelectionSettings.ColumnSelection = SelectionType.Multiple;
+----
+
+== 関連トピック
+
+link:xamgrid-column-resizing.html[列サイズの変更]
+
+link:xamgrid-resize-in-the-cell-area.html[セル領域でセルのリサイズ]
+
+link:xamgrid-auto-size-columns-using-mouse-clicks.html[マウス クリックを使用して列を自動的にサイズ設定]
+
+link:xamgrid-set-columns-maximum-and-minimum-widths.html[列の最大幅と最小幅を設定]
+
+link:xamgrid-disable-resizing-of-certain-columns.html[特定の列のサイズ変更を無効にする]
+
+link:xamgrid-column-resizing-events.html[列のサイズ変更イベント]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

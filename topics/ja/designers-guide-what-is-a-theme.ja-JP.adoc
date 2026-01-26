@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "designers-guide-what-is-a-theme",
+    "controlName": [],
+    "tags": ["Styling","Theming"],
+    "guid": "323d02eb-901a-448f-84a4-8baab303d568",  
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-01-30T16:50:12.2108012Z"
+}
+|metadata|
+////
+
+= テーマとは?
+
+テーマは、{ProductName} コントロールをターゲットとするスタイルのコレクションを含む ResourceDictionaries のセットです。link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xamdatachart.html[xamDataChart]™ のようなコントロールは実際的には多数のより小さいコントロール (Legend など) で構成されているため、包括的なコントロールの外観を完全に変えるためには、より小さい各コントロールをターゲットとするスタイルを作成することが必要です。スタイルのように単一のコントロールをターゲットとする代わりに、テーマにはこれらの小さいコントロールすべてを一度にターゲットとするために複数のスタイルが含まれています。
+
+テーマは、外部の ResourceDictionary の場合と同じように考えるべきです。ResourceDictionaries で作業する場合、システム コントロール (Button および Scrollbar) であっても、{ProductName} コントロール (xamDataChart、xamRadialGauge など) であっても、特定のコントロール タイプをターゲットとするスタイルを定義できます。ResourceDictionary と全く同じように、アプリケーション、ページ、ウィンドウ、またはコントロールのレベルでテーマをマージすることができます。
+
+== 関連トピック:
+
+link:designers-guide-using-themes.html[テーマの使用]
+
+link:designersguide-styling-ig-controls.html[Infragistics コントロールのスタイル]

@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamradialmenu",
+    "tags": [],
+    "controlName": ["xamRadialMenu"],
+    "guid": "3b631bf5-4648-4fb9-bf13-46ae38f43c7b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.8083001Z"
+}
+|metadata|
+////
+
+= xamRadialMenu
+
+== このグループのトピックについて
+
+=== はじめに
+
+このセクションには、{ProductName} の link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[ _xamRadialMenu_  ]™ コントロールについてのトピックが含まれています。
+
+_xamRadialMenu_   コントロールは、中央ボタンの周りに項目を表示するコンテキスト メニューです。項目を円形に配置することで項目をすばやく選択できます。各項目は中央に対して均等に配置されます。_xamRadialMenu_   は、数値、色値、または操作を実行する項目タイプをサポートします。サブ項目もサポートします。
+
+image::images/xamRadialMenu_01.png[]
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-overview.html[xamRadialMenu の概要]
+|このグループのトピックでは、 _xamRadialMenu_ コントロールの機能、視覚要素とその操作を説明します。
+
+| pick:[sl,wpf=" link:xamradialmenu-adding-to-your-page.html[xamRadialMenu をページに追加]"] pick:[win-rt=" link:xamradialmenu-adding-to-your-page-win-rt.html[xamRadialMenu をページに追加]"] 
+|このトピックでは、 _xamRadialMenu_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+| link:xamradialmenu-configuring.html[xamRadialMenu の構成]
+|このセクションのトピックでは、 _xamRadialMenu_ の構成について追加の情報を提供します。
+
+| link:xamradialmenu-api-overview.html[API の概要]
+|このトピックは、 _xamRadialMenu_ を使用したプログラミング中に操作する名前空間とクラスをリストします。このトピックの名前空間とクラスの一覧は、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]のセクションへリンクします。
+
+|====

@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcolorpicker-using-xamcolorpicker",
+    "controlName": ["xamColorPicker"],
+    "tags": [],
+    "guid": "c5b968e2-8701-4c0f-bd73-c822ed814e5b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.6490898Z"
+}
+|metadata|
+////
+
+= xamColorPicker の使用
+
+このセクションは、xamColorPicker コントロールの重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+link:xamcolorpicker-advanced-editor.html[詳細設定エディター]
+
+このコントロールについてのセクションになります。このコントロールによって、パレットにはないカスタムカラーを使用することが可能です。
+
+link:xamcolorpicker-palettes.html[パレット]
+
+xamColorPicker™ コントロールの対応するパレットとカスタマイズについて説明します。
+
+link:xamcolorpicker-create-a-custom-palette.html[カスタム パレットの作成]
+
+ColorPalettes のコレクションを使用してカスタム パレットを定義します。
+
+link:xamcolorpicker-selected-color.html[選択された色]
+
+このプロパティと関連するイベントについて説明します。
+
+link:xamcolorpicker-adding-xamcolorpicker-to-your-grid.html[xamColorPicker を DataGrid に追加]
+
+DataGrid のセルに xamColorPicker をネストする方法を示します。

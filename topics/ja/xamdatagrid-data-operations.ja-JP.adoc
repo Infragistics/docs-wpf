@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-data-operations",
+    "tags": [],
+    "controlName": ["xamDataGrid"],
+    "guid": "43f7f2e4-9253-460d-8d51-58f8ad08b599",  
+    "buildFlags": [],
+    "createdOn": "2014-04-03T11:05:52.6968734Z"
+}
+|metadata|
+////
+
+= データ操作
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックは、 _xamDataGrid_™ コントロールのデータの印刷およびエクスポート、およびデータの外部処理を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-exporting-data.html[データのエクスポート ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ のデータを複数のファイル形式にエクスポートする方法を説明します。
+
+| link:xamdatagrid-external-processing-of-data.html[データの外部処理 ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ コントロールでカスタムな外部並べ替え、フィルタリング、グループ化、および集計を実装する方法を説明します。
+
+| link:xamdatagrid-printing.html[印刷 ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ コントロールのデータを印刷し、印刷出力をカスタマイズする方法を説明します。
+
+|====

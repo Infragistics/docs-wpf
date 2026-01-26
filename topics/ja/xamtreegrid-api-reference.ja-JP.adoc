@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-api-reference",
+    "tags": ["API"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "887ff725-5b63-407a-b8e5-6a32c729677a",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T14:16:31.3641574Z"
+}
+|metadata|
+////
+
+= API リファレンス (xamTreeGrid)
+
+=== 概要
+
+このトピックでは、コントロールに関連したキー クラスに関する参考情報を提供します。
+
+=== xamSpreadsheet API リファレンス表
+
+以下の表は、 _xamTreeGrid_   コントロールに関連する主要な名前空間の一覧になります。
+
+[options="header", cols="a,a"]
+|====
+|名前空間|説明
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter_namespace.html[Infragistics.Windows.DataPresenter]
+|Data Presenter 名前空間。
+
+|====
+
+以下の表は、 _xamTreeGrid_   コントロールに関連する主要なクラスの一覧になります。
+
+[options="header", cols="a,a"]
+|====
+|クラス|説明
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[XamTreeGrid]
+|xamTreeGrid コントロールのクラス。
+
+|====

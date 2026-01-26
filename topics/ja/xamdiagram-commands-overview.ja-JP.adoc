@@ -1,0 +1,69 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-commands-overview",
+    "tags": ["Charting","Commands","How Do I","Summaries"],
+    "controlName": ["xamDiagram"],
+    "guid": "ae35142a-3b56-4916-879d-ae915e698bca",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:14:49.0139568Z"
+}
+|metadata|
+////
+
+= コマンドの概要 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールで使用できるコマンドの動作ロジックを説明します。
+
+[[_Ref387303433]]
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+|====
+
+[[_Ref387491168]]
+[[_Ref385408385]]
+== _xamDiagram_  コマンド
+
+=== コマンドの概要
+
+include::xamdiagram-commands-summary.ja-JP.adoc[]
+
+[[_Ref387491174]]
+
+=== コマンドの概要表
+
+include::xamdiagram-commands-summary-chart.ja-JP.adoc[]
+
+[[_Ref388439099]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-ui-elements-with-commands.html[コマンドを使用した UI 要素の構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ が提供するコマンドをメニューやボタンなどの UI 要素で使用する方法を説明します。
+
+| link:xamdiagram-configuring-keyboard-shortcuts.html[キーボード ショートカットの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コマンドに関連付けられたキーボード ショートカットを変更する方法について説明します。
+
+|====

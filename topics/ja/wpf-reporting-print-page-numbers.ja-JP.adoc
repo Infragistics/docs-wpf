@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-reporting-print-page-numbers",
+    "controlName": ["IG WPF Reporting"],
+    "tags": ["Reporting"],
+    "guid": "{883690D4-8C23-47F4-AE8E-8ED3BAC0A5B8}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.9117355Z"
+}
+|metadata|
+////
+
+= ページ番号の印刷
+
+
+
+レポートを印刷するとき、WPF レポーティング エンジンはレポートのコンテンツのみを印刷します。ヘッダーやフッターを印刷したい場合は、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトまたは link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection.html[EmbeddedVisualReportSection] オブジェクトの link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.reportsection~pageheader.html[PageHeader] または link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.reportsection~pagefooter.html[PageFooter] プロパティを設定できます。ただし、ページ番号をレポートのヘッダーまたはフッターに追加したい場合は、各セクションのヘッダー/フッターを整数に設定するのは良い方法ではありません。その代りに、データ テンプレートを作成し、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.reportpagepresenter.html[ReportPagePresenter] クラスの link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.reportpagepresenter~physicalpagenumber.html[PhysicalPageNumber] プロパティにバインドするべきです。
+
+レポートのヘッダーまたはフッターにページ番号を追加するのは、2 つの手順からなる処理です。
+
+[start=1]
+. XAML で基本 DataTemplate オブジェクトを作成します。
+[start=2]
+. DataTemplate オブジェクトを Report オブジェクトまたは EmbeddedVisualReportSection オブジェクトの link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.reportbase~pageheadertemplate.html[PageHeaderTemplate] または link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.reportbase~pagefootertemplate.html[PageFooterTemplate] プロパティに割り当てます。
+
+以下のコード例は、データ テンプレートを使用してページ番号をレポートに印刷する方法を示します。この XAML は基本的な DataTemplate オブジェクトを作成し、プロシージャ コードはそれを report1 という名前の Report オブジェクトの PageHeaderTemplate プロパティに割り当てます。
+
+*XAML の場合:*
+
+----
+<!--この DataTemplate を Window の ResourceDictionary に追加します-->
+<DataTemplate x:Key="pageNumberDataTemplate">
+    <DockPanel Margin="5">
+        <!--この TextBlock の Text プロパティは、ReportPagePresenter の PhysicalPageNumber プロパティにバインドされます-->
+        <TextBlock 
+            xmlns:igReporting="http://infragistics.com/Reporting" 
+            DockPanel.Dock="Right" 
+            Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type igReporting:ReportPagePresenter}}, Path=PhysicalPageNumber}" />
+            <TextBlock Text="Page Number: " DockPanel.Dock="Right" />
+            <!--この ContentPresenter は Report オブジェクトまたは EmbeddedVisualReportSection オブジェクトの Header プロパティを表示します。-->
+            <ContentPresenter Content="{Binding}" />
+        </DockPanel>
+</DataTemplate>
+----
+
+*Visual Basic の場合:*
+
+----
+report1.PageHeaderTemplate = TryCast(Me.TryFindResource("pageNumberDataTemplate"), DataTemplate)
+----
+
+*C# の場合:*
+
+----
+report1.PageHeaderTemplate = this.TryFindResource("pageNumberDataTemplate") as DataTemplate;
+----
+
+== 関連トピック
+
+link:wpf-reporting-understanding-wpf-reporting.html[WPF レポーティング について]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-align-content-to-the-top-of-a-page.html[コンテンツをページの上側に揃える]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]

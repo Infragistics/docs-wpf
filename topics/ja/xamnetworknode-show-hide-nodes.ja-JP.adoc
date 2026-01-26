@@ -1,0 +1,159 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-show-hide-nodes",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "fd3c86cd-6682-44f7-86ce-a60cd8c75fe2",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.4942491Z"
+}
+|metadata|
+////
+
+= ノードの表示/非表示
+
+このトピックは、 link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode] コントロール上の子ノードを表示/非表示にする方法を示します。
+
+* <<introduction,概要>>
+* <<requirements,要件>>
+* <<configure_Show_Hide,ノードの表示/非表示設定の構成>>
+
+** <<show_Hide_with_Exp_Indicator,展開インジケーターを使用した表示/非表示>>
+** <<show_Hide_without_Exp_Indicator,展開インジケーターを使用しない表示/非表示>>
+
+* <<related_Topic,関連トピック>>
+
+[[introduction]]
+== 概要
+
+xamNetworkNode コントロールは現在、子ノードを表示/非表示にするために 3 つの方法をサポートしています:
+
+* 展開インジケーターを使用した表示/非表示
+* コード ビ ハインドを使用した (展開インジケーターを使用しない) 表示/非表示
+* キーボード上の Enter キー (展開インジケーターが可視の場合)
+
+デフォルトのモードに加え、ノードの Visibility プロパティを Collapsed に設定することで、任意のノードを非表示にすることができます。
+
+子ノードの非表示および表示の操作は接続された親ノードによって、以下の方法で制御されます。
+
+* Expansion インジケーターの使用
+.. expansion インジケーター上での Mouse クリックの使用
+.. expansion インジケーターが可視の間の、キーボード上の Enter キーの使用
+* expansion インジケーターが無効な間の、コード ビハインドでの IsExpanded プロパティの使用
+.. link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isexpanded.html[IsExpanded] プロパティの設定。
+
+WPF のオプション: [Visible | Collapsed | Hidden]
+
+* データ ソース
+
+IEnumerable を実行する任意のオブジェクト (List、Collection など)。
+
+[[requirements]]
+== 要件
+
+開始するには、link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使った作業の開始]トピックをお読みください。このチュートリアルでは「Getting Started」トピックからのコードを開始点として使用しています。
+
+また、希望の機能を実現するためには、いくつかのプロパティを設定する必要があります。
+
+xamNetworkNode で設定するプロパティ:
+
+* link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~expansionindicatorvisibility.html[ExpansionIndicatorVisibility] - [Visible | Collapsed]。指定すると、以下の優先順位は最高から最低の順で発生します。
+
+1.expansion インジケーターを含むノード (1 番目の優先順位)
+2.ノード レイアウト (2 番目の優先順位)
+3.XamNetworkNode グローバル (3 番目の優先順位)
+
+[NOTE]
+====
+*注:* link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~expansionindicatorvisibility.html[ExpansionIndicatorVisibility] は null 値をサポートし、それが null に設定された場合、より低い優先順位が適用されます。たとえば、コントロールで link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~expansionindicatorvisibility.html[ExpansionIndicatorVisibility] プロパティが null に設定されると、より低い優先順位 (2 番目) が適用され、2 番目の優先順位が null に設定されると、3 番目の優先順位が適用されます。
+====
+
+link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode.html[NetworkNodeNode] で設定するプロパティ:
+
+* link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isexpanded.html[IsExpanded] - [true | false]
+
+[NOTE]
+====
+*注:* Expansion インジケーターは可視ですが、子ノードを表示/非表示にするためにキーボード上の Enter キーを使用することもできます。
+====
+
+[[configure_Show_Hide]]
+== ノードの表示/非表示設定の構成
+
+[[show_Hide_with_Exp_Indicator]]
+== Expansion インジケーターを使用した表示/非表示
+
+以下のコード例およびスクリーンショットは、NetworkNode コントロール上の expansion インジケーターを有効にして、プラス/マイナス記号を使ってノードの子を表示/非表示にする様子を示しています。expansion インジケーターは有効ですが、選択したノードの子を表示/非表示にするためにキーボード上の Enter キーを使用することもできます。
+
+*XAML の場合:*
+
+[source]
+----
+<ig:XamNetworkNode   
+ExpansionIndicatorVisibility="Visible">   
+</ig:XamNetworkNode>
+----
+
+*Visual Basic の場合:*
+
+[source]
+----
+node.ExpansionIndicatorVisibility = Visibility.Visible
+---- 
+
+*C# の場合:* [source]
+----
+node.ExpansionIndicatorVisibility = Visibility.Visible;
+---- 
+
+図 1 は、親ノードで expansion インジケーターが有効になっている link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode] を表示しています。親ノードは、表示/非表示にすることができる子ノードを結合しています。プラス記号は、子ノードが非表示であることを示します。
+
+[NOTE]
+====
+*注:* 子ノードが非表示ではない場合に適用される制限があります。たとえば、子ノードが 2 つの親ノードを持っており、親の 1 つが折り畳まれている場合、その子ノードは非表示になりません。これは別の親ノードが非表示ではないためです。両方の親が折り畳まれている場合は、子ノードは非表示になります。
+====
+
+image::images/xamNetworkNode_ShowHide_Nodes_01.png[]
+
+図 1: expansion インジケーターを使用したノードの非表示/表示。
+
+[[show_Hide_without_Exp_Indicator]]
+== Expansion インジケーターを使用しない表示/非表示
+
+NetworkNode コントロール (コード ビハインド内) の link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isexpanded.html[IsExpanded] プロパティを使用して、選択したノードの子を表示/非表示にします。XamNetworkNode は XAML 内の Node オブジェクトを公開しないため、ノードの展開はコード ビハインドで実行する必要があることに留意してください。
+
+*Visual Basic の場合:* 
+
+[source]
+----
+node.IsExpanded = true
+---- 
+
+*C# の場合:* 
+
+[source]
+----
+node.IsExpanded = True;
+---- 
+
+図 2 は、 link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isexpanded.html[IsExpanded] プロパティを設定することで、コード ビハインドを使用して非表示にされる、選択されたノードを示しています。選択されたノードには 3 つの子ノードがあります。
+
+image::images/xamNetworkNode_ShowHide_Nodes_02.png[]
+
+図 2: expansion インジケーターを使用しない、コード ビハインドでのノードの非表示/表示。
+
+図 3 は、3 つの子を非表示にしている上記の親ノードを示しています。ノードの場所が変わっていることに気づくかもしれません。
+
+コントロールがノードを再配置する理由は、xamNetworkNode が変更が行われた後にノードを計算し直し、表示内で最適なレイアウト配置でノードを表示するためです。
+
+image::images/xamNetworkNode_ShowHide_Nodes_03.png[]
+
+図 3: 非表示/表示操作後に再配置されたノード。
+
+[[related_Topic]]
+== 関連トピック
+
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]
+* link:xamnetworknode-using-xamnetworknode.html[xamNetworkNode の使用]

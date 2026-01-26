@@ -1,0 +1,52 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammonthcalendar-retrieve-the-selected-dates",
+    "controlName": ["xamMonthCalendar"],
+    "tags": ["How Do I","Selection"],
+    "guid": "{AE43B446-E709-4B57-A8D5-4AD2A813DDBC}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.9891509Z"
+}
+|metadata|
+////
+
+= 選択された日付を取得
+
+
+
+xamMonthCalendar™ コントロールは、日付およびエンド ユーザーの選択を取得するために使用できる 2 つのプロパティを公開します。link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~selecteddates.html[SelectedDates コレクション]は、DateTime 構造体のコレクションを返しますが、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~selecteddate.html[SelectedDate] プロパティは単一の Nullable DateTime 構造体を返します。エンド ユーザーが複数の日付を選択する場合、SelectedDate プロパティは、エンド ユーザーが選択した最初の日付を返します。
+
+以下のコード例は、SelectedDates コレクションで繰り返すことにより、選択された日付を取得する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Dim sbSelectedDate As New System.Text.StringBuilder()
+For Each dt As DateTime In Me.xamMonthCalendar1.SelectedDates 
+    sbSelectedDate.AppendLine(dt.ToShortDateString()) 
+Next 
+MessageBox.Show("Selected Dates: " & sbSelectedDate.ToString())
+----
+
+*C# の場合:*
+
+----
+StringBuilder sbSelectedDate = new StringBuilder();
+foreach (DateTime dt in this.xamMonthCalendar1.SelectedDates)
+{
+    sbSelectedDate.AppendLine(dt.ToShortDateString());
+}
+MessageBox.Show("Selected Dates: " + sbSelectedDate.ToString());
+----
+
+== 関連トピック
+
+link:xammonthcalendar-about-xammonthcalendar.html[xamMonthCalendar について]
+
+link:xammonthcalendar-getting-started-with-xammonthcalendar.html[xamMonthCalendar をページに追加]
+
+link:xammonthcalendar-restrict-the-selectable-dates.html[選択可能な日付を制限]
+
+link:xammonthcalendar-switch-to-a-different-calendar-view.html[異なるカレンダー ビューに切り替え]

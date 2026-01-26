@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "word-using-the-ig-word-library",
+    "controlName": ["IG Word Library"],
+    "tags": ["How Do I"],
+    "guid": "01d49033-5a7a-42e9-8882-c920402b2305",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.3381114Z"
+}
+|metadata|
+////
+
+= Infragistics Word ライブラリの使用
+
+このセクションは、Word ライブラリの重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+* link:word-create-a-word-document.html[Word 文書の作成]
+* link:word-apply-formatting-to-word-document.html[書式設定を Word 文書に適用]
+* link:word-add-table-to-word-document.html[テーブルを Word 文書に追加]
+* link:word-add-images-to-word-document.html[画像を Word 文書に追加]
+* link:word-headers-footers-and-page-numbers.html[ヘッダー、フッター、ページ番号]

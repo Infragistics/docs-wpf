@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule",
+    "controlName": ["xamSchedule"],
+    "tags": [],
+    "guid": "9a8bc84d-016f-43b4-95d9-cb5aba021fa1",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6003478Z"
+}
+|metadata|
+////
+
+= xamSchedule
+
+このセクションには、xamSchedule™ ファミリーのコントロールに関する情報が含まれています。コントロールが行うこと、またアプリケーションでのコントロールの使用に関する手順を説明します。
+
+以下のリンクをクリックして、xamSchedule についての重要な情報にアクセスします。
+
+== link:xamschedule-understanding.html[xamSchedule の理解]
+
+このセクションでは、xamSchedule の機能の理解を深める支援となる情報を提供します。
+
+== link:xamschedule-getting-started.html[xamSchedule をページに追加]
+
+xamSchedule でできる限り素早く起動して実行するために、コントロールを使用する方法についての情報を提供します。
+
+== link:xamschedule-using.html[xamSchedule の使用]
+
+このセクションには、xamSchedule で提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamschedule-api-overview.html[API の概要]
+
+このトピックは、xamSchedule でプログラミング中に作業する名前空間とクラスをリストします。このトピックにリストされている名前空間とクラスは、{PlatformName} ヘルプの link:api-reference-guide.html[API 参照ガイド]セクションに便宜的にリンクされています。

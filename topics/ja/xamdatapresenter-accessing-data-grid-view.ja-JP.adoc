@@ -1,0 +1,81 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-accessing-data-grid-view",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "{9993EC3D-7326-4E21-B98D-6647EDAFD6BC}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0779687Z"
+}
+|metadata|
+////
+
+= グリッド ビュー
+
+
+
+データ プレゼンテーション コントロールは、エンドユーザーがデータに行う変更を更新するための簡単な方法を提供します。xamDataGrid コントロールは、以下を含むコントロールに表示されているデータを修正するためのいくつかのイベントと設定を提供します。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordadded_ev.html[RecordAdded]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordsdeleted_ev.html[RecordsDeleted]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordupdated_ev.html[RecordUpdated]
+
+xamDataGrid コントロールでエンドユーザーがデータを追加、更新、または削除する時にこれらのイベントを使用して追跡します。
+
+xamDataGrid で link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record.html[Record] を追加、更新、および削除する時に併用するプロパティは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~updatemode.html[UpdateMode] プロパティです。このプロパティは、エンドユーザーの修正でデータソースを更新する方法を xamDataGrid に指示します。
+
+エンド ユーザーが新しいレコードを追加したい場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowaddnew.html[AllowAddNew] プロパティを True にすることによって、この機能を有効にする必要があります。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~addnewrecordlocation.html[AddNewRecordLocation] プロパティを設定することで AddNewRecord コントロールを配置できます。
+
+[NOTE]
+====
+*注:* データ ソースが link:http://msdn2.microsoft.com/ja-jp/library/system.componentmodel.ibindinglist.aspx[IBindingList] インターフェイスをサポートしない場合、xamDataGrid に AddNewRecord 領域は表示しません。
+====
+
+デフォルトでは、エンド ユーザーはレコードを選択して Delete キーを押すことで xamDataGrid からレコードを削除できます。セルでコンテンツを編集することも可能です。
+
+== 追加、フィルター、集計レコードの順序の修正
+
+xamDataPresenter および xamDataGrid コントロールは、新しいレコードの追加、レコードのフィルター、およびレコードの集計を実行するための機能を追加する時に特別なレコードを表示します。これらの特別なレコード 3 つすべてをコントロールの一番上などの同じ場所に配置すると、xamDataPresenter および xamDataGrid は最初に集計レコードを表示し、その次にフィルター レコードを、そしてその次に追加の新しいレコードを表示します。ただし、SpecialRecordOrder オブジェクトを作成したり、FieldLayoutSettings オブジェクトの SpecialRecordOrder プロパティを設定することで、これらの特別なレコードの順序をカスタマイズできます。
+
+SpecialRecordOrder オブジェクトは、3 つの特別なレコードのひとつに対応する 3 つのプロパティを公開します。各プロパティを整数値に設定することで、特別なレコードの順序を定義できます。最低値の特別なレコードが最初になり、最大値の特別なレコードが最後になります。
+
+以下のコード例は、追加レコード、フィルター レコード、および集計レコードの順序を変更する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings>
+            <igDP:FieldLayoutSettings.SpecialRecordOrder>
+                <igDP:SpecialRecordOrder AddRecord="0" FilterRecord="1" SummaryRecord="2" />
+            </igDP:FieldLayoutSettings.SpecialRecordOrder>
+        </igDP:FieldLayoutSettings>
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Dim recordOrder As New SpecialRecordOrder With {.AddRecord = 0, .FilterRecord = 1, .SummaryRecord = 2}
+Me.xamDataPresenter1.FieldLayoutSettings.SpecialRecordOrder = recordOrder
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+SpecialRecordOrder recordOrder = new SpecialRecordOrder
+{
+    AddRecord = 0,
+    FilterRecord = 1,
+    SummaryRecord = 2
+};
+this.xamDataPresenter1.FieldLayoutSettings.SpecialRecordOrder = recordOrder;
+----

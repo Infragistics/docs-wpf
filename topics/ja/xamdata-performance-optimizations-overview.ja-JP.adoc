@@ -1,0 +1,101 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-performance-optimizations-overview",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Performance","Styling"],
+    "guid": "{5930FD97-2491-4527-9BCB-3EB613229FDE}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5218575Z"
+}
+|metadata|
+////
+
+= パフォーマンス最適化の概要
+
+メモリ フットプリントを削減し、コントロールの反応を高めることは常に重要です。これは、小さいデータセットへのバインディングなど「ストレスの少ない」状況と非常に多数のレコードと多くの列を持つレコードの両方またはいずれか一方を含むデータソースへのバインディングに関わる厳しいシナリオの両方に当てはまります。DataPresenter コントロールは、これらのシナリオでパフォーマンスを改善するために複数の技術を使用しています。これらの技術は以下のとおりです。
+
+* コントロール内に含まれる要素を積極的に仮想化することでコントロールのメモリ フットプリントを削減する。
+
+** レコードの仮想化 -- link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordpresenter.html[RecordPresenter] 要素は、UI に DataRecords を表示するために使用されますが、これらの要素が表すレコードがスクロールして表示されるときに作成され、これらが表すレコードがスクロールされて表示されなくなったときにクリーンアップされます。これは、RecordPresenter 要素 (セル値とセル クロームを含む多数の要素を含むことが可能である) の数が可能な限り低く抑えられることを意味します。この方式は多数のレコードを含むデータ ソースに特にバインドされる時には、絶対的に不可欠です。
+** セルの仮想化 -- link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellpresenter.html[CellPresenter] 要素と link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] 要素は、UI 内のセルごとにセルの値とラベルを表示するために使用されますが、スクロールされて表示されるまで作成されません。たとえば、垂直のデフォルトの方向で xamDataGrid を使用しており、それぞれ 100 列を持つレコードを含むデータ ソースにバインドされているとします。さらに、ディスプレイが一度に 10 列を表示するだけの幅しかないことを前提とします。レコードの最初のページが表示されると、xamDataGrid は最初の 10 フィールドのみに対して各 RecordPresenter で CellValuePresenters を作成します (100 全部ではありません)。次の 10 列を表示するためにユーザーがディスプレイを右にページ スクロールすると、xamDataGrid は次の 10 フィールドに対して各 RecordPresenter で CellValuePresenters を作成します。ユーザーが右にスクロールして 100 列すべてを表示するまでこれは続行します。
+
+[NOTE]
+====
+*注:* 上記のレコードの仮想化と異なり、セルの仮想化方式は、スクロールされて表示されなくなった時 (つまり、例でユーザーが左にスクロールして戻る時) に CellValuePresenters をクリーンアップしません。その代わりに、それらを含む RecordPresenters がスクロールされて表示されなくなる (つまり、例ではユーザーが垂直にスクロールする) まで (その時にクリーンアップされますが)、CellValuePresenters は "hydrated" なままです。
+====
+
+* コントロールの描画パフォーマンスの向上
+
+** セル テンプレートのエディター テンプレートで使用される `SimpleTextBlock` は、セルのテキストを表示するために `FormattedText` の代わりに `GlyphRun` をデータ プレゼンター コントロールでデフォルトで使用されます。`GlyphRun` はコントロールのコンテンツの描画でパフォーマンスを向上しますが、合字などの高度な機能はサポートしません。以下の `SimpleTextBlock` から公開された添付 (継承) プロパティを使用して動作を構成できます。
++
+--
+*** `GlyphRunMode` – これは null 可能な列挙体プロパティです。
+**** `Always` – `SimpleTextBlock` は常に `GlyphRun` を使用してテキストを描画します。
+**** `Never` – `SimpleTextBlock` は `FormattedText` を使用してテキストを描画します。
+**** `AnsiOnly` – `SimpleTextBlock` は、テキストのすべての文字が 0 ～ 255 の範囲である場合に `GlyphRun` を使用します。それ以外の場合、`FormattedText` を使用します。
+**** `AnsiNonAlphaOnly` – `SimpleTextBlock` は、テキストのすべての文字が 0 ～ 255 範囲であり、英字ではない場合に `GlyphRun` を使用します。それ以外の場合、`FormattedText` を使用します。
+**** `UseGlyphRunTextEvaluator` – このオプションは、コントロールが `SimpleTextBlock.GlyphRunTextEvaluator` に継承された添付プロパティによって指定されるカスタム エバリュエーターの使用を許可します。
+*** `GlyphRunTextEvaluator` – `IGlyphRunTextEvaluator` インターフェイスを実装し、`UseOptimizedGlyphRun` メソッドで `GlyphRun` または `FormattedText` を選択するロジックを提供するカスタム エバリュエーターを指定するには、このオプションを使用します。
+--
++
+.注:
+[NOTE]
+====
+`GlyphRunMode` プロパティが `null` の場合、以下のように解決します。
+
+* Always – エディターがデータ プレゼンター コントロールで使用される場合。
+* Never – エディターがスタンドアロン エディターとして使用される場合。
+====
+
+* LabelPresenter 要素と CellValuePresenter 要素のキャッシュと再利用によって、一般的にコントロールの反応を改善する、特にスクロールの反応を改善する。
+
+** 要素のキャッシュと再利用 -- 可能な場合には、フレームワークのオーバーヘッドを削減しパフォーマンスを向上するために、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter.html[LabelPresenter] 要素と CellValuePresenter 要素がキャッシュおよび再利用されます。キャッシュを行わない場合、新しいレコード セットを表示するためにユーザーがコントロールをスクロールする時に、以前表示可能だったレコードを表示している要素の既存のセットを切断してクリーンアップする必要があり、また新しい要素を作成して、表示可能なレコードの新しいセットを表示する必要があります。このプロセスとしては、Visual ツリーから古い要素を削除する、バイディングを切断する、古い要素を破棄して新しい要素を作成する、Visual ツールに追加する、バインディングを取り込んでリソース チェーンにスタイルを解決することが挙げられます。LabelPresenter 要素と CellValuePresenter 要素 (つまりページが表示されたりスクロール操作が発生した時に最も直接的に影響を受ける多数の要素) をキャッシュ (破棄の代わりに) および再利用 (作成の代わりに) することによって、これらのプロセスの間に発生する多くのフレームワークおよびコントロール操作の影響を大幅に削減することができます。
+
+[NOTE]
+====
+*注:* この再利用方式のプラスの影響は、FieldLayout の LabelLocation プロパティが InCells に設定される時に最も大きいです。この設定は、各セルにフィールド ラベルを持っているため、多数の要素を作成します (すべてのレコードの上に単一のヘッダー セットを作成する SeparateHeader 設定とは反対)。
+====
+
+* コントロールに主要なスタイリング ポイントのスタイル情報をキャッシュすることで、Windows® Presentation Foundation スタイルの解決のオーバーヘッドを削減。
+
+** *スタイリング情報のキャッシュ* -- 主要な「スタイリング ポイント」のスタイル情報をキャッシュおよび再利用することによって、コントロールはスタイルのルックアップと解決の数を削減することができます。スタイルの解決は、Windows Presentation Foundation フレームワークによって処理され、視覚的なツリーを遡り、特定の他プロパティのスタイルを探すためにリソース辞書を調べることを必要としますが、時間のかかるプロセスです。スタイル情報をキャッシュおよび再利用することによって、ページの表示とスクロールの間にコントロールはパフォーマンスを高めることができます。上記のスタイリング ポイントは、カスタム タイプとして実装されるコントロールの視覚的ツリー内の要素です。このため、リソース ベースのスタイルを使用してスタイリングできます。たとえば、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.headerpresenter.html[HeaderPresenter] 要素は ContentControl から派生します。ヘッダー領域に ContentControl を単に使用する代わりに、派生した HeaderPresenter タイプが作成されました。これによって HeaderPresenter タイプのみをターゲットとする置き換えスタイルを作成し、リソース チェーン内に配置することができます。ContentControl が代わりに使用された場合には、同じ解決範囲内ですべての ContentPresenters をスタイルする以外にヘッダー領域をスタイルする方法はなくなります。
+
+* ScrollTips の方式で遅延したスクローリングを実装することによって、つまみのドラッグのスクロールに対するパフォーマンスの影響を回避する。
+
+** 遅延したスクロール -- スクロールのつまみをドラッグすることによってエンド ユーザーがディスプレイをスクロールするとき、多数のレコードをトラバースするための能力が存在します。このケースでは、多数の要素を破棄して作成する必要があります。上記の「要素のキャッシュと再利用」で説明した積極的な要素の再利用方式をコントロールが実装したとしても、大量の要素をトラバースすることはパフォーマンスにマイナスの影響を与える可能性があります。このシナリオに対応するために、コントロールはデフォルトで遅延のスクロール方式を実装して、つまみをドラッグするスクロールのシナリオを処理します。遅延シナリオを使用すると、つまみをリリースした後で、新しいスクロールの位置でディスプレイは更新されません。その時点で、つまみが移動されるたびではなく一度ディスプレイが更新されます。つまみをドラッグする間ユーザーにフィードバックを提供するために、コントロールは ScrollTip を表示します。ScrollTip は、つまみがリリースされた場合に最初に表示されるレコードとなるレコードに関する情報を表示するツールチップです。ScrollTip は、つまみがドラッグされると新しい最初のレコードに関する情報で更新されます。これは探しているスクロールの位置に達したときに確認するための十分なコンテキストをユーザーに提供します。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] オブジェクトと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cell] オブジェクトの遅延作成によって、コントロールのメモリ フットプリントを削減。
+
+** オブジェクトの遅延作成 -- DataRecord オブジェクトと Cell オブジェクトは、求められた時だけ作成されるレコードおよびフィールド値の周囲にある薄いラッパーです。これらのオブジェクトの作成を遅延することによって、コントロールのメモリ フットプリントに対する影響を常に可能な限り最低限に維持します。
+
+* 自動アクティブ化ロジックの抑制
+** デフォルトで、現在のアクティブ link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] が削除された場合にコントロールは隣のレコードをアクティブ化しようとします。link:{DataGridLink}.datapresenterbase{ApiProp}suppressautoactivationonrecorddeletion.html[SuppressAutoActivationOnRecordDeletion] プロパティを `true` に設定すると、動作が抑制されます。つまり、アクティブ レコードが削除された場合、自動的にアクティブ化されるレコードはありません。特定の揮発性があり、すばやく変更されているシナリオでパフォーマンスを向上できます。
+
+*パフォーマンスを最適化する方法:*
+
+以下のリストは、パフォーマンスを最適化する一組の方法を説明します。
+
+[start=1]
+. Settings.Width プロパティを以下に設定するフィールド数を制限します。
+
+** Auto
+** InitialAuto
+
+ただし、Settings.Width プロパティを上記の auto のひとつに設定したフィールドの場合、再利用しないでください。AllowCellVirtualization プロパティを False に設定することで、これを行うことができます。最高のパフォーマンスのために、Field の Width プロパティの設定を解除してください。
+[start=2]
+. データ履歴を保持する Fields に関連付けられたオーバーヘッドがあります。データ履歴を保持する Fields の量を制限するために Field の DataValueChangeHistoryLimit を 1 以上に設定しないでください。
+
+== 可能性のある副作用
+
+上記の最適化の手法がコントロールの使用に影響する場合があります。たとえば、'xam' コントロールのいずれかで要素の視覚的ツリーを見渡すコードがアプリケーションにある場合、全ての要素がそこに存在していないということに注意してください。特に、表示するためにまだスクロールされていなかった場合には、CellValuePresenter 要素は Visual ツリーから「なくなる」場合があります。同様に、スクロールして表示されなくなったレコードの RecordPresenter 要素を探している場合、これらも Visual ツリーから消えます。ただし、一般的に、上記の最適化はコントロールの使用に透過的でなければなりません。
+
+== パフォーマンスを最適化するためにできること
+
+パフォーマンスの最適化を支援するためにコントロールの使用を調整する方法があります。たとえば、'xam' コントロール内でスタイリング ポイントのために代替えのスタイルとテンプレートを作成する場合には、追加する要素の数を最小限に維持します。これは、UI に何回も表示する要素のテンプレートを置き換える場合に特に重要です(たとえば、CellValuePresenters)。コントロール内の要素数を増やすことが、メモリ フットプリントを増やしパフォーマンスを下げる一番可能性の高い方法です。Bitmap Effects などの Windows Presentation Foundation によって提供される特別な効果の使用も回避すべきです。UI には劇的な影響がありますが、これらの効果はパフォーマンス コストが高くなる場合があります。特に多数の要素で使用する場合にはその可能性があります。
+
+WPF コントロールを使用する時にパフォーマンスを最適化するための最善の方法についての詳細は、以下のトピックを参照してください。
+
+* link:xamdata-impact-styles-have-on-performance-of-controls.html[スタイルがコントロールのパフォーマンスに与える影響]
+* link:xamdata-displaying-tooltips-while-scrolling-the-grid.html[グリッドをスクロールする間にツールチップを表示]

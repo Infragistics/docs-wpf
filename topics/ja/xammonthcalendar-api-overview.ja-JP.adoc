@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammonthcalendar-api-overview",
+    "controlName": ["xamMonthCalendar"],
+    "tags": ["API"],
+    "guid": "{D15FE7D6-CEFA-4304-B5D2-2829F1321B17}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.9821495Z"
+}
+|metadata|
+////
+
+= API の概要
+
+
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== Editors の名前空間:
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors_namespace.html[Infragistics.Windows.Editors]
+
+=== 主要な API:
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar.html[XamMonthCalendar]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~autoadjustcalendardimensions.html[AutoAdjustCalendarDimensions]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammonthcalendar~selecteddates.html[SelectedDates]

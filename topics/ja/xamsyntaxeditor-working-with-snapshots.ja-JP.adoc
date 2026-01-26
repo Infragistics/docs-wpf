@@ -1,0 +1,277 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-working-with-snapshots",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","How Do I","Patterns and Practices"],
+    "guid": "7339d904-6192-4a9d-be5b-b8fc6040cebf",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3883924Z"
+}
+|metadata|
+////
+
+= スナップショットの使用 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot_members.html[TextDocumentSnapshot] クラスと link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner_members.html[TextDocumentSnapshotScanner] クラスの機能を紹介します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能を取り上げます。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref333583345, スナップショット >>
+** <<_Ref333583351,概要>>
+** <<_Ref333583358,プロパティの要旨>>
+** <<_Ref333583365,メソッドの要旨>>
+
+* <<_Ref333583370, スナップショット スキャナー >>
+** <<_Ref333583377,概要>>
+** <<_Ref333583382,プロパティの要旨>>
+** <<_Ref333583391,メソッドの要旨>>
+
+* <<_Ref333583398, 関連コンテンツ >>
+
+[[_Ref333583345]]
+== スナップショット
+
+[[_Ref333583351]]
+
+=== 概要
+
+スナップショットは、特定の瞬間における文書全体の状態を表した不変オブジェクトです。スナップショットは、( _xamSyntaxEditor の_  編集領域に入力するなど) 文書のコンテンツを変更するたびに作成されます。link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument_members.html[TextDocument] の link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~currentsnapshot.html[CurrentSnapshot] プロパティには最新のスナップショットが保存され、タイプ `TextDocumentSnapshot` のオブジェクトを返します。
+
+スナップショットはスレッドセーフなので、長時間かかる操作に使用しても、プロセスの間に発生する文書の変更を気に掛ける必要がありません。
+
+用語:
+
+[options="header", cols="a,a"]
+|====
+|用語|解説
+
+| *オフセット* 
+|文書の先頭がゼロで始まる文字のインデックスです。
+
+| *テキストのロケーション* 
+|ゼロで始まる行と、文書内の文字のロケーションを一意で識別する文字オフセットからなる構造体です。
+
+| *トークン* 
+|文書の字句解析の際に生成されるトークンは、(キーワード、句読点、余白など) テキストのセクションを表します。テキストのトークンをすべて連結すると、文書のテキスト全体を再構築できます。
+
+| *単語* 
+|トークンとは違って、 _ワード_ 構造体で表現できるのはワードのみです (句読点、余白、区切り文字は不可)。
+
+|====
+
+[[_Ref333583358]]
+
+=== プロパティの要旨
+
+以下の表は、文書情報の取得に利用できる読み取り専用のプロパティをまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|解説
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~length.html[Length]
+|文字数で示すスナップショットの長さ。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~linecount.html[LineCount]
+|スナップショット内の行数。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~tokencount.html[TokenCount]
+|スナップショット内のトークン数。
+
+|====
+
+[[_Ref333583365]]
+
+=== メソッドの要旨
+
+以下の表は、スナップショットに表示されるパブリック メソッドをまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|メソッド|解説
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~gettext.html[GetText]
+|スナップショットのコンテンツの一部または全体を返します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~gettokens.html[GetTokens]
+|オプションのフィルター コールバックでトークンの前方列挙体または後方列挙体を返します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~getlines.html[GetLines]
+|前方行列挙体または後方行列挙体を返します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~linefromindex.html[LineFromIndex]
+|ゼロから始まるインデックスで行を取得します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~linefromoffset.html[LineFromOffset]
+|文書内の文字オフセットから行を取得します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~lineindexfromoffset.html[LineIndexFromOffset]
+|文書内の文字オフセットから行インデックスを取得します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~locationfromoffset.html[LocationFromOffset]
+|オフセットからロケーションを取得します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~offsetfromlocation.html[OffsetFromLocation]
+|ロケーションからオフセットを取得します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~tokenfromoffset.html[TokenFromOffset]
+|オフセットからトークンを取得します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~wordfromoffset.html[WordFromOffset]
+|オフセットからワードを取得します。
+
+|====
+
+.注:
+[NOTE]
+====
+`TextDocumentSnapshot` クラスのインデックスで、ゼロから始まるオフセット位置の文字をアクセスできます。
+====
+
+.注:
+[NOTE]
+====
+スナップショットの link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~find.html[Find] メソッドや link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~findall.html[FindAll] メソッドでは、 link:xamsyntaxeditor-find-replace.html[検索/置換]トピックで解説したような検索基準で 1 つまたは複数の一致テキストを検索できます。
+====
+
+[[_Ref333583370]]
+== スナップショット スキャナー
+
+[[_Ref333583377]]
+
+=== 概要
+
+スナップショットの link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~createscanner.html[CreateScanner] メソッドは、`TextDocumentSnaphot` の特定のインスタンスを対象にした `TextDocumentSnapshotScanner` クラスを作成します。スナップショットの行、トークン、ワードを効率的にスキャンできて便利です。
+
+.注:
+[NOTE]
+====
+対象のスナップショットはスレッドセーフですが、スキャナーはスレッドセーフではありません。スキャナーは、そのスキャナーを使用するスレッドと同じスレッドに作成してください。スレッドの 1 つにスキャナーを作成し、別のスレッドに作成したスキャナーのプロパティやメソッドをアクセスしようとすると、 link:http://msdn.microsoft.com/ja-jp/library/system.invalidoperationexception.aspx[InvalidOperationException] が発生します。
+====
+
+スキャナーを初めて作成するときに、そのスキャナーの現在のスキャン位置がゼロに初期化されます。スキャン位置は、(`CurrentOffset` プロパティで) 明示的に設定するか、以下の “シーク” メソッドのどれかを呼び出して操作します。“ピーク” メソッドもいくつかあり、これらは、現在のスキャン位置を変更することなく、現在のスキャン位置を囲む _トークン_  や _ワード_  を取得するのに便利です。
+
+[[_Ref333583382]]
+
+=== プロパティの要旨
+
+以下のプロパティでは、現在のスキャン位置に関するさまざまな情報を取得できます。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|解説
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~currentoffset.html[CurrentOffset]
+|文書の先頭から現在のオフセットを返すか、設定します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~currentcharacter.html[CurrentCharacter]
+|`CurrentOffset` の位置の文字を返します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~currentline.html[CurrentLine]
+|`CurrentOffset` の位置を含む行を返します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~currenttoken.html[CurrentToken]
+|`CurrentOffset` の位置を含むトークンを返します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+`CurrentOffset` をスナップショットの長さに設定すると、EOS (end-of-stream) トークンを返します。 
+
+====
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~currentword.html[CurrentWord]
+|`CurrentOffset` を含むワードを返します。`CurrentOffset` がワード内にない場合、null を返します。
+
+|====
+
+[[_Ref333583391]]
+
+=== メソッドの要旨
+
+以下のメソッドでは、現在のスキャン位置を前後に移動できます。
+
+[options="header", cols="a,a"]
+|====
+|メソッド|解説
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~seektoend.html[SeekToEnd]
+|スナップショット コンテンツの最後にスキャン位置を移動します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~seektoline.html[SeekToLine]
+|スナップショット コンテンツの特定行にスキャン位置を移動します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~seektostart.html[SeekToStart]
+|スナップショット コンテンツの先頭にスキャン位置を移動します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~seektotoken.html[SeekToToken]
+|スキャン位置を次の/前の開始/終了トークンまで移動します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~seektoword.html[SeekToWord]
+|スキャン位置を次の/前の開始/終了ワードまで移動します。
+
+|====
+
+以下のメソッドでは、現在のスキャン位置を移動することなく、前後の文書の部分を確認できます。
+
+[options="header", cols="a,a"]
+|====
+|メソッド|解説
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~peeknexttoken.html[PeekNextToken]
+|次のトークンを返します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~peeknextword.html[PeekNextWord]
+|次のワードを返します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~peekprevioustoken.html[PeekPreviousToken]
+|前のトークンを返します。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner~peekpreviousword.html[PeekPreviousWord]
+|前のワードを返します。
+
+|====
+
+[[_Ref333583398]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-error-reporting.html[エラーの報告]
+|このトピックでは、 _xamSyntaxEditor_ コントロールのエラー警告機能の概要を提供し、コントロールの構成および操作を解説します。
+
+| link:xamsyntaxeditor-find-replace.html[検索と置換]
+|このトピックでは、`xamSyntaxEditor` コントロールの検索、置換、すべて置換の操作について解説します。
+
+|====

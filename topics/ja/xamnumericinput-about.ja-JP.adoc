@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnumericinput-about",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "97a7d373-d42c-4690-b73e-e820a740950a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.0312289Z"
+}
+|metadata|
+////
+
+{XamNumericInputHeader}
+
+= xamNumericInput について
+
+xamNumericInput™ コントロールは、ユーザーの数値入力を支援するためにマスクを使用する、シンプルなテキスト ボックス コントロールです。マスクを使って、事前定義された有効な数値形式に対するユーザー入力を制限することができます。  pick:[sl,wpf,win-rt=" link:xamnumericinput-using.html[スタンドアロン テキスト ボックスとして]、または link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[xamGrid™ コントロールのセル内で] xamNumericInput コントロールを使用できます。"]
+
+ifdef::sl,wpf,win-phone[]
+image::images/xamInputs_xamNumericInput_About.png[]
+endif::sl,wpf,win-phone[]
+
+ifdef::win-rt[]
+image::images/xamInputs_RT_xamNumericInput_About.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xamnumericinput-using.html[xamNumericInput の使用]
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+ifdef::sl,wpf,win-rt[]
+* link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[データ編集用の xamGrid セルにおける xamInput コントロールの使用]
+
+endif::sl,wpf,win-rt[]

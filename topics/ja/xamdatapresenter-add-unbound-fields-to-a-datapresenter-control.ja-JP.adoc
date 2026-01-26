@@ -1,0 +1,300 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-add-unbound-fields-to-a-datapresenter-control",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I"],
+    "guid": "{19E0C15D-34AF-436C-B315-0D64B2938E5D}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0879707Z"
+}
+|metadata|
+////
+
+= 非バインド フィールドの構成
+
+== 目的
+
+このトピックでは、 _xamDataPresenter_™ コントロールで非バインド フィールドを作成する方法を説明します。非バインド フィールドは、計算値や複雑なプロパティの表示など、さまざまな目的に使用されます。
+
+== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-getting-started-with-xamdatagrid.html[xamDataGrid をページに追加]
+|このトピックでは、 _xamDataGrid_ コントロールをページに追加する方法について説明します。
+
+| link:xamdatagrid-accessing-data.html[xamDataGrid をデータにバインド]
+|このセクションには、 _xamDataGrid_ コントロールを使用してデータにアクセスする上で特に役立つトピックが記載されています。
+
+|====
+
+== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref391653361, フィールドの非バインドとしての構成 >>
+* <<_Ref406692653, AlternateBinding を使用してフィールド バインディングの構成 >>
+* <<_Ref391715252, 関連コンテンツ >>
+
+[[_Ref391653361]]
+== フィールドの非バインドとしての構成
+
+=== 概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[Field] を非バインドに設定するには、link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~bindingtype.html[BindingType] プロパティを `Unbound` に設定します。xamDataPresenter コントロールで計算値または複雑型を表示するために使用できます。基本 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[Field] プロパティの詳細は、link:xamdata-terms-fields.html[Fields] のトピックを参照してください。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:
+|使用するプロパティ:
+|設定値:
+
+|データ項目で直接定義されたプロパティにデータ項目をバインド
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~bindingtype.html[BindingType]
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingtype.html[UseNameBinding] 
+
+これがデフォルト値です。 
+
+バインディング メカニズムは、`Field` `Name` プロパティに完全に一致するデータ項目のプロパティ名を検索します。このアプローチでは、代替バインディングを使用するよりもパフォーマンスが向上します。
+
+|データ項目で直接定義されていないプロパティにデータ項目をバインド
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~bindingtype.html[BindingType]
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingtype.html[UseAlternateBinding] 
+
+この場合、フィールドの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~alternatebinding.html[AlternateBinding] プロパティでバインディングを指定する必要があります。
+
+.注: 
+[NOTE] 
+==== 
+`AlternateBinding` は、デフォルトの名前のバインディングと比較して、パフォーマンスのオーバーヘッドが発生しやすく、メモリの追加も必要になります。 
+====
+
+|`Field`を非バインドに設定します。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~bindingtype.html[BindingType]
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingtype.html[Unbound] 
+
+このバインディング タイプはセル値を設定する場合に、コードの使用または式のターゲットなどバインド以外の方法を使用します。
+
+|`AlternateBinding` の使用で`Field` が自動リリース バインディング オブジェクトの場合に指定します。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~alternatebindingretentionmode.html[AlternateBindingRetentionMode]
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingretentionmode.html[AutoRelease] 
+
+これがデフォルト値です。 
+
+`AlternateBinding` で使用する `Field` は、アクセスされる値のすべてのセルのバインディング オブジェクトを作成しますが、セルがスクロールアウトされ値が集計計算で必要なくなると、バインディング オブジェクトを破棄します。これにより、メモリ使用量が最小限になります。
+
+|`AlternateBinding` の使用で`Field` が作成したバインディング オブジェクトを保持する場合に指定します。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~alternatebindingretentionmode.html[AlternateBindingRetentionMode]
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingretentionmode.html[Retain] 
+
+このプロパティを `Retain` に設定すると、並べ替え、グループ化など、すべての非バインド セルの値にアクセスが必要な操作の場合でも、パフォーマンスに影響を与えません。
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、`Bonus` および `Total Salary` `CurrencyField` を _xamDataGrid_ コントロールで非バインドに設定する方法を示します。
+
+image::images/Configuring_Unbound_Field_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataGrid x:Name="DataGrid" BindToSampleData="True"
+                  InitializeRecord="DataGrid_OnInitializeRecord">
+    <igDP:XamDataGrid.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:FieldLayout.Fields>
+                <igDP:Field Name="name" Label="Employee Name" />                      
+                <igDP:CurrencyField Name="salary" Label="Salary" />
+                <!-- 計算値を表示する通貨フィールドを非バインドにします -->
+                <igDP:CurrencyField Name="bonus" Label="Bonus" BindingType="Unbound" />
+                <igDP:CurrencyField Name="totalSalary" Label="Total Salary" BindingType="Unbound" />
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+    </igDP:XamDataGrid.FieldLayouts>
+</igDP:XamDataGrid>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void DataGrid_OnInitializeRecord(object sender, 
+            Infragistics.Windows.DataPresenter.Events.InitializeRecordEventArgs e)
+{
+    if (e.Record is DataRecord)
+    {
+        //現在のレコード データを取得して、
+        //適切な計算を実行し、値を非バインドの通貨フィールドに割り当てます
+        var dr = (DataRecord)e.Record;
+        double salary = double.Parse(dr.Cells["salary"].Value.ToString());
+        double bonus = (salary * 10)/100;
+        double totalSalary = salary + bonus;
+        dr.Cells["bonus"].Value = bonus;
+        dr.Cells["totalSalary"].Value = totalSalary;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub DataGrid_OnInitializeRecord(sender As Object, e As Infragistics.Windows.DataPresenter.Events.InitializeRecordEventArgs)
+    If TypeOf e.Record Is DataRecord Then
+      '現在のレコード データを取得して、
+      '適切な計算を実行し、値を非バインドの通貨フィールドに割り当てます
+      Dim dr = DirectCast(e.Record, DataRecord)
+      Dim salary As Double = Double.Parse(dr.Cells("salary").Value.ToString())
+      Dim bonus As Double = (salary * 10) / 100
+      Dim totalSalary As Double = salary + bonus
+      dr.Cells("bonus").Value = bonus
+      dr.Cells("totalSalary").Value = totalSalary
+      End If
+End Sub
+----
+
+[[_Ref406692653]]
+== AlternateBinding を使用してフィールド バインディングの構成
+
+=== 概要
+
+データ項目で直接定義されているプロパティにバインドされていないフィールドを作成するには、フィールドを作成し、link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~bindingtype.html[BindingType] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingtype.html[UseAlternateBinding] に設定します。フィールドの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~alternatebinding.html[AlternateBinding] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~alternatebindingretentionmode.html[AlternateBindingRetentionMode] プロパティを使用して代替バインドを構成します。
+
+=== 例
+
+以下のスクリーンショットは、_xamDataGrid_ コントロールで `AlternateBinding` プロパティの例を示します。
+
+image::images/Configuring_Unbound_Field_3.png[]
+
+以下のコードは、フィールドを作成し、データにバインドするために `AlternateBinding` プロパティの使用を紹介する例を実装します。
+
+Models および ViewModel コードは次のファイルにあります: link:resources-productdata.html[ProductData.cs]
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[Field] の `AlternateBinding` プロパティは XAML またはコード ビハインドで設定できます。 
+
+*XAML で AlternateBinding の設定:* 
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <Grid.DataContext>
+        <data:ProductData />
+    </Grid.DataContext>
+    <igDP:XamDataGrid x:Name="DataGrid" 
+                      DataSource="{Binding Path=Products}"
+                      FieldLayoutInitialized="DataGrid_OnFieldLayoutInitialized">
+        <igDP:XamDataGrid.FieldLayoutSettings>
+            <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+        </igDP:XamDataGrid.FieldLayoutSettings>
+        <igDP:XamDataGrid.FieldLayouts>
+            <igDP:FieldLayout>
+                <igDP:FieldLayout.Fields>
+                    <igDP:TextField Name="ProductID" Label="Product ID" />
+                    <igDP:TextField Name="ProductName" Label="Product Name" />
+                    <igDP:Field Label="Category Name" 
+                          AlternateBinding="{Binding Path=Category.CategoryName}" />
+                </igDP:FieldLayout.Fields>
+            </igDP:FieldLayout>
+        </igDP:XamDataGrid.FieldLayouts>
+    </igDP:XamDataGrid>
+</Grid>
+----
+
+*コード ビハインドで AlternateBinding の設定:*
+
+新しく作成されたフィールドの追加は link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutinitialized_ev.html[FieldLayoutInitialized] イベント ハンドラーで実行されます。
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void DataGrid_OnFieldLayoutInitialized(object sender, FieldLayoutInitializedEventArgs e)
+{
+    var fieldDesc = new Field
+    {
+        Label = "Category Description",
+        AlternateBinding = new Binding("Category.Description"),
+     };
+     e.FieldLayout.Fields.Add(fieldDesc);
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub DataGrid_OnFieldLayoutInitialized(sender As Object, e As FieldLayoutInitializedEventArgs)
+    Dim fieldDesc = New Field() With { 
+            .Label = "Category Description", 
+            .AlternateBinding = New Binding("Category.Description") 
+    }
+    e.FieldLayout.Fields.Add(fieldDesc)
+End Sub
+----
+
+[[_Ref391715252]]
+== 関連コンテンツ
+
+[[_Ref391715256]]
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、表示するフィールドを指定し、 _xamDataPresenter_ コントロールでこれらのフィールドに関連するプロパティを設定するために、フィールドのレイアウトを定義する方法を説明します。
+
+| link:xamdatagrid-configuring-specific-editor-fields.html[特定のエディター フィールドの構成]
+|このトピックでは、 _xamDataPresenter_ コントロールのさまざまなデータ タイプに対し、特定のエディター フィールドを簡単に構成する方法を説明します。
+
+| link:xamdatapresenter-configuring-template-field.html[テンプレート フィールドの構成]
+|このトピックでは、カスタム表示のフィールドを作成し、 _xamDataPresenter_ コントロールの TemplateField を使用してテンプレートを編集する方法を説明します。
+
+| link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+|このトピックでは、 _xamDataPresenter_ コントロールによるフィールドの自動生成と手動生成の違いを説明します。
+
+| link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[フィールド レイアウトの xamDataPresenter への手動割り当て]
+|このトピックでは、 _xamDataPresenter_ コントロールに対する複数の FieldLayouts を作成する方法を説明します。
+
+| link:xam-data-grid-displaying-an-image-in-a-field.html[フィールドへの画像の表示]
+|このトピックでは、画像を表示させるフィールドを追加し、 _xamDataPresenter_ コントロールで CellValuePresenter のテンプレートをオーバーライドする方法を説明します。
+
+| link:xamdatapresenter-load-field-customizations.html[フィールドのカスタマイズの読み込み]
+|このトピックでは、 _xamDataPresenter_ コントロール用にカスタマイズされたフィールドを読み込む方法を説明します。
+
+| link:xamdatapresenter-save-field-customizations.html[フィールドのカスタマイズの保存]
+|このトピックでは、 _xamDataPresenter_ コントロール用にカスタマイズされたフィールドを保存する方法を説明します。
+
+| link:xamdatagrid-changing-the-default-column-and-row-definitions.html[デフォルトの行および列定義の変更]
+|このトピックでは、各フィールドの Row、Column、ColumnSpan または RowSpan をカスタマイズして、レコードを一層使いやすくなるようにレイアウトを変更する方法を説明します。
+
+| link:xamdatagrid-changing-the-record-orientation.html[レコードの方向の変更]
+|このトピックでは、レコードの方向を変更する方法について説明します。
+
+| link:xamdata-enabling-right-to-left-support.html[右から左へのサポートの有効化]
+|このトピックでは、内容のフロー方向を変更する方法について説明します。
+
+| link:xamdatagrid-fields-editors-configuration-.html[フィールドのエディター構成]
+|このトピックでは、データ プレゼンター フィールド エディターのコントロールを構成する方法を説明します。
+
+|====

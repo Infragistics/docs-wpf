@@ -1,0 +1,57 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-reporting-modify-the-page-layout-of-a-report",
+    "controlName": ["IG WPF Reporting"],
+    "tags": ["Reporting"],
+    "guid": "{2191F8D0-C2DE-4963-BB1A-400D366CE1BC}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.9067345Z"
+}
+|metadata|
+////
+
+= レポートのページ レイアウトを変更
+
+
+
+レポートを印刷またはエクスポートする時に、プログラム的にページ レイアウト設定を変更できます。エンド ユーザーは印刷ダイアログで変更できるので、多くの場合、ページ レイアウト設定を変更する必要はありません。ただし、印刷ダイアログを表示せずにレポートを印刷またはエクスポートする場合、または、デフォルトのページレイアウト設定をオーバーライドしたい場合は、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトの link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~reportsettings.html[ReportSettings] プロパティのページ レイアウトプロパティを設定できます。
+
+以下のコード例は、レポートのページ レイアウトを変更する方法を示しています。コード例では、1 インチの余白をすべての辺に設定し、コンテンツが 1 つのページにフィットするように水平方向に拡大縮小しています。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Reporting
+...
+Dim report1 As New Report()
+report1.ReportSettings.Margin = new Thickness(96)
+report1.ReportSettings.HorizontalPaginationMode = HorizontalPaginationMode.Scale
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Reporting;
+...
+Report report1 = new Report();
+report1.ReportSettings.Margin = new Thickness(96);
+report1.ReportSettings.HorizontalPaginationMode = HorizontalPaginationMode.Scale;
+...
+----
+
+== 関連トピック
+
+link:wpf-reporting-understanding-wpf-reporting.html[WPF レポーティング について]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-align-content-to-the-top-of-a-page.html[コンテンツをページの上側に揃える]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]

@@ -1,0 +1,64 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsparkline",
+    "controlName": ["xamSparkline"],
+    "tags": [],
+    "guid": "3605f1f7-270f-45a7-8c08-175f4b1ee4aa",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.1843836Z"
+}
+|metadata|
+////
+
+= xamSparkline
+
+=== 概要
+
+link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}.html[xamSparkline]™ は以下のチャート タイプを描画できる軽量のチャート コントロールです:
+
+* 折れ線
+* エリア
+* 柱状
+* Win/Loss
+
+グリッド セルなど小さなレイアウトで描画する目的で作成されています。スタンドアロンでも描画できます。以下のプレビューは、4 種類のスパークラインを示しています。
+
+折れ線
+
+image::images/Sparkline_Landing_Page_1.png[]
+
+エリア
+
+image::images/Sparkline_Landing_Page_2.png[]
+
+柱状
+
+image::images/Sparkline_Landing_Page_3.png[]
+
+WinLoss
+
+image::images/Sparkline_Landing_Page_4.png[]
+
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[cols="a,a"]
+|====
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+| link:xamsparkline-adding-xamsparkline.html[xamSparkline を追加]
+|このトピックは、コード例を示して、 _xamSparkline_ コントロールをページに、またグリッド セル内で追加する方法を示します。
+
+| link:xamsparkline-configuring-xamsparkline.html[xamSparkline の構成]
+|このトピックは、 _xamSparkline_ コントロールを構成できる方法の概要を提供します。詳細な構成へのリンク (別個のトピックで使用可能) も提供されます。
+
+| link:xamsparkline-xamsparkline-property-reference.html[xamSparkline プロパティ参照]
+|このトピックは、 _xamSparkline_ コントロールの主なプロパティを説明します。
+
+|====

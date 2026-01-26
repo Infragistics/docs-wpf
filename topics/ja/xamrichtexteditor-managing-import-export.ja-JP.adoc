@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-import-export",
+    "tags": [],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "b8936d01-a513-4a2e-a2eb-b011a8c02fde",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4623412Z"
+}
+|metadata|
+////
+
+= インポート / エクスポート (xamRichTextEditor)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、リッチ テキストのインポートおよびエクスポートに関する情報を提供します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-serialization-providers.html[シリアル化プロバイダーの概要]
+|このトピックは、xamRichTextEditor™ コントロールのシリアル化プロバイダーについて説明します。
+
+| link:xamrichtexteditor-managing-import-export-text.html[プレーン テキストのインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、プレーン テキストのデータをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-managing-import-export-rtf.html[RTF のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、RTF データをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-managing-import-export-docx.html[DOCX のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して DOCX ファイル形式のデータをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-import-export-html.html[HTML のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して HTML データをインポートおよびエクスポートする方法を説明します。
+
+|====

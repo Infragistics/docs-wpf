@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamspellchecker",
+    "controlName": ["xamSpellChecker"],
+    "tags": [],
+    "guid": "{99D06FCF-2DF9-4B42-8F59-44FED0A4C551}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.1133399Z"
+}
+|metadata|
+////
+
+= xamSpellChecker
+
+このセクションでは、xamSpellChecker™ の使用に関する概要を説明します。このセクションは、コントロールについての概要からアプリケーションで使用する理由、コントロールを使用して共通タスクを達成するための方法の手順などの xamSpellChecker についての有益な情報を含んでいます。以下のリンクをクリックして、xamSpellChecker コントロールについての情報にアクセスします。
+
+== link:xamspellchecker-about-xamspellchecker.html[xamSpellChecker について]
+
+このセクションの説明を読むと、xamSpellChecker コントロールの機能性と、それをアプリケーションに使用することの利点についてよく理解できます。
+
+== link:xamspellchecker-adding-xamspellchecker-to-your-page.html[xamSpellChecker をページに追加]
+
+xamSpellChecker コントロールを使ってすばやく起動して実行するためのコントロールの使用方法を提供します。
+
+== link:xamspellchecker-using-xamspellchecker.html[xamSpellChecker の使用]
+
+このセクションには、xamSpellChecker コントロールで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamspellchecker-api-overview.html[API の概要]
+
+このトピックは、xamSpellChecker コントロールを使用して開発する際の名前空間とクラスについて説明します。このトピックに挙げられている名前空間とクラスは、{ProductName} ヘルプの「API リファレンス ガイド」セクションにリンクされています。

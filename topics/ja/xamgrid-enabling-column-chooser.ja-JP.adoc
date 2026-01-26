@@ -1,0 +1,102 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-enabling-column-chooser",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I"],
+    "guid": "77917c43-7de0-4a58-8869-0bc73544370c",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.152212Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列の選択を有効にする
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnchoosersettings.html[ColumnChooserSettings] または link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnchoosersettingsoverride.html[ColumnChooserSettingsOverride] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnchoosersettings~allowhidecolumnicon.html[AllowHideColumnIcon] プロパティを True に設定することによって、列ヘッダーに列チューザーを表示できます。エンド ユーザーがこのアイコンを選択すると、その特定の列は非表示になります。
+
+ColumnChooserSettings または ColumnChooserSettingsOverride オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnchoosersettings~allowhiddencolumnindicator.html[AllowHiddenColumnIndicator] プロパティを True に設定すると、非表示列の右側に隣接する列にインジケーターが表示されます。このインジケーターをクリックすると、非表示列が表示されたドロップダウンが現れます。エンド ユーザーがこのリストから列を選択すると、その列の非表示は解除されます。
+
+たとえば、以下のスクリーンショットは、AllowHideColumnIcon プロパティが True に設定され、 AllowHiddenColumnIndicator プロパティもまた True に設定された列ヘッダーを表示しています。
+
+[NOTE]
+====
+*注:* デフォルトで、これらのプロパティは False に設定されます。
+====
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Column_Chooser_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Column_Chooser_01.png[]
+endif::win-rt[]
+
+エンド ユーザーが ProductName 列の列チューザー アイコンを選択すると、以下のスクリーンショットに示されるように、列チューザー インジケーターが表示されます。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_columnChooser3.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_columnChooser3.png[]
+endif::win-rt[]
+
+エンド ユーザーが列チューザー インジケーターをクリックすると、列インジケーターのすぐ左側に、非表示列のリストを表示するドロップダウンが現れます。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_columnChooser4.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_columnChooser4.png[]
+endif::win-rt[]
+
+[NOTE]
+====
+*注:* 最後の列が非表示になると、列のヘッダーの右側に列チューザー インジケーターが現れます。このインジケーターをクリックすると、その特定の列の右側にすべての非表示列が表示されます。
+====
+
+エンド ユーザーがすべての列を非表示にすると、インジケーターが Filter 列に現れます。詳細については、「Filter 列」トピックを参照してください。
+
+エンド ユーザーが列チューザー ラベルをクリックすると、列チューザーのダイアログ ウィンドウが現れます。詳細は、 link:xamgrid-column-chooser-dialog-window.html[「列チューザーのダイアログ ウィンドウ」]のトピックを参照してください。
+
+以下のコードは、列チューザー機能を有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid Grid.Row="0" x:Name="MyDataGrid" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=Products}" AutoGenerateColumns="False">
+   <ig:XamGrid.ColumnChooserSettings>
+      <ig:ColumnChooserSettings AllowHideColumnIcon="True"    
+                                AllowHiddenColumnIndicator="True">
+      </ig:ColumnChooserSettings>
+   </ig:XamGrid.ColumnChooserSettings>
+   <!-- TODO: 列を追加します -->
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyDataGrid.ColumnChooserSettings.AllowHiddenColumnIndicator = True
+Me.MyDataGrid.ColumnChooserSettings.AllowHideColumnIcon = True
+----
+
+*C# の場合:*
+
+----
+this.MyDataGrid.ColumnChooserSettings.AllowHiddenColumnIndicator = true;
+this.MyDataGrid.ColumnChooserSettings.AllowHideColumnIcon = true;
+----
+
+== 関連トピック
+
+link:xamgrid-column-chooser-dialog-window.html[列の選択ダイアログ ウィンドウ]
+
+link:xamgrid-column-chooser-settings.html[列の選択設定]
+
+link:xamgrid-prevent-columns-from-being-hidden.html[列が非表示にされることを防止する]

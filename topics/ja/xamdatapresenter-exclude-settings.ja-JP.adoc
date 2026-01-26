@@ -1,0 +1,61 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-exclude-settings",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Exporting"],
+    "guid": "f7792c44-a907-4e79-9cd0-82cf314b3e92",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3860303Z"
+}
+|metadata|
+////
+
+= エクスポート時の DataPresenter の Exclude 設定
+
+
+
+データが Microsoft® Word® にエクスポートされる場合、結果ファイルはエクスポート前に発生した DataPresenter コントロールに対するユーザーの操作に基づきます。たとえば、ユーザーがフィールドを並べ替える場合、エクスポーターはそのフィールドの現在の並べ替え順序を使用してレコードをエクスポートします。ただし、 link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter.html[DataPresenterWordWriter] オブジェクトで Exclude… プロパティ (すべてブール値) を構成することによって、何をどのようにエクスポートするかを制御することができます。
+
+表 1 では、使用可能な Exclude… プロパティとエクスポート処理の影響について説明します。
+
+表 1: エクスポートを管理するためのプロパティ
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~excludeexpandedstate.html[ExcludeExpandedState]
+|ソース レコードの展開状態がエクスポートされるレコードにコピーされるかどうかを制御します。True の場合、レコードの IsExpanded 状態は True に初期化されます。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~excludefieldlayoutsettings.html[ExcludeFieldLayoutSettings]
+|エクスポートされるコントロールから link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutsettings.html[FieldLayoutSettings] をコピーするかどうかを制御します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~excludefieldsettings.html[ExcludeFieldSettings]
+|エクスポートされるコントロールから link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldsettings.html[FieldSettings] をコピーするかどうかを制御します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~excludegroupbysettings.html[ExcludeGroupBySettings]
+|エクスポートされるコントロールからフィールドの GroupBy 状態をコピーするかどうかを制御します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~excluderecordfilters.html[ExcludeRecordFilters]
+|エクスポートされるコントロールからフィールドの RecordFilter 状態をコピーするかどうかを制御します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~excluderecordvisibility.html[ExcludeRecordVisibility]
+|エクスポートされるコントロールからレコードの表示/非表示設定をコピーするかどうかを示す制御します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~excludesortorder.html[ExcludeSortOrder]
+|エクスポートされるコントロールから並べ替えられたフィールドをコピーするかどうかを制御します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~excludesummaries.html[ExcludeSummaries]
+|エクスポートされるコントロールから link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayouts.html[FieldLayouts] の集計をコピーするかどうかを制御します。
+
+|====
+
+== 関連トピック
+
+link:xamdatapresenter-exporting-data-to-word.html[xamDataPresenter を使用してデータを Word にエクスポート]
+
+link:xamdatapresenter-applying-formats-when-exporting-data.html[データをエクスポートする時にフォーマットを適用]
+
+link:xamdatapresenter-exporting-to-word-events.html[エクスポート イベントを処理することでエクスポートを管理]

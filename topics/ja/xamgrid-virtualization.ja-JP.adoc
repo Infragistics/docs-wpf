@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-virtualization",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Binding","Grids","Virtualization"],
+    "guid": "{3565BE3D-48CE-45DB-B42B-48E80F44D0B8}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9001985Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 仮想化
+
+xamGrid コントロールは、行およびセルの UIElements を仮想化して、メモリ使用量を削減してパフォーマンスを向上させます。エンドユーザーには、常に存在するようにセルと行が表示されますが、視覚的要素が作成されるのは表示される時のみです。このプロセスは、データ セットが大きく、行とセルのセット全体をコントロールに表示することができない時のパフォーマンスに不可欠です。
+
+*要素の再利用*
+
+xamGrid コントロールは、表示される行とセルの量の 2 倍を最初に作成し、エンドユーザーが垂直または水平にスクロールする時にそれらを再利用します。同じ列タイプのセルだけを再利用できます。たとえば、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.textcolumn.html[TextColumn] オブジェクトのセルはテキスト列に限ってリサイクルされ、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.checkboxcolumn.html[CheckboxColumn] オブジェクトのセルはチェックボックス列でリサイクルされます。
+
+*仮想化を無効*
+
+xamGrid の Height および Width プロパティ、またはそれに含まれる要素が設定されている場合、仮想化は常に有効になります。xamGrid の幅が設定されていない場合、つまり、コントロールが幅を持たず、その親コンテナーが幅を無限にすることを許可する場合、xamGrid は水平スクロール中にセルを仮想化しません。一例としては、xamGrid が水平の Stack Panel または Scroll Viewer 内にあった場合です。同様に、コントロールに高さがない場合、たとえばコントロールが高さのない垂直の Stack Panel または Scroll Viewer にある場合、xamGrid は垂直スクロール中にセルと行を仮想化しません。
+
+*仮想化の効果*
+
+仮想化は表示される UIElements のみを作成するため、行またはセルはそれに関連付けられたコンテンツを持たない場合があります。したがって、セルまたは行のコンテンツ コントロールのプロパティへのアクセスを回避すべきです。その代わりにカスタマイズ化のスタイルを使用します。
+
+*関連トピック*
+
+link:xamgrid-control-the-virtualization-process.html[仮想化プロセスの制御]
+
+link:xamgrid-improving-horizontal-scrolling-using-cellcontrolgenerationmode.html[CellControlGenerationMode プロパティを使用した水平スクロール機能の向上]

@@ -1,0 +1,54 @@
+﻿////
+
+|metadata|
+{
+    "name": "textdocument-overview",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": [],
+    "guid": "336ae42a-e4c5-4c23-bfb4-046662145472",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.8920514Z"
+}
+|metadata|
+////
+
+= TextDocument の概要 (Syntax Parsing Engine)
+
+=== 概要
+
+`TextDocument` クラスは、定義済みの言語校正に従ってテキストを解析するための Infragistics® Syntax Parsing Engine の単一テキスト ファイルを表します。
+
+このトピックは、`TextDocument` クラスの概念的な情報とコード スニペットへのリンクを含みます。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:methods-for-modifying-text-in-a-textdocument.html[TextDocument でテキストを変更するメソッド]
+|このトピックでは、コードスニペットを使用してテキストを編集する `TextDocument` クラス メソッドについて説明します。
+
+| link:events-for-interacting-with-a-textdocument.html[TextDocument を操作するイベント]
+|このトピックでは、コードスニペットを使用して `TextDocument` クラス イベントについて説明します。
+
+| link:properties-for-configuring-a-textdocument.html[TextDocument を構成するプロパティ]
+|このトピックでは、コード スニペットを使用して `TextDocument` クラス プロパティについて説明します。
+
+| link:implementing-a-textdocument-with-a-richtextbox.html[RichTextBox を含む TextDocument を実装]
+|このトピックでは、特定の言語に基づいて文書でキーワードを強調表示できる RichTextBox コントロールを使用する方法をコード スニペットを用いて説明します。
+
+|====
+
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe.html[Infragistics Syntax Parsing Engine]
+|このトピックでは、Infragistics Syntax Parsing Engine の概念的な情報とコード スニペットへのリンクを含みます。
+
+|====

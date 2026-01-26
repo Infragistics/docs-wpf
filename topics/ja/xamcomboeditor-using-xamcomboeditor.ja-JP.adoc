@@ -1,0 +1,50 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-using-xamcomboeditor",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{F2E8CEDC-65D5-4108-B873-78BF36CE4D53}",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7081013Z"
+}
+|metadata|
+////
+
+= xamComboEditor の構成
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックは、 _xamComboEditor_™ コントロールの主な機能、使用、構成を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-support-for-primitives.html[プリミティブ型のコレクションへのバインド]
+|このトピックは、 _xamComboEditor_ コントロールがプリミティブ型データのコレクションにバインドされる場合の詳細を説明します。
+
+| link:xamcomboeditor-autocomplete.html[オートコンプリートの構成]
+|このトピックは、 _xamComboEditor_ コントロールの編集モードで利用可能なオートコンプリート機能を説明します。
+
+| link:xamcomboeditor-using-customvalueenteredaction.html[ユーザー入力で動作の構成]
+|このトピックは、コントロールのテキスト ボックスに入力するときに _xamComboEditor_ の動作を指定する方法を説明します。
+
+| link:xamcomboeditor-dropdown-resizing.html[ドロップダウンのサイズ構成]
+|このトピックは、 _xamComboEditor_ のドロップダウンのサイズ変更を有効/無効にする方法を説明し、ドロップダウンの最小幅、最大幅、および最大高さをコードで設定する方法を説明します。
+
+| link:xamcomboeditor-custom-filtering.html[項目フィルターの構成]
+|このトピックは、 _xamComboEditor_ コントロールに項目フィルターを設定する方法を説明します。
+
+| link:xamcomboeditor-working-with-itemtemplate.html[項目テンプレートの構成]
+|このトピックは、項目の視覚化をカスタマイズするために _xamComboEditor_ の ItemTemplate プロパティを使用する方法を説明します。
+
+| link:xamcomboeditor-selection.html[選択]
+|このグループのトピックでは、 _xamComboEditor_ コントロールの選択機能とその使用について説明します。
+
+|====

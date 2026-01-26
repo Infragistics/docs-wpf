@@ -1,0 +1,54 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-save-an-end-users-docking-layout",
+    "controlName": ["xamDockManager"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{B416571F-DE15-4C3F-B373-963403C98BB7}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5230577Z"
+}
+|metadata|
+////
+
+= エンド ユーザーのドッキング レイアウトを保存
+
+
+
+xamDockManager™ コントロールは、エンドユーザーがアプリケーションのレイアウトを変更することができます。エンドユーザーは、アプリケーションの再起動時にレイアウトを修正する必要がないようにこれらの設定の保存を開発者に期待します。xamDockManager コントロールは、ドッキング レイアウトを保存するために使用できるオーバーロードされた link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~savelayout.html[SaveLayout] メソッドを公開します。
+
+XML 文字列としてドッキング レイアウトを取得するために、パラメーターなしで SaveLayout メソッドを呼び出すことができます。アプリケーションのデフォルト レイアウトをリストアする機能を実装したい場合、この機能は役立ちます。アプリケーションのデフォルト レイアウトを Stream オブジェクトに記述する代わりに、アプリケーションが起動時に文字列としてデフォルト レイアウトを保存することができます。エンド ユーザーがデフォルト レイアウトをリストアしたい場合、Stream オブジェクトの代わりに link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~loadlayout.html[LoadLayout] メソッドに XML 文字列を渡すことができます。
+
+以下のコード例は、レイアウトの保存方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Imports System.IO
+...
+Using fs As New FileStream("layout.xml", FileMode.Create, FileAccess.Write) 
+    Me.xamDockManager1.SaveLayout(fs) 
+End Using
+...
+----
+
+*C# の場合:*
+
+----
+using System.IO;
+...
+using (FileStream fs = new FileStream("layout.xml", FileMode.Create, FileAccess.Write))
+{
+    this.xamDockManager1.SaveLayout(fs);
+}
+...
+----
+
+== 関連トピック
+
+link:xamdockmanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamdockmanager-load-an-end-users-docking-layout.html[エンド ユーザーのドッキングレイアウトをロード]
+
+link:xamdockmanager-using-xamdockmanager.html[xamDockManager を使用]

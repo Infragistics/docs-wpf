@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-editing-data",
+    "controlName": ["xamComboEditor"],
+    "tags": [],
+    "guid": "{24F80C13-5CC7-4CA7-A767-3221E3CD0194}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0959781Z"
+}
+|metadata|
+////
+
+= データの編集
+
+場合によっては、データ修正のためではなく、純粋に情報を目的としてデータベースを使用する場合があります。ただし、そうではない場合、エンドユーザーがデータを修正するための信頼できる簡単な方法が必要です。これらの修正には、データの追加、更新、削除が含まれ、これらすべてはデフォルトで xamComboEditor™ コントロールが実行するタスクです。
+
+xamComboEditor コントロールは、基本のデータ ソースを複数のビューで表示します。xamComboEditor コントロールは、複数の便利なメソッドによってデータ ソースを操作することも可能です。これによってエンドユーザーに慣れ親しんだ使いやすさを提供することができます。
+
+xamComboEditor コントロールを使用したデータ編集に特化したトピックをご覧になるには、以下のリンクをクリックしてください。
+
+* link:xamcomboeditor-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xamcomboeditor-setting-the-xamcomboeditor-as-an-editor-of-a-field-programmatically.html[プログラムを使用して xamComboEditor をフィールドのエディターとして設定]
+* link:xamcomboeditor-using-xamcomboeditor-to-edit-a-field-in-xamdatagrid.html[xamDataGrid でフィールドを編集するために xamComboEditor を使用]
+* link:xamcomboeditor-working-with-the-isalwaysineditmode-property-and-the-editors.html[IsAlwaysInEditMode プロパティとエディターによる作業]

@@ -1,0 +1,366 @@
+﻿== Infragistics NuGet パッケージ
+
+2023.2 リリース以降、Infragistics の従来のインストーラーは削除されたため、WPF コントロールは今後、NuGet を通じてのみサポートされるようになります。
+
+Infragistics {ProductName} は、製品の各コントロールおよびコンポーネントの NuGet パッケージを提供します。以下の表は、コントロールを使用するために {PlatformName} アプリケーションに追加するパッケージを参照できます。
+
+NuGet パッケージを使用する方法は 2 つあります。パッケージ ファイルをコンピューターのディレクトリに保存してそのディレクトリへ参照するlink:nuget-feeds.html#adding_local_package[パッケージ ソースを追加]、またはライセンス付きの link:nuget-feeds.html#adding_infragistics_feed[Infragistics NuGet フィード]を使用します。ライセンス付きのフィードを使用するには、有効な製品キーに紐づけされた Infragistics アカウントが必要です。ライセンス付きのフィードを使用するには、有効な製品キーに紐づけされた Infragistics アカウントが必要です。あるいは、NuGet パッケージのトライアル版が、デフォルトのパブリック NuGet フィード (https://api.nuget.org/v3/index.json) で利用できるようになりました。
+
+- 2019.1 リリースでは、以下にリストされている NuGet パッケージが .NET Core 3.0 環境でサポートされています。
+- 2020.2 リリース以降、.NET Core 3.0 はサポートされなくなり、.NET Core 3.1 および .NET 5.0 がサポートされます。
+- 2021.2 リリース以降、.NET 6.0 がサポートされます。
+- 2022.2 リリース以降、.NET 7.0 がサポートされます。
+- 2023.2 リリース以降、.NET 8.0 がサポートされます。
+- 2024.2 リリース以降、.NET 9.0 がサポートされます。.NET 3.1、.NET 5 および .NET 7 はサポートされなくなりました。
+- 2025.2 リリース以降、.NET 10.0 がサポートされます。.NET 6.0 はサポートされなくなりました。
+
+上記のバージョンのいずれかを使用する .NET Framework 4.X もサポートします。
+
+Visual Studio で Infragistics {ProductName} コントロールを含むツールボックスを使用する場合は、ツールボックスはプロジェクトにインストールされているパッケージに基づいて設定されるため、最初に対応する NuGet パッケージをプロジェクトに追加する必要があります。どの NuGet パッケージにどのコントロールが含まれているかの完全なリストは以下にあります。
+
+=== コントロール
+
+[cols="a,a"]
+|====
+|コントロール|NuGet パッケージ
+
+| BarcodeReader
+| Infragistics.WPF.BarcodeReader
+
+|
+XamQRCodeBarcode +
+XamCode128Barcode +
+XamCode39Barcode +
+XamEanUpcBarcode +
+XamInterleaved2Of5Barcode +
+XamGs1DataBarBarcode +
+XamIntelligentMailBarcode +
+XamRoyalMailBarcode +
+XamPdf417Barcode +
+XamMaxiCodeBarcode +
+
+| Infragistics.WPF.Barcodes
+
+| XamCalculationManager
+| Infragistics.WPF.CalculationManager
+
+| XamCalendar
+| Infragistics.WPF.Calendar
+
+|
+XamDataChart +
+XamDataPieChart +
+XamCategoryChart +
+XamShapeChart +
+XamFinancialChart
+| Infragistics.WPF.Charts
+
+| OlapXAxis
+| Infragistics.WPF.Charts.Olap
+
+| XamColorPicker
+| Infragistics.WPF.ColorPicker
+
+| XamComboEditor
+| Infragistics.WPF.Controls.Editors.XamComboEditor
+
+| XamDateTimeInput
+| Infragistics.WPF.Controls.Editors.XamDateTimeInput
+
+| 
+XamMaskedInput +
+XamNumericInput +
+XamCurrencyInput
+| Infragistics.WPF.Controls.Editors.XamMaskedInput
+
+|XamDashboardTile
+|Infragistics.WPF.Dashboards
+
+| 
+XamDataPresenter +
+XamDataGrid +
+XamDataCards +
+XamDataCarousel +
+XamTreeGrid
+| Infragistics.WPF.DataGrids
+
+| Asynchronous Paging Data Source
+| Infragistics.WPF.DataGrids.Async
+
+| DataPresenterCalculationAdapter
+| Infragistics.WPF.DataGrids.Calculation
+
+| DataPresenterExcelExporter
+| Infragistics.WPF.DataGrids.Excel
+
+| DataPresenterWordWriter
+| Infragistics.WPF.DataGrids.Word
+
+| XamDataTree
+| Infragistics.WPF.DataTree
+
+| XamDiagram
+| Infragistics.WPF.Diagram
+
+| XamDialogWindow
+| Infragistics.WPF.DialogWindow
+
+| XamDockManager
+| Infragistics.WPF.DockManager
+
+|
+XamCheckEditor +
+XamComboEditor +
+XamCurrencyEditor +
+XamDateTimeEditor +
+XamMaskedEditor +
+XamMonthCalendar +
+XamNumericEditor +
+XamTextEditor
+| Infragistics.WPF.Editors
+
+| XamColorEditor
+| Infragistics.WPF.Inputs
+
+| XamFormulaEditor
+| Infragistics.WPF.FormulaEditor
+
+| XamGantt
+| Infragistics.WPF.Gantt
+
+|
+XamBulletGraph +
+XamLinearGauge +
+XamRadialGauge
+| Infragistics.WPF.Gauges
+
+| XamGeographicMap
+| Infragistics.WPF.GeographicMap
+
+|
+XamContextMenu +
+XamMenu
+| Infragistics.WPF.Menus
+
+| XamNetworkNode
+| Infragistics.WPF.NetworkNode
+
+| XamOrgChart
+| Infragistics.WPF.OrgChart
+
+| XamOutlookBar
+| Infragistics.WPF.OutlookBar
+
+| XamPivotDataSlicer
+| Infragistics.WPF.PivotDataSlicer
+
+| XamPivotGrid
+| Infragistics.WPF.PivotGrid
+
+| XamPivotGridGrouping
+| Infragistics.WPF.PivotGridGrouping
+
+| XamPropertyGrid
+| Infragistics.WPF.PropertyGrid
+
+| XamRadialMenu
+| Infragistics.WPF.RadialMenu
+
+| XamRibbon
+| Infragistics.WPF.Ribbon
+
+| XamRichTextEditor
+| Infragistics.WPF.RichTextEditor
+
+|
+XamDayView +
+XamMonthView +
+XamOutlookCalendarView +
+XamScheduleView
+| Infragistics.WPF.Schedules
+
+| Schedule Dialogs
+| Infragistics.WPF.Schedules.Dialogs
+
+| ExchangeScheduleDataConnector
+| Infragistics.WPF.Schedules.Exchange
+
+| WcfListScheduleDataConnector
+| Infragistics.WPF.Schedules.Wcf
+
+|
+XamDateTimeSlider +
+XamDateTimeRangeSlider +
+XamNumericSlider +
+XamNumericRangeSlider
+| Infragistics.WPF.Slider
+
+| XamSparkline
+| Infragistics.WPF.Sparkline
+
+| XamSpellChecker
+| Infragistics.WPF.SpellChecker
+
+| XamSpreadsheet
+| Infragistics.WPF.Spreadsheet
+
+| XamSurfaceChart3D
+| Infragistics.WPF.SurfaceChart3D
+
+| XamSyntaxEditor
+| Infragistics.WPF.SyntaxEditor
+
+| XamTagCloud
+| Infragistics.WPF.TagCloud
+
+| XamTileManager
+| Infragistics.WPF.TileManager
+
+| XamTimeline
+| Infragistics.WPF.Timeline
+
+| XamToolbar
+| Infragistics.WPF.Inputs
+| Infragistics.WPF.Layouts
+
+| XamTreemap
+| Infragistics.WPF.Treemap
+
+|====
+
+=== ライブラリとフレームワーク
+[cols="a,a"]
+|====
+|フレームワーク|NuGet パッケージ
+
+| Drag and Drop フレームワーク
+| Infragistics.WPF.DragDrop
+
+| Excel フレームワーク
+| Infragistics.WPF.Excel
+
+| Math ライブラリ
+| Infragistics.WPF.Math
+
+| Math Calculators ライブラリ
+| Infragistics.WPF.Math.Calculators
+
+| Persistence フレームワーク
+| Infragistics.WPF.Persistence
+
+| レポート エンジン
+| Infragistics.WPF.Reporting
+
+| Undo/Redo フレームワーク
+| Infragistics.WPF.Undo
+
+| Word ライブラリ
+| Infragistics.WPF.Word
+
+|====
+
+=== テーマ
+
+以下のテーマはすべての {ProductName} コントロールに適用します。
+
+[cols="a,a"]
+|====
+|テーマ|NuGet パッケージ
+
+| IgTheme | Infragistics.WPF.Themes.IG
+| MetroDarkTheme | Infragistics.WPF.Themes.MetroDark
+| MetroTheme | Infragistics.WPF.Themes.Metro
+| Office2010BlueTheme | Infragistics.WPF.Themes.Office2010
+| Office2013Theme | Infragistics.WPF.Themes.Office2013
+| RoyalDark | Infragistics.WPF.Themes.RoyalDark
+| RoyalLight | Infragistics.WPF.Themes.RoyalLight
+|====
+
+以下のテーマは特定の {ProductName} コントロールのみに適用します。
+
+* XamDataPresenter
+* XamDataGrid
+* XamDataCards
+* XamDataCarousel
+* XamTreeGrid
+* XamCheckEditor
+* XamComboEditor (Infragistics.Windows.Editors のコントロール。Infragistics.Controls.Editors のコントロールではありません。)
+* XamCurrencyEditor
+* XamDateTimeEditor
+* XamMaskedEditor
+* XamMonthCalendar
+* XamNumericEditor
+* XamTextEditor
+* XamOutlookBar
+* XamRibbon
+* XamDockManager
+
+[cols="a,a"]
+|====
+|テーマ|NuGet パッケージ
+
+| Fall | Infragistics.WPF.Themes.Fall
+| ForestGreen | Infragistics.WPF.Themes.ForestGreen
+| Leaf | Infragistics.WPF.Themes.Leaf
+| Lipstick | Infragistics.WPF.Themes.Lipstick
+| Water | Infragistics.WPF.Themes.Water
+| Wind | Infragistics.WPF.Themes.Wind
+|====
+
+=== その他の依存関係
+
+[cols="a,a"]
+|====
+|NuGet パッケージ|説明
+
+| Infragistics.WPF.DataManager
+| このパッケージは複数の LOB コントロールで使用される共有リソースを含みます。XamDataTree、XamFormulaEditor など。
+
+| Infragistics.WPF.DataVisualization
+| このパッケージはすべてのデータ ビジュアライゼーション コントロールで使用される共有リソースを含みます。XamDataChart、XamRadialGauge など。
+
+| Infragistics.WPF.Documents.Core
+| このパッケージは Excel フレームワークが使用するコア リソースを含みます。
+
+|
+Infragistics.WPF.RichTextDocument +
+Infragistics.WPF.RichTextDocument.Html +
+Infragistics.WPF.RichTextDocument.Rtf +
+Infragistics.WPF.RichTextDocument.Word
+| Infragistics.WPF.RichTextDocument パッケージは XamRichTextEditor で使用される RichTextDocument を提供します。
+
+その他のパッケージは HTML、RTF、および Microsoft Word ファイルを読み込む/保存するためのシリアライザーを提供します。
+
+|
+Infragistics.WPF.TextDocument +
+Infragistics.WPF.TextDocument.CSharp +
+Infragistics.WPF.TextDocument.TSql +
+Infragistics.WPF.TextDocument.VisualBasic
+| このパッケージは link:ig-spe-overview.html[Syntax Parsing Engine] で使用されます。
+
+XamSyntaxEditor コントロールを使用する場合、Infragistics.WPF.TextDocument は必須のパッケージです。その他のパッケージは定義済みの言語を含みます。
+
+|
+Infragistics.WPF.Olap +
+Infragistics.WPF.Olap.Adomd +
+Infragistics.WPF.Olap.Excel +
+Infragistics.WPF.Olap.FlatData +
+Infragistics.WPF.Olap.Xmla +
+Infragistics.WPF.Olap.Xmla.Oracle +
+Infragistics.WPF.Olap.Xmla.Sap
+
+| Infragistics.WPF.Olap パッケージは Olap パッケージおよび XamPivotGrid コントロールで使用される共有リソースを含みます。
+
+Infragistics.WPF.Olap.Adomd パッケージは ADOMD.NET データ ソースに接続するための機能を提供します。
+
+Infragistics.WPF.Olap.Excel パッケージは Excel スプレッドシートに接続するための機能を提供します。
+
+Infragistics.WPF.Olap.FlatData パッケージはデータのフラット リストに接続するための機能を提供します。
+
+Infragistics.WPF.Olap.Xmla パッケージは Xmla データ ソースに接続するための機能を提供します。
+
+Infragistics.WPF.Olap.Xmla.Oracle パッケージは Oracle Xmla データ ソースに接続するための機能を提供します。
+
+Infragistics.WPF.Olap.Xmla.Sap パッケージは Sap Xmla データ ソースに接続するための機能を提供します。
+
+|====

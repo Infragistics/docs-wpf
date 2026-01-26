@@ -1,0 +1,80 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-programmatically-add-summaries-to-a-field",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started","How Do I","Summaries"],
+    "guid": "{0B10CC8C-913A-4615-B00D-32039B077F2F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3010133Z"
+}
+|metadata|
+////
+
+= 集計をフィールドにプログラムで追加
+
+
+
+集計選択ダイアログ ボックスから集計計算式をエンドユーザーが選択することなく、XAML またはプロシージャ コードを使用してフィールドの集計を表示できます。フィールドの集計を表示するには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarydefinition.html[SummaryDefinition] オブジェクトをフィールドレイアウトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~summarydefinitions.html[SummaryDefinitions コレクション]に追加する必要があります。SummaryDefinition オブジェクトとフィールドの集計値には 1 対 1 の関係があります。フィールドに複数の集計値を希望する場合、各集計値に個別の SummaryDefinition を追加する必要があります。たとえば、xamDataPresenter で 2 つのフィールドの平均、合計、およびカウントを希望する場合、6 つの個別の SummaryDefinition オブジェクトをフィールド レイアウトの SummaryDefinitions コレクションに追加する必要があります。
+
+各 SummaryDefinition オブジェクトは、特定のフィールドで計算したい集計を定義します。設定しなければならない SummaryDefinition オブジェクトの 2 つのプロパティは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarydefinition~calculator.html[Calculator] プロパティと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarydefinition~sourcefieldname.html[SourceFieldName] プロパティです。両方のプロパティを設定しなければ、xamDataPresenter は集計値を表示しません。Calculator プロパティを組み込み集計計算式または計算を実行するカスタム集計計算式に設定できます。そして、SourceFieldName プロパティを計算式が値を使用するフィールドの名前に設定できます。
+
+以下のコード例は、集計をフィールドにプログラムで追加する方法を示します。このコード例は、"BasePrice" と名前が付けられたフィールドのフィールド レイアウトがあることを想定します。
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:FieldLayout.SummaryDefinitions>
+                <igDP:SummaryDefinition 
+                    Calculator="{x:Static igDP:SummaryCalculator.Average}" 
+                    SourceFieldName="BasePrice" />
+            </igDP:FieldLayout.SummaryDefinitions>
+            <igDP:FieldLayout.Fields>
+                <!--TODO: ここで Fields を FieldLayout に追加します-->
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+    </igDP:XamDataPresenter.FieldLayouts>
+</igDP:XamDataPresenter>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Dim averageCost As New SummaryDefinition()
+averageCost.SourceFieldName = "BasePrice"
+averageCost.Calculator = SummaryCalculator.Average
+Me.xamDataPresenter1.FieldLayouts(0).SummaryDefinitions.Add(averageCost)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+SummaryDefinition averageCost = new SummaryDefinition();
+averageCost.SourceFieldName = "BasePrice";
+averageCost.Calculator = SummaryCalculator.Average;
+this.xamDataPresenter1.FieldLayouts[0].SummaryDefinitions.Add(averageCost);
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-apply-default-summary-formats.html[デフォルトの集計フォーマットを適用]
+
+link:xamdatapresenter-creating-a-custom-summary-calculator.html[カスタム集計計算を作成]
+
+link:xamdatapresenter-enable-row-summaries.html[行集計を有効]
+
+link:xamdatapresenter-format-the-value-of-a-summary.html[集計の値をフォーマット]
+
+link:xamdatapresenter-retrieve-the-result-of-a-summary.html[集計結果を取得]

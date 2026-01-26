@@ -1,0 +1,133 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-validating-data",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Validation"],
+    "guid": "{AD1D5DEC-3AF9-4465-A518-99F6BC5EFE48}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9411994Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= データの検証
+
+xamGrid コントロールはデータ検証をサポートします。エンドユーザーが例外の原因となる値を設定して編集モードを終了しようとする時には常にコントロールは例外を表示してユーザーは編集モードのままです。編集モードを終了する前に、ユーザーは有効な値を入力するか変更を拒否するために Escape を押す必要があります。これはデフォルトでコントロールが動作する方法ですが、すべての link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editablecolumn.html[EditableColumn] オブジェクトには検証を有効/無効に設定できる link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editablecolumn~alloweditingvalidation.html[AllowEditingValidation] プロパティがあります。
+
+以下のコードは、エンドユーザーが値を負の数に設定しようとすると例外をスローして、xamGrid の UnitPrice および UnitsInStock フィールドに負の値を入力することを制限します。任意の列に検証を許可できます。テンプレート列の場合、以下の例に示すように、適切なバインディングをエディターに提供する必要があります。この例は UnitPrice または UnitsInStock プロパティが負の数に設定されている場合に例外をスローする Products クラスを使用します。フル link:resources-datautil.html[DataUtil] クラスが開発者に提供されます。
+
+image::images/sl_xamGrid_Validating_Data_01.png[]
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="xamGrid1" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=Products}">
+    <ig:XamGrid.EditingSettings>
+        <ig:EditingSettings AllowEditing="Row" />
+    </ig:XamGrid.EditingSettings>
+    <ig:XamGrid.Columns>
+        <ig:TextColumn Key="ProductID" />
+        <ig:TextColumn Key="ProductName" />
+        <ig:TextColumn Key="UnitPrice" />
+        <ig:TemplateColumn Key="UnitsInStock">
+            <ig:TemplateColumn.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding UnitsInStock}" />
+                </DataTemplate>
+            </ig:TemplateColumn.ItemTemplate>
+            <!--テンプレート列のエディターを設定します -->
+            <ig:TemplateColumn.EditorTemplate>
+                <DataTemplate>
+                    <!-- ソースの更新が行われる時をグリッドが制御できるように UpdateSourceTrigger を Explicit に設定します -->
+                    <!-- データを検証して通知するためにテキストボックスにテキストボックス検証オプションを設定します -->
+                    <TextBox Text="{Binding UnitsInStock, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True, UpdateSourceTrigger=Explicit}" />
+                </DataTemplate>
+            </ig:TemplateColumn.EditorTemplate>
+        </ig:TemplateColumn>
+    </ig:XamGrid.Columns>
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Public Class Product
+Implements INotifyPropertyChanged
+...
+        Public Property UnitPrice() As Decimal
+            Get
+                Return Me.m_unitPrice
+            End Get
+            Set(ByVal value As Decimal)
+                If value < 0 Then
+                    Throw New Exception("Negative numbers are not allowed")
+                End If
+                Me.m_unitPrice = value
+                OnPropertyChanged("UnitPrice")
+            End Set
+        End Property
+        Public Property UnitsInStock() As Integer
+            Get
+                Return Me.m_unitsInStock
+            End Get
+            Set(ByVal value As Integer)
+                If value < 0 Then
+                    Throw New Exception("Negative numbers are not allowed")
+                End If
+                Me.m_unitsInStock = value
+                OnPropertyChanged("UnitsInStock")
+            End Set
+        End Property
+...
+End Class
+----
+
+*C# の場合:*
+
+----
+public class Product : INotifyPropertyChanged
+{
+...
+    public decimal UnitPrice
+    {
+        get
+        {
+            return this.unitPrice;
+        }
+        set
+        {
+            if (value < 0)
+                throw new Exception("Negative numbers are not allowed.");
+            this.unitPrice = value;
+            OnPropertyChanged("UnitPrice");
+        }
+    }
+    public int UnitsInStock
+    {
+        get
+        {
+            return this.unitsInStock;
+        }
+        set
+        {
+            if (value < 0)
+                throw new Exception("Negative numbers are not allowed.");
+                this.unitsInStock = value;
+                OnPropertyChanged("UnitsInStock");
+        }
+    }
+...
+}
+----
+
+== 関連トピック
+
+link:xamgrid-editing-data-in-a-template-column.html[テンプレート列でデータを編集]
+
+link:xamgrid-editing-data.html[データの編集]
+
+link:xamgrid-changing-cell-values-in-code-behind.html[コード ビハインドでセル値を変更]

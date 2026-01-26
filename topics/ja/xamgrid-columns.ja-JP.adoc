@@ -1,0 +1,121 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-columns",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Presentation","Grids","Layouts"],
+    "guid": "{66919FA6-3013-44A6-98B4-AEC94326B711}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8711975Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列
+
+xamGrid コントロールは基になるデータ ソース中のプロパティのデータ型に基づいて列を表示します。たとえば、データ ソースに Boolean と String という 2 つのプロパティを含む場合、対応する列はチェックボックス列とテキスト列になります。以下の表は使用可能な列タイプを表示します。
+
+[options="header", cols="a,a,a"]
+|====
+|列|データ型|説明
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.checkboxcolumn.html[CheckboxColumn]
+|Boolean
+|チェック状態はデータの Boolean 値をマークします。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnlayout.html[ColumnLayout]
+|IEnumerable
+|データのバンドを表します。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.comboboxcolumn.html[ComboBoxColumn]
+|ComboBox
+|ComboxBox をセルの中身として生成します。
+
+ifdef::sl,wpf[]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.datecolumn.html[DateColumn]
+|DateTime
+|Microsoft {PlatformName} DatePicker コントロールを使用して日付を表示します。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.datecolumn.html[SelectedDateFormat] プロパティを Long または Short に設定することによって、DateColumn の書式を決定できます。
+endif::sl,wpf[]
+
+| link:{ApiPlatform}controls.grids.datetimecolumn{ApiVersion}~infragistics.controls.grids.datetimecolumn_members.html[DateTimeColumn]
+|DateTime
+|xamDateTimeInput コントロールを使用して日付を表示します。link:{ApiPlatform}controls.grids.datetimecolumn{ApiVersion}~infragistics.controls.grids.datetimecolumn~selecteddatemask.html[SelectedDateMask] プロパティを設定することによって、DateTimeColumn の書式を決定できます。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.groupcolumn.html[GroupColumn]
+|Other
+|GroupColumns を使用すると、複数列をひとつの共通ヘッダーでグループ化できます。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.hyperlinkcolumn.html[HyperlinkColumn]
+|Uri
+|セルのコンテンツのために HyperlinkButton オブジェクトを作成します。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.imagecolumn.html[ImageColumn]
+|URL
+|提供された URL から画像を表示します。エンドユーザーは画像列を編集したりフィルタリングできません。
+
+ifdef::sl,wpf[]
+| link:{ApiPlatform}controls.grids.multicolumncombocolumn{ApiVersion}~infragistics.controls.grids_namespace.html[MultiColumnComboColumn]
+|MultiColumnComboEditor
+|MultiColumnCombo 列は、ドロップダウン リストで複数列を表示する列タイプです。
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}~infragistics.controls.grids_namespace.html[SparklineColumn]
+|Sparkline
+|Sparkline 列は、セルにスパークライン チャートを表示する列タイプです。
+endif::sl,wpf[]
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn.html[TemplateColumn]
+|Custom
+|ItemTemplate 機能がこの列で使用されてカスタム コンテンツを設定します。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.textcolumn.html[TextColumn]
+|Other
+|この列タイプはその他すべてのデータ型に使用されます。
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.unboundcolumn.html[UnboundColumn]
+|Other
+|非バインド列によって、特定のデータにバインドされない列を追加できます。
+
+|====
+
+*列の自動生成*
+
+xamGrid の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~autogeneratecolumns.html[AutoGenerateColumns] プロパティが True に設定される場合、データ ソースで公的に公開されたプロパティごとに適切なタイプの列が自動的に生成されます。xamGrid の列を定義する場合で、列の Key プロパティがデータ ソース内のパブリック プロパティ名に一致する場合、これらの列を使用します。そうでない場合、一致しない列を自動生成します。xamGrid が表示するものをすべて制御したい場合、この機能をオフにして固有の列を定義できます。これについての詳細は、 link:xamgrid-define-column-layout.html[「列レイアウトの定義」]を参照してください。
+
+*カスタムの列タイプ マッピング*
+
+特定のデータ型の列のデフォルト作成がアプリケーションのニーズに合わない場合、異なる列タイプを作成するために列マッピングを変更できます。ColumnTypeMapping オブジェクトを使用してデータ型と使用するように列タイプを割り当てることでこれを実行できます。これについての詳細は、 link:xamgrid-change-column-type-mapping.html[「列タイプ マッピングの変更」]を参照してください。
+
+== 関連トピック
+
+link:xamgrid-define-column-layout.html[列レイアウトの定義]
+
+link:xamgrid-change-column-type-mapping.html[列タイプ マッピングの変更]
+
+link:xamgrid-change-column-width-settings.html[列幅設定の変更]
+
+link:xamgrid-comboboxcolumn-column.html[ComboBoxColumn 列]
+
+link:xamgrid-datetime-columns.html[DateTime 列]
+
+link:xamgrid-create-a-template-column.html[テンプレート列の作成]
+
+link:xamgrid-editing-data-in-a-template-column.html[テンプレート列でデータを編集]
+
+link:xamgrid-filler-column.html[フィラー列]
+
+link:xamgrid-group-column.html[グループ列]
+
+link:xamgrid-override-settings.html[Override の設定]
+
+link:xamgrid-set-the-text-alignment-on-column-headers.html[列ヘッダーでテキストの配置を設定]
+
+link:xamgrid-template-column-layout.html[テンプレート列のレイアウト]
+
+link:xamgrid-unbound-column.html[非バインド列]
+
+link:xamgrid-column-specific-style.html[列固有のスタイル]

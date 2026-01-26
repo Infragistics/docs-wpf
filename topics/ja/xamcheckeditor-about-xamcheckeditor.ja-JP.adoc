@@ -1,0 +1,17 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcheckeditor-about-xamcheckeditor",
+    "controlName": ["xamCheckEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{08F23C24-88C8-4C8A-A11C-B3FBBF5C8B76}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0499781Z"
+}
+|metadata|
+////
+
+= xamCheckEditor について
+
+xamCheckEditor™ コントロールは、True、False、および Indeterminate の各状態をサポートするシンプルなチェックボックス コントロールです。XamCheckEditor は、xamDataGrid™ コントロールの Field のように別のコントロールの中に組み込まれて通常使用されます。ただし、スタンドアロン コントロールとしても使用できます。xamDataGrid の Field のように、ブール値で複数のレコードに素早くマークするためのより簡単な方法をエンドユーザーに提供することができます。

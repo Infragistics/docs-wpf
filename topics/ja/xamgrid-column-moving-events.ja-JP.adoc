@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-column-moving-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I","Layouts","Selection"],
+    "guid": "{5B4AE80C-BDE8-4E0D-AD99-41259D2E4B19}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.805163Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列移動イベント
+
+xamGrid には列移動に関連付けられたイベントが 5 つあります。列移動イベントによって、列が移動する前、移動中、移動後にいくつかのカスタム ビジネス ロジックを実行できます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columndragstart_ev.html[ColumnDragStart] - 列でドラッグ操作が実行される直前に、ColumnDragStart イベントが発生します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columnmoving_ev.html[ColumnMoving] - 列のドラッグ中にマウスが移動すると、このイベントが発生します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columndropped_ev.html[ColumnDropped] - 列が新しい位置に移動すると、このイベントが発生します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columndragcanceled_ev.html[ColumnDragCanceled] - ドラッグ操作がキャンセルされるときに、このイベントが発生します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columndragended_ev.html[ColumnDragEnded] - 成功したかどうかに関わらず、ドラッグ操作が完了したときに、このイベントが発生します。
+
+これらのイベントによって、エンド ユーザーが列移動機能を操作する方法を制御することができます。たとえば、エンド ユーザーがその列を移動するのを禁止する、ColumnDragStart イベントをキャンセルすることができます。
+
+== 関連トピック
+
+link:xamgrid-column-moving.html[列移動]
+
+link:xamgrid-disable-moving-of-certain-columns.html[特定の列の移動を無効にする]
+
+link:xamgrid-customize-animation-of-column-moving.html[列移動のアニメーションのカスタマイズ]

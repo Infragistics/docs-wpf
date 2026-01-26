@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-creating-a-themepack",
+    "controlName": [],
+    "tags": ["Styling","Theming"],
+    "guid": "{DA9EB3A6-3905-4582-977B-D2D55F43EDD7}",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-01-30T20:33:32.0530392Z"
+}
+|metadata|
+////
+
+= テーマパックの作成
+
+{ProductName} 製品は、アプリケーションでコントロールの統一されたスタイリングを提供する、または特定のページをスタイルするために使用できるいくつかのテーマパックを提供しています。これらのテーマパックを作成するために使用されるアーキテクチャは、{ProductName} アセンブリ内から入手できます。したがって、{ProductName} コントロールと使用するために独自のテーマパックを作成することができます。
+
+以下のトピックは、固有のテーマパック作成のプロセス全体を開始から終了まで紹介しています。
+
+* link:wpf-creating-and-setting-up-a-themepack-project.html[テーマパック プロジェクトの作成と設定]
+* link:wpf-creating-a-style-groups-class.html[スタイル グループのクラスの作成]
+* link:wpf-creating-a-style-groups-resourcedictionary-files.html[スタイル グループの ResourceDictionary ファイルの作成]
+* link:wpf-creating-the-assemblyresourcesetloader-class.html[AssemblyResourceSetLoader クラスの作成]
+* link:wpf-modifying-the-assemblyinfo-file.html[AssemblyInfo ファイルの修正]
+* link:wpf-referencing-your-themepack.html[テーマパックの参照]

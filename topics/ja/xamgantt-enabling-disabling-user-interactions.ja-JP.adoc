@@ -1,0 +1,371 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-enabling-disabling-user-interactions",
+    "controlName": ["xamGantt"],
+    "tags": ["Data Presentation","Editing","Getting Started","How Do I"],
+    "guid": "d1735a2f-7cf1-4e7d-babc-30267993eb48",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2561636Z"
+}
+|metadata|
+////
+
+= ユーザー インタラクションの有効化/無効化
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   コントロールの構成可能なユーザー インタラクションについて解説します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-user-interactions-in-the-chart-section.html[チャート セクションにおける xamGantt ユーザー インタラクション]
+|このトピックでは、 _xamGantt_ コントロールのグリッド セクションを使用して利用可能なユーザー インタラクションを説明します。
+
+| link:xamgantt-xamgantt-user-interactions-in-the-grid-section.html[グリッド セクションにおける xamGantt ユーザー インタラクション]
+|このトピックでは、 _xamGantt_ コントロールのチャート セクションを使用して利用可能なユーザー インタラクションを説明します。
+
+| link:xamgantt-adding-xamgantt-to-a-page.html[xamGantt をページに追加]
+|このトピックでは、 _xamGantt_ コントロールをページに追加する方法を説明します。
+
+| link:xamgantt-binding-arbitrary-tasks-collection-listbackedproject.html[ListBackedProject による任意タスク コレクションへのバインディング]
+|このトピックでは、ListBackedProject で _xamGantt_ コントロールを任意のタスク コレクションにバインドする方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref334129492, ユーザー インタラクションの構成の要点 >>
+
+** <<_Ref334103852,プロジェクトとのユーザー インタラクションの有効化/無効化>>
+** <<_Ref334111197,グリッド列とのユーザー インタラクションの有効化/無効化>>
+** <<_Ref334113511,タスクとのユーザー インタラクションの有効化/無効化>>
+** <<_Ref334115985,タスクバーとのユーザー インタラクションの有効化/無効化>>
+
+* <<codeexamples, コード例 >>
+
+** <<_Ref334119962,コード例: タスクの挿入と削除の無効化>>
+** <<_Ref334129552,コード例: 列の移動とサイズ変更の無効化>>
+
+* <<_Ref334129640, 関連コンテンツ >>
+
+[[_Ref334129492]]
+== ユーザー インタラクションの構成の要点
+
+=== ユーザー インタラクションの構成の要点チャート
+
+以下の表には、 _xamGantt_   コントロールの構成可能なユーザー インタラクションをまとめました。その他の詳細情報については、以下の要点チャートの後を参照してください。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な要素|詳細|プロパティ
+
+|<<_Ref334103852,プロジェクトとのユーザー インタラクションの有効化/無効化>>
+|_xamGantt_ プロジェクトとのユーザー インタラクション (タスク編集とプロジェクト編集) は有効/無効にできます。
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~isreadonly.html[IsReadOnly] 
+
+|<<_Ref334111197,グリッド列とのユーザー インタラクションの有効化/無効化>>
+|_xamGantt_ グリッド列とのユーザー インタラクション (表示/非表示、移動、サイズ変更) は、有効/無効にできます。
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~allowhide.html[AllowHide] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~allowmove.html[AllowMove] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~allowresize.html[AllowResize] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~allowshow.html[AllowShow] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~isreadonly.html[IsReadOnly] 
+
+|<<_Ref334113511,タスクとのユーザー インタラクションの有効化/無効化>>
+|プロジェクト タスクとのユーザー インタラクション (挿入、削除、インデント/アウトデント) は有効/無効にできます。
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowchangeindentation.html[AllowChangeIndentation] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdelete.html[AllowDelete] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowinsert.html[AllowInsert] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~taskdependencylinetype.html[TaskDependencyLineType] 
+
+|<<_Ref334115985,タスクバーとのユーザー インタラクションの有効化/無効化>>
+|タスクバーとのユーザー インタラクション (ドラッグとサイズ変更) は有効/無効にできます。
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragdeadline.html[AllowDragDeadline] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragmilestone.html[AllowDragMilestone] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragpercentcomplete.html[AllowDragPercentComplete] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragsummary.html[AllowDragSummary] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragtask.html[AllowDragTask] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowresizesummary.html[AllowResizeSummary] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowresizetask.html[AllowResizeTask] 
+
+|====
+
+[[_Ref334103852]]
+== プロジェクトとのユーザー インタラクションの有効化/無効化
+
+[[_Ref334129716]]
+
+=== 概要
+
+デフォルトで、 _xamGantt_   プロジェクトとのすべてのユーザー インタラクション (タスクの挿入と削除、タスクフィールドの編集など) は有効です。
+
+プロジェクトとのユーザー インタラクションは、プロジェクト プランを読み取り専用モードで表示する場合のみ、 _xamGantt_   コントロールの使用時に無効にできます。
+
+[[_Ref334129722]]
+
+=== プロパティ設定
+
+以下の表は、ユーザー インタラクションの構成をプロパティ設定にマップしたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|型:
+
+|プロジェクトとのユーザー インタラクションの有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~isreadonly.html[IsReadOnly]
+|`Bool`
+
+|====
+
+[[_Ref334111197]]
+== グリッド列とのユーザー インタラクションの有効化/無効化
+
+[[_Ref334129740]]
+
+=== 概要
+
+デフォルトで、グリッド列とのユーザー インタラクションはすべて有効です。
+
+移動、サイズ変更、表示、非表示、編集は、特定の列や、すべての列を対象に、有効または無効にできます。
+
+[[_Ref334129746]]
+
+=== プロパティ設定
+
+以下の表は、ユーザー インタラクションの構成をプロパティ設定にマップしたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|型:
+
+|列の非表示の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~allowhide.html[AllowHide]
+|`Nullable<bool>`
+
+|列の移動の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~allowmove.html[AllowMove]
+|`Nullable<bool>`
+
+|列のサイズ変更の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~allowresize.html[AllowResize]
+|`Nullable<bool>`
+
+|列の表示の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~allowshow.html[AllowShow]
+|`Nullable<bool>`
+
+|列の編集の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettingsbase~isreadonly.html[IsReadOnly]
+|`Nullable<bool>`
+
+|====
+
+[[_Ref334113511]]
+== タスクとのユーザー インタラクションの有効化/無効化
+
+[[_Ref334129775]]
+
+=== 概要
+
+デフォルトで、プロジェクト タスクとのユーザー インタラクションはすべて有効です。
+
+タスクの挿入、削除、インデント/アウトデントは、有効や無効にできます。
+
+[[_Ref334129783]]
+
+=== プロパティ設定
+
+以下の表は、ユーザー インタラクションの構成をプロパティ設定にマップしたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|型:
+
+|タスクのインデント/アウトデントの有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowchangeindentation.html[AllowChangeIndentation]
+|`Nullable<bool>`
+
+|タスクの削除の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdelete.html[AllowDelete]
+|`Nullable<bool>`
+
+|タスクの挿入の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowinsert.html[AllowInsert]
+|`Nullable<bool>`
+
+|タスク リンクを有効にする
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~taskdependencylinetype.html[TaskDependencyLineType]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskdependencylinetype.html[ProjectTaskDependencyLineType] およびそれを `Direct` または `Indirect` に設定します。
+
+|タスク リンクを無効にする
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~taskdependencylinetype.html[TaskDependencyLineType]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskdependencylinetype.html[ProjectTaskDependencyLineType] およびそれを `None` に設定します。
+
+|====
+
+[[_Ref334115985]]
+== タスクバーとのユーザー インタラクションの有効化/無効化
+
+[[_Ref334129796]]
+
+=== 概要
+
+デフォルトで、タスクバーとのユーザー インタラクションはすべて有効です。
+
+タスクバーのドラッグとサイズ変更は有効や無効にできます。
+
+=== プロパティ設定
+
+以下の表は、ユーザー インタラクションの構成をプロパティ設定にマップしたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|型:
+
+|締め切りインジケーターのドラッグの有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragdeadline.html[AllowDragDeadline]
+|`Nullable<bool>`
+
+|マイルストーンのドラッグの有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragmilestone.html[AllowDragMilestone]
+|`Nullable<bool>`
+
+|進行状況バーのドラッグの有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragpercentcomplete.html[AllowDragPercentComplete]
+|`Nullable<bool>`
+
+|サマリーのドラッグの有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragsummary.html[AllowDragSummary]
+|`Nullable< link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.allowdragsummarytask.html[AllowDragSummaryTask]>`
+
+|タスクのドラッグの有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowdragtask.html[AllowDragTask]
+|`Nullable<bool>`
+
+|サマリーのサイズ変更の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowresizesummary.html[AllowResizeSummary]
+|`Nullable< link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.allowdragsummarytask.html[AllowDragSummaryTask]>`
+
+|タスクのサイズ変更の有効化/無効化
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings~allowresizetask.html[AllowResizeTask]
+|`Nullable<bool>`
+
+|====
+
+[[codeexamples]]
+
+== コード例
+
+=== コード例の概要
+
+以下の表は、このトピックで使用したコード例をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|例|解説
+
+|<<_Ref334119962,コード例: タスクの挿入と削除の無効化>>
+|以下のコード スニペットでは、タスクの挿入と削除を無効にする方法を紹介します。
+
+|<<_Ref334129552,コード例: 列の移動とサイズ変更の無効化>>
+|以下のコード スニペットでは、列の移動とサイズ変更を無効にする方法を紹介します。
+
+|====
+
+[[_Ref334119879]]
+[[_Ref334119962]]
+[[_Ref334119552]]
+== コード例: タスクの挿入と削除の無効化
+
+=== 解説
+
+このコード スニペットでは、タスクの挿入と削除を無効にする方法を紹介します。
+
+指定した link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.tasksettings_members.html[TaskSettings] は link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedproject_members.html[ListBackedProject] 内のすべてのタスクに適用されます。link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttasksettings_members.html[ProjectTaskSettings] オブジェクトは link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask_members.html[ProjectTask] 設定を表します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ListBackedProject x:Name="dataProvider" 
+                      TaskItemsSource="{Binding Tasks}">
+    <ig:ListBackedProject.TaskSettings>
+        <ig:ProjectTaskSettings AllowDelete="
+                                AllowInsert="/>
+        </ig:ListBackedProject.TaskSettings>
+    <ig:ListBackedProject.TaskPropertyMappings>
+        <!-- Specify ProjectTaskPropertyMappings Here -->            
+    </ig:ListBackedProject.TaskPropertyMappings>       
+</ig:ListBackedProject>
+----
+
+[[_Ref334129552]]
+== コード例: 列の移動とサイズ変更の無効化
+
+=== 解説
+
+このコード スニペットでは、列の移動とサイズ変更を無効にする方法を紹介します。
+
+_xamGantt_   link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~defaultcolumnsettings.html[DefaultColumnSettings] で指定した link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumnsettings_members.html[ProjectColumnSettings] をすべての列に適用します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGantt x:Name="gantt" 
+             Project="{Binding ElementName=dataProvider}">
+    <ig:XamGantt.DefaultColumnSettings>
+        <!-- Disable moving and resizing for all columns -->
+        <ig:ProjectColumnSettings 
+            AllowMove="
+            AllowResize="/>                                    
+    </ig:XamGantt.DefaultColumnSettings>
+</ig:XamGantt>
+----
+
+[[_Ref334129640]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-xamgantt.html[xamGantt の構成]
+|このグループのトピックは、 _xamGantt_ コントロールの構成可能な機能を説明します。
+
+|====

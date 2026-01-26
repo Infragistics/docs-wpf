@@ -1,0 +1,67 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-merge-bing-maps-with-shapefile",
+    "controlName": ["xamMap"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "{2B16B9FF-43B2-4779-B3CD-063B4B0C9908}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1452296Z"
+}
+|metadata|
+////
+
+= Bing Maps をシェープファイルと結合
+
+== 始める前に
+
+xamMap コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~maptilesource.html[MapTileSource] プロパティは、地理的画像がロードされるソースを構成するために使用されます。サポートされる地理的画像のソースの完全なリストについては、 link:xamwebmap-supported-geo-imagery.html[「サポートされる地理的画像」]セクションを参照してください。ただし、このセクションは、地理的画像のソースとして BingMaps だけに焦点を当てます。Bing Maps は Microsoft® のウェブ マッピング サービスに認可されています。Bing Microsoft link:http://www.bing.com/maps[ウェブサイト] からBing Maps の認証情報を取得する必要があります。
+
+画像タイル プロバイダーによって使用される地図投影タイプに一致させるために link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~mapprojectiontype.html[MapProjectionType] プロパティを設定しなければならない場合があることを理解することが重要です。そうでなければ、使用される Shapefiles は画像に正しく配置されません。シェープファイルが画像タイルと揃わない場合、xamMap コントロールの MapProjectionType プロパティを使用可能な列挙体メンバーのいずれかに変更して、問題が解決されるかどうかを確認します。現在サポートされているマップ投影法のタイプの完全なリストについては、 link:xamwebmap-understanding-xamwebmap.html[マップ投影法について]セクションを参照してください。
+
+== 達成すること
+
+xamMap と BingMaps ソースから地図画像を読み込み、コンピューターのローカルに保存されているシェープファイルと結合します。
+
+image::images/XamMap_Merge_Bing_Maps_with_Shapefile_01.png[]
+
+== 以下の手順を実行します。
+
+以下の XAML コードは {PlatformName} プロジェクトに BingMaps 認証情報がすでに含まれていることが前提としています。詳細については、 link:xamwebmap-add-bing-maps-as-geo-imagery-data-source.html[Bing Maps へバインド]を参照してください。
+
+[start=1]
+. シェープファイルを含む link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer.html[MapLayer] を link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap] コントロールへ追加します。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+        <igMap:XamMap x:Name="xamMap" MapProjectionType="SphericalMercator">
+            <!-- 注: Bing Maps Tile Source はコード ビハインドに追加してください -->
+            <igMap:XamMap.Layers>
+                <!-- 半透明ブルー ブラシを含むシェープファイルを追加します -->
+                <igMap:MapLayer Name="mapLayer" Brushes="#661E90FF" >
+                    <igMap:MapLayer.Reader>
+                        <igMap:ShapeFileReader Uri="/../../Shapefiles/europe/eu_countries" />
+                    </igMap:MapLayer.Reader>
+                </igMap:MapLayer>
+            </igMap:XamMap.Layers>
+        </igMap:XamMap>
+----
+
+endif::wpf[]
+
+[start=2]
+. アプリケーションを実行します。xamMap コントロールは、Shapefile と共に BingMaps から地図画像データを割り当てて表示します。
+
+== 関連トピック
+
+link:xamwebmap-add-bing-maps-as-geo-imagery-data-source.html[Bing Maps へバインド]
+
+link:xamwebmap-display-different-layer-types.html[異なるレイヤー タイプを表示]
+
+link:xamwebmap-geo-imagery-integration.html[地理画像の統合]
+
+link:xamwebmap-merge-open-street-maps-with-shapefile.html[OpenStreetMap をシェープファイルと結合]

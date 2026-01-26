@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-record-operations",
+    "tags": [],
+    "controlName": ["xamDataGrid"],
+    "guid": "53bbff53-442b-4556-9999-1b251b3a10e0",  
+    "buildFlags": [],
+    "createdOn": "2014-04-03T11:29:31.3343673Z"
+}
+|metadata|
+////
+
+= レコード操作
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックは、 _xamDataGrid_™ で並べ替え、フィルタリング、グループ化、行番号、行および列の固定などのレコード操作を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-record-filtering.html[レコードのフィルタリング ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ コントロールでフィルターを設定し、フィルター条件を設定する方法を説明します。
+
+| link:xamdatagrid-fixing-records.html[レコードの固定 ( _xamDataGrid_ )]
+|このトピックのグループは、スクロール操作で常に表示されるためにグリッドのレコードを固定する方法を説明します。
+
+| link:xamdatagrid-grouping.html[グループ化 ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ コントロールでのレコードのグループ化を説明します。
+
+| link:xamdatagrid-manual-refresh-controls-ui.html[コントロールの UI の手動更新 (xamDataGrid)]
+|このトピックでは、コントロールのユーザー インターフェイスを手動で更新する方法を説明します。
+
+| link:xamdatagrid-record-numbering.html[レコード番号の設定 ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ コントロールでレコード番号を有効にし、カスタマイズする方法を説明します。
+
+| link:xamdatagrid-sorting.html[レコードの並べ替え ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ コントロールでレコードの並べ替えを説明します。
+
+|====

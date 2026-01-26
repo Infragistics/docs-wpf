@@ -1,0 +1,117 @@
+﻿////
+|metadata|
+{
+    "name": "xaminputs-about",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing","Getting Started"],
+    "guid": "edb6bde2-e57b-45c4-88aa-f53063751a59",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.8882161Z"
+}
+|metadata|
+////
+
+{XamInputHeader}
+
+= xamInputs について
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、xamInputs グループのコントロールを紹介します。
+
+=== 本トピックの内容
+
+* コントロールの概要
+* xamCurrencyInput
+* xamDateTimeInput
+* xamNumericInput
+* xamMaskedInput
+
+== コントロールの概要
+
+xamInputs グループのコントロールは、データ入力中にユーザーに指示を与えるために使用され、また入力されたデータがあらかじめ定義された基準のいくつかを満たすかどうかを確認する機会を提供します。入力コントロールは、スタンドアロンのテキスト ボックスとして使用したり、他のコントロールと組み合わせて使用することができます (たとえば、xamGrid コントロールのセルとして)。
+
+以下に、xamInputs グループのコントロールを簡単に説明します。
+
+[cols="a,a,a"]
+|====
+|*コントロール*
+|*画像*
+|*説明*
+
+| link:xamcurrencyinput.html[xamCurrencyInput]
+|image::images/xamInputs_xamCurrencyInput_About.png[] 
+
+|エンド ユーザーが正しいフォーマットで通貨の値を入力できるように支援するためのマスクを使用する、シンプルなテキスト ボックス コントロール。
+
+| link:xamdatetimeinput.html[xamDateTimeInput]
+|image::images/xamInputs_xamDateTimeInput_About.png[] 
+
+|エンド ユーザーが正しいフォーマットで日付/時刻の値を入力できるように支援するためのマスクを使用する、シンプルなテキスト ボックス コントロール。
+
+| link:xamnumericinput.html[xamNumericInput]
+|image::images/xamInputs_xamNumericInput_About.png[] 
+
+|エンド ユーザーが正しいフォーマットで数値を入力するできるように支援するためのマスクを使用する、シンプルなテキスト ボックス コントロール。
+
+| link:xammaskedinput.html[xamMaskedInput]
+|image::images/xamInputs_xamMaskedInput_About.png[] 
+
+|エンド ユーザーのデータ入力を支援するためのマスクを使用する、シンプルなテキスト ボックス コントロール。
+
+|====
+
+== xamCurrencyInput
+
+xamCurrencyInput は、入力のパターンを提供することによって、エンドユーザーによる通貨データの入力と編集を容易にする、テキスト ボックス コントロールです。また、マスクが指定されていない場合、コントロールはシステムの通貨形式設定を使用して、そこに含まれるデータを表示します。
+
+image::images/xamInputs_xamCurrencyInput_About.png[]
+
+==== 関連トピック
+
+* link:xamcurrencyinput-about.html[xamCurrencyInput について]
+* link:xamcurrencyinput-using.html[xamCurrencyInput の使用]
+
+== xamDateTimeInput
+
+xamDateTimeInput は、ユーザーによる DateTime データの入力や編集を支援する、テキスト ボックス コントロールです。コントロールはマスク プロパティを公開し、それによって入力または編集された値の形式を指定できます。また、xamDateTimeInput はカレンダードロップダウンを提供します。これによってユーザーは、テキストボックスにデータ値を明示的に入力する必要なく、直接日付を選択することができます。
+
+image::images/xamInputs_xamDateTimeInput_About.png[]
+
+==== 関連トピック
+
+* link:xamdatetimeinput-about.html[xamDateTimeInput について]
+* link:xamdatetimeinput-using.html[xamDateTimeInput の使用]
+
+== xamNumericInput
+
+xamNumericInput は、ユーザーの数値入力と編集を支援するためにマスクを使用する、テキスト ボックス コントロールです。コントロールのプロパティを使って、そのコントロールの検証ルールを定義することができます。
+
+image::images/xamInputs_xamNumericInput_About.png[]
+
+==== 関連トピック
+
+link:xamnumericinput-about.html[xamNumericInput について]
+
+link:xamnumericinput-using.html[xamNumericInput の使用]
+
+== xamMaskedInput
+
+xamMaskedInput は、他の xamInputs が生成されるベース コントロールです。そのため、これには最も広範なアプリケーションが含まれています。マスク、値のタイプ、およびその他のプロパティを構成することができ、それによってデータに対する制限を設定できます。
+
+image::images/xamInputs_xamMaskedInput_About.png[]
+
+==== 関連トピック
+
+* link:xammaskedinput-about.html[xamMaskedInput について]
+* link:xammaskedinput-using.html[xamMaskedInput の使用]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+* link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[データ編集用の xamGrid セルにおける xamInput コントロールの使用]

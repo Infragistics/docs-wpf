@@ -1,0 +1,64 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-about-field-moving",
+    "controlName": ["xamDataGrid"],
+    "tags": ["How Do I"],
+    "guid": "{4E0192B7-8CA5-41C3-934F-73C34C53034A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.9709473Z"
+}
+|metadata|
+////
+
+= フィールドの移動について
+
+
+
+xamDataGrid™ コントロールによってエンド ユーザーはランタイムにフィールドを移動することが可能となります。たとえば、フィールド レイアウトでフィールドを再編成する必要がある場合、エンド ユーザーは、同じフィールド レイアウト内の他のフィールドに対する異なる場所にそのフィールドをドラッグ アンドドロップできます。フィールドを互いに垂直に重ねることもできます。この動作を変更する場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowfieldmoving.html[AllowFieldMoving] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.allowfieldmoving.html[AllowFieldMoving] 列挙値に設定できます。
+
+[NOTE]
+====
+*注:* 異なるレイアウト間でフィールドを移動することはできません。たとえば hierarchical xamDataGrid の場合、親レコードから子レコード、またはその逆にフィールドを移動することはできません。
+====
+
+コントロールは、UI がトリガーした変更について link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldpositionchanging_ev.html[FieldPositionChanging] や link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldpositionchanged_ev.html[FieldPositionChanged] などのイベントを発生させます。つまり、エンド ユーザーがフィールドの位置を変更するとイベントが発生し、変更をコード上で行う場合はイベントは発生しないということです。
+
+デフォルトでは、xamDataGrid ではフィールドの移動は有効になっています。しかし、FieldLayoutSettings オブジェクトの AllowFieldMoving プロパティを AllowFieldMoving.No に設定することでフィールドの移動を無効にできます。フィールド移動機能は、コントロール レベルまたは個々のフィールド レイアウトで無効にできます。フィールド レイアウトのフィールド レイアウト設定は、コントロール レベルのフィールド レイアウト設定に優先します。
+
+以下のコード例は、フィールド移動を無効にする方法を示します。xamDataGrid コントロールではなく、グリッド ビューがある xamDataPresenter™ コントロールを使用している場合、コード例で xamDataGrid コントロールへの参照を単に置き換えることができます。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataGrid Name="xamDataGrid1" BindToSampleData="True">
+    <igDP:XamDataGrid.FieldLayoutSettings>
+            <igDP:FieldLayoutSettings AllowFieldMoving="No" />
+    </igDP:XamDataGrid.FieldLayoutSettings>
+</igDP:XamDataGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataGrid1.FieldLayoutSettings.AllowFieldMoving = AllowFieldMoving.No
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataGrid1.FieldLayoutSettings.AllowFieldMoving = AllowFieldMoving.No;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-load-field-customizations.html[フィールド カスタマイズのロード]
+
+link:xamdatapresenter-save-field-customizations.html[フィールド カスタマイズの保存]

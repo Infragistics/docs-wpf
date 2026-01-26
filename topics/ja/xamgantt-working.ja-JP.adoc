@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-working",
+    "tags": [],
+    "controlName": ["xamGantt"],
+    "guid": "7b91f0b2-d574-4211-927a-179933927a76",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.626182Z"
+}
+|metadata|
+////
+
+= xamGantt の作業
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamGantt™_   コントロールで作業する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-handling-events.html[イベントの処理]
+|このグループのこのトピックでは、 _xamGantt_ コントロールの主要なイベントとその処理について説明します。
+
+| link:xamgantt-conflict-resolution.html[競合の解決]
+|このトピックでは、 _xamGantt_ 競合の解決について説明します。
+
+| link:xamgantt-using-xamgantt-commands.html[xamGantt コマンドの使用]
+|このトピックでは、 _xamGantt_ コントロールでよく使用できる主なコマンドと､その使用方法を説明します。
+
+|====

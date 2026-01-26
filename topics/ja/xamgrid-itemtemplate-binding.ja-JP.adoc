@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-itemtemplate-binding",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Binding","Grids","Templating"],
+    "guid": "778a9fb0-6b7e-486b-a790-a2ee3d28dfba",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.3341847Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= ItemTemplate のバインド
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.unboundcolumn~itemtemplate.html[ItemTemplate] プロパティをデータ テンプレートのインスタンスに設定することによってコンテンツを列に追加できます。UnboundDataContext オブジェクトには、以下のプロパティが含まれます。
+
+* *Value* - これは ValueConverter から返される値です。
+* *ColumnKey* - これは非バインド列の列キーです。
+* *RowData* - 現在の行が示すデータ オブジェクトを表示します。
+
+以下のコードは、ItemBinding を使用して非バインド列でデータを表示する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:UnboundColumn Key="Total Units" ValueConverter="{StaticResource TotalUnitsConverter}">
+   <ig:UnboundColumn.ItemTemplate>
+      <DataTemplate>
+         <StackPanel>
+            <TextBlock Text="{Binding Value}"></TextBlock>
+            <TextBlock Text="{Binding ColumnKey}"></TextBlock>
+            <TextBlock Text="{Binding RowData.ProductID}"></TextBlock>
+         </StackPanel>
+      </DataTemplate>
+   </ig:UnboundColumn.ItemTemplate>
+</ig:UnboundColumn>
+----
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Unbound_Column_04.png[]
+endif::win-rt[]
+
+関連トピック
+
+link:xamgrid-sorting-unbound-columns.html[非バインド列の並べ替え]
+
+link:xamgrid-unbound-column.html[非バインド列]
+
+link:xamgrid-editing-unbound-columns.html[非バインド列の編集]

@@ -1,0 +1,190 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-in-2013-volume-2",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "3ca7ced6-049d-468d-b921-6477bdcc8b11",  
+    "buildFlags": [],
+    "createdOn": "2013-09-19T10:13:46.1163679Z"
+}
+|metadata|
+////
+
+= 2013 Volume 2 の重大な変更点
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、{ProductName} 2013 Volume 2 で導入された重大な変更点を紹介します。
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref365980207,2013 Volume 2 の API への重大な変更点>>
+* <<_Ref366056686,Infragistics Excel Engine>>
+
+** <<_Ref366058237,インターフェイス名前空間の変更点>>
+** <<_Ref367116958,IPackage インターフェイスのカスタム実装でのコンパイル時間エラー>>
+** <<_Ref366058268,Documents.Core ライブラリの参照がないプロジェクトのコンパイル エラー>>
+
+* <<_Ref366069346,xamDataChart>>
+
+** <<_Ref366069369,スペルミスの修正>>
+
+[[_Ref365980207]]
+== 2013 Volume 2 の API への重大な変更点
+
+=== 重大な変更の概要表
+
+以下の表で、コントロールの API への重大な変更点を簡単に説明します。以下の表は、すべての問題の詳細な説明とその回避策を示します。
+
+==== 凡例:
+
+[cols="a,a"]
+|====
+|image::images/Yes.png[]
+|回避策
+
+|image::images/No.png[]
+|既知の回避策はありません
+
+|image::images/Fix.png[]
+|修正予定です
+
+|====
+
+==== Infragistics Excel Engine
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref366058237,インターフェイス名前空間の変更点>>
+|一部の Excel Engine インターフェイスが他の名前空間に移動しました。
+|image::images/Yes.png[]
+
+|<<_Ref367116958,IPackage インターフェイスのカスタム実装でのコンパイル時間エラー>>
+|カスタム実装に新しい IPackage インターフェイス メソッド GetRelationship を実装しました。
+|image::images/Yes.png[]
+
+|<<_Ref366058268,Documents.Core ライブラリの参照がないプロジェクトのコンパイル エラー>>
+|Excel Engine を使用したコンパイルが正常に実行されるように、新しい参照をプロジェクトに追加しました。
+|image::images/Yes.png[]
+
+|====
+
+==== xamDataChart
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|CrossHair の VerticalLineVisibilty および HorizontalLineVisibilty のスペルミスを修正しました。
+|スペルミスを修正するために、VerticalLineVisibilty および HorizontalLineVisibilty を VerticalLineVisibility および HorizontalLineVisibility に変更しました。
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref366056686]]
+== Infragistics Excel Engine
+
+[[_Ref366058237]]
+
+=== インターフェイス名前空間の変更点
+
+以下のインターフェイスを別の名前空間に移動しました。
+
+回避方法
+
+.注:
+[NOTE]
+====
+アプリケーションで重大な変更を解決するには、古い名前空間を新しい名前空間に変更します。
+====
+
+==== インターフェイス IPackage
+
+[options="header", cols="a,a"]
+|====
+|*以前の名前空間*|*新しい名前空間*
+
+|Infragistics.Documents.Excel
+|Infragistics.Documents.Core.Packaging
+
+|====
+
+==== インターフェイス IPackageFactory
+
+[options="header", cols="a,a"]
+|====
+|*以前の名前空間*|*新しい名前空間*
+
+|Infragistics.Documents.Excel
+|Infragistics.Documents.Core.Packaging
+
+|====
+
+==== インターフェイス IPackagePart
+
+[options="header", cols="a,a"]
+|====
+|*以前の名前空間*|*新しい名前空間*
+
+|Infragistics.Documents.Excel
+|Infragistics.Documents.Core.Packaging
+
+|====
+
+==== インターフェイス IPackageRelationship
+
+[options="header", cols="a,a"]
+|====
+|*以前の名前空間*|*新しい名前空間*
+
+|Infragistics.Documents.Excel
+|Infragistics.Documents.Core.Packaging
+
+|====
+
+==== 列挙体 RelationshipTargetMode
+
+[options="header", cols="a,a"]
+|====
+|*以前の名前空間*|*新しい名前空間*
+
+|Infragistics.Documents.Excel
+|Infragistics.Documents.Core.Packaging
+
+|====
+
+[[_Ref367116958]]
+
+=== IPackage インターフェイスのカスタム実装でのコンパイル時間エラー
+
+2013 Volume 2 リリースので、新しいメソッド link:{ApiPlatform}documents.core{ApiVersion}~infragistics.documents.core.packaging.ipackage~getrelationship.html[GetRelationship] が link:{ApiPlatform}documents.core{ApiVersion}~infragistics.documents.core.packaging.ipackage_members.html[IPackage] インターフェイスに追加されました。
+
+この変更により、すべての IPackage インターフェイスのカスタム実装で、インターフェイス メンバー 'Infragistics.Documents.Core.Packaging.IPackage.GetRelationship(string)' を実装していないというコンパイル時間エラーがスローされるようになります。
+
+回避方法
+
+[NOTE]
+====
+このコンパイル時間エラーを解決するには、新しいメソッド Infragistics.Documents.Core.Packaging.IPackage.GetRelationship(string) を IPackage カスタム実装に組み込みます。
+====
+
+[[_Ref366058268]]
+
+=== Documents.Core ライブラリの参照がないプロジェクトのコンパイル エラー
+
+Documents.Core ライブラリがプロジェクト参照にない場合、Infragistics Excel Engine を使用したプロジェクトが正常にコンパイルされません。
+
+回避方法
+
+[NOTE]
+====
+{VersionedApiPlatform}.Documents.Core.v{ProductVersion}.dll をプロジェクトに追加します。
+====

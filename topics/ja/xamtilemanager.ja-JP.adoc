@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager",
+    "controlName": ["xamTileManager"],
+    "tags": ["Layouts"],
+    "guid": "033b3442-e0ef-4c62-9686-b60dfdd086dd",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6113676Z"
+}
+|metadata|
+////
+
+= xamTileManager
+
+このセクションには、コントロールの動作や、アプリケーションでのコントロールの使用手順など、xamTileManager に関する情報が含まれています。
+
+以下のリンクをクリックすると、xamTileManager に関する重要な情報にアクセスできます。
+
+== link:xamtilemanager-about-xamtilemanager.html[xamTileManager について]
+
+このセクションには、xamTileManager が提供する機能の概要が含まれています。
+
+== link:xamtilemanager-adding-xamtilemanager-to-your-application.html[xamTileManager をアプリケーションに追加]
+
+xamTileManager でできる限り素早く起動して実行するために、コントロールを使って作業を開始する方法に関する情報を提供します。
+
+== link:xamtilemanager-using-xamtilemanager.html[xamTileManager の使用]
+
+このセクションには、xamTileManager が提供する主要な特徴および機能に関する情報が含まれています。
+
+== link:xamtilemanager-api-overview.html[API の概要]
+
+このトピックでは、xamTileManager を使用したプログラミング中に作業する名前空間とクラスが挙げられています。このトピックに挙げられた名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]セクションにリンクしています。

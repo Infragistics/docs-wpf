@@ -1,0 +1,307 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticee-configuring-item-filtering",
+    "tags": ["Data Binding","Filtering","Getting Started","How Do I"],
+    "controlName": ["xamMultiColumnComboEditor"],
+    "guid": "a8f3a0ba-5581-4b51-8c9c-38c72776756d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6022906Z"
+}
+|metadata|
+////
+
+= 項目のフィルタリングの構成 (xamMultiColumnComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamMultiColumnComboEditor_™ コントロールで項目のフィルタリングを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticce-adding.html[xamMultiColumnComboEditor をページに追加]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールをアプリケーションに追加し、いくつかのプロパティの使用方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref382663787,はじめに>>
+* <<_Ref382663814,フィルタリング構成の概要>>
+* <<_Ref382638566,フィルタリング範囲の構成>>
+* <<_Ref382638573,カスタム フィルターの構成>>
+* <<_Ref382638579,関連コンテンツ>>
+
+[[_Ref382663787]]
+== はじめに
+
+=== 項目のフィルタリングの概要
+
+_xamMultiColumnComboEditor_   コントロールは、入力テキスト フィールドへの入力が開始された場合のコントロールのドロップダウン項目のフィルタリングを提供します。データ項目は、 _xamMultiColumnComboEditor_   に指定されたフィルターに従ってフィルタリングされます。
+
+カスタム フィルターが指定されていない場合は、項目のフィルタリングは常に有効に設定され、コントロールのドロップダウンのすべての列で項目のフィルタリングが実行されます。
+
+[[_Ref382663814]]
+== フィルタリング構成の概要
+
+=== フィルタリング構成の概要表
+
+以下の表では、 _xamMultiColumnComboEditor_   フィルタリング機能の構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref382638566,フィルタリング範囲の構成>>
+|項目フィルタリングを適用する列を構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~filtermode.html[FilterMode]
+
+|<<_Ref382638573,カスタム フィルターの構成>>
+|_xamMultiColumnComboEditor_ データ項目のフィルタリングに適用されるカスタム フィルターのコレクションを構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemFilters]
+
+|====
+
+[[_Ref382638445]]
+[[_Ref380075017]]
+
+[[_Ref382638566]]
+== フィルタリング範囲の構成
+
+=== 概要
+
+_xamMultiColumnComboEditor_   は項目のフィルタリング範囲を指定するオプションを提供します。
+
+_xamMultiColumnComboEditor_   `FilterMode` プロパティを使用して、コントロールのプライマリ列で実行、または表示されているすべての列で実行のいずれかに項目フィルタリングを設定します。
+
+プライマリ列とは、`DisplayMemberPath` プロパティで指定されたデータ オブジェクト プロパティのデータを表す列です。
+
+注:
+
+[NOTE]
+====
+プロパティが `FilterOnPrimaryColumnOnly` に設定されている場合、 _xamMultiColumnComboEditor_   は自動的にユーザーが入力したテキストのオートコンプリートを実行します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|プライマリ列の項目にフィルタリングを適用
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~filtermode.html[FilterMode]
+|`FilterOnPrimaryColumnOnly`
+
+|表示されているすべての列の項目にフィルタリングを適用
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~filtermode.html[FilterMode]
+|`FilterOnAllColumns`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamMultiColumnComboEditor_   がどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath]
+| _ProductName_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~filtermode.html[FilterMode]
+| _FilterOnAllColumns_ 
+
+|====
+
+image::images/Item_Filtering_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor x:Name="ComboEditorProducts" 
+                              Height="30" Width="300" 
+                              ItemsSource="{Binding Path=Products}"
+                              AutoGenerateColumns="False"
+                              DisplayMemberPath="ProductName"
+                              FilterMode="FilterOnAllColumns">
+    <ig:XamMultiColumnComboEditor.Columns>
+        <ig:TextComboColumn Key="ProductName"/>
+        <ig:TextComboColumn Key="QuantityPerUnit"/>
+    </ig:XamMultiColumnComboEditor.Columns>
+</ig:XamMultiColumnComboEditor>
+----
+
+以下のスクリーンショットは、以下の設定の結果、 _xamMultiColumnComboEditor_   がどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath]
+| _ProductName_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~filtermode.html[FilterMode]
+| _FilterOnPrimaryColumnOnly_ 
+
+|====
+
+image::images/Item_Filtering_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor x:Name="ComboEditorProducts" 
+                              Height="30" Width="300" 
+                              ItemsSource="{Binding Path=Products}"
+                              AutoGenerateColumns="False"
+                              DisplayMemberPath="ProductName"
+                              FilterMode="FilterOnPrimaryColumnOnly">
+    <ig:XamMultiColumnComboEditor.Columns>
+        <ig:TextComboColumn Key="ProductName"/>
+        <ig:TextComboColumn Key="QuantityPerUnit"/>
+    </ig:XamMultiColumnComboEditor.Columns>
+</ig:XamMultiColumnComboEditor>
+----
+
+[[_Ref382638573]]
+== カスタム フィルターの構成
+
+=== 概要
+
+_xamMultiColumnComboEditor_   コントロールは項目のフィルタリングをカスタマイズする機能を提供します。
+
+これは  _xamMultiColumnComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemFilters] プロパティを使用して行います。このプロパティには、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter_members.html[ComboItemFilter] オブジェクトの `ObservableCollection` がカスタム項目フィルタリングを提供するために設定されています。
+
+
+注:
+
+[NOTE]
+====
+カスタムの `ComboItemFilter` を作成する場合は、`ComboItemFilter` link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~fieldname.html[FieldName] プロパティをフィルター処理対象のデータプロパティの名前に設定する必要があります。`FieldName` プロパティが設定されていない場合は、例外がスローされます。
+====
+
+注:
+
+[NOTE]
+====
+フィルター値をコードでプリセットする場合は、 pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition_members.html[ComparisonCondition]"]  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisoncondition_members.html[ComparisonCondition]"]   pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition~filtervalue.html[FilterValue]"]  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisoncondition~filtervalue.html[FilterValue]"]  プロパティを使用できません。_xamMultiColumnComboEditor_   が `FilterValue` プロパティを内部的に使用し、コントロールの入力フィールドに入力されたテキストに設定します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|カスタム フィルターのコレクションの作成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemFilters]
+|`ObservableCollection<` link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter_members.html[ComboItemFilter]`>`
+
+|項目フィルタリングが実行されるデータ モデル プロパティの指定
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter.html[ComboItemFilter] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~fieldname.html[FieldName]
+|`string`
+
+|すべてのフィルター条件を組み合わせるための論理演算子の指定
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter.html[ComboItemFilter] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~logicaloperator.html[LogicalOperator]
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~logicaloperator.html[LogicalOperator]
+
+|適用される条件コレクションの指定
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter.html[ComboItemFilter] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~conditions.html[Conditions]
+| pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.conditioncollection_members.html[ConditionCollection]"] pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.conditioncollection_members.html[ConditionCollection]"] 
+
+|比較条件演算子の指定
+|pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition_members.html[ComparisonCondition]"] pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisoncondition_members.html[ComparisonCondition]"] pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition~operator.html[Operator]"] pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisoncondition~operator.html[Operator]"]
+| pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisonoperator.html[ComparisonOperator]"] pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisonoperator.html[ComparisonOperator]"] 
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下のコードを使用した結果、 _xamMultiColumnComboEditor_   のフィルタリングがどのように動作するかを示しています。
+
+[start=1]
+. _xamMultiColumnComboEditor_   テキスト入力フィールドに「s」と入力します。
+
+image::images/Item_Filtering_3.png[]
+
+[start=2]
+. _xamMultiColumnComboEditor_   テキスト入力フィールドに「100」と入力します。
+
+image::images/Item_Filtering_4.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor x:Name="MultiColumnComboEditor"
+                              ItemsSource="{Binding Path=Products}" 
+                              Height="30" Width="300"
+                              AutoGenerateColumns="False"
+                              DisplayMemberPath="ProductName">          
+    <ig:XamMultiColumnComboEditor.Columns>
+        <ig:TextComboColumn Key="ProductName"/>
+        <ig:TextComboColumn Key="UnitsInStock"/>
+    </ig:XamMultiColumnComboEditor.Columns>
+    <ig:XamMultiColumnComboEditor.ItemFilters>
+        <ig:ComboItemFilter FieldName="ProductName" LogicalOperator="And">
+            <ig:ComboItemFilter.Conditions>
+                <ig:ComparisonCondition Operator="Contains" />
+                <ig:ComparisonCondition Operator="StartsWith"/>
+            </ig:ComboItemFilter.Conditions>
+        </ig:ComboItemFilter>
+        <ig:ComboItemFilter FieldName="UnitsInStock">
+            <ig:ComboItemFilter.Conditions>
+                <ig:ComparisonCondition Operator="GreaterThan"/>
+            </ig:ComboItemFilter.Conditions>
+        </ig:ComboItemFilter>
+    </ig:XamMultiColumnComboEditor.ItemFilters>
+</ig:XamMultiColumnComboEditor>
+----
+
+[[_Ref382638579]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xam-multicee-configuring-the-behavior-on-user-input.html[ユーザー入力の動作の構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールのテキストフィールドに入力し Enter キーを押した場合に、実行される動作を構成する方法について説明します。
+
+| link:xammulticce-configuring-data-binding-visualization.html[データのバインディングと視覚エフェクトの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールをデータとバインドして、コントロールのドロップダウン リストの項目レイアウトを構成する方法について説明します。
+
+| link:xammulticee-configuring-the-drop-down.html[ドロップダウンの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ ドロップダウンのレイアウトおよび動作を構成する方法を説明します。
+
+| link:xammulticee-selection.html[選択]
+|このグループのトピックでは、 _xamMultiColumnComboEditor_ コントロールの選択機能とその使用方法について説明します。
+
+|====

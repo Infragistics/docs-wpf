@@ -1,0 +1,166 @@
+﻿////
+|metadata|
+{
+    "name": "xamtreemap-wpf-bind-xamtreemap-to-ado.net-entity-data-model",
+    "controlName": ["xamTreemap"],
+    "tags": [],
+    "guid": "3fe10b9c-57f3-49a4-a7f1-e46d4cd087ba",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.8853917Z"
+}
+|metadata|
+////
+
+= xamTreemap を ADO.NET エンティティ データ モデルにバインド
+
+== 達成すること
+
+ここでは、xamTreemap コントロールを *ADO.NET エンティティ データ モデル* にバインドする方法を学習します。
+
+== 以下の手順を実行します。
+
+[start=1]
+. WpfTreemapDemo という名前の新しい Windows Presentation Foundation アプリケーションを Visual Studio 2010 で作成します。
+
+image::images/xamTreemap_WPF_Bind_xamTreeMap_to_ADO.NET_Entity_Data_Model_01.png[]
+
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.Treemap
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. プロジェクトを右クリックして、*[追加]* > *[新しい項目]* を選択します。
+[start=4]
+. TreemapModel という名前の新しい ADO.NET エンティティ データ モデルを作成します。
+
+image::images/xamTreemap_WPF_Bind_xamTreeMap_to_ADO.NET_Entity_Data_Model_02.png[]
+
+image::images/xamTreemap_WPF_Bind_xamTreeMap_to_ADO.NET_Entity_Data_Model_03.png[]
+
+[start=5]
+. データベースを選択します。このサンプルで、サンプル データベース AdventureWorks2008 に接続します。
+
+image::images/xamTreemap_WPF_Bind_xamTreeMap_to_ADO.NET_Entity_Data_Model_04.png[]
+
+[start=6]
+. 必要なテーブルを選択します。この例では、ProductCategory、ProductSubcategory および Product で作業をします。
+
+image::images/xamTreemap_WPF_Bind_xamTreeMap_to_ADO.NET_Entity_Data_Model_05.png[]
+
+image::images/xamTreemap_WPF_Bind_xamTreeMap_to_ADO.NET_Entity_Data_Model_06.png[]
+
+リンクされたこれらのテーブルは、xamTreemap コントロールに渡す階層的なデータ ソースになります。Visual Studio は使用するナビゲーション プロパティを作成します。
+
+** ProductCategory.ProductSubcategories
+** ProductSubcategory.Products
+
+[start=7]
+. MainWindow.xaml を編集します:
+
+*XAML の場合:*
+
+----
+<Window x:Class="WpfTreemapDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ig="http://schemas.infragistics.com/xaml"
+        Loaded="MainWindow_Loaded"
+        Title="MainWindow">
+    <Window.Resources>
+        <!--xamTreemap コントロールのデータ ソース-->
+        <CollectionViewSource x:Key="ProductCategoriesViewSource" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource ProductCategoriesViewSource}">
+        <ig:XamTreemap x:Name="Treemap"
+                       ItemsSource="{Binding}">
+            <ig:XamTreemap.NodeBinders>
+                <!--ProductCategory 項目のバインダー-->
+                <ig:NodeBinder TextPath="Name"
+                               TargetTypeName="ProductCategory"
+                               ItemsSourcePath="ProductSubcategories" />
+                <!--ProductSubcategory 項目のバインダー-->
+                <ig:NodeBinder TextPath="Name"
+                               TargetTypeName="ProductSubcategory"
+                               ItemsSourcePath="Products" />
+                <!--Product 項目のバインダー-->
+                <ig:NodeBinder TextPath="Name"
+                               ValuePath="StandardCost"
+                               TargetTypeName="Product" />
+            </ig:XamTreemap.NodeBinders>
+        </ig:XamTreemap>
+    </Grid>
+</Window>
+----
+
+[start=8]
+. MainWindow.xaml のコード ビハインド ファイルで以下を追加します。
+
+*Visual Basic の場合:*
+
+----
+Imports System.Data.Objects
+Class MainWindow
+    Private Sub Window_Loaded _
+        (ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+        Dim adventureWorks2008Entities As New AdventureWorks2008Entities()
+        'MainWindow.xaml から CollectionViewSource リソースのインスタンスを取得します
+        Dim productCategoriesViewSource As CollectionViewSource =
+            DirectCast(Me.FindResource("ProductCategoriesViewSource"), CollectionViewSource)
+        'ProductCategory 項目の新しいクエリを作成します
+        Dim productCategoriesQuery As ObjectQuery(Of WpfTreemapDemo.ProductCategory) =
+            adventureWorks2008Entities.ProductCategories
+        'クエリを実行します
+        productCategoriesViewSource.Source =
+            productCategoriesQuery.Execute(MergeOption.AppendOnly)
+    End Sub
+End Class
+----
+
+*C# の場合:*
+
+----
+using System.Data.Objects;
+using System.Windows;
+using System.Windows.Data;
+namespace WpfTreemapDemo
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            AdventureWorks2008Entities adventureWorks2008Entities 
+                = new AdventureWorks2008Entities();
+            //MainWindow.xaml から CollectionViewSource リソースのインスタンスを取得します
+            CollectionViewSource productCategoriesViewSource = 
+                (CollectionViewSource)(this.FindResource("ProductCategoriesViewSource"));
+            //ProductCategory 項目の新しいクエリを作成します
+            ObjectQuery<WpfTreemapDemo.ProductCategory> productCategoriesQuery =
+                adventureWorks2008Entities.ProductCategories;
+            //クエリを実行します
+            productCategoriesViewSource.Source =
+                productCategoriesQuery.Execute(MergeOption.AppendOnly);
+        }
+    }
+}
+----
+
+[start=9]
+. アプリケーションを実行します。
+
+image::images/xamTreemap_WPF_Bind_xamTreeMap_to_ADO.NET_Entity_Data_Model_07.png[]
+
+関連トピック
+
+link:xamtreemap-data-binding.html[データ バインディング]
+
+link:xamtreemap-node-binders.html[ノード バインダー]
+
+link:xamtreemap-value-mappers.html[値のマッパー]

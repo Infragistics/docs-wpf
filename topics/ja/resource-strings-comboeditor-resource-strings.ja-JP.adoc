@@ -1,0 +1,51 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-comboeditor-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "bccc87e9-6014-4972-a8c0-34433b1ce99c",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:51:28.5883808Z"
+}
+|metadata|
+////
+
+= ComboEditor リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列名をリストします。
+
+== xamComboEditor の場合
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|AddWithOutItemSourceException
+|ItemSource が設定されていない場合は、新しいデータ項目を作成できません。XamWebComboEditor に ItemSource を接続したことを確認してください。
+
+|EmpyKeyException
+|Key は Data オブジェクトのパブリック プロパティと一致する列に設定する必要があります。
+
+|InvalidDataTypeException
+|オブジェクトを作成できませんでした。次のデータ タイプが一致しません: {0} および {1}
+
+|InvalidDisplayMember
+|指定した DisplayMemberPath {0} は基本オブジェクト {1} に存在しません。
+
+|InvalidKeyException
+|キーを持つ無効な列: {0}Key は Data オブジェクトのパブリック プロパティと一致する必要があります。
+
+|InvalidMultipleSelectionException
+|AllowMultipleSelection が無効です。2 つ以上の項目を選択するには、このプロパティを有効にします。
+
+|InvalidSelection
+|同じ項目を複数回選択できません。
+
+|SelectedItemsResetButton_ToolTip
+|現在の選択のクリア
+
+|====

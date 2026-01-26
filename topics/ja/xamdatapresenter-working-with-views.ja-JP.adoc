@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-working-with-views",
+    "tags": [],
+    "controlName": ["xamDataPresenter"],
+    "guid": "76d1a3bf-158c-4c2a-b4aa-de2d9ca5bfe0",  
+    "buildFlags": [],
+    "createdOn": "2014-04-03T11:44:43.0653896Z"
+}
+|metadata|
+////
+
+= ビューの構成 (xamDataPresenter)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックは、 _xamDataPresenter_™ コントロールの定義済みのビューを構成し、カスタム ビューを作成する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-defining-layouts-card-view.html[カード ビュー]
+|このグループのトピックは、 _xamDataPresenter_ のカード ビューの構成および管理を説明します。
+
+| link:xamdatapresenter-defining-layouts-carousel-view.html[カルーセル ビュー]
+|このグループのトピックは、 _xamDataPresenter_ のカルーセル ビューの構成および管理を説明します。
+
+| link:xamdatapresenter-defining-layouts-grid-view.html[グリッド ビュー]
+|このグループのトピックは、 _xamDataPresenter_ __ のグリッド ビューの構成および管理を説明します。
+
+| link:xamdatapresenter-configuringviews-treeview.html[ツリー ビュー]
+|このグループのトピックは、 _xamDataPresenter_ のツリー ビューの構成および管理を説明します。
+
+| link:xamdatapresenter-creating-custom-views.html[カスタム ビューの作成]
+|このグループのトピックは、カスタム _xamDataPresenter_ ビューを作成する方法を説明します。
+
+|====

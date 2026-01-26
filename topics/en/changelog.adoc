@@ -1,0 +1,704 @@
+﻿= Ultimate UI for WPF Changelog
+
+=== In this topic
+
+This topic contains the following sections:
+
+* <<Ref_25_2_59, 25.2.59 (December 2025)>>
+* <<Ref_25_2_45, 25.2.45 (November 2025)>>
+* <<Ref_25_1_117, 25.1.117 (October 2025)>>
+** <<BC_25_1_117,Breaking Changes 25.2.117 (October 2025)>>
+* <<Ref_25_1_71, 25.1.71 (July 2025)>>
+* <<Ref_25_1_22, 25.1.22 (2025)>>
+* <<Ref_24_2_93, 24.2.93 (February 2025)>>
+* <<Ref_24_2, 24.2 (2024)>>
+* <<Ref_24_1_57, 24.1.57 (September 2024)>>
+* <<Ref_24_1_20,24.1.20 (August 2024)>>
+** <<BC_24_1_20,Breaking Changes 24.1.20 (August 2024)>>
+* <<Ref_23_2_233,23.2.233 (June 2024)>>
+* <<Ref_23_2_157,23.2.157 (April 2024)>>
+* <<Ref_23_2, 23.2 (2023)>> 
+
+[[Ref_25_2_59]]
+
+== 25.2.59 (December 2025)
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+
+|Bug Number|Control|Description
+
+|`32635`
+|XamSyntaxEditor
+|Characters after the character in question disappear due to full-width number conversion.
+
+|`33808`
+|XamDataChart
+|XamDataChart - The scale set for IntervalType Ticks in TimeAxisInterval is not displayed.
+
+|`34255`
+|XamDataChart
+|XamDataChart - 0.00001 scale tick marks are displayed overlapping each other.
+
+|`37558`
+|XamSyntaxEditor
+|XamSyntaxEditor - Error occurs when dragging selected text with line breaks into TextBox
+
+|`38510`
+|XamDataChart
+|AssigningCategoryStyle event support for Stacked Series
+
+|`39970`
+|XamDataChart
+|When two or more DateTime values with the same value exist in the data source, they may not show in the same order as in the data in TimeXAxis
+
+|====
+
+=== Enhancements
+
+==== Charts
+
+- Added LabelFormatOverride event to TimeXAxisLabelFormat so you can now override the formatting with an event at all time-formatting levels on the TimeXAxis.
+
+[[Ref_25_2_45]]
+
+== 25.2.45 (November 2025)
+
+=== .NET 10 Support
+
+As of version 2025.2, the Ultimate UI for WPF toolset supports .NET 10. For more information on .NET 10 please refer to link:https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview[this article on Microsoft's site].
+
+For more details please visit link:https://learn.microsoft.com/en-us/lifecycle/products/microsoft-net-and-net-core[Microsoft .NET lifecycle].
+
+Note we no longer support .NET 6 and .NET 7.
+
+=== Azure Map Imagery is now RTM
+ 
+=== New Chart Features
+
+==== Collision Detection for Axis annotations (Beta)
+
+Ability for axis annotations to automatically detect collisions and truncate to fit better. To enable this feature you must set the following properties:
+
+- `ShouldAvoidAnnotationCollisions`
+- `ShouldAutoTruncateAnnotations`
+
+==== User Annotations Layer (Beta)
+
+In {ProductName}, you can now annotate the `{DataChartName}` with slice, strip, and point annotations at runtime using the new user annotations feature. This allows the end user to add more details to the plot such as calling out single important events such as company quarter reports by using the slice annotation or events that have a duration by using the strip annotation. You can also call out individual points on the plotted series by using the point annotation or any combination of these three.
+
+This is directly integrated with the available tools of the `XamToolbar`.
+
+image::images/data-chart-user-annotation-create.gif[]
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+
+|Bug Number|Control|Description
+
+|`33439`
+|XamRibbon
+|Line in window header in high DPI using RoyalLight theme
+
+|`36205`
+|XamDataChart
+|BrushCollection is throwing an error in its Equals function
+
+|`37976`
+|XamDataGrid
+|ClearCustomizations method does nothing to the Fields that have had their Visibility changed by the user
+
+|`40136`
+|Excel Library
+|FormulaParseException exception when loading an Excel workbook
+
+|`40262`
+|XamSpreadsheet
+|#Circularity! is displayed when there are warnings. Request to match Excel - display a value eg. 0 instead
+
+|====
+
+[[Ref_25_1_117]]
+
+== 25.1.117 (October 2025)
+
+=== Azure Map Imagery Support for XamGeographicMap (Beta)
+
+The `XamGeographicMap` now supports Azure-based map imagery, allowing developers to display detailed, dynamic maps across multiple application types. You can combine multiple map layers, visualize geographic data, and create interactive mapping experiences with ease.
+
+Note: Support for Bing Maps imagery is being phased out. Existing enterprise keys can still be used to access Bing Maps, ensuring your current applications continue to function while you transition to Azure maps.
+
+Explore some of the publicly available Azure maps here: link:https://azure.microsoft.com/en-us/products/azure-maps[Azure
+ Maps].
+
+image::https://static.infragistics.com/xplatform/images/browsers/azure-maps/azure-gif-main.gif[Azure Maps in action, width=600, align=center, link=""]
+
+=== New Axis Label Events for XamDataChart (Beta)
+
+The following events have been added to the `XamDataChart` to allow you to detect different operations on the axis labels:
+
+- `LabelMouseDown`
+- `LabelMouseUp`
+- `LabelMouseEnter`
+- `LabelMouseLeave`
+- `LabelMouseMove`
+- `LabelMouseClick`
+
+=== Companion Axis for Charts (Beta)
+
+We have added `CompanionAxis` properties to the X and Y axis that allow you to quickly create a clone of an existing axis. When enabled using the `CompanionAxisEnabled` property, this will default the cloned axis to the opposite position of the chart and you can then configure that axes' properties.
+
+=== RadialPieSeries Inset Outlines (Beta)
+
+We have added a new property called `UseInsetOutlines` to control how outlines on the `RadialPieSeries` are rendered. Setting this value to `true` will inset the outlines within the slice shape, whereas a `false` (default) value will place the outlines half-in half-out along the edge of the slice shape.
+
+image::images/UseInsetOutlinesFeature.png[]
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+
+|Bug Number|Control|Description
+
+|`24054`
+|XamDataGrid
+|XamDataGrid Formula Summaries not printing on report
+
+|`26592`
+|XamFunnelChart
+|FunnelChart has duplicated outer label on the first render
+
+|`31124`
+|Excel Library
+|Saved Excel file is corrupted if a worksheet name contains full-width punctuation
+
+|`33861`
+|Excel Library
+|Adding line chart corrupts excel File for German culture
+
+|`36790`
+|Excel Library
+|SUMIFS function is not calculated properly
+
+|`36912`
+|XamDataGrid
+|XamDataGrid field groups order is not correct when visibility set to collapse
+
+|`37714`
+|XamComboEditor
+|XamComboEditor throwing argumentException when using thai culture
+
+|`37930`
+|XamDataChart
+|Data Annotation Overlay Text Color not working
+
+|`38006`
+|XamDataChart
+|Removing a ValueOverlay with an axis annotation leaves the axis annotation visible
+
+|`39083`
+|XamRichTextEditor
+|Editor throws NullReferenceException when saving RTF file
+
+|====
+
+=== Enhancements
+
+==== XamBulletGraph
+
+- Added new `LabelsVisible` property (Beta)
+
+==== Charts
+
+- New properties added to the DataToolTipLayer, ItemToolTipLayer, and CategoryToolTipLayer to aid in styling: `ToolTipBackground`, `ToolTipBorderBrush`, and `ToolTipBorderThickness` (Beta)
+
+- New properties added to the DataLegend to aid in styling: `ContentBackground`, `ContentBorderBrush`, and `ContentBorderThickness`. Note, you can still style the DataLegend using previously existing `Background`, `BorderBrush`, and `BorderThickness` properties, but these new properties will take precedence. Both of these related `BorderBrush` and `BorderThickness` default to transparent and 0 respectively, so to see these borders, you will need to set these properties.
+
+- Added a new property to `ChartMouseEventArgs` called `WorldPosition` that provides the world relative position of the mouse. This position will be a value between 0 and 1 for both the X and Y axis within the axis space.
+
+- Added `HighlightingFadeOpacity` to `SeriesViewer` and `DomainChart`. This allows you to configure the opacity applied to highlighted series.
+
+- Expose `CalloutLabelUpdating` event for domain charts.
+
+
+==== XamLinearGauge
+
+- Added new `LabelsVisible` property (Beta)
+
+[[BC_25_1_117]]
+== Breaking Changes
+
+=== XamDataChart
+The `IsSquare` property is now internal. This property is designed for use with polar and radial series, where maintaining a square plotting area is necessary for correct rendering. Using it with other series types could lead to distorted or unsatisfactory layouts, therefore we decided that it was best to omit this. To achieve a similar visual effect, measure the chart’s `ViewPortRect` and adjust the chart’s width and height to maintain an appropriate aspect ratio.
+
+[[Ref_25_1_71]]
+== 25.1.71 (July 2025)
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+|Bug Number|Control|Description
+
+|`33253`
+|XamDialogWindow
+|ArgumentException when resizing the window with Arabic language
+
+|`34316`
+|XamDataChart
+|NullReferenceException occurs when adding series to chart from different threads
+
+|`34440`
+|XamRichTextEditor
+|Editor changes the document font setting by pressing the DEL key in empty document or when everything is selected
+
+|`36415`
+|XamDataTree
+|Highlight foreground is not working correctly for RoyalLight theme in XamDataTree
+
+|`36448`
+|XamRadialGauge
+|Radial label format properties do not work. (eg. Title, SubTitles)
+
+|`37127`
+|XamDataChart
+|Range of an error bar changes when the chart's zoom level changes
+
+|`37244`
+|Excel Library
+|Custom DataValidation not working correctly
+
+|====
+
+=== Enhancements
+
+==== XamDataChart
+
+- Add MaximumExtent and MaximumExtentPercentage properties to Axis Labels (Beta)
+
+[[Ref_25_1_22]]
+== 25.1.22
+
+=== {DataChartName}
+
+=== Data Annotation Band Layer (Beta)
+
+The link:{DataChartLink}.DataAnnotationBandLayer.html[DataAnnotationBandLayer] is a new annotation layer that displays over the series.
+
+The full documentation topics for the link:{DataChartLink}.DataAnnotationBandLayer.html[DataAnnotationBandLayer] can be found at the following links:
+
+- link:datachart-data-annotation-band-layer.html[{DataChartName} Data Annotation Band Layer]
+
+=== Data Annotation Line Layer (Beta)
+
+The link:{DataChartLink}.DataAnnotationLineLayer.html[DataAnnotationLineLayer] is a new annotation layer that displays over the series.
+
+The full documentation topics for the link:{DataChartLink}.DataAnnotationLineLayer.html[DataAnnotationLineLayer] can be found at the following links:
+
+- link:datachart-data-annotation-line-layer.html[{DataChartName} Data Annotation Line Layer]
+
+=== Data Annotation Rect Layer (Beta)
+
+The link:{DataChartLink}.DataAnnotationRectLayer.html[DataAnnotationRectLayer] is a new annotation layer that displays over the series.
+
+The full documentation topics for the link:{DataChartLink}.DataAnnotationRectLayer.html[DataAnnotationRectLayer] can be found at the following links:
+
+- link:datachart-data-annotation-rect-layer.html[{DataChartName} Data Annotation Rect Layer]
+
+=== Data Annotation Slice Layer (Beta)
+
+The link:{DataChartLink}.DataAnnotationSliceLayer.html[DataAnnotationSliceLayer] is a new annotation layer that displays over the series.
+
+The full documentation topics for the link:{DataChartLink}.DataAnnotationSliceLayer.html[DataAnnotationSliceLayer] can be found at the following links:
+
+- link:datachart-data-annotation-slice-layer.html[{DataChartName} Data Annotation Slice Layer]
+
+=== Data Annotation Strip Layer (Beta)
+
+The link:{DataChartLink}.DataAnnotationStripLayer.html[DataAnnotationStripLayer] is a new annotation layer that displays over the series.
+
+The full documentation topics for the link:{DataChartLink}.DataAnnotationStripLayer.html[DataAnnotationStripLayer] can be found at the following links:
+
+- link:datachart-data-annotation-strip-layer.html[{DataChartName} Data Annotation Strip Layer]
+
+=== Data Legend and DataTooltip LayoutMode
+
+The `XamDataLegend` and `DataToolTipLayer` elements now expose a `LayoutMode` property that you can use to layout the legend in either a table or vertical structure. More information on this can be found in the respective topics for this documentation linked below:
+
+- link:datachart-data-legend.html[Data Legend]
+- link:datachart-data-tooltip.html[Data ToolTip]
+
+=== Drag Selection (Beta)
+
+There is a new enumeration for the `DefaultInteraction` property on the chart named `DragSelect`. This will use the preview Rect of the chart to select points of a series.
+
+=== Overlay Text (Beta)
+
+The following series types now support overlaying text for additional annotation in the chart by using the new `OverlayText` property:
+
+- link:{DataChartLink}.ValueLayer.html[ValueLayer]
+- link:{DataChartLink}.ValueOverlay.html[ValueOverlay]
+
+In addition to to the series types mentioned, the new data annotation layers listed above also support this feature.
+
+You can configure how this overlay text appears in aspects such as angle, color, background, padding, margin, font, etc. by using the many OverlayText-prefixed properties. For example, `OverlayTextBrush` will configure the color.
+
+=== Trendline Layer
+
+The `TrendlineLayer` is a new series type that allows you to apply a single trend line per trend line layer to a particular series. This allows the usage of multiple trend lines on a single series since you can have multiple `TrendlineLayer` series types in the chart.
+
+=== XamDashboardTile Aggregation Support
+
+The `XamDashboardTile` now supports propagating the aggregations from its DataGrid view to the chart visualization such as sorting, grouping, filtering and selection. 
+
+This is currently supported by binding the `ItemsSource` of the `XamDashboardTile` to an instance of `LocalDataSource`.
+
+=== Enhancements
+
+==== XamToolbar
+- Value layers added from the `XamToolbar` now appear on the Legend.
+- The zoom reset tool has been moved to the zoom drop-down.
+
+==== XamDataPieChart
+
+- The chart now exposes a `GetOthersContext()` method. This will return the contents of the others slice.
+
+
+[[Ref_24_2_93]]
+== 24.2.93 (February 2025)
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+|Bug Number|Control|Description
+
+|`27911`
+|XamDataChart
+|When using an OlapXAxis with a StackedColumnSeries, legend items are duplicated and in some cases, they appear blank
+
+|`30286`
+|XamDataChart
+|Bubble Series tooltip content is switched to that of nearby bubble data after clicking a bubble
+
+|`31993`
+|XamComboEditor
+|NullReferenceException occurs when using a ComboItemFilter with a nested FieldName
+
+|`32906`
+|XamDataChart
+|Chart shows two X Axes when aligned to the top of the chart
+
+|`33440`
+|XamDataGrid
+|The order of the fields is not correct after calling LoadCustomizations() if the grid has some fields that do not exist in the layout file
+
+|`34053`
+|XamRadialGauge
+|The position of the scale label is shifted
+
+|`34483`
+|XamDataTree
+|When using large nodes, the ScrollNodeIntoView method intermittently fails
+
+|`35104`
+|XamDataGrid
+|XamDataGrid doesn't filter items that contain a comma correctly
+
+|`35495`
+|Excel
+|Pictures in cells are lost when a template file is loaded
+
+|`35496`
+|XamSpreadsheet
+|System.ArgumentException when setting styles in Excel with images
+
+|`36062`
+|XamTextEditor
+|Editor is enlarged and the height is increased when entering edit mode
+
+|`36176`
+|Excel
+|XamlParseException occurs when loading an Excel workbook that has a LET function
+
+|`36297`
+|XamDataGrid
+|Memory performance degradation in RecordPresenter allocation when RefreshCellValue is called
+
+|====
+
+[[Ref_24_2]]
+== 24.2 (2024 Release)
+
+=== .NET 9 support
+
+As of version 2024.2, the Ultimate UI for WPF toolset supports .NET 9. For more information on .NET 9 please refer to link:https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9/overview[this article on Microsoft's site].
+
+With this release and per the link:https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core[Microsoft .NET lifecycle], we no longer support .NET 3.1, .NET 5, or .NET 7.
+
+
+=== XamDashboardTile (Beta)
+
+The link:xamdashboardtile.html[XamDashboardTile] component is a container control that analyzes and visualizes a bound ItemsSource collection or single point and returns an appropriate data visualization based on the schema and count of the data. This control utilizes a built-in link:xamtoolbar.html[XamToolbar] component to allow you to make changes to the visualization at runtime, allowing you to see many different visualizations of your data with minimal code.
+
+image:images/xamdashboardtile.png[]
+
+=== XamColorEditor & Toolbar ToolAction (Beta)
+
+This new editor can be used as a standalone color picker and is now integrated into the link:xamtoolbar.html[XamToolbar] component to update visualizations at runtime.
+
+image:images/color-editor.png[]
+
+[[Ref_24_1_57]]
+== 24.1.57 (September 2024)
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+|Bug Number|Control|Description
+
+|`26559`
+|XamDataGrid
+|DataRecordPresenterStyle (with key) - Binding IsExpanded doesn't work
+
+|`28377`
+|XamDataChart
+|GroupBy class for ItemsSource is not available in .NET 6
+
+|`29638`
+|XamDoughnutChart
+|Legend is not showing the correct labels and colors 
+
+|`29721`
+|XamRibbonWindow
+|CaptionButtonWidth not sized properly when TaskBar is left aligned
+
+|`31317`
+|XamDataGrid
+|XamDataGrid IN/Not IN Filter in not filtering data with slash '/'
+
+|`31702`
+|XamDataChart
+|XamDataChart y axis labels disappear when changing tabs
+
+|`31745`
+|XamDataChart
+|XamDataChart tooltip not showing and axis labels disappear
+
+|`32889`
+|XamDataChart
+|XamDataChart does not render point marker at position (0,0)
+
+|====
+
+[[Ref_24_1_20]]
+== 24.1.20 (August 2024)
+
+=== {DataPieChartName}
+
+The link:{DataPieChartLink}.{DataPieChartName}.html[{DataPieChartName}] is a new component that renders a pie chart. This component works similarly to the link:{CategoryChartLink}.{CategoryChartName}.html[{CategoryChartName}], in that it will automatically detect the properties on your underlying data model while allowing selection, highlighting, animation and legend support via the ItemLegend component.
+
+The full documentation for the link:{DataPieChartLink}.{DataPieChartName}.html[{DataPieChartName}] can be found using the link below:
+
+- link:data-pie-chart.html[{DataPieChartName}].
+
+=== Data Legend & Data Tooltip Grouping
+
+New link:{DataChartLink}.{DataChartName}.html[{DataChartName}] grouping feature added. The property `GroupRowVisible` toggles grouping with each series opting in can assign group text via the `DataLegendGroup` property. If the same value is applied to more than one series then they will appear grouped. Useful for large datasets that need to be categorized and organized for all users.
+
+=== Chart Selection
+
+New series selection. This is adopted broadly across all category, financial and radial series for link:{CategoryChartLink}.{CategoryChartName}.html[{CategoryChartName}] and link:{DataChartLink}.{DataChartName}.html[{DataChartName}]. Series can be clicked and shown a different color, brightened or faded, and focus outlines. The colors can be modified via the `SelectionBrush` and FocusBrush` properties. Manage which items are effected through individual series or entire data item. Multiple series and markers are supported. Useful for illustrating various differences or similarities between values of a partcular dataitem. Also  `SelectedSeriesItemsChanged` event and `SelectedSeriesItems` are available for additional help to build out robust business requirements surrouding other actions that can take place within an application such as a popup or other screen with data analysis based on the selection. In addition, you can read the selected items via the `SelectedSeriesItems` collection.
+
+=== Proportional Category Angle Axis
+
+New axes for the Radial Pie Series in the link:{DataChartLink}.{DataChartName}.html[{DataChartName}], to enable creating pie charts in the allowing robust visualizations using all the added power of the data chart.
+
+=== Radial Gauge properties
+
+New label for the highlight needle. `HighlightLabelText` and `HighlightLabelSnapsToNeedlePivot` and many other styling related properties for the HighlightLabel were added.
+
+=== Toolbar 
+
+New IsHighlighted option for ToolAction for outlining a border around specific tools of choice.
+
+[[BC_24_1_20]]
+== Breaking Changes
+
+=== Radial/Polar series
+The plot area for polar and radial series is now expanded to fill the entire chart space and is no longer forced to be square, this allows for labels to expand into the bleed area.
+
+[[Ref_23_2_233]]
+== 23.2.233 (June Release)
+
+[options="header", cols="a,a,a"]
+|====
+|Bug Number|Control|Description
+
+|`23553`
+|XamDataChart
+|When using a converter for the NumericYAxis labels, an infinite loop occurs 
+
+|`23611`
+|XamTileManager
+|The highlight for the tile manager splitter is not appearing in the correct spot when monitor is scaled to something other than 100%
+
+|`23703`
+|XamDataGrid
+|XamDataGrid Custom filter operators are not retained when setting FilterUIType to LabelIcons
+
+|`25125`
+|XamDataChart
+|UseEnhancedIntervalManagement not always scaling correctly on Axis
+
+|`25500`
+|XamScatterSurface3D
+|LogarithmicAxis gives wrong tooltip
+
+|`25502`
+|XamDataTree
+|If a child node is added and the parent node is expanded at the same time, the node appears to a child of the previous node
+
+|`26627`
+|XamDataGrid
+|SelectedDataItems is not cleared when a data source is cleared
+
+|`27174`
+|Excel Library
+|Worksheet.Shapes.AddChart not showing the X-Axis Labels
+
+|`27917`
+|XamDataGrid
+|FieldLayout not updating when a data source is replaced with an empty collection
+
+|`27935`
+|XamDataGrid
+|FieldGroup does not raise a property change notification when the Owner property is set/initialized
+
+|`27936`
+|XamDataGrid
+|FieldBinding cannot be used in FieldGroup
+
+|`28325`
+|XamRichTextEditor
+|When loading a docx file containing table, not all data is shown
+
+|`29363`
+|XamDataGrid
+|Scrolling is not behaving correctly
+
+|`29721`
+|XamRibbon
+|CaptionButtonWidth not sized properly when TaskBar is left
+
+|`30718`
+|Excel Library
+|Random number is generated for the number column 
+
+|`31317`
+|XamDataGrid
+|In/NotIn filter is not filtering data with slash '/'
+
+|`31392`
+|XamDataChart
+|Tooltip throwing ArgumentOutOfRangeException
+
+|====
+
+[[Ref_23_2_157]]
+== 23.2.157 (April Release)
+
+=== Funnel Chart Highlighting
+
+As of the 23.2 April release, the link:{FunnelChartLink}.{FunnelChartName}.html[{FunnelChartName}] has a highlighting overlay. It exposes this overlay through multiple highlighting properties, namely `HighlightedItemsSource`, `HighlightValueDisplayMode`, `HighlightedValueMemberPath`, and `HighlightingOpacity`.
+
+When the `HighlightValueDisplayMode` is set to `Overlay`, this works in tandem with the `HighlightedItemsSource` and `HighlightedValueMemberPath` to provide a highlighted overlay the displays the difference between the values in the chart's `ItemsSource` and the `HighlightedItemsSource`. You can control the opacity of the highlight overlay with the `HighlightingOpacity` property.
+
+=== Gauge Highlighting Features
+
+The link:{RadialGaugeLink}.{RadialGaugeName}.html[{RadialGaugeName}], link:{LinearGaugeLink}.{LinearGaugeName}.html[{LinearGaugeName}], and link:{BulletGraphLink}.{BulletGraphName}.html[{BulletGraphName}] now expose `HighlightValue` and `HighlightValueDisplayMode` properties.
+
+In the `{RadialGaugeName}` and `{LinearGaugeName}`, when provided a value and a `HighlightValueDisplayMode` of `Overlay`, this will make the main needle appear faded and an additional needle will appear.
+
+In the `{BulletGraphName}`, the performance bar will now reflect a difference between the value and the `HighlightValue` when the `HighlightValueDisplayMode` is set to `Overlay`. The highlighted value will show a filtered/subset measured percentage as a filled-in color while the remaining bar's appearance will be faded to the assigned value.
+
+=== Radial Chart Label Mode
+
+The `CategoryAngleAxis` for the link:{DataChartLink}.{DataChartName}.html[{DataChartName}] now exposes a `LabelMode` property that allows you to further configure the location of the labels. This allows you to toggle between the default mode by selecting the `Center` enum, or use the new mode, `ClosestPoint`, which will bring the labels closer to the circular plot area.
+
+=== Radial Gauge Optical Scaling
+
+The link:{RadialGaugeLink}.{RadialGaugeName}.html[{RadialGaugeName}] now has the ability to change its scaling for its labels, subtitle and title. This is done by setting the `OpticalScalingEnabled` property to true. Then, you can set the `OpticalScalingSize` which manages the size at which labels have 100% optical scaling. Essentially, labels will have larger fonts when the gauge's size is larger.
+
+For example, labels will have a 200% larger font size when this property is set to 500 and the gauge size is 1000.
+
+=== Radial Gauge Title and Subtitle
+
+New title and subtitle properties for the link:{RadialGaugeLink}.{RadialGaugeName}.html[{RadialGaugeName}] are now available. `TitleText` and `SubtitleText` will show the corresponding title near the bottom the gauge. In addition, various title and subtitle font properties were added such as `TitleFontSize`, `TitleFontFamily`, `TitleFontStyle`, `TitleFontWeight` and `TitleExtent`. Finally, the new `TitleDisplaysValue` will allow the value to correspond with the needle's position.  
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+|Bug Number|Control|Description
+
+|`25125`
+|{DataChartName}
+|UseEnhancedIntervalManagement not always scaling correctly on Axis.
+
+|`28521`
+|General
+|Source link is incorrectly in assemblies when compiled with the latest .NET SDK.
+
+|`29365`
+|XamToolbar
+|InvalidOperationException when hovering/interacting with zoom tool in the Toolbar.
+
+|`29489`
+|XamPropertyGrid
+|XamPropertyGrid does not show newly added child elements, even if the underlying collection implements INotifyCollectionChanged.
+
+|`30270`
+|XamSpreadsheet
+|Copying a cell that has a formula referencing another cell in the same workbook does not paste properly in the XamSpreadsheet.
+
+|`262777`
+|{DataChartName}
+|System.Windows.Data Error occurs when legend is used.
+
+|`274908`
+|{DataChartName}
+|Tooltip shows "Infragistics.Controls.Charts.DataContext" when using themes.
+
+|`275207`
+|XamDataTree
+|Empty XamDataTree can be dragged to despite having IsDropTarget = false.
+
+|====
+
+[[Ref_23_2]]
+== 23.2 (2023 Release) 
+
+=== .NET 8.0 support
+
+As of version 2023.2, the Ultimate UI for WPF toolset supports .NET 8. For more information on .NET 8 please refer to link:
+https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8[this article on Microsoft's site].
+
+=== Chart Highlight Filter
+
+The link:{CategoryChartLink}.{CategoryChartName}.html[{CategoryChartName}] and link:{DataChartLink}.{DataChartName}.html[{DataChartName}] now expose a way to highlight and animate in and out of a subset of data. The display of this highlight depends on the series type. For column and area series, the subset will be shown on top of the total set of data where the subset will be colored by the actual brush of the series, and the total set will have a reduced opacity. For line series, the subset will be shown as a dotted line.
+
+image:images/chart-highlight-filter.png[]
+
+This feature includes a new filter syntax that is OData-like that you can use with the link:{CategoryChartLink}.{CategoryChartName}.html[{CategoryChartName}].
+
+The following documentation describes the various ways that you can apply the highlight filter to the chart controls.
+
+- link:datachart-highlight-filter.html[{DataChartName} Highlight Filter]
+- link:categorychart-highlight-filter.html[{CategoryChartName} Highlight Filter]

@@ -1,0 +1,89 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistence-exclude-specific-control-properties",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["How Do I","Persistence"],
+    "guid": "{293E5970-0BDB-4391-A666-4F2BCA14589D}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.5690342Z"
+}
+|metadata|
+////
+
+= 特定のコントロールのプロパティを除外
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence_namespace.html[Infragistics Persistence Framework]™ で保持されないようにコントロール プロパティを除外できます。この例は CheckBox コントロールの Content プロパティを保持されないように除外する方法を示します。
+
+*XAML の場合:*
+
+----
+<CheckBox x:Name="chkOption" Content="Email Receipt">
+<ig:PersistenceManager.Settings>
+    <ig:PersistenceSettings x:Name="settings" SavePersistenceOptions="AllButIgnored" >
+        <ig:PersistenceSettings.IgnorePropertySettings>
+            <ig:PropertyNamePersistenceInfo PropertyName="Content" />
+        </ig:PersistenceSettings.IgnorePropertySettings>
+    </ig:PersistenceSettings>
+</ig:PersistenceManager.Settings>
+</CheckBox>
+----
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings.html[PersistenceSettings] オブジェクトの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings~savepersistenceoptions.html[SavePersistenceOptions] プロパティを link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.primitives.persistenceoption.html[AllButIgnored] に設定します。
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertynamepersistenceinfo.html[PropertyNamePersistenceInfo] オブジェクトの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertynamepersistenceinfo~propertyname.html[PropertyName] プロパティを使用して、保持で無視される CheckBox コントロールの Content プロパティを指定します。
+
+*Visual Basic の場合:*
+
+----
+' 新しい PersistenceSettings オブジェクトを作成します。
+Dim settings As New PersistenceSettings()
+' パーシステンス オプション (AllButIgnored) の保存を設定します。
+settings.SavePersistenceOptions = Persistence.Primitives.PersistenceOption.AllButIgnored
+' 名前で特定のプロパティを識別します。
+Dim pnpi As New PropertyNamePersistenceInfo()
+pnpi.PropertyName = "Content"
+' IgnorePropertySettings コレクションでプロパティを追加します。
+settings.IgnorePropertySettings.Add(pnpi)
+Dim memoryStream As MemoryStream = PersistenceManager.Save(chkOption, settings)
+----
+
+*C# の場合:*
+
+----
+// 新しい PersistenceSettings オブジェクトを作成します。
+PersistenceSettings settings = new PersistenceSettings();
+// パーシステンス オプション (AllButIgnored) の保存を設定します。
+settings.SavePersistenceOptions = Persistence.Primitives.PersistenceOption.AllButIgnored;
+// 名前で特定のプロパティを識別します。
+PropertyNamePersistenceInfo pnpi = new PropertyNamePersistenceInfo();
+pnpi.PropertyName = "Content";
+// IgnorePropertySettings コレクションでプロパティを追加します。
+settings.IgnorePropertySettings.Add(pnpi);
+MemoryStream memoryStream = PersistenceManager.Save(chkOption, settings);
+----
+
+== 関連トピック
+
+link:persistence-persistence-settings.html[保持の設定]
+
+ifdef::sl,win-rt,win-phone[]
+link:3ff664bc-2a4b-459d-8184-4ddca70ed809[識別子]
+endif::sl,win-rt,win-phone[]
+
+link:persistence-persistence-groups.html[保持グループ]
+
+link:persistence-persisting-specific-control-properties.html[特定のコントロールのプロパティを保持]
+
+ifdef::win-phone[]
+link:persistence-using-propertynamepersistenceinfo-typeconverter-property.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+endif::win-phone[]
+
+ifdef::sl,wpf,win-rt[]
+link:persistence-using-typeconverte.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+endif::sl,wpf,win-rt[]
+
+link:persistence-handle-persistencesaved-and-persistenceloaded-events.html[PersistenceSaved イベントと PersistenceLoaded イベントの処理]
+
+link:persistence-handle-savepropertypersistence-and-loadpropertypersistence-events.html[SavePropertyPersistence イベントと LoadPropertyPersistence イベントの処理]

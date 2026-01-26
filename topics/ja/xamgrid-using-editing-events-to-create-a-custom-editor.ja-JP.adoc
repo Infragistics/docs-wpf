@@ -1,0 +1,185 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-using-editing-events-to-create-a-custom-editor",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Events"],
+    "guid": "{B7E07871-7409-4F61-84B4-FC43D19D4355}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0692072Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 編集イベントを使用してカスタム エディターを作成
+
+== 始める前に
+
+このトピックでは、テンプレート列でカスタム エディターを作成するために link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellenterededitmode_ev.html[CellEnteredEditMode] および link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellexitingeditmode_ev.html[CellExitingEditMode] イベントを使用する方法を説明します。
+
+前提:
+
+このトピックでは以下を前提とします。
+
+* xamGrid コントロールをページのデータに既にバインドしてあること。詳細は link:xamgrid-data-binding.html[データ バインディング]トピックを参照してください。
+* 編集を有効にしてあります。詳細は link:xamgrid-editing-data.html[データの編集]トピックを参照してください。
+
+== 達成すること
+
+グリッドで Product Name 列のエディターとして使用されるカスタム コンボ ボックスを作成します。グリッドが編集モードに入ると、すべての製品名が移植されたコンボ ボックスが表示され、現在の製品名がドロップダウンに強調表示されます。
+
+== 次の手順を実行します
+
+[start=1]
+. link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn.html[TemplateColumn] を作成し、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnbase~key.html[Key] を ProductName に設定します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">  
+   <ig:XamGrid x:Name="MyDataGrid" ItemsSource={StaticResource DataUtil}, Path=Products}">
+      <ig:XamGrid.EditingSettings>
+         <ig:EditingSettings AllowEditing="Row"/>
+      </ig:XamGrid.EditingSettings>
+      <ig:XamGrid.Columns>
+         <ig:TemplateColumn Key="ProductName">
+            <!-- TODO: ItemTemplate を追加します -->
+            <!-- TODO: EditorTemplate を追加します -->    
+         </ig:TemplateColumn>
+      </ig:XamGrid.Columns>
+   </ig:XamGrid>
+</Grid>
+----
+
+[start=2]
+. link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn~itemtemplate.html[ItemTemplate] を作成します。
+
+DataTemplate を作成します。
+
+TextBlock を DataTemplate に追加し、それを ProductName 列にバインドします。
+
+*XAML の場合:*
+
+----
+<ig:TemplateColumn.ItemTemplate>
+   <DataTemplate>
+      <TextBlock Text="{Binding ProductName}"/>          
+   </DataTemplate>
+</ig:TemplateColumn.ItemTemplate>
+----
+
+[start=3]
+. link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn~editortemplate.html[EditorTemplate] を作成します。
+
+DataTemplate を作成します。
+
+ComboBox を追加します。
+
+コンボ ボックスの ItemTemplate を作成します。
+
+DataTemplate を作成します。
+
+TextBlock を DataTemplate に追加し、それを製品名にバインドします。
+
+*XAML の場合:*
+
+----
+<ig:TemplateColumn.EditorTemplate>
+   <DataTemplate>
+      <ComboBox>
+         <ComboBox.ItemTemplate>
+            <DataTemplate>
+               <TextBlock Text="{Binding ProductName}"/>
+            </DataTemplate>
+         </ComboBox.ItemTemplate>
+      </ComboBox>
+   </DataTemplate>
+</ig:TemplateColumn.EditorTemplate>
+----
+
+[start=4]
+. CellEnteredEditMode および CellExitingEditMode イベントを xamGrid コントロールに追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyDataGrid" ItemsSource={StaticResource DataUtil} 
+      CellEnteredEditMode="MyDataGrid_CellEnteredEditMode" 
+      CellExitingEditMode="MyDataGrid_CellExitingEditMode">
+      …
+  </ig:XamGrid>
+----
+
+[start=5]
+. CellEnteredEditMode および CellExitingEditMode イベントを処理します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub MyDataGrid_CellEnteredEditMode(ByVal sender As Object, ByVal e As EditingCellEventArgs)
+   ' 正しいセルを確認します。
+   If (e.Cell.Column.Key = "ProductName") Then
+      Dim box As ComboBox = CType(e.Editor, ComboBox)
+      box.ItemsSource = DataUtil.Products
+      ' 選択したインデックスをグリッド セルのインデックスに設定します。
+      box.SelectedIndex = e.Cell.Row.Index
+   End If
+End Sub
+Private Sub MyDataGrid_CellExitingEditMode(ByVal sender As Object, ByVal e As ExitEditingCellEventArgs)
+   ' 正しいセルを使用し、編集がキャンセルされていないことを確認します。
+   If ((e.Cell.Column.Key = "ProductName") _
+          AndAlso Not e.EditingCanceled) Then
+      Dim box As ComboBox = CType(e.Editor, ComboBox)
+      If (Not (box.SelectedItem) Is Nothing) Then
+         ' 新しい値は、コンボ ボックスで選択した項目の値です。
+         e.NewValue = CType(box.SelectedItem, Product).ProductName
+         box.ItemsSource = Nothing
+         box.SelectedItem = Nothing
+      End If
+   End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void MyDataGrid_CellEnteredEditMode(object sender, EditingCellEventArgs e)
+{
+   // 正しいセルを確認します。
+   if (e.Cell.Column.Key == "ProductName") {
+      ComboBox box = e.Editor as ComboBox;
+      box.ItemsSource = DataUtil.Products;
+      // 選択したインデックスをグリッド セルのインデックスに設定します。
+      box.SelectedIndex = e.Cell.Row.Index;
+   }
+}
+private void MyDataGrid_CellExitingEditMode(object sender, ExitEditingCellEventArgs e)
+{
+   // 正しいセルを使用し、編集がキャンセルされていないことを確認します。
+   if (e.Cell.Column.Key == "ProductName" && !e.EditingCanceled) {
+      ComboBox box = e.Editor as ComboBox;
+      if (box.SelectedItem !=null){
+         // 新しい値は、コンボ ボックスで選択した項目の値です。
+         e.NewValue = ((Product)box.SelectedItem).ProductName;
+         box.ItemsSource = null;
+         box.SelectedItem = null;
+      }
+   }
+}
+----
+
+[start=6]
+. アプリケーションを保存して実行します。ProductName 列が編集モードに入ると、既存の製品名が移植された状態でコンボ ボックスが表示されます。現在の製品名が選択されています。
+
+image::images/xamGrid_Custom_Editor_Using_Editing_Events_01.png[]
+
+== 関連トピック
+
+link:xamgrid-editing-data-in-a-template-column.html[テンプレート列でデータを編集]
+
+link:xamgrid-changing-cell-values-in-code-behind.html[コード ビハインドでセル値を変更]
+
+link:xamgrid-validating-data.html[データの検証]

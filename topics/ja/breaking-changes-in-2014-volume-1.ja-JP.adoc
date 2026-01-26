@@ -1,0 +1,296 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-in-2014-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "f7e102fe-39a6-4d73-b74e-b344901e1ee7",  
+    "buildFlags": [],
+    "createdOn": "2014-03-12T08:51:34.8532309Z"
+}
+|metadata|
+////
+
+= 2014 Volume 1 の重大な変更点
+
+== 重大な変更の概要
+
+=== 重大な変更の概要表
+
+以下の表は、{ProductName} 2014 Volume 1 リリースの重大な変更点の概要を示します。問題および既存の回避策の詳細な説明は、概要表の後に記載されています。
+
+==== 凡例:
+
+image:images/Yes.png[] - 回避策
+
+image:images/No.png[] - 既知の回避策はありません
+
+image:images/Fix.png[] - 既知の回避策はありません。修正予定です
+
+==== <<_Ref382990422,XamComboEditor, XamMultiColumnComboEditor>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref382930130,SelectionChanged イベント引数の型の変更>>
+|`SelectionChanged` イベント引数の型を変更したため、新しい拡張型に置き換えられます。
+|image::images/Yes.png[]
+
+|<<_Ref382933036,項目のフィルタリングの実装およびプロパティの名前変更>>
+|コントロールでのカスタム項目のフィルタリングの実装を向上させるため、以下のプロパティを変更しました。`ItemsFilter` および `CustomItemsFilter`
+|image::images/Yes.png[]
+
+|====
+
+==== <<_Ref383099298,XamGeographicMap>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref383099374,メンバーの名前の変更>>
+|一部のメンバーの名前の変更
+|image::images/Yes.png[]
+
+|<<_Ref383099378,メンバーの削除>>
+|一部のメンバーの削除
+|image::images/Yes.png[]
+
+|====
+
+==== <<_Ref383099326,XamRichTextEditor>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref382578506,メンバーの名前の変更>>
+|一部のメンバーの名前の変更
+|image::images/Yes.png[]
+
+|<<_Ref382578553,変更されたプロパティの既定値>>
+|プロパティの既定値が変更されました。
+|image::images/Yes.png[]
+
+|====
+
+==== <<_Ref383099337,XamSyntaxEditor>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref382578597,メンバーの名前を変更>>
+|一部のメンバーの名前の変更
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref382930119]]
+
+[[_Ref382990422]]
+== XamComboEditor, XamMultiColumnComboEditor
+
+[[_Ref382930130]]
+
+=== SelectionChanged イベント引数の型の変更
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectionchanged_ev.html[SelectionChanged] イベントのイベント引数の型を `EventArgs` から link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.selectionchangedeventargs_members.html[SelectionChangedEventArgs] へ変更しました。これにより、選択された / 選択されていないコントロールの項目について、情報が提供されます。
+
+[options="header", cols="a,a"]
+|====
+|古いイベント引数の型|新しいイベント引数の型
+
+|System.EventArgs
+|Infragistics.Controls.Editors.SelectionChangedEventArgs
+
+|====
+
+回避方法
+
+[NOTE]
+====
+この重大な変更に対処するには、古いイベントの引数の型の名前をすべて新しい名前に変更します。
+====
+
+[[_Ref382933036]]
+
+=== 項目のフィルタリングの実装およびプロパティの名前変更
+
+コントロールでのカスタム項目のフィルタリングを向上させるため、以下のプロパティを変更しました。
+
+* `ItemsFilter`
+* `CustomItemsFilter`
+
+2014 Volume 1 のリリース以前、コントロールにはフィルターを 1 つしか適用できませんでした。`ItemsFilter` オブジェクトを作成すると、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor_members.html[XamComboEditor] / link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor_members.html[XamMultiColumnComboEditor] `CustomItemsFilter` プロパティに設定されていました。
+
+カスタム項目のフィルタリング ロジックの機能拡張後は、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter_members.html[ComboItemFilter] 型のフィルターを多数作成することができます。これらは、`ObservableCollection<ComboItemFilter>` 型の link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor_members.html[XamComboEditor] / link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor_members.html[XamMultiColumnComboEditor] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemFilters] プロパティに追加されます。
+
+注:
+
+[NOTE]
+====
+カスタムの `ComboItemFilter` を作成する場合、`ComboItemFilter` link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~fieldname.html[FieldName] プロパティをフィルタリング対象のデータプロパティの名前に設定する必要があります。`FieldName` プロパティが設定されていない場合は、例外がスローされます。
+====
+
+以下の表に、古いプロパティ名と新しいプロパティ名を示します。
+
+[options="header", cols="a,a"]
+|====
+|古いプロパティ名|新しいプロパティ名
+
+|Infragistics.Controls.Editors.ItemsFilter
+|Infragistics.Controls.Editors.ComboItemFilter
+
+|Infragistics.Controls.Editors.CustomItemsFilter
+|Infragistics.Controls.Editors.ItemFilters
+
+|====
+
+カスタム項目のフィルタリングの詳細は、以下のトピックを確認してください。
+
+* link:xamcomboeditor-custom-filtering.html[項目のフィルタリングの構成 (xamComboEditor)]
+* link:xammulticee-configuring-item-filtering.html[項目のフィルタリングの構成 (xamMultiColumnComboEditor)]
+
+回避方法
+
+[NOTE]
+====
+この重大な変更に対処するには、古いプロパティ名をすべて新しい名前に変更します。
+====
+
+[[_Ref383099298]]
+== XamGeographicMap
+
+[[_Ref383099374]]
+
+=== メンバーの名前の変更
+
+*InfragisticsWPF4.Controls.Maps.XamGeographicMap.v14.1.dll*  アセンブリ中のメンバーの名前の変更
+
+[options="header", cols="a,a"]
+|====
+|古いメンバー|新しいメンバー
+
+|HorizontalZoomable
+|Zoomable
+
+|VerticalZoomable
+|Zoomable
+
+|HorizontalWindowScale
+|WindowScale
+
+|VerticalWindowScale
+|WindowScale
+
+|====
+
+回避方法
+
+[NOTE]
+====
+この重大な変更に対処するには、古いメンバー名をすべて新しい名前に変更します。
+====
+
+[[_Ref383099378]]
+
+=== メンバーの削除
+
+*InfragisticsWPF4.Controls.Maps.XamGeographicMap.v14.1.dll*  アセンブリ中のメンバーの削除
+
+[cols="a"]
+|====
+|削除されたメンバー
+
+|HorizontalZoombarVisibility
+
+|VerticalZoombarVisibility
+
+|====
+
+回避方法
+
+[NOTE]
+====
+この重大な変更に対処するには、古いメンバーをすべて削除します。
+====
+
+[[_Ref383099326]]
+== XamRichTextEditor
+
+[[_Ref382578506]]
+
+=== メンバーの名前の変更
+
+*InfragisticsWPF4.Controls.Editors.XamRichTextEditor.v14.1.dll*  アセンブリ中のメンバーの名前の変更
+
+[options="header", cols="a,a"]
+|====
+|古いメンバー|新しいメンバー
+
+|AdornmentGeneratorBase
+|RichTextAdornmentGeneratorBase
+
+|CaretPresenter
+|RichTextCaretPresenter
+
+|SelectionChangedEventArgs
+|RichTextSelectionChangedEventArgs
+
+|====
+
+回避方法
+
+[NOTE]
+====
+この重大な変更に対処するには、古いメンバー名をすべて新しい名前に変更します。
+====
+
+[[_Ref382578553]]
+
+=== 変更されたプロパティの既定値
+
+xamRichTextEditor の AllowDocumentViewSplitting の既定値が、true から false に変更されました。
+
+回避方法
+
+[NOTE]
+====
+この重大な変更に対処するには、このプロパティを  _xamRichTextEditor_   に追加し、値を true に設定します。
+====
+
+[[_Ref367305781]]
+
+[[_Ref383099337]]
+== XamSyntaxEditor
+
+[[_Ref382578597]]
+
+=== メンバーの名前を変更
+
+*InfragisticsWPF4.Controls.Editors.XamSyntaxEditor.v14.1.dll*  アセンブリ中のメンバーの名前の変更
+
+[options="header", cols="a,a"]
+|====
+|古いメンバー|新しいメンバー
+
+|AdornmentGeneratorBase
+|SyntaxEditorAdornmentGeneratorBase
+
+|CaretPresenter
+|SyntaxEditorCaretPresenter
+
+|SelectionChangedEventArgs
+|SyntaxEditorSelectionChangedEventArgs
+
+|====
+
+回避方法
+
+[NOTE]
+====
+この重大な変更に対処するには、古いメンバー名をすべて新しい名前に変更します。
+====

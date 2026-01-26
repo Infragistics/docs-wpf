@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager-api-reference",
+    "tags": ["API"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "2e9fcc58-1332-4892-bae1-6644fc949323",  
+    "buildFlags": [],
+    "createdOn": "2014-09-03T11:43:46.0302061Z"
+}
+|metadata|
+////
+
+= API リファレンス (ThemeManager)
+
+API リファレンス (ThemeManager)
+
+=== 概要
+
+このトピックでは、 _Infragistics ThemeManager_™ に関連したキー クラスに関する参考情報を提供します。
+
+=== ThemeManager API リファレンス表
+
+以下の表は、 _ThemeManager_   に関連する重要なクラスを示しています。
+
+[options="header", cols="a,a"]
+|====
+|クラス|説明
+
+| link:{RootAssembly}{ApiVersion}~infragistics.themes.builtinthemebase_members.html[BuiltInThemeBase]
+|定義済みテーマ (IG、Metro、MetroDark、Office2010Blue および Office2013 テーマ) が派生する抽象基本クラス。 
+
+これには、サポートされている Microsoft WPF コントロールを形作る必要があるかどうかを示すブール値プロパティ `StyleMicrosoftControls` が含まれます。
+
+| link:{RootAssembly}{ApiVersion}~infragistics.themes.controlmappingkeys_members.html[ControlMappingKeys]
+|完全なタイプ名を返す各 Infragistics コントロールの文字列プロパティを含む静的なクラス。
+
+| link:{RootAssembly}{ApiVersion}~infragistics.themes.themebase_members.html[ThemeBase]
+|抽象基本クラス。_ThemeManager_ により適用できるテーマを定義するために使用できます。
+
+| link:{RootAssembly}{ApiVersion}~infragistics.themes.thememanager_members.html[ThemeManager]
+|`ApplicationTheme` プロパティにより、アプリケーション レベルにテーマを適用するだけではなく、`Theme` 添付プロパティにより、視覚的ツリーの任意の要素にテーマを適用するための機能を提供する静的なクラス
+
+|====

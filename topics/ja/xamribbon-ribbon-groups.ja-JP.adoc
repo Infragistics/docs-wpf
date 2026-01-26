@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-ribbon-groups",
+    "controlName": ["xamRibbon"],
+    "tags": ["Grouping"],
+    "guid": "{9F34DBFF-C7B7-4800-A463-ECB25486B693}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1971925Z"
+}
+|metadata|
+////
+
+= リボン グループ
+
+
+
+リボン グループは、より狭いレベルでツール構造を定義する手助けをします。link:xamribbon-ribbon-tabs.html[リボンタブ]はエンドユーザーが実行したい作業に対するアイディアを提供しますが、グループはその考えをさらに一段深く掘り下げます。ワープロ アプリケーションで xamRibbon™ を使用し、書式タブを持つ場合があります。書式タブ内には、エンド ユーザーの文書の書式に関連するツールのグループが複数あります。フォントグループや段落グループがある場合があります。link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.qatplaceholdertool.html[QatPlaceholderTool] の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.qatplaceholdertool~targetid.html[TargetID] をグループの ID に設定することで、 link:xamribbon-quick-access-toolbar.html[Quick Access Toolbar (QAT)] にグループ全体を追加することができます。選択するダイアログボックスを起動できるグループヘッダーの右側に特別なボタンを追加することもできます。
+
+興味がある場合、xamRibbon のグループについての詳細は、以下のトピックを参照してください。
+
+* link:xamribbon-about-group-resizing.html[リボン グループのリサイズについて]
+* link:xamribbon-add-a-ribbon-group-to-a-ribbon-tab.html[リボン タブにリボン グループを追加]
+* link:xamribbon-using-the-dialog-box-launcher-to-display-a-dialog-box.html[ダイアログ ボックス ランチャーを使用してダイアログ ボックスを表示]

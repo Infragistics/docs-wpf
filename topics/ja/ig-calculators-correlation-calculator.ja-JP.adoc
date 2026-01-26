@@ -1,0 +1,238 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-calculators-correlation-calculator",
+    "controlName": ["IG Math Calculators"],
+    "tags": ["Calculations"],
+    "guid": "793d922f-6a63-4534-8095-e718597fc689",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.7190366Z"
+}
+|metadata|
+////
+
+= Infragistics 相関計算式
+
+このトピックでは link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Infragistics Math Calculators]™ ライブラリの一部である link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.correlationcalculator.html[CorrelationCalculator] を紹介し、コード例と共にデータセット内の 2 変数間の相関の計算方法を説明します。
+
+== 概要
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>>
+* <<CorrelationFormula,相関式>>
+* <<TypesofDataCorrelation,データ相関のタイプ>>
+* <<CorrelationCalculatorProperties,相関計算プロパティ>>
+* <<Requirements,要件>>
+
+** NuGet パッケージの要件
+** データ要件
+
+* <<Example,例>>
+* <<RelatedTopics,関連トピック>>
+
+== 概要
+
+統計において、データ相関はピアソンの積率相関係数 (PPMCC、Pearson's product-moment correlation coefficient) と呼ばれることがあります。相関はデータセット内の 2 変数間の線形関連性を測定します。さらに、それらの変数間の線形関連性の程度についても示します。相関係数は CorrelationCalculator クラスを用いて計算されます。
+
+== 相関式
+
+相関係数は 2 変数の共分散をそれらの標準偏差の積で割って得られます。
+
+image::images/IG_Math_Correlation_Calculators_01.png[]
+
+where
+
+image::images/IG_Math_Correlation_Calculators_02.png[]
+
+image::images/IG_Math_Correlation_Calculators_03.png[]
+
+図 1 - データ相関計算のための式
+
+[cols="a"]
+|====
+|凡例
+
+|image::images/IG_Math_Correlation_Calculators_04.png[]
+|- データセットの X と Y 変数の相関を表す
+
+|image::images/IG_Math_Correlation_Calculators_05.png[]
+|- データセットの X と Y 変数の共分散を表す
+
+|image::images/IG_Math_Correlation_Calculators_06.png[]
+|- データセットの X 変数の標準偏差を表す
+
+|image::images/IG_Math_Correlation_Calculators_07.png[]
+|- データセットの Y 変数の標準偏差を表す
+
+|image::images/IG_Math_Correlation_Calculators_08.png[]
+|- データセットの X 変数の平均を表す
+
+|image::images/IG_Math_Correlation_Calculators_09.png[]
+|- データセットの Y 変数の平均を表す
+
+|image::images/IG_Math_Correlation_Calculators_10.png[]
+|- データセットの i インデックスでの X 変数を表す
+
+|image::images/IG_Math_Correlation_Calculators_11.png[]
+|- データセットの i インデックスでの Y 変数を表す
+
+|image::images/IG_Math_Correlation_Calculators_12.png[]
+|- データセットの合計数を表す
+
+|====
+
+== データ相関のタイプ
+
+相関係数は正から負までの値をとります。係数が -1 または 1 に近いほどデータセットの変数間の関係が強いということになります。完全な正の相関 (増加) の場合、係数は +1 になります。完全な負の相関 (減少) の線形関係の場合は -1 で、それ以外の場合は -1 と 1 の間の値になります。係数がゼロに近づくほどデータセットの変数間の関係が少なくなります。
+
+表 1 - データ相関のタイプ
+
+[options="header", cols="a,a,a"]
+|====
+|相関タイプ|負の相関|正の相関
+
+|None
+|範囲: -0.1 から 0.0 
+
+image::images/IG_Math_Correlation_Calculators_13.png[]
+|範囲: 0.0 から 0.1 
+
+image::images/IG_Math_Correlation_Calculators_14.png[]
+
+|Low
+|範囲: -0.3 から -0.1 
+
+image::images/IG_Math_Correlation_Calculators_15.png[]
+|範囲: 0.1 から 0.3 
+
+image::images/IG_Math_Correlation_Calculators_16.png[]
+
+|Medium
+|範囲: -0.5 から -0.3 
+
+image::images/IG_Math_Correlation_Calculators_17.png[]
+|範囲: 0.3 から 0.5 
+
+image::images/IG_Math_Correlation_Calculators_18.png[]
+
+|High
+|範囲: -1.0 から -0.5 
+
+image::images/IG_Math_Correlation_Calculators_19.png[]
+|範囲: 0.5 から 1.0 
+
+image::images/IG_Math_Correlation_Calculators_20.png[]
+
+|====
+
+== 相関計算プロパティ
+
+このセクションでは CorrelationCalculator オブジェクトのプロパティのリストを提供します。
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ名|プロパティ タイプ|説明
+
+|ItemsSource
+| link:http://msdn.microsoft.com/ja-jp/library/system.collections.ienumerable.aspx[IEnumerable] 
+|計算のデータ項目ソースを取得または設定します。
+
+|XMemberPath
+|string
+|データ項目の X メンバー パスを取得または設定します。
+
+|YMemberPath
+|string
+|データ項目の Y メンバー パスを取得または設定します。
+
+|Value
+|double
+|データ相関の値を取得します。
+
+|====
+
+== 要件
+
+== NuGet パッケージの要件
+
+CorrelationCalculator を使用するためには、次の NuGet パッケージ参照を {PlatformName} プロジェクトに追加する必要があります。
+
+** Infragistics.WPF.Math.Calculators
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+
+== データ要件
+
+CorrelationCalculator はデータ バインディングのための ItemsSource プロパティとデータ マッピングのための XMemberPath と YMemberPath プロパティを使用します。次の要件に合致するオブジェクトはすべてこのプロパティにバインドできます。
+
+* データ モデルは link:http://msdn.microsoft.com/ja-jp/library/system.collections.ienumerable.aspx[IEnumerable] インターフェイス (たとえば link:http://msdn.microsoft.com/ja-jp/library/6sh2ey19.aspx[リスト]、 link:http://msdn.microsoft.com/ja-jp/library/ms132397.aspx[コレクション]、 link:http://msdn.microsoft.com/ja-jp/library/7977ey2c.aspx[キュー]、 link:http://msdn.microsoft.com/ja-jp/library/system.collections.stack.aspx[スタック]) を実装しなければなりません。
+* データ モデルには相関を計算するために少なくとも 2 つの数値データ列をもつ項目がなければなりません。
+
+上記の基準を満たすオブジェクトの例は CorrelationDataSample で、 link:resources-correlationdatasample.html[相関データの例]リソースからダウンロードしてプロジェクトで使用できます。
+
+== 例
+
+この例は CorrelationCalculatorを用いてデータの集合の 2 変数間の相関を計算する方法を説明しています。CorrelationCalculator は非視覚的な要素で、データソースを定義するのと同じようにアプリケーション、ページ、またはコントロールのレベルでリソースセクションに定義する必要があります。link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.correlationcalculator.html[CorrelationCalculator] を link:datachart-datachart.html[xamDataChart] コントロールに統合する方法についての例は link:datachart-series-data-correlation.html[シリーズ データの相関]トピックを参照してください。
+
+[NOTE]
+====
+*注:* 次の例はプロジェクトのデータ ソースとして link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.correlationcalculator.html[CorrelationCalculator] と link:resources-correlationdatasample.html[相関データの例] オブジェクトに必要なすべてのアセンブリを追加していることが前提となります。
+====
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:local="clr-namespace:Infragistics.Samples.Data.Models.Series"
+----
+
+endif::wpf[]
+
+*XAML の場合:*
+
+----
+<local:CorrelationDataSample x:Key="Data"/>
+<ig:CorrelationCalculator x:Key="CorrelationCalc" 
+                          XMemberPath="X" YMemberPath="Y" 
+                          ItemsSource="{StaticResource Data}">
+</ig:CorrelationCalculator>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Samples.Data.Models.Series
+Imports Infragistics.Math.Calculators
+'...
+Dim data As New CorrelationDataSample()
+Dim correlationCalc As New CorrelationCalculator()
+correlationCalc.ItemsSource = data
+correlationCalc.XMemberPath = "X"
+correlationCalc.YMemberPath = "Y"
+Dim correlation As Double = correlationCalc.Value
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Samples.Data.Models.Series;
+using Infragistics.Math.Calculators;
+//...
+CorrelationDataSample data = new CorrelationDataSample();
+CorrelationCalculator correlationCalc = new CorrelationCalculator();
+correlationCalc.ItemsSource = data;
+correlationCalc.XMemberPath = "X";
+correlationCalc.YMemberPath = "Y";
+double correlation = correlationCalc.Value;
+----
+
+== 関連トピック
+
+* link:ig-math-calculators-api-overview.html[API の概要]
+* link:datachart-series-data-correlation.html[シリーズ データの相関]
+* link:datachart-series-value-overlay.html[値オーバーレイ]

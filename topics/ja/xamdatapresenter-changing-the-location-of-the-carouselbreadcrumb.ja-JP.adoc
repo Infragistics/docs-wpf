@@ -1,0 +1,87 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-changing-the-location-of-the-carouselbreadcrumb",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Presentation","How Do I","Layouts"],
+    "guid": "{EE3967CC-EC0B-42BB-A198-5FF0C9B56277}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1129757Z"
+}
+|metadata|
+////
+
+= CarouselBreadcrumb の位置の変更
+
+
+
+xamDataPresenter™ のカルーセル ビューが階層データを表示すると、データのドリルダウンを開始する時に左上隅にブレッドクラム項目が表示されます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.carouselbreadcrumbcontrol.html[CarouselBreadcrumbControl] のスタイルを修正することによって、ブレッドクラムの位置を変更できます。
+
+以下の手順に従って、左上隅から左下隅にカルーセル ビューの CarouselBreadcrumbControl を移動します。
+
+[start=1]
+. Microsoft® Windows® Presentation Foundation Window または Page プロジェクトを作成します。
+[start=2]
+. xamDataPresenter により簡単にアクセスするために、以下の名前空間宣言を開始の Page タグまたは Window タグ内に配置します。2 番目の名前空間宣言を追加すると、次の手順でプロジェクトに追加する LibraryBusinessLogic クラスを参照できます。
+
+*XAML の場合:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+xmlns:local="clr-namespace:WPF_HelpSampleBrowser"
+----
+
+[start=3]
+. ObjectDataProvider を定義するリソース セクションを作成します。ObjectDataProvider は link:resources-library-business-logic.html[LibraryBusinessLogic] クラスを参照します。グリッド パネル内に以下の XAML を配置します。
+
+*XAML の場合:*
+
+----
+<Grid.Resources>
+        <ObjectDataProvider x:Key="odpObjectDataProvider1" 
+          Objecttype="{x:Type local:LibraryBusinessLogic}"  
+          Methodname="GetLibrary">
+        </ObjectDataProvider>
+        ...
+</Grid.Resources>
+----
+
+[start=4]
+. Grid パネルのリソース セクション内に CarouselBreadcrumbControl オブジェクトのスタイルを定義します。
+
+[NOTE]
+====
+*注:* このスタイルは Key を設定しません。したがって、page/window 上のすべての CarouselBreadcrumbControls はこのスタイルによって影響を受けます。
+====
+
+以下の XAML は VerticalAlignment プロパティを Bottom に設定します。
+
+*XAML の場合:*
+
+----
+...
+        <Style TargetType="{x:Type igDP:CarouselBreadcrumbControl}">
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>   
+...
+----
+
+[start=5]
+. xamDataPresenter のインスタンスを作成して名前を指定し、手順 3 で作成された ObjectDataProvider に DataSource プロパティを設定し、View を CarouselView に設定します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter x:Name="XamDataPresenter1" 
+  DataSource="{Binding Source={StaticResource odpObjectDataProvider1}}">
+        <igDP:XamDataPresenter.View>
+                <igDP:CarouselView/>
+        </igDP:XamDataPresenter.View>
+</igDP:XamDataPresenter>
+----
+
+[start=6]
+. プロジェクトをビルドして実行します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record.html[Record] の展開インジケータを選択して、その Record を展開し、子 Records を表示します。現時点で、以下のスクリーンショットのようになるはずです。
+
+image::images/xamDataCarousel_Changing_the_Location_of_the_CarouselBreadcrumb_01.png[xamdatapresenter のカルーセルのナビゲーション要素の場所を変更]

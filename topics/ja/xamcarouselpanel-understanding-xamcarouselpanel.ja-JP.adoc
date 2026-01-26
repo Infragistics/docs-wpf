@@ -1,0 +1,42 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-understanding-xamcarouselpanel",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["Getting Started"],
+    "guid": "{9B8EB8A7-89B8-44AE-BE9A-6CFCCCD79138}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0927717Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel について
+
+
+
+xamCarouselPanel™ コントロールは、設定された link:xamcarousel-path.html[パス]に沿って要素を配置する派生したパネルです。プロシージャー コードまたは XAML のいずれかを使用してパスを作成する、または Microsoft® Expression® Blend を使用して視覚的にパスを描画することができます。xamCarouselPanel コントロールには Children コレクションがあるため、プロシージャ コードに簡単に子要素を追加できます。いったん格納されたら、子要素は指定されたパスに沿って移動します。
+
+* link:xamcarousel-path-effects.html[パス エフェクト] - 普通は可能ではない特定の視覚的なフレアを項目に付与するいくつかの効果を xamCarouselPanel のパスに沿って使用できます。これらのパス エフェクトは項目をスケールすることによって、3 次元の外観をパス自体に与えることができます。または不透明効果は一度に 1 項目だけを目立たせたい場合に有効です。または傾斜効果は項目に動きの感覚を提供できます。
+* 項目テンプレート - xamCarouselPanel の各項目は特別なコンテナ、CarouselPanelItem 内に含まれます。このひとつのコンテナーの視覚的スタイルを設定することによって、各項目は同じスタイルで表示されます。
+* link:xamcarousel-terms-carousel-panel-navigator.html[CarouselPanelNavigator] - xamCarouselPanel コントロールの右下隅に、CarouselPanelNavigator として集合的に知られている 4 つのボタン セットがあります。クラスタの中央の 2 つの大きいボタンは、1 項目ずつパスを前後にスクロールするために使用されます。2 つの大きいボタンの両側にある小さい 2 つのボタンは、それぞれパスの最初の項目と最後の項目にスクロールします。
+
+image::images/xamCarouselPanel_About_xamCarouselPanel_01.png[xamcarouselpanel の実例]
+
+== 構成図
+
+xamCarouselPanel™ コントロールはさまざまな要素で構成されています。以下の図は、要素の関係を表しています。これによって xamCarouselPanel の全体的な構成をより的確に理解できます。
+
+image::images/xamCarouselPanel_Composition_Diagrams.png[xamCarouselPanel 構成図]
+
+== 用語と概念
+
+このセクションは、xamCarouselPanel™ を構成する主要な要素を定義します。以下のリンクをクリックして、これらの要素を学習して、xamCarouselPanel との関連を確認します。
+
+* link:xamcarousel-terms-architecture.html[アーキテクチャ]
+* link:xamcarousel-terms-carousel-panel-navigator.html[CarouselPanelNavigator]
+* link:xamcarousel-path.html[パス]
+* link:xamcarousel-path-effects.html[パス エフェクト]
+* link:xamdata-terms-views.html[ビュー]
+* link:xamdata-terms-themepacks.html[テーマパック]

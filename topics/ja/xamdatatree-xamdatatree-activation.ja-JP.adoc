@@ -1,0 +1,95 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-xamdatatree-activation",
+    "controlName": ["xamDataTree"],
+    "tags": ["How Do I","Selection"],
+    "guid": "f2b4e667-5e47-4fd1-950f-eb2388ae420f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8761096Z"
+}
+|metadata|
+////
+
+= アクティブ化
+
+xamDataTree™ コントロールはノードのアクティブ化をサポートします。あるノードが現在のノード フォーカスである場合、ノードはアクティブと見なされます。1 つのノードのみアクティブにできます。編集など、単一ノードに限り実行可能なアクションを実行できるように、アクティブ化は xamDataTree コントロールに実装されます。
+
+*キーボードでアクティブ化*
+
+xamDataTree コントロールにアクティブ項目がなく、ツリーがフォーカスを受け取る場合、ツリーの最初のノードがアクティブになります。ツリーにアクティブ ノードがあれば、矢印キーを使用してツリーをナビゲートできます。
+
+以下の表は、xamDataTree コントロールで操作するために使用できるすべてのキーをリストします。
+
+[options="header", cols="a,a"]
+|====
+|キー|機能
+
+|Up
+|アクティブ ノードを上に移動します。
+
+|Down
+|アクティブ ノードを下に移動します。
+
+|Left
+|ノードが展開されている場合は縮小します。
+
+|Right
+|子がある場合はノードを展開し、Right キーを再び選択すると最初の子がアクティブになります。
+
+|Enter
+|アクティブ ノードを選択します。
+
+|Space
+|チェックボックスが有効の場合、このキーはアクティブ ノードに関連付けられたチェックボックスを選択/選択解除します。
+
+|====
+
+*コードによるアクティブ化*
+
+以下のコードで示すように、xamDataTree コントロールの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~activenode.html[ActiveNode] プロパティを使用してアクティブ ノードを取得または設定できます。
+
+*Visual Basic の場合:*
+
+----
+MyTree.ActiveNode = MyTree.Nodes(0).Nodes(0)
+----
+
+*C# の場合:*
+
+----
+MyTree.ActiveNode = MyTree.Nodes[0].Nodes[0];
+----
+
+Node の IsActive プロパティを使用してアクティブ ノードを設定することもできます。次のコードは、これを実現する方法を示しています。
+
+*Visual Basic の場合:*
+
+----
+MyTree.Nodes(0).Nodes(0).IsActive = True
+----
+
+*C# の場合:*
+
+----
+MyTree.Nodes[0].Nodes[0].IsActive = true;
+----
+
+*関連トピック*
+
+link:xamdatatree-active-data-item.html[アクティブなデータ アイテムの構成]
+
+link:xamdatatree-xamdatatree-check-boxes.html[チェックボックスの表示状態の構成]
+
+link:xamdatatree-expanded-and-collapsed-xamdatatree-nodes.html[ノードの展開と縮小状態の構成]
+
+link:xamdatatree-xamdatatree-drag-and-drop.html[ドラッグ アンド ドロップの構成]
+
+link:xamdatatree-xamdatatree-editing.html[編集の構成]
+
+link:xamdatatree-xamdatatree-node-connectors.html[ノード コネクターの表示状態の構成]
+
+link:xamdatatree-xamdatatree-node-layouts.html[ノード レイアウトの構成]
+
+link:xamdatatree-xamdatatree-selection.html[選択]

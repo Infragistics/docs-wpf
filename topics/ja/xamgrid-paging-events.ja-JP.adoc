@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-paging-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I","Paging"],
+    "guid": "{9564190B-E18C-4F01-A3CB-4D2DEC2C9E1B}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7101864Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= ページング イベント
+
+xamGrid にはページングに関連付けられたイベントが 2 つあります。これらのイベントは発生する順序を反映して接尾辞 "ing" または "ed" が追加されます。ページング イベントによってページが変更される前後にいくつかのカスタム ビジネス ロジックを実行できます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~pageindexchanging_ev.html[PageIndexChanging] -- ページ インデックスが変更される直前に PageIndexChanging イベントが発生します。特定の条件に合わない場合このイベントをキャンセルできます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~pageindexchanged_ev.html[PageIndexChanged] -- このイベントはページ インデックスが変わった後で発生します。
+
+これらのイベントを使用して、非常に役立つ情報にアクセスできます。たとえば、PageIndexChanging イベントが発生した場合、イベントがトリガーされた ColumnLayout を判断できます。または ColumnLayout が提示する行のコレクションを判断できます。
+
+== 関連トピック
+
+link:xamgrid-paging.html[ページング]
+
+link:xamgrid-customize-the-pager.html[ページャーをカスタマイズ]

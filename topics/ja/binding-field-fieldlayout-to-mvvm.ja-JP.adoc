@@ -1,0 +1,181 @@
+﻿////
+
+|metadata|
+{
+    "name": "binding-field-fieldlayout-to-mvvm",
+    "controlName": [],
+    "tags": [],
+    "guid": "fda6ebd3-6e7e-40d3-a408-0668d43bc51d",  
+    "buildFlags": [],
+    "createdOn": "2014-06-26T13:30:51.5015368Z"
+}
+|metadata|
+////
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、_xamDataPresenter_™ コントロールの FieldBinding マークアップ拡張子を使用して、Field、FieldSettings、FieldLayout および FieldLayoutSettings を MVVM プロパティにバインドする方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:wpf-terms-and-concepts.html[用語と概念]
+|このセクションでは、Data Presenter Family のコントロールを構成する主要な要素を定義します。
+
+| link:xamdatagrid-getting-started-with-xamdatagrid.html[xamDataGrid をページに追加]
+|このトピックでは、 _xamDataGrid_ コントロールをページに追加する方法について説明します。
+
+| link:xamdatagrid-accessing-data.html[xamDataGrid をデータにバインド]
+|このセクションには、 _xamDataGrid_ コントロールを使用してデータにアクセスする上で特に役立つトピックが記載されています。
+
+| link:http://msdn.microsoft.com/ja-jp/library/ms750413(v=vs.100).aspx[マークアップ拡張子のバインド] 
+
+|このトピックは、マークアップ拡張子のバインドの基本について説明しています。 
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref389486156,Field および FieldLayout Objects の DataContext へのバインド>>
+* <<_Ref390171934,Field、FieldSettings、FieldLayout および FieldLayoutSettings の MVVM プロパティへのバインド>>
+* <<_Ref389486176,関連コンテンツ>>
+
+** <<_Ref389486185,トピック>>
+
+[[_Ref389486156]]
+== Field および FieldLayout Objects の DataContext へのバインド
+
+[[_Hlk368069110]]
+
+=== 概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[Field]/ link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout_members.html[FieldLayout] `DataContext` プロパティを使用して、MVVM のバインドを容易にします。
+
+デフォルトで、`Field`/`FieldLayout` `DataContext` プロパティが明示的に設定されていない場合、 _xamDataPresenter_   コントロールの `DataContext` を取得します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|データのバインドに必要な `Field` または `FieldLayout` のデータ コンテキストを取得または設定します。
+|`DataContext`
+|`object`
+
+|====
+
+[[_Ref389486162]]
+[[_Ref390171934]]
+== Field、FieldSettings、FieldLayout および FieldLayoutSettings の MVVM プロパティへのバインド
+
+=== 概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldbinding_members.html[FieldBinding] マークアップ拡張子を使用して、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[Field]、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings_members.html[FieldSettings]、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout_members.html[FieldLayout] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings_members.html[FieldLayoutSettings] の MVVM プロパティへのバインドを容易にします。
+
+注:
+
+[NOTE]
+====
+`FieldBinding` は `Binding` と同じオプションを表示しますが、以下のプロパティは表示しません。
+
+* `AsyncState`
+* `BindingGroupName`
+* `BindsDirectlyToSource`
+* `Delay`
+* `ElementName`
+* `IsAsync`
+* `RelativeSource`
+* `Source`
+* `ValidatesOnDataErrors`
+* `ValidatesOnExceptions`
+* `ValidatesOnNotifyDataErrors`
+* `ValidationRules`
+* `XPath`
+
+====
+
+注:
+
+[NOTE]
+====
+`FieldBinding` は、`Field` または `FieldLayout` 以外のオブジェクトで使用された場合、またはタイプ `BindingBase` のプロパティ (`Field` の `AlternateBinding` プロパティなど) にバインドされた場合、`XamlParseException` をスローします。
+====
+
+=== 例
+
+MVVM プロパティへのバインドは、以下のいずれかの方法でも実装できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:Field  Name="Name" Label="{igDP:FieldBinding MyProperty}" />
+----
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:Field Name="Name" Label="{Binding Path=Owner.DataPresenter.DataContext. MyProperty, RelativeSource={RelativeSource Self}}"  />
+----
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:Field Name="Name" Label="{Binding Path=DataContext.MyProperty, RelativeSource={RelativeSource Self}}"  />
+----
+
+[[_Ref389486176]]
+== 関連コンテンツ
+
+[[_Ref389486185]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-bind-a-datapresenter-control-to-an-xmldataprovider.html[DataPresenter Control の XmlDataProvider へのバインド]
+|このトピックでは、 _xamDataPresenter_ コントロールを XmlDataProvider にデータ バインドして、XML ファイルをアプリケーションのプレゼンテーション レイヤーに公開する方法を説明します。
+
+| link:xamdatapresenter-bind-a-datapresenter-control-to-a-collection.html[DataPresenter Control の Collection へのバインド]
+|このトピックでは、 _xamDataPresenter_ コントロールを ObjectDataProvider にデータ バインドして、コレクションをアプリケーションのプレゼンテーション レイヤーに公開する方法を説明します。
+
+| link:xamdatapresenter-binding-a-datapresenter-control-to-a-dataset.html[DataPresenter Control の DataSet へのバインド]
+|このトピックでは、 _xamDataPresenter_ コントロールを DataSet にデータ バインドする方法を説明します。
+
+| link:xamdatapresenter-binding-cell-settings-data-item-properties.html[セル設定のデータ項目プロパティへのバインド]
+|このトピックでは、 _xamDataPresenter_ コントロールの CellBindings コレクション プロパティを使用して、セルの設定をデータ項目プロパティにバインドする方法を説明します。
+
+| link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]
+|このトピックでは、データ項目に対応する DataRecord オブジェクトを検索する方法を説明します。
+
+| link:xamdatapresenter-add-items-manually-to-a-datapresenter-control.html[DataPresenter コントロールへの項目の手動による追加]
+|このトピックでは、 _xamDataPresenter_ コントロールの DataItems コレクションにデータ項目を直接追加する方法を説明します。
+
+| link:xamdata-displaying-hierarchical-data.html[階層データの表示]
+|このトピックでは、 _xamDataPresenter_ コントロールによる階層データの表示方法を説明します。
+
+| link:xamdatapresenter-displaying-an-image-in-a-field.html[フィールドへの画像の表示]
+|このトピックでは、フィールドに画像を表示し、CellValuePresenter のテンプレートをオーバーライドする方法を説明します。
+
+| link:xamdatapresenter-iterate-through-the-records-collection.html[レコード コレクションの反復]
+|このトピックでは、レコードのネストされた構造を反復する方法および発生するレコード タイプの種類を説明します。
+
+|====

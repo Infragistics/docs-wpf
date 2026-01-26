@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-about-xamdatapresenter-and-xameditors",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Presentation","Editing"],
+    "guid": "{2B24A175-7951-47D6-BC92-8F3E5FFA3040}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.4838499Z"
+}
+|metadata|
+////
+
+= xamDataPresenter および xamEditors について
+
+
+
+xamEditor コントロールは、xamDataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] で固有のデータタイプを編集するために自動的に登録されます。たとえば、xamCheckEditor はブール値データ タイプで Field を編集するために登録され、xamCurrencyEditor は 10 進数データ タイプで Field を編集するために登録されます。この情報を使用すれば、`Field` オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~datatype.html[DataType] プロパティを設定することでバインドされていないフィールドに xamEditor コントロールを簡単に組み込むことができます。たとえば、xamCheckEditor コントロールのフィールドを xamDataPresenter、xamDataCarousel、または xamDataGrid に追加したい場合、Field オブジェクトをフィールドレイアウトに追加し、BindingType プロパティを Unbound に設定して、フィールドの DataType プロパティを Boolean に設定できます。
+
+xamEditor のデフォルトの登録およびデータ タイプを変更したい場合、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor] クラスの静的な link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~registerdefaulteditorfortype.html[RegisterDefaultEditorForType] メソッドを呼び出して固有のデータ タイプのために xamEditor コントロールを手動で登録できます。xamDataPresenter の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutinitialized_ev.html[FieldLayoutInitialized] イベントの前またはイベント中にこのメソッドを呼び出すと、xamDataPresenter が固有のデータ タイプを編集するために使用する xamEditor コントロールが変更されます。xamEditors および登録されたデータ タイプのリストについては、 link:xamdata-default-editor-types-for-different-data-types.html[異なるデータ タイプのデフォルトのエディター タイプ]を参照してください。
+
+固有のデータ タイプに登録された xamEditor コントロールを変更するために RegisterDefaultEditorForType メソッドを使用する場合、そのデータ タイプを持つすべてのフィールドは、同じ xamEditor コントロールを使用します。ただし、フィールドレイアウトの個々のフィールドの xamEditor コントロールに対して詳細に制御することもできます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトは、フィールドがデータを編集するために使用する xamEditor コントロールを変更できるように、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editortype.html[EditorType] プロパティを公開します。xamEditor コントロールのプロパティを設定する必要がある場合、特別な xamEditor をターゲットとする Style を作成する必要があります。
+
+== 関連トピック
+
+link:xamdatapresenter-embedding-a-xameditor-in-a-field.html[フィールドに xamEditor を組み込む]

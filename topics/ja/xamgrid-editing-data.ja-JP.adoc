@@ -1,0 +1,148 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-editing-data",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids"],
+    "guid": "{4488F93B-E856-488F-AD83-0A8A3BBED450}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9121977Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= データの編集
+
+xamGrid コントロールによって、エンド ユーザーはその行でデータを編集できます。エンドユーザーは、行全体で編集モードに入る、またはセル単位で編集モードに入るの 2 つの方法でデータを編集できます。このコントロールは IEditableObject インターフェイスを実装するデータをサポートし、適宜 BeginEdit、CancelEdit および EndEdit メソッドを実行します。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettings.html[EditingSettings] オブジェクトは、xamGrid での編集に関して、多くのオプションをユーザーに提供します。コントロールの編集動作、イベント、メソッドおよび設定を以下に説明します。
+
+== 編集動作
+
+xamGrid のデータの編集は、エンド ユーザーが編集モードに入る場合に限って可能です。これはチェックボックスの列にも適用され、そのセルが編集モードの時に限り、チェックボックスが編集可能になります。
+
+テンプレート列を編集できるようにするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn.html[TemplateColumn] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn~editortemplate.html[EditorTemplate] プロパティを使用してカスタム エディターを設定します。テンプレート列の編集についての詳細は、 link:xamgrid-editing-data-in-a-template-column.html[「テンプレート列でデータを編集」]を参照してください。
+
+開発者固有の値コンバーターを提供するには、列の EditorValueConverter および EditorValueConverterParameter プロパティを設定します。
+
+== キーボードの編集動作
+
+* Enter - 編集モードを終了し、変更を行います。
+* 上矢印 - 編集モードを終了し、変更を行い、前の行がある場合は前の行に移動します。
+* 下矢印 - 編集モードを終了し、変更を行い、次の行がある場合は次の行に移動します。
+* 左矢印 - 編集モードを終了し、変更を行い、前のセルがある場合は前のセルに移動します。編集モードが行全体を対象とし、移動されたセルが新しい行にない場合は編集モードのままです。
+* 右矢印 - 編集モードを終了し、変更を行い、次のセルがある場合は次のセルに移動します。編集モードが行全体を対象とし、移動されたセルが新しい行にない場合は編集モードのままです。
+* Tab - 次のセルに移動し、変更を行います。編集モードが行全体を対象とし、移動されたセルが新しい行にない場合は編集モードのままです。
+* Escape キー - 編集モードを終了し、変更をキャンセルします。
+
+.注
+[NOTE]
+====
+: エディターでは編集モードが優先されます。したがって、エディターが特定のキーストロークを処理すると、xamGrid が実装する動作は置き換えられます。
+====
+
+== マウスの編集動作
+
+* セルの上にホバー - link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettings~allowediting.html[AllowEditing] が *Hover* に設定される場合、以前に編集したセルの変更を保存し、現在のセルで編集モードに入ります。
+* セルの上にシングル クリック -  pick:[sl,wpf=" link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsbase~ismouseactioneditingenabled.html[IsMouseActionEditingEnabled]"]  pick:[win-rt=" link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsbase~ispointeractioneditingenabled[IsPointerActionEditingEnabled]"]  が *SingleClick* に設定される場合、以前に編集したセルの変更を保存し、現在のセルで編集モードに入ります。
+* セルでダブル クリック -  pick:[sl,wpf=" link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsbase~ismouseactioneditingenabled.html[IsMouseActionEditingEnabled]"]  pick:[win-rt=" link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsbase~ispointeractioneditingenabled[IsPointerActionEditingEnabled]"]  が *DoubleClick* に設定される場合、以前に編集したセルの変更を保存し、現在のセルで編集モードに入ります。
+* xamGrid 以外にクリック - 以前に編集したセルの変更を保存します。
+
+.注:
+[NOTE]
+====
+編集モードに入るときに、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettings~allowediting.html[AllowEditing] プロパティの値に基づいて xamGrid が単一のセルまたは行のすべてのセルの編集を開始します。
+====
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editablecolumn~alloweditingvalidation.html[AllowEditingValidation] が列で True の時、編集モードを終了するにはデータが有効であることが必要です。つまり、エンドユーザーが入力するデータは、例外をスローしません。そうでない場合は、Escape キーを押して変更をキャンセルして編集モードを終了する必要があります。データの入力規則についての詳細は、 link:xamgrid-validating-data.html[データの検証]を参照してください。
+
+水平スクロールバーでのスクロールは、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettings~allowediting.html[AllowEditing] が Row に設定されている時は編集モードを終了しません。垂直スクロールバーでのスクロールは、Row および Cell 編集の両方を終了します。
+
+== 編集イベント
+
+xamGrid コントロールは、カスタム動作を実装するためにさまざまな編集イベントを提供します。以下に編集イベントをリストします。
+
+.注:
+[NOTE]
+====
+CellEnteringEditMode などの「ing」イベントはすべてキャンセル可能です。
+====
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellenteringeditmode_ev.html[CellEnteringEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellenterededitmode_ev.html[CellEnteredEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellexitingeditmode_ev.html[CellExitingEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellexitededitmode_ev.html[CellExitedEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~rowenteringeditmode_ev.html[RowEnteringEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~rowenterededitmode_ev.html[RowEnteredEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~rowexitingeditmode_ev.html[RowExitingEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~rowexitededitmode_ev.html[RowExitedEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~celleditingvalidationfailed_ev.html[CellEditingValidationFailed]
+
+== 編集メソッド
+
+以下は、コード ビハインドから編集モードに入ったり、編集モードを終了するために xamGrid が提供する編集メソッドのリストです。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~entereditmode.html[EnterEditMode]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~exiteditmode.html[ExitEditMode]
+
+== 編集設定
+
+EditingSettings オブジェクトは、xamGrid の編集を設定するためのプロパティのリストを提供します。
+
+* AllowEditing – エンド ユーザーがセルで編集モードに入ろうとする時に xamGrid の動作を設定します。Cell、Row、Hover または None の EditingType 列挙値を使用できます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsbase~isenterkeyeditingenabled.html[IsEnterKeyEditingEnabled] – Enter キーで編集モードに入ることができます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsbase~isf2editingenabled.html[IsF2EditingEnabled] – F2 キーで編集モードに入ることができます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsbase~ismouseactioneditingenabled.html[IsMouseActionEditingEnabled] – シングルクリックまたはダブルクリックで編集モードに入ることができます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsbase~isoncellactiveeditingenabled.html[IsOnCellActiveEditingEnabled] – セルがアクティブである場合、たとえば Tab キーで編集モードに入ることができます。
+
+AllowEditing プロパティを link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingtype.html[Hover] に設定した場合、マウスでホバーするだけで、グリッドは編集モードに入ります。xamGrid の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~rowhover.html[RowHover] プロパティを使用して、単一のセルまたは行全体が編集モードに入るかどうかを指定します。
+
+コントロール全体で編集オプションを設定するだけでなく、個々の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnlayout.html[ColumnLayout] オブジェクトでオプションを設定することもできます。さらに、個々の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editablecolumn.html[EditableColumn] オブジェクトは、列ベースで編集を有効/無効にするための link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editablecolumn~isreadonly.html[IsReadOnly] プロパティを公開します。以下のコードは、トップ レベル データに対しては行単位で、そしてネストされたデータに対してはセル単位で編集を有効にする方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid x:Name="xamGrid1">
+    <ig:XamGrid.EditingSettings>
+        <ig:EditingSettings AllowEditing="Row" />
+    </ig:XamGrid.EditingSettings>
+    <ig:XamGrid.Columns>
+        <ig:ColumnLayout Key="Products">
+            <ig:ColumnLayout.EditingSettings >
+                <ig:EditingSettingsOverride AllowEditing="Cell" />
+            </ig:ColumnLayout.EditingSettings >
+        </ig:ColumnLayout>
+    </ig:XamGrid.Columns>
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamGrid1.EditingSettings.AllowEditing = EditingType.Row
+Me.xamGrid1.Columns.ColumnLayouts.FromKey("Products").EditingSettings.AllowEditing = EditingType.Cell
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamGrid1.EditingSettings.AllowEditing = EditingType.Row;
+this.xamGrid1.ColumnLayouts.FromKey("Products").EditingSettings.AllowEditing = EditingType.Cell;
+----
+
+== 関連トピック
+
+link:xamgrid-editing-data-in-a-template-column.html[テンプレート列でデータを編集]
+
+link:xamgrid-changing-cell-values-in-code-behind.html[コード ビハインドでセル値を変更]
+
+link:xamgrid-validating-data.html[データの検証]
+
+link:xamgrid-using-editing-events-to-create-a-custom-editor.html[編集イベントを使用してカスタム エディターを作成]
+
+link:xamgrid-editors-always-in-edit-mode.html[xamGrid Editors を常に編集モードにする]

@@ -1,0 +1,874 @@
+﻿////
+|metadata|
+{
+    "name": "resources-countrydata",
+    "controlName": [],
+    "tags": ["Sample Data Source"],
+    "guid": "{DEC95235-F8BA-493C-8563-BF925F1A26FB}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.309048Z"
+}
+|metadata|
+////
+
+= CountryData
+
+*XML の場合:* 
+[source,xml]
+----
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns=""
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    
+    <xs:element name="NewDataSet" msdata:IsDataSet="true"
+      msdata:MainDataTable="Table" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Table">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CountryCode" type="xs:string" minOccurs="0" />
+                <xs:element name="CountryName" type="xs:string" minOccurs="0" />
+                <xs:element name="BirthRate" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ElectricityProduction" type="xs:decimal" minOccurs="0" />
+                <xs:element name="InternetUsers" type="xs:decimal" minOccurs="0" />
+                <xs:element name="MedianAge" type="xs:decimal" minOccurs="0" />
+                <xs:element name="OilProduction" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Population" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PublicDebt" type="xs:decimal" minOccurs="0" />
+                <xs:element name="Televisions" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UnemploymentRate" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+    
+  </xs:schema>
+  
+  <Table>
+    <CountryCode>NL</CountryCode>
+    <CountryName>Netherlands</CountryName>
+    <BirthRate>11</BirthRate>
+    <ElectricityProduction>94340</ElectricityProduction>
+    <InternetUsers>15000000</InternetUsers>
+    <MedianAge>40</MedianAge>
+    <OilProduction>76000</OilProduction>
+    <Population>16645313</Population>
+    <PublicDebt>46</PublicDebt>
+    <Televisions>8100000</Televisions>
+    <UnemploymentRate>5</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>NO</CountryCode>
+    <CountryName>Norway</CountryName>
+    <BirthRate>11</BirthRate>
+    <ElectricityProduction>135800</ElectricityProduction>
+    <InternetUsers>3800000</InternetUsers>
+    <MedianAge>39</MedianAge>
+    <OilProduction>2560000</OilProduction>
+    <Population>4644457</Population>
+    <PublicDebt>83</PublicDebt>
+    <Televisions>2030000</Televisions>
+    <UnemploymentRate>3</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>NP</CountryCode>
+    <CountryName>Nepal</CountryName>
+    <BirthRate>30</BirthRate>
+    <ElectricityProduction>2511</ElectricityProduction>
+    <InternetUsers>337100</InternetUsers>
+    <MedianAge>21</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>29519114</Population>
+    <Televisions>130000</Televisions>
+    <UnemploymentRate>42</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>NR</CountryCode>
+    <CountryName>Nauru</CountryName>
+    <BirthRate>24</BirthRate>
+    <ElectricityProduction>30</ElectricityProduction>
+    <InternetUsers>300</InternetUsers>
+    <MedianAge>21</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>13770</Population>
+    <Televisions>500</Televisions>
+    <UnemploymentRate>90</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SR</CountryCode>
+    <CountryName>Suriname</CountryName>
+    <BirthRate>17</BirthRate>
+    <ElectricityProduction>1530</ElectricityProduction>
+    <InternetUsers>44000</InternetUsers>
+    <MedianAge>28</MedianAge>
+    <OilProduction>9461</OilProduction>
+    <Population>475996</Population>
+    <Televisions>63000</Televisions>
+    <UnemploymentRate>10</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>AN</CountryCode>
+    <CountryName>Netherlands Antilles</CountryName>
+    <BirthRate>14</BirthRate>
+    <ElectricityProduction>1175</ElectricityProduction>
+    <InternetUsers>2000</InternetUsers>
+    <MedianAge>33</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>225369</Population>
+    <Televisions>69000</Televisions>
+    <UnemploymentRate>17</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>NI</CountryCode>
+    <CountryName>Nicaragua</CountryName>
+    <BirthRate>24</BirthRate>
+    <ElectricityProduction>2778</ElectricityProduction>
+    <InternetUsers>155000</InternetUsers>
+    <MedianAge>22</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>5785846</Population>
+    <PublicDebt>63</PublicDebt>
+    <Televisions>320000</Televisions>
+    <UnemploymentRate>5</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>NZ</CountryCode>
+    <CountryName>New Zealand</CountryName>
+    <BirthRate>14</BirthRate>
+    <ElectricityProduction>42060</ElectricityProduction>
+    <InternetUsers>3360000</InternetUsers>
+    <MedianAge>36</MedianAge>
+    <OilProduction>25880</OilProduction>
+    <Population>4173460</Population>
+    <PublicDebt>21</PublicDebt>
+    <Televisions>1926000</Televisions>
+    <UnemploymentRate>4</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PY</CountryCode>
+    <CountryName>Paraguay</CountryName>
+    <BirthRate>28</BirthRate>
+    <ElectricityProduction>70000</ElectricityProduction>
+    <InternetUsers>280000</InternetUsers>
+    <MedianAge>22</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>6831306</Population>
+    <PublicDebt>27</PublicDebt>
+    <Televisions>990000</Televisions>
+    <UnemploymentRate>6</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PN</CountryCode>
+    <CountryName>Pitcairn Islands</CountryName>
+    <Population>48</Population>
+  </Table>
+  
+  <Table>
+    <CountryCode>PE</CountryCode>
+    <CountryName>Peru</CountryName>
+    <BirthRate>20</BirthRate>
+    <ElectricityProduction>24970</ElectricityProduction>
+    <InternetUsers>7636000</InternetUsers>
+    <MedianAge>26</MedianAge>
+    <OilProduction>119000</OilProduction>
+    <Population>29180900</Population>
+    <PublicDebt>29</PublicDebt>
+    <Televisions>3060000</Televisions>
+    <UnemploymentRate>7</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PK</CountryCode>
+    <CountryName>Pakistan</CountryName>
+    <BirthRate>28</BirthRate>
+    <ElectricityProduction>89820</ElectricityProduction>
+    <InternetUsers>17500000</InternetUsers>
+    <MedianAge>21</MedianAge>
+    <OilProduction>62000</OilProduction>
+    <Population>172800048</Population>
+    <PublicDebt>51</PublicDebt>
+    <Televisions>3100000</Televisions>
+    <UnemploymentRate>6</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PL</CountryCode>
+    <CountryName>Poland</CountryName>
+    <BirthRate>10</BirthRate>
+    <ElectricityProduction>146200</ElectricityProduction>
+    <InternetUsers>16000000</InternetUsers>
+    <MedianAge>38</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>38500696</Population>
+    <PublicDebt>43</PublicDebt>
+    <Televisions>13050000</Televisions>
+    <UnemploymentRate>13</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PA</CountryCode>
+    <CountryName>Panama</CountryName>
+    <BirthRate>21</BirthRate>
+    <ElectricityProduction>5661</ElectricityProduction>
+    <InternetUsers>525200</InternetUsers>
+    <MedianAge>27</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>3309679</Population>
+    <PublicDebt>53</PublicDebt>
+    <Televisions>510000</Televisions>
+    <UnemploymentRate>6</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PT</CountryCode>
+    <CountryName>Portugal</CountryName>
+    <BirthRate>10</BirthRate>
+    <ElectricityProduction>49040</ElectricityProduction>
+    <InternetUsers>3549000</InternetUsers>
+    <MedianAge>39</MedianAge>
+    <OilProduction>9500</OilProduction>
+    <Population>10676910</Population>
+    <PublicDebt>64</PublicDebt>
+    <Televisions>3310000</Televisions>
+    <UnemploymentRate>8</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PG</CountryCode>
+    <CountryName>Papua New Guinea</CountryName>
+    <BirthRate>28</BirthRate>
+    <ElectricityProduction>3698</ElectricityProduction>
+    <InternetUsers>110000</InternetUsers>
+    <MedianAge>22</MedianAge>
+    <OilProduction>47800</OilProduction>
+    <Population>5931769</Population>
+    <PublicDebt>40</PublicDebt>
+    <Televisions>59841</Televisions>
+    <UnemploymentRate>2</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PW</CountryCode>
+    <CountryName>Palau</CountryName>
+    <BirthRate>17</BirthRate>
+    <MedianAge>32</MedianAge>
+    <Population>21093</Population>
+    <Televisions>11000</Televisions>
+    <UnemploymentRate>4</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>GN</CountryCode>
+    <CountryName>Guinea</CountryName>
+    <BirthRate>36</BirthRate>
+    <ElectricityProduction>60</ElectricityProduction>
+    <InternetUsers>37000</InternetUsers>
+    <MedianAge>19</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>1503182</Population>
+  </Table>
+  
+  <Table>
+    <CountryCode>QA</CountryCode>
+    <CountryName>Qatar</CountryName>
+    <BirthRate>16</BirthRate>
+    <ElectricityProduction>13540</ElectricityProduction>
+    <InternetUsers>351000</InternetUsers>
+    <MedianAge>31</MedianAge>
+    <OilProduction>797500</OilProduction>
+    <Population>824789</Population>
+    <PublicDebt>11</PublicDebt>
+    <Televisions>230000</Televisions>
+    <UnemploymentRate>1</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>RB</CountryCode>
+    <CountryName>Serbia</CountryName>
+    <ElectricityProduction>33870</ElectricityProduction>
+    <InternetUsers>1500000</InternetUsers>
+    <MedianAge>38</MedianAge>
+    <OilProduction>14660</OilProduction>
+    <Population>10159046</Population>
+    <PublicDebt>37</PublicDebt>
+    <UnemploymentRate>19</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>MH</CountryCode>
+    <CountryName>Marshall Islands</CountryName>
+    <BirthRate>32</BirthRate>
+    <InternetUsers>2200</InternetUsers>
+    <MedianAge>21</MedianAge>
+    <Population>63174</Population>
+    <UnemploymentRate>31</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>RO</CountryCode>
+    <CountryName>Romania</CountryName>
+    <BirthRate>11</BirthRate>
+    <ElectricityProduction>60520</ElectricityProduction>
+    <InternetUsers>12000000</InternetUsers>
+    <MedianAge>37</MedianAge>
+    <OilProduction>115000</OilProduction>
+    <Population>22246862</Population>
+    <PublicDebt>13</PublicDebt>
+    <Televisions>5250000</Televisions>
+    <UnemploymentRate>4</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PH</CountryCode>
+    <CountryName>Philippines</CountryName>
+    <BirthRate>26</BirthRate>
+    <ElectricityProduction>53670</ElectricityProduction>
+    <InternetUsers>5300000</InternetUsers>
+    <MedianAge>22</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>96061680</Population>
+    <PublicDebt>56</PublicDebt>
+    <Televisions>3700000</Televisions>
+    <UnemploymentRate>7</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PR</CountryCode>
+    <CountryName>Puerto Rico</CountryName>
+    <BirthRate>13</BirthRate>
+    <ElectricityProduction>24960</ElectricityProduction>
+    <InternetUsers>1000000</InternetUsers>
+    <MedianAge>36</MedianAge>
+    <OilProduction>1354</OilProduction>
+    <Population>3958128</Population>
+    <Televisions>1021000</Televisions>
+    <UnemploymentRate>12</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>RU</CountryCode>
+    <CountryName>Russia</CountryName>
+    <BirthRate>11</BirthRate>
+    <ElectricityProduction>1000000</ElectricityProduction>
+    <InternetUsers>30000000</InternetUsers>
+    <MedianAge>38</MedianAge>
+    <OilProduction>9870000</OilProduction>
+    <Population>140702096</Population>
+    <PublicDebt>6</PublicDebt>
+    <Televisions>60500000</Televisions>
+    <UnemploymentRate>6</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>RW</CountryCode>
+    <CountryName>Rwanda</CountryName>
+    <BirthRate>40</BirthRate>
+    <ElectricityProduction>95</ElectricityProduction>
+    <InternetUsers>100000</InternetUsers>
+    <MedianAge>19</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>10186063</Population>
+  </Table>
+  
+  <Table>
+    <CountryCode>SA</CountryCode>
+    <CountryName>Saudi Arabia</CountryName>
+    <BirthRate>29</BirthRate>
+    <ElectricityProduction>165600</ElectricityProduction>
+    <InternetUsers>6200000</InternetUsers>
+    <MedianAge>22</MedianAge>
+    <OilProduction>11000000</OilProduction>
+    <Population>28146656</Population>
+    <PublicDebt>24</PublicDebt>
+    <Televisions>5100000</Televisions>
+    <UnemploymentRate>13</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>PM</CountryCode>
+    <CountryName>Saint Pierre and Miquelon</CountryName>
+    <BirthRate>13</BirthRate>
+    <ElectricityProduction>50</ElectricityProduction>
+    <MedianAge>35</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>7044</Population>
+    <Televisions>4000</Televisions>
+    <UnemploymentRate>10</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>KN</CountryCode>
+    <CountryName>Saint Kitts and Nevis</CountryName>
+    <BirthRate>18</BirthRate>
+    <ElectricityProduction>125</ElectricityProduction>
+    <InternetUsers>10000</InternetUsers>
+    <MedianAge>28</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>39817</Population>
+    <Televisions>10000</Televisions>
+    <UnemploymentRate>5</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SC</CountryCode>
+    <CountryName>Seychelles</CountryName>
+    <BirthRate>16</BirthRate>
+    <ElectricityProduction>252</ElectricityProduction>
+    <InternetUsers>32000</InternetUsers>
+    <MedianAge>29</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>82247</Population>
+    <PublicDebt>92</PublicDebt>
+    <Televisions>11000</Televisions>
+    <UnemploymentRate>2</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>ZA</CountryCode>
+    <CountryName>South Africa</CountryName>
+    <BirthRate>20</BirthRate>
+    <ElectricityProduction>264000</ElectricityProduction>
+    <InternetUsers>5100000</InternetUsers>
+    <MedianAge>24</MedianAge>
+    <OilProduction>200000</OilProduction>
+    <Population>48782756</Population>
+    <PublicDebt>31</PublicDebt>
+    <Televisions>6000000</Televisions>
+    <UnemploymentRate>24</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SN</CountryCode>
+    <CountryName>Senegal</CountryName>
+    <BirthRate>37</BirthRate>
+    <ElectricityProduction>2159</ElectricityProduction>
+    <InternetUsers>820000</InternetUsers>
+    <MedianAge>19</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>12853259</Population>
+    <PublicDebt>23</PublicDebt>
+    <Televisions>361000</Televisions>
+    <UnemploymentRate>48</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SH</CountryCode>
+    <CountryName>Saint Helena</CountryName>
+    <BirthRate>11</BirthRate>
+    <ElectricityProduction>8</ElectricityProduction>
+    <MedianAge>37</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>7601</Population>
+    <Televisions>2000</Televisions>
+    <UnemploymentRate>14</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SI</CountryCode>
+    <CountryName>Slovenia</CountryName>
+    <BirthRate>9</BirthRate>
+    <ElectricityProduction>14900</ElectricityProduction>
+    <InternetUsers>1300000</InternetUsers>
+    <MedianAge>41</MedianAge>
+    <OilProduction>5</OilProduction>
+    <Population>2007711</Population>
+    <PublicDebt>24</PublicDebt>
+    <Televisions>710000</Televisions>
+    <UnemploymentRate>8</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SL</CountryCode>
+    <CountryName>Sierra Leone</CountryName>
+    <BirthRate>45</BirthRate>
+    <ElectricityProduction>245</ElectricityProduction>
+    <InternetUsers>13000</InternetUsers>
+    <MedianAge>18</MedianAge>
+    <OilProduction>1</OilProduction>
+    <Population>6294774</Population>
+    <Televisions>53000</Televisions>
+  </Table>
+  
+  <Table>
+    <CountryCode>SM</CountryCode>
+    <CountryName>San Marino</CountryName>
+    <BirthRate>10</BirthRate>
+    <InternetUsers>15400</InternetUsers>
+    <MedianAge>41</MedianAge>
+    <Population>29973</Population>
+    <Televisions>9000</Televisions>
+    <UnemploymentRate>4</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SG</CountryCode>
+    <CountryName>Singapore</CountryName>
+    <BirthRate>9</BirthRate>
+    <ElectricityProduction>39440</ElectricityProduction>
+    <InternetUsers>3105000</InternetUsers>
+    <MedianAge>38</MedianAge>
+    <OilProduction>9836</OilProduction>
+    <Population>4608167</Population>
+    <PublicDebt>96</PublicDebt>
+    <Televisions>1330000</Televisions>
+    <UnemploymentRate>2</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SO</CountryCode>
+    <CountryName>Somalia</CountryName>
+    <BirthRate>44</BirthRate>
+    <ElectricityProduction>270</ElectricityProduction>
+    <InternetUsers>98000</InternetUsers>
+    <MedianAge>18</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>9558666</Population>
+    <Televisions>135000</Televisions>
+  </Table>
+  
+  <Table>
+    <CountryCode>ES</CountryCode>
+    <CountryName>Spain</CountryName>
+    <BirthRate>10</BirthRate>
+    <ElectricityProduction>270300</ElectricityProduction>
+    <InternetUsers>19690000</InternetUsers>
+    <MedianAge>41</MedianAge>
+    <OilProduction>29350</OilProduction>
+    <Population>40491052</Population>
+    <PublicDebt>36</PublicDebt>
+    <Televisions>16200000</Televisions>
+    <UnemploymentRate>8</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>LC</CountryCode>
+    <CountryName>Saint Lucia</CountryName>
+    <BirthRate>15</BirthRate>
+    <ElectricityProduction>304</ElectricityProduction>
+    <InternetUsers>110000</InternetUsers>
+    <MedianAge>29</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>159585</Population>
+    <Televisions>32000</Televisions>
+    <UnemploymentRate>20</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SD</CountryCode>
+    <CountryName>Sudan</CountryName>
+    <BirthRate>34</BirthRate>
+    <ElectricityProduction>3944</ElectricityProduction>
+    <InternetUsers>1500000</InternetUsers>
+    <MedianAge>19</MedianAge>
+    <OilProduction>484500</OilProduction>
+    <Population>40218456</Population>
+    <PublicDebt>106</PublicDebt>
+    <Televisions>2380000</Televisions>
+    <UnemploymentRate>19</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>SJ</CountryCode>
+    <CountryName>Svalbard</CountryName>
+    <Population>2165</Population>
+  </Table>
+  
+  <Table>
+    <CountryCode>SE</CountryCode>
+    <CountryName>Sweden</CountryName>
+    <BirthRate>10</BirthRate>
+    <ElectricityProduction>153200</ElectricityProduction>
+    <InternetUsers>7000000</InternetUsers>
+    <MedianAge>41</MedianAge>
+    <OilProduction>2350</OilProduction>
+    <Population>9045389</Population>
+    <PublicDebt>42</PublicDebt>
+    <Televisions>4600000</Televisions>
+    <UnemploymentRate>6</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>GS</CountryCode>
+    <CountryName>South Georgia and the South Sandwich Islands</CountryName>
+  </Table>
+  
+  <Table>
+    <CountryCode>SY</CountryCode>
+    <CountryName>Syria</CountryName>
+    <BirthRate>27</BirthRate>
+    <ElectricityProduction>153200</ElectricityProduction>
+    <InternetUsers>3470000</InternetUsers>
+    <MedianAge>21</MedianAge>
+    <OilProduction>379000</OilProduction>
+    <Population>19747586</Population>
+    <PublicDebt>38</PublicDebt>
+    <Televisions>1050000</Televisions>
+    <UnemploymentRate>9</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>CH</CountryCode>
+    <CountryName>Switzerland</CountryName>
+    <BirthRate>10</BirthRate>
+    <ElectricityProduction>56100</ElectricityProduction>
+    <InternetUsers>4610000</InternetUsers>
+    <MedianAge>41</MedianAge>
+    <OilProduction>3202</OilProduction>
+    <Population>7581520</Population>
+    <PublicDebt>44</PublicDebt>
+    <Televisions>3310000</Televisions>
+    <UnemploymentRate>3</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TT</CountryCode>
+    <CountryName>Trinidad and Tobago</CountryName>
+    <BirthRate>13</BirthRate>
+    <ElectricityProduction>7704</ElectricityProduction>
+    <InternetUsers>430800</InternetUsers>
+    <MedianAge>32</MedianAge>
+    <OilProduction>120300</OilProduction>
+    <Population>1047366</Population>
+    <PublicDebt>28</PublicDebt>
+    <Televisions>425000</Televisions>
+    <UnemploymentRate>5</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TH</CountryCode>
+    <CountryName>Thailand</CountryName>
+    <BirthRate>14</BirthRate>
+    <ElectricityProduction>124600</ElectricityProduction>
+    <InternetUsers>13416000</InternetUsers>
+    <MedianAge>33</MedianAge>
+    <OilProduction>310000</OilProduction>
+    <Population>65493296</Population>
+    <PublicDebt>38</PublicDebt>
+    <Televisions>15190000</Televisions>
+    <UnemploymentRate>1</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TJ</CountryCode>
+    <CountryName>Tajikistan</CountryName>
+    <BirthRate>27</BirthRate>
+    <ElectricityProduction>17400</ElectricityProduction>
+    <InternetUsers>19500</InternetUsers>
+    <MedianAge>22</MedianAge>
+    <OilProduction>282</OilProduction>
+    <Population>7211884</Population>
+    <Televisions>820000</Televisions>
+    <UnemploymentRate>2</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TC</CountryCode>
+    <CountryName>Turks and Caicos Islands</CountryName>
+    <BirthRate>21</BirthRate>
+    <ElectricityProduction>12</ElectricityProduction>
+    <MedianAge>28</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>22352</Population>
+    <UnemploymentRate>10</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TK</CountryCode>
+    <CountryName>Tokelau</CountryName>
+    <Population>1433</Population>
+  </Table>
+  
+  <Table>
+    <CountryCode>TO</CountryCode>
+    <CountryName>Tonga</CountryName>
+    <BirthRate>22</BirthRate>
+    <ElectricityProduction>54</ElectricityProduction>
+    <InternetUsers>8400</InternetUsers>
+    <MedianAge>22</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>119009</Population>
+    <Televisions>2000</Televisions>
+    <UnemploymentRate>13</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TG</CountryCode>
+    <CountryName>Togo</CountryName>
+    <BirthRate>37</BirthRate>
+    <ElectricityProduction>176</ElectricityProduction>
+    <InternetUsers>320000</InternetUsers>
+    <MedianAge>19</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>5858673</Population>
+    <Televisions>73000</Televisions>
+  </Table>
+  
+  <Table>
+    <CountryCode>ST</CountryCode>
+    <CountryName>Sao Tome and Principe</CountryName>
+    <BirthRate>39</BirthRate>
+    <ElectricityProduction>18</ElectricityProduction>
+    <InternetUsers>23000</InternetUsers>
+    <MedianAge>16</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>206178</Population>
+    <Televisions>23000</Televisions>
+  </Table>
+  
+  <Table>
+    <CountryCode>TN</CountryCode>
+    <CountryName>Tunisia</CountryName>
+    <BirthRate>16</BirthRate>
+    <ElectricityProduction>12850</ElectricityProduction>
+    <InternetUsers>1722000</InternetUsers>
+    <MedianAge>29</MedianAge>
+    <OilProduction>76900</OilProduction>
+    <Population>10383577</Population>
+    <PublicDebt>55</PublicDebt>
+    <Televisions>920000</Televisions>
+    <UnemploymentRate>14</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TT</CountryCode>
+    <CountryName>Timor</CountryName>
+    <BirthRate>27</BirthRate>
+    <InternetUsers>1200</InternetUsers>
+    <MedianAge>22</MedianAge>
+    <OilProduction>94420</OilProduction>
+    <Population>1108777</Population>
+    <UnemploymentRate>50</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TR</CountryCode>
+    <CountryName>Turkey</CountryName>
+    <BirthRate>16</BirthRate>
+    <ElectricityProduction>154200</ElectricityProduction>
+    <InternetUsers>13150000</InternetUsers>
+    <MedianAge>29</MedianAge>
+    <OilProduction>45460</OilProduction>
+    <Population>71892808</Population>
+    <PublicDebt>39</PublicDebt>
+    <Televisions>20900000</Televisions>
+    <UnemploymentRate>10</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TV</CountryCode>
+    <CountryName>Tuvalu</CountryName>
+    <BirthRate>23</BirthRate>
+    <InternetUsers>1300</InternetUsers>
+    <MedianAge>25</MedianAge>
+    <Population>12177</Population>
+  </Table>
+  
+  <Table>
+    <CountryCode>TW</CountryCode>
+    <CountryName>Taiwan</CountryName>
+    <BirthRate>9</BirthRate>
+    <ElectricityProduction>235000</ElectricityProduction>
+    <InternetUsers>14760000</InternetUsers>
+    <MedianAge>36</MedianAge>
+    <OilProduction>600</OilProduction>
+    <Population>22920946</Population>
+    <PublicDebt>28</PublicDebt>
+    <Televisions>8800000</Televisions>
+    <UnemploymentRate>4</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TM</CountryCode>
+    <CountryName>Turkmenistan</CountryName>
+    <BirthRate>25</BirthRate>
+    <ElectricityProduction>12050</ElectricityProduction>
+    <InternetUsers>70000</InternetUsers>
+    <MedianAge>23</MedianAge>
+    <OilProduction>196800</OilProduction>
+    <Population>5179571</Population>
+    <Televisions>820000</Televisions>
+    <UnemploymentRate>60</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>TZ</CountryCode>
+    <CountryName>Tanzania</CountryName>
+    <BirthRate>35</BirthRate>
+    <ElectricityProduction>1880</ElectricityProduction>
+    <InternetUsers>400000</InternetUsers>
+    <MedianAge>18</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>40213160</Population>
+    <PublicDebt>20</PublicDebt>
+    <Televisions>103000</Televisions>
+  </Table>
+  
+  <Table>
+    <CountryCode>UG</CountryCode>
+    <CountryName>Uganda</CountryName>
+    <BirthRate>48</BirthRate>
+    <ElectricityProduction>1983</ElectricityProduction>
+    <InternetUsers>2000000</InternetUsers>
+    <MedianAge>15</MedianAge>
+    <OilProduction>0</OilProduction>
+    <Population>31367972</Population>
+    <PublicDebt>21</PublicDebt>
+    <Televisions>500000</Televisions>
+  </Table>
+  
+  <Table>
+    <CountryCode>UK</CountryCode>
+    <CountryName>United Kingdom</CountryName>
+    <BirthRate>11</BirthRate>
+    <ElectricityProduction>372600</ElectricityProduction>
+    <InternetUsers>40200000</InternetUsers>
+    <MedianAge>40</MedianAge>
+    <OilProduction>1636000</OilProduction>
+    <Population>60943912</Population>
+    <PublicDebt>44</PublicDebt>
+    <Televisions>30500000</Televisions>
+    <UnemploymentRate>5</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>UA</CountryCode>
+    <CountryName>Ukraine</CountryName>
+    <BirthRate>10</BirthRate>
+    <ElectricityProduction>192100</ElectricityProduction>
+    <InternetUsers>10000000</InternetUsers>
+    <MedianAge>39</MedianAge>
+    <OilProduction>90400</OilProduction>
+    <Population>45994288</Population>
+    <PublicDebt>12</PublicDebt>
+    <Televisions>18050000</Televisions>
+    <UnemploymentRate>2</UnemploymentRate>
+  </Table>
+  
+  <Table>
+    <CountryCode>US</CountryCode>
+    <CountryName>United States</CountryName>
+    <BirthRate>14</BirthRate>
+    <ElectricityProduction>4062000</ElectricityProduction>
+    <InternetUsers>223000000</InternetUsers>
+    <MedianAge>37</MedianAge>
+    <OilProduction>7460000</OilProduction>
+    <Population>303824640</Population>
+    <PublicDebt>61</PublicDebt>
+    <Televisions>219000000</Televisions>
+    <UnemploymentRate>5</UnemploymentRate>
+  </Table>
+</NewDataSet>

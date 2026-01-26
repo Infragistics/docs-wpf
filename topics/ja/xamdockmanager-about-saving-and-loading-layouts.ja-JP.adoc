@@ -1,0 +1,60 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-about-saving-and-loading-layouts",
+    "controlName": ["xamDockManager"],
+    "tags": ["Layouts"],
+    "guid": "{1F3AF59A-6BFB-4DAE-BDC6-B6090BD97BB4}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.4810493Z"
+}
+|metadata|
+////
+
+= レイアウトの保存およびロードについて
+
+
+
+xamDockManager™ コントロールによって、エンド ユーザーはアプリケーションのレイアウトをカスタマイズできます。エンド ユーザーは修正したレイアウトの保存およびロードを期待するので、アプリケーションを起動するたびにレイアウトを修正する必要はありません。このため、xamDockManager はオーバーロードされた link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~savelayout.html[SaveLayout] および link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~loadlayout.html[LoadLayout] メソッドを公開します。
+
+== レイアウトの保存
+
+デフォルトでは、xamDockManager はレイアウトですべてのコンテンツ ペインの情報を保存します。特定のコンテンツ ペインを保存したくない場合、そのコンテンツ ペインの link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.contentpane~saveinlayout.html[SaveInLayout] プロパティを False に設定できます。保存したい各コンテンツ ペインは一意の名前を持つ必要があります。一意の名前を持たないコンテンツ ペインを保存しようとすると、xamDockManager は例外をスローします。分割ペインまたはタブ グループペインに名前を付ける必要はありませんが、それらに名前を付けることによって、レイアウトをロードする時に新しいインスタンスで既存のインスタンスを置き換える代わりに、xamDockManager はコンテンツ ペインを既存の分割ペインおよびグループ ペインに追加することができます。
+
+コンテンツ ペインの link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.contentpane.html[Name] プロパティを設定することに加えて、 link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.contentpane~serializationid.html[SerializationId] プロパティを、コンテンツペインに関連付けたい意味のある文字列値に設定することもできます。レイアウトを保存する時に、xamDockManager は SerializationId プロパティをシリアル化するので、レイアウトをロードする時に此の値にアクセスすることもできます。
+
+xamDockManager のレイアウトを保存する時、xamDockManager は以下の情報を XML にシリアル化します：
+
+* フローティング分割ペインのサイズおよび位置
+* コンテンツ ペインの最後にドックされた位置
+* xamDockManager 内にドックされた分割ペインの幅と高さ
+* コンテンツ ペインが閉じられたかどうか
+* タブ グループ ペインで選択されたペイン
+* ピン固定が解除されたタブ領域のペインの順序
+* 分割ペイン内の分割バーの方向
+* 分割ペイン内のペインの相対サイズ
+* コンテンツ ペインのシリアル ID
+
+レイアウトの保存についての詳細は、 link:xamdockmanager-save-an-end-users-docking-layout.html[エンドユーザーのドッキング レイアウトを保存]を参照してください。
+
+== レイアウトのロード
+
+レイアウトをロードする場合、xamDockManager はレイアウトを再作成するために以下の手順を実行します。
+
+[start=1]
+. xamDockManager コントロールは、レイアウト ファイルにもある現在のレイアウトからコンテンツ ペインを削除します。コンテンツ ペインが現在のレイアウトに存在するがレイアウト ファイルに存在しない場合、現在の位置のままになります。
+[start=2]
+. xamDockManager コントロールは、レイアウト ファイルの情報に基づいて分割ペインおよびタブ グループ ペインを再作成します。デフォルト レイアウトの分割ペインまたはタブ グループ ペインに名前を付け、xamDockManager がレイアウト ファイルの同じ名前を持つ分割ペインまたはタブ ペインを見つけた場合、xamDockManager は再作成する代わりに分割ペインまたはタブ グループ ペインを再利用します。たとえば、「ペイン A」と「ペイン B」と名前が付けられた 2 つの垂直方向のコンテンツ ペインの分割ペインを含むレイアウトをエンド ユーザーが持っていると仮定します。アプリケーションの新しいバージョンで、新しいコンテンツ ペインを追加する決定をし、前述した分割ペインに「ペイン C」と名前を付けると、3 つの垂直方向のコンテンツ ペインがひとつの分割ペインに存在することになります。エンド ユーザーが「ペイン A」と「ペイン B」で情報を含むレイアウト ファイルをロードすると、xamDockManager のデフォルト動作は、現在の場所の「ペイン C」を離れ、「ペイン A」と「ペイン B」に新しい分割ペインを再作成します。このレイアウトは 2 つの垂直方向のペインがあるひとつの分割ペイン、「ペイン A」と「ペイン B」、そして「ペイン C」に個別の分割ペインを持つことになります。アプリケーションの前バージョンで分割ペインに名前を付けていた場合、レイアウト ファイルとアプリケーションのデフォルト レイアウトの両方が名前が付けられた分割ペインを持ちます。したがって、xamDockManager は、「ペイン A」と「ペイン B」に分割ペインを再作成する代わりに、この分割ペインを再利用します。レイアウトはひとつの分割ペインですべての 3 つのペインが垂直方向となります。
+[start=3]
+. xamDockManager が手順 1 のコンテンツ ペインの中に見つからなかったレイアウト ファイルのコンテンツ ペインを発見する場合、xamDockManager は link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~initializepanecontent_ev.html[InitializePaneContent] イベントを起動します。このイベントを処理し、欠落するコンテンツ ペインの SerializationId プロパティをチェックして、どのコンテンツを作成する必要があり、欠落するコンテンツ ペインを追加する必要があるかを確認できます。このイベント中にコンテンツを追加しなければ、xamDockManager は欠落するコンテンツ ペインをレイアウトに追加しません。たとえば、Microsoft® Visual Studio® にあるようなタブ付けされた編集機能を持つテキスト編集アプリケーションを作成する場合、エンド ユーザーが文書を開いた時に動的にタブ付けされた文書を作成する必要があります。エンド ユーザーが複数の文書を開き、レイアウトを保存し、アプリケーションを閉じると、次回にアプリケーションを起動してレイアウトをロードすると、アプリケーションのデフォルト レイアウトとエンド ユーザーのレイアウト ファイルに差分が生じます。レイアウト ファイルは文書タブに情報を持ち、デフォルト レイアウトにはこれらのタブはありません。したがって、xamDockManager は文書タブ毎に InitializePaneContent イベントを一度起動します。
+
+レイアウトのロードについての詳細は、 link:xamdockmanager-load-an-end-users-docking-layout.html[エンドユーザーのドッキング レイアウトをロード]を参照してください。
+
+== 関連トピック
+
+link:xamdockmanager-load-an-end-users-docking-layout.html[エンド ユーザーのドッキングレイアウトをロード]
+
+link:xamdockmanager-save-an-end-users-docking-layout.html[エンド ユーザーのドッキングレイアウトを保存]
+
+link:xamdockmanager-using-xamdockmanager.html[xamDockManager を使用]

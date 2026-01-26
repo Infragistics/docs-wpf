@@ -1,0 +1,58 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-limit-the-undo-history",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing"],
+    "guid": "{05735BA1-895B-459D-8B66-607CEC2A3736}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2420015Z"
+}
+|metadata|
+////
+
+= 元に戻す履歴を制限する
+
+
+
+元に戻す操作を有効にすると、DataPresenter コントロールは、元に戻す履歴に内部的に保存される操作の数を制限しません。このデフォルト動作のため、エンド ユーザーがアプリケーションを使用して DataPresenter コントロールに対する変更を行うと、アプリケーションはより多くのメモリを消費します。ただし、DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~undolimit.html[UndoLimit] プロパティを設定することにより、この動作を変更できます。
+
+UndoLimit プロパティを 0 より大きい値に設定すると、DataPresenter コントロールは最新の n 個の操作のみを追跡します。その結果、エンド ユーザーは、DataPresenter コントロールに対する最新の n 個の変更のみを元に戻すことができます。逆に、UndoLimit を 0 に設定することにより、この制限を削除できます。
+
+以下のコード例は、xamDataPresenter™ コントロールの元に戻す履歴を制限する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter 
+    Name="xamDataPresenter1" 
+    BindToSampleData="True" 
+    IsUndoEnabled="True"
+    UndoLimit="5">
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+...
+Me.xamDataPresenter1.UndoLimit = 5
+...
+----
+
+*C# の場合:*
+
+----
+...
+this.xamDataPresenter1.UndoLimit = 5;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-enable-undo-operations.html[元に戻す操作を有効にする]
+
+link:xamdatapresenter-perform-an-undo-operation.html[元に戻す操作を実行する]
+
+link:xamdatapresenter-about-restoring-deleted-records.html[削除したレコードのリストアについて]

@@ -1,0 +1,77 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-style-time-series",
+    "controlName": ["xamTimeline"],
+    "tags": ["API","Styling"],
+    "guid": "{1581DA0C-1ACA-4AC1-93E6-92905FAE9322}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.9933982Z"
+}
+|metadata|
+////
+
+= 時刻シリーズのスタイル
+
+タイムラインは、点、タイトル、詳細、およびスパンとして視覚化されたイベントのシリーズで構成されます。link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventpoint.html[EventPoint] オブジェクトは、イベントがタイムラインでどこに属しているのかを示すマーカーです。link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventtitle.html[EventTitle] オブジェクトはイベントの簡単な説明を表示します。link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventdetails.html[EventDetails] オブジェクトは link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axisthumb.html[AxisThumb] オブジェクトがイベントに配置されるとポップアップするペイン内のイベントに関するより詳細な情報を表示します。link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventspan.html[EventSpan] はイベントが開始および終了する場所を表示する横棒です。凡例内の項目を表す link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.legenditem.html[LegendItem] オブジェクトもあります。
+
+image::images/XamTimeline_Style_Time_Series_01.png[]
+
+シリーズの Style プロパティを設定するか、個々のエントリの個々のスタイルを設定することによって、これらの要素の外観をカスタマイズできます。
+
+以下の表は、スタイル プロパティおよびそのターゲット タイプをリストします。
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ|TargetType|説明
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineseries~eventpointstyle.html[EventPointStyle]
+|EventPoint
+|時刻シリーズで各イベントをマークするポイントをスタイルします。
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineseries~eventdetailsstyle.html[EventDetailsStyle]
+|EventDetails
+|時刻シリーズの詳細ペインをスタイルします。
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineseries~eventtitlestyle.html[EventTitleStyle]
+|EventTitle
+|時刻シリーズの詳細ペインをスタイルします。
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineseries~eventspanstyle.html[EventSpanStyle]
+|EventSpan
+|シリーズの時間スパンのマーカーをスタイルします。
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineseries~legenditemstyle.html[LegendItemStyle]
+|LegendItem
+|凡例項目をスタイルします。
+
+|====
+
+以下のプロパティは、個別のエントリ オブジェクトからのものです。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|TargetType
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.evententry~pointstyle.html[PointStyle]
+|EventPoint
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.evententry~detailsstyle.html[DetailsStyle]
+|EventDetails
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.evententry~titlestyle.html[TitleStyle]
+|EventTitle
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.evententry~spanstyle.html[SpanStyle]
+|EventSpan
+
+|====
+
+== 関連トピック
+
+link:xamtimeline-add-event-entries.html[イベント エントリの追加]
+
+link:xamtimeline-display-numeric-time-series.html[数値時刻シリーズを表示]
+
+link:xamtimeline-use-multiple-series-with-xamwebtimeline.html[xamTimeline と複数のシリーズを使用]

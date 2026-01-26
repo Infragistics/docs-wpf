@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousel-changing-the-location-of-carousel-navigator-element",
+    "controlName": ["xamCarousel"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{89B6A172-6CD5-4F02-91E2-77A7B78C2E19}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.9997531Z"
+}
+|metadata|
+////
+
+= カルーセル ナビゲーション 要素の位置を変更
+
+
+
+xamCarouselPanel、xamCarouselListBox™、xamDataCarousel™、および xamDataPresenter™ のカルーセル ビュー コントロールはすべて、コントロールの右下隅に表示するナビゲーション要素を持っています。ナビゲーション要素の位置を変更したい場合があります。変更するには、 link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselpanelnavigator.html[CarouselPanelNavigator] をターゲットとするスタイルを作成し、Horizontal および Vertical の配置の setter プロパティを指定します。
+
+以下の XAML は、CarouselPanelNavigator オブジェクトの HorizontalAlignment プロパティと VerticalAlignment プロパティを設定します。この XAML は、ページ/ウィンドウ リソース セクションに配置してください。
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type igWindows:CarouselPanelNavigator}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+</Style>
+----
+
+image::images/xamCarousel_Changing_the_Location_of_Carousel_Navigator_Element_01.png[xamcarousellistbox のカルーセル ナビゲーション 要素の位置を変更]

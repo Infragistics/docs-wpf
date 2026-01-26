@@ -1,0 +1,124 @@
+﻿////
+|metadata|
+{
+    "name": "xamgrid-editors-always-in-edit-mode",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Getting Started","Grids","Selection"],
+    "guid": "c773dcc6-43e5-45f0-b869-6eeac9ed7e32",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.4101968Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= xamGrid Editors を常に編集モードにする
+
+いくつかのケースにおいて、ユーザーは常に編集モードの xamGrid コントロールのフィールドが必要な場合があります。それによってコンテンツを変更するために必要な追加のキーストロークや操作が不要になります。
+
+「常に編集モードにする」機能によって、xamGrid コントロールの 3 つの列タイプをすばやく編集することができます:
+
+ifdef::sl,wpf[]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.datecolumn.html[DateColumn]
+
+endif::sl,wpf[]
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.comboboxcolumn.html[ComboBoxColumn] (link:xamgrid-comboboxcolumn-column.html[ComboBoxColumn 列])
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.checkboxcolumn.html[CheckBoxColumn]
+
+ifdef::sl,wpf[]
+* link:{ApiPlatform}controls.grids.multicolumncombocolumn{ApiVersion}~infragistics.controls.grids.multicolumncombocolumn.html[MultiColumnComboColumn]
+
+endif::sl,wpf[]
+
+* link:{ApiPlatform}controls.grids.datetimecolumn{ApiVersion}~infragistics.controls.grids.datetimecolumn.html[DateTimeColumn]
+
+エディターを常に編集モードにするには、CustomDisplayEditableColumn プロパティ EditorDisplayBehavior を「Always」に設定します。
+
+以下の表ではプロパティについての説明と、その設定について説明しています。
+
+[options="header", cols="a,a,a,a"]
+|====
+|プロパティ|タイプ|説明|利用可能な値
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.customdisplayeditablecolumn~editordisplaybehavior.html[ _EditorDisplayBehavior_ ]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editordisplaybehaviors.html[EditorDisplayBehaviors]
+|このプロパティは編集可能な列のエディターの動作と表示を定義します。
+|デフォルトは 
+
+Always 
+
+EditMode です
+
+|====
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ|値|説明
+
+|EditorDisplayBehavior
+|デフォルト
+|デフォルト動作。 
+
+* *xamGrid 編集機能が有効ではない場合:* エディターは有効ではありません。 
+
+*xamGrid 編集機能が有効な場合:*
+
+エディターの動作は xamGrid 編集設定によって定義されます。 
+
+|Always
+|xamGrid 編集機能の有効/無効に関わらず、エディターは常に編集モードで、アクセス可能、および可視です。
+
+|EditMode
+|
+* *xamGrid 編集機能が有効ではない場合:* 
+
+エディターは非表示になり、そのコンテンツは Text Block として表示されます。 
+
+*xamGrid 編集機能が有効な場合:*
+
+エディターは非表示になり、そのコンテンツは Text Block として表示されます。指定された xamGrid 編集設定によって、キーストロークまたはユーザー操作後に、エディターは編集モードで表示されます。 
+
+|====
+
+== コード例
+
+=== 例の詳細
+
+以下のコードは、エディターを「常に編集モード」に構成する方法を示しています:
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="dataGrid" AutoGenerateColumns="False">
+    <ig:XamGrid.Columns>
+        <ig:DateTimeColumn Key="dateColumn" EditorDisplayBehavior="Always"/>
+        <!-- ここにさらに列を追加します -->
+    </ig:XamGrid.Columns>
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+TryCast(dataGrid.Columns.DataColumns("dateColumn"),CustomDisplayEditableColumn).EditorDisplayBehavior=EditorDisplayBehaviors.Always
+----
+
+*C# の場合:*
+
+----
+(dataGrid.Columns.DataColumns["dateColumn"] as CustomDisplayEditableColumn).EditorDisplayBehavior=EditorDisplayBehaviors.Always;
+----
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xamgrid-editing-data.html[データの編集]
+* link:xamgrid-columns.html[列]
+
+ifdef::win-rt[]
+* link:xamgrid-touch-support.html[タッチ サポート]
+
+endif::win-rt[]

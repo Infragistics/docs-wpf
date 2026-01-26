@@ -1,0 +1,63 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-ime-support",
+    "tags": ["Localization"],
+    "controlName": ["xamSyntaxEditor"],
+    "guid": "2202f56d-4628-46d7-b686-869d91fd2a4e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5153622Z"
+}
+|metadata|
+////
+
+= IME サポート (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールでサポートされる入力メソッドを説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[xamSyntaxEditor の概要]
+|コントロール機能の概要を提供します。
+
+|====
+
+== IME サポート
+
+=== IME サポートの概要
+
+_xamSyntaxEditor_   コントロールは、OS ネイティブ言語のエディターへの直接入力をサポートします。システムにアジア言語の入力メソッドがインストールされている場合、 _xamSyntaxEditor_   コントロールはその編集領域に入力メソッド構成と候補リストを直接表示し、すぐに周囲のテキストの構成を変更する再フローを実行します。
+
+次のスクリーンショットは、ひらがなを使用した  _xamSyntaxEditor_   の日本語入力構成と、現在の構成候補のドロップダウン リストを示しています。
+
+image::images/xamSyntaxEditor_IME_Hiragana.png[]
+
+次のスクリーンショットは、カタカナを使用した  _xamSyntaxEditor_   の日本語入力構成と、現在の構成候補のドロップダウン リストを示しています。
+
+image::images/xamSyntaxEditor_IME_Katakana.png[]
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-configuring.html[xamSyntaxEditor の構成]
+|このセクションのトピックでは、コントロールの構成について追加の情報を提供します。
+
+|====

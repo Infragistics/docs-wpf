@@ -1,0 +1,64 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-modify-the-list-of-operators",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Filtering","How Do I"],
+    "guid": "{580CCEB0-9A47-41F6-8686-269C9C822C07}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2590049Z"
+}
+|metadata|
+////
+
+= 演算子のリストの修正
+
+
+
+DataPresenter コントロールは、フィールドのデータ タイプに基づいて演算子のリストを移植します。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~filteroperatordropdownitems.html[FilterOperatorDropDownItems] プロパティを link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.comparisonoperatorflags.html[ComparisonOperatorFlags] 列挙体の値のビット単位の組み合わせに設定することでエンド ユーザーが選択できる演算子のリストを変更できます。たとえば、エンドユーザーが演算子のドロップダウン リストで StartsWith および EndsWith 演算子のみを使用可能なように演算子のリストを変更できます。
+
+[NOTE]
+====
+*注:* xamDataCarousel™ コントロールではフィルター レコードとフィルター アイコンを使用できません。ただし、XAML またはプロシージャ コードでフィルター条件を xamDataCarousel に追加してデータをフィルターすることができます。
+====
+
+image::images/xamDataPresenter_Modify_the_List_of_Operators.png[]
+
+以下のコード例は、演算子のリストを変更する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldSettings>
+        <igDP:FieldSettings AllowRecordFiltering="True" FilterOperatorDropDownItems="StartsWith, EndsWith" />
+    </igDP:XamDataPresenter.FieldSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Controls
+...
+Me.xamDataPresenter1.FieldSettings.FilterOperatorDropDownItems = ComparisonOperatorFlags.StartsWith Or ComparisonOperatorFlags.EndsWith
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Controls;
+...
+this.xamDataPresenter1.FieldSettings.FilterOperatorDropDownItems = ComparisonOperatorFlags.StartsWith | ComparisonOperatorFlags.EndsWith;
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+
+link:xamdatapresenter-add-filter-conditions.html[フィルター条件の追加]
+
+link:xamdatapresenter-enable-record-filtering.html[レコード フィルタリングを有効にする]
+
+link:xamdatapresenter-modify-the-look-of-filtered-records.html[フィルターされたレコードの外観を修正]

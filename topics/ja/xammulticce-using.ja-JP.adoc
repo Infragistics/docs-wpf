@@ -1,0 +1,232 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticce-using",
+    "controlName": ["xamMultiColumnComboEditor"],
+    "tags": ["Editing","Filtering","Getting Started","How Do I","Selection"],
+    "guid": "da2f421e-bf5f-4982-b1e7-21949037dee1",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.558258Z"
+}
+|metadata|
+////
+
+= xamMultiColumnComboEditor の使用
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor.html[xamMultiColumnComboEditor] コントロールの概要を説明します。以下の例では、エディターを使って構成、作業する方法を理解し、アプリケーションのユーザー エクスペリエンスを高める方法を確認します。
+
+=== 本トピックの内容
+
+このドキュメントには次のセクションが含まれています:
+
+* <<data,データ投入と視覚化>>
+* <<config,コントロールのレイアウトの構成>>
+* <<filSel,フィルタリングと選択>>
+
+=== 前提条件
+
+以下の表には、このトピックの必須条件が示されています。
+
+[options="header", cols="a,a"]
+|====
+|背景タイプ|コンテンツ
+
+|概念
+|以下の概念を理解する必要があります。 
+
+* 一般的な ComboBox コントロール 
+
+|====
+
+=== コントロールの構成チャート
+
+以下の表は、xamMultiColumnComboEditor の主な機能を示しています。
+
+[options="header", cols="a,a"]
+|====
+|機能|詳細
+
+|<<data,データ投入と視覚化>>
+|このセクションでは、データと共にコントロールを投入する方法と、ドロップダウンで列を生成する方法を説明します。
+
+|<<config,コントロールのレイアウトの構成>>
+|このセクションには、xamMultiColumnComboEditor のルック アンド フィールを構成する方法に関する情報が含まれています。
+
+|<<filSel,フィルタリングと選択>>
+|このセクションでは、フィルタリングと選択などのコントロールのユーザー操作機能について説明します。
+
+|====
+
+[[data]]
+== データ投入と視覚化
+
+=== データ ソース
+
+xamMultiColumnComboEditor コントロールをデータと共に投入するには、所定のデータ ソースに対してその ItemsSource プロパティを設定する必要があります。オブジェクトの任意の IEnumerable コレクションを使用できます。
+
+*注:* コントロールは項目への直接の追加をサポートしないため、コントロールを IEnumerable にバインドする必要があります。
+
+=== 列の生成
+
+xamMultiColumnComboEditor コントロールは、コントロールの ItemsSource プロパティに設定された IEnumerable に含まれるデータ オブジェクトのすべてのパブリック プロパティの列を自動的に生成することができます。コントロールの AutoGenerateColumns プロパティ (デフォルトは True) は、この動作を制御します。または、AutoGenerateColumns を False に設定して、列を作成しコントロールの link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~columns.html[Columns] コレクションに直接追加することによって、表示する列を手動で指定することもできます。
+
+*XAML の場合:*
+
+----
+<ig:XamMultiColumnComboEditor
+    x:Name="xamMultiColumnComboEditor" 
+    DisplayMemberPath="Company"                           
+    AutoGenerateColumns="False">
+    <ig:XamMultiColumnComboEditor.Columns>
+        <ig:ImageComboColumn
+            Key="ImagePath" MaximumWidth="60" ImageWidth="50"/>
+        <ig:TextComboColumn Key="ContactName"/>
+        <ig:TextComboColumn Key="Company"/>
+    </ig:XamMultiColumnComboEditor.Columns>
+</ig:XamMultiColumnComboEditor>
+----
+
+サポートされている列のタイプ:
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.checkboxcombocolumn.html[CheckboxComboColumn] - CheckBox コントロールを使ってブール値を表示するために使用されます
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.datecombocolumn.html[DateComboColumn] - 日付を表示するために使用されます
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.textcombocolumn.html[TextComboColumn] - 文字列の情報を表示するために使用されます
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.imagecombocolumn.html[ImageComboColumn] - 画像を表示するために使用されますキーをその画像に対する Uri を含むプロパティにバインド、またはプロパティを BitmapImage タイプにバインドすることによって、画像をロードすることができます。
+
+[[config]]
+== コントロールのレイアウトの構成
+
+=== ドロップダウンの制御
+
+xamMultiColumnComboEditor コントロールでは、非常に柔軟にドロップダウンをプログラムで制御することができます。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|操作
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~isdropdownopen.html[IsDropDownOpen]
+|選択可能なドロップダウンが開いているかどうかを示す値を取得または設定します。
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowdropdownresizing.html[AllowDropDownResizing]
+|エンド ユーザーがドロップ ダウン パネルのサイズを変更できるかどうかを取得または設定します。
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dropdownbuttondisplaymode.html[DropDownButtonDisplayMode]
+|ドロップダウン ボタンの表示状態を取得または設定します。
+
+|====
+
+[options="header", cols="a,a"]
+|====
+|イベント|操作
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dropdownclosing_ev.html[DropDownClosing]
+|IsDropDownOpen プロパティが True から False に変更されるときに発生します。
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dropdownclosed_ev.html[DropDownClosed]
+|IsDropDownOpen プロパティが True から False に変更されて、ドロップダウンが閉じたときに発生します。
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dropdownopening_ev.html[DropDownOpening]
+|IsDropDownOpen プロパティの値が False から True に変更されるときに発生します。
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dropdownopened_ev.html[DropDownOpened]
+|IsDropDownOpen プロパティの値が False から True に変更されて、ドロップダウンが開いたときに発生します。
+
+|====
+
+ユーザーが入力を開始すると、ドロップダウン全体を表示するために、ドロップダウンは常にコントロールが自動的に選択した方向に開きます。
+
+=== ドロップダウンのフッター
+
+コントロールの Footer プロパティを使用して、ドロップダウンの Footer 領域に現れる任意のコンテンツを指定することができます。FooterTemplate プロパティを使用して Footer コンテンツのレイアウトを制御することもできます。
+
+=== チェックボックスの選択
+
+複数の項目をユーザーがより簡単に選択できるようにするために、CheckBoxVisibility プロパティを Visible に設定することによって、各行にチェックボックスを表示することができます。AllowMultipleSelection プロパティを True に設定すると、ユーザーは CTRL キーを押す必要なく、(行をクリックする、またはチェックボックスにマークを付けることで) 一回の操作で複数の項目を選択することができます。
+
+=== リセット ボタン
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~selecteditemsresetbuttonvisibility.html[SelectedItemsResetButtonVisibility] プロパティを Visible に設定すると、コントロールの編集領域にボタンが表示され、ユーザーはこれをクリックして現在の選択をクリアすることができます。
+
+[[filSel]]
+== フィルタリングと選択
+
+=== フィルタリング
+
+xamMultiColumnComboEditor コントロールは link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~filtermode.html[FilterMode] プロパティを公開し、これによってユーザーがコントロールのテキスト領域に入力する際のドロップダウン リストのフィルター方法を制御することができます。FilterMode 列挙体には 2 つの値が含まれています。
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.filtermode.html[FilterOnPrimaryColumnOnly] - プライマリ列$$* $$ が、コントロールの TextBox に入力されたテキストから始まる項目のみを含めることによって、ドロップダウン リストの項目をフィルターします
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.filtermode.html[FilterOnAllColumns] -  *_任意の_* テキスト列のコントロールの TextBox に入力されたテキストを含む項目のみを含めることによって、ドロップダウン リストの項目をフィルターします
+
+*$$*$$* 「プライマリ列」は、コントロールの link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath] プロパティを通して指定された列として定義されます。
+
+*注:* FilterMode プロパティが FilterOnPrimaryColumnOnly に設定されている場合、コントロールはユーザーが入力したテキストの自動完了を自動的に実行します。
+
+xamMultiColumnComboBox control コントロールでは、カスタム フィルタリングも利用できます。カスタム フィルタリングを使用するには、ItemsFilter クラスのインスタンスにルールを定義し、それをコントロールの CustomItemsFilter プロパティに設定する必要があります。
+
+以下の例は、項目フィルターの設定方法を示しています。
+
+*Visual Basic の場合:*
+
+----
+Dim filter As New ItemsFilter()
+filter.ObjectTypedInfo =
+    New CachedTypedInfo() With { _
+        .CachedType = GetType(Person)
+}
+filter.Conditions.LogicalOperator = LogicalOperator.[Or]
+filter.Conditions.Add(New ComparisonCondition() With { _
+    .[Operator] = ComparisonOperator.EndsWith, _
+    .FilterValue = "" _
+})
+XamMultiColumnComboEditor.CustomItemsFilter = filter
+----
+
+*C# の場合:*
+
+----
+ItemsFilter filter = new ItemsFilter();
+filter.ObjectTypedInfo = new CachedTypedInfo()
+{
+    CachedType = typeof(Person)
+};
+filter.Conditions.LogicalOperator = LogicalOperator.Or;
+filter.Conditions.Add(new ComparisonCondition() 
+{
+    Operator = ComparisonOperator.EndsWith,
+    FilterValue = ""
+});
+xamMultiColumnComboEditor.CustomItemsFilter = filter;
+----
+
+=== カスタム値の入力
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~customvalueenteredaction.html[CustomValueEnteredAction] プロパティを構成することによって、ユーザーがコントロールのテキスト ボックスに入力する際のコントロールの動作を制御することができます。以下は、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.customvalueenteredactions.html[CustomValueEnteredActions enumeration] に含まれる 3 つの値です。
+
+* *Ignore* - ユーザーが無効なデータを入力するのを防ぎます - キーストロークはComboBox のフィルターとして見なされるため、新しい値を入力することができません
+* *Allow* - 項目の入力は許可しますが、項目は選択されず、基本の ItemsSource は触れられない状態のままになります
+* *Add* - 入力されたデータを基本の ItemsSource に追加し、新しい追加は選択に対して有効なデータとなります
+
+=== 選択
+
+AllowMultipleSelection プロパティを設定することによって、コントロールの選択モードを構成できます。True に設定すると、ユーザーは複数の項目を選択することができ、これらはデフォルトでコンマ区切りの文字列として表示されます。区切り文字を変更したい場合は、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~multiselectvaluedelimiter.html[MultiSelectValueDelimiter]プロパティを希望の文字に設定します。そのため、ユーザーが複数の項目を選択すると、コントロールは選択された各項目のプライマリ列 (DisplayMemberPath) の値を表示します。選択された項目は、MultiSelectValueDelimiter 文字と共に選択文字列に加わります。
+
+以下のスクリーンショットは、複数の項目が選択された xamMultiColumnComboEditor を示しています。MultiSelectValueDelimiter はセミコロンに設定されています。
+
+image::images/xamMultiCCE_About_2.png[]
+
+AllowMultipleSelection を True に設定すると、CTRL キーを押しながら項目をクリックすることによって、ユーザーは新しい項目を選択に追加することができます。ポインティング デバイスのみを使った複数項目の選択を許可する場合は、CheckBoxVisibility プロパティを Visible に設定します。チェックボックスによって、ユーザーはキーボードを使用せずに複数の RowSelectionCheckbox 項目にチェックを付けることができます。
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+link:xammulticce-about.html[xamMultiColumnComboEditor について]
+
+link:xammulticce-adding.html[xamMultiColumnComboEditor をページに追加]
+
+link:xamcomboeditor-about-xamcomboeditor.html[xamComboEditor について]

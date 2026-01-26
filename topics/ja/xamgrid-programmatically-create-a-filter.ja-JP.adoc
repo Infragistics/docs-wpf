@@ -1,0 +1,63 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-programmatically-create-a-filter",
+    "controlName": ["xamGrid"],
+    "tags": ["Filtering","Grids","How Do I"],
+    "guid": "{97A25F40-8F07-4C97-A068-F9B213A26EDF}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9992049Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= プログラムによってフィルターを作成
+
+特定の状況で、xamGrid コントロールのフィルターされた情報をエンド ユーザーに表示したい場合があります。たとえば、エンドユーザーは、15 よりも大きな ID の製品のみを確認したい場合があります。
+
+以下のコードはフィルターをプログラムで作成する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+Imports Infragistics
+..
+'フィルタリングを有効にします
+MyDataGrid.FilteringSettings.AllowFiltering = FilterUIType.FilterRowTop
+MyDataGrid.FilteringSettings.FilteringScope = FilteringScope.ColumnLayout
+'15 よりも大きな ProductID 値に絞り込むためのフィルターを ProductID 列に追加します。
+MyDataGrid.Columns.DataColumns("ProductID").FilterColumnSettings.FilterCellValue = 15
+MyDataGrid.Columns.DataColumns("ProductID").FilterColumnSettings.FilteringOperand = New GreaterThanOperand
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+using Infragistics;
+…
+//フィルタリングを有効にします
+MyDataGrid.FilteringSettings.AllowFiltering = FilterUIType.FilterRowTop;
+MyDataGrid.FilteringSettings.FilteringScope = FilteringScope.ColumnLayout;
+//15 よりも大きな ProductID 値に絞り込むためのフィルターを ProductID 列に追加します。
+MyDataGrid.Columns.DataColumns["ProductID"].FilterColumnSettings.FilterCellValue = 15;
+MyDataGrid.Columns.DataColumns["ProductID"].FilterColumnSettings.FilteringOperand = new GreaterThanOperand();
+----
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_ProgrammaticallyCreateFilter.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-filtering.html[フィルタリング]
+
+link:xamgrid-filtering-events.html[イベントのフィルタリング]
+
+link:xamgrid-create-a-custom-filter.html[カスタム フィルターの作成]
+
+link:xamgrid-filter-operands.html[フィルター オペランド]

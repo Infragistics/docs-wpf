@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-specifying-settings-for-fields",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I"],
+    "guid": "{E949AC3A-C8A9-45D2-9163-4A2901DDAC38}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5308593Z"
+}
+|metadata|
+////
+
+= Fields の設定を指定
+
+
+
+FieldSettings オブジェクトは、以下に説明するように、ひとつまたは複数のフィールドに適用される設定を指定するために使用されます。このオブジェクトは以下の 3 つのプロパティによって公開されます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldsettings.html[FieldSettings] プロパティ
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~fieldsettings.html[FieldSettings] プロパティ
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~settings.html[Settings] プロパティ
+
+== DataPresenterBase の FieldSettings プロパティ
+
+このプロパティに指定された設定は、コントロールのすべての Fields のデフォルトになります。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldSettings> 
+                <igDP:FieldSettings 
+                  CellClickAction="SelectCell"/> 
+        </igDP:XamDataGrid.FieldSettings> 
+</igDP:XamDataGrid>
+----
+
+== FieldLayout の FieldSettings プロパティ
+
+このプロパティに指定された設定は、この FieldLayout の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~fields.html[Fields] コレクションのすべてのフィールドのデフォルトになります。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldLayouts> 
+                <igDP:FieldLayout> 
+                        <igDP:FieldLayout.FieldSettings> 
+                                <igDP:FieldSettings 
+                                  LabelWidth="200"/> 
+                        </igDP:FieldLayout.FieldSettings> 
+                </igDP:FieldLayout> 
+        </igDP:XamDataGrid.FieldLayouts> 
+</igDP:XamDataGrid>
+----
+
+== フィールドの Settings プロパティ
+
+このプロパティに指定された設定は特定のフィールドのみに適用されます。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldLayouts> 
+                <igDP:FieldLayout> 
+                        <igDP:FieldLayout.Fields> 
+                                <igDP:Field Name="CustomerName"> 
+                                        <igDP:Field.Settings> 
+                                                <igDP:FieldSettings 
+                                                  LabelClickAction="SortByMultipleFields"/> 
+                                        <igDP:Field.Settings> 
+                                </igDP:Field> 
+                        </igDP:FieldLayout.Fields> 
+                </igDP:FieldLayout> 
+        </igDP:XamDataGrid.FieldLayouts> 
+</igDP:XamDataGrid>
+----

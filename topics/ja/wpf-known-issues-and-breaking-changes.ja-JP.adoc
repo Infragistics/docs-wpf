@@ -1,0 +1,22 @@
+﻿////
+|metadata|
+{
+    "name": "wpf-known-issues-and-breaking-changes",
+    "controlName": [],
+    "tags": [],
+    "guid": "{6D38CC3E-648B-44CB-818F-FC8031BD752E}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.6796891Z"
+}
+|metadata|
+////
+
+= 既知の問題と重大な変更
+
+WPF プロジェクトを新しいバージョンの {ProductName} にアップグレードする前に、アプリケーションの動作またはビルドに影響を及ぼす可能性がある重大な変更点について知っておいて下さい。
+
+以下のリンクをクリックすると、既知の問題と重大な変更点を最初に導入したさまざまなバージョンのリストを参照できます。
+
+* link:breaking-changes-in-2021-volume-2.html[2021 Volume 2 の重大な変更]
+* link:breaking-changes-revision-history.html[改訂履歴]
+* link:wpf-known-issues-and-limitations.html[既知の問題と制限]

@@ -1,0 +1,232 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsparkline-xamsparkline-data-binding",
+    "controlName": ["xamSparkline"],
+    "tags": ["Charting","Data Binding"],
+    "guid": "3b2b2088-98d2-46fc-84a1-86397c679f73",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.2363484Z"
+}
+|metadata|
+////
+
+= xamSparkline データ バインディング
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、コード例を示して、 link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}.html[xamSparkline]™ コントロールをデータにバインドする方法を説明します。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref317187002,データ バインディング - 概念的概要>>
+
+** <<_Ref317187009,概要>>
+** <<_Ref317187012,プロパティ設定>>
+
+* <<_Ref317187018,データ バインディング - コード例>>
+* <<_Ref317187132,関連コンテンツ>>
+
+[[_Ref317187002]]
+== データ バインディング - 概念的概要
+
+[[_Ref317187009]]
+
+=== 概要
+
+_xamSparkline_   コントロールには、一次元データが必要です。データ セットには少なくとも 2 つの _数値_ フィールドを含む必要があります。これらのデータ型要件を満たしていない場合、 _xamSparkline_   は空のチャートを描画します (エラーは返しません)。データ ソース フィールドのテキストを使用して、X 軸の最初と最後のラベルを表示できます。
+
+最低要件として  _xamSparkline_   では、コントロールをデータ コレクションのインスタンスにバインドする link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~itemssource.html[ItemSource] プロパティと、どのデータを表示するか特定する link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~valuememberpath.html[ValueMemberPath] プロパティが必要です。
+
+[[_Ref317187012]]
+
+=== プロパティ設定
+
+以下の表は、データ バインディング プロパティ設定をリストしています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ名|プロパティ設定
+
+| _ItemsSource_ 
+| _{Binding Source={StaticResource resource key name}}_ 
+
+| _ValueMemberPath_ 
+| _field name_ 
+
+|====
+
+[[_Ref317187018]]
+
+== コード例: データ バインディング
+
+=== 説明
+
+以下のコードはデータ バインディングを示します。
+
+=== 拡張
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<UserControl
+    xmlns:igSparkline="http://schemas.infragistics.com/xaml"
+    xmlns:local="clr-namespace:SL_SparklineDemo">
+    <UserControl.Resources>
+        <local:TestData x:Key="testdata"/> 
+    </UserControl.Resources>
+     <igSparkline:XamSparkline 
+          Name="xamSparkline1
+         ItemsSource="{Binding Source={StaticResource testdata}}"
+         ValueMemberPath="Value"/>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSparkline1.ItemsSource = new TestData();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSparkline1.ItemsSource = New TestData()
+----
+
+以下の (C#) データ モデルでは  _n_   は任意の数値を表します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class TestData : ObservableCollection<TestDataItem>
+    {
+        public TestData()
+        {
+           Add(new TestDataItem { Label = "Label1", Value = n });
+     Add(new TestDataItem { Label = "Label2", Value = n });
+     Add(new TestDataItem { Label = "Label3", Value = n });
+     Add(new TestDataItem { Label = "Label4", Value = -n });
+     Add(new TestDataItem { Label = "Label5", Value = n });
+     Add(new TestDataItem { Label = "Label6", Value = -n });
+     Add(new TestDataItem { Label = "Label7", Value = n });
+     Add(new TestDataItem { Label = "Label8", Value = n });
+     Add(new TestDataItem { Label = "Label9", Value = n });
+        }
+    }
+public class TestDataItem : INotifyPropertyChanged
+    {
+        private string _label;
+        public string Label
+        {
+            get { return _label; }
+            set { _label = value; RaisePropertyChanged("Label"); }
+        }
+        private double ?_value;
+        public double ?Value
+        {
+            get { return _value; }
+            set { _value = value; RaisePropertyChanged("Value"); }
+        }
+        private void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new   PropertyChangedEventArgs(propertyName));
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+----
+
+以下の (VB) データ モデルでは  _n_   は任意の数値を表します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class TestData
+   Inherits ObservableCollection(Of TestDataItem)
+      Public Sub New()
+      Add(New TestDataItem() With {.Label = "Label1", .Value = n})
+      Add(New TestDataItem() With {.Label = "Label2", .Value = n})
+      Add(New TestDataItem() With {.Label = "Label3", .Value = n})
+      Add(New TestDataItem() With {.Label = "Label4", .Value = -n})
+      Add(New TestDataItem() With {.Label = "Label5", .Value = n})
+      Add(New TestDataItem() With {.Label = "Label6", .Value = -n})
+      Add(New TestDataItem() With {.Label = "Label7", .Value = n})
+      Add(New TestDataItem() With {.Label = "Label8", .Value = n})
+      Add(New TestDataItem() With {.Label = "Label9", .Value = n})
+   End Sub
+End Class
+Public Class TestDataItem
+      Implements INotifyPropertyChanged
+      Private _label As String
+      Public Property Label() As String
+            Get
+                  Return _label
+            End Get
+            Set
+                  _label = value
+                  RaisePropertyChanged("Label")
+            End Set
+      End Property
+      Private _value As System.Nullable(Of Double)
+      Public Property Value() As System.Nullable(Of Double)
+            Get
+                  Return _value
+            End Get
+            Set
+                  _value = value
+                  RaisePropertyChanged("Value")
+            End Set
+      End Property
+      Private Sub RaisePropertyChanged(propertyName As String)
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+      End Sub
+      Public Event PropertyChanged As PropertyChangedEventHandler
+End Class
+----
+
+[[_Ref317187132]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+| link:xamsparkline-configuring-xamsparkline.html[xamSparkline を構成]
+|このトピックは、 _xamSparkline_ コントロールを構成するあらゆる方法の概要について説明します。構成の詳細情報へのリンク (別のトピックで参照可能) も記載されています。
+
+| link:xamsparkline-xamsparkline-property-reference.html[xamSparkline プロパティ参照]
+|このトピックは、 _xamSparkline_ コントロールの主なプロパティを説明します。
+
+|====

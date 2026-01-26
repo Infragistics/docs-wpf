@@ -1,0 +1,366 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-saving-project-plan-to-ms-project-xml-file",
+    "controlName": ["xamGantt"],
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "guid": "dbae982c-21d0-4f1e-a376-1f5e9184f9a0",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6151813Z"
+}
+|metadata|
+////
+
+= Microsoft Project XML ファイルへのプロジェクト計画の保存 (xamGantt)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、Microsoft Project XML ファイルへ  _xamGantt_™   プロジェクト計画を保存する方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-adding-xamgantt-to-a-page.html[xamGantt をページに追加]
+|このトピックでは、 _xamGantt_ コントロールをページに追加する方法を説明します。
+
+|====
+
+[[_Ref346027431]]
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref346027773, MS Project XML ファイルへのプロジェクト計画の保存 >>
+** <<_Ref346027418,はじめに>>
+** <<OLE_LINK77,プレビュー>>
+** <<OLE_LINK63,概要>>
+** <<_Ref346027446,手順>>
+
+* <<OLE_LINK48, コード例 >>
+** <<_Ref345947545,コード例: XML ファイルとしてプロジェクト計画を保存するためのボタン クリック イベントの処理>>
+** <<_Ref345947563,コード例: MS Project XML ファイルへの  _xamGantt_   プロジェクト計画の保存>>
+
+* <<_Ref346027491, 関連コンテンツ >>
+
+[[_Ref346027773]]
+== MS Project XML ファイルへのプロジェクト計画の保存
+
+[[_Ref346027418]]
+
+=== はじめに
+
+プロシージャは、MS Project XML ファイルへ  _xamGantt_   プロジェクト計画を保存する方法について説明します。
+
+注:
+
+[NOTE]
+====
+プロジェクト計画を保存する場合、 _xamGantt_   コントロールは MS Project 2010 ファイル形式のみをサポートします。
+====
+
+=== プレビュー
+
+以下のスクリーンショットは結果のプレビューです。
+
+image::images/xamGantt_Saving_a_Project_to_XML.png[]
+
+=== 概要
+
+以下はプロセスの概念的概要です:
+
+1.XAML で  _xamGantt_   コントロールを追加します。
+
+2.プロジェクト計画を XML ファイルとして保存するためのオープン ダイアログ ボックスを追加します。
+
+3.コードビハインドでの必要な参照を追加します。
+
+4.ボタン クリック イベントを処理します。
+
+5.MS Project XML ファイルにプロジェクト計画を保存します。
+
+[[_Ref346027446]]
+
+=== 手順
+
+以下に、 _xamGantt_   プロジェクト計画を XML ファイルに保存する手順を示します。
+
+[start=1]
+. XAML で xamGantt コントロールを追加します。
+
+_xamGantt_   コントロールを Grid コンテナーの最初の行に追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <ig:XamGantt x:Name="gantt" />
+    <!-- ここでその他のコントロールを追加します -->
+</Grid>
+----
+
+[start=2]
+. XML ファイルを保存ダイアログを表示するボタンを追加します。
+
+Button コントロールを Grid コンテナーの 2 番目の行に追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+ <Button x:Name="Btn_SaveProject" 
+        Grid.Row="1"
+        Content="Save XML Project File"
+        Click="Btn_SaveProject_Click"/>
+----
+
+[start=3]
+. コードビハインドでの必要な参照の追加
+
+コード ビハインドで次の  _using_   および  _Imports_   宣言を追加します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+using System;
+using System.IO;
+using System.Windows;
+using Infragistics;
+using Infragistics.Controls.Schedules;
+using Microsoft.Win32;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports System.IO
+Imports Infragistics
+Imports Infragistics.Controls.Schedules
+Imports Microsoft.Win32
+----
+
+[start=4]
+. ボタン クリック イベントを処理します。
+
+MS Project XML ファイルへ  _xamGantt_   プロジェクト計画を保存するためにボタン クリック イベントを処理します。
+
+詳細は、「<<_Ref345947545,コード例: XML ファイルとしてプロジェクト計画を保存するためのボタンクリック イベントの処理>>」を参照してください。
+
+[start=5]
+. MS Project XML ファイルに xamGantt プロジェクトを保存します。
+
+link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~saveasprojectxml.html[SaveAsProjectXml] メソッドを使用して、ストリームにプロジェクトを保存します。
+
+詳細は、「<<_Ref345947563,コード例: MS Project XML ファイルへの  _xamGantt_   プロジェクト計画の保存>>」を参照してください。
+
+注:
+
+[NOTE]
+====
+「 link:xamgantt-loading-project-plan-from-ms-project-xml-file.html[MS Project XML ファイルからプロジェクト計画を読み込む]」トピックは、サンプル データのロード方法を示します。
+====
+
+== コード例
+
+=== コード例のサマリー
+
+以下の表は、このトピックで使用したコード例をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|例|解説
+
+|<<_Ref345947545,コード例: XML ファイルとしてプロジェクト計画を保存するためのボタン クリック イベントの処理>>
+|サンプル コードは、SaveFileDialog クラスを使用して MS Project XML ファイルへ _xamGantt_ プロジェクト計画を保存します。
+
+|<<_Ref345947563,コード例: MS Project XML ファイルへの xamGantt プロジェクト計画の保存>>
+|コード例では、MS Project XML ファイルに _xamGantt_ プロジェクト計画を保存します。
+
+|====
+
+[[_Ref345947545]]
+== コード例: XML ファイルとしてプロジェクト計画を保存するためのボタン クリック イベントの処理
+
+=== 説明
+
+サンプル コードは、SaveFileDialog クラスを使用して MS Project XML ファイルへ  _xamGantt_   プロジェクト計画を保存します。
+
+=== コード
+
+ifdef::wpf[]
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Microsoft.Win32;
+private void Btn_SaveProject_Click(object sender, RoutedEventArgs e)
+{
+    SaveFileDialog dialog = new SaveFileDialog();
+    dialog.InitialDirectory = "c:\\";
+    dialog.Filter = "MS Project XML (.xml)|*.xml|All Files (*.*)|*.* ";
+    bool? isSaved = dialog.ShowDialog();
+    if (isSaved == true)
+    {
+        try
+        {
+            using (Stream stream = dialog.OpenFile())
+            {
+                SaveProjectToStream(stream);
+                stream.Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Microsoft.Win32
+Private Sub Btn_SaveProject_Click(sender As Object, e As RoutedEventArgs)
+    Dim dialog As New SaveFileDialog()
+    dialog.InitialDirectory = "c:\"
+    dialog.Filter = "MS Project XML (.xml)|*.xml|All Files (*.*)|*.* "
+    Dim isSaved As System.Nullable(Of Boolean) = dialog.ShowDialog()
+    If isSaved = True Then
+        Try
+            Using stream As Stream = dialog.OpenFile()
+                SaveProjectToStream(stream)
+                stream.Close()
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End If
+End Sub
+----
+
+endif::wpf[]
+
+ifdef::sl[]
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void Btn_SaveProject_Click(object sender, RoutedEventArgs e)
+{
+    SaveFileDialog dialog = new SaveFileDialog();
+    dialog.Filter = "MS Project XML (.xml)|*.xml|All Files (*.*)|*.* ";
+    bool? isSaved = dialog.ShowDialog();
+    if (isSaved == true)
+    {
+        try
+        {
+            using (Stream stream = dialog.OpenFile())
+            {
+                SaveProjectToStream(stream);
+                stream.Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub Btn_SaveProject_Click(sender As Object, e As RoutedEventArgs)
+      Dim dialog As New SaveFileDialog()
+      dialog.Filter = "MS Project XML (.xml)|*.xml|All Files (*.*)|*.* "
+      Dim isSaved As System.Nullable(Of Boolean) = dialog.ShowDialog()
+      If isSaved = True Then
+            Try
+                  Using stream As Stream = dialog.OpenFile()
+                        SaveProjectToStream(stream)
+                        stream.Close()
+                  End Using
+            Catch ex As Exception
+                  MessageBox.Show(ex.Message)
+            End Try
+      End If
+End Sub
+----
+
+endif::sl[]
+
+[[_Ref345947563]]
+== コード例: MS Project XML ファイルへの  _xamGantt_   プロジェクト計画の保存
+
+=== 説明
+
+以下のコード例は、C# とVisual Basic の両方で MS Project XML ファイルに  _xamGantt_   プロジェクト計画を保存する方法を示します。
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void SaveProjectToStream(Stream stream)
+{
+    // xamGantt プロジェクトを取得します。
+    var project = this.gantt.Project;
+    project.SaveAsProjectXml(stream);
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub SaveProjectToStream(stream As Stream)
+    '  xamGantt プロジェクトを取得します。
+    Dim project = Me.gantt.Project
+    project.SaveAsProjectXml(stream)
+End Sub
+----
+
+[[_Ref346027491]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-data-binding-overview.html[データ バインディングの概要]
+|このトピックは、 _xamGantt_ コントロールのデータ バインディングの概要を説明します。
+
+| link:xamgantt-binding-to-data-using-project.html[プロジェクトを使用してデータにバインド]
+|このトピックでは、Project プロパティによって _xamGantt_ コントロールをデータにバインドする方法を説明します。
+
+| link:xamgantt-binding-arbitrary-tasks-collection-listbackedproject.html[ListBackedProject によるタスク コレクションとのバインディング]
+|このトピックでは、ListBackedProject で _xamGantt_ コントロールを任意のタスク コレクションにバインドする方法を説明します。
+
+| link:xamgantt-loading-project-plan-from-ms-project-xml-file.html[MS Project XML ファイルからプロジェクト計画を読み込む]
+|このトピックでは、Microsoft Project™ 2010 XML ファイルに保存された、すでに作成済みのプロジェクト計画を _xamGantt_ コントロールで読み込む方法について説明します。
+
+|====

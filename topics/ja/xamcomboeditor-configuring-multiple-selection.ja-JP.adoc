@@ -1,0 +1,193 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-configuring-multiple-selection",
+    "tags": ["How Do I","Selection"],
+    "controlName": ["xamComboEditor"],
+    "guid": "eece5f2a-71ce-47bd-bfc4-1dae0145539f",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7631047Z"
+}
+|metadata|
+////
+
+= 複数選択の構成 (xamComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamComboEditor_™ コントロールの複数選択オプションを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-adding-xamcomboeditor-to-your-page.html[xamComboEditor をページに追加]
+|このトピックでは、 _xamComboEditor_ コントロールを開始する方法、およびプロシージャ コードを使用してページに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref381977598,複数選択の構成の概要>>
+* <<_EnablingMultipleSelection,複数項目選択を有効にする>>
+* <<_Ref381977332,項目のチェックボックスを有効にする>>
+* <<_Ref381977616,関連コンテンツ>>
+
+** <<_Ref381977623,トピック>>
+
+[[_Ref381977598]]
+== 複数選択の構成の概要
+
+=== 複数選択の構成の概要表
+
+以下の表は、 _xamComboEditor_   コントロールの複数選択の構成可能な要素について簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_EnablingMultipleSelection,複数項目選択を有効にする>>
+|複数選択を有効にして、複数の _xamComboEditor_ 項目を同時に選択できるようにします。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+
+|<<_Ref381977332,項目のチェックボックスを有効にする>>
+|_xamComboEditor_ 項目のチェックボックスの表示を有効にして、複数選択ができるようにします。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility]
+
+|====
+
+[[_EnablingMultipleSelection]]
+== 複数項目選択を有効にする
+
+=== 概要
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection] プロパティで  _xamComboEditor_   の複数項目選択を有効にします。
+
+キーボードの `CTRL` キーを押しながらマウスの左ボタンのクリック、または項目のチェックボックスをチェックし、複数の  _xamComboEditor_   項目を選択します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|複数項目選択を有効にする
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+|`true`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   がどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+| _true_ 
+
+|====
+
+image::images/Configuring_Multiple_Selection_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor"
+                   ItemsSource="{Binding Path=Categories}"
+                   AllowMultipleSelection="True"                              
+                   DisplayMemberPath="CategoryName"
+                   Height="30" Width="200"/>
+----
+
+[[_Ref381977332]]
+== 項目のチェックボックスの表示を有効にする
+
+=== 概要
+
+項目のチェックボックスをチェックし、 _xamComboEditor_   を複数選択します。そのためには、項目のチェックボックスが表示されている必要があります。
+
+_xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility] プロパティは、項目のチェックボックスの表示を設定します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|項目のチェックボックスで選択を有効にする
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility]
+|`表示`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   の外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+| _True_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility]
+| _表示_ 
+
+|====
+
+image::images/Configuring_Multiple_Selection_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor"
+                   ItemsSource="{Binding Path=Categories}"
+                   AllowMultipleSelection="True"     
+                   CheckBoxVisibility="Visible"
+                   DisplayMemberPath="CategoryName"
+                   Height="30" Width="200"/>
+----
+
+[[_Ref381977616]]
+== 関連コンテンツ
+
+[[_Ref381977623]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-selection-overview.html[ユーザー選択インタラクションと操作性]
+|このトピックでは、 _xamComboEditor_ コントロールのユーザー選択インタラクションについて説明します。
+
+| link:xamcomboeditor-performing-selection-programmatically.html[プログラムによる選択の実行]
+|このトピックでは、 _xamComboEditor_ コントロールの選択をプログラムで実行する方法を説明します。
+
+|====

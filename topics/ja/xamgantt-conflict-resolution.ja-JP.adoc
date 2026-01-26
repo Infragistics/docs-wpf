@@ -1,0 +1,200 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-conflict-resolution",
+    "controlName": ["xamGantt"],
+    "tags": ["Error Handling","Events","Grids","Scheduling","Validation"],
+    "guid": "3c697313-0749-454b-9c0c-81e26b1067a3",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6091809Z"
+}
+|metadata|
+////
+
+= xamGantt 競合の解決
+
+[[_Ref334029628]]
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   競合の解決について説明します。
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_xamGantt_Conflict_Resolution_Overview, xamGantt 競合の解決の概要 >>
+
+** <<_Conflicts_Overview,競合の概要>>
+
+** <<_Default_Actions,デフォルトの操作>>
+
+** <<_Events,イベント>>
+
+* <<_Related_Content, 関連コンテンツ >>
+
+[[_xamGantt_Conflict_Resolution_Overview]]
+== xamGantt 競合の解決の概要
+
+[[_Conflicts_Overview]]
+
+=== 競合の概要
+
+タスクへの変更は多くの場合、関連タスクのプロパティだけでなくタスクのその他のプロパティの値に影響します。Project クラスはこれらの操作へのデフォルトの対応を制御するプロパティを公開します。Project クラスは適切な対応のランタイム決定を可能にするイベントを発生させます。
+
+以下の表は発生する可能性がある競合をまとめます。
+
+[options="header", cols="a,a"]
+|====
+|競合|説明
+
+|実績値が失われる
+|プロジェクトから失われる実績値 (たとえば link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~actualstart.html[ActualStart]、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~actualduration.html[ActualDuration]) を持つタスクに変更が起こる時に発生します。 
+
+開始したタスクを削除して、開始したタスクの実績期間を 0 に変更し、開始したタスクの開始をクリアした結果として、この状態が発生する場合があります。
+
+|競合制約および依存関係情報
+|タスクの制約情報 (つまり link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~constrainttype.html[ConstraintType] および link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~constraintdate.html[ConstraintDate]) およびその依存関係 (つまり先行処理/後続処理) を、その 1 つまたは複数を違反することとなるために強制できない時に発生します。 
+
+たとえば、TaskB に FinishToStart 関係で先行処理として TaskA があり、Task B の EarlyStart が計算される前に TaskB の ConstraintType が ConstraintDate の MustStartOn に設定される場合です。 
+
+変更が続行を許可される場合、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings_members.html[ProjectSettings] の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~alwayshonortaskconstraintdates.html[AlwaysHonorTaskConstraintDates] は優先される情報を決定します。
+
+|制約警告
+|タスクの制約を変更しようとする時、または制約情報を認識できない時に起動します。発生する可能性がある警告のタイプは、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskconstraintwarningtype.html[ProjectTaskConstraintWarningType] 列挙体に提示されます。
+
+|プロジェクト ルート タスクを削除
+|エンドユーザーがルート タスクを選択していて Delete キーを押す時など、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~roottask.html[RootTask] の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~delete.html[Delete] メソッドが起動される時に発生します。
+
+|サマリー タスクの削除
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~issummary.html[IsSummary] が true の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask_members.html[ProjectTask] の `Delete` メソッドが起動される時に発生します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+これは、Project の RootTask を削除しようとした時には起動されません。そのため、上記の DeleteRootTask 警告が発生します。 
+
+====
+
+|依存関係循環の警告
+|同じタスクへの参照、子孫/先祖タスクまたはそのオリジナルのタスクに直接または間接的に依存するタスクなど、循環参照を含むといったように、タスクの先行処理または後続処理が変更された時に発生します。
+
+|リソース喪失の警告
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~autoaddnewresources.html[AutoAddNewResources] ProjectSettings プロパティが false で、ResourceItems コレクションの link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectresource_members.html[ProjectResource] の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectresource~displayname.html[DisplayName] に一致しない Resources セルにエンドユーザーが名前を入力する時に発生します。
+
+|タスク開始または終了が非稼働日に設定
+|タスクの link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~start.html[Start] または link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~finish.html[Finish] が非稼働日に設定されると発生します。 
+
+この状況では、値を隣接する稼働日に移動する、それを含む日の稼働時間を定義するために link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendarexception_members.html[ProjectCalendarException]を作成する、または操作をキャンセルできます。
+
+|タスクがプロジェクトの限度を違反
+|開始からスケジュールされたプロジェクトで開始が Project link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~start.html[Start] の前である、または終了からスケジュールされたプロジェクトで終了が Project の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~finish.html[Finish] の後であるなど、タスクの制約または依存関係情報が設定される時に発生します。 
+
+たとえば、タスクで `ConstraintType` が _MustStartOn/StartNoLaterThan_ に設定されており、Start 値が Project の Start 以前の日に設定されており、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~isscheduledfromstart.html[IsScheduledFromStart] が `true` の時に発生する可能性があります。
+
+|====
+
+[[_Default_Actions]]
+
+=== デフォルトの操作
+
+以下の表は、競合と競合が発生した時に取るデフォルトの操作を決定するプロパティをリストします。
+
+[options="header", cols="a,a"]
+|====
+|競合|デフォルトの操作
+
+|実績値が失われる
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~actualvalueslostdefaultaction.html[ActualValuesLostDefaultAction]
+
+|競合制約および依存関係情報
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~constraintordependencycannotbeenforceddefaultaction.html[ConstraintOrDependencyCannotBeEnforcedDefaultAction]
+
+|制約警告
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~changeconstrainttypedefaultaction.html[ChangeConstraintTypeDefaultAction] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~constraintconflictswithsubtaskconstraintdefaultaction.html[ConstraintConflictsWithSubtaskConstraintDefaultAction] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~possiblefutureconflictdefaultaction.html[PossibleFutureConflictDefaultAction]
+
+|プロジェクト ルート タスクを削除
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~deleteroottaskdefaultaction.html[DeleteRootTaskDefaultAction]
+
+|サマリー タスクの削除
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~deletesummarytaskdefaultaction.html[DeleteSummaryTaskDefaultAction]
+
+|依存関係循環の警告
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~dependencycircularitydetecteddefaultaction.html[DependencyCircularityDetectedDefaultAction] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~dependencycircularitydetectedwhentaskreparenteddefaultaction.html[DependencyCircularityDetectedWhenTaskReparentedDefaultAction]
+
+|リソース喪失の警告
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~missingresourcedefaultaction.html[MissingResourceDefaultAction]
+
+|タスク開始または終了が非稼働日に設定
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~taskstartmovedtononworkingdaydefaultaction.html[TaskStartMovedToNonWorkingDayDefaultAction] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~taskfinishmovedtononworkingdaydefaultaction.html[TaskFinishMovedToNonWorkingDayDefaultAction]
+
+|タスクがプロジェクトの限度を違反
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~taskmovedafterprojectfinishdefaultaction.html[TaskMovedAfterProjectFinishDefaultAction] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~taskmovedbeforeprojectstartdefaultaction.html[TaskMovedBeforeProjectStartDefaultAction]
+
+|====
+
+[[_Events]]
+
+=== イベント
+
+以下の表に、競合が発生する時に発生するイベントをリストします。
+
+[options="header", cols="a,a"]
+|====
+|競合|イベント
+
+|実績値が失われる
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~actualvalueslostwarning_ev.html[ActualValuesLostWarning]
+
+|競合制約および依存関係情報
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskwarning_ev.html[TaskWarning] 
+
+Type= `ConstraintOrDependencyCannotBeEnforced`
+
+|制約警告
+|`TaskConstraintWarning`
+
+|プロジェクト ルート タスクを削除
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskwarning_ev.html[TaskWarning] 
+
+Type= `DeleteRootTask`
+
+|サマリー タスクの削除
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskwarning_ev.html[TaskWarning] 
+
+Type= `DeleteSummaryTask`
+
+|依存関係循環の警告
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~dependencycircularitydetected_ev.html[DependencyCircularityDetected]
+
+|リソース喪失の警告
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~missingresourcewarning_ev.html[MissingResourceWarning]
+
+|タスク開始または終了が非稼働日に設定
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskinnonworkingdaywarning_ev.html[TaskInNonWorkingDayWarning]
+
+|タスクがプロジェクトの限度を違反
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskwarning_ev.html[TaskWarning] 
+
+Type= `TaskMovedAfterProjectFinish` または `TaskMovedBeforeProjectStart`
+
+|====
+
+[[_Related_Content]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-user-notifications-shown-at-conflict-resolution.html[xamGantt 競合の解決で表示されるユーザー通知]
+|特定の無効なタスク値、プロジェクト設定または再スケジュール操作は競合の原因となる可能性があります。_xamGantt_ はこれらの競合を解決して通知をユーザーに表示します。このトピックでは、競合の解決で生じるユーザー通知を説明します。
+
+|====

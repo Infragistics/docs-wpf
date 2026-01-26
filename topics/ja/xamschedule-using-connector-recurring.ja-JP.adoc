@@ -1,0 +1,133 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector-recurring",
+    "controlName": ["xamSchedule"],
+    "tags": ["Data Binding","How Do I","Scheduling"],
+    "guid": "ab959e0a-12d6-4c76-95fd-1148e2418c74",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.695356Z"
+}
+|metadata|
+////
+
+= 繰り返し予定項目ソースの使用
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] コンポーネントは、予定データ ソースを指定するために link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~appointmentitemssource.html[AppointmentItemsSource] と link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~recurringappointmentitemssource.html[RecurringAppointmentItemsSource] という 2 つのプロパティを提供します。AppointmentItemsSource は予定をサポートするために必要です。ただし、RecurringAppointmentItemsSource はオプションです。
+
+Appointment オブジェクトの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~recurrence.html[Recurrence] プロパティが設定されている場合、それは予定の繰り返しインスタンスのシリーズのルートになります。これらのインスタンスのそれぞれは、予定の「発生」と呼ばれます。特定の「発生」が変更されると、それは「バリアンス」と呼ばれます。たとえば、予定が毎月曜日の 10:00am に設定されていて、特定の週ではそれが 10:30 に移動される場合です。
+
+通常、ルートの予定およびバリアンスは、すべての他の予定とともに AppointmentItemSource に保存されます。**注:** バリアンスではない発生は、予定の繰り返しルールに基づいて任意の日付の期間、ルートの予定から生成できるので、まったく保存されません。
+
+ただし、RecurringAppointmentItemsSource が設定されている場合、ルートの予定とバリアンスの両方がデータ ソースに保存されます。ルートの予定とバリアンスを分離することによって、コネクターはすべての予定の取得を最適化できます。この理由としては、ルートの予定は未来に向けて発生を生成することになるからです。したがって、たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview.html[xamMonthView] が 2010 年 11 月の予定を表示する必要がある場合、2010 年 11 月の発生を生成する、過去に作成したルートの予定をすべて取得する必要があります。これらの予定を分離することによって、ListScheduleDataConnector によってより効率的に取得できます。さらに、これらの予定が独自の項目ソースで分離される場合、繰り返しおよびバリアンスに関連するプロパティは AppointmentItemSource でマップする必要はありません。これらは RecurringAppointmentItemSource でマップするだけで十分です。
+
+RecurringAppointmentItemsSource が設定されている場合、ルートの予定およびバリアンスは、このデータ ソースに含まれるだけで十分であることに注意してください。AppointmentsItemsSource に含めることはできません。RecurringAppointmentItemsSource が提供されている場合、AppointmentItemsSource は、繰り返しではない予定を含むだけで十分です。
+
+ListScheduleDataConnector で定義されているすべての他の項目ソース コレクションと同様、RecurringAppointmentItemsSource は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment] エンティティ (定義された Recurrence プロパティで) の IEnumerable コレクションまたはカスタム エンティティの IEnumerable コレクションで移植できます。後者のケースでは、開発者は、カスタム エンティティのプロパティに関する情報とそれらのプロパティそれぞれが提供する情報を提供する適切な link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~recurringappointmentpropertymappings.html[RecurringAppointmentPropertyMappings] を指定する必要があります。以下がその方法です。
+
+*XAML の場合:*
+
+----
+<ig:ListScheduleDataConnector
+    x:Name="scheduleDataConnector"
+    ResourceItemsSource="{Binding Resources}"
+    ResourceCalendarItemsSource="{Binding Calendars}"
+    AppointmentItemsSource="{Binding Appointments}"
+    RecurringAppointmentItemsSource="{Binding RecurringAppointments}">
+    <ig:ListScheduleDataConnector.RecurringAppointmentPropertyMappings>
+        <ig:AppointmentPropertyMapping
+            AppointmentProperty="Id"
+            DataObjectProperty="Id1" />
+        <ig:AppointmentPropertyMapping
+            AppointmentProperty="Start"
+            DataObjectProperty="Start1" />
+        <ig:AppointmentPropertyMapping
+            AppointmentProperty="End"
+            DataObjectProperty="End1" />
+        <ig:AppointmentPropertyMapping
+            AppointmentProperty="OwningResourceId"
+            DataObjectProperty="OwnerId1" />
+        <ig:AppointmentPropertyMapping
+            AppointmentProperty="OwningCalendarId"
+            DataObjectProperty="CalendarId1" />
+        <ig:AppointmentPropertyMapping
+            AppointmentProperty="Subject"
+            DataObjectProperty="Subject1" />
+        <ig:AppointmentPropertyMapping
+            AppointmentProperty="Description"
+            DataObjectProperty="Text1" />
+        <ig:AppointmentPropertyMapping
+            AppointmentProperty="Recurrence"
+            DataObjectProperty="Recurrence1" />
+    </ig:ListScheduleDataConnector.RecurringAppointmentPropertyMappings>
+</ig:ListScheduleDataConnector>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim data = New MyScheduleData()
+Dim dataConnector = New ListScheduleDataConnector()
+dataConnector.ResourceItemsSource = data.Resources
+dataConnector.ResourceCalendarItemsSource = data.Calendars
+dataConnector.AppointmentItemsSource = data.Appointments
+dataConnector.RecurringAppointmentItemsSource = _
+    data.RecurringAppointments
+dataConnector.RecurringAppointmentPropertyMappings = _
+    New AppointmentPropertyMappingCollection()
+dataConnector.RecurringAppointmentPropertyMappings. _
+    Add(AppointmentProperty.Id, "Id1")
+dataConnector.RecurringAppointmentPropertyMappings. _
+    Add(AppointmentProperty.Start, "Start1")
+dataConnector.RecurringAppointmentPropertyMappings. _
+    Add(AppointmentProperty.End, "End1")
+dataConnector.RecurringAppointmentPropertyMappings. _
+    Add(AppointmentProperty.OwningResourceId, "OwnerId1")
+dataConnector.RecurringAppointmentPropertyMappings. _
+    Add(AppointmentProperty.OwningCalendarId, "CalendarId1")
+dataConnector.RecurringAppointmentPropertyMappings. _
+    Add(AppointmentProperty.Subject, "Subject1")
+dataConnector.RecurringAppointmentPropertyMappings. _
+    Add(AppointmentProperty.Description, "Text1")
+dataConnector.RecurringAppointmentPropertyMappings. _
+    Add(AppointmentProperty.Recurrence, "Recurrence1")
+----
+
+*C# の場合:*
+
+----
+var data = new MyScheduleData();           
+var dataConnector = new ListScheduleDataConnector();
+dataConnector.ResourceItemsSource = data.Resources;
+dataConnector.ResourceCalendarItemsSource = data.Calendars;
+dataConnector.AppointmentItemsSource = data.Appointments;
+dataConnector.RecurringAppointmentItemsSource =
+    data.RecurringAppointments;
+dataConnector.RecurringAppointmentPropertyMappings =
+    new AppointmentPropertyMappingCollection();
+dataConnector.RecurringAppointmentPropertyMappings.
+    Add(AppointmentProperty.Id, "Id1");
+dataConnector.RecurringAppointmentPropertyMappings.
+    Add(AppointmentProperty.Start, "Start1");
+dataConnector.RecurringAppointmentPropertyMappings.
+    Add(AppointmentProperty.End, "End1");
+dataConnector.RecurringAppointmentPropertyMappings.
+    Add(AppointmentProperty.OwningResourceId, "OwnerId1");
+dataConnector.RecurringAppointmentPropertyMappings.
+    Add(AppointmentProperty.OwningCalendarId, "CalendarId1");
+dataConnector.RecurringAppointmentPropertyMappings.
+    Add(AppointmentProperty.Subject, "Subject1");
+dataConnector.RecurringAppointmentPropertyMappings.
+    Add(AppointmentProperty.Description, "Text1");
+dataConnector.RecurringAppointmentPropertyMappings.
+    Add(AppointmentProperty.Recurrence, "Recurrence1");
+----
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-using-connector-list.html[ListScheduleConnector]
+
+link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]

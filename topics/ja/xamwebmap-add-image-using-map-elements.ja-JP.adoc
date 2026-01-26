@@ -1,0 +1,110 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-add-image-using-map-elements",
+    "controlName": ["xamMap"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "{48BA738A-948D-485F-8ECF-93275076989D}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1692309Z"
+}
+|metadata|
+////
+
+= マップ要素を使用した画像の追加
+
+xamMap で特定の場所をマークするために画像を追加するための賢明な方法は、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.symbolelement.html[SymbolElement] オブジェクトを使用してマップでマーカーを追加し、値テンプレートを使用して画像を提供することです。同じ画像を使用する複数の点がある時にこのアプローチは最も有効です。
+
+たとえば、画像を追加したいマップに複数の州がある場合、これらの州のために SymbolElement オブジェクトを作成し、それらのオブジェクトをレイヤーに追加し、そしてそのレイヤー上の画像を含む Value template を適用できます。
+
+以下のコードはピザを食べるのに最適な場所を表すためにピザの画像をニューヨークに追加する方法を示します。ニューヨークの上に SymbolElement オブジェクトを配置したレイヤーを作成し、値テンプレートを使用して画像を追加します。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<igMap:XamMap x:Name="map1">
+   <igMap:XamMap.Layers>
+      <igMap:MapLayer x:Name="statesLayer" Imported="statesLayer_Imported">
+         <igMap:MapLayer.Reader>
+            <igMap:ShapeFileReader Uri="/../../Shapefiles/usa_st" DataMapping="Name=STATE_NAME; Caption=STATE_ABBR" />
+         </igMap:MapLayer.Reader>
+      </igMap:MapLayer>
+      <igMap:MapLayer x:Name="symbolLayer">
+         <igMap:MapLayer.ValueTemplate>
+            <DataTemplate>
+               <Image Width="50" Height="50" Source="pizza.png" />
+            </DataTemplate>
+         </igMap:MapLayer.ValueTemplate>
+      </igMap:MapLayer>
+   </igMap:XamMap.Layers>
+</igMap:XamMap>
+----
+
+endif::wpf[]
+
+*Visual Basic の場合:*
+
+----
+Private Sub statesLayer_Imported(ByVal sender As System.Object, ByVal e As Infragistics.Controls.Maps.MapLayerImportEventArgs)
+        If e.Action = MapLayerImportAction.End Then
+                ' Name プロパティを使用して要素を検索します 
+                Dim newYork As MapElement = map1.Layers(0).Elements.FindElement("Name", "New York").ElementAt(0)
+                ' デカルト座標から Point データを取得します 
+                Dim nyOrigin As New Point(newYork.WorldRect.X + 350000, newYork.WorldRect.Y + 300000)
+                ' 要素を作成します 
+                Dim element As New SymbolElement()
+                element.SymbolOrigin = nyOrigin
+                element.Caption = "Best Pizzarias"
+                element.SymbolType = MapSymbolType.None
+                element.SymbolSize = 20
+                ' Value Template を使用できるように任意の値を指定します 
+                element.Value = 1
+                map1.Layers(1).Elements.Add(element)
+                ' 追加された図形のために十分なスペースを作ります 
+                Dim worldRect As Rect = map1.Layers(1).WorldRect
+                worldRect.Union(element.WorldRect)
+                map1.Layers(1).WorldRect = worldRect
+        End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void statesLayer_Imported(object sender, Infragistics.Controls.Maps.MapLayerImportEventArgs e)
+{
+   if (e.Action == MapLayerImportAction.End)
+   {
+      // Name プロパティを使用して要素を検索します
+      MapElement newYork = map1.Layers[0].Elements.FindElement("Name", "New York").ElementAt<MapElement>(0);
+      // デカルト座標から Point データを取得します
+      Point nyOrigin = new Point(newYork.WorldRect.X + 350000, newYork.WorldRect.Y + 300000);
+      // 要素を作成します
+      SymbolElement element = new SymbolElement() { SymbolOrigin = nyOrigin, Caption = "Best Pizzarias", SymbolType = MapSymbolType.None, SymbolSize = 20 };
+      // Value Template を使用できるように任意の値を指定します
+      element.Value = 1;
+      map1.Layers[1].Elements.Add(element);
+      // 追加された図形のために十分なスペースを作ります
+      Rect worldRect = map1.Layers[1].WorldRect;
+      worldRect.Union(element.WorldRect);
+      map1.Layers[1].WorldRect = worldRect;
+   }
+}
+----
+
+image::images/XamMap_Add_Image_Using_Map_Elements_01.png[]
+
+== 関連トピック
+
+link:xamwebmap-add-symbol-element.html[記号要素の追加]
+
+link:xamwebmap-add-path-element.html[パス要素の追加]
+
+link:xamwebmap-add-surface-element.html[表面要素の追加]
+
+link:xamwebmap-map-elements-color-map-elements.html[マップ要素に色を付ける]
+
+link:xamwebmap-set-custom-format-string.html[カスタムのフォーマット文字列を設定]

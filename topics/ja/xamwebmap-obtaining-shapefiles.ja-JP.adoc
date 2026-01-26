@@ -1,0 +1,111 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-obtaining-shapefiles",
+    "controlName": ["xamMap"],
+    "tags": ["Tips and Tricks"],
+    "guid": "{93F37AF0-3BCC-4EB8-9B4D-47458BB194D3}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1092275Z"
+}
+|metadata|
+////
+
+= シェープファイルの取得
+
+以下はマップ、シェープファイル、およびシェープファイルに関連するリンクについての情報のリストです。
+
+== シェープファイル
+
+* ESRI シェープファイル フォーマット 
+
+ESRI シェープファイル技術解説 (英語)
+
+link:http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf[http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf]
+
+Wikipedia シェープファイル概要
+
+link:http://ja.wikipedia.org/wiki/シェープファイル[http://ja.wikipedia.org/wiki/シェープファイル]
+
+* シェープファイル データ ソース 
+
+ESRI 世界地図データ (英語)
+
+link:http://www.esri.com/data/download/basemap/index.html[http://www.esri.com/data/download/basemap/index.html]
+
+ESRI 国勢調査 2000 TIGER/Line Data (英語)
+
+link:http://www.esri.com/data/download/census2000_tigerline/index.html[http://www.esri.com/data/download/census2000_tigerline/index.html]
+
+CSS シェープファイル (英語)
+
+link:http://www.cdc.gov/epiinfo/shape.htm[http://www.cdc.gov/epiinfo/shape.htm]
+
+米国国勢地図 (英語)
+
+link:http://www.nationalatlas.gov/atlasftp.html[http://www.nationalatlas.gov/atlasftp.html]
+
+米国勢調査局 (英語)
+
+link:http://www.census.gov/geo/www/cob/index.html[http://www.census.gov/geo/www/cob/index.html]
+
+link:http://www.census.gov/cgi-bin/geo/shapefiles/national-files[http://www.census.gov/cgi-bin/geo/shapefiles/national-files]
+
+マサチューセッツ地域情報システム (英語)
+
+link:http://www.mass.gov/mgis/massgis.htm[http://www.mass.gov/mgis/massgis.htm]
+
+== マップ参考資料
+
+* 概説 
+
+Wikipedia - マップ製作法 (英語)
+
+link:http://en.wikipedia.org/wiki/Cartography[http://en.wikipedia.org/wiki/Cartography]
+
+緯度、経度、度、分、秒を10 進数に計算 (英語)
+
+link:http://www.satsig.net/degrees-minutes-seconds-calculator.htm[http://www.satsig.net/degrees-minutes-seconds-calculator.htm]
+
+* 投影法 
+
+マップ投影法の概要 (英語)
+
+link:http://www.colorado.edu/geography/gcraft/notes/mapproj/mapproj_f.html[http://www.colorado.edu/geography/gcraft/notes/mapproj/mapproj_f.html]
+
+マップ投影 (英語)
+
+link:http://www.galleryofmapprojections.com[http://www.galleryofmapprojections.com]
+
+* その他 
+
+カナダの統計 - テーマ別のマップ (英語)
+
+link:http://geodepot.statcan.ca/Diss/Maps/ThematicMaps/Index_e.cfm[http://geodepot.statcan.ca/Diss/Maps/ThematicMaps/Index_e.cfm]
+
+米国地質調査所 (英語)
+
+link:http://www.usgs.gov[http://www.usgs.gov]
+
+== データ ポータル
+
+AGIS - 無料マップおよび地理的な名前データのソースへのリンク (英語)
+
+link:http://www.agismap.com/webgis.html[http://www.agismap.com/webgis.html]
+
+カナダの GIS リソース (英語)
+
+link:http://gislounge.com/ll/canadianresources.shtml[http://gislounge.com/ll/canadianresources.shtml]
+
+GIS データ デポ (英語)
+
+link:http://data.geocomm.com[http://data.geocomm.com]
+
+UNC 大学図書館 - GIS Data Finder (英語)
+
+link:http://www.lib.unc.edu/reference/gis/datafinder/index.html[http://www.lib.unc.edu/reference/gis/datafinder/index.html]
+
+北米交通地図データ (英語)
+
+link:http://www.bts.gov/publications/north_american_transportation_atlas_data[http://www.bts.gov/publications/north_american_transportation_atlas_data]

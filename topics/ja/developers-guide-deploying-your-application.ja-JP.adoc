@@ -1,0 +1,940 @@
+﻿////
+
+|metadata|
+{
+    "name": "developers-guide-deploying-your-application",
+    "controlName": [],
+    "tags": ["How Do I"],
+    "guid": "{A5C3EA0C-364E-41D5-8C00-B0046A0AF471}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T15:17:19.5555974Z"
+}
+|metadata|
+////
+
+= アプリケーションの配備
+
+{ProductName}™ のツールを含むアプリケーションを配備するには、まず第 1 ステップとして配備パッケージとして含める必要のあるリソースを決定します。
+
+$$.NET$$ アプリケーションを配備する時、実行ファイルに加えて特定のファイルを配布する必要があります。アプリケーションに 1 つ以上の Infragistics 要素を含む場合、アプリケーションの一部として 1 つ以上の Infragistics アセンブリ ファイルを配布または配備する必要があります。このトピックでは、再配布する必要があるファイルの概要を述べます。
+
+[NOTE]
+====
+*注:* このトピックで具体的に説明されていないファイルは、再配布不可能と見なしてください。Infragistics 製品に含まれているファイルで一覧にないファイルは配布できません。Infagistics 製品のライセンスのない他のマシンへのコピー、移動、共有が禁止されています。
+====
+
+== すべてのコントロール/コンポーネントで必要なアセンブリ
+
+各コントロール/コンポーネントにリストされる個々のアセンブリ ファイルに加えて、{PlatformName} コントロール/コンポーネントを配備するには次のファイルの再配布も必要です。
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{RootAssembly}{ApiVersion}.html[{VersionedApiPlatform}.v{ProductVersion}.dll]
+|Infragistics アセンブリによって使用される機能を含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}datavisualization{ApiVersion}.html[{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll]
+|Infragistics アセンブリによって使用される機能を含む {ProductName} アセンブリ。これは以下の機能を含みます: 
+
+* link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamdock.html[xamDock] 
+
+* link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[xamZoombar] 
+
+* link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamoverviewplusdetailpane.html[xamOverviewPlusDetailPane] 
+
+|====
+
+== 個々のコントロール/コンポーネントで必要なアセンブリ
+
+以下の表は、それぞれの個々のコントロールまたはコンポーネントを配備する時にどのアセンブリが必要であるかを識別します。
+
+== Drag and Drop Framework
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.DragDrop.v{ProductVersion}.dll
+|Drag and Drop Framework を含む {ProductName} アセンブリ
+
+|====
+
+== ドキュメントの機能
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}documents.core{ApiVersion}.html[{VersionedApiPlatform}.Documents.Core.v{ProductVersion}.dll]
+|コア ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.excel{ApiVersion}.html[{VersionedApiPlatform}.Documents.Excel.v{ProductVersion}.dll]
+|Excel ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.io{ApiVersion}.html[{VersionedApiPlatform}.Documents.IO.v{ProductVersion}.dll]
+|IO 操作に関連するドキュメント機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}.html[{VersionedApiPlatform}.Documents.RichTextDocument.v{ProductVersion}.dll]
+|リッチ テキスト ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}.html[{VersionedApiPlatform}.Documents.RichTextDocument.Html.v{ProductVersion}.dll]
+|HTML リッチ テキスト ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}.html[{VersionedApiPlatform}.Documents.RichTextDocument.Rtf.v{ProductVersion}.dll]
+|RTF リッチ テキスト ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}.html[{VersionedApiPlatform}.Documents.RichTextDocument.Word.v{ProductVersion}.dll]
+|Word リッチ テキスト ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}.html[{VersionedApiPlatform}.Documents.TextDocument.v{ProductVersion}.dll]
+|テキスト ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.textdocument.csharp{ApiVersion}.html[{VersionedApiPlatform}.Documents.TextDocument.CSharp.v{ProductVersion}.dll]
+|C# テキスト ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.textdocument.tsql{ApiVersion}.html[{VersionedApiPlatform}.Documents.TextDocument.TSql.v{ProductVersion}.dll]
+|TSQL テキスト ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.textdocument.visualbasic{ApiVersion}.html[{VersionedApiPlatform}.Documents.TextDocument.VisualBasic.v{ProductVersion}.dll]
+|VB テキスト ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+|====
+
+== Infragistics Barcode Reader
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}.html[{VersionedApiPlatform}.Controls.Barcodes.BarcodeReader.v{ProductVersion}.dll]
+|Infragistics link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes_namespace.html[Barcode Reader] を含む {ProductName} アセンブリ。
+
+|====
+
+== Infragistics Control Persistence Framework
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}persistence{ApiVersion}.html[{VersionedApiPlatform}.Persistence.v{ProductVersion}.dll]
+|Infragistics Control Persistence Framework を含む {ProductName} アセンブリ
+
+|====
+
+== Infragistics Excel Engine
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}documents.excel{ApiVersion}.html[{VersionedApiPlatform}.Documents.Core.v{ProductVersion}.dll]
+|コア ドキュメントに関連する機能を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.excel{ApiVersion}.html[{VersionedApiPlatform}.Documents.Excel.v{ProductVersion}.dll]
+|Infragistics Excel Engine を含む {ProductName} アセンブリ。
+
+|====
+
+== Infragistics Math Library
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}math{ApiVersion}.html[{VersionedApiPlatform}.Math.v{ProductVersion}.dll]
+|Math Library を含む {ProductName} アセンブリ
+
+|====
+
+== Infragistics 数学計算式
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}math.calculators{ApiVersion}.html[{VersionedApiPlatform}.Math.Calculators.v{ProductVersion}.dll]
+|平均、中央値、バリアンスなどを計算するための link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Math Calculators] を含む {ProductName} アセンブリ
+
+|====
+
+== テーマ アセンブリ
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Themes.Fall.v{ProductVersion}.dll
+|Fall テーマを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Themes.ForestGreen.v{ProductVersion}.dll
+|ForestGreen テーマを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Themes.Leaf.v{ProductVersion}.dll
+|Leaf テーマを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Themes.Lipstick.v{ProductVersion}.dll
+|Lipstick テーマを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Themes.Water.v{ProductVersion}.dll
+|Water テーマを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Themes.Wind.v{ProductVersion}.dll
+|Wind テーマを含む {ProductName} アセンブリ
+
+|====
+
+== WPF Reporting
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Reporting.v{ProductVersion}.dll
+|WPF レポート エンジンおよび xamReportPreview™ コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamBarcode
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.barcodes{ApiVersion}.html[{VersionedApiPlatform}.Controls.Barcodes.v{ProductVersion}.dll]
+|バーコード記号の link:{ApiPlatform}controls.barcodes{ApiVersion}~infragistics.controls.barcodes_namespace.html[xamBarcode] セットを含む {ProductName} アセンブリ。
+
+|====
+
+== xamBulletGraph
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.gauges{ApiVersion}.html[{VersionedApiPlatform}.Controls.Gauges.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.gauges{ApiVersion}~infragistics.controls.gauges.xambulletgraph.html[xamBulletGraph] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamCalculationManager
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}.html[{VersionedApiPlatform}.Calculations.XamCalculationManager.v{ProductVersion}.dll]
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.xamcalculationmanager_members.html[xamCalculationManager] コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamCalendar
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamCalendar.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors.xamcalendar_members.html[xamCalendar] コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamCarouselListBox
+
+WPF アセンブリに配置されています。追加のファイルは不要です。
+
+== xamCarouselPanel
+
+WPF アセンブリに配置されています。追加のファイルは不要です。
+
+== xamColorPicker
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamColorPicker.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.controls.editors.xamcolorpicker_members.html[xamColorPicker] コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamComboEditor
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamComboEditor.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor_members.html[xamComboEditor] コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamContextMenu
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll
+| pick:[sl,wpf="xamContextMenu コントロールを含む {ProductName} アセンブリ"] 
+
+|====
+
+== xamDataCarousel
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.DataPresenter.v{ProductVersion}.dll
+|xamDataCarousel コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Editors.v{ProductVersion}.dll
+|xamEditor コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamDataChart
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.XamDataChart.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xamdatachart.html[xamDataChart] コントロールを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}.html[{VersionedApiPlatform}.Math.Calculators.v{ProductVersion}.dll]
+|シリーズ誤差範囲または値オーバーレイ機能を xamDataChart コントロールで link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Math Calculators] と共に使用する時に必要とされる {ProductName} アセンブリ。
+
+| link:{ApiPlatform}math{ApiVersion}.html[{VersionedApiPlatform}.Math.v{ProductVersion}.dll]
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Math Calculators] を xamDataChart コントロールで使用する時に必要とされる {ProductName} アセンブリ。
+
+|====
+
+== xamDataChart OlapAxis, xamOlapPieChart
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.charts.olap{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.Olap.v{ProductVersion}.dll]
+|xamDataChart の link:{ApiPlatform}controls.charts.olap{ApiVersion}~infragistics.controls.charts.xamolappiechart.html[XamOlapPieChart] および OlapXAxis を含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}olap{ApiVersion}.html[{VersionedApiPlatform}.Olap.v{ProductVersion}.dll]
+|OLAP データ ソースに関連するクラスを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.XamDataChart.v{ProductVersion}.dll]
+|xamDataChart コントロールを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}.html[{VersionedApiPlatform}.Controls.Menus.XamDataTree.v{ProductVersion}.dll]
+|xamDataTree コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamDataGrid
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.DataPresenter.v{ProductVersion}.dll
+|xamDataGrid コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Editors.v{ProductVersion}.dll
+|xamEditor コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamDataPresenter
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.DataPresenter.v{ProductVersion}.dll
+|xamDataPresenter コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Editors.v{ProductVersion}.dll
+|xamEditor コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamDataPresenter Calculation Adapter, xamDataPresenter Excel Exporter, xamDataPresenter Asynchronous Data Source, xamDataPresenter Word Writer
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}datapresenter.calculationadapter{ApiVersion}.html[{VersionedApiPlatform}.DataPresenter.CalculationAdapter.v{ProductVersion}.dll]
+|CalculationAdapter クラスを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}.html[{VersionedApiPlatform}.DataPresenter.ExcelExporter.v{ProductVersion}.dll]
+|DataPresenterExcelExporter クラスを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}.html[{VersionedApiPlatform}.DataPresenter.DataSources.Async.v{ProductVersion}.dll]
+|AsyncPagingDataSourceBase クラスを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}.html[{VersionedApiPlatform}.DataPresenter.WordWriter.v{ProductVersion}.dll]
+|DataPresenter Word Exporter クラスを含む {ProductName}アセンブリ。
+
+|====
+
+== xamDataTree
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Menus.XamDataTree.v{ProductVersion}.dll
+|xamDataTree コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.DragDrop.v{ProductVersion}.dll
+|Drag and Drop Framework を含む {ProductName} アセンブリ
+
+|====
+
+== xamDateTimeInput
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Editors.XamMaskedInput.v{ProductVersion}.dll
+|MaskedInput コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Controls.Editors.XamDateTimeInput.v{ProductVersion}.dll
+|xamDateTimeInput コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Controls.Editors.XamCalendar.v{ProductVersion}.dll
+|xamCalendar コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamDiagram
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.xamDiagram.v{ProductVersion}.dll]
+|xamDiagram コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamDialogWindow
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Interactions.XamDialogWindow.v{ProductVersion}.dll
+|xamDialogWindow コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamDockManager
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}dockmanager{ApiVersion}.html[{VersionedApiPlatform}.DockManager.v{ProductVersion}.dll]
+|xamDockManager コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll
+|xamMenu コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamFormulaEditor
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Calculations.XamCalculationManager.v{ProductVersion}.dll
+|xamCalculationManager コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Controls.Interactions.XamFormulaEditor.v{ProductVersion}.dll
+|xamFormulaEditor コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Controls.Interactions.XamDialogWindow.v{ProductVersion}.dll
+|xamDialogWindow コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Controls.Menus.XamDataTree.v{ProductVersion}.dll
+|xamDataTree コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamFunnelChart
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.XamDataChart.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xamfunnelchart.html[xamFunnelChart] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamGantt
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}.html[{VersionedApiPlatform}.Controls.Schedules.XamGantt.v{ProductVersion}.dll]
+|xamGantt コントロールを含む {ProductName} アセンブリ
+
+ifdef::wpf[]
+| link:{ApiPlatform}datamanager{ApiVersion}.html[{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll]
+|DataManager コンポーネントを含む {ProductName} アセンブリ
+endif::wpf[]
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}.html[{VersionedApiPlatform}.Controls.Schedules.v{ProductVersion}.dll]
+|スケジュールに関連するコントロールを含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamCalendar.v{ProductVersion}.dll]
+|xamCalendar コントロールを含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}.html[{VersionedApiPlatform}.Controls.Grids.XamGrid.v{ProductVersion}.dll]
+|xamGrid コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== XamGeographicMap
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}.html[{VersionedApiPlatform}.Controls.Maps.XamGeographicMap.v{ProductVersion}.dll]
+|xamGeographicMap コントロールを含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.XamDataChart.v{ProductVersion}.dll]
+|xamDataChart コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamGrid
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Grids.XamGrid.v{ProductVersion}.dll
+|xamGrid コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamGrid DateTime Column, xamGrid MultiColumnCombo Column, xamGrid Sparkline Column
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.grids.datetimecolumn{ApiVersion}.html[{VersionedApiPlatform}.Controls.Grids.DateTimeColumn.v{ProductVersion}.dll]
+|xamGrid コントロールの DateTime 列を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}controls.grids.multicolumncombocolumn{ApiVersion}.html[{VersionedApiPlatform}.Controls.Grids.MultiColumnComboColumn.v{ProductVersion}.dll]
+|xamGrid コントロールの MultiColumnComboBox 列を含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}.html[{VersionedApiPlatform}.Controls.Grids.SparklineColumn.v{ProductVersion}.dll]
+|xamGrid コントロールの SparklineColumn 列を含む {ProductName} アセンブリ
+
+|====
+
+== xamLinearGauge
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.gauges{ApiVersion}.html[{VersionedApiPlatform}.Controls.Gauges.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.gauges{ApiVersion}~infragistics.controls.gauges.xamlineargauge.html[XamLinearGauge] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamMap
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}.html[{VersionedApiPlatform}.Controls.Maps.XamMap.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamMaskedInput、xamCurrencyInput、xamNumericInput
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamMaskedInput.v{ProductVersion}.dll]
+|MaskedInput コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamMenu
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll
+|xamMenu コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamMultiColumnComboEditor
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Editors.XamComboEditor.v{ProductVersion}.dll
+|コンボ エディターを含む {ProductName} アセンブリ
+
+|====
+
+== xamNetworkNode
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}.html[{VersionedApiPlatform}.Controls.Maps.XamNetworkNode.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamOrgChart
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}.html[{VersionedApiPlatform}.Controls.Maps.XamOrgChart.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart.html[xamOrgChart] コントロールを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}datamanager{ApiVersion}.html[{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll]
+|コレクション タイプを解決するためのロジックを含む {ProductName} アセンブリ。
+
+|====
+
+== xamOutlookBar
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}outlookbar{ApiVersion}.html[{VersionedApiPlatform}.OutlookBar.v{ProductVersion}.dll]
+|xamOutlookBar コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamOverviewPlusDetailPane
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}datavisualization{ApiVersion}.html[{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll]
+| link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamoverviewplusdetailpane.html[xamOverviewPlusDetailPane] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamPieChart
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.XamDataChart.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xampiechart.html[xamPieChart] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamPivotGrid
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}.html[{VersionedApiPlatform}.Controls.Grids.XamPivotGrid.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] および link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector.html[xamPivotDataSelector] コントロールを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}controls.grids.xampivotdataslicer{ApiVersion}.html[{VersionedApiPlatform}.Controls.Grids.XamPivotDataSlicer.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.grids.xampivotdataslicer{ApiVersion}~infragistics.controls.grids.xampivotdataslicer.html[xamPivotDataSlicer] コントロールを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}.html[{VersionedApiPlatform}.Controls.Menus.XamDataTree.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree.html[xamDataTree] を含む {ProductName} アセンブリで、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] および link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector.html[xamPivotDataSelector] に必要となります。
+
+| link:{ApiPlatform}dragdrop{ApiVersion}.html[{VersionedApiPlatform}.DragDrop.v{ProductVersion}.dll]
+| link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop_namespace.html[Drag and Drop] を含む {ProductName} アセンブリで、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] および link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector.html[xamPivotDataSelector] に必要となります。
+
+| link:{ApiPlatform}olap{ApiVersion}.html[{VersionedApiPlatform}.Olap.v{ProductVersion}.dll]
+|データ ソースの基本クラスを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}documents.excel{ApiVersion}.html[{VersionedApiPlatform}.Documents.Excel.v{ProductVersion}.dll]
+| link:{ApiPlatform}olap.excel{ApiVersion}~infragistics.olap.excel_namespace.html[Olap.Excel] データ ソースの基本クラスを含む {ProductName} アセンブリ。
+
+|
+
+* link:{ApiPlatform}olap.xmla{ApiVersion}.html[{VersionedApiPlatform}.Olap.Xmla.v{ProductVersion}.dll] 
+
+* link:{ApiPlatform}olap.xmla.oracle{ApiVersion}.html[{VersionedApiPlatform}.Olap.Xmla.Oracle.v{ProductVersion}.dll] 
+
+* link:{ApiPlatform}olap.xmla.sap{ApiVersion}.html[{VersionedApiPlatform}.Olap.Xmla.Sap.v{ProductVersion}.dll] 
+
+* link:{ApiPlatform}olap.flatdata{ApiVersion}.html[{VersionedApiPlatform}.Olap.FlatData.v{ProductVersion}.dll] 
+
+* link:{ApiPlatform}olap.excel{ApiVersion}.html[{VersionedApiPlatform}.Olap.Excel.v{ProductVersion}.dll] 
+
+* link:{ApiPlatform}olap.adomd{ApiVersion}.html[{VersionedApiPlatform}.Olap.Adomd.v{ProductVersion}.dll] 
+
+|
+
+* link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla_namespace.html[Olap.Xmla] データ ソースを含む {ProductName} アセンブリ。 
+
+* link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata_namespace.html[Olap.FlatData] データ ソースを含む {ProductName} アセンブリ。 
+
+* link:{ApiPlatform}olap.excel{ApiVersion}~infragistics.olap.excel_namespace.html[Olap.Excel] データ ソースを含む {ProductName} アセンブリ。 
+
+* link:{ApiPlatform}olap.adomd{ApiVersion}~infragistics.olap.adomd_namespace.html[Olap.Adomd] データ ソースを含む {ProductName} アセンブリ。 
+
+|====
+
+== xamPropertyGrid™
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamPropertyGrid.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid.html[XamPropertyGrid] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamRadialGauge
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.gauges{ApiVersion}.html[{VersionedApiPlatform}.Controls.Gauges.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.gauges{ApiVersion}~infragistics.controls.gauges.xamradialgauge.html[{RadialGaugeName}] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamRadialMenu
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}.html[{VersionedApiPlatform}.Controls.Menus.XamRadialMenu.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[xamRadialMenu] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamRibbon
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Ribbon.v{ProductVersion}.dll
+|xamRibbon コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamRichTextEditor
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamRichTextEditor.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[XamRichTextEditor] コントロールを含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}undo{ApiVersion}.html[{VersionedApiPlatform}.Undo.v{ProductVersion}.dll]
+|Undo/Redo Framework を含む {ProductName} アセンブリ。
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}.html[{VersionedApiPlatform}.Documents.RichTextDocument.v{ProductVersion}.dll]
+|リッチ テキスト ドキュメントに関連するロジックを含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}.html[{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenu.html[xamMenu] コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamSchedule
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Schedules.v{ProductVersion}.dll
+|xamSchedule コントロールを含む {ProductName} アセンブリ
+
+|{VersionedApiPlatform}.Controls.SchedulesDialogs.v{ProductVersion}.dll
+|xamSchedule ダイアログを含む {ProductName} アセンブリ
+
+|====
+
+== xamSchedule 拡張機能
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.schedulesdialogs{ApiVersion}.html[{VersionedApiPlatform}.Controls.SchedulesDialogs.v{ProductVersion}.dll]
+|xamSchedule ダイアログを含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}.html[{VersionedApiPlatform}.Controls.SchedulesExchangeConnector.v{ProductVersion}.dll]
+|xamSchedule コネクターを含む {ProductName} アセンブリ
+
+|====
+
+== xamSlider
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.editors.xamslider{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamSlider.v{ProductVersion}.dll]
+|以下のコントロールを含む {ProductName} アセンブリ。 
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimeslider.html[xamDateTimeSlider] 
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimerangeslider.html[xamDateTimeRangeSlider] 
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericslider.html[xamNumericSlider] 
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericrangeslider.html[xamNumericRangeSlider] 
+
+|====
+
+== xamSparkline
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.XamSparkline.v{ProductVersion}.dll]
+|xamSparkline コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamScatterSurface3D™
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.charts.xamsurfacechart3d{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.XamSurfaceChart3D.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.charts.xamsurfacechart3d{ApiVersion}~infragistics.controls.charts.xamscattersurface3d.html[xamScatterSurface3D] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamSpellChecker
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Interactions.XamSpellChecker.v{ProductVersion}.dll
+|xamSpellChecker コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamSpreadSheet
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Grids.XamSpreadsheet.v{ProductVersion}.dll
+|xamSpreadsheet コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== XamSyntaxEditor
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}.html[{VersionedApiPlatform}.Controls.Editors.XamSyntaxEditor.v{ProductVersion}.dll]
+|xamSyntaxEditor コントロールを含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}.html[{VersionedApiPlatform}.Documents.TextDocument.v{ProductVersion}.dll]
+|テキスト ドキュメントに関連するロジックを含む {ProductName} アセンブリ
+
+| link:{ApiPlatform}undo{ApiVersion}.html[{VersionedApiPlatform}.Undo.v{ProductVersion}.dll]
+|Undo/Redo Framework を含む {ProductName} アセンブリ。
+
+|====
+
+== xamTabControl
+
+WPF アセンブリに配置されています。追加のファイルは不要です。
+
+== xamTagCloud
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Menus.XamTagCloud.v{ProductVersion}.dll
+|xamTagCloud コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamTileManager
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+|{VersionedApiPlatform}.Controls.Layouts.XamTileManager.v{ProductVersion}.dll
+|xamTileManager コントロールを含む {ProductName} アセンブリ
+
+|====
+
+== xamTimeline
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}.html[{VersionedApiPlatform}.Controls.Timelines.XamTimeline.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamTreemap
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}.html[{VersionedApiPlatform}.Controls.Charts.XamTreemap.v{ProductVersion}.dll]
+| link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.xamtreemap.html[xamTreemap]コントロールを含む {ProductName} アセンブリ。
+
+|====
+
+== xamZoombar
+
+[options="header", cols="a,a"]
+|====
+|ファイル名|説明
+
+| link:{ApiPlatform}datavisualization{ApiVersion}.html[{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll]
+| link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[xamZoombar] コントロールを含む {ProductName} アセンブリ。
+
+|====

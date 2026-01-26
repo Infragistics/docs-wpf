@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-highlight-methods",
+    "controlName": ["xamOrgChart"],
+    "tags": ["How Do I"],
+    "guid": "a331fc7e-9079-4944-a7c2-743b76c17165",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6952692Z"
+}
+|metadata|
+////
+
+= 強調表示メソッド
+
+link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode.html[OrgChartNode] オブジェクトには、ノードのトラバーサルを容易にする以下のメソッドがあります。
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode~highlight.html[fromNode.Highlight(OrgChartNode toNode)] - ソースおよび格納先ノード間のパスを表す OrgChartNode オブジェクトのコレクションを返します。このメソッドは xamOrgChart コントロールでも呼び出すことができます - link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~highlight.html[orgChart.Highlight(OrgChartNode fromNode, OrgChartNode toNode)]。 
+
+[NOTE]
+====
+*注:*
+
+返されるコレクションには、ソースおよび格納先ノードが含まれます。
+====
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode~highlightchildren.html[fromNode.HighlightChildren(int levels)] - ソース ノードに関係するすべての子ノードを表す OrgChartNode オブジェクトのコレクションを返します。(int levels) で、レベルはソース ノードの下の階層レベルの数を指します。 
+
+[NOTE]
+====
+*注:*
+
+返されるコレクションにはソース ノードは含まれません。
+====
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode~highlightparents.html[fromNode.HighlightParents(int levels)] - ソース ノードに関係するすべての親ノードを表す OrgChartNode オブジェクトのコレクションを返します。(int levels) で、レベルはソース ノードの上の階層レベルの数を指します。 
+
+[NOTE]
+====
+*注:*
+
+返されるコレクションにはソース ノードは含まれません。
+====
+
+[NOTE]
+====
+*注:*
+
+Highlight メソッドが返すコレクションには改造構造がありません。つまり、階層はフラットです。
+====
+
+== コード例
+
+以下のコードは、OrgChart の階層を OrgChartNode のフラットなコレクションに変換します。
+
+*Visual Basic の場合:*
+
+----
+Dim flatHierarchy As IEnumerable(Of OrgChartNode) = orgChart.RootNode.HighlightChildren(orgChart.ActualDepth)
+----
+
+*C# の場合:*
+
+----
+IEnumerable<OrgChartNode> flatHierarchy = orgChart.RootNode.HighlightChildren(orgChart.ActualDepth);
+----
+
+== *関連トピック*
+
+link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]

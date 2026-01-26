@@ -1,0 +1,119 @@
+﻿////
+
+|metadata|
+{
+    "name": "designersguide-styling-points",
+    "controlName": [],
+    "tags": [],
+    "guid": "8529fd74-b9e6-4c63-b231-d6140872e01c",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T18:11:57.7880707Z"
+}
+|metadata|
+////
+
+= スタイリング ポイント
+
+ifdef::sl,wpf,win-rt[]
+link:designersguide-styling-points-for-xamcalendar.html[xamCalendar のスタイリング ポイント]
+endif::sl,wpf,win-rt[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamcolorpicker.html[xamColorPicker のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamcomboeditor.html[xamComboEditor のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamcontextmenu.html[xamContextMenu のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf,win-phone,win-rt[]
+link:designers-guide-styling-points-for-xamdatachart.html[xamDataChart のスタイリング ポイント]
+endif::sl,wpf,win-phone,win-rt[]
+
+ifdef::wpf[]
+link:wpf-working-with-xamdatagrid-xamdatacarousel-and-xamdatapresenter-styling-points.html[xamDataGrid、xamDataCarousel および xamDataPresenter のスタイリング ポイント]
+endif::wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamdatatree.html[xamDataTree のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamdialogwindow.html[xamDialogWindow のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designersguide-styling-points-for-xamformulaeditor.html[xamFormulaEditor のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf,win-phone[]
+link:designersguide-styling-points-for-xamfunnelchart.html[xamFunnelChart のスタイリング ポイント]
+endif::sl,wpf,win-phone[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamgantt.html[xamGantt のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf,win-rt[]
+link:designers-guide-styling-points-for-xamgrid.html[xamGrid のスタイリング ポイント]
+endif::sl,wpf,win-rt[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamgeographicmap.html[xamGeographicMap のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf,win-phone,win-rt[]
+link:designersguide-styling-points-for-xaminputs.html[xamInputs のスタイリング ポイント]
+endif::sl,wpf,win-phone,win-rt[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xammap.html[xamMap のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xammenu.html[xamMenu のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xammulticolumncomboeditor.html[xamMultiColumnComboEditor のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamnetworknode.html[xamNetworkNode のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf,win-phone[]
+link:designers-guide-styling-points-for-xampiechart.html[xamPieChart のスタイリング ポイント]
+endif::sl,wpf,win-phone[]
+
+ifdef::sl,wpf[]
+link:designersguide-styling-points-for-xampivotgrid.html[xamPivotGrid のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamschedule.html[xamSchedule のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamsparkline.html[xamSparkline のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamspellchecker.html[xamSpellChecker のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designers-guide-styling-points-for-xamtagcloud.html[xamTagCloud のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf[]
+link:designersguide-styling-points-for-xamtilemanager.html[xamTileManager のスタイリング ポイント]
+endif::sl,wpf[]
+
+ifdef::sl,wpf,win-phone[]
+link:designers-guide-styling-points-for-xamtreemap.html[xamTreeMap のスタイリング ポイント]
+endif::sl,wpf,win-phone[]

@@ -1,0 +1,20 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-2008-volume-1",
+    "controlName": [],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{1FA58C40-11BD-4FF2-80D3-46E0FA067BBB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.6686869Z"
+}
+|metadata|
+////
+
+= 2008 Volume 1
+
+* *xamRibbon™ での DataContext の処理* - xamRibbon コントロールは、DataContext プロパティを設定するテンプレート内で WPF 機能 (たとえば、ItemsSource、DataTemplate) を使用します。xamRibbon コントロールは、コントロールまたはその祖先のひとつに設定された DataContext プロパティを可能な時に保持するために変更されました。この変更に適応させるために、ApplicationMenuPresenter テンプレートと RibbonGroupCollection の DataTemplate が修正されました。
+* *xamChart™ の Theme プロパティ* - xamChart コントロールの Theme プロパティは、列挙体から文字列に変更されました。これは、その他の {ProductName} コントロールに一致するだけでなく、XamChart コントロールによってカスタム テーマを登録および使用することを可能にするために実行されました。
+* *xamScreenTip の GetThemeGroupings メソッド* - 保護された仮想の GetThemeGroupings メソッドは XamScreenTip コントロールから削除されました。代わりに、派生クラスは ThemeManager.RegisterGroupings メソッドを使用して、Theme プロパティを公開するエレメントのためのグループ化を登録します。
+* *ICommandHost インタフェースが変更された* - ICommandHost インタフェースの CanExecute メソッドと Execute メソッドが変更されました。CanExecute は、RoutedCommand オブジェクトと CommandParameter オブジェクトの代わりにパラメーターとして単一の ExecuteCommandInfo オブジェクトを取得するようになりました。Execute は ExecuteRoutedEventArgs オブジェクトの代わりに ExecuteCommandInfo オブジェクトも取得し、コマンド実行が処理されたかどうかを示すブール値を返します。

@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids"],
+    "guid": "31512944-9402-487e-8cf5-8cb7bcd620ad",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6331823Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= xamGrid
+
+このセクションは、xamGrid™ コントロールの使用に関する概要を提供します。このセクションには、コントロールが行うことやコントロールをアプリケーションで使用する理由から、コントロールを使用して共通タスクを達成するための方法の手順など、xamGrid に関する有益な情報が含まれています。
+
+以下のリンクをクリックすると、xamGrid コントロールに関する情報にアクセスできます。
+
+== link:xamgrid-about-xamgrid.html[xamGrid について]
+
+このセクションには、xamGrid コントロールの機能性と、アプリケーション構築の一部としてこれを使用する理由を理解するための、役立つ情報が含まれています。
+
+== link:xamgrid-adding-xamgrid-to-your-page.html[xamGrid をページに追加]
+
+xamGrid コントロールの操作にできるだけ早く慣れることができるように、コントロールを使用した作業の開始に関する情報を提供します。
+
+== link:xamgrid-using-xamgrid.html[xamGrid の使用]
+
+このセクションには、xamGrid コントロールが提供する主な特長と機能に関する情報が含まれています。
+
+== link:xamgrid-api-overview.html[API の概要]
+
+このトピックでは、xamGrid コントロールを使ったプログラミング中に扱う名前空間とクラスについて説明します。このトピックの名前空間とクラスの一覧は、ヘルプの link:api-reference-guide.html[API リファレンス ガイド]へリンクします。

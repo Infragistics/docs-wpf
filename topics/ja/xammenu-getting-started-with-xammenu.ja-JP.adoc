@@ -1,0 +1,181 @@
+﻿////
+|metadata|
+{
+    "name": "xammenu-getting-started-with-xammenu",
+    "controlName": ["xamMenu"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{C4509E90-D8D3-40AF-BF41-2FAB4C86CB0E}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.3402421Z"
+}
+|metadata|
+////
+
+= xamMenu をページに追加
+
+== 始める前に
+
+xamMenu™ コントロールを使用して、アプリケーションでメニューのレイアウトを簡単に設定できます。メニュー項目は、メニューのさまざまなオプションをエンドユーザーに示します。これらの項目を素早く手動で追加する、または IEnumerable コレクションにバインドできます。
+
+== 達成すること
+
+xamMenu コントロールをページに追加し、XAML およびコード ビハインドを使用してメニュー項目を設定する方法を学びます。
+
+== 次の手順を実行します。
+
+[start=1]
+. Microsoft® Visual Studio® で {PlatformName}™ アプリケーションを新規作成します。
+[start=2]
+. 以下の NuGet パッケージへの参照を追加します。
+
+** Infragistics.WPF.Menus
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. xamMenu コントロールの名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:ig=http://schemas.infragistics.com/xaml
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Menus
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Menus;
+----
+
+[start=4]
+. xamMenu コントロールをユーザー コントロールに追加します。コード ビハインドについては、ユーザー コントロールのロード イベントを処理します。
+
+*XAML の場合:*
+
+----
+<ig:XamMenu x:Name="xamMenu1" Height="25">
+   <!-- TODO: メニュー項目を追加します -->
+</ig:XamMenu>
+----
+
+*Visual Basic の場合:*
+
+----
+' メニューを作成します
+Dim menu1 As New XamMenu()
+Me.LayoutRoot.Children.Add(menu1)
+menu1.Height = 25
+' TODO: メニュー項目を追加します
+----
+
+*C# の場合:*
+
+----
+// メニューを作成します
+XamMenu menu1 = new XamMenu();
+this.LayoutRoot.Children.Add(menu1);
+menu1.Height = 25;
+// TODO: メニュー項目を追加します
+----
+
+[start=5]
+. メニュー項目を追加し、メニューでさまざまなオプションを示します。
+
+*XAML の場合:*
+
+----
+<ig:XamMenuItem Header="File">
+   <ig:XamMenuItem Header="New" />
+   <ig:XamMenuItem Header="Open" />
+   <ig:XamMenuItem Header="Exit" />
+</ig:XamMenuItem>
+<ig:XamMenuItem Header="Edit">
+   <ig:XamMenuItem Header="Cut" />
+   <ig:XamMenuItem Header="Copy" />
+   <ig:XamMenuItem Header="Paste" />
+</ig:XamMenuItem>
+----
+
+*Visual Basic の場合:*
+
+----
+' File メニュー項目を作成します
+Dim parentMenuItem As New XamMenuItem()
+parentMenuItem.Header = "File"
+menu1.Items.Add(parentMenuItem)
+' 子項目を File メニュー項目に追加します
+Dim childMenuItem As New XamMenuItem()
+childMenuItem.Header = "New"
+parentMenuItem.Items.Add(childMenuItem)
+childMenuItem = New XamMenuItem()
+childMenuItem.Header = "Open"
+parentMenuItem.Items.Add(childMenuItem)
+childMenuItem = New XamMenuItem()
+childMenuItem.Header = "Exit"
+parentMenuItem.Items.Add(childMenuItem)
+' Edit メニュー項目を作成します
+parentMenuItem = New XamMenuItem()
+parentMenuItem.Header = "Edit"
+menu1.Items.Add(parentMenuItem)
+' 子項目を Edit メニュー項目に追加します
+childMenuItem = New XamMenuItem()
+childMenuItem.Header = "Cut"
+parentMenuItem.Items.Add(childMenuItem)
+childMenuItem = New XamMenuItem()
+childMenuItem.Header = "Copy"
+parentMenuItem.Items.Add(childMenuItem)
+childMenuItem = New XamMenuItem()
+childMenuItem.Header = "Paste"
+parentMenuItem.Items.Add(childMenuItem)
+----
+
+*C# の場合:*
+
+----
+// File メニュー項目を作成します
+XamMenuItem parentMenuItem = new XamMenuItem();
+parentMenuItem.Header = "File";
+menu1.Items.Add(parentMenuItem);
+// 子項目を File メニュー項目に追加します
+XamMenuItem childMenuItem = new XamMenuItem();
+childMenuItem.Header = "New";
+parentMenuItem.Items.Add(childMenuItem);
+childMenuItem = new XamMenuItem();
+childMenuItem.Header = "Open";
+parentMenuItem.Items.Add(childMenuItem);
+childMenuItem = new XamMenuItem();
+childMenuItem.Header = "Exit";
+parentMenuItem.Items.Add(childMenuItem);
+// Edit メニュー項目を作成します
+parentMenuItem = new XamMenuItem();
+parentMenuItem.Header = "Edit";
+menu1.Items.Add(parentMenuItem);
+// 子項目を Edit メニュー項目に追加します
+childMenuItem = new XamMenuItem();
+childMenuItem.Header = "Cut";
+parentMenuItem.Items.Add(childMenuItem);
+childMenuItem = new XamMenuItem();
+childMenuItem.Header = "Copy";
+parentMenuItem.Items.Add(childMenuItem);
+childMenuItem = new XamMenuItem();
+childMenuItem.Header = "Paste";
+parentMenuItem.Items.Add(childMenuItem);
+----
+
+[start=6]
+. アプリケーションを実行します。File および Edit オプションが付いたメニューができました。これらの項目のクリック イベントを処理して、機能をコントロールに追加します。 
+
+image::images/SL_xamMenu_Getting_Started_with_xamMenu_01.png[]
+
+== 関連トピック
+
+link:xammenu-understanding-xammenu.html[xamMenu について]
+
+link:xammenu-using-xammenu.html[xamMenu の使用]

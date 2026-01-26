@@ -1,0 +1,96 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-summaries",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Summaries"],
+    "guid": "{701DFE6A-556D-4C97-B805-32D14C73DD81}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0102037Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 集計
+
+エンド ユーザーは xamGrid コントロールに表示されるデータの量に困惑し、データの集計のみを期待する場合があります。エンドユーザーは、特定の列のデータから追加的な情報を取得したい場合もあります。行集計はこの手助けをします。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowsettings.html[SummaryRowSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowsettings~allowsummaryrow.html[AllowSummaryRow] を RowSummaryLocation の以下の値のいずれかに設定することによって、xamGrid で列の行集計を有効にすることができます。これによって集計が表示される場所が決まります。列挙値は以下のとおりです。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowlocation.html[None] - 集計行は表示されません。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowlocation.html[Top] - 集計行は行アイランドの上に表示されます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowlocation.html[Bottom] - 集計行は行アイランドの下に表示されます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowlocation.html[Both] - 集計行は行アイランドの上下に表示されます。
+
+AllowSummaryRow プロパティを設定すると、xamGrid は列ヘッダーに集計ボタンを表示します。エンドユーザーは集計ボタンをクリックして、集計選択ダイアログ ボックスを表示できます。集計選択ダイアログ ボックスで、表示したい行集計を選択できます。
+
+集計を有効にすると、異なる link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowsettings~summarydefinitioncollection.html[SummaryDefinitionCollection] コレクションを使用できます。たとえば、列レイアウトまたは子バンド コレクションです。使用されるものは、SummaryRowSettings/SummaryRowSettingsOverride オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowsettings~summaryscope.html[SummaryScope] プロパティの値によって異なります。このプロパティを以下の SummaryScope 列挙体のひとつに設定できます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryscope.html[ChildBand] - データの各子バンドは、個別に集計されます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryscope.html[ColumnLayout] - ColumnLayout を共有するすべての行は一緒に集計されます。
+
+列レイアウトの詳細は、 link:xamgrid-define-column-layout.html[列レイアウトの定義]トピックを参照してください。
+
+XAML またはプロシージャー コードを使用して行の集計を手動で追加することもできます。詳細は、 link:xamgrid-programmatically-add-summaries.html[プログラムで集計を追加]を参照してください。
+
+以下のコードは、行集計を有効する方法を示します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamGrid x:Name="MyGrid" AutoGenerateColumns="False">
+      <ig:XamGrid.SummaryRowSettings>
+         <ig:SummaryRowSettings AllowSummaryRow="Top" SummaryScope="ColumnLayout"/>               
+      </ig:XamGrid.SummaryRowSettings>
+      …
+   </ig:XamGrid>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+..
+Me.MyGrid.SummaryRowSettings.AllowSummaryRow = SummaryRowLocation.Top
+Me.MyGrid.SummaryRowSettings.SummaryScope = SummaryScope.ColumnLayout
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+…
+this.MyGrid.SummaryRowSettings.AllowSummaryRow = SummaryRowLocation.Top;
+this.MyGrid.SummaryRowSettings.SummaryScope = SummaryScope.ColumnLayout;
+----
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Whats_New_Summaries_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Whats_New_Summaries_01.png[]
+endif::win-rt[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Whats_New_Summaries_02.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-programmatically-add-summaries.html[プログラムで集計を追加]
+
+link:xamgrid-retrieve-the-result-of-a-summary.html[集計結果を取得]
+
+link:xamgrid-create-a-custom-summary.html[カスタム サマリーの作成]
+
+link:xamgrid-formatting-row-summaries.html[行集計の書式設定]
+
+link:xamgrid-display-summary-row-in-xamgrid-groupby-headers.html[xamGrid GroupBy ヘッダーの集計行の表示]
+
+pick:[win-rt=" link:xamgrid-touch-support.html[タッチ サポート]"]

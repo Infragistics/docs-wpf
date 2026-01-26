@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-record-filtering",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{D6BD8D89-23B8-4DAD-91ED-FA06F00DF9A9}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0169565Z"
+}
+|metadata|
+////
+
+= レコード フィルタリング
+
+
+
+xamDataGrid™ のレコード フィルタリングについての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+* link:xamdatapresenter-add-filter-conditions.html[フィルター条件の追加]
+* link:xamdatagrid-crossfieldrecordfiltering.html[クロス フィールド レコード フィルタリング (xamDataGrid)]
+* link:xamdatapresenter-enable-record-filtering.html[レコード フィルタリングを有効にする]
+* link:xamdatagrid-external-filtering.html[外部フィルタリング]
+* link:xamdatapresenter-modify-the-list-of-operators.html[演算子のリストの修正]
+* link:xamdatapresenter-modify-the-look-of-filtered-records.html[フィルターされたレコードの外観を修正]

@@ -1,0 +1,129 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsparkline-configuring-xamsparkline",
+    "controlName": ["xamSparkline"],
+    "tags": ["Charting","Getting Started"],
+    "guid": "ddccb3ea-aa79-4de2-929b-d7ae6a32243b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.1913538Z"
+}
+|metadata|
+////
+
+= xamSparkline の構成
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}.html[xamSparkline]™ コントロールを構成できる方法の概要を提供します。詳細な構成へのリンク (別個のトピックで使用可能) も提供されます。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+| link:xamsparkline-adding-xamsparkline.html[xamSparkline を追加]
+|このトピックは、コード例を示して、 _xamSparkline_ コントロールをページに、またグリッド セル内で追加する方法を示します。
+
+|====
+
+[[_Ref317078449]]
+== _xamSparkline_   構成の概要
+
+=== xamSparkline 構成の概要図
+
+以下の表は、 _xamSparkline_   コントロールの構成可能な項目を示しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な点|詳細|プロパティ
+
+| link:xamsparkline-defining-the-xamsparkline-type.html[xamSparkline タイプの定義]
+|Sparklines Line、Area、Column または WinLoss のタイプを定義できます。
+| link:xamsparkline-xamsparkline-property-reference.html#DisplayType[DisplayType]
+
+| link:xamsparkline-defining-a-normal-range.html[標準範囲の定義]
+|チャート間の共有領域を定義します ( _水平方向_ )。
+| link:xamsparkline-xamsparkline-property-reference.html#NormalRangeVisibility[NormalRangeVisibility]
+
+| link:xamsparkline-configuring-the-normal-range.html[標準範囲の構成]
+|標準範囲を構成するための項目は、上境界線、下境界線、および色です。
+| link:xamsparkline-xamsparkline-property-reference.html#NormalRangeMinimum[NormalRangeMinimum] 
+
+link:xamsparkline-xamsparkline-property-reference.html#NormalRangeMaximum[NormalRangeMaximum] 
+
+link:xamsparkline-xamsparkline-property-reference.html#NormalRangeFill[NormaRangelFill]
+
+| link:xamsparkline-defining-markers.html[マーカーの定義]
+|Line、Area および Column のチャート タイプでマーカーを表示するために使用されます。
+| link:xamsparkline-xamsparkline-property-reference.html#MarkerVisibility[MarkerVisibility] 
+
+link:xamsparkline-xamsparkline-property-reference.html#HighMarkerVisibility[HighMarkerVisibility] 
+
+link:xamsparkline-xamsparkline-property-reference.html#LowMarkerVisibility[LowMarkerVisibility] 
+
+link:xamsparkline-xamsparkline-property-reference.html#FirstMarkerVisibility[FirstMarkerVisibility] 
+
+link:xamsparkline-xamsparkline-property-reference.html#LastMarkerVisibility[LastMarkerVisibility] 
+
+link:xamsparkline-xamsparkline-property-reference.html#NegativeMarkerVisibility[NegativeMarkerVisibility]
+
+| link:xamsparkline-configuring-markers.html[マーカーの構成]
+|マーカーを構成するための項目は、サイズとカラー ブラシです。
+| link:xamsparkline-xamsparkline-property-reference.html#MarkerSize[MarkerSize] 
+
+link:xamsparkline-xamsparkline-property-reference.html#MarkerBrush[MarkerBrush]
+
+| link:xamsparkline-adding-a-trend-line.html[近似曲線の追加]
+|チャートにトレンドラインを表示します。非常に多くのトレンドラインのタイプの選択肢があります。
+| link:xamsparkline-xamsparkline-property-reference.html#TrendLineType[TrendLineType]
+
+| link:xamsparkline-configuring-the-trend-line.html[近似曲線の構成]
+|トレンドラインを構成する項目は、トレンドライン ブラシ、トレンドライン期間、トレンドライン タイプ、および線の太さです。
+| link:xamsparkline-xamsparkline-property-reference.html#TrendLineBrush[TrendLineBrush] 
+
+link:xamsparkline-xamsparkline-property-reference.html#TrendLinePeriod[TrendLinePeriod] 
+
+link:xamsparkline-xamsparkline-property-reference.html#TrendLineType[TrendLineType] 
+
+link:xamsparkline-xamsparkline-property-reference.html#TrendLineThickness[TrendLineThickness]
+
+| link:xamsparkline-interpolating-unknown-values.html[不明な値の補間]
+|不明な値 (Null または double.NaN) を識別し、補間するか空白ポイントとして表示できます。
+| link:xamsparkline-xamsparkline-property-reference.html#UnknownValuePlotting[UnknownValuePlotting]
+
+| link:xamsparkline-configuring-the-tooltip.html[ツールチップの構成]
+|ツールチップのプレビューを表示して基本設定を示すとともに、コード例を提示してツールチップのカスタマイズ方法も示します。
+| link:xamsparkline-xamsparkline-property-reference.html#ToolTip[ToolTip]
+
+|====
+
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+| link:xamsparkline-adding-xamsparkline.html[xamSparkline を追加]
+|このトピックは、コード例を示して、 _xamSparkline_ コントロールをページに、またグリッド セル内で追加する方法を示します。
+
+| link:xamsparkline-xamsparkline-property-reference.html[xamSparkline プロパティ参照]
+|このトピックは、 _xamSparkline_ コントロールの主なプロパティを説明します。
+
+|====

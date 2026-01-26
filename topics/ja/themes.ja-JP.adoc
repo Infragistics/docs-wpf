@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "themes",
+    "controlName": [],
+    "tags": [],
+    "guid": "379fd799-e7e7-4580-8449-814279d54ddc",  
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-01-30T18:11:27.1160038Z"
+}
+|metadata|
+////
+
+= テーマ
+
+link:designers-guide-using-themes.html[テーマの使用]
+
+link:designers-guide-what-is-a-theme.html[テーマとは?]
+
+link:designers-guide-working-with-themes.html[テーマでの作業]
+
+link:themes-theming-quickstart.html[テーマのクイックスタート]
+
+link:theme-packs.html[テーマパック]
+
+link:ms-controls-implicit-themes.html[MS コントロールの暗黙的テーマ]

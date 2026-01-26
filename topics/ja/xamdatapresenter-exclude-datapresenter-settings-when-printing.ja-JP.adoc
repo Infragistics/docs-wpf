@@ -1,0 +1,79 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-exclude-datapresenter-settings-when-printing",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Printing"],
+    "guid": "{3142D8F3-F17E-4179-B9F0-AE7A4C06B811}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1939919Z"
+}
+|metadata|
+////
+
+= 印刷時に DataPresenter 設定を除外
+
+
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトの link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~print.html[Print] または link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~export.html[Export] メソッドを呼び出すと、WPF Reporting エンジンは DataPresenter コントロールの状態を正確にそのまま印刷/エクスポートします。プリントアウトまたはエクスポートされたファイルは、印刷またはエクスポート前にエンドユーザーが DataPresenter コントロールをどのように操作するのかに基づいています。たとえば、エンドユーザーがフィールドを並べ替える場合、WPF Reporting エンジンは現在の並べ替え順序を使用してレコードを印刷します。ただし、レポートを印刷またはエクスポートする時に特定の DataPresenter コントロール設定を排除できます。
+
+DataPresenter コントロールは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.tabularreportview.html[TabularReportView] クラスのインスタンスに設定できる link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~reportview.html[ReportView] プロパティを公開します。TabularReportView クラスは、特定の DataPresenter 設定を印刷から排除するために設定できる "Exclude"という語で始まる Boolean プロパティを公開しています。
+
+レポートを印刷する時に DataPresenter コントロールの設定を排除するのは以下の 4 つの手順です。
+
+[start=1]
+. TabularReportView オブジェクトをインスタンス化します。
+[start=2]
+. TabularReportView オブジェクトから DataPresenter 設定を排除する TabularReportView オブジェクトのプロパティを設定します。
+[start=3]
+. DataPresenter コントロールの ReportView プロパティを TabularReportView オブジェクトに設定します。
+[start=4]
+. DataPresenter コントロールを使用してレポートを作成し印刷します。
+
+以下の例のコードは、レポートを印刷する時に xamDataGrid™ コントロールの並べ替え順序を排除する方法を示します。例のコードが xamDataGrid コントロールを使用しているとしても、任意の DataPresenter コントロールを代わりに使用できます。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Dim reportView1 As New TabularReportView() With { .ExcludeSortOrder=True }
+Me.xamDataGrid1.ReportView = reportView1
+'TODO: xamDataGrid コントロールの使用でレポートを作成し、印刷する。
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+TabularReportView reportView1 = new TabularReportView()
+{
+        ExcludeSortOrder = true
+};
+this.xamDataGrid1.ReportView = reportView1;
+//TODO: xamDataGrid コントロールの使用でレポートを作成し、印刷する。
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-fit-all-fields-on-a-single-page.html[単一ページにすべてのフィールドを収める]
+
+link:xamdatapresenter-handling-events-to-customize-print-operations.html[印刷操作をカスタマイズするためにイベントを処理]
+
+link:xamdatapresenter-print-all-records-in-a-hierarchy.html[階層のすべてのレコードを印刷]
+
+link:xamdatapresenter-repeat-field-headers-on-all-pages.html[すべてのページでフィールド ヘッダーを繰り返す]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]

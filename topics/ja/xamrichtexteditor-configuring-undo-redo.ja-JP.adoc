@@ -1,0 +1,129 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-configuring-undo-redo",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "3368ce87-3e86-47e9-aa14-e254481ab79a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4413396Z"
+}
+|metadata|
+////
+
+= 元に戻す / やり直しの構成 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールの [元に戻す] のログ機能をオン / オフする方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362429301,はじめに>>
+* <<_Ref362429306,元に戻す ログの構成の概要>>
+* <<_Ref361240380,元に戻すログの開始>>
+* <<_Ref361240385,元に戻すログの停止>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref362429301]]
+== はじめに
+
+=== 元に戻す / やり直しの概要
+
+元に戻す / やり直し機能は、ドキュメントのコンテンツに対する変更またはコードの変更をすべて記録します。最初のドキュメント作成または新規コンテンツの読み込みの場合、読み込みメソッドの記録はデフォルトでオフになります。以下のいずれかの操作で機能がオンになります。
+
+*  _XamRichTextEditor_   コントロールを使用してドキュメントのコンテンツの編集を開始
+* ドキュメントの link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~startundologging.html[StartUndoLogging] メソッドの起動
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] で link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~stopundologging.html[StopUndoLogging] メソッドを起動すると、元に戻すの履歴がクリアされ、元に戻すログが停止します。
+
+[[_Ref362429306]]
+== 元に戻すログの構成の概要
+
+=== 元に戻す / やり直し構成の概要表
+
+以下の表は、 _RichTextDocument_   コントロールで構成できる要素を簡単に説明し、特定のプロパティにマップします。
+
+[options="header", cols="a,a"]
+|====
+|構成可能な項目|詳細
+
+|<<_Ref361240380,元に戻すログの開始>>
+|元に戻すログを開始します。
+
+|<<_Ref361240385,元に戻すログの停止>>
+|元に戻すログを停止し、元に戻す履歴をクリアします。
+
+|====
+
+[[_Ref361240380]]
+== 元に戻すログの開始
+
+=== 概要
+
+プログラムから `StartUndoLogging` メソッドを起動すると、元に戻すログが開始されます。
+
+[[_Hlk337817761]]
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.Document.StartUndoLogging();
+----
+
+[[_Ref361240385]]
+== 元に戻すログの停止
+
+=== 概要
+
+プログラムから StopUndoLogging メソッドを起動すると、元に戻すログを停止できます。元に戻す履歴もクリアされます。
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.Document.StopUndoLogging();
+----
+
+[[_Ref359594803]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-undo-redo.html[元に戻す / やり直しの管理]
+|このトピックは、 _xamRichTextEditor_ コントロールの [元に戻す] および [やり直し] の操作について、開発者の観点から説明します。
+
+|====

@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-project",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "c3cb503c-450c-4f7c-8c28-faed8c8cbbcb",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2961634Z"
+}
+|metadata|
+////
+
+= プロジェクトの構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamGantt™_   link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] クラス、その構成可能な項目およびこのクラスが提供する主要機能を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-project-configuration-overview.html[プロジェクトの構成の概要]
+|このトピックでは、 _xamGantt_ Project クラスとその構成可能な項目の概要を提供します。
+
+| link:xamgantt-scheduling-project-from-start-or-finish-date.html[開始日または終了日からプロジェクトをスケジュール]
+|このトピックでは、プロジェクトの開始日と終了日に基づいて _xamGantt_ コントロールがプロジェクトおよびタスクの日にちを計算する方法を説明します。
+
+| link:xamgantt-calculating-explicitly-a-project.html[プロジェクトの明示的計算]
+|このトピックでは、 _xamGantt_ コントロールを使用してプロジェクトを明示的に計算する方法を説明します。
+
+|====

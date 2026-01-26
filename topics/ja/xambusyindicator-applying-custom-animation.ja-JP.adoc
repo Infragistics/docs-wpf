@@ -1,0 +1,234 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-applying-custom-animation",
+    "tags": ["Getting Started","How Do I","Templating"],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "93832856-d007-48d8-a791-e50ef41806e1",  
+    "buildFlags": [],
+    "createdOn": "2015-08-19T11:17:29.5161045Z"
+}
+|metadata|
+////
+
+= カスタム アニメーションの適用 (xamBusyIndicator)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、_xamBusyIndicator_ コントロールにカスタム アニメーションを適用する方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-features-overview.html[機能の概要]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xambusyindicator-visual-elements.html[視覚要素]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref426457437, カスタム アニメーションの適用 >>
+* <<_Ref427701229, 関連コンテンツ >>
+
+** <<_Ref427701233,トピック>>
+
+[[_Ref426457437]]
+== カスタム アニメーションの適用
+
+=== 概要
+
+事前作成済みの _xamBusyIndicator_ アニメーションのセットが提供されるだけではなく、カスタム アニメーションを作成して、コントロールに適用することもできます。
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/Applying_Custom_Animation_1.png[]
+
+=== 手順
+
+以下の手順では、カスタム アニメーションを _xamBusyIndicator_ コントロールに適用する方法を示します。
+
+1. XamBusyIndicator をページに追加
+
+_xamBusyIndicator_   をページに追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator Name="BusyIndicator" IsBusy="True" />
+----
+
+[start=2]
+2. カスタム DataTemplate の作成
+
+カスタム データ テンプレートを `Window` リソースとして作成します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Window.Resources>
+    <Style TargetType="{x:Type ProgressBar}" x:Key="ProgressBarStyle" >
+    <!-- スタイルのコンテンツはここ -->
+    </Style>
+    <DataTemplate x:Key="CustomBusyIndicatorTemplate">
+        <ProgressBar Height="22" Width="180" IsIndeterminate="True" Style="{StaticResource ProgressBarStyle}"  />
+    </DataTemplate>
+</Window.Resources>
+----
+
+[start=3]
+3. 作成した CustomBusyAnimation オブジェクトを Animation プロパティに設定
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.busyanimations_members.html[BusyAnimations] クラスの link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.busyanimations~createcustomanimation.html[CreateCustomAnimation] メソッドを使用して作成した link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.custombusyanimation_members.html[CustomBusyAnimation] オブジェクトを、コードビハインドで link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator_members.html[XamBusyIndicator] link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~animation.html[Animation] プロパティに設定します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+CustomBusyAnimation customAnimation = BusyAnimations.CreateCustomAnimation(this.Resources["CustomBusyIndicatorTemplate"] as DataTemplate);
+BusyIndicator.Animation = customAnimation;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim customAnimation As CustomBusyAnimation = BusyAnimations.CreateCustomAnimation(TryCast(Me.Resources("CustomBusyIndicatorTemplate"), DataTemplate))
+BusyIndicator.Animation = customAnimation
+----
+
+または XAML で以下のコードを使用:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator.Animation>
+    <ig:CustomBusyAnimation DataTemplate="{StaticResource CustomBusyIndicatorTemplate}" />
+</ig:XamBusyIndicator.Animation>
+----
+
+[[_Ref382317785]]
+
+=== 完全なコード
+
+以下は、この手順の完全なコードです。
+
+[start=1]
+. `Window` リソースとしてのカスタム テンプレートの作成
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Window.Resources>
+    <Style TargetType="{x:Type ProgressBar}" x:Key="ProgressBarStyle" >
+        <Setter Property="Foreground" Value="#FF0072C6"/>
+        <Setter Property="Background" Value="#FFE0E0E0"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="#FF797979" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid Name="TemplateRoot" SnapsToDevicePixels="true">
+                            <Rectangle Fill="{TemplateBinding Background}"/>
+                            <Rectangle Name="PART_Track" Margin="0" />
+                            <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" Margin="0">
+                                <Grid Name="Foreground">
+                                    <Rectangle Fill="{TemplateBinding Foreground}" Name="Indicator"  />
+                                    <Grid x:Name="Animation" ClipToBounds="true" Visibility="Hidden">
+                                        <Rectangle Fill="{TemplateBinding Background}" Name="HiderPre" Margin="0,0,50,0" >
+                                            <Rectangle.RenderTransform>
+                                                <ScaleTransform x:Name="HiderPreTransform" ScaleX="0"/>
+                                            </Rectangle.RenderTransform>
+                                        </Rectangle>
+                                        <Rectangle Fill="{TemplateBinding Background}" Name="HiderPost" RenderTransformOrigin="1, 0" Margin="50,0,0,0">
+                                            <Rectangle.RenderTransform>
+                                                <ScaleTransform x:Name="HiderPostTransform" ScaleX="1"  />
+                                            </Rectangle.RenderTransform>
+                                        </Rectangle>
+                                    </Grid>
+                                    <Grid Name="Overlay" Opacity="0.8"/>
+                                </Grid>
+                            </Decorator>
+                            <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        CornerRadius="2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsIndeterminate" Value="True">
+                                <Setter TargetName="Animation" Property="Visibility" Value="Visible" />
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimation Storyboard.TargetName="HiderPreTransform"
+                                                                 Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="1"
+                                                                 Duration="0:00:1" AutoReverse="True"/>
+                                        <DoubleAnimation Storyboard.TargetName="HiderPostTransform"
+                                                                 Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="0"
+                                                                 Duration="0:00:1" AutoReverse="True"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="CustomBusyIndicatorTemplate">
+        <ProgressBar Height="22" Width="180" IsIndeterminate="True" Style="{StaticResource ProgressBarStyle}"  />
+    </DataTemplate>
+</Window.Resources>
+----
+
+[start=2]
+. ページへの  _xamBusyIndicator_   の追加と `Animation` プロパティへの link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.custombusyanimation_members.html[CustomBusyAnimation] の設定
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator Name="BusyIndicator" IsBusy="True">
+    <ig:XamBusyIndicator.Animation>
+        <ig:CustomBusyAnimation DataTemplate="{StaticResource CustomBusyIndicatorTemplate}" />
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref427701229]]
+== 関連コンテンツ
+
+[[_Ref427701233]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-animations.html[アニメーション]
+|このトピックでは、 _xamBusyIndicator_ コントロールで使用できるビルド済みのアニメーションとその構成可能な項目について簡単に説明します。
+
+| link:xambusyindicator-api-reference.html[API リファレンス]
+|このトピックでは、コントロールに関連したキー クラスに関する参考情報を提供します。
+
+|====

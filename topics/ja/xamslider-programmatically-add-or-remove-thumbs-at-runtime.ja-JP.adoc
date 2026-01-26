@@ -1,0 +1,88 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamslider-programmatically-add-or-remove-thumbs-at-runtime",
+    "controlName": ["xamSlider"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{5E6A3351-BF08-4052-B110-83805617DED7}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0733754Z"
+}
+|metadata|
+////
+
+= プログラムによってランタイムでつまみを追加または削除
+
+xamSlider コントロールのつまみをエンドユーザーに表示できます。詳細は、 link:xamslider-xamslider-thumbs.html[「xamSlider のつまみ」]トピックを確認してください。ただし、このトピックで説明するように、エンドユーザーはトラックをクリックしてつまみを追加する、またはつまみを選択し [削除] ボタンをクリックすることによって、つまみを削除することもできます。
+
+スライダーの link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamrangeslider`1~thumbs.html[Thumbs] コレクションにつまみを追加または削除することによって、ランタイムでつまみの追加および削除をプログラムで行います。
+
+以下のコードは、これを達成する方法を示します。以下が前提となります。
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderbase`1~trackclick_ev.html[TrackClick] イベントが設定された xamNumericRangeSlider コントロールがページにある。
+* Click イベントが設定された Button コントロールがページにある。
+
+*Visual Basic の場合:*
+
+----
+' エンドユーザーがトラックをクリックすると、新しいつまみがクリックした場所に追加されます
+Private Sub xamNumericRangeSlider_TrackClick(ByVal sender As System.Object, ByVal e As TrackClickEventArgs(Of System.Double))
+   ' エンドユーザーがトラックをクリックすると、新しいつまみがクリックした場所に追加されます
+   ' 新しいつまみを定義します
+   Dim thumb As xamSliderNumericThumb = New xamSliderNumericThumb
+   'つまみの値をエンドユーザーがクリックした領域に設定します
+   thumb.Value = e.Value
+   'スライダーの Thumbs コレクションに追加します
+   Me.xamNumericRangeSlider1.Thumbs.Add(thumb)
+   ' つまみをアクティブに設定します
+   Me.xamNumericRangeSlider1.ActiveThumb = thumb
+End Sub
+' エンドユーザーがボタンをクリックすると、現在アクティブのつまみが削除されます
+Private Sub Button_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+   ' アクティブのつまみがあることを確認します
+   If (Not (Me.xamNumericRangeSlider1.ActiveThumb) Is Nothing) Then
+      ' アクティブのつまみをスライダーの Thmbs コレクションから削除します
+      Me.xamNumericRangeSlider1.Thumbs.Remove(Me.xamNumericRangeSlider1.ActiveThumb)
+   End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+// エンドユーザーがトラックをクリックすると、新しいつまみがクリックした場所に追加されます
+void xamNumericSlider_TrackClick(object sender, TrackClickEventArgs<double> e)
+{
+   // 新しいつまみを定義します
+   xamSliderNumericThumb thumb = new xamSliderNumericThumb();
+   // つまみの値をエンドユーザーがクリックした領域に設定します
+   thumb.Value = e.Value;
+   // スライダーの Thumbs コレクションに追加します
+   this.xamNumericRangeSlider1.Thumbs.Add(thumb);
+   // つまみをアクティブに設定します
+   this.xamNumericRangeSlider1.ActiveThumb = thumb;
+}
+// エンドユーザーがボタンをクリックすると、現在アクティブのつまみが削除されます
+private void Button_Click(object sender, RoutedEventArgs e)
+{
+   // アクティブのつまみがあることを確認します
+   if (this.xamNumericRangeSlider1.ActiveThumb != null)
+   {
+      // アクティブのつまみをスライダーの Thmbs コレクションから削除します
+      this.xamNumericRangeSlider1.Thumbs.Remove(this.xamNumericRangeSlider1.ActiveThumb);
+   }
+}
+----
+
+== 関連トピック
+
+link:xamslider-interaction-modes.html[操作モード]
+
+link:xamslider-xamslider-thumbs.html[つまみ]
+
+link:xamslider-xamslider-tick-marks.html[xamSlider の目盛]
+
+link:xamslider-value-tick-marks.html[目盛値]
+
+link:xamslider-retrieve-the-thumb-values.html[つまみの値の取得]

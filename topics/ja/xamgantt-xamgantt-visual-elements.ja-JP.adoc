@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-xamgantt-visual-elements",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "3ec4ed22-d0a6-4a50-91a0-1769768eac34",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.1671569Z"
+}
+|metadata|
+////
+
+= xamGantt のビジュアル要素
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamGantt™_   コントロールのビジュアル要素とその構成を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-visual-elements-overview.html[xamGantt のビジュアル要素の概要]
+|このトピックは、 _xamGantt_ コントロールの主要なビジュアル要素を説明します。
+
+| link:xamgantt-xamgantt-visual-elements-in-the-grid-section.html[グリッド セクションにおける xamGantt ビジュアル要素]
+|このトピックでは、 _xamGantt_ コントロールのグリッド セクションのビジュアル要素について紹介します。
+
+| link:xamgantt-xamgantt-visual-elements-in-the-chart-section.html[チャート セクションにおける xamGantt ビジュアル要素]
+|このトピックでは、 _xamGantt™_ コントロールのチャート セクションのビジュアル要素について紹介します。
+
+|====

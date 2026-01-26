@@ -1,0 +1,160 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcalculationmanager-overview-of-named-references",
+    "controlName": ["xamCalculationManager"],
+    "tags": ["Calculations","Getting Started"],
+    "guid": "a8635e55-b53f-4c7a-b22f-31c3aac4b6f5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.5830861Z"
+}
+|metadata|
+////
+
+= 名前付き参照の概要
+
+== 名前付き参照
+
+xamCalculationManager コントロールは、xamCalculationManager にグローバル定義名の値を使用することを許可する link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.namedreference.html[NamedReference] オブジェクト コレクションを公開します。NamedReference は、どのコントロールにも関連づけられません。
+
+NamedReference の主な目的は、異なる計算で利用可能な定数を作成できることにあります。NamedReference は、画面に表示する必要はないもののコードの裏側で、または別の計算に利用できる計算結果を保存することもできます。
+
+== NamedReference プロパティ表
+
+下の表は、NamedReference の各プロパティの意味とそれぞれのデフォルト設定値をまとめたものです。
+
+[options="header", cols="a,a,a,a"]
+|====
+|プロパティ|タイプ|説明|デフォルト値
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.namedreference~category.html[Category]
+|String
+|このプロパティは、 NamedReference を分類するために xamFormulaEditor コントロールの UI で使用されるカテゴリを指定します。詳細については、「 link:xamformulaeditor-using.html[xamCalculationManager での xamFormulaEditor および FormulaEditorDialog の使用]」を参照してください。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.namedreference~formula.html[Formula]
+|String
+|このプロパティは、NamedReference の式を指定します。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.namedreference~referenceid.html[ReferenceId]
+|String
+|このプロパティは、NamedReference の ID を指定します。ReferenceId プロパティを使用して式の中でNamedReference を参照できます。[ReferenceId] などの相対フォームをルート レベル オブジェクトの式から、または [//ReferenceId] などの絶対フォームを計算ネットワーク内の任意の式から使用できます。 
+
+[NOTE] 
+
+==== 
+
+注: すべての NamedReference の ReferenceId プロパティは一意であり、Null 値や空の文字列ではないようにしてください。 
+
+====
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.namedreference~result.html[Result]
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.calculationresult~calculationvalue.html[CalculationValue]
+|このプロパティは式の結果を返します。
+|null
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.namedreference~value.html[Value]
+|Object
+|このプロパティは、NamedReference の値を指定します。Formula プロパティが設定される場合、これは数式の計算結果を返します。
+|null
+
+|====
+
+== コード例: NamedReferences を使用して式を作成する
+
+== 例の詳細
+
+以下のコードは、定義済み NamedReferences を使用して式を作成する方法を示しています。xamCalculationManager の式プロパティで参照 ID を通して名前付き参照にアクセスします。以下のコードスニペットでは、ShipFactor および TaxFactor NamedReference が xamCalculationManager の式で使用されます。
+
+*XAML の場合:*
+
+----
+<StackPanel>
+   <StackPanel.Resources>
+      <ig:XamCalculationManager x:Key="CalcManager">
+         <ig:XamCalculationManager.NamedReferences>
+            <!--名前付き参照の作成、ReferenceId、値および式の設定-->  
+            <ig:NamedReferenceCollection>
+               <ig:NamedReference ReferenceId="ShipRate" Value=".05" />
+               <ig:NamedReference ReferenceId="TaxRate" Value=".08" />
+               <ig:NamedReference ReferenceId="ShipFactor" Formula="1 + [ShipRate]" />
+               <ig:NamedReference ReferenceId="TaxFactor" Formula="1 + [TaxRate]" />
+            </ig:NamedReferenceCollection>
+         </ig:XamCalculationManager.NamedReferences>
+      </ig:XamCalculationManager>
+   </StackPanel.Resources>
+   <TextBox x:Name="txtQuantity" ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}"/>
+   <TextBox x:Name="txtPrice" ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}"/>
+   <TextBlock x:Name="Result" ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}">
+      <ig:XamCalculationManager.ControlSettings>
+         <!--式は、 ShipFactor および TaxFactor の名前付き参照を使用-->
+         <ig:ControlCalculationSettings Formula="[txtQuantity] * [txtPrice] * [ShipFactor] * [TaxFactor]" />
+      </ig:XamCalculationManager.ControlSettings>
+   </TextBlock>
+</StackPanel>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim CalcManager As XamCalculationManager = New XamCalculationManager
+Dim ShipRate As NamedReference () With {ReferenceId = "ShipRateRef", Value="0.05"}
+Dim TaxRate As NamedReference () With {ReferenceId = "TaxRateRef", Value = "0.08" }
+Dim ShipFactor As NamedReference () With {ReferenceId = "ShipFactorRef", Formula = "[ShipRateRef]+1"}
+Dim TaxFactor As NamedReference () With {ReferenceId = "TaxFactorRef", Formula = "[TaxRateRef]+1" }
+CalcManager.NamedReferences = New NamedReferenceCollectionCalcManager.NamedReferences.Add(ShipRate)
+CalcManager.NamedReferences.Add(TaxRate)
+CalcManager.NamedReferences.Add(ShipFactor)
+CalcManager.NamedReferences.Add(TaxFactor)
+Dim stackPanel As StackPanel = New StackPanel
+Dim textbox1 As TextBox () With { Name="txtQuantity"}
+XamCalculationManager.SetCalculationManager(textbox1, CalcManager)stackPanel.Children.Add(textbox1)
+Dim textbox2 As TextBox () With { Name="txtPrice"}
+XamCalculationManager.SetCalculationManager(textbox2, CalcManager)
+stackPanel.Children.Add(textbox2)
+Dim textblock1 As TextBlock = New TextBlock
+Dim calcSettings As ControlCalculationSettings = New ControlCalculationSettings
+'式は、 ShipFactor および TaxFactor の名前付き参照を使用 
+calcSettings.Formula = "[txtQuantity]*[txtPrice]*[ShipFactorRef]* [TaxFactorRef]"
+XamCalculationManager.SetControlSettings(textblock1, calcSettings)
+XamCalculationManager.SetCalculationManager(textblock1, CalcManager)
+stackPanel.Children.Add(textblock1)
+----
+
+*C# の場合:*
+
+----
+XamCalculationManager CalcManager = new XamCalculationManager();
+//名前付き参照の作成            
+NamedReference ShipRate = new NamedReference() {ReferenceId = "ShipRateRef", Value="0.05"};
+NamedReference TaxRate = new NamedReference() {ReferenceId = "TaxRateRef", Value = "0.08" };
+NamedReference ShipFactor = new NamedReference() {ReferenceId = "ShipFactorRef", Formula = "[ShipRateRef]+1"};
+NamedReference TaxFactor = new NamedReference() {ReferenceId = "TaxFactorRef", Formula = "[TaxRateRef]+1" };
+CalcManager.NamedReferences = new NamedReferenceCollection();
+CalcManager.NamedReferences.Add(ShipRate);
+CalcManager.NamedReferences.Add(TaxRate);
+CalcManager.NamedReferences.Add(ShipFactor);
+CalcManager.NamedReferences.Add(TaxFactor);
+StackPanel stackPanel = new StackPanel();
+TextBox textbox1 = new TextBox() { Name="txtQuantity"};
+XamCalculationManager.SetCalculationManager(textbox1, CalcManager);
+stackPanel.Children.Add(textbox1);
+TextBox textbox2 = new TextBox() { Name="txtPrice"};
+XamCalculationManager.SetCalculationManager(textbox2, CalcManager);
+stackPanel.Children.Add(textbox2);
+TextBlock textblock1 = new TextBlock();
+ControlCalculationSettings calcSettings = new ControlCalculationSettings();
+//式は、 ShipFactor および TaxFactor の名前付き参照を使用
+calcSettings.Formula = "[txtQuantity]*[txtPrice]*[ShipFactorRef]* [TaxFactorRef]";
+XamCalculationManager.SetControlSettings(textblock1, calcSettings);
+XamCalculationManager.SetCalculationManager(textblock1, CalcManager);
+stackPanel.Children.Add(textblock1);
+----
+
+*関連トピック:*
+
+* link:xamcalculationmanager-overview-of-list-calculator.html[リスト計算式の概要]
+* link:xamcalculationmanager-overview-of-item-calculator.html[項目計算式の概要]

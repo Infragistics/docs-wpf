@@ -1,0 +1,124 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager-known-issues-and-limitations",
+    "tags": ["Known Issues"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "f53c50ed-c4ea-494a-b2e4-9010c6d61bc9",  
+    "buildFlags": [],
+    "createdOn": "2014-09-12T13:53:38.0746471Z"
+}
+|metadata|
+////
+
+= 既知の問題と制限
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、_Infragistics ThemeManager_ の既知の問題と制限事項について説明します。
+
+== 既知の問題点と制限の概要
+
+=== 既知の問題点と制約の概要表
+
+次の表は、_Infragistics ThemeManager_ の既知の問題点と制限事項の要約です。以下の表は、すべての問題の詳細な説明とその回避策を示します。
+
+==== 凡例:
+
+image:images/Yes.png[] - 回避策
+
+image:images/No.png[] - 既知の回避策なし
+
+image:images/Fix.png[] - 修正予定です
+
+==== <<_Ref398368489, _Infragistics ThemeManager_ >>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref398569484,指定されたコントロール テーマが、子ウィンドウに適用されない>>
+|テーマがコントロール レベルで設定されている場合、テーマはコントロールのダイアログに適用されません。
+|image::images/Yes.png[]
+
+|<<_Ref398569493,xamSegmentedDisplay はサポートされていません>>
+|_xamSegmentedDisplay_ コントロールは、_ThemeManager_ にサポートされません。
+|image::images/Yes.png[]
+
+|<<_Ref398632178,xamGrid の行の高さのビジュアルな問題>>
+|_xamGrid_ コントロールでテーマを切り替える場合、行の高さは復元されません。
+|image::images/Fix.png[]
+
+|====
+
+[[_Ref398368489]]
+== _Infragistics ThemeManager_
+
+[[_Ref398569484]]
+
+=== 指定されたコントロール テーマが、子ウィンドウに適用されない
+
+Infragistics コントロールを操作すると、追加のポップアップ ウィンドウが表示されます (たとえば、_xamDataGrid_ コントロールには「フィールドの選択」ウィンドウが表示されます)。
+
+コントロール レベルに適用されるテーマは、これらのウィンドウをスタイルしません。すべての追加のウィンドウをスタイルするには、指定されたテーマをアプリケーション レベルで設定する必要があります。
+
+回避方法
+
+[NOTE]
+====
+アプリケーション レベルへの指定されたテーマの適用
+====
+
+==== 関連するトピック:
+
+* link:thememanager-applying-theme-to-application.html[アプリケーション レベルのテーマの適用]
+
+[[_Ref398569493]]
+
+=== xamSegmentedDisplay はサポートされていません
+
+_xamSegmentedDisplay_ コントロールは、_ThemeManager_ にサポートされません。
+
+回避方法
+
+[NOTE]
+====
+提供されているリソース ディクショナリを使用してテーマを適用、または特定のテーマ パッケージ (IG、Metro、MetroDark、Office2010、Office2013) を拡張し、コントロールのサポートを追加します。
+====
+
+==== 関連するトピック:
+
+* link:designers-guide-using-themes.html[テーマの使用]
+* link:thememanager-extending-existing-control-theme.html[既存のコントロール テーマの拡張]
+
+[[_Ref398632178]]
+
+=== xamGrid の行の高さのビジュアルな問題
+
+テーマを切り替えると、_xamGrid_ の行の高さは変更され、復元されません。
+
+[[_Ref367305775]]
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-overview.html[機能の概要]
+|このトピックでは、_Infragistics ThemeManager_ およびその機能の概要を説明します。
+
+| link:thememanager-working-with-thememanager.html[ThemeManager の操作]
+|このグループのトピックでは、_Infragistics ThemeManager_ のさまざまな機能を構成する方法を説明します。
+
+| link:thememanager-api-reference.html[API リファレンス]
+|このトピックでは、_Infragistics ThemeManager_ に関連したキー クラスに関する参考情報を提供します。
+
+|====

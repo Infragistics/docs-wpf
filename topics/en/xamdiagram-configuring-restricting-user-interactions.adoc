@@ -1,0 +1,132 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-configuring-restricting-user-interactions",
+    "tags": ["Charting"],
+    "controlName": ["xamDiagram"],
+    "guid": "5ce646b9-0e8c-47b6-a30c-9989cf2ea0f4",
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:37:02.0484523Z"
+}
+|metadata|
+////
+
+= Configuring User Interactions Restrictions (xamDiagram)
+
+== Topic Overview
+
+=== Purpose
+
+This topic provides information on how to restrict certain user interactions of the _xamDiagram_™ control.
+
+=== Required background
+
+The following topics are prerequisites to understanding this topic:
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdiagram-general-overview.html[ _xamDiagram_ General Overview]
+|This topic provides a general overview of the _xamDiagram_ control.
+
+|====
+
+=== In this topic
+
+* <<Ref00001, Restrictions Summary>>
+* <<Ref00002, Restrict Editing>>
+* <<Ref00003, Restrict Resizing>>
+* <<Ref00004, Restrict Deleting>>
+* <<Ref00005, Related Topics>>
+
+[[Ref00001]]
+== Restrictions Summary
+
+[options="header", cols="a,a"]
+|====
+|Restriction|Summary
+
+| <<Ref00002, Restrict Editing>>
+|This feature allows you to restrict the user from entering edit mode on all or some of the _xamDiagram_{empty}'s nodes and connections.
+
+| <<Ref00003, Restrict Resizing>>
+|This feature allows you to restrict the user from resizing all or some of the _xamDiagram_{empty}'s nodes and connections.
+
+| <<Ref00004, Restrict Deleting>>
+|This feature allows you to restrict the user from deleting all or some of the _xamDiagram_{empty}'s nodes and connections.
+|====
+
+[[Ref00002]]
+== Restrict Editing
+
+By default the control allows editing of all items by either double clicking on a node or by selecting a node and pressing the *F2* key or by executing the `EnterEditMode` command. If you need to restrict the user from editing items on a global level you can set the _xamDiagram_{empty}'s link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~allowedit.html[AllowEdit] boolean property to *false*. By default this property is set to *true*.
+
+In addition you can restrict editing on a node level using the link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~allowedit.html[AllowEdit] nullable boolean property. By default this property is set to *null* which means the resolved value will be obtained from the _xamDiagram_{empty}'s `AllowEdit` property.
+
+.Note
+[NOTE]
+====
+If a diagram item is in editing mode and its `AllowEdit` property resolves to false this item will immediately exit editing mode. Also the `ExitingEditMode` event will not be raised as it allows the developer to cancel the exiting.
+====
+
+[[Ref00003]]
+== Restrict Resizing
+
+By default the control allows changing the size of the items through the user interface. If you need to restrict the user from resizing items on a global level you can set the _xamDiagram_{empty}'s link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~allowresize.html[AllowResize] boolean property to *false*. By default this property is set to *true*.
+
+In addition you can restrict resizing on an item level using the link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~allowresize.html[AllowResize] nullable boolean property. By default this property is set to *null* which means the resolved value will be obtained from the _xamDiagram_{empty}'s `AllowResize` property.
+
+.Note
+[NOTE]
+====
+When resizing is disabled for a diagram connection and you move (or resize) the node it is connected to, the connection will still change its size in order to maintain its connection with the node.
+====
+
+[[Ref00004]]
+== Restrict Deleting
+
+By default the control allows deleting of items not only using the *Delete* key but also when executing the clipboard's `Cut`, `Undo` and `Redo` commands. If you need to restrict the user from deleting items on a global level you can set the _xamDiagram_{empty}'s link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~allowdelete.html[AllowDelete] boolean property to *false*. By default this property is set to *true*.
+
+In addition you can restrict deleting on an item level using the link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~allowdelete.html[AllowDelete] nullable boolean property. By default this property is set to *null* which means the resolved value will be obtained from the _xamDiagram_{empty}'s `AllowDelete` property.
+
+.Note
+[NOTE]
+====
+If you perform the following sequence of actions:
+
+* delete an item
+* undo item deletion
+* restrict node deletion
+
+At this point trying to invoke a `redo` operation will not succeed because the result of this operation should delete the node again and deletion is already disabled.
+====
+
+[[Ref00005]]
+== Related Topics
+
+The following topics provide additional information related to this topic.
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdiagram-user-interactions-configuration-overview.html[User Interactions Configuration Overview ( _xamDiagram_ )]
+|This topic provides a summary of all user interaction tasks in the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-ui-elements-with-commands.html[Configuring UI Elements with _xamDiagram_ Commands]
+|This topic explains how to use the commands provided by _xamDiagram_ in UI elements such as menus and buttons.
+
+| link:xamdiagram-configuring-the-context-menu.html[Configuring the Context Menu ( _xamDiagram_ )]
+|This topic explains how to use the context menu provided by the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-the-mouse-tool-and-default-interaction.html[Configuring the Mouse Tool and Default Drag Interaction ( _xamDiagram_ )]
+|This topic explains how to configure the mouse interaction and tool for the _xamDiagram_ surface.
+
+| link:xamdiagram-configuring-keyboard-shortcuts.html[Configuring Keyboard Shortcuts ( _xamDiagram_ )]
+|This topic explains how to change the keyboard shortcuts associated with _xamDiagram_ commands.
+
+| link:xamdiagram-configuring-undo-redo-operations.html[Configuring Undo/Redo Operations ( _xamDiagram_ )]
+|This topic explains how to configure the Undo/Redo operations in the _xamDiagram_ control.
+
+|====

@@ -1,0 +1,12 @@
+﻿= 2018 Volume 1 の重大な変更
+
+== xamCategoryChart
+* xamCategoryChart の `YAxisAbbreviateLargeNumbers` プロパティがデフォルトで有効化されるため、大きい数値を省略します。たとえば、1000 は 1K になり、1,000,000 は 1M になります。
+* `IsHorizontalZoomEnabled` および `IsVerticalZoomEnabled` プロパティはデフォルトで `true` に設定されます。
+* `ChartType` プロパティのデフォルト値は `Line` の代わりに `Auto` に設定されます。コントロールは、バインドされるデータ ポイントの数に基づいて描画するシリーズのタイプを選択します。
+* `XamCategoryChart.SeriesAdded` イベントの型が `CategoryChartSeriesEventHandler` から `ChartSeriesEventHandler` に変更しました。
+* `XamCategoryChart.SeriesRemoved` イベントの型が `CategoryChartSeriesEventHandler` から `ChartSeriesEventHandler` に変更しました。
+
+== xamShapeChart
+* xamShapeChart の `YAxisAbbreviateLargeNumbers` および `XAxisAbbreviateLargeNumbers` プロパティはデフォルトで有効化されます。
+* xamShapeChart の `IsHorizontalZoomEnabled` および `IsVerticalZoomEnabled` プロパティがデフォルトで `true` に設定されます。

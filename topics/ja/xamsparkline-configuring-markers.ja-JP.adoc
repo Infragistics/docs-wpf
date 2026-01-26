@@ -1,0 +1,205 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsparkline-configuring-markers",
+    "controlName": ["xamSparkline"],
+    "tags": ["Charting","How Do I","Layouts"],
+    "guid": "bd81f107-75b4-4b4f-aad4-49273427ea9c",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.2103536Z"
+}
+|metadata|
+////
+
+= マーカーの構成
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、コード例を示して、 link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}.html[xamSparkline]™ コントロールのマーカーを構成し、カスタマイズする方法を説明します。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+| link:xamsparkline-configuring-xamsparkline.html[xamSparkline の構成]
+|このトピックは、 _xamSparkline_ コントロールを構成するあらゆる方法の概要について説明します。構成の詳細情報へのリンク (別のトピックで参照可能) も記載されています。
+
+| link:xamsparkline-defining-markers.html[マーカーの定義]
+|このトピックは、コード例を示して、 _xamSparkline_ コントロールのマーカーを定義する方法を説明します。
+
+|====
+
+=== 本トピックの内容
+
+* <<_Ref317083829,>>マーカーの構成 - 概念的概要
+
+** <<_Ref317161385,概要>>
+** <<Property_Settings,プロパティ設定>>
+
+* <<_Ref319939969,マーカーの構成 - コード例>>
+
+** <<Description,説明>>
+** <<_Ref319940027,プレビュー>>
+** <<_Ref319940034,プロパティ設定>>
+** <<_Ref319940040,コード>>
+
+* <<_Ref317161501,関連コンテンツ>>
+
+[[_Ref317083829]]
+== マーカーの構成 - 概念的概要
+
+[[_Ref317161385]]
+
+=== 概要
+
+link:xamsparkline-defining-markers.html[マーカーの定義] のトピックで説明しているように、マーカーはスパークラインの上に重なり合ったシンボル (色が付いた円形のアイコン) で、X/Y 座標に基づいて個々のデータ ポイントを示します。
+
+マーカーは、自分好みの外観にするようカスタマイズできます。既定では、マーカーは表示するよう設定されていません。マーカーを表示するには、以下のように visibility プロパティを  _Visible_   に設定する必要があります。`MarkerVisibility``="Visible"` 
+
+マーカーは、以下の点で構成できます。
+
+* ブラシ
+* サイズ
+
+[[Property_Settings]]
+
+=== プロパティ設定
+
+以下の表は、構成作業と対応するマーカーのプロパティ設定の関係を示しています。
+
+[options="header", cols="a,a,a"]
+|====
+|以下を行うために:|プロパティ|次に設定
+
+|[[_Hlk319427977]] 
+
+マーカーの色を変更する
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~markerbrush.html[MarkerBrush]
+|色の HTML 名または 16 進数コード
+
+|マーカーの色を変更する
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~markersize.html[MarkerSize]
+|目的の数値 (ピクセル)
+
+|====
+
+[[_Ref319939969]]
+== マーカーの構成 - コード例
+
+[[Description]]
+
+=== 説明
+
+以下のコードは、最初、最後、および負の各マーカーを構成する方法を示しています。
+
+[[_Ref319940027]]
+
+=== プレビュー
+
+image::images/Configuring_Markers_1.png[]
+
+[[_Ref319940034]]
+
+=== プロパティ設定
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|設定
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~firstmarkervisibility.html[FirstMarkerVisibility]
+| _Visible_ 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~lastmarkervisibility.html[LastMarkerVisibility]
+| _Visible_ 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~negativemarkervisibility.html[NegativeMarkerVisibility]
+| _Visible_ 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~firstmarkersize.html[FirstMarkerSize]
+|9
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~lastmarkersize.html[LastMarkerSize]
+|9
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~negativemarkersize.html[NegativeMarkerSize]
+|9
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~firstmarkerbrush.html[FirstMarkerBrush]
+| _LinearGradientBrush_ 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~lastmarkerbrush.html[LastMarkerBrush]
+| _LinearGradientBrush_ 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline~negativemarkerbrush.html[NegativeMarkerBrush]
+| _LinearGradientBrush_ 
+
+|====
+
+[[_Ref319940040]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSparkline
+    NegativeMarkerVisibility="Visible"
+    NegativeMarkerSize="9"
+    FirstMarkerVisibility="Visible"
+    FirstMarkerSize="9"
+    LastMarkerVisibility="Visible"
+    LastMarkerSize="9">
+    <ig:XamSparkline.NegativeMarkerBrush>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Red" Offset="0"/>
+            <GradientStop Color="White" Offset=".5"/>
+            <GradientStop Color="Red" Offset="1"/>
+        </LinearGradientBrush>
+    </ig:XamSparkline.NegativeMarkerBrush>
+    <ig:XamSparkline.FirstMarkerBrush>
+        <RadialGradientBrush GradientOrigin="0.5,0.5" >
+            <GradientStop Color="Navy" Offset="1"/>
+            <GradientStop Color="White" Offset="0"/>
+        </RadialGradientBrush>
+    </ig:XamSparkline.FirstMarkerBrush>
+    <ig:XamSparkline.LastMarkerBrush>
+        <RadialGradientBrush GradientOrigin="0.5,0.5">
+            <GradientStop Color="Green" Offset="1"/>
+            <GradientStop Color="White" Offset="0"/>
+        </RadialGradientBrush>
+    </ig:XamSparkline.LastMarkerBrush>
+</ig:XamSparkline>
+----
+
+[[_Ref317161501]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+| link:xamsparkline-configuring-xamsparkline.html[xamSparkline の構成]
+|このトピックは、 _xamSparkline_ コントロールを構成するあらゆる方法の概要について説明します。構成の詳細情報へのリンク (別のトピックで参照可能) も記載されています。
+
+| link:xamsparkline-xamsparkline-property-reference.html[xamSparkline プロパティ参照]
+|このトピックは、 _xamSparkline_ コントロールの主なプロパティを説明します。
+
+|====

@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-copy-paste-support",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids"],
+    "guid": "236f23f8-6163-46c1-a2c7-4c5348884179",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.2042136Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= コピー/貼り付けのサポート
+
+xamGrid コントロールは、コピー/貼り付け機能をサポートします。
+
+この機能によって、xamGrid コントロールから選択したデータをクリップボードにコピーし、その後、適切な形式でそれを Microsoft® Excel® ワークシートに貼り付けることができます。Microsoft® Excel® ワークシートからデータをクリップボードにコピーし、その後、xamGrid コントロールにも貼り付けることができます。
+
+コピー操作は "CTRL + C" キーボード ショートカットに割り当てられ、貼り付け操作は "CTRL + V" の組み合わせに割り当てられます。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_copyPaste_01.png[]
+endif::sl,wpf[]

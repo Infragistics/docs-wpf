@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammonthcalendar",
+    "controlName": ["xamMonthCalendar"],
+    "tags": [],
+    "guid": "{C86A37FA-C7C7-4EC4-80E5-444E831DD568}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.9751481Z"
+}
+|metadata|
+////
+
+= xamMonthCalendar
+
+
+
+このセクションは、コントロールの機能とアプリケーションでのコントロールの使用についてのステップバイステップの手順に至るまで xamMonthCalendar™ を説明します。
+
+以下のリンクをクリックして、xamMonthCalendar コントロールについての情報にアクセスします。
+
+== link:xammonthcalendar-about-xammonthcalendar.html[xamMonthCalendar について]
+
+このセクションでは、xamMonthCalendar コントロールの機能の理解を深める支援となる情報を提供します。
+
+== link:xammonthcalendar-getting-started-with-xammonthcalendar.html[xamMonthCalendar をページに追加]
+
+xamMonthCalendar コントロールでできる限り素早く起動して実行するために、コントロールを使用して開始する方法 (たとえば、ウィンドウに xamMonthCalendar を追加) についての情報を提供します。
+
+== link:xammonthcalendar-using-xammonthcalendar.html[xamMonthCalendar の使用]
+
+このセクションには、xamMonthCalendar コントロールで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xammonthcalendar-api-overview.html[API の概要]
+
+このトピックは、xamMonthCalendar コントロールを使用して開発する際の名前空間とクラスについて説明します。このトピックにリストされる名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[「API リファレンス ガイド」]に便宜上リンクします。
+
+[[seealsobookmark]]

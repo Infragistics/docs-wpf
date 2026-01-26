@@ -1,0 +1,109 @@
+﻿= 画像フィールドの構成 ({DataGridName})
+
+=== 目的
+
+このトピックでは、{DataGridName} コントロールで ImageField を使用して画像を表示するフィールドを作成する方法を説明します。
+
+=== 前提条件
+
+本トピックの理解を深めるために、以下のトピックを参照することをお勧めします。
+
+|====
+|トピック|目的
+
+|link:wpf-terms-and-concepts.html[用語と概念]
+|このセクションでは、Data Presenter Family のコントロールを構成する主要な要素を定義します。
+
+|link:xamdatagrid-getting-started-with-xamdatagrid.html[{DataGridName} をページに追加]
+|このトピックでは、{DataGridName} コントロールをページに追加する方法について説明します。
+
+|link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+|このトピックでは、{DataGridName} コントロールで FieldLayout および Field を手動で指定する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<ImageFieldConfig, 画像フィールドの構成の概要>>
+* <<CodeExample, コード例: 画像フィールドの使用>>
+* <<Related, 関連トピック>>
+
+
+[[ImageFieldConfig]]
+== 画像フィールドの構成の概要
+
+ImageField を以下の型を表す値がある基本データ項目のプロパティに関連できます。
+
+* ImageSource インスタンス。
+* ローカルまたはリモート画像リソースの場所を説明する Uri インスタンス。
+* ローカルまたはリモート画像リソースの場所を説明する適切に書式設定された Uri インスタンスを表す文字列。
+* BitmapImage を表すバイト配列 (byte[])。
+
+ImageField の関連付けたエディターは ImageEditor 型の要素です。このエディターは常に読み取り専用で、画像を描画するためにデザインされました。つまり、編集モードに入ることができません。
+
+以下の表は、画像の描画する方法を制御する ImageField の構成可能なプロパティを説明します。
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ名|プロパティ型|説明
+
+|link:{DataGridLink}.imagefield{ApiProp}BaseUri.html[BaseUri]
+|`Uri`
+|画像の位置設定に使用する基本 Uri を取得または設定します。この値は、セルのバインドされたデータが Uri または UriString を含む場合に完全に解決された URI を構築するために使用されます。
+
+|link:{DataGridLink}.imagefield{ApiProp}ImageHeight.html[ImageHeight]
+|`double`
+|画像を描画するためにエディターが使用する高さを返すか、設定します。double.NaN (デフォルト値) に設定される場合、画像がその高さを使用して描画されます。
+
+
+|link:{DataGridLink}.imagefield{ApiProp}ImageWidth.html[ImageWidth]
+|`double`
+|画像を描画するためにエディターが使用する幅を返すか、設定します。double.NaN (デフォルト値) に設定される場合、画像がその幅を使用して描画されます。
+
+|link:{DataGridLink}.imagefield{ApiProp}Stretch.html[Stretch]
+|`Stretch`
+|描画された画像が指定した長方形を埋めるために引き伸ばす方法を説明する値を返すか、設定します。
+
+|link:{DataGridLink}.imagefield{ApiProp}StretchDirection.html[StretchDirection]
+|`StretchDirection`
+|描画された画像を拡大縮小する方法を示す値を返すか、設定します。
+
+|====
+
+
+[[CodeExample]]
+== コード例: 画像フィールドの使用
+
+以下のスクリーンショットは、以下のコード例を使用した結果、ImageField がどのように表示されるかを示しています。
+
+image:images/XamDataGrid_Image_Field.png[]
+
+以下のコードは ImageField を {DataGridName} に実装します。「Photo」は基本データ項目のプロパティで、上記の型があります。
+
+*XAML の場合:*
+[source,xaml]
+----
+<igDP:ImageField Name="Photo" ImageHeight="100" ImageWidth="100" />
+----
+
+[[Related]]
+== 関連トピック
+
+このトピックに関連する追加情報については、以下のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、表示するフィールドを指定し、{DataGridName} コントロールでこれらのフィールドに関連するプロパティを設定するために、フィールドのレイアウトを定義する方法を説明します。
+
+| link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+|このトピックでは、{DataGridName} コントロールによるフィールドの自動生成と手動生成の違いを説明します。
+
+| link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[フィールド レイアウトの {DataGridName} への手動割り当て]
+|このトピックでは、{DataGridName} コントロールに対する複数の FieldLayouts を作成する方法を説明します。
+
+|====

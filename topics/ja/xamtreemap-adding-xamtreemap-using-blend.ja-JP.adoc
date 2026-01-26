@@ -1,0 +1,179 @@
+﻿////
+|metadata|
+{
+    "name": "xamtreemap-adding-xamtreemap-using-blend",
+    "controlName": ["xamTreemap"],
+    "tags": ["Charting","How Do I"],
+    "guid": "8875f3c5-e8c3-4c58-aeeb-e1d01a25b5f3",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7783833Z"
+}
+|metadata|
+////
+
+= Expression Blend を使用して xamTreemap を追加
+
+このトピックでは、Expression Blend を使用して xamTreemap を作成する方法を紹介します。
+
+トピックは以下のとおりです。
+
+* <<preview,プレビュー>>
+* <<requirements,要件>>
+* <<overview,概要>>
+* <<steps,手順>>
+
+[[preview]]
+== プレビュー
+
+以下は最終結果のプレビューです。
+
+image::images/xamTreemap_Adding_Using_Blend_01.png[]
+
+図 1: カラー マッピングしたデータ バインドされた Treemap 
+
+[[requirements]]
+== 要件
+
+* Expression Blend で Microsoft® {PlatformName}®  プロジェクトを作成します。
+* 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.Treemap
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+* この手順は xamTreemap コントロールの DataContext プロパティのバインドにサンプル データ モデルを使用しています。Manufacturer View Model からダウンロードできます。
+
+[[overview]]
+== 概要
+
+[start=1]
+. <<step1,ManufacturerViewModel クラスの追加。>>
+[start=2]
+. <<step2,XamTreemap をアプリケーションに追加し、データにバインド。>>
+
+.. <<step2a,XamTreemap コントロールをアセット ライブラリからアプリケーションにドラッグ。>>
+.. <<step2b,DataContext プロパティを ManufacturerViewModel クラスにバインド。>>
+.. <<step2c,ItemsSource プロパティをビュー モデルの Manufacturers コレクションにバインド。>>
+.. <<step2d,新しい NodeBinders コレクションの作成。>>
+.. <<step2e,新しい ValueMappers コレクションの作成。>>
+
+[start=3]
+. <<step3,アプリケーションの保存。>>
+[start=4]
+. <<step4,(オプション) 結果を確認します。>>
+
+[[steps]]
+== 手順
+
+[start=1]
+. *[[step1]]
+ManufacturerViewModel クラスを追加します。*
+
+Blend でプロジェクトを右クリックして、[参照の追加] を選択し、必要なアセンブリを追加します。
+[start=2]
+. *[[step2]]
+XamTreemap をアプリケーションに追加し、データにバインドします。*
+
+.. *[[step2a]]
+XamTreemap コントロールをアセット ライブラリからアプリケーションにドラッグします(図 2)*
+
+image::images/xamTreemap_Adding_Using_Blend_02.png[]
+
+図 2: Blend のアセット ライブラリ 
+
+[[step2b]]
+[start=2]
+.. *DataContext プロパティを ManufacturerViewModel クラスにバインドします。*[プロパティ] パネルで、[共通のプロパティ] に移動します。DataContext プロパティのために、新しいオブジェクトを作成して ManufacturerViewModel クラスを使用します(図 3 と図 4)
+
+image::images/xamTreemap_Adding_Using_Blend_03.png[]
+
+図 3: xamTreemap の [プロパティ] タブ 
+
+image::images/xamTreemap_Adding_Using_Blend_04.png[]
+
+図 4: Blend オブジェクト ブラウザー 
+
+[[step2c]]
+[start=3]
+.. *ItemsSource プロパティをビュー モデルの Manufacturers コレクションにバインドします。*
+
+[プロパティ] パネルで、[XamTreemap プロパティ] に移動し、ビュー モデルの Manufacturers コレクションを使用して Data Binding を ItemsSource プロパティに適用します (図 5 と図 6)。
+
+image::images/xamTreemap_Adding_Using_Blend_05.png[]
+
+図 5: ItemsSource のバインド 
+
+image::images/xamTreemap_Adding_Using_Blend_06.png[]
+
+図 6: データ バインドの作成 
+
+[[step2d]]
+[start=4]
+.. *新しい NodeBinders コレクションを作成します。*
+
+... [XamTreemap プロパティ] で、NodeBinders に移動し、新しいコレクションを作成します(図 7)
+
+image::images/xamTreemap_Adding_Using_Blend_07.png[]
+
+図 7: 新しい Node Binders コレクションの作成 
+
+[start=2]
+... 新しい Node Binder をコレクションに追加し、以下のプロパティを設定します。
+
+**** TargetTypeName = Manufacturer
+**** TextPath = Name
+**** ValuePath = Revenue
+
+*注:* Node Binder が追加され、xamTreemap がそのデータを表示します(図 8)
+
+image::images/xamTreemap_Adding_Using_Blend_08.png[]
+
+図 8: Blend での Treemap のプレビュー 
+
+[[step2e]]
+[start=5]
+.. *新しい ValueMappers コレクションを作成します。*
+
+... [XamTreemap プロパティ] で、ValueMappers に移動し、新しいコレクションを作成します(図 9)
+
+image::images/xamTreemap_Adding_Using_Blend_09.png[]
+
+図 9: 新しい Value Mappers コレクションの作成 
+
+[start=2]
+... 新しい項目をコレクションに追加し、[オブジェクトの選択] ウィンドウから ColorMapper クラスを選択します。
+
+image::images/xamTreemap_Adding_Using_Blend_10.png[]
+
+図 10: ColorMapper の選択 
+
+[start=3]
+... 新しい Value Mapper を作成した後で、以下のプロパティを設定します。
+
+**** ValueTypeName = Manufacturer
+**** TargetProperty = Fill
+**** ValuePath = Revenue
+
+[start=4]
+... From and To プロパティのカラーを選択します。
+
+*注:* Color Mapper が追加され、xamTreemap がそのデータを表示します(図 11)
+
+image::images/xamTreemap_Adding_Using_Blend_11.png[]
+
+図 11: Blend での Color Mapper による Treemap のプレビュー 
+
+[[step3]]
+[start=3]
+. *プロジェクトを保存します。*
+[[step4]]
+[start=4]
+. *(オプション) 結果を確認します。*
+
+アプリケーションを実行します。手順を正しく実装したバインドには、Treemap は図 1 に示したように表示されます。
+
+== 関連トピック
+
+* link:xamtreemap-adding-xamtreemap-using-xaml.html[XAML コードを使用して xamTreemap を追加]
+* link:xamtreemap-adding-xamtreemap-using-procedural.html[プロシージャ コードを使用して xamTreemap を追加]

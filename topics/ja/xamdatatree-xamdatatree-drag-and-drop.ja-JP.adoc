@@ -1,0 +1,82 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatatree-xamdatatree-drag-and-drop",
+    "controlName": ["xamDataTree"],
+    "tags": ["Data Presentation","Editing","How Do I","Layouts","Selection"],
+    "guid": "9d521c3a-9b79-4358-b15f-427d97d2ca75",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.899113Z"
+}
+|metadata|
+////
+
+= ドラッグ アンド ドロップの構成
+
+xamDataTree コントロールは、ドラッグ アンド ドロップ機能をサポートします。これは、Infragistics Drag and Drop Framework に基づきます。詳細については、 link:drag-and-drop-framework.html[Infragistics Drag and Drop Framework] を参照してください。xamDataTree コントロールの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~isdraggable.html[IsDraggable] および link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~isdroptarget.html[IsDropTarget] プロパティを設定することによって、xamDataTree でこの機能を有効にすることができます。特定のノード レイアウトでこれらのプロパティを設定することもできます。
+
+以下のコードはドラッグ アンド ドロップを有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamDataTree x:Name="MyTree" IsDraggable="True" IsDropTarget="True">
+    <!-- TODO: xamDataTree ノードを追加します -->
+</ig:XamDataTree>
+----
+
+*Visual Basic の場合:*
+
+----
+MyTree.IsDraggable = True
+MyTree.IsDropTarget = True
+----
+
+*C# の場合:*
+
+----
+MyTree.IsDraggable = true;
+MyTree.IsDropTarget = true;
+----
+
+IsDraggable プロパティを設定すると、ノードをツリー/ノード レイアウトからドラッグできることになり、IsDropTarget プロパティを設定すると、ノードをツリー/ノード レイアウトにドロップできることになります。
+
+ツリー内でノードをドラッグすると、このノードはドロップするレベルの項目ソースに追加されます。
+
+たとえば、ツリーが 2 つの親ノードで構成され、両方ともが子を持つ場合、子ノードをひとつの親ノードから他の親ノードの子に移動することができます。
+
+親がそれ自体の子となるように、ドラッグすることはできません。
+
+Type A のノードを Type B のコレクションにドロップできません。
+
+*イベント*
+
+以下のリストに示すように、xamDataTree に関連づけられたイベントが 4 つあります。これらのイベントによって、ドラッグ アンド ドロップ中にカスタム ロジックを実行できます。
+
+[NOTE]
+====
+*注:* NodeDraggingStart イベントはすべてキャンセル可能です。
+====
+
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~nodedragcancel_ev.html[NodeDragCancel]
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~nodedragdrop_ev.html[NodeDragDrop]
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~nodedragend_ev.html[NodeDragEnd]
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~nodedraggingstart_ev.html[NodeDraggingStart]
+
+== *関連トピック*
+
+link:xamdatatree-xamdatatree-activation.html[アクティブ化]
+
+link:xamdatatree-active-data-item.html[アクティブなデータ アイテムの構成]
+
+link:xamdatatree-xamdatatree-check-boxes.html[チェックボックスの表示状態の構成]
+
+link:xamdatatree-expanded-and-collapsed-xamdatatree-nodes.html[ノードの展開と縮小状態の構成]
+
+link:xamdatatree-xamdatatree-editing.html[編集の構成]
+
+link:xamdatatree-xamdatatree-node-connectors.html[ノード コネクターの表示状態の構成]
+
+link:xamdatatree-xamdatatree-node-layouts.html[ノード レイアウトの構成]
+
+link:xamdatatree-xamdatatree-selection.html[選択]

@@ -1,0 +1,192 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistence-using-typeconverte",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["How Do I","Persistence"],
+    "guid": "{01DA9000-AD93-4C83-8991-324559FA6B78}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.5800384Z"
+}
+|metadata|
+////
+
+= PropertyNamePersistenceInfo TypeConverter プロパティの使用
+
+一部のプロパティは Infragistics Control Persistence Framework で保持できません。
+
+このようなプロパティは Cursor、FontWeight、FontFamily および FontStyle です。
+
+TypeConverter を使用してこのようなプロパティを保存できます。
+
+この例は、FontFamily プロパティを保存およびロードできる方法を示します。2 つの xamComboEditor コンポーネントを使用して、最初のコンポーネントのフォント設定を 2 番目のコンポーネントに適用します。
+
+[start=1]
+. 最初に、FontFamily プロパティのコンバーター クラスを作成します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class FontFamilyConverter
+    Inherits TypeConverter
+    Public Overloads Overrides Function CanConvertFrom(ByVal context As ITypeDescriptorContext, ByVal sourceType As Type) As Boolean
+        Return (sourceType Is GetType(String))
+    End Function
+    Public Overloads Overrides Function CanConvertTo(ByVal context As ITypeDescriptorContext, ByVal destinationType As Type) As Boolean
+        Return (destinationType Is GetType(String))
+    End Function
+    Public Overloads Overrides Function ConvertFrom(ByVal context As ITypeDescriptorContext, ByVal culture As System.Globalization.CultureInfo, ByVal value As Object) As Object
+        Dim obj As String = DirectCast(value, String)
+        If obj IsNot Nothing AndAlso obj.Length > 0 Then
+            Return New FontFamily(obj)
+        Else
+            Return New FontFamily("Verdana")
+        End If
+    End Function
+    Public Overloads Overrides Function ConvertTo(ByVal context As ITypeDescriptorContext, ByVal culture As System.Globalization.CultureInfo, ByVal value As Object, ByVal destinationType As Type) As Object
+        If value IsNot Nothing Then
+            Dim ff As FontFamily = DirectCast(value, FontFamily)
+            Return ff.ToString()
+        End If
+        Return Nothing
+    End Function
+End Class
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class FontFamilyConverter : TypeConverter
+{
+    public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+    {
+        return (sourceType == typeof(string));
+    }
+    public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+    {
+        return (destinationType == typeof(string));
+    }
+    public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+    {
+        string obj = (string)value;
+        if (obj != null && obj.Length > 0)
+            return new FontFamily(obj);
+        else
+            return new FontFamily("Verdana");
+    }
+    public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+    {
+        if (value != null)
+        {
+            FontFamily ff = (FontFamily)value;
+            return ff.ToString();
+        }
+        return null;
+    }
+}
+----
+
+[start=2]
+. UserControl リソースで作成したコンバーターを静的リソースとして追加します。
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+    <local:FontFamilyConverter x:Key="FontConverter" />
+</UserControl.Resources>
+----
+
+[start=3]
+. 最初の xamComboEditor コントロールを追加します。
+
+*XAML の場合:*
+
+ifdef::wpf[]
+----
+<ig:XamComboEditor x:Name="XWComboEditorBase" 
+         IsEditable="True" Height="30" Width="300" 
+         DisplayMemberPath="FirstName"  FontFamily="Arial">
+  <TextBox x:Name="txtBoxSource" Width="300" FontFamily="Arial">
+   <ig:PersistenceManager.Settings>
+      <ig:PersistenceSettings SavePersistenceOptions="OnlySpecified">
+         <ig:PersistenceSettings.PropertySettings>
+            <ig:PropertyNamePersistenceInfo
+				PropertyName="FontFamily"
+				TypeConverter="{StaticResource FontConverter}" />
+		 </ig:PersistenceSettings.PropertySettings>
+      </ig:PersistenceSettings>
+    </ig:PersistenceManager.Settings>
+   </TextBox>
+</ig:XamComboEditor>
+----
+endif::wpf[]
+
+[start=4]
+. xamComboEditor の FontFamily を "Arial" に設定し、この設定をターゲットの xamComboEditor に適用します。
+[start=5]
+. このプロパティは保存される唯一のプロパティです。TypeConverter プロパティを静的なリソース FontConverter にバインドします。
+[start=6]
+. 2 番目の xamComboEditor と 2 つのボタンを追加して、保存およびロード プロセスを実行します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="XWComboEditorTarget" 
+    IsEditable="True" Height="30" Width="100" 
+    DisplayMemberPath="FirstName" />
+<Button x:Name="save" Content="save" Click="save_Click" Width="100" />
+<Button x:Name="load" Content="load" Click="load_Click" Width="100" />
+----
+
+[start=7]
+. ボタンの Click イベントを処理します。
+
+*Visual Basic の場合:*
+
+----
+Private ms As New MemoryStream()
+Private Sub save_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    ms = PersistenceManager.Save(XWComboEditorBase)
+End Sub
+Private Sub load_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    ms.Position = 0
+    PersistenceManager.Load(XWComboEditorTarget, ms)
+  End Sub
+----
+
+*C# の場合:*
+
+----
+private MemoryStream ms = new MemoryStream();
+private void save_Click(object sender, RoutedEventArgs e)
+{
+    ms = PersistenceManager.Save(XWComboEditorBase);
+}
+private void load_Click(object sender, RoutedEventArgs e)
+{
+    ms.Position = 0;
+    PersistenceManager.Load(XWComboEditorTarget, ms);
+  }   
+----
+
+[start=8]
+. 結果は、FontFamily プロパティがターゲットの xamComboEditor から適用されることになります。
+
+== 関連トピック
+
+link:persistence-persistence-settings.html[保持の設定]
+
+link:persistence-exclude-specific-control-properties.html[特定のコントロールのプロパティを除外]
+
+link:persistence-persistence-groups.html[保持グループ]
+
+link:persistence-persisting-specific-control-properties.html[特定のコントロールのプロパティを保持]
+
+link:persistence-handle-persistencesaved-and-persistenceloaded-events.html[PersistenceSaved イベントと PersistenceLoaded イベントの処理]
+
+link:persistence-handle-savepropertypersistence-and-loadpropertypersistence-events.html[SavePropertyPersistence イベントと LoadPropertyPersistence イベントの処理]

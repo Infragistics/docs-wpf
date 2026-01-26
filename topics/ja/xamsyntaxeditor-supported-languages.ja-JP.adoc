@@ -1,0 +1,415 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-supported-languages",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","Layouts","Templating"],
+    "guid": "e24a4ba4-3967-4b10-93c5-0c4ceb092061",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4143967Z"
+}
+|metadata|
+////
+
+= サポートされる言語 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   がサポートしている言語を紹介し、それぞれの使用方法を解説します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref330377555, サポート対象言語 >>
+** <<_Ref330377581,プレーン テキスト>>
+** <<_Ref330377728,C# 言語>>
+** <<_Ref330377735,Visual Basic 言語>>
+** <<_Ref876376384,Transact-SQL>>
+
+* <<_Ref330377754, コード例 >>
+** <<_Ref330377753,コード例: プレーン テキスト言語の設定>>
+** <<_Ref330377762,コード例: C# 言語の設定>>
+** <<_Ref330377777,コード例: Visual Basic 言語の設定>>
+** <<_Ref924657653,コード例: Transact-SQL 言語の設定>>
+
+* <<_Ref330377785, 関連コンテンツ >>
+
+[[_Ref330377555]]
+== サポート対象言語
+
+=== サポート対象言語の要旨表
+
+_xamSyntaxEditor_   は定義済みの構文ハイライト表示言語をいくつかサポートしています。サポート対象言語の使用方法については、以下のトピックも参照してください。
+
+注:
+
+[NOTE]
+====
+一部の言語 (Visual Basic など) では、文書内のキーワードの大文字/小文字の設定が変更されてしまうものがあります。異なる言語を対象にしたテキストがある文書にこのような設定の変更をあえて実行する場合は、 link:xamsyntaxeditor-configuring-initial-content.html[文書のコンテンツを読み込む前に]文書の言語を設定してください。
+====
+
+[options="header", cols="a,a"]
+|====
+|言語|カラー化の詳細
+
+|<<_Ref330377581,プレーン テキスト>>
+|特別なカラー化スキームは使用しません。
+
+|<<_Ref330377728,C# 言語>>
+|C# 言語のカラー化スキームを使用します。これは、MS Visual Studio に似たスキームです。
+
+|<<_Ref330377735,Visual Basic 言語>>
+|Visual Basic 言語のカラー化スキームを使用します。これは、MS Visual Studio に似たスキームです。
+
+|<<_Ref876376384,Transact-SQL 言語>>
+|Transact-SQL 言語の色設定スキームを使用します。これは、MS Visual Studio に似たスキームです。
+
+|====
+
+注:
+
+[NOTE]
+====
+この言語の内部文法構造および作成した構文ツリーの構造は、変更される場合があります。構文ツリーを確認または移動するコードでは、各ノードの記号の名前を識別するために、文字列リテラルとして記号名の代わりに各言語定義のネストされる SymbolNames クラス定数を使用してください。この記号名に変更がある場合はコンパイル エラーで表示されます。また、特定のノードの子ノードの数とタイプについて前提データおよびデバッグ アサートをテストするロジックを書くことを推薦します。ノードの子構造の変更を検出し、処理するためです。
+====
+
+[[_Ref330377581]]
+== プレーン テキスト
+
+=== 概要
+
+特別なカラー化スキームは使用しません。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|プレーン テキスト言語を設定
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~language.html[Language]
+|
+* link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.parsing.plaintextlanguage_members.html[PlainTextLanguage] クラスの新しいインスタンス 
+
+* link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.parsing.plaintextlanguage~instance.html[PlainTextLanguage.Instance] 
+
+* `Language` プロパティを設定しない。 
+
+|====
+
+[[_Ref330377728]]
+== C# 言語
+
+=== 概要
+
+C# 言語のカラー化スキームを使用します。これは、MS Visual Studio に似たスキームです。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|C# 言語を設定
+|`Language`
+|
+* link:{ApiPlatform}documents.textdocument.csharp{ApiVersion}~infragistics.documents.parsing.csharplanguage_members.html[CSharpLanguage] クラスの新しいインスタンス 
+
+* link:{ApiPlatform}documents.textdocument.csharp{ApiVersion}~infragistics.documents.parsing.csharplanguage~instance.html[CSharpLanguage.Instance] 
+
+|====
+
+[[_Ref330377735]]
+== Visual Basic 言語
+
+=== 概要
+
+Visual Basic 言語のカラー化スキームを使用します。これは、MS Visual Studio に似たスキームです。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|Visual Basic 言語を設定
+|`Language`
+|
+* link:{ApiPlatform}documents.textdocument.visualbasic{ApiVersion}~infragistics.documents.parsing.visualbasiclanguage_members.html[VisualBasicLanguage] クラスの新しいインスタンス 
+
+* link:{ApiPlatform}documents.textdocument.visualbasic{ApiVersion}~infragistics.documents.parsing.visualbasiclanguage~instance.html[VisualBasicLanguage.Instance] 
+
+|====
+
+[[_Ref876376384]]
+== Transact-SQL 言語
+
+=== 概要
+
+Transact-SQL 言語の色設定スキームを使用します。これは、MS Visual Studio に似たスキームです。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|Transact-SQL 言語を設定
+|`Language`
+|
+* link:{ApiPlatform}documents.textdocument.tsql{ApiVersion}~infragistics.documents.parsing.tsqllanguage_members.html[TSqlLanguage] クラスの新しいインスタンス 
+
+* link:{ApiPlatform}documents.textdocument.tsql{ApiVersion}~infragistics.documents.parsing.tsqllanguage~instance.html[TSqlLanguage.Instance] 
+
+|====
+
+[[_Ref330377754]]
+== コード例
+
+=== コード例の概要
+
+以下の表は、このトピックで使用したコード例をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|例|解説
+
+|<<_Ref330377753,プレーン テキスト言語を設定>>
+|この例は、 _TextDocument_ の言語をプレーン テキストに設定する方法を紹介しています。
+
+|<<_Ref330377762,C# 言語を設定>>
+|この例は、 _TextDocument_ の言語を C# に設定する方法を紹介しています。
+
+|<<_Ref330377777,Visual Basic 言語を設定>>
+|この例は、 _TextDocument_ の言語を Visual Basic に設定する方法を紹介しています。
+
+|<<_Ref924657653,Transact-SQL 言語を設定>>
+|この例は、 _TextDocument_ の言語を Transact-SQL に設定する方法を紹介しています。
+
+|====
+
+[[_Ref330377753]]
+== コード例: プレーン テキスト言語の設定
+
+=== 解説
+
+この例は、TextDocument の言語をプレーン テキストに設定する方法を紹介しています。
+
+=== コード スニペット
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSyntaxEditor x:Name="xamSyntaxEditor1">
+    <ig:XamSyntaxEditor.Document>
+        <ig:TextDocument>
+            <ig:TextDocument.Language>
+                <ig:PlainTextLanguage />
+            </ig:TextDocument.Language>
+        </ig:TextDocument>
+    </ig:XamSyntaxEditor.Document>
+</ig:XamSyntaxEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+using Infragistics.Documents;
+using Infragistics.Documents.Parsing;
+XamSyntaxEditor xamSyntaxEditor1 = new XamSyntaxEditor();
+xamSyntaxEditor1.Document = new TextDocument();
+xamSyntaxEditor1.Document.Language = PlainTextLanguage.Instance;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+Imports Infragistics.Documents
+Imports Infragistics.Documents.Parsing
+Dim xamSyntaxEditor1 As New XamSyntaxEditor()
+xamSyntaxEditor1.Document = New TextDocument()
+xamSyntaxEditor1.Document.Language = PlainTextLanguage.Instance
+----
+
+[[_Ref330377762]]
+== コード例: C# 言語の設定
+
+=== 解説
+
+この例は、 _TextDocument_   の言語を C# に設定する方法を紹介しています。
+
+=== コード スニペット
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSyntaxEditor x:Name="xamSyntaxEditor1">
+    <ig:XamSyntaxEditor.Document>
+        <ig:TextDocument>
+            <ig:TextDocument.Language>
+                <ig:CSharpLanguage />
+            </ig:TextDocument.Language>
+        </ig:TextDocument>
+    </ig:XamSyntaxEditor.Document>
+</ig:XamSyntaxEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+using Infragistics.Documents;
+using Infragistics.Documents.Parsing;
+XamSyntaxEditor xamSyntaxEditor1 = new XamSyntaxEditor();
+xamSyntaxEditor1.Document = new TextDocument();
+xamSyntaxEditor1.Document.Language = CSharpLanguage.Instance;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+Imports Infragistics.Documents
+Imports Infragistics.Documents.Parsing
+Dim xamSyntaxEditor1 As New XamSyntaxEditor()
+xamSyntaxEditor1.Document = New TextDocument()
+xamSyntaxEditor1.Document.Language = CSharpLanguage.Instance
+----
+
+[[_Ref330377777]]
+== コード例: Visual Basic 言語の設定
+
+=== 解説
+
+この例は、TextDocument の言語を Visual Basic に設定する方法を紹介しています。
+
+=== コード スニペット
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSyntaxEditor x:Name="xamSyntaxEditor1">
+    <ig:XamSyntaxEditor.Document>
+        <ig:TextDocument>
+            <ig:TextDocument.Language>
+                <ig:VisualBasicLanguage />
+            </ig:TextDocument.Language>
+        </ig:TextDocument>
+    </ig:XamSyntaxEditor.Document>
+</ig:XamSyntaxEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+using Infragistics.Documents;
+using Infragistics.Documents.Parsing;
+XamSyntaxEditor xamSyntaxEditor1 = new XamSyntaxEditor();
+xamSyntaxEditor1.Document = new TextDocument();
+xamSyntaxEditor1.Document.Language = VisualBasicLanguage.Instance;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+Imports Infragistics.Documents
+Imports Infragistics.Documents.Parsing
+Dim xamSyntaxEditor1 As New XamSyntaxEditor()
+xamSyntaxEditor1.Document = New TextDocument()
+xamSyntaxEditor1.Document.Language = VisualBasicLanguage.Instance
+----
+
+[[_Ref924657653]]
+== コード例: Transact-SQL 言語の設定
+
+=== 説明
+
+この例は、TextDocument の言語を Transact-SQL に設定する方法を紹介しています。
+
+=== コード スニペット
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSyntaxEditor x:Name="xamSyntaxEditor1">
+    <ig:XamSyntaxEditor.Document>
+        <ig:TextDocument>
+            <ig:TextDocument.Language>
+                <ig:TSqlLanguage />
+            </ig:TextDocument.Language>
+        </ig:TextDocument>
+    </ig:XamSyntaxEditor.Document>
+</ig:XamSyntaxEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+using Infragistics.Documents;
+using Infragistics.Documents.Parsing;
+XamSyntaxEditor xamSyntaxEditor1 = new XamSyntaxEditor();
+xamSyntaxEditor1.Document = new TextDocument();
+xamSyntaxEditor1.Document.Language = TSqlLanguage.Instance;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+Imports Infragistics.Documents
+Imports Infragistics.Documents.Parsing
+Dim xamSyntaxEditor1 As New XamSyntaxEditor()
+xamSyntaxEditor1.Document = New TextDocument()
+xamSyntaxEditor1.Document.Language = TSqlLanguage.Instance
+----
+
+[[_Ref330377785]]
+== 関連コンテンツ
+
+このトピックにの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-changing-default-classification-types-appearance.html[デフォルト分類タイプの外観の変更]
+|このトピックでは、 _xamSyntaxEditor_ によって言語要素に割り当てられた色および他の外観属性を変更する方法を解説します。
+
+|====

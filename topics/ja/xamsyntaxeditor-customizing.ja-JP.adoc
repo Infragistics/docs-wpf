@@ -1,0 +1,46 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-customizing",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": [],
+    "guid": "9c73c581-606a-43c3-9e2a-82d82d9468d1",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4653992Z"
+}
+|metadata|
+////
+
+= xamSyntaxEditor のカスタマイズ
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのこのトピックでは、 _xamSyntaxEditor™_   のカスタマイズ方法を解説します。
+
+=== トピック
+
+このセクションは、 _xamSyntaxEdtior_   のカスタマイズに関するトピックからなります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-changing-font-and-styles.html[フォントとスタイル設定の変更]
+|このトピックでは、 _xamSyntaxEditor_ でドキュメントのコンテンツの表示を変更する方法について解説します。
+
+| link:xamsyntaxeditor-currentlinehl.html[現在の行の強調表示]
+|このトピックは現在の行の強調表示機能について説明します。
+
+| link:xamsyntaxeditor-custom-adornments.html[カスタム装飾]
+|このトピックは装飾を説明し、カスタム装飾を作成する方法を紹介します。
+
+| link:xamsyntaxeditor-splitting.html[分割]
+|このトピックでは、 _xamSyntaxEditor_ のドキュメント分割機能を解説し、カスタマイズする方法について解説します。
+
+| link:xamsyntaxeditor-whitespacehighlighting.html[空白の強調表示]
+|このトピックは空白の強調表示を紹介します。
+
+|====

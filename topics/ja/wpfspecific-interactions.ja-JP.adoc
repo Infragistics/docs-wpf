@@ -1,0 +1,20 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpfspecific-interactions",
+    "controlName": [],
+    "tags": [],
+    "guid": "7bfe0c18-2d32-4ee6-971b-b4df7b97d48b",  
+    "buildFlags": [],
+    "createdOn": "2012-02-07T14:21:54.886956Z"
+}
+|metadata|
+////
+
+= 操作
+
+次の相互作用コントロールは WPF 専用です。
+
+* link:xamdatacarousel.html[xamDataCarousel]
+* link:xambusyindicator.html[xamBusyIndicator]

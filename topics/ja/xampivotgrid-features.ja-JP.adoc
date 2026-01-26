@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-features",
+    "tags": ["How Do I"],
+    "controlName": ["xamPivotGrid"],
+    "guid": "cd668dd5-b9fa-48e8-95d9-f6f333efe338",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.3063335Z"
+}
+|metadata|
+////
+
+= 機能
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamPivotGrid_™ の各機能を構成し使用する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-calculated-measures.html[計算メジャー ( _xamPivotGrid_ )]
+|このトピックではコード例を使用して、 _xamPivotGrid_ メンバーによる計算の実行方法を説明します。
+
+| link:xampivotgrid-componentlocking-lockingunlocking-component-areas.html[コンポーネントのロック ( _xamPivotGrid_ )]
+|このトピックでは、 _xamPivotGrid_ のコンポーネントのロック機能、およびこのコントロールが提供するエンド ユーザー機能の概要を紹介します。
+
+| link:xampivotgrid-dataselector.html[データ選択ウィザード ( _xamPivotGrid_ 、 _xamPivotDataSelector_ )]
+|このトピックでは、 _xamPivotDataSelector_™ コントロールを紹介します。
+
+| link:xampivotgrid-dataslicer.html[データ スライサー ( _xamPivotGrid_ )]
+|このトピックでは、 _xamPivotGrid_ のデータ スライサー機能を紹介します。
+
+| link:xampivotgrid-field-chooser.html[フィールド選択 ( _xamPivotGrid_ )]
+|このセクションのトピックでは、フィールド選択コントロールについて詳しく説明します。
+
+| link:xampivotgrid-filtering-and-sorting.html[フィルター処理と並べ替え ( _xamPivotGrid_ )]
+|このトピックでは、データのフィルター処理と並べ替えに使用する _xamPivotGrid_ コントロールの機能について説明します。
+
+| link:xampivotgrid-layout-and-formatting.html[レイアウトと書式設定 ( _xamPivotGrid_ )]
+|このセクションのトピックでは、 _xamPivotGrid_ のレイアウトと書式設定の詳細情報を提供します。
+
+| link:xampivotgrid-visualizing-kpi-data.html[KPI (キー パフォーマンス インジケーター) のサポート ( _xamPivotGrid_ 、 _xamPivotDataSelector_ )]
+|このグループのトピックでは、KPI (キー パフォーマンス インジケーター) のデータをピボット グリッドで視覚化する方法を説明します。この機能は、 _XmlaDataSource_™ コンポーネント、 _xamPivotGrid_ コントロールおよび _xamPivotDataSelector_ コントロールにより提供されます。
+
+|====

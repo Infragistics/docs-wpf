@@ -1,0 +1,50 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-generating-fields-manually-versus-automatically",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "{0EAFC6A6-7427-47C0-B7DC-808A8E65EFC8}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5148561Z"
+}
+|metadata|
+////
+
+= フィールドの生成、手動と自動
+
+
+
+DataPresenter コントロールは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] を定義するために 2 つの方法を提供します。
+
+* 自動
+* 手動
+
+いずれかのオプションを使用して、非バインド フィールドを依然として定義できます。表示されるフィールドとフィールドを表示したい順序を制御するために、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] で作業を行うこともできます。詳細は、 link:xamdata-terms-fields.html[フィールド]を参照してください。
+
+== 自動
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[AutoGenerateFields] を True のままにしておく場合、コントロールはバインドされたデータ ソースをスキャンして、データ ソースのパブリック プロパティごとに適切な Fields を生成します。Fields は作成されると自動的に Field コレクションに含まれます。
+
+== 手動
+
+AutoGenerateFields が False に設定されると、Fields と Fields を含む FieldLayouts を定義する必要があります。以下の XAML は xamDataGrid のためにこのプロパティを設定する方法を示します。xamDataCarousel と xamDataPresenter に似ています。
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataGrid.FieldLayoutSettings>
+    <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+</igDP:XamDataGrid.FieldLayoutSettings>
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+
+link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[フィールド レイアウトを xamDataPresenter を手動で割り当て]
+
+link:xamdatapresenter-add-unbound-fields-to-a-datapresenter-control.html[DataPresenter コントロールにバインドされていないフィールドを追加]

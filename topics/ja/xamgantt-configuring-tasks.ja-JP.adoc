@@ -1,0 +1,56 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-tasks",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "24e9906c-9f61-4870-b1a5-e6b4c2f3d9a6",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.3741678Z"
+}
+|metadata|
+////
+
+= タスクの構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamGantt™_   link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask_members.html[ProjectTask] クラス、その構成可能な項目およびこのクラスが提供する主要機能を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-tasks-configuration-overview.html[タスクの構成の概要]
+|このトピックでは _xamGantt_ ProjectTask クラスとその構成可能な項目の概要を提供します。
+
+| link:xamgantt-configuring-tasks-manual-automatic.html[タスクを手動/自動で構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクを手動または自動スケジュールに構成する方法を説明します。
+
+| link:xamgantt-configuring-tasks-active-inactive.html[タスクをアクティブ/非アクティブで構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクをアクティブ/非アクティブのいずれかに構成する方法を説明します。
+
+| link:xamgantt-configuring-deadlines.html[期限の構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクの期限を構成する方法を説明します。
+
+| link:xamgantt-configuring-milestones.html[マイルストーンの構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してマイルストーンを作成する方法を説明します。
+
+| link:xamgantt-configuring-task-progress.html[タスクの進行状況の構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクの進行状況を設定する方法を説明します。
+
+| link:xamgantt-configuring-task-duration-duration-format.html[タスク期間とタスク期間単位の構成]
+|このトピックでは _xamGantt_ コントロールを使用してタスク期間とタスク期間単位を設定する方法を説明します _。_
+
+| link:xamgantt-configuring-task-dependencies.html[タスクの依存関係の構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクの依存関係を構成する方法を説明します。
+
+| link:xamgantt-configuring-task-constraint.html[タスクの制約の構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクの制約を構成する方法を説明します。
+
+|====

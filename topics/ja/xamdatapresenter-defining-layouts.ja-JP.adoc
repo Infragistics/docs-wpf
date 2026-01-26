@@ -1,0 +1,66 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-defining-layouts",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{CF4735F4-736A-41F2-AC46-BF5378298353}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1319795Z"
+}
+|metadata|
+////
+
+= フィールド レイアウトの定義 (xamDataPresenter)
+
+
+
+DataPresenter コントロールを使用したレイアウト定義に特化したヘルプトピックをご覧になるには以下のリンクをクリックしてください。
+
+* link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+* link:xamdatapresenter-configuring-specific-editor-fields.html[特定のエディター フィールドの構成]
+* link:xamdatapresenter-configuring-template-field.html[テンプレート フィールドの構成]
+* link:xamdatapresenter-add-unbound-fields-to-a-datapresenter-control.html[DataPresenter コントロールにバインドされていないフィールドを追加]
+* link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+* link:xamdata-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xamdatapresenter-load-field-customizations.html[フィールド カスタマイズのロード]
+* link:xamdatapresenter-save-field-customizations.html[フィールド カスタマイズの保存]
+* link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[フィールド レイアウトを xamDataPresenter を手動で割り当て]
+* link:xamdatapresenter-apply-cell-value-templates-conditionally.html[条件に基づきセルの値テンプレートを適用 (xamDataPresenter)]
+* link:xamdatapresenter-field-grouping.html[フィールドのグループ化 (xamDataPresenter)]
+
+== フィールドのサイズ設定
+
+* link:xamdatapresenter-field-sizing.html[フィールドのサイズ設定]
+* link:xamdatapresenter-set-a-fields-width.html[フィールドの幅の設定]
+* link:xamdatapresenter-automatically-fit-fields.html[自動的にフィールドを調整]
+* link:xamdatapresenter-modify-field-sizing-behaviors.html[フィールドのサイズ設定動作の修正]
+* link:xamdatapresenter-perform-an-auto-sizing-operation.html[自動サイズ設定操作の実行]
+
+== カード ビュー
+
+* link:xamdatapresenter-about-card-settings.html[カード設定について]
+* link:xamdatapresenter-about-card-sizing.html[カード サイズについて]
+* link:xamdatapresenter-about-repositioning-animations.html[リポジション アニメーションについて]
+* link:xamdatapresenter-collapse-a-card.html[カードの縮小]
+* link:xamdatapresenter-collapse-an-empty-cell.html[空のセルの縮小]
+* link:xamdatapresenter-set-the-maximum-number-of-viewable-cards.html[表示可能なカードの最大数の設定]
+* link:xamdatapresenter-set-the-space-between-cards.html[カード間のスペースの設定]
+* link:xamdatapresenter-working-with-card-headers.html[カード ヘッダーでの作業]
+
+== カルーセル ビュー
+
+* link:xamdatapresenter-limiting-the-number-of-items-viewed-on-xamdatapresenters-path.html[xamDataPresenter のパス上で表示される項目数を制限]
+* link:xamdatapresenter-making-the-path-continuous.html[パスを継続]
+* link:xamdatapresenter-setting-padding-on-xamdatapresenters-path.html[xamDataPresenter のパス上でパディングを設定]
+* link:xamdatapresenter-showing-more-than-three-fields-in-xamdatapresenter.html[xamDataPresenter に 3 つ以上のフィールドを表示]
+
+== グリッド ビュー
+
+* link:xamdatagrid-about-field-moving.html[フィールドの移動について]
+* link:xamdatagrid-changing-the-default-column-and-row-definitions.html[デフォルトの列と行の定義を変更]
+* link:xamdatagrid-changing-the-record-orientation.html[レコードの方向の変更]
+* link:xamdatagrid-about-fixed-non-scrolling-fields.html[固定 (非スクロール) フィールドについて]
+* link:xamdatagrid-enable-fixed-fields.html[固定フィールドを有効にする]
+* link:xamdatagrid-fix-fields.html[フィールドの固定]

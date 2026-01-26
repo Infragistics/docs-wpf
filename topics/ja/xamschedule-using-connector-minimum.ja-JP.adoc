@@ -1,0 +1,93 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector-minimum",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "74d506eb-8e96-4399-9c84-52b8fa71c319",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6893557Z"
+}
+|metadata|
+////
+
+= xamSchedule コンポーネントを使用するために最小限必要となる設定
+
+xamSchedule コンポーネントが機能するようにするには、このコンポーネントのいくつかのプロパティを特定の必要となる設定に構成する必要があります。
+
+以下は、コントロール、コンポーネント、およびエンティティ型で分類された必要となる設定のリストです。
+
+== コントロールのプロパティ
+
+* ビュー (link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview.html[XamMonthView]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdayview.html[XamDayView]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduleview.html[XamScheduleView]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamoutlookcalendarview.html[XamOutlookCalendarView] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdatenavigator.html[XamDateNavigator]) プロパティ
+
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~datamanager.html[DataManager] - スケジュール情報を表示するために XamScheduleDataManager のインスタンスに設定する必要があります。
+
+== コンポーネントのプロパティ
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] プロパティ
+
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~dataconnector.html[DataConnector] - link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase.html[ScheduleDataConnectorBase] 派生クラス (たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] または link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector.html[WcfListScheduleDataConnector]) に設定する必要があります。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuserid.html[CurrentUserId] - アラーム機能のために必要です。また、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~calendargroups.html[CalendarGroups] が DataManager または View で指定されていない場合、CurrentUserId が必要になります。このような場合、CurrentUser の PrimaryCalendar が表示されます。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~calendargroups.html[CalendarGroups] - このプロパティはオプションですが、カレンダー グループが DataManager で定義されておらず、CalendarGroupsOverride がビューで移植されない時には、CurrentUser の PrimaryCalendar が表示されるため、CurrentUserId が必要となります。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] プロパティ
+
+ListScheduleDataConnector は複数の ItemsSource プロパティ (たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~appointmentitemssource.html[AppointmentItemsSource]) を公開しており、スケジュール エンティティ オブジェクトの作成元の情報を取得するために使用されます。また、ItemsSource プロパティごとに、対応する PropertyMappings プロパティ (たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~appointmentpropertymappings.html[AppointmentPropertyMappings]) があり、データ オブジェクトに関する情報が項目ソースから対応するスケジュール エンティティのプロパティにどのようにマップされるのかを定義するために使用されます。
+
+以下は、さまざまな ItemsSource プロパティのリストと、必要とされる時期と場合に関する情報です。
+
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~resourceitemssource.html[ResourceItemsSource] - これは常に必要とされます。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~resourcecalendaritemssource.html[ResourceCalendarItemsSource] - 複数のカレンダーをひとつの Resource に関連付けるために必要です。このプロパティが指定されない場合、コネクターはリソースごとにデフォルトの ResourceCalendar を作成し、PrimaryCalendar として設定します。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~appointmentitemssource.html[AppointmentItemsSource] - Appointment アクティビティを使用/表示するために必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~recurringappointmentitemssource.html[RecurringAppointmentItemsSource] - 予定の繰り返しをサポートする時のオプションです。指定されると、コネクターは特定の日の範囲のアクティビティのリストを提供するなど、繰り返しアクティビティに関係する操作をより効率的に処理できます。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~taskitemssource.html[AppointmentItemsSource] - Task アクティビティを使用/表示するために必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~journalitemssource.html[JournalItemsSource] - Journal アクティビティを使用/表示するために必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~activitycategoryitemssource.html[ActivityCategoryItemSource] - アクティビティ分類項目を使用するために必要です。
+
+* link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector.html[ExchangeScheduleDataConnector] プロパティ
+
+ExchangeScheduleDataConnector は直接 Exchange Server に接続して、1 人以上のユーザーのスケジュール データを管理します。以下は、接続で必要となるプロパティのリストと構成方法の詳細です。
+
+** link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~serverconnectionsettings.html[ServerConnectionSettings] - link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangeserverconnectionsettings~url.html[Url] プロパティを有効な Exchange Server Url に設定した link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangeserverconnectionsettings.html[ExchangeServerConnectionSettings] クラスのインスタンスでなければなりません。
+** link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~users.html[Users] または UseDefaultCredentials - IEnumerable<ExchangeUser> コレクションに少なくとも 1 人のユーザーがおり、コネクタの Users プロパティで設定されなければなりません。これは、管理するユーザーのデータの情報を提供します。
+
+== エンティティ型プロパティ
+
+エンティティ型 (つまり、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[Resource]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendar]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task.html[Task]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.journal.html[Journal]) ごとに、特定のプロパティが必要とされます。常に必要とされるプロパティもありますが、特定の機能をサポートすべき場合に必要とされるプロパティもあります。以下は、エンティティ型ごとの必要とされるプロパティのリストで、それらのすべてに PropertyMappings が指定される必要があります:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[リソース]型
+
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~id.html[Id] - 常に必要とされ、一意でなければなりません。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment] / link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.journal.html[Journal] / link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task.html[Task] 型
+
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~id.html[Id] - 常に必要とされ、アクティビティ タイプごとに一意でなければなりません。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~start.html[Start] - 常に必要とされます。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~end.html[End] - Task および Appointment で必要とされますが、Journal の場合はオプションです。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningresourceid.html[OwningResourceId] - 常に必要とされます。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningcalendarid.html[OwningCalendarId] - ResourceCalendarItemsSource の設定に必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~istimezoneneutral.html[IsTimeZoneNeutral] - アクティビティ(timezone neutral アクティビティ) のフローティング数をサポートするために必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~reminderinterval.html[ReminderInterval] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~reminderenabled.html[ReminderEnabled] - アラームをサポートするために必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~recurrence.html[Recurrence] - 繰り返しアクティビティをサポートするために必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~rootactivityid.html[RootActivityId]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~originaloccurrencestart.html[OriginalOccurrenceStart]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~originaloccurrenceend.html[OriginalOccurrenceEnd]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~isoccurrencedeleted.html[IsOccurrenceDeleted]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~variantproperties.html[VariantProperties]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~recurrenceversion.html[RecurrenceVersion] - 繰り返しアクティビティがサポートされる時にバリアンスをサポートするために必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~categories.html[Categories] - 分類項目をサポートするために必要です。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendar] 型
+
+** ResourceCalendarPropertyMappings - ResourceCalendarItemsSource の設定に必要です。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~id.html[Id] - 常に必要とされ、一意でなければなりません。
+** link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~owningresourceid.html[OwningResourceId] - 常に必要とされ、一意でなければなりません。
+
+フィールドの包括的なリストとデータ ソースでフィールドを定義する方法についてのヒントは、 link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]を参照してください。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-using-connector-list.html[ListScheduleConnector]
+
+link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]

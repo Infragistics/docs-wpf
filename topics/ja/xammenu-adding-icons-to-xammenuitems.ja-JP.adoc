@@ -1,0 +1,97 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammenu-adding-icons-to-xammenuitems",
+    "controlName": ["xamMenu"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "af333886-97f2-4101-abfa-7cf5fad8bc9d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.3902432Z"
+}
+|metadata|
+////
+
+= アイコンを XamMenuItems に追加
+
+xamMenu または xamContextMenu では、各メニュー項目の横にアイコンを表示させることで、エンドユーザーにメニュー項目の機能が何であるかをビジュアルで表示することが可能です。各 XamMenuItem オブジェクトは link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenuitem~icon.html[Icon] プロパティを公開し、アイコンのイメージを設定することができます。
+
+以下のコード例は、xamMenu で項目にアイコンを追加する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamMenu x:Name="xamMenu1" Height="25" MenuOrientation="Horizontal">
+   <!-- TODO: メニュー項目を追加します -->
+   <ig:XamMenuItem Header="Shop">
+       <ig:XamMenuItem.Icon>
+           <Image Source="Images/Check24.png" />
+       </ig:XamMenuItem.Icon>
+   </ig:XamMenuItem>
+   <ig:XamMenuItem Header="Checkout">
+       <ig:XamMenuItem.Icon>
+           <Image Source="Images/ShoppingCart24.png" />
+       </ig:XamMenuItem.Icon>
+   </ig:XamMenuItem>
+</ig:XamMenu>
+----
+
+*Visual Basic の場合:*
+
+----
+' メニューを作成します
+Dim menu1 As New XamMenu()
+Me.LayoutRoot.Children.Add(menu1)
+menu1.Height = 25
+' Shop メニュー項目を作成します
+Dim item As New XamMenuItem()
+item.Header = "Shop"
+Dim image As New Image()
+image.Source = New BitmapImage(New Uri("Images/ShoppingCart24.png", UriKind.Relative))
+item.Icon = image
+menu1.Items.Add(item)
+' CheckOut メニュー項目を作成します
+item = New XamMenuItem()
+item.Header = "CheckOut"
+image = New Image()
+image.Source = New BitmapImage(New Uri("Images/Check24.png", UriKind.Relative))
+item.Icon = image
+menu1.Items.Add(item)
+----
+
+*C# の場合:*
+
+----
+// メニューを作成します
+XamMenu menu1 = new XamMenu();
+this.LayoutRoot.Children.Add(menu1);
+menu1.Height = 25;
+// Shop メニュー項目を作成します
+XamMenuItem item = new XamMenuItem();
+item.Header = "Shop";
+Image image = new Image { Source = new BitmapImage(new Uri("Images/ShoppingCart24.png", UriKind.Relative)) };
+item.Icon = image;
+menu1.Items.Add(item);
+// CheckOut メニュー項目を作成します
+item  = new XamMenuItem();
+item.Header = "CheckOut";
+image = new Image { Source = new BitmapImage(new Uri("Images/Check24.png", UriKind.Relative)) };
+item.Icon = image;
+menu1.Items.Add(item);
+----
+
+image::images/SL_xamMenu_Adding_Icons_01.png[]
+
+== 関連トピック
+
+link:xammenu-binding-to-data.html[データにバインドする]
+
+link:xammenu-layout-settings.html[レイアウト設定]
+
+link:xammenu-navigating-pages-using-xammenu.html[xamMenu を使用してページをナビゲート]
+
+link:xammenu-adding-and-removing-items.html[項目の追加と削除]
+
+link:xammenu-adding-separators-between-xammenuitems.html[セパレーターを XamMenuItems 間に追加]
+
+link:xammenu-adding-check-boxes-to-xammenuitems.html[チェックボックスを XamMenuItems に追加]

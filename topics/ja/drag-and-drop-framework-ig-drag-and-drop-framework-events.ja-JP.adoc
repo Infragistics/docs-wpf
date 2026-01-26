@@ -1,0 +1,213 @@
+﻿////
+
+|metadata|
+{
+    "name": "drag-and-drop-framework-ig-drag-and-drop-framework-events",
+    "controlName": ["IG Drag and Drop Framework"],
+    "tags": ["Events"],
+    "guid": "0f103a2a-69c5-4268-be92-c01b2d65d58e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.659034Z"
+}
+|metadata|
+////
+
+= Infragistics Drag and Drop Framework イベントとイベント引数
+
+Drag and Drop Framework に関連づけられた多数のイベントがあります。ドラッグ アンド ドロップ イベント引数でプロセスのさまざまな側面を変更できます。
+
+== 基本イベント引数
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource.html[DragSource] オブジェクトによって発生したすべてのイベント引数の基本クラスは、 link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs.html[Infragistics.DragDrop.DragDropEventArgs] です。このクラスは役に立つ以下のプロパティを公開します。
+
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~copycursortemplate.html[CopyCursorTemplate] - コピー操作が実行される時にカーソルとして使用されるデータ テンプレートを取得または設定できます。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~data.html[Data] - このプロパティは、ドラッグされるデータを表すオブジェクトのインスタンスを取得または設定します。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~dragsource.html[DragSource] - これはドラッグ操作を開始する UIElement です。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~dragtemplate.html[DragTemplate] - ドラッグされた要素表現に適用されるデータ テンプレートを取得または設定します。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~dropnotallowedcursortemplate.html[DropNotAllowedCursorTemplate] - ドラッグ操作が発生するがドロップ ターゲット上でない時にカーソルとして使用されるデータ テンプレートを取得または設定します。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~droptarget.html[DropTarget] - このプロパティは、ドロップ ターゲットとしてマークされたオブジェクトのインスタンスを保持します。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~movecursortemplate.html[MoveCursorTemplate] - ドラッグ操作がドロップ ターゲット上で実行される時にカーソルとして使用されるデータ テンプレートを取得または設定します。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~operationtype.html[OperationType] - ドラッグ アンド ドロップ操作の間に意図したアクションのタイプを取得または設定します。どのカーソルが適用されるかを判断します。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropeventargs~originaldragsource.html[OriginalDragSource] - このプロパティはオリジナルのレポート ソースを保持します。
+
+== イベント
+
+以下はイベントのリストで、発生する順序になっています。
+
+link:drag-and-drop-framework-getting-started-with-ig-drag-and-drop-framework.html[Infragistics Drag and Drop Framework を使用した作業の開始]で説明するようにドラッグ アンド ドロップのサンプル アプリケーションをすでに作成してある場合には、さらに改善して、いくつかの視覚効果をドラッグされた要素に追加できます。
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragstart_ev.html[DragStart] - エンドユーザーが UI 要素のドラッグを開始するとこのイベントが発生します。このイベントはキャンセル可能で、次に発生するイベントは DragCancel イベントになります。
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropstarteventargs.html[DragDropStartEventArgs] オブジェクトが DragStart イベント ハンドラーに渡されます。このオブジェクトはさらに、 link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropstarteventargs~dragsnapshotelement.html[DragSnapshotElement] という名前のプロパティを提供します。ドラッグされる要素のスナップショットを設定または取得できます。このプロパティのデフォルト値は null です。これによりドラッグされたポップアップに表示されるコンテンツはドラッグ ソース要素のスナップショットです。
+
+*XAML の場合:*
+
+----
+<ig:DragSource IsDraggable="True" ... DragStart="DragSource_DragStart" ... />
+----
+
+*Visual Basic の場合:*
+
+----
+Private Sub DragSource_DragStart(ByVal sender As Object,             ByVal e As Infragistics.DragDrop.DragDropStartEventArgs)
+    ' ドラッグ ソースを少し暗くします
+    e.DragSource.Opacity = 0.7
+    Dim txtBlock As New TextBlock()
+    txtBlock.Text = "This is drag snapshot TextBlock element."
+    txtBlock.FontSize = 18
+    ' TextBlock 要素をドラッグ スナップショットとして設定します
+    e.DragSnapshotElement = txtBlock
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void DragSource_DragStart(object sender,              Infragistics.DragDrop.DragDropStartEventArgs e)
+{
+    // ドラッグ ソースを少し暗くします
+    e.DragSource.Opacity = 0.7;
+    TextBlock txtBlock = new TextBlock();
+    txtBlock.Text = "This is drag snapshot TextBlock element.";
+    txtBlock.FontSize = 18;
+    // TextBlock 要素をドラッグ スナップショットとして設定します
+    e.DragSnapshotElement = txtBlock;
+}
+----
+
+image::images/SL_DragDropEventsDragStart.png[]
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragenter_ev.html[DragEnter] - ドラッグ アンド ドロップ操作がまだ実行中の間にエンドユーザーがドロップ ターゲット領域に入るとこのイベントが発生します。このイベントはキャンセルできます。
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragover_ev.html[DragOver] - エンドユーザーがオブジェクトをドラッグ ターゲット領域上にドラッグするときに限ってこのイベントが発生します。
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropmoveeventargs.html[DragDropMoveEventArgs] オブジェクトが DragOver イベント ハンドラーに渡されます。link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropmoveeventargs~getposition.html[GetPosition] という名前のメソッドがさらに実装されます。UIElement メソッド引数に相対するマウスの位置に関する情報を提供します。
+
+*XAML の場合:*
+
+----
+<ig:DragSource IsDraggable="True"... DragOver="DragSource_DragOver" ... />
+----
+
+*Visual Basic の場合:*
+
+----
+Private Sub DragSource_DragOver(ByVal sender As Object,             ByVal e As Infragistics.DragDrop.DragDropMoveEventArgs)
+    ' ドラッグ ソース オブジェクトを暗くします
+    e.DragSource.Opacity = 0.4
+    Dim lightRedBrush As New SolidColorBrush(Colors.Red)
+    lightRedBrush.Opacity = 0.2
+    ' ドラッグされた要素がその上に移動すると、    ' ターゲットの StackPanel の背景色を変更します
+    TryCast(e.DropTarget, StackPanel).Background = lightRedBrush
+    ' メインの Grid コンテナーに相対するマウスの位置を取得します
+    System.Diagnostics.Debug.WriteLine("Position: " & e.GetPosition(LayoutRoot).ToString())
+ End Sub
+----
+
+*C# の場合:*
+
+----
+private void DragSource_DragOver(object sender,              Infragistics.DragDrop.DragDropMoveEventArgs e)
+{
+    // ドラッグ ソース オブジェクトを暗くします
+    e.DragSource.Opacity = 0.4;
+    SolidColorBrush lightRedBrush = new SolidColorBrush(Colors.Red);
+    lightRedBrush.Opacity = 0.2;
+    // ドラッグされた要素がその上に移動すると、     // ターゲットの StackPanel の背景色を変更します
+    (e.DropTarget as StackPanel).Background = lightRedBrush;
+    // メインの Grid コンテナーに相対するマウスの位置を取得します
+    System.Diagnostics.Debug.WriteLine("Position:"+e.GetPosition(LayoutRoot).ToString());
+}
+----
+
+image::images/SL_DragDropEventsDragOvert.png[]
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragleave_ev.html[DragLeave] - ドラッグ アンド ドロップ操作がまだ実行中の間にエンドユーザーがドロップ ターゲット領域から離れるとこのイベントが発生します。
+
+*XAML の場合:*
+
+----
+<ig:DragSource IsDraggable="True" ... DragLeave="DragSource_DragLeave" ... />
+----
+
+*Visual Basic の場合:*
+
+----
+Private targetPanelBrush As SolidColorBrush
+...
+Private Sub DragSource_DragLeave(sender As Object,             e As DragDropEventArgs)
+    ' ドラッグされた要素がその上から移動すると、     ' オリジナルのターゲットパネルの背景色を元に戻します
+    TryCast(e.DropTarget, StackPanel).Background = originalTargetPanelBrush
+    ' ドラッグされた要素の不透明度を元に戻します
+    e.DragSource.Opacity = 1
+ End Sub
+----
+
+*C# の場合:*
+
+----
+private SolidColorBrush originalTargetPanelBrush;
+...
+private void DragSource_DragLeave(object sender,              DragDropEventArgs e)
+{
+    // ドラッグされた要素がその上から移動すると、 
+    // オリジナルのターゲットパネルの背景色を元に戻します
+    (e.DropTarget as StackPanel).Background = originalTargetPanelBrush;
+    // ドラッグされた要素の不透明度を元に戻します
+    e.DragSource.Opacity = 1;
+}
+----
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~drop_ev.html[Drop] - UI 要素をドロップ領域にドロップすることによってエンドユーザーがドラッグ アンド ドロップ操作を完了した時にこのイベントが発生します。
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dropeventargs.html[DropEventArgs] オブジェクトが Drop イベント ハンドラーに渡されます。DropEventArgs クラスは link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropmoveeventargs.html[DragDropMoveEventArgs] クラスから派生して追加のプロパティをひとつ公開します。これは、ドロップ ターゲットの視覚的な子のリストを含む link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dropeventargs~droptargetelements.html[DropTargetElements] プロパティです。
+
+*XAML の場合:*
+
+----
+<ig:DragSource IsDraggable="True" ... Drop="DragSource_Drop" ... />        
+----
+
+*Visual Basic の場合:*
+
+----
+Private Sub DragSource_Drop(ByVal sender As Object, ByVal e As Infragistics.DragDrop.DropEventArgs)
+    Dim originalChart As XamPieChart = TryCast(e.DragSource, XamPieChart)
+    If targetChart Is Nothing Then
+        targetChart = New XamPieChart()
+        targetChart = originalChart
+        sourcePanel.Children.Remove(originalChart)
+        targetPanel.Children.Add(targetChart)
+    End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void DragSource_Drop(object sender, Infragistics.DragDrop.DropEventArgs e)
+{
+    XamPieChart originalChart = (e.DragSource as XamPieChart);
+    if (targetChart == null)
+    {
+        targetChart = new XamPieChart();
+        targetChart = originalChart;
+        sourcePanel.Children.Remove(originalChart);
+        targetPanel.Children.Add(targetChart);
+    }
+}
+----
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragend_ev.html[DragEnd] - ドラッグ アンド ドロップ操作の最後にこのイベントが発生します。これはドラッグ アンド ドロップ操作の間に発生する最後のイベントです。
+
+image::images/SL_DragDropEventsDragDrop.png[]
+
+ドラッグ アンド ドロップ操作全体のさまざまな段階で以下のイベントが発生する可能性があります。
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragcancel_ev.html[DragCancel] - DragStart イベントまたは DragEnter イベントのイベント ハンドラのひとつで link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropcanceleventargs.html[DragDropCancelEventArgs] オブジェクトの Cancel プロパティが True に設定される、またはパラメーターが True に設定されて DragDropManager.EndDrag(bool) 静的メソッドが呼び出されるとこのイベントが発生します。
+
+== 関連トピック
+
+link:drag-and-drop-framework-set-custom-cursors-for-different-drag-and-drop-situations.html[さまざまなドラッグ アンド ドロップ状況のカスタム カーソルを設定]
+
+link:drag-and-drop-framework-set-drag-and-drop-channels.html[ドラッグ アンド ドロップ チャネルを設定]

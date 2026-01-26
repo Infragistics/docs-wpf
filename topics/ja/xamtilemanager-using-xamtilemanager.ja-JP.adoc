@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-using-xamtilemanager",
+    "controlName": ["xamTileManager"],
+    "tags": [],
+    "guid": "7e020d6c-229f-4576-a846-6f33b4571935",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6304085Z"
+}
+|metadata|
+////
+
+= xamTileManager の使用
+
+このセクションは、xamTileManager が提供する様々な特徴や機能を使用するために役立つ、重要なタスク ベースの情報を提供します。
+
+* link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+* link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+* link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+* link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+* link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+* link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+* link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+* link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+* link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+* link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+* link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+* link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+* link:xamtilemanager-about-animations.html[アニメーションについて]

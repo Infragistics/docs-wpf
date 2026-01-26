@@ -1,0 +1,145 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-manager-permission",
+    "controlName": ["xamSchedule"],
+    "tags": ["Appointments","How Do I","Recurrences","Scheduling"],
+    "guid": "9f4f8a71-38bb-4641-971d-8f6d2107ec19",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7653294Z"
+}
+|metadata|
+////
+
+= 権限
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] は、特定の操作の実行をユーザーに許可するかどうかを制御することができるプロパティを公開します。これらのプロパティは、タイプ link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings.html[ScheduleSettings] クラスである、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~settings.html[Settings] プロパティを介して XamScheduleDataManager によって公開されます。以下はユーザー権限に関係して ScheduleSettings クラスが公開するプロパティのリストです。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~allowcalendarclosing.html[AllowCalendarClosing] - UI を介してカレンダーを閉じることをユーザーに許可するかどうかを決定します。このプロパティはカレンダー タブの閉じるボタンの表示/非表示に影響を与えることができます。ビュー コントロールの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~showcalendarclosebutton.html[ShowCalendarCloseButton] がデフォルト値 null に設定される場合、このプロパティを False に設定するとボタンを非表示にします。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~appointmentsettings.html[AppointmentSettings] - 予定の設定を含みます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~journalsettings.html[JournalSettings] - 履歴の設定を含みます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~tasksettings.html[TaskSettings] - タスクの設定を含みます。
+
+AppointmentSettings、JournalSettings および TaskSettings はすべて以下のプロパティを公開します。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitysettings~allowadd.html[AllowAdd] - プロパティが AppointmentSettings、JournalSettings または TaskSettings にそれぞれ属するかどうかによって、予定、履歴またはタスクといったアクティビティの追加をユーザーに許可するかどうかを指定します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitysettings~allowedit.html[AllowEdit] - 既存のアクティビティの修正をユーザーに許可するかどうかを指定します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitysettings~allowdragging.html[AllowDragging] - アクティビティのドラッグをユーザーに許可するかどうかを指定します。ドラッグは、アクティビティをドロップする時に Ctrl キーを押すことによって、ユーザーがアクティビティの時間を更新する、またはアクティビティのコピーを作るための便利な方法を提供します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitysettings~allowrecurring.html[AllowRecurring] - 繰り返しイベントの作成をユーザーに許可するかどうかを指定します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitysettings~allowremove.html[AllowRemove] - アクティビティの削除をユーザーに許可するかどうかを指定します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitysettings~allowresizing.html[AllowResizing] - アクティビティのリサイズをユーザーに許可するかどうかを指定します。アクティビティのリサイズは、ユーザーがアクティビティの開始時間または終了時間を変更するための便利な方法を提供します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitysettings~allowtimezoneneutral.html[AllowTimeZoneNeutral] - ユーザーがタイム ゾーン ニュートラルなアクティビティを作成できるかどうかを指定します。タイム ゾーン ニュートラルなアクティビティは、アクティビティに関連付けられた特定のタイム ゾーンを持たず、特定の UTC 時間に開始しないアクティビティです。その代わりに、さまざまなタイム ゾーンの同じ「ローカル」時刻に開始するフローティング開始時間を持ちます。AppointmentSettings で AllowTimeZoneNeutral が False に設定されると、[All Day Event] チェックボックスが予定ダイアログに表示されなくなることに注意してください。
+
+上記のプロパティに加えて、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[Resource] オブジェクトと link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[ActivityBase] オブジェクトはユーザー権限に影響を与える以下のプロパティを公開します。
+
+* Resource. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~islocked.html[IsLocked] - True に設定されると、ユーザーは追加や削除を含み、このリソースのアクティビティを修正できなくなります。
+* ActivityBase. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~islocked.html[IsLocked] - True に設定されると、ユーザーはアクティビティを修正または削除できなくなります。
+
+操作の実行をユーザーに許可するかどうかにかかわらず、たとえば、アクティビティのコンテキストに基づいて条件を設定して決定したい場合に、ひとつのオプションは操作に関連付けられている XamScheduleDataManager でイベントを接続することです。たとえば、ユーザーがその他のリソースのアクティビティを追加、削除または変更を実行できないようにするには、イベント引数のアクティビティをチェックすることによって、ActivityAdding、ActivityRemoving または ActivityChanging イベントをそれぞれキャンセルできます。
+
+*XAML の場合:*
+
+----
+<ig:XamScheduleDataManager
+    Name="DataManager"
+    CurrentUserId="own1" 
+    DataConnector="{Binding ElementName=connector}">
+    <ig:XamScheduleDataManager.Settings>
+        <ig:ScheduleSettings AllowCalendarClosing=">
+            <ig:ScheduleSettings.AppointmentSettings>
+                <ig:AppointmentSettings 
+                    AllowDragging="WithinCalendar"
+                    AllowRecurring="
+                    AllowResizing="StartAndEnd" 
+                    AllowTimeZoneNeutral=" />
+            </ig:ScheduleSettings.AppointmentSettings>
+            <ig:ScheduleSettings.JournalSettings>
+                <ig:JournalSettings
+                    AllowAdd="
+                    AllowRemove="
+                    AllowEdit=" />
+            </ig:ScheduleSettings.JournalSettings>
+            <ig:ScheduleSettings.TaskSettings>
+                <ig:TaskSettings
+                    AllowRemove="
+                    AllowTimeZoneNeutral="
+                    AllowRecurring=" />
+            </ig:ScheduleSettings.TaskSettings>
+        </ig:ScheduleSettings>
+    </ig:XamScheduleDataManager.Settings>
+</ig:XamScheduleDataManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim settings As New ScheduleSettings()
+settings.AllowCalendarClosing = False
+' 新しい AppointmentSettings を作成します
+Dim appointmentSettings As New AppointmentSettings()
+appointmentSettings.AllowDragging = _
+    AllowActivityDragging.WithinCalendar
+appointmentSettings.AllowRecurring = False
+appointmentSettings.AllowResizing = _
+    AllowActivityResizing.StartAndEnd
+appointmentSettings.AllowTimeZoneNeutral = False
+' ScheduleSettings の AppointmentSettings プロパティを設定します
+settings.AppointmentSettings = appointmentSettings
+' 新しい JournalSettings オブジェクトを作成します
+Dim journalSettings As New JournalSettings()
+journalSettings.AllowAdd = False
+journalSettings.AllowRemove = False
+journalSettings.AllowEdit = False
+' ScheduleSettings の JournalSettings プロパティを設定します
+settings.JournalSettings = journalSettings
+' 新しい JournalSettings オブジェクトを作成します
+Dim taskSettings As New TaskSettings()
+taskSettings.AllowRemove = False
+taskSettings.AllowTimeZoneNeutral = False
+taskSettings.AllowRecurring = False
+' ScheduleSettings の TaskSettings プロパティを設定します
+settings.TaskSettings = taskSettings
+' ScheduleSettings オブジェクトの Settings プロパティを設定します
+_dataManager.Settings = settings
+----
+
+*C# の場合:*
+
+----
+ScheduleSettings settings = new ScheduleSettings();
+settings.AllowCalendarClosing = false;
+// 新しい AppointmentSettings を作成します
+AppointmentSettings appointmentSettings =
+    new AppointmentSettings();
+appointmentSettings.AllowDragging =
+    AllowActivityDragging.WithinCalendar;
+appointmentSettings.AllowRecurring = false;
+appointmentSettings.AllowResizing =
+    AllowActivityResizing.StartAndEnd;
+appointmentSettings.AllowTimeZoneNeutral = false;
+// ScheduleSettings の AppointmentSettings プロパティを設定します
+settings.AppointmentSettings = appointmentSettings;
+// 新しい JournalSettings オブジェクトを作成します
+JournalSettings journalSettings = new JournalSettings();
+journalSettings.AllowAdd = false;
+journalSettings.AllowRemove = false;
+journalSettings.AllowEdit = false;
+// ScheduleSettings の JournalSettings プロパティを設定します
+settings.JournalSettings = journalSettings;
+// 新しい JournalSettings オブジェクトを作成します
+TaskSettings taskSettings = new TaskSettings();
+taskSettings.AllowRemove = false;
+taskSettings.AllowTimeZoneNeutral = false;
+taskSettings.AllowRecurring = false;
+// ScheduleSettings の TaskSettings プロパティを設定します
+settings.TaskSettings = taskSettings;
+// ScheduleSettings オブジェクトの Settings プロパティを設定します
+_dataManager.Settings = settings;
+----
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-activities.html[アクティビティについて]

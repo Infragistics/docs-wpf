@@ -1,0 +1,286 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-hiding-columns-and-rows",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Grids","How Do I","Layouts"],
+    "guid": "26a94940-9a36-4ae1-9386-83366578b23c",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.1612924Z"
+}
+|metadata|
+////
+
+= 行と列を非表示
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、xamPivotGrid™ の列と行を非表示にする方法およびコードから列と行を非表示にする方法を説明します。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-understanding-xampivotgrid.html[xamPivotGrid の概要]
+|このセクションは xamPivotGrid コントロールの主要機能について説明します。ここに記載されているトピックでは、アプリケーションで xamPivotGrid コントロールを効果的に使用する方法が説明されています。
+
+| link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+|このトピックでは、xamPivotGrid™ コントロールを使用して作業を開始する方法について説明するため、このコントロールを {PlatformName} アプリケーションに追加するための手順を順を追って説明しています。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref319586981, 列と行を非表示 - xamPivotGrid コントロールの視覚要素 >>
+
+** <<_Ref319586985,視覚要素の要約>>
+** <<_Ref319586988,視覚要素と関連プロパティ>>
+
+* <<_Ref319586990, UI から列と行の非表示を有効にする >>
+
+** <<_Ref319586992,概要>>
+** <<_Ref319586995,プロパティ設定>>
+** <<_Ref319586997,例>>
+
+* <<_Ref319587000, コードからの列と行の表示設定 >>
+
+** <<_Ref319587005,概要>>
+** <<_Ref319587008,プロパティ設定>>
+
+* <<_Ref319587012, コード例: コードからの列と行の表示設定 >>
+
+** <<_Ref319587015,説明>>
+** <<_Ref319587018,コード>>
+
+* <<_Ref319587020, 関連コンテンツ >>
+
+[[_Ref319586981]]
+== 列と行を非表示 - xamPivotGrid コントロールの視覚要素
+
+[[_Ref319586985]]
+
+=== 視覚要素の要約
+
+以下のスクリーンショットは、列と行の非表示に関連する xamPivotGrid コントロールの視覚要素を示しています。画像の後に、構成可能な要素の一覧を示しています。
+
+image::images/xamPivotGrid_Hiding_Columns_and_Rows_1.png[]
+
+設定可能なビジュアル要素:
+[start=1]
+. 非表示列チューザー機能
+
+既定で少なくとも 1 つの列が非表示になっている場合、非表示列チューザー機能が表示されます。クリックすると、すべての非表示列のキャプションを記載したドロップダウンが表示されます。ドロップダウンから列を選択すると、その列が表示されるようになります。 
+[start=2]
+. 非表示行チューザー機能
+
+列チューザー機能同様、行が非表示になっている場合、非表示行チューザー機能が表示されます。
+
+[start=3]
+. [Hide column] ボタン
+
+列の非表示が有効な場合、マウスのカーソルを列ヘッダーに移動すると、このボタンが表示されます。列を非表示にするには、ボタンをクリックします。 
+
+[start=4]
+. [Hide row] ボタン
+
+[列を非表示にする] ボタンから推測できるように、行の非表示が有効な場合、マウスのカーソルを行ヘッダーに移動すると、特定の行を非表示にするボタンが表示されます。
+
+.注:
+[NOTE]
+====
+既定では、列と行の非表示は *無効になっています* 。
+====
+
+[start=5]
+. 非表示軸インジケーター (ヒント)
+
+行または列 (軸) が非表示になっている場合、既定では、非表示の行または列を示すため、隣接する 2 つの軸の間の線は太くなります。
+
+[[_Ref319586988]]
+
+=== ビジュアル要素および関連プロパティ
+
+以下の表に、列と行の非表示に関連する xamPivotGrid コントロールの視覚要素とそれらを構成するプロパティの関係を示しています。
+
+[options="header", cols="a,a"]
+|====
+|視覚要素|プロパティ
+
+|非表示列チューザー機能
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings~allowcolumnchooser.html[HiddenAxisSettings.AllowColumnChooser]
+
+|[Hide rows] ボタン
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings~allowrowchooser.html[HiddenAxisSettings.AllowRowChooser]
+
+|[Hide column] ボタン
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~allowhidingcolumns.html[AllowHidingColumns]
+
+|[Hide row] ボタン
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~allowhidingrows.html[AllowHidingRows]
+
+|非表示軸インジケーター (ヒント)
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings~hiddenaxis.html[HiddenAxisSettings.HiddenAxis]
+
+|====
+
+[[_Ref319586990]]
+== UI から列と行の非表示を有効にする
+
+[[_Ref319586992]]
+
+=== 概要
+
+列と行の非表示を有効にするには、このビヘイビアーを担当するプロパティを設定する必要があります。
+
+[[_Ref319586995]]
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ:|次に設定
+
+|列の非表示を有効にする
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~allowhidingcolumns.html[AllowHidingColumns]
+|`True`
+
+|行の非表示を有効にする
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~allowhidingrows.html[AllowHidingRows]
+|`True`
+
+|====
+
+[[_Ref319586997]]
+
+=== 例
+
+以下のスクリーンショットは、列と行が非表示の状態で、非表示行チューザー機能と非表示列チューザー機能にカスタム スタイルを設定した場合に xamPivotGrid がどうなるかを示しています。プロパティ設定は以下のとおりです。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~allowhidingcolumns.html[AllowHidingColumns]
+|`True`
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~allowhidingcolumns.html[AllowHidingRows]
+|`True`
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings~hiddenaxis.html[HiddenAxisSettings.HiddenAxis]
+|`None`
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings~allowcolumnchooser.html[HiddenAxisSettings.AllowColumnChooser]
+|`True`
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings~allowrowchooser.html[HiddenAxisSettings.AllowRowChooser]
+|`True`
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings~hiddencolumnchooserstyle.html[HiddenAxisSettings.HiddenColumnChooserStyle]
+|```TargetType` link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxischooser_members.html[HiddenAxisChooser] を指定したカスタム スタイル
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings~hiddenrowchooserstyle.html[HiddenAxisSettings.HiddenRowChooserStyle]
+|```TargetType` link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxischooser_members.html[HiddenAxisChooser] を指定したカスタム スタイル
+
+|====
+
+image::images/xamPivotGrid_Hiding_Columns_and_Rows_2.png[]
+
+[[_Ref319587000]]
+== プロシージャ コードからの列と行の表示設定
+
+[[_Ref319587005]]
+
+=== 概要
+
+UI から列と行の非表示を有効にする場合とは別に、プロシージャ コードの該当するプロパティを設定して、列と行を非表示にすることもできます。この場合、xamPivotGrid の link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~gridlayout.html[GridLayout] で非表示にする列または行を見つけ、その `IsVisible` プロパティを false に設定する必要があります。
+
+[[_Ref319587008]]
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ:|次に設定
+
+|列を非表示にする
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotdatacolumn~isvisible.html[IsVisible]
+|`False`
+
+|行を非表示にする
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotdatarow~isvisible.html[IsVisible]
+|`False`
+
+|====
+
+[[_Ref319587012]]
+== コード例: プロシージャ コードからの列と行の表示設定
+
+[[_Ref319587015]]
+
+=== 説明
+
+以下のコード スニペットは、xamPivotGrid の列と行すべてにおいて繰り返し使用され、特定の `HeaderText` 値を持つ列と行を非表示にします。
+
+[[_Ref319587018]]
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+Code
+foreach (PivotDataColumn column in pivotGrid.GridLayout.Columns)
+{
+    if (column.HeaderText == "CY 2002")
+        column.IsVisible = false;
+}
+foreach (PivotDataRow row in pivotGrid.GridLayout.Rows)
+{
+    if (row.HeaderText == "Berks")
+        row.IsVisible = false;
+}
+For Each column As PivotDataColumn In pivotGrid.GridLayout.Columns
+      If column.HeaderText = "CY 2002" Then
+            column.IsVisible = False
+      End If
+Next
+For Each row As PivotDataRow In pivotGrid.GridLayout.Rows
+      If row.HeaderText = "Berks" Then
+            row.IsVisible = False
+      End If
+Next
+----
+
+[[_Ref319587020]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-us-sorting-data.html[データの並べ替え]
+|このトピックは、xamPivotGrid でのデータの並べ替えについて説明しています。
+
+| link:xampivotgrid-us-column-resizing.html[列サイズの変更]
+|xamPivotGrid コントロールによって、ユーザーは列の幅を変更できます。このリサイズ動作は、多くのプロパティおよび一部のイベントで簡単にカスタマイズできます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.hiddenaxissettings.html[HiddenAxisSettings]
+|HiddenAxisSettings クラスの API 文書で、xamPivotGrid の HiddenAxisSettings プロパティのタイプです。
+
+|====

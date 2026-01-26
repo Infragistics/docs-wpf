@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-manager",
+    "controlName": ["xamSchedule"],
+    "tags": [],
+    "guid": "6c0770dd-7685-4acf-9012-4fbed3919cd8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7143261Z"
+}
+|metadata|
+////
+
+= データ マネージャー
+
+さまざまな機能の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[xamScheduleDataManager] についての詳細は、以下のリンクをクリックしてください。
+
+link:xamschedule-using-manager-working-hours.html[稼働時間]
+
+link:xamschedule-using-manager-logical-day.html[論理的な 1 日とタイムスロット]
+
+link:xamschedule-using-manager-logical-currentuser.html[CurrentUser の設定とコントロールの動作に対する影響]
+
+link:xamschedule-using-manager-logical-events.html[データ マネージャー イベントの処理]
+
+link:xamschedule-using-manager-errors.html[エラー]
+
+link:xamschedule-using-manager-permission.html[権限]
+
+link:xamschedule-using-manager-daysettings.html[1 日の設定]

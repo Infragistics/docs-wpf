@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-the-data-presenter-family",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{A6B43C3E-28F6-40E7-8E31-073DFB0C108E}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.5376607Z"
+}
+|metadata|
+////
+
+= DataPresenter ファミリ
+
+
+
+DataPresenter コントロールは、{ProductName} データ駆動型のコントロール (xamDataCarousel™、xamDataGrid™、xamTreeGrid™、xamDataCards™、および xamDataPresenter™) のグループです。このコントロールは基本的な機能が同じなため、このファミリに含まれています。
+
+{ProductName} DataPresenter コントロールの詳細は、以下のリンクをクリックします。
+
+* link:wpf-about-the-data-presenter-family.html[DataPresenter コントロールについて] -- このセクションの理由と、このセクションのトピックに期待すべきことを詳細に説明します。
+* link:xamdata-theoryofoperation.html[操作の理論] -- DataPresenterBase から派生したコントロールがどのように動作するのか、またアーキテクチャの柔軟性について説明します。
+* link:wpf-terms-and-concepts.html[用語と概念] -- xamDataPresenter を構成する主要な要素を定義します。

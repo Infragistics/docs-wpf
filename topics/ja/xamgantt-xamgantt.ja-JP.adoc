@@ -1,0 +1,49 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-xamgantt",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "a9eb97bd-9df7-4e86-9406-f1c495590dc9",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.127154Z"
+}
+|metadata|
+////
+
+= xamGantt
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックには、コントロールが行うことや、アプリケーションでのコントロールの使用手順など、 _xamGantt™_   コントロールに関する情報が含まれています。
+
+=== トピック
+
+このセクションは、 _xamGantt_   コントロールの使用と構成をカバーします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-overview.html[xamGantt の概要]
+|このトピックでは、 _xamGantt_ 、プロジェクト、タスクおよびその他の _xamGantt_ 要素についての基本的な概念的な情報を説明します。
+
+| link:xamgantt-xamgantt-in-detail.html[xamGantt の詳細]
+|このグループのトピックでは、 _xamGantt_ コントロールの詳細について説明します。
+
+| link:xamgantt-xamgantt-data-binding.html[xamGantt のデータ バインディング]
+|このグループのこのトピックでは、 _xamGantt_ コントロールを使用したデータ バインディングについて説明します。
+
+| link:xamgantt-adding-xamgantt-to-a-page.html[xamGantt をページに追加]
+|このトピックでは、 _xamGantt_ コントロールをページに追加する方法について説明します。
+
+| link:xamgantt-configuring-xamgantt.html[xamGantt の構成]
+|このグループのこのトピックでは、 _xamGantt_ コントロールの主要な構成可能な項目について説明します。
+
+| link:xamgantt-working.html[xamGantt での作業]
+|このグループのこのトピックでは、 _xamGantt_ コントロールを使用した作業について説明します。
+
+|====

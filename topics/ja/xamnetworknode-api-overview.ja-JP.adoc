@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-api-overview",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["API"],
+    "guid": "81b43e60-4731-48c1-95e7-88b5a8ff6d11",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.4282454Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションは、 link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode] コントロールに関連する各名前空間をリストします。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== XamNetworkNode 名前空間
+
+link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps_namespace.html[Infragistics.Controls.Maps]
+
+=== キー クラス:
+
+* link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[XamNetworkNode]
+* link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenodelayout.html[NetworkNodeNodeLayout]

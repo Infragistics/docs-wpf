@@ -1,0 +1,391 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-configuring-the-navigation-pane",
+    "tags": ["Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "c5ab12a7-da35-4bff-b2e5-f7dd150d2a40",
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:40:09.8004401Z"
+}
+|metadata|
+////
+
+= ナビゲーション ペインの構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールのナビゲーション ペインを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-visual-elements-overview.html[視覚要素の概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールの視覚要素の概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref389722801, 概要 >>
+
+** <<_Ref386630190,ナビゲーション ペインの構成の要約>>
+** <<_Ref385408391,ナビゲーション ペインの構成の概要表>>
+
+* <<_Ref386630199, ナビゲーション ペインの可視性の構成 >>
+
+** <<_Ref385408401,概要>>
+** <<_PropertySettings,プロパティ設定>>
+** <<_Ref385408408,例>>
+
+* <<_Configuring_the_Position, ナビゲーション ペインの位置の構成 >>
+
+** <<_Ref385408417,概要>>
+** <<_Ref385408421,プロパティ設定>>
+** <<_Ref385408425,例>>
+
+* <<_Ref385408430, 関連コンテンツ >>
+
+** <<_Ref388453026,リソース>>
+
+[[_Ref385408385]]
+[[_Ref389722801]]
+== 概要
+
+[[_Ref386630190]]
+
+=== ナビゲーション ペインの構成の要約
+
+_xamDiagram_   コントロールには、ダイアグラム スペース内 (デフォルトは右下隅) に配置された別のペインに、コンテンツ タイプ全体の概要を小さなサイズで表示できる機能があります。
+
+image::images/xamDiagram_Configuring_The_Overview_Pane_1.png[]
+
+この機能は、選択されたズーム設定やサイズが大きすぎるために、ダイアグラムのスペースに一部のダイアグラムのみが表示される場合に便利です。またナビゲーション ペインでは、UI とのインタラクションによってダイアグラムをナビゲートすることができ、ダイアグラムのズーム レベルも変更することができます。
+
+ナビゲーション ペインは、 _xamDiagram_   に埋め込まれる単独のコントロール ( _xamOverviewPlusDetailPane_™) として実装されます。
+
+ダイアグラム上のナビゲーション ペインの可視性 (表示 / 非表示) と位置は構成することができます。これらは、 _xamDiagram_   コントロールに属するプロパティで管理します。デフォルトでは、ナビゲーション ペインは非表示です。可視性を有効にすると (`NavigationPaneVisibility = "Visible"`)、ナビゲーション ペインはダイアグラムの右下隅 (デフォルトの位置) に表示されます。ダイアグラム内のナビゲーション ペインの位置は、いくつかの配置プロパティを介して、 _xamOverviewPlusDetailPane_   の水平方向および垂直方向の配置を指定することで構成できます。
+
+_xamOverviewPlusDetailPane_   コントロールのダイアグラムの内部インスタンスには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpane.html[XamDiagram.NavigationPane] プロパティを介してアクセスできます。さらにカスタマイズする場合は、 _xamOverviewPlusDetailPane_   のプロパティを使用します。たとえば、ナビゲーション ペインのデフォルトのサイズ (幅 220 ピクセル、高さ 150 ピクセル) は、`xamOverviewPlusDetailPane` の `Width` プロパティおよび  _Height_   プロパティを使用して、任意の大きさに変更できます (設定に使用できる  _xamOverviewPlusDetailPane_   プロパティの項目の詳細は、 link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamoverviewplusdetailpane_members.html[XamOverviewPlusDetailPane] クラス メンバーを参照してください)。
+
+[[_Ref385408391]]
+
+=== ナビゲーション ペインの構成の概要表
+
+以下の表は、ダイアグラムのナビゲーション ペインの構成可能な要素を簡単に説明し、それらを管理するプロパティにマップします。緑で強調表示された項目は、この概要表の下に詳しく説明されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref386630199,可視性>>
+|概要ペインを表示または非表示にできます。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanevisibility.html[NavigationPaneVisibility] 
+
+|水平方向
+|ナビゲーション ペインを水平方向に配置するには、左、右、中央揃えのいずれかを配置位置として選択します。または、ダイアグラムの左端と右端の間を水平方向に広げ、ペインを表示させることもできます (「引き伸ばし」配置)。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanehorizontalalignment.html[NavigationPaneHorizontalAlignment] 
+
+|垂直方向
+|ナビゲーション ペインを垂直方向に配置するには、上、下、中央揃えのいずれかを配置位置として選択します。または、ダイアグラムの上端と下端の間を垂直方向に広げ、ペインを表示させることもできます (「引き伸ばし」配置)。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpaneverticalalignment.html[NavigationPaneVerticalAlignment] 
+
+|====
+
+[[_Configuring_the_Visibility]]
+[[_Ref386630199]]
+== ナビゲーション ペインの可視性の構成
+
+[[_Ref385408401]]
+
+=== 概要
+
+ナビゲーション ペインの可視性 (表示 / 非表示) は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanevisibility.html[NavigationPaneVisibility] プロパティで管理されます。有効な設定は以下のとおりです。
+
+*  _Hidden_  
+*  _Visible_  
+*  _Collapsed_  
+
+デフォルトでは、ナビゲーション ペインは折りたたまれています。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ナビゲーション ペインの非表示
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanevisibility.html[NavigationPaneVisibility]
+|
+* _"Hidden"_ または _"Collapsed"_ 
+
+|ナビゲーション ペインの表示
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanevisibility.html[NavigationPaneVisibility]
+|
+* _"Visible_ _"_ 
+
+|====
+
+[[_Ref385408408]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、ダイアグラムがどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanevisibility.html[NavigationPaneVisibility]
+| _Visible_ 
+
+|====
+
+image::images/xamDiagram_Configuring_The_Overview_Pane_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram Width="350"
+               Height="350"
+               Background="#F9F9F9"
+               NavigationPaneVisibility="Visible">
+<ig:DiagramNode Key="node0" Position="45,55"/>
+<ig:DiagramNode Key="node1" Position="200,120"/>
+<ig:DiagramConnection StartNodeKey="node0"
+                      EndNodeKey="node1"/>
+</ig:XamDiagram>
+----
+
+[[_Configuring_the_Position]]
+[[_Ref385408414]]
+== ナビゲーション ペインの位置の構成
+
+[[_Ref385408417]]
+
+=== 概要
+
+ナビゲーション ペインのダイアグラムのスペースへの配置は、水平方向の配置と垂直方向の配置の組み合わせによって決まります。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanehorizontalalignment.html[NavigationPaneHorizontalAlignment] プロパティにより水平方向の配置が管理され、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpaneverticalalignment.html[NavigationPaneVerticalAlignment] プロパティにより垂直方向の配置が管理されています。
+
+各配置の値 ( _「Left」_  、 _「Right」_  、 _「Top」_  、 _「Bottom」_  、 _「Center」_  ) に加え、各配置プロパティを _「Stretch」_  に設定して、位置を構成することもできます。
+
+.注:
+[NOTE]
+====
+注: の各寸法記入プロパティ (`Height` /  _Width_  ) が明示的に設定されている場合 (埋め込みナビゲーション ペインのデフォルトの場合)、関連する配置プロパティの  _「Stretch」_  値は、`"Center"`として機能します。
+====
+
+[[_Ref385408421]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。引き伸ばして配置するレイアウトの場合、 _xamOverviewPlusDetailPane_   コントロールの各寸法記入プロパティ (`Height` または `Width`) は設定しないでください。
+
+[options="header", cols="a,a,a"]
+|====
+|ナビゲーション ペインの配置先:|使用するプロパティ:|設定値:
+
+|左上
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanehorizontalalignment.html[NavigationPaneHorizontalAlignment]
+|_Left_
+
+|
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpaneverticalalignment.html[NavigationPaneVerticalAlignment]
+|_Top_
+
+|上中央
+|`NavigationPaneHorizontalAlignment`
+|_Center_
+
+|
+|`NavigationPaneVerticalAlignment`
+|_Top_
+
+|右上
+|`NavigationPaneHorizontalAlignment`
+|_Right_
+
+|
+|`NavigationPaneVerticalAlignment`
+|_Top_
+
+|左中央
+|`NavigationPaneHorizontalAlignment`
+|_Left_
+
+|
+|`NavigationPaneVerticalAlignment`
+|_Center_
+
+|中央
+|`NavigationPaneHorizontalAlignment`
+|_Center_
+
+|
+|`NavigationPaneVerticalAlignment`
+|_Center_
+
+|右中央
+|`NavigationPaneHorizontalAlignment`
+|_Right_
+
+|
+|`NavigationPaneVerticalAlignment`
+|_Center_
+
+|左下
+|`NavigationPaneHorizontalAlignment`
+|_Left_
+
+|
+|`NavigationPaneVerticalAlignment`
+|_Bottom_
+
+|下中央
+|`HorizontalAlignment`
+|_Center_
+
+|
+|`NavigationPaneVerticalAlignment`
+|_Bottom_
+
+|右下
+|`NavigationPaneHorizontalAlignment`
+|_Right_
+
+|
+|`NavigationPaneVerticalAlignment`
+|_Bottom_
+
+|上部で水平方向の引き伸ばし
+|`NavigationPaneHorizontalAlignment`
+| _Stretch_ 
+
+|
+|`NavigationPaneVerticalAlignment`
+| _Top_ 
+
+|中央
+|`NavigationPaneHorizontalAlignment`
+| _Stretch_ 
+
+|
+|`NavigationPaneVerticalAlignment`
+| _Center_ 
+
+|下部
+|`NavigationPaneHorizontalAlignment`
+| _Stretch_ 
+
+|
+|`NavigationPaneVerticalAlignment`
+| _Bottom_ 
+
+|左で垂直方向の引き伸ばし
+|`NavigationPaneHorizontalAlignment`
+| _Left_ 
+
+|
+|`NavigationPaneVerticalAlignment`
+| _Stretch_ 
+
+|中央
+|`NavigationPaneHorizontalAlignment`
+| _Center_ 
+
+|
+|`NavigationPaneVerticalAlignment`
+| _Stretch_ 
+
+|右
+|`NavigationPaneHorizontalAlignment`
+| _Right_ 
+
+|
+|`NavigationPaneVerticalAlignment`
+| _Stretch_ 
+
+|====
+
+[[_Ref385408425]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、ダイアグラムがどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanehorizontalalignment.html[NavigationPaneHorizontalAlignment]
+| _Left_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpaneverticalalignment.html[NavigationPaneVerticalAlignment]
+| _Top_ 
+
+|====
+
+image::images/xamDiagram_Configuring_The_Overview_Pane_3.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="diagram"
+               Width="370"
+               Height="370"
+               Background="#F9F9F9"
+               NavigationPaneVisibility="Visible"
+               NavigationPaneHorizontalAlignment="Left"
+               NavigationPaneVerticalAlignment="Top">
+<ig:DiagramNode Key="node0" Position="140,140"/>
+<ig:DiagramNode Key="node1" Position="250,250"/>
+<ig:DiagramConnection StartNodeKey="node0"
+                      EndNodeKey="node1"/>
+</ig:XamDiagram>
+----
+
+[[_Ref385408430]]
+== 関連コンテンツ
+
+[[_Ref388453026]]
+
+=== リソース
+
+以下の資料 (Infragistics のコンテンツ ファミリー以外でもご利用いただけます) は、このトピックに関連する追加情報を提供します。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.horizontalalignment.aspx[HorizontalAlignment 列挙体]
+|親要素の割り当てられたレイアウト スロットに対する水平軸上で、要素が表示される位置を示す MSDN の記事です。(配置プロパティの _Stretch_ 設定の動作に関連します。)
+
+|====

@@ -1,0 +1,51 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-the-datavaluechanged-event",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Events"],
+    "guid": "{C7D0B7AC-E4E2-4382-A12C-C39BDE508087}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0609653Z"
+}
+|metadata|
+////
+
+= DataValueChanged イベントについて
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangednotificationsactive.html[DataValueChangedNotificationsActive] プロパティを True に設定することによって、フィールド内のセル値に対する変更を追跡できます。あるフィールドでこの機能を有効にすると、DataPresenter コントロールは、そのフィールド内のセルに対して link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~datavaluechanged_ev.html[DataValueChanged] イベントと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~initializecellvaluepresenter_ev.html[InitializeCellValuePresenter] イベントを発生させます。
+
+== DataValueChanged イベント
+
+DataPresenter コントロールは、以下の場合に、DataValueChanged イベントを発生させます。
+
+[start=1]
+. FieldSettings オブジェクトの DataValueChangedNotificationsActive プロパティを True に設定することによって、Field オブジェクトでのデータ値の変更を追跡している場合。
+[start=2]
+. データ値の変更を追跡しているフィールドで、セルの値が変化する場合。
+[start=3]
+. DataPresenter コントロールが、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] オブジェクトを値が変化しているセルに割り当てている場合。DataPresenter コントロールに DataValueChanged イベントを発生させたい場合は、DataRecord オブジェクトを割り当てていなくても、その link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordloadmode.html[RecordLoadMode] プロパティを PreloadRecords に設定し、FieldSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangedscope.html[DataValueChangedScope] プロパティを AllAllocatedRecords に設定する必要があります。
+
+DataPresenter コントロールは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs.html[DataValueChangedEventArgs] オブジェクトを DataValueChanged イベント ハンドラーに渡します。DataValueChangedEventArgs オブジェクトが公開するプロパティを使用して、セルの値が変化するときにセルを強調表示できます。DataValueChangedEventArgs オブジェクトは以下のプロパティを公開します。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs~cellvaluepresenter.html[CellValuePresenter] - このプロパティは、セル値の表示に使用する CellValuePresenter オブジェクトへの参照を提供します。このプロパティは、セルが表示されておらず、そのセルの DataRecord オブジェクトが割り当てられていない場合、NULL を返すことがあります。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs~valuehistory.html[ValueHistory] - このプロパティは、データ値の変更のリストで、最新の変更が 0 番目のインデックスに格納されます。デフォルトで、データ値の変更数は 1 に設定されます。ただし、FieldSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangedhistorylimit.html[DataValueChangedHistoryLimit] プロパティを設定することによって、セルのデータ値の履歴に保持される変更数を変更できます。DataValueChangedHistoryLimit プロパティを 0 に設定する場合、ValueHistory プロパティは NULL になります。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs~field.html[Field] - セルが属する Field オブジェクト。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs~record.html[Record] - セルが属する DataRecord オブジェクト。
+
+== InitializeCellValuePresenter イベント
+
+フィールドのデータ値の変更追跡を有効にすると、DataPresenter コントロールは、CellValuePresenter オブジェクトをそのフィールドのセルにアタッチするときに InitializeCellValuePresenter イベントを発生させます。CellValuePresenter が新規またはリサイクルの CellValuePresenter オブジェクトである場合、InitializeCellValuePresenterEventArgs オブジェクトの IsNew プロパティを使用できます。
+
+== パフォーマンスへの影響
+
+追跡が必要なフィールドでのみデータ値の変更を追跡するべきです。DataPresenter コントロールのすべてのフィールドでこの機能を有効にし、セルのデータ値の履歴にあまりにも多くの変更を保持すると、アプリケーションのパフォーマンスに悪影響を及ぼす場合があります。
+
+== 関連トピック
+
+link:xamdatapresenter-enable-data-value-change-tracking.html[データ値の変更追跡を有効にする]
+
+link:xamdatapresenter-reset-a-cells-value-history.html[セルの値の履歴をリセット]

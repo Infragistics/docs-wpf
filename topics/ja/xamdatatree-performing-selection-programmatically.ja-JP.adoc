@@ -1,0 +1,547 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-performing-selection-programmatically",
+    "tags": ["Selection"],
+    "controlName": ["xamDataTree"],
+    "guid": "a54d7d6e-5169-486a-9958-60823615f90d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.9401234Z"
+}
+|metadata|
+////
+
+= プログラムによる選択の実行 (xamDataTree)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、プログラムで  _xamDataTree_   コントロールの選択を実行する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatatree-about-xamdatatree.html[xamDataTree について]
+|このトピックでは、 _xamDataTree_ コントロールの主要機能を説明します。
+
+| link:xamdatatree-adding-xamdatatree-to-your-page.html[xamDataTree をページに追加]
+|このトピックでは、プロシージャー コードおよび XAML を使用して _xamDataTree_ コントロールをページに追加する基本的な手順を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref391047944,プログラムによる選択の概要>>
+* <<_Ref391042353,選択タイプの構成>>
+* <<_Ref391042377,特定選択ノードの構成>>
+* <<_Ref391047968,選択ノードのコレクションの構成>>
+* <<_Ref391047976,選択データ項目の構成>>
+* <<_Ref395434076,データ モデルのブール値プロパティの値で選択したデータ項目コレクションの変更>>
+* <<_Ref391047984,関連コンテンツ>>
+
+[[_Ref391047944]]
+== プログラムによる選択の概要
+
+=== プログラムによる選択の概要
+
+_xamDataTree_   コントロールはマウスやキーボードによる単数または複数の選択の機能を提供します。さらに、このコントロールでは選択機能のすべての要素を簡単に構成します。
+
+=== プログラムによる選択の構成の概要表
+
+以下の表は、 _xamDataTree_   コントロールの構成可能な要素を概略し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref391042353,選択タイプの構成>>
+|_xamDataTree_ で単数/複数の選択を有効化、または完全に無効化します。
+|
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection] 
+
+|<<_Ref391042377,特定選択ノードの構成>>
+|_xamDataTree_ で特定のノードを選択し、または現在選択されているノードを識別します。
+|
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatreenode~isselected.html[IsSelected] 
+
+|<<_Ref391047968,選択ノードのコレクションの構成>>
+|_xamDataTree_ で `XamDataTreeNode` の選択済みのオブジェクトのコレクションを設定/取得します。
+|
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~selectednodes.html[SelectedNodes] 
+
+|<<_Ref391047976,選択データ項目の構成>>
+|_xamDataTree_ で選択済みのデータ項目のコレクションを設定/取得します。
+|
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~selecteddataitems.html[SelectedDataItems] 
+
+|<<_Ref395434076,データ モデルのブール値プロパティの値で選択したデータ項目コレクションの変更>>
+|_xamDataTree_ で項目の現在の状態がブール値で決定される基本データ モデルのプロパティを使用して、選択済み/未選択のデータ項目を構成します。
+|
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~isselectedmemberpath.html[IsSelectedMemberPath] 
+
+|====
+
+[[_Ref391042353]]
+== 選択タイプの構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[TreeSelectionSettings] オブジェクトの `NodeSelection` プロパティを使用して  _xamDataTree_   コントロールで希望のノード選択タイプを構成します。
+
+単数/複数のノード選択を有効化、または完全に選択を無効化します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ノード選択を無効化します。
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection]
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectiontype.html[None]
+
+|複数ノード選択を有効化します
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection]
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectiontype.html[Multiple]
+
+|１ つのノード選択を有効化します
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection]
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectiontype.html[Single]
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のスクリーンショットは、下記設定の結果、 _xamDataTree_   がどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection]
+| _Multiple_ 
+
+|====
+
+image::images/xamDataTree_SelectedDataItems_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDataTree x:Name="DataTree" ItemsSource="{Binding CategoriesAndProducts}">
+    <ig:XamDataTree.SelectionSettings>
+        <ig:TreeSelectionSettings NodeSelection="Multiple"/>
+    </ig:XamDataTree.SelectionSettings>
+</ig:XamDataTree>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+DataTree.SelectionSettings.NodeSelection = TreeSelectionType.Multiple
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+DataTree.SelectionSettings.NodeSelection = TreeSelectionType.Multiple;
+----
+
+[[_Ref391042377]]
+== 特定選択ノードの構成
+
+=== 概要
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatreenode_members.html[XamDataTreeNode] オブジェクトの `IsSelected` プロパティを使用して特定のノードを選択し現在選択されているノードを識別します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|特定のノードの選択/選択解除
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatreenode~isselected.html[IsSelected]
+|`bool`
+
+|====
+
+=== 例
+
+下記のコード例では  _xamDataTree_   コントロールでルート ノードを選択する方法を紹介します:
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+DataTree.Nodes(0).IsSelected = true
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+DataTree.Nodes[0].IsSelected = true;
+----
+
+[[_Ref391047968]]
+== 選択ノードのコレクションの構成
+
+=== 概要
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[TreeSelectionSettings] オブジェクトの `SelectedNodes` コレクションプロパティを使用して、プログラムによって  _xamDataTree_   コントロールで選択済みの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatreenode_members.html[XamDataTreeNode] オブジェクトを設定します。
+
+このプロパティを使用して選択済みの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatreenode_members.html[XamDataTreeNode] オブジェクトを識別することもできます。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|プログラムによって選択済みの `XamDataTreeNode` オブジェクトを設定します。
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~selectednodes.html[SelectedNodes]
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.selectednodescollection_members.html[SelectedNodesCollection]
+
+|====
+
+=== 例
+
+下記のコード例では  _xamDataTree_   コントロールでルート ノードを追加する方法を紹介します:
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+DataTree.SelectionSettings.SelectedNodes.Add(DataTree.Nodes(0))
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+DataTree.SelectionSettings.SelectedNodes.Add(DataTree.Nodes[0]);
+----
+
+[[_Ref391047976]]
+== 選択データ項目の構成
+
+=== 概要
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree_members.html[XamDataTree] の `SelectedDataItems` プロパティを使用して  _xamDataTree_   コントロールで選択済みのデータ項目を設定するか取得します。
+
+項目を選択/選択解除すると `SelectedDataItems` コレクションおよび link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[SelectionSettings] link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~selectednodes.html[SelectedNodes] コレクションも変更されます。
+
+`SelectedDataItems` コレクションはデータ ソース階層のさまざまなレベルのさまざまな項目タイプを受け入れます。
+
+=== プロパティ設定
+
+以下の表は、任意の動作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|選択したデータ項目の設定
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~selecteddataitems.html[SelectedDataItems]
+|`object[]`
+
+|====
+
+=== 例
+
+以下のスクリーンショットでは `XamDataTree` の `SelectedDataItems` プロパティを `ListView` コントロールの `ItemsSource` として使用する方法を紹介します:
+
+image::images/xamDataTree_SelectedDataItems_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDataTree x:Name="DataTree" ItemsSource="{Binding Path=Products}">
+    <ig:XamDataTree.SelectionSettings>
+        <ig:TreeSelectionSettings NodeSelection="Multiple" />
+    </ig:XamDataTree.SelectionSettings>
+    <ig:XamDataTree.GlobalNodeLayouts>
+        <ig:NodeLayout Key="ProductLayout" 
+                       TargetTypeName="Product" 
+                       DisplayMemberPath="ProductName">
+        </ig:NodeLayout>
+    </ig:XamDataTree.GlobalNodeLayouts>
+</ig:XamDataTree>
+<ListView ItemsSource="{Binding ElementName=DataTree, Path=SelectedDataItems}" >
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <Border BorderBrush="Black" BorderThickness="1">
+                <StackPanel Width="200">
+                    <TextBlock Text="Product" />
+                    <TextBlock Text="{Binding ProductName}" />
+                    <TextBlock Text="UnitPrice" />
+                    <TextBlock Text="{Binding UnitPrice}" />
+                    <TextBlock Text="UnitsInStock" />
+                    <TextBlock Text="{Binding UnitsInStock}" />                            
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
+----
+
+[[_Ref395434076]]
+== データ モデルのブール値プロパティの値で選択したデータ項目コレクションの変更
+
+=== 概要
+
+_xamDataTree_   コントロールで項目の現在の状態を決定するために基本データ モデルのブール値プロパティを使用して、選択済み/未選択のデータ項目を構成します。このデータ モデルの名は `IsSelectedMemberPath` プロパティで設定します。
+
+`IsSelectedMemberPath` がデータ モデルのプロパティ パスに設定されると、指定プロパティの値が `True` に設定されたツリー データ項目で link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~selecteddataitems.html[SelectedDataItems] コレクションが生成されます。基本的データ モデルが `INotifyPropertyChanged` インターフェイスをサポートする場合、指定のプロパティ値の変更は  _xamDataTree_   の項目の選択状態に反転します。また、ノード選択の変更は指定のメンバー パスのプロパティ値に反転します。
+
+`IsSelectedMemberPath` プロパティは link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree_members.html[XamDataTree] 自体に設定します。また、 link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.nodelayout_members.html[NodeLayout] に設定することもできます。`XamDataTree` に設定する場合、このプロパティはすべての `NodeLayout` の既定値になります。
+
+注:
+
+[NOTE]
+====
+_xamDataTree_   のデータ項目の選択済み/未選択を決定するデータ モデルのプロパティは、`bool` 型であることが必要です。
+====
+
+[NOTE]
+====
+バインドされたデータ ソースのサイズによっては、`IsSelectedMemberPath` プロパティの使用が  _xamDataTree_   コントロールのパフォーマンスに影響します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|基本データ モデル プロパティのブール値による項目選択の構成
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~isselectedmemberpath.html[IsSelectedMemberPath]
+|`String`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、下記設定の結果、 _xamDataTree_   の外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~isselectedmemberpath.html[IsSelectedMemberPath]
+| _IsAvailable_ 
+
+|====
+
+image::images/xamDataTree_SelectedDataItems_3.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <Grid.DataContext>
+        <local:DataProvider />
+    </Grid.DataContext>
+    <ig:XamDataTree x:Name="DataTree" Margin="10"
+                    ItemsSource="{Binding Path=ProductItems}"                         
+                    IsSelectedMemberPath="IsAvailable">
+        <ig:XamDataTree.GlobalNodeLayouts>
+            <ig:NodeLayout Key="ProductItems" 
+                           DisplayMemberPath="ProductNames" 
+                           TargetTypeName="ProductItem" >
+                <ig:NodeLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Data.ProductName}" />
+                            <StackPanel Orientation="Horizontal" 
+                                        Margin="10,0,0,0" 
+                                        Grid.Column="1">
+                                <TextBlock Text="is available: "/>
+                                <TextBlock Text="{Binding Data.IsAvailable}" 
+                                           Margin="10,0,0,0"
+                                           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ig:NodeLayout.ItemTemplate>
+            </ig:NodeLayout>
+        </ig:XamDataTree.GlobalNodeLayouts>          
+    </ig:XamDataTree>
+</Grid>
+----
+
+例で使用されるデータ モデルのクラスは以下のとおりです。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class ProductItem : INotifyPropertyChanged
+{
+    public ProductItem(string name, bool isAvailable)
+    {
+        _productName = name;
+        _isAvailable = isAvailable;
+    }
+    private string _productName;
+    public string ProductName
+    {
+        get { return this._productName; }
+        set
+        {
+            if (this._productName != value)
+            {
+                this._productName = value;
+                this.OnPropertyChanged("ProductName");
+            }
+        }
+    }
+    private bool _isAvailable;
+    public bool IsAvailable
+    {
+        get { return this._isAvailable; }
+        set
+        {
+            if (this._isAvailable != value)
+            {
+                this._isAvailable = value;
+                this.OnPropertyChanged("IsAvailable");
+            }
+        }
+    }
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        PropertyChangedEventHandler handler = this.PropertyChanged;
+        if (handler != null)
+            handler(sender, e);
+    }
+    protected void OnPropertyChanged(string propertyName)
+    {
+        OnPropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class DataProvider : INotifyPropertyChanged
+{
+    public DataProvider()
+    {
+        DownloadDataSource();
+    }
+    private ObservableCollection<ProductItem> _productItems = null;
+    public ObservableCollection<ProductItem> ProductItems
+    {
+        get { return this._productItems; }
+        set
+        {
+            if (this._productItems != value)
+            {
+                this._productItems = value;
+                this.OnPropertyChanged("ProductItems");
+            }
+        }
+    }
+    private void DownloadDataSource()
+    {
+        var data = new ObservableCollection<ProductItem>();
+        data.Add(new ProductItem("product item 1", true));
+        data.Add(new ProductItem("product item 2", false));
+        data.Add(new ProductItem("product item 3", true));
+        data.Add(new ProductItem("product item 4", true));
+        data.Add(new ProductItem("product item 5", false));
+        data.Add(new ProductItem("product item 6", true));
+        this._productItems = data;
+    }
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        PropertyChangedEventHandler handler = this.PropertyChanged;
+        if (handler != null)
+            handler(sender, e);
+    }
+    protected void OnPropertyChanged(string propertyName)
+    {
+        OnPropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+----
+
+[[_Ref391047984]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatatree-xamdatatree-activation.html[アクティブ化]
+|このトピックでは、 _xamDataTree_ コントロールのノード アクティブ化機能について説明します。
+
+| link:xamdatatree-active-data-item.html[アクティブなデータ項目の構成]
+|このトピックは、Model-View-ViewModel (MVVM) アーキテクチャを使用して _xamDataTree_ のアクティブなデータ項目を識別し操作する方法を説明します。
+
+| link:xamdatatree-xamdatatree-check-boxes.html[チェック ボックスの表示の構成]
+|このトピックでは、 _xamDataTree_ コントロールのノードのチェック ボックスを有効にする方法を説明します。
+
+| link:xamdatatree-expanded-and-collapsed-xamdatatree-nodes.html[ノードの展開 / 折りたたみの状態の構成]
+|このトピックでは、 _xamDataTree_ コントロールのコードで一部またはすべてのノードを展開する方法を説明します。
+
+| link:xamdatatree-xamdatatree-drag-and-drop.html[ドラッグ アンド ドロップの構成]
+|このトピックでは、 _xamDataTree_ コントロールのドラッグ アンド ドロップ機能について説明します。
+
+| link:xamdatatree-xamdatatree-editing.html[編集]
+|このトピックでは、 _xamDataTree_ コントロールの編集を有効にする方法を説明します。
+
+| link:xamdatatree-xamdatatree-node-connectors.html[ノード コネクタの表示の構成]
+|このトピックでは、 _xamDataTree_ コントロールのノード コネクタを表示する方法を説明します。
+
+| link:xamdatatree-xamdatatree-node-layouts.html[ノード レイアウトの構成]
+|このトピックでは、 _xamDataTree_ コントロールのノード レイアウトの概念、およびさまざまなノードのレイアウトについて説明します。
+
+| link:xamdatatree-xamdatatree-selection.html[選択]
+|このトピックでは、 _xamDataTree_ コントロールでの選択について説明します。
+
+|====

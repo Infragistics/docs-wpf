@@ -1,0 +1,118 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamradialmenu-configuration-overview",
+    "tags": ["How Do I","Layouts"],
+    "controlName": ["xamRadialMenu"],
+    "guid": "81873440-c18a-4c4a-9fc0-0d6552892e99",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.8693076Z"
+}
+|metadata|
+////
+
+= xamRadialMenu 構成の概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[ _xamRadialMenu_  ]™ コントロールを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-features.html[xamRadialMenu の機能]
+|このトピックでは、コントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamradialmenu-visual-elements.html[xamRadialMenu の視覚要素]
+|このトピックでは、コントロールの視覚要素の概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref378253862,はじめに>>
+* <<_Ref378247301,XamRadialMenu 構成の概要>>
+* <<_Ref378247306,関連コンテンツ>>
+
+[[_Ref378253862]]
+== はじめに
+
+=== XamRadialMenu の概要
+
+_xamRadialMenu_   コントロールは項目領域を同じ大きさのウェッジに分割し、項目領域で円形に配置された特定のレベルのすべてのメニュー項目を表示します。各メニュー項目は 1 つ以上のウェッジを使用することができます。すべてのメニュー項目のウェッジの合計がウェッジの数より大きい場合、すべてのメニュー項目が項目領域に入るようにウェッジのサイズが再計算されます。すべてのメニュー項目のウェッジの合計がウェッジの数より小さい場合、最後のメニュー項目の後に空白のスペースが追加されます。
+
+[[_Ref378247301]]
+== _XamRadialMenu_  構成の概要
+
+=== XamRadialMenu 構成の概要表
+
+以下の表は、 _xamRadialMenu_   コントロールで構成できる主要な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+オープン/クローズ
+|_xamRadialMenu_ の状態を設定または取得します。
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~isopen.html[IsOpen]
+
+|ウェッジの最小数
+|ウェッジの最小数を設定または取得します。
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~minwedgecount.html[MinWedgeCount]
+
+|項目の開始角度
+|項目の開始角度を度数で設定または取得します。
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~rotationindegrees.html[RotationInDegrees]
+
+|ウェッジのパーセンテージで示された項目の開始角度
+|ウェッジの幅の項目の開始角度をパーセンテージで設定または取得します。
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~rotationaspercentageofwedge.html[RotationAsPercentageOfWedge]
+
+|ウェッジのパディング
+|各メニュー項目の周囲の余白を度数で設定または取得します。
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~wedgepaddingindegrees.html[WedgePaddingInDegrees]
+
+|非バインド項目
+|非バインドのルート レベルの項目コレクションを編集します。
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~items.html[Items]
+
+|項目のバインド
+|ルート レベルの項目コレクションにバインドします。
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu~itemssource.html[ItemsSource]
+
+|====
+
+[[_Ref378247306]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-items-sub-items-configuration-overview.html[項目 / サブ項目の構成 - 概要]
+|このトピックでは、メニュー項目およびその共通構成プロパティの概要を説明します。
+
+| link:xamradialmenu-configuring-center-button.html[中央ボタンの構成]
+|このトピックでは、中央ボタンを構成する方法を説明します。
+
+| link:xamradialmenu-configuring-tooltips.html[ツールチップの構成]
+|このトピックでは、項目のツールチップを構成する方法を説明します。
+
+| link:xamradialmenu-configuring-key-tips.html[キー チップの構成]
+|このトピックでは、項目のキー チップを構成する方法を説明します。
+
+|====

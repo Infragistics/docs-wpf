@@ -1,0 +1,97 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-sections",
+    "tags": ["Layouts","Templating"],
+    "controlName": ["xamGantt"],
+    "guid": "72996820-e56a-4f33-9f4a-89df23a09f64",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6201836Z"
+}
+|metadata|
+////
+
+= セクションの構成 (xamGantt)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 _xamGantt™_  コントロールのグリッドの幅およびチャート セクションの構成方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-visual-elements-overview.html[xamGantt のビジュアル要素の概要]
+|このトピックは、 _xamGantt_ コントロールの主要なビジュアル要素を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref400551188, XamGantt セクションの構成概要 >>
+* <<_Ref400551196, 関連コンテンツ >>
+
+[[_Ref400551188]]
+== XamGantt セクションの構成概要
+
+=== セクション概要
+
+link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt.html[ _xamGantt_  ] コントロールの 2 つのメイン セクション (グリッド セクションおよびチャート セクション) は幅を制御するプロパティがあります。`GridLength` タイプを使用して、個別に幅を設定できます。このタイプはピクセル単位で指定された幅、コンテンツによって指定されたサイズおよび使用可能領域の加重割合として示されたサイズをサポートしています。
+
+=== セクションの概要チャート
+
+以下の表は、 _xamGantt_   のセクションの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+グリッド セクションの幅
+|`GridLength` タイプの値でグリッド セクションの幅を設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~gridwidth.html[GridWidth]
+
+|チャート セクションの幅
+|`GridLength` タイプの値でチャート セクションの幅を設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~chartwidth.html[ChartWidth]
+
+|====
+
+注:
+
+[NOTE]
+====
+コントロールは、このプロパティを直接は使用しません。プロパティはコントロール テンプレートでバインドされる必要があります。カスタム  _xamGantt_   のために `ControlTemplate` を作成するとき、デフォルト テンプレートのようにプロパティにバインドします。
+====
+
+[[_Ref400551196]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-project.html[プロジェクトの構成 (xamGantt)]
+|このグループのトピックでは、xamGantt Project クラス、その構成可能な項目およびこのクラスが提供する主要機能を説明します。
+
+| link:xamgantt-configuring-project-view-settings.html[プロジェクト ビュー設定の構成]
+|このグループのトピックでは、xamGantt ProjectViewSettings クラス、その構成可能な項目およびこのクラスが提供する主要機能を説明します。
+
+| link:xamgantt-configuring-the-xamgantt-timescale.html[xamGantt タイムスケールの構成]
+|このグループのトピックには、xamGantt タイムスケールの情報が含まれています。
+
+|====

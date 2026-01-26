@@ -1,0 +1,738 @@
+﻿////
+|metadata|
+{
+    "name": "xamnetworknode-getting-started-with-xamnetworknode",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["API","Data Binding","Data Presentation","Getting Started"],
+    "guid": "24154995-a0a3-4111-b249-b8eacd85df71",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.403243Z"
+}
+|metadata|
+////
+
+= xamNetworkNode を使用した作業の開始
+
+このトピックは、link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode]™ コントロールをアプリケーションに追加する方法を示します。XAML を使用する方法とプロシージャ コードを使用する方法を示します。トピックの最後で、完全なコード例を提供します。
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>> 
+* <<Preview,プレビュー>>
+* <<Requirements,要件>>
+* <<AddingNetworkNodeUsingXAML,XAML を使用して Network Node コントロールを追加>>
+** <<AddingNetworkNodeUsingXAMLOverview,概要>>
+** <<AddingNetworkNodeUsingXAMLSteps,手順>>
+* <<AddingNetworkNodeUsingProceduralCode,プロシージャ コードを使用して Network Node コントロールを追加>>
+* <<CompleteCodeSample,全コード例>>
+** <<View,ビュー>>
+** <<CodeBehind,コード ビハインド>>
+** <<NodeModel,NodeModel.cs>>
+** <<ConnectionModel,ConnectionModel.cs>>
+** <<SimpleGraphData,SimpleGraphData.cs>>
+* <<RelatedTopics,関連トピック>>
+
+[[Introduction]]
+== 概要
+
+以下の手順は、データ モデルを定義し、xamNetworkNode コントロールをアプリケーションに追加して、次にそのコントロールをデータにバインドする方法を示します。
+
+[[Preview]]
+== プレビュー
+
+以下は最終結果のプレビューです。
+
+image::images/xamNetworkNode_GettingStarted_01.png[]
+
+図 1: サンプル コードで描画された xamNetworkNode の実装
+
+[[Requirements]]
+== 要件
+
+1. 必要な NuGet パッケージの参照:
+ * Infragistics.WPF.NetworkNode
+ 
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+ 
+2. 必要とされる XAML 名前空間参照 (XAML 実装に限る) : 
+
+**XAML の場合:**
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:data="clr-namespace:xamNetworkNode_Intro.Data"
+----
+
+この場合、xamNetworkNode_Intro.Data は SimpleGraphData クラスを定義した名前空間です。
+
+[[AddingNetworkNodeUsingXAML]]
+== XAML を使用して Network Node コントロールを追加
+
+[[AddingNetworkNodeUsingXAMLOverview]]
+=== 概要
+
+手順の概念的な概要
+
+1. <<DefiningDataModel,データ モデルの定義>>
+2. <<DefiningDataCollection,データ コレクションの定義>>
+3. <<AddNetworkNode,ネットワーク ノードの追加>> 
+4. <<SavingYourProject,プロジェクトの保存>>
+5. <<VerifyingResult,(オプション) 結果を確認します>>
+
+[[AddingNetworkNodeUsingXAMLSteps]]
+== 手順
+
+[[DefiningDataModel]]
+[start=1]
+1. **データ モデルを定義します。**
+
+Network Node コントロールは、ノード項目用とこれらの項目間の接続用の 2 つのデータ モデル クラスを必要とします。ノードのデータ モデルは、接続のセットを参照する必要があり、接続のデータ モデル ノード項目を参照する必要があります。
+
+[NOTE]
+====
+注: データの変更をグラフ レイアウトに伝達したい場合には、両方のデータ モデルが INotifyPropertyChanged を実装する必要があります。
+====
+
+開始するには、このトピックの最後に提供される NodeModel クラスと ConnectionModel クラスを使用します。
+
+[[DefiningDataCollection]]
+[start=2]
+2. **データ コレクションの定義**
+
+以下のデータ クラスは、コンストラクション時にノードの接続セットを生成し、link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~nodes.html[Nodes] と呼ばれるプロパティを介して使用可能なデータを作成します。
+
+**C# の場合:**
+
+[source,csharp]
+----
+public class SimpleGraphData
+{
+    public ObservableCollection<NodeModel> Nodes { get; set; }
+
+    private const int K = 7; // ノード当たりの接続数 (最大) 
+    private const int NUM_NODES = 98; // グラフのノード数
+ 
+    public SimpleGraphData()
+    {
+        Nodes = new ObservableCollection<NodeModel>();
+
+        // NUM_NODES ノード オブジェクトをコレクションに追加します
+        for (int i = 0; i < NUM_NODES; i++)
+        {
+            NodeModel node = new NodeModel();
+            node.Label = i.ToString();
+            node.ToolTip = "ToolTip for " + node.Label;
+            Nodes.Add(node);
+        }
+
+        // ノード 0 から開始し、そのノードをルートに設定します
+        // 最大 K 接続までルート ノードに追加します
+        // 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+        int root = 0;
+        int first = 1;
+        int last = K;
+        while (first < Nodes.Count)
+        {
+            Nodes[root].Connections = new ObservableCollection<ConnectionModel>();
+            for (int i = first; i <= last; i++)
+            {
+                if (i >= Nodes.Count)
+                {
+                    break;
+                }
+                Nodes[root].Connections.Add(new ConnectionModel { Target = Nodes[i] });
+            }
+            root++;
+            first = last + 1;
+            last += K;
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Public Class SimpleGraphData
+    Public Property Nodes() As ObservableCollection(Of NodeModel)
+        Get
+            Return m_Nodes
+        End Get
+        Set
+            m_Nodes = Value
+        End Set
+    End Property
+    Private m_Nodes As ObservableCollection(Of NodeModel)
+    Private Const K As Integer = 7
+    ' ノード当たりの接続数 (最大) 
+    Private Const NUM_NODES As Integer = 98
+    ' グラフのノード数
+    Public Sub New()
+        Nodes = New ObservableCollection(Of NodeModel)()
+
+        ' NUM_NODES ノード オブジェクトをコレクションに追加します
+        For i As Integer = 0 To NUM_NODES - 1
+            Dim node As New NodeModel()
+            node.Label = i.ToString()
+            node.ToolTip = "ToolTip for " & node.Label
+            Nodes.Add(node)
+        Next
+
+        ' ノード 0 から開始し、ルートとしてそのノードを設定します
+        ' 最大 K 接続までルート ノードに追加します
+        ' 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+        Dim root As Integer = 0
+        Dim first As Integer = 1
+        Dim last As Integer = K
+        While first < Nodes.Count
+            Nodes(root).Connections = New ObservableCollection(Of ConnectionModel)()
+            For i As Integer = first To last
+                If i >= Nodes.Count Then
+                    Exit For
+                End If
+                Nodes(root).Connections.Add(New ConnectionModel() With { _
+                    Key .Target = Nodes(i) _
+                })
+            Next
+            root += 1
+            first = last + 1
+            last += K
+        End While
+    End Sub
+End Class
+----
+
+[[AddNetworkNode]]
+[start=3]
+3. **ネットワーク ノードを追加します。**
+
+a. SimpleGraphData のインスタンスをリソースとして追加します。
+b. Network Node コントロールのインスタンスを追加し、link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~itemssource.html[ItemsSource] プロパティと link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~globalnodelayouts.html[GlobalNodeLayouts] プロパティを適切に設定します。GlobalNodeLayouts コレクションには少なくともひとつの link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenodelayout.html[NetworkNodeNodeLayout] オブジェクトが含まれます。このオブジェクトはデータ モデルから必要とする情報を取得する方法をコントロールに通知します。
+
+[NOTE]
+====
+注: 一部のより高度なシナリオでは、任意の数の NetworkNodeNodeLayout オブジェクトを GlobalNodeLayouts コレクションに追加できます。これによって、複数のデータ タイプを ItemsSource で使用することが可能となります。
+====
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<Grid x:Name="LayoutRoot" Background="White">
+    <Grid.Resources>
+        <data:SimpleGraphData x:Key="GraphData" />
+    </Grid.Resources>
+    <ig:XamNetworkNode x:Name="xnn"
+                       ItemsSource="{Binding Nodes, Source={StaticResource GraphData}}">
+        <ig:XamNetworkNode.GlobalNodeLayouts>
+            <ig:NetworkNodeNodeLayout
+                TargetTypeName = "NodeModel"
+                DisplayMemberPath = "Label"
+                ToolTipMemberPath = "ToolTip"
+                ConnectionsMemberPath = "Connections"
+                ConnectionTargetMemberPath = "Target"
+                />
+        </ig:XamNetworkNode.GlobalNodeLayouts>
+    </ig:XamNetworkNode>
+</Grid>
+----
+
+[[SavingYourProject]]
+[start=4]
+4. **プロジェクトを保存します。**
+
+[[VerifyingResult]]
+[start=5]
+5. **(オプション) 結果を確認します。**
+
+結果を検証するために、アプリケーションを実行します。Network Node コントロールを正常に追加したら、アプリケーションは上記の図 1 に示すように表示されます。
+
+[[AddingNetworkNodeUsingProceduralCode]]
+== プロシージャ コードを使用して Network Node コントロールを追加
+
+XAML に依存せずに Network Node コントロールを使用することができます。以下は設定したばかりのアプリケーションのための同様のプロシージャ コードです。
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Windows.Controls;
+using Infragistics.Controls.Maps;
+using xamNetworkNode_Intro.Data;
+
+namespace xamNetworkNode_Intro
+{
+    public partial class MainPage : UserControl
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+            InitializeNetworkNode();
+        }
+ 
+        private void InitializeNetworkNode()
+        {
+            SimpleGraphData data = new SimpleGraphData();
+            XamNetworkNode xnn = new XamNetworkNode();
+            xnn.GlobalNodeLayouts.Add(
+                new NetworkNodeNodeLayout
+                {
+                    TargetTypeName = "NodeModel",
+                    DisplayMemberPath = "Label",
+                    ToolTipMemberPath = "ToolTip",
+                    ConnectionsMemberPath = "Connections",
+                    ConnectionTargetMemberPath = "Target"
+                });
+            xnn.ItemsSource = data.Nodes;
+            this.LayoutRoot.Children.Add(xnn);
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Windows.Controls
+Imports Infragistics.Controls.Maps
+Imports xamNetworkNode_Intro.Data
+
+Namespace xamNetworkNode_Intro
+    Public Partial Class MainPage
+        Inherits UserControl
+        Public Sub New()
+            InitializeComponent()
+            InitializeNetworkNode()
+        End Sub
+
+        Private Sub InitializeNetworkNode()
+            Dim data As New SimpleGraphData()
+            Dim xnn As New XamNetworkNode()
+            xnn.GlobalNodeLayouts.Add(New NetworkNodeNodeLayout() With { _
+                Key .TargetTypeName = "NodeModel", _
+                Key .DisplayMemberPath = "Label", _
+                Key .ToolTipMemberPath = "ToolTip", _
+                Key .ConnectionsMemberPath = "Connections", _
+                Key .ConnectionTargetMemberPath = "Target" _
+            })
+            xnn.ItemsSource = data.Nodes
+            Me.LayoutRoot.Children.Add(xnn)
+        End Sub
+    End Class
+End Namespace
+----
+
+[[CompleteCodeSample]]
+== 全コード例
+
+以下は、コンテキストで実装される完全なコードです。
+
+[[View]]
+== ビュー
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<UserControl x:Class="xamNetworkNode_Intro.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ig="http://schemas.infragistics.com/xaml"
+    xmlns:data="clr-namespace:xamNetworkNode_Intro.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+ 
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.Resources>
+            <data:SimpleGraphData x:Key="GraphData" />
+        </Grid.Resources>
+        <ig:XamNetworkNode x:Name="xnn"
+                           ItemsSource="{Binding Nodes, Source={StaticResource GraphData}}">
+            <ig:XamNetworkNode.GlobalNodeLayouts>
+                <ig:NetworkNodeNodeLayout
+                    TargetTypeName = "NodeModel"
+                    DisplayMemberPath = "Label"
+                    ToolTipMemberPath = "ToolTip"
+                    ConnectionsMemberPath = "Connections"
+                    ConnectionTargetMemberPath = "Target"
+                    />
+            </ig:XamNetworkNode.GlobalNodeLayouts>
+        </ig:XamNetworkNode>
+    </Grid>
+</UserControl>
+----
+
+[[CodeBehind]]
+== コード ビハインド
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Windows.Controls;
+ 
+namespace xamNetworkNode_Intro
+{
+    public partial class MainPage : UserControl
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Windows.Controls
+
+Namespace xamNetworkNode_Intro
+    Public Partial Class MainPage
+        Inherits UserControl
+        Public Sub New()
+            InitializeComponent()
+        End Sub
+    End Class
+End Namespace
+----
+
+[[NodeModel]]
+== NodeModel.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+ 
+namespace xamNetworkNode_Intro.Models
+{
+    public class NodeModel : INotifyPropertyChanged
+    {
+        private string _label;
+        public string Label
+        {
+            get { return _label; }
+            set
+            {
+                if (value != _label)
+                {
+                    _label = value;
+                    NotifyPropertyUpdated("Label");
+                }
+            }
+        }
+ 
+        private string _toolTip;
+        public string ToolTip
+        {
+            get { return _toolTip; }
+            set
+            {
+                if (value != _toolTip)
+                {
+                    _toolTip = value;
+                    NotifyPropertyUpdated("ToolTip");
+                }
+            }
+        }
+ 
+        private ObservableCollection<ConnectionModel> _connections;
+        public ObservableCollection<ConnectionModel> Connections
+        {
+            get { return _connections; }
+            set
+            {
+                if (value != _connections)
+                {
+                    _connections = value;
+                    NotifyPropertyUpdated("Connections");
+                }
+            }
+        }
+ 
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
+        protected virtual void NotifyPropertyUpdated(string propertyName)
+        {
+            var handler = PropertyChanged;
+ 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Collections.ObjectModel
+Imports System.ComponentModel
+
+Namespace xamNetworkNode_Intro.Models
+    Public Class NodeModel
+        Implements INotifyPropertyChanged
+        Private _label As String
+        Public Property Label() As String
+            Get
+                Return _label
+            End Get
+            Set
+                If value <> _label Then
+                    _label = value
+                    NotifyPropertyUpdated("Label")
+                End If
+            End Set
+        End Property
+
+        Private _toolTip As String
+        Public Property ToolTip() As String
+            Get
+                Return _toolTip
+            End Get
+            Set
+                If value <> _toolTip Then
+                    _toolTip = value
+                    NotifyPropertyUpdated("ToolTip")
+                End If
+            End Set
+        End Property
+
+        Private _connections As ObservableCollection(Of ConnectionModel)
+        Public Property Connections() As ObservableCollection(Of ConnectionModel)
+            Get
+                Return _connections
+            End Get
+            Set
+                If value <> _connections Then
+                    _connections = value
+                    NotifyPropertyUpdated("Connections")
+                End If
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler
+
+        Protected Overridable Sub NotifyPropertyUpdated(propertyName As String)
+            Dim handler = PropertyChanged
+
+            RaiseEvent handler(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+ 
+    End Class
+End Namespace
+----
+
+[[ConnectionModel]]
+== ConnectionModel.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.ComponentModel;
+ 
+namespace xamNetworkNode_Intro.Models
+{
+    public class ConnectionModel : INotifyPropertyChanged
+    {
+        private NodeModel _target;
+        public NodeModel Target
+        {
+            get { return _target; }
+            set
+            {
+                if (value != _target)
+                {
+                    _target = value;
+                    NotifyPropertyUpdated("Target");
+                }
+            }
+        }
+ 
+        #region Implementation of INotifyPropertyChanged
+ 
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
+        protected virtual void NotifyPropertyUpdated(string propertyName)
+        {
+            var handler = PropertyChanged;
+ 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.ComponentModel
+
+Namespace xamNetworkNode_Intro.Models
+    Public Class ConnectionModel
+        Implements INotifyPropertyChanged
+        Private _target As NodeModel
+        Public Property Target() As NodeModel
+            Get
+                Return _target
+            End Get
+            Set
+                If value IsNot _target Then
+                    _target = value
+                    NotifyPropertyUpdated("Target")
+                End If
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler
+
+        Protected Overridable Sub NotifyPropertyUpdated(propertyName As String)
+            Dim handler = PropertyChanged
+
+            RaiseEvent handler(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+        
+    End Class
+End Namespace
+----
+
+[[SimpleGraphData]]
+== SimpleGraphData.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Collections.ObjectModel;
+using xamNetworkNode_Intro.Models;
+ 
+namespace xamNetworkNode_Intro.Data
+{
+    public class SimpleGraphData
+    {
+        public ObservableCollection<NodeModel> Nodes { get; set; }
+        private const int K = 7; // ノード当たりの接続数 (最大) 
+        private const int NUM_NODES = 98; // グラフのノード数
+ 
+        public SimpleGraphData()
+        {
+            Nodes = new ObservableCollection<NodeModel>();
+ 
+            // NUM_NODES ノード オブジェクトをコレクションに追加します
+            for (int i = 0; i < NUM_NODES; i++)
+            {
+                NodeModel node = new NodeModel();
+                node.Label = i.ToString();
+                node.ToolTip = "ToolTip for " + node.Label;
+                Nodes.Add(node);
+            }
+ 
+            // ノード 0 から開始し、ルートとしてそのノードを設定します
+            // 最大 K 接続までルート ノードに追加します
+            // 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+            int root = 0;
+            int first = 1;
+            int last = K;
+            while (first < Nodes.Count)
+            {
+                Nodes[root].Connections = new ObservableCollection<ConnectionModel>();
+                for (int i = first; i <= last; i++)
+                {
+                    if (i >= Nodes.Count)
+                    {
+                        break;
+                    }
+                    Nodes[root].Connections.Add(new ConnectionModel { Target = Nodes[i] });
+                }
+                root++;
+                first = last + 1;
+                last += K;
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Collections.ObjectModel
+Imports xamNetworkNode_Intro.Models
+
+Namespace xamNetworkNode_Intro.Data
+    Public Class SimpleGraphData
+        Public Property Nodes() As ObservableCollection(Of NodeModel)
+            Get
+                Return m_Nodes
+            End Get
+            Set
+                m_Nodes = Value
+            End Set
+        End Property
+        Private m_Nodes As ObservableCollection(Of NodeModel)
+        Private Const K As Integer = 7
+        ' ノード当たりの接続数 (最大) 
+        Private Const NUM_NODES As Integer = 98
+        ' グラフのノード数
+        Public Sub New()
+            Nodes = New ObservableCollection(Of NodeModel)()
+
+            ' NUM_NODES ノード オブジェクトをコレクションに追加します
+            For i As Integer = 0 To NUM_NODES - 1
+                Dim node As New NodeModel()
+                node.Label = i.ToString()
+                node.ToolTip = "ToolTip for " & node.Label
+                Nodes.Add(node)
+            Next
+
+            ' ノード 0 から開始し、ルートとしてそのノードを設定します
+            ' 最大 K 接続までルート ノードに追加します
+            ' 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+            Dim root As Integer = 0
+            Dim first As Integer = 1
+            Dim last As Integer = K
+            While first < Nodes.Count
+                Nodes(root).Connections = New ObservableCollection(Of ConnectionModel)()
+                For i As Integer = first To last
+                    If i >= Nodes.Count Then
+                        Exit For
+                    End If
+                    Nodes(root).Connections.Add(New ConnectionModel() With { _
+                        Key .Target = Nodes(i) _
+                    })
+                Next
+                root += 1
+                first = last + 1
+                last += K
+            End While
+        End Sub
+    End Class
+End Namespace
+----
+
+[[RelatedTopics]]
+== 関連トピック
+
+* link:xamnetworknode.html[xamNetworkNode]
+* link:xamnetworknode-using-xamnetworknode.html[xamNetworkNode の使用]

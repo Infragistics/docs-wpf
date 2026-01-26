@@ -1,0 +1,361 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-other-events-and-events-arguments",
+    "controlName": ["xamGantt"],
+    "tags": ["Events","How Do I"],
+    "guid": "b2ca08d9-d19a-4c60-93ed-418d40a2ff25",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2901631Z"
+}
+|metadata|
+////
+
+= その他のイベントとイベント引数
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt_™ コントロールにおけ共通のユーザー インタラクションで起動して利用できるイベントについて解説します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-binding-arbitrary-tasks-collection-listbackedproject.html[ListBackedProject による任意タスク コレクションへのバインディング]
+|このトピックでは、ListBackedProject で _xamGantt_ コントロールを任意のタスク コレクションにバインドする方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref334532469,  _XamGantt_   の構成イベントの要旨 >>
+* <<_Ref334532474, コード例: マイルストーンのドラッグの取り消し >>
+* <<_Ref334739223, プロジェクト構成イベントの要旨 >>
+* <<_Ref334532485, コード例: タスク削除の確定 >>
+* <<_Ref334739239, 関連コンテンツ >>
+
+[[_Ref334532469]]
+== _XamGantt_  の構成イベントの要旨
+
+=== XamGantt の構成イベントの要旨チャート
+
+以下の表は、 _xamGantt_   コントロール ユーザー インターフェイスの操作時に呼び出されるイベントです。
+
+これらのイベントには、その発生順序に応じて接尾辞 "ing" または "ed" が追加されます。
+
+(-ing) イベントは取り消し可能で、(-ed) イベントの前に呼び出されます。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するイベント:|イベント引数で伝える情報:
+
+|グリッド セル内の値の変化を処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~cellchanging_ev.html[CellChanging]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcellchangingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcellchangingeventargs~cell.html[Cell] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcellchangingeventargs~columndefinition.html[ColumnDefinition] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcellchangingeventargs~newvalue.html[NewValue] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.cancellableprojecttaskeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~cellchanged_ev.html[CellChanged]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcellchangedeventargs~cell.html[Cell] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcellchangedeventargs~columndefinition.html[ColumnDefinition] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcellchangedeventargs~oldvalue.html[OldValue] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskeventargs~task.html[Task] 
+
+|列の表示/非表示の変更を処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~columnvisibilitychanging_ev.html[ColumnVisibilityChanging]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcolumnvisibilitychangingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcolumnvisibilitychangingeventargs~columndefinition.html[ColumnDefinition] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcolumnvisibilitychangingeventargs~newvisibility.html[NewVisibility] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~columnvisibilitychanged_ev.html[ColumnVisibilityChanged]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcolumnvisibilitychangedeventargs~columndefinition.html[ColumnDefinition] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttgridcolumnvisibilitychangedeventargs~oldvisibility.html[OldVisibility] 
+
+|タスクバーのドラッグを処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~taskbardragcompleted_ev.html[TaskBarDragCompleted]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardragcompletedeventargs~cancelled.html[Cancelled] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardragcompletedeventargs~dragoperation.html[DragOperation] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardragcompletedeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~taskbardragging_ev.html[TaskBarDragging]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardraggingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardraggingeventargs~dragoperation.html[DragOperation] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardraggingeventargs~dropdatetime.html[DropDateTime] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardraggingeventargs~newdatetime.html[NewDateTime] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardraggingeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~taskbardragstarting_ev.html[TaskBarDragStarting]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardragstartingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardragstartingeventargs~dragoperation.html[DragOperation] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.gantttaskbardragstartingeventargs~task.html[Task] 
+
+|====
+
+[[_Ref334532474]]
+== コード例: マイルストーンのドラッグの取り消し
+
+=== 解説
+
+以下のコード スニペットでは、マイルストーンのドラッグを無効にする方法を紹介します。
+
+_link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt_members.html[XamGantt]_  link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt~taskbardragging_ev.html[TaskBarDragging] イベントを処理して、タスクがマイルストーンであるかどうかを確認し、マイルストーンであれば、そのドラッグを取り消します。
+
+[[_Ref334532479]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ListBackedProject x:Name="dataProvider" TaskItemsSource="{Binding Tasks}">
+    <ig:ListBackedProject.TaskPropertyMappings>
+        <!-- Add Project Task Property Mappings Here -->
+    </ig:ListBackedProject.TaskPropertyMappings>
+</ig:ListBackedProject>
+<ig:XamGantt x:Name="gantt" 
+             Project="{Binding ElementName=dataProvider}"
+             TaskBarDragging="gantt_TaskBarDragging"/>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void gantt_TaskBarDragging(object sender, GanttTaskBarDraggingEventArgs e)
+{
+    // If a task is a milestone, prevent dragging
+    if (e.Task.IsMilestone)
+    {
+        e.Cancel = true;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub gantt_TaskBarDragging(sender As Object, e As GanttTaskBarDraggingEventArgs)
+    ' If a task is a milestone, prevent dragging
+    If e.Task.IsMilestone Then
+        e.Cancel = True
+    End If
+End Sub
+----
+
+[[_Ref334739223]]
+== プロジェクト構成イベントの要旨
+
+=== プロジェクト構成イベントの要旨チャート
+
+以下の表は、プロジェクトおよびプロジェクト タスクを変更するときに発生される link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] クラス イベントを表示します。
+
+これらのイベントには、その発生順序に応じて接尾辞 "ing" または "ed" が追加されます。
+
+(-ing) イベントは取り消し可能で、(-ed) イベントの前に呼び出されます。どちらのイベントもイベントに関連付けられた link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask_members.html[ProjectTask] に関する情報を伝えます。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するイベント:|イベント引数で伝える情報:
+
+|サマリー タスクの折り畳みを処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskcollapsing_ev.html[TaskCollapsing]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskcollapsingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.cancellableprojecttaskeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskcollapsed_ev.html[TaskCollapsed]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskeventargs~task.html[Task]
+
+|タスクの削除を処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskdeleting_ev.html[TaskDeleting]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskdeletingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.cancellableprojecttaskeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskdeleted_ev.html[TaskDeleted]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskeventargs~task.html[Task]
+
+|サマリー タスクの展開を処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskexpanding_ev.html[TaskExpanding]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskexpandingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.cancellableprojecttaskeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskexpanded_ev.html[TaskExpanded]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskeventargs~task.html[Task]
+
+|タスクのインデントを処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskindenting_ev.html[TaskIndenting]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskindentingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.cancellableprojecttaskeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskindented_ev.html[TaskIndented]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskeventargs~task.html[Task]
+
+|タスクの挿入を処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskinserting_ev.html[TaskInserting]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskinsertingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskinsertingeventargs~relativeposition.html[RelativePosition] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskinsertingeventargs~relativetask.html[RelativeTask] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.cancellableprojecttaskeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskinserted_ev.html[TaskInserted]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskinsertedeventargs~relativeposition.html[RelativePosition] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskinsertedeventargs~relativetask.html[RelativeTask] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskeventargs~task.html[Task] 
+
+|タスクのアウトデントを処理
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskoutdenting_ev.html[TaskOutdenting]
+|
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskoutdentingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.cancellableprojecttaskeventargs~task.html[Task] 
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~taskoutdented_ev.html[TaskOutdented]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttaskeventargs~task.html[Task]
+
+|====
+
+[[_Ref334532485]]
+== コード例: タスク削除の確定
+
+=== 解説
+
+以下のコード スニペットでは、ユーザーのアクションに応じて、タスクの削除を確定したり、取り消す方法を紹介します。
+
+_xamGantt_   グリッド領域のタスクでマウスを右クリックすると、[削除] オプションとともにコンテキスト メニューが表示されます。選択したタスクの削除をユーザーが選択すると、[OK] と [キャンセル] という 2 つのボタン オプションがあるメッセージ ボックスが表示されます。ユーザーが [キャンセル] ボタンをクリックすると、削除イベントは取り消されます。ユーザーが [OK] ボタンをクリックすると、そのタスクは削除されます。
+
+注:
+
+[NOTE]
+====
+複数のタスクを 1 回の操作で削除できます。以下の例のコードは、削除したすべてのタスクに対して実行されます。
+====
+
+[[_Ref334395481]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ListBackedProject x:Name="dataProvider" 
+                      TaskItemsSource="{Binding Tasks}"
+                      TaskDeleting="dataProvider_TaskDeleting">
+    <ig:ListBackedProject.TaskPropertyMappings>
+        <!-- Add Project Task Property Mappings Here -->    
+    </ig:ListBackedProject.TaskPropertyMappings>
+</ig:ListBackedProject>
+<ig:XamGantt x:Name="gantt" 
+             Project="{Binding ElementName=dataProvider}" />
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Schedules;
+private void dataProvider_TaskDeleting(object sender, ProjectTaskDeletingEventArgs e)
+{
+string msg = String.Format("Are you sure you want to delete {0} task?", e.Task.TaskName);
+MessageBoxResult result = MessageBox.Show(msg, "Confirmation", MessageBoxButton.OKCancel);
+    if (result == MessageBoxResult.Cancel)
+    {
+        // Cancel task deletion
+        e.Cancel = true;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Schedules
+Private Sub dataProvider_TaskDeleting(sender As System.Object, e As ProjectTaskDeletingEventArgs)
+  Dim msg As String = [String].Format("Are you sure you want to delete {0} task?", e.Task.TaskName)
+Dim result As MessageBoxResult = MessageBox.Show(msg, "Confirmation", MessageBoxButton.OKCancel)
+    If result = MessageBoxResult.Cancel Then
+        ' Cancel task deletion
+        e.Cancel = True
+    End If
+End Sub
+----
+
+[[_Ref334739239]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-setting-and-retrieving-the-active-element.html[アクティブ要素の設定と取得]
+|このトピックでは、 _xamGantt_ コントロール内の現在アクティブなセル、列または行の設定または取得に使用されるプロパティとイベントについて説明します。
+
+| link:xamgantt-other-events-and-events-arguments.html[その他のイベントとイベント引数]
+|このトピックでは、 _xamGantt_ コントロールにおけ共通のユーザー インタラクションで起動して利用できるイベントについて解説します。
+
+|====

@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammaskedinput-api-overview",
+    "controlName": ["xamInputs"],
+    "tags": ["API","Editing"],
+    "guid": "c2cd5a3b-3271-4212-94ba-f6cdb92c650e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.9442182Z"
+}
+|metadata|
+////
+
+{XamMaskedInputHeader}
+
+= API の概要
+
+このセクションは、 link:xammaskedinput.html[xamMaskedInput] コントロールに関連する各名前空間をリストします。このコントロールでプログラムする間に使用するいくつかのキー クラスもあります。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。 
+
+[options="header", cols="a,a"]
+|====
+|名前空間：|キー クラス:
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics.Controls.Editors]
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput.html[XamMaskedInput]
+
+|====
+

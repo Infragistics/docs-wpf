@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-overview",
+    "tags": [],
+    "controlName": ["xamTreeGrid"],
+    "guid": "e7935cc2-bd59-4eeb-8ff8-54fe9e76d97d",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:21:04.7038412Z"
+}
+|metadata|
+////
+
+= 概要 (xamTreeGrid)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、コントロールの概要を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-features-overview.html[機能の概要 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+| link:xamtreegrid-user-interactions-and-usability.html[ユーザー インタラクションと操作性 (xamTreeGrid)]
+|このトピックでは、ユーザーが実行できる操作を紹介します。
+
+| link:xamtreegrid-limitations.html[制限 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートされていない Data Presenter の機能を説明します。
+
+|====

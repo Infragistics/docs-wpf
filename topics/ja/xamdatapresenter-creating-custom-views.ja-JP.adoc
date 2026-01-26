@@ -1,0 +1,30 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-creating-custom-views",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Extending","How Do I"],
+    "guid": "{1D729C73-771C-4752-A7FB-A8D6269A75FA}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1249781Z"
+}
+|metadata|
+////
+
+= カスタム ビューの作成
+
+
+
+xamDataPresenter™ コントロールは、同じデータでさまざまな UI ビューを動的に切り替える機能を持ったマルチビュー データ プレゼンテーション コントロールです。xamDataPresenter コントロールは、堅牢なデータ バインディングおよび UIElement 生成の基盤を、データ表示のための柔軟なプラットフォームを開発者に提供するためのプラガブルなビュー アーキテクチャと組み合わせます。
+
+{ProductName} 製品は、GridView と CarouselView という 2 つのビューを提供します。これらの組み込みビューはそれぞれ、ViewBase 基本クラスから派生し、全く同じサービス上に構築するため、固有のカスタム プラガブルなビューを作成できます。
+
+カスタム ビューを作成する時には、xamDataPresenter によって提供される多数の機能を活用します。ビューのコードは固有のプレゼンテーションの提供に焦点を当てることができ、データ バインディング、選択、キーボード ナビゲーション、グループ化、ソートなどの基本を提供するために xamDataPresenter に依存しています。
+
+以下のリンクをクリックして、カスタム ビューの作成方法についてより詳細に学習します。
+
+* link:xamdatapresenter-how-to-create-a-basic-custom-view.html[基本のカスタム ビューの作成方法]
+* link:xamdatapresenter-services-provided-by-the-xamdatapresenter.html[XamDataPresenter によって提供されるサービス]
+* link:xamdatapresenter-creating-the-custom-view-class-and-layout-panel.html[カスタム ビュー クラスとレイアウト パネルを作成]
+* link:xamdatapresenter-how-to-use-your-custom-view-with-xamdatapresenter.html[xamDataPresenter とカスタム ビューを使用する方法]

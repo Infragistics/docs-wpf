@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammaskedinput",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "506b65bd-38be-4981-bc68-bf2500e93364",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.9232174Z"
+}
+|metadata|
+////
+
+{XamMaskedInputHeader}
+
+= xamMaskedInput
+
+このセクションには、コントロールの動作、アプリケーションでコントロールを使用する理由から、コントロールを使用して共通タスクを達成する方法の手順まで、 link:xammaskedinput.html[xamMaskedInput] コントロールに関する有益な情報が含まれています。
+
+以下のトピックでは、xamMaskedInput コントロールに関して必要な情報を扱います。
+
+* link:xammaskedinput-about.html[xamMaskedInput について]
+* link:xammaskedinput-using.html[xamMaskedInput の使用]
+* link:xammaskedinput-api-overview.html[API の概要]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]

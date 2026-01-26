@@ -1,0 +1,103 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-control-confdatenavigator",
+    "controlName": ["xamSchedule"],
+    "tags": ["Editing","Scheduling","Selection"],
+    "guid": "ba081c3a-370e-4428-8de3-498da085d995",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.9263679Z"
+}
+|metadata|
+////
+
+= xamDateNavigator の構成
+
+これは、xamSchedule コントロールのビューを説明する 5 つのトピックのひとつです。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdayview.html[xamDayView]
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduleview.html[xamScheduleView]
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview.html[xamMonthView]
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamoutlookcalendarview.html[xamOutlookCalendarView]
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdatenavigator.html[xamDateNavigator]  _(これは現在のトピックです)_ 
+
+トピックは以下のセクションで構成されています。
+
+* 概要
+* 目的
+* xamDateNavigator 構成オプション
+* 関連トピック
+
+== 概要
+
+xamDateNavigator コントロールは、Outlook 2010 ユーザー インターフェイスの日付ナビゲーター部分を複製します。大きな xamSchedule システムの一部として、ナビテーター コントロールは、xamMonthView および xamDayView のような他のスケジュールを視覚化するコントロールによって確立される既存の API パターンの多くを踏襲します(図 1)
+
+image::images/xamDateNavigator_IGView.png[]
+
+====== 図 1: xamDateNavigator コントロールの例
+
+xamDateNavigator は、CalendarBase クラスから派生した Silverlgiht/WPF クロス プラットフォーム コントロールです。したがって、このコントロールは xamCalendar コントロールと視覚的および機能の両面で似ています。さらに、スケジュール コントロール スイートに関連したプロパティを公開します。
+
+== 目的
+
+このコントロールの目的は、xamOutlookCalendarView をナビゲートし、アクティビティのある日のビジュアル表現を提供し、アクティビティ情報とともにヒントを表示することです。
+
+== xamDateNavigator 構成オプション
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdatenavigator~datamanager.html[DataManager] - カラースキームを同期させるだけでなく、アクティビティのある日を強調表示してアクティビティのヒントを表示するために、xamDateNavigator はその DataManager プロパティを設定する必要があります。
+
+*XAML の場合:*
+
+----
+<ig:XamDateNavigator x:Name="myDateNavigator" 
+        DataManager="{Binding ElementName=dataManager}"/>
+----
+
+[NOTE]
+====
+*注:* 新しい xamOutlookCalendarView コントロールは DateNavigator プロパティを公開します。これが xamDateNavigator のインスタンスに設定される場合、日が選択またはスクロールされる時に 2 つのコントロールは互いに同期します。
+====
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdatenavigator~activitytooltiptemplate.html[ActivityToolTipTemplate] - このプロパティを使用して、ユーザーがカーソルを日の上に移動した時に 1 日程度に相当するアクティビティをヒントに表示するために使用されるカスタムのテンプレートを提供します。これは、ShowActivityTooltips プロパティが True に設定されている場合にのみ使用されます。
+
+*XAML の場合:*
+
+----
+<ig:XamDateNavigator x:Name="myDateNavigator" 
+        ActivityToolTipTemplate="{StaticResource toolTipTemplate}"/>
+----
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdatenavigator~showactivitytooltips.html[ShowActivityToolTips] - このプロパティはデフォルトで *true* に設定されます。*true* のままの場合、ユーザーが日の上にマウスを移動するとコントロールはヒントを表示します。ヒントには、関連付けられた日のアクティビティのリストが含まれます。日にアクティビティが含まれない場合には、ヒントは表示されません。
+
+*XAML の場合:*
+
+----
+<ig:XamDateNavigator x:Name="myDateNavigator" 
+        ShowActivityToolTips="True"/>
+----
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdatenavigator~highlightdaycriteria.html[HighlightDayCriteria] - この列挙プロパティは、どの日を強調表示するかを決定します (つまりどのテキストを太字にするか)。値は ‘All’、‘None’、‘Workdays’ およびデフォルトの ‘DaysWithActivity’ です。
+
+*XAML の場合:*
+
+----
+<ig:XamDateNavigator x:Name="myDateNavigator" 
+        HighlightDayCriteria="DaysWithActivity"/>
+----
+
+== 関連トピック
+
+link:xamschedule-using-control-visibledates.html[日付の表示]
+
+link:xamschedule-using-control-selactivities.html[選択されたアクティビティ コレクション]
+
+link:xamschedule-using-control-calendargrouping.html[カレンダーのグループ化]
+
+link:xamschedule-using-control-confday.html[xamDayView の構成]
+
+link:xamschedule-using-control-confschedule.html[xamScheduleView の構成]
+
+link:xamschedule-using-control-confmonth.html[xamMonthView の構成]
+
+link:xamschedule-using-control-confoutlookcalendar.html[xamOutlookCalendarView の構成]

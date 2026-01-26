@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-selection-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I","Selection"],
+    "guid": "{C7793810-330C-45BC-AB25-8798656C1206}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7571914Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 選択イベント
+
+xamGrid には選択に関連付けられたイベントが 3 つあります。オブジェクトがオブジェクト コレクションに追加、またはオブジェクト コレクションから削除された時に、これらのイベントが発生します。選択イベントによって、セル、行または列がコレクションに追加または削除される時にいくつかのカスタム ビジネス ロジックを実行することが可能となります。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~selectedcellscollectionchanged_ev.html[SelectedCellsCollectionChanged] - セルが SelectedCells コレクションに追加、または SelectedCells コレクションから削除された時に、このイベントが発生します。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~selectedrowscollectionchanged_ev.html[SelectedRowsCollectionChanged] - 行が SelectedRows コレクションに追加、または SelectedRows コレクションから削除された時に、このイベントが発生します。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~selectedcolumnscollectionchanged_ev.html[SelectedColumnsCollectionChanged] - 列が SelectedColumns コレクションに追加、または SelectedColumns コレクションから削除された時に、このイベントが発生します。 
+
+これらのイベントを使用して、エンド ユーザーが選択した xamGrid コントロールの項目を知ることができます。
+
+== 関連トピック
+
+link:xamgrid-selection.html[選択]
+
+link:xamgrid-setting-selection-programmatically.html[選択をプログラムで設定]

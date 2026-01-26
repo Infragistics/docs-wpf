@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-creating-and-editing-custom-shapefiles",
+    "controlName": ["xamMap"],
+    "tags": ["How Do I","Tips and Tricks"],
+    "guid": "{506F2F2B-8E3C-445F-958F-CEB992EC4F8C}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1032272Z"
+}
+|metadata|
+////
+
+= カスタム Shapefiles の作成および編集
+
+xamMap コントロールは、単なる地理的なマップにとどまらない描画を行うために使用できます。非地理的な描画の例には、フロー チャート、フロアー プラン、座席図、配線図、事務所レイアウト、および組織図が含まれます。必要なのは、描画がどのような外観になるかを説明する GIS shapefile だけです。
+
+*CAD ベクター画像ファイルからカスタム shapefile を作成*
+
+[start=1]
+. CAD ツール (Microsoft® Visio®、AutoDesk® AutoCAD® など) を使用して描画を作成します。
+[start=2]
+. CAD フォーマット (.DXF または .DWG) にベクター画像ツール出力を保存します。
+[start=3]
+. 変換ツールを使用して .DFX または .DWG ファイルを shapefile フォーマット (.SHP) に変換します。
+
+[NOTE]
+====
+注: このページに含まれる Shapefile Tool リストは、情報の目的に限って提供されます。インフラジスティックスはサードパーティの Shapefile Tools の保証またはサポートを行いません。インフラジスティックスは、データの正確性または使用の適合性を含め、サードパーティの Shapefile Tools を保証しません。
+====
+
+*CAD から Shapefile の変換ユーティリティ*
+
+CAD2Shape - link:http://www.guthcad.com/cad2shape.htm[http://www.guthcad.com/cad2shape.htm]
+
+DXFtoShape - link:http://www.wanderingidea.com[http://www.wanderingidea.com]
+
+*Shapefile エディター*
+
+MapWindow (英語) - link:http://www.mapwindow.org[http://www.mapwindow.org]
+
+Dbfeditor (英語) - link:http://dbfeditor.com[http://dbfeditor.com]
+
+OpenOffice (英語) - link:http://openoffice.org[http://openoffice.org]

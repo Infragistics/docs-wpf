@@ -1,0 +1,65 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-row-deletion",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids"],
+    "guid": "{6BCC1CB5-75C0-472C-8DC0-BB651F2CD7AD}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9742013Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 行の削除
+
+xamGrid コントロールによって、キーボードの Delete キーを使用して行を削除できます。行が削除されると、基本的なデータ レコードも削除されます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~deletekeyaction.html[DeleteKeyAction] プロパティを設定して、この機能を有効/無効にします。
+
+[NOTE]
+====
+*注* : この動作では、データ ソースが IList インターフェイスを実装していることが必要となります。
+====
+
+このプロパティは、以下の DeleteKeyAction Enumeration を取ります。
+
+* None
+* DeleteSelectedRows - 行選択が有効である必要があります。
+* DeleteRowOfActiveCell - アクティブ セルが必要です。
+* DeleteRowsOfSelectedCells - セル選択が有効である必要があります。
+* DeleteRowsOfSelectedCellsAndRows - セル選択または行選択が有効である必要があります。
+
+以下のコードは、行の削除を有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="xamGrid1" DeleteKeyAction="DeleteRowOfActiveCell" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=CategoriesAndProducts}">
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xamGrid1.DeleteKeyAction = Infragistics.Controls.Grids.DeleteKeyAction.DeleteRowOfActiveCell
+----
+
+*C# の場合:*
+
+----
+this.xamGrid1.DeleteKeyAction = Infragistics.Controls.Grids.DeleteKeyAction.DeleteRowOfActiveCell;
+----
+
+== 関連トピック
+
+link:xamgrid-add-new-row.html[新規行の追加]
+
+link:xamgrid-add-row-commands.html[行コマンドの追加]
+
+link:xamgrid-auto-expand-data-rows-and-child-bands.html[データ行と子バンドの自動展開]
+
+link:xamgrid-change-row-hover-type.html[行ホバー タイプの変更]
+
+link:xamgrid-remove-alternative-row-styling.html[代替え行スタイリングの削除]

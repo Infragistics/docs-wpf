@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-filtering-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Filtering","Grids"],
+    "guid": "{793D9FE1-44B7-4498-B313-B489F4BFA4DA}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0042053Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= イベントのフィルタリング
+
+xamGrid コントロールにはフィルタリングに関連付けられたイベントが 2 つあります。これらのイベントは発生する順序を反映して接尾辞 "ing" または "ed" が追加されます。フィルタリング イベントによってエンドユーザーがグリッドをフィルターする前または後にカスタム ビジネス ロジックを実行できます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~filtering_ev.html[Filtering]- グリッドがフィルターされる直前に、Filtering イベントが発生します。アプリケーションの状態が特定の条件を満たさない場合このイベントをキャンセルできます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~filtered_ev.html[Filtered] - このイベントはグリッドがフィルターされた後に発生します。 
+
+これらのイベントによって、xamGrid コントロールでエンドユーザーが実行できるアクションを制御できます。たとえば、フィルタリング イベントをキャンセルすることによってグリッドでフィルタリングを無効にすることができます。
+
+== 関連トピック
+
+link:xamgrid-filtering.html[フィルタリング]
+
+link:xamgrid-programmatically-create-a-filter.html[プログラムによってフィルターを作成]
+
+link:xamgrid-create-a-custom-filter.html[カスタム フィルターの作成]
+
+link:xamgrid-filter-operands.html[フィルター オペランド]

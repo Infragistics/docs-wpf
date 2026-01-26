@@ -1,0 +1,51 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-about-value-mapping",
+    "controlName": ["xamTreemap"],
+    "tags": ["How Do I"],
+    "guid": "52be0e13-9ffd-4e2d-98ee-3919353b5cbd",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.8983919Z"
+}
+|metadata|
+////
+
+= xamTreemap 値マッピングについて
+
+== 始める前に
+
+ツリーマップの目的は、他のノードと比較して各ノードの値を視覚的に表すことです。値における相対的な違いは、色、フォント サイズまたはノードの不透明度の変化によって強調することも可能です。
+
+xamTreemap コントロールによって、他のノード間の値ランクに応じて各ノードのプロパティを操作することができます。
+
+== 例
+
+XAML の link:xamtreemap-colormapper.html[ColorMapper] オブジェクトのインスタンスがあります。ColorMapper (およびその他の値マッパー) は link:xamtreemap-about-node-binding.html[ノード バインダー]によってバインドされたノードにのみ適用できます。
+
+*XAML の場合:*
+
+----
+<ig:ColorMapper 
+        ValueTypeName="Manufacturer"
+        ValuePath="Revenue"
+        TargetProperty="Fill"
+        MappingMode="AllNodes"
+        From="Red"
+        To="Green" />
+----
+
+== 例の理解
+
+この例では、ColorMapper はタイプ Manufacturer のすべてのノードに影響します。これらのノードは、その Revenue に応じてランク付けされ、各ノードの Fill プロパティはランクに応じて設定されます。特に、最下位にランクされたノードほど赤が強くなり、最上位にランクされたノードほど緑が強くなります。
+
+ColorMapper (および他の値マッパー) は特定のタイプのすべてのノードに適用される (MappingMode="AllNodes")、またはリーフノードのみに適用される (MappingMode="LeafNodesOnly") ことに注意してください。
+
+値マッパーのその他のタイプについては、「値マッパー」のトピックを参照してください。xamTreemap コントロールは同時に複数の異なる値マッパーを適用できます。
+
+関連トピック
+
+link:xamtreemap-value-mappers.html[値マッパー]
+
+link:xamtreemap-about-node-binding.html[xamTreemap ノード バインディングについて]

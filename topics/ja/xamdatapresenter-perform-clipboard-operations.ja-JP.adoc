@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-perform-clipboard-operations",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Tips and Tricks"],
+    "guid": "{D6A982BE-BF46-48DE-8672-D9925BAEC958}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2870105Z"
+}
+|metadata|
+////
+
+= クリップボード操作の実行
+
+
+
+DataPresenter コントロールは、クリップボード操作を、多くのオペレーティング システムにみられる通常のキーボード ショートカットにマップします。たとえば、DataPresenter コントロールは、そのコピー操作を「CTRL + C」キーボード ショートカットにマップします。ただし、エンドユーザーが簡単にアクセスできるように、アプリケーション メニューを介してクリップボード機能を公開したい場合あります。幸い、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands.html[DataPresenterCommands] クラスでは以下のクリップボード コマンドを公開しています。これらによって、メニュー項目やボタンに接続できます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands~copy.html[Copy]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands~cut.html[Cut]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands~paste.html[Paste]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands~clearcellcontents.html[ClearCellContents]
+
+以下のコード例はクリップボード操作を実行する方法を示します。クリップボード コマンドを有効にするには、クリップボード操作を有効にする必要があります。
+
+*XAML の場合:*
+
+----
+<Button 
+    Content="Delete Selected Values" 
+    Command="{x:Static igDP:DataPresenterCommands.ClearCellContents}" 
+    CommandTarget="{Binding ElementName=xamDataPresenter1}" />
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <!-- クリップボード コマンドを有効にするには、クリップボード操作を有効にする必要があります -->
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AllowClipboardOperations="All" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+'TODO: このコードを Button の Click イベント ハンドラーなどのイベント ハンドラに配置します
+Me.xamDataPresenter1.ExecuteCommand(DataPresenterCommands.ClearCellContents)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+//TODO: このコードを Button の Click イベント ハンドラーなどのイベント ハンドラに配置します
+this.xamDataPresenter1.ExecuteCommand(DataPresenterCommands.ClearCellContents);
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-enable-clipboard-operations.html[クリップボード操作を有効にする]
+
+link:xamdatapresenter-handle-clipboard-operation-errors.html[クリップボード操作エラーの処理]
+
+link:xamdatapresenter-prevent-clipboard-operations-from-modifying-a-field.html[クリップボード操作でフィールドが変更されることを防止する]
+
+link:xamdatapresenter-prevent-the-addition-of-specific-formats-to-the-clipboard.html[クリップボードへの特定の形式の追加を防止する]

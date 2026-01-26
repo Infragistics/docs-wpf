@@ -1,0 +1,190 @@
+﻿////
+
+|metadata|
+{
+    "name": "reswash-using",
+    "controlName": ["Resource Washer"],
+    "tags": ["How Do I","Styling","Templating"],
+    "guid": "e2153cdf-040d-436c-a80b-f7c6c3a5cdd0",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.2634039Z"
+}
+|metadata|
+////
+
+= リソース ウォッシャーの使用
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher.html[ResourceWasher] コンポーネントを紹介します。これを使用して、アプリケーションの配色全体を変更することができます。
+
+=== 本トピックの内容
+
+このドキュメントには次のセクションが含まれています:
+
+* <<usingRS,ResourceWasher の使用>>
+* <<workingWG,WashGroups を使用した作業>>
+
+=== 必要な背景
+
+以下の表には、このトピックの必須条件が示されています。
+
+[options="header", cols="a,a"]
+|====
+|背景タイプ|コンテンツ
+
+|概念
+|以下の概念を理解する必要があります。 
+
+* XAML リソース ディクショナリ 
+
+* XAML アプリケーションのスタイル設定 
+
+|====
+
+=== ResourceWasher の構成チャート
+
+以下の表は、ResourceWasher コンポーネントの主な機能を示しています。
+
+[options="header", cols="a,a"]
+|====
+|機能|詳細
+
+|<<usingRS,ResourceWasher の使用>>
+|このセクションには、XAML およびコードで ResourceWasher を定義および使用する方法に関する情報が含まれています。
+
+|<<workingWG,WashGroups を使用した作業>>
+|このセクションでは、リソースでウォッシュ グループを定義する方法と、ResourceWasher コンポーネントと共にこのグループを使用する方法を示します。
+
+|====
+
+[[usingRS]]
+== ResourceWasher の使用
+
+ResourceWasher コンポーネントでは、 link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~sourcedictionary.html[SourceDictionary] および link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washcolor.html[WashColor] プロパティを指定する必要があります。
+
+=== SourceDictionary
+
+ウォッシャーを使用するには、SourceDictionary プロパティを、ウォッシュするリソースが含まれるディクショナリに設定する必要があります。ResourceWasher はリソースのコピーを作成し、また WashColor および WashMode を設定することによって指定したルールに従って、コピーの色を変更します。XAML またはコードで SourceDictionary を設定できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher
+    x:Name="resWasher1" AutoWash="True" WashColor="Purple">
+    <ig:ResourceWasher.SourceDictionary>
+        <ResourceDictionary
+        Source="/;component/Common/Themes/IG/IG.xamPivotGrid.xaml" />
+    </ig:ResourceWasher.SourceDictionary>
+</ig:ResourceWasher>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+ResourceDictionary resXamGrid = new ResourceDictionary();
+resXamGrid.Source =
+    new System.Uri("/;component/Common/Themes/IG/IG.xamPivotGrid.xaml");
+resWasher1.SourceDictionary = resXamGrid;
+----
+
+=== ウォッシュ カラーおよびウォッシュ モード
+
+カラー ウォッシングを容易にするには、WashColor プロパティをウォッシングに指定された Color に設定します。
+
+*注:* デフォルト値は Transparent であり、この場合リソースは全くウォッシュされません。
+
+WashMode プロパティに基づき、ResourceWasher は 2 つのモードをサポートします。
+
+* HueSaturationReplacement - ウォッシュ カラーからの対応する値で色相と彩度の値を置き換えますが、輝度の値は保持します。
+* SoftLightBlend - これがデフォルト値です。各 RGB 色を、対応するウォッシュ カラー値と融合します。
+
+=== 自動ウォッシュ
+
+ResourceWasher を定義した後、link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~autowash.html[AutoWash] プロパティを設定することによって発生する、リソースのクローン作成処理のタイミングを制御することができます。ResourceWasher の SourceDictionary のロード直後にウォッシュされたリソースを利用できるようにする場合は、デフォルト値 (True) のままにします。リソースを後でウォッシュする場合は AutoWash を False に設定し、新しく作成されたクローン リソースが必要なときに link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washresources.html[WashResources] メソッドを使用します。
+
+以下のサンプルは、XAML で ResourceWasher を定義し、一回のボタン クリック イベントで Source ディクショナリがページ リソースに設定され、WashResources メソッドが実行されます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher x:Name="resWasher1" WashColor="Red" AutoWash="False"/>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void btnWash_Click(object sender, System.Windows.RoutedEventArgs e)
+{
+    resWasher1.SourceDictionary = this.Resources;
+    resWasher1.WashResources();
+}
+----
+
+[[workingWG]]
+== WashGroups を使用した作業
+
+=== リソースでのウォッシュ グループの定義
+
+様々な色で様々なリソースをウォッシュする、あるいは 1 つのディクショナリ内のリソースの一部分のみをウォッシュする必要がある場合があります。リソースを異なるディクショナリに分け、アプリケーションで複数の ResourceWashers を使用することによって、選択的ウォッシングを実現できます。ただし、1 つの ResourceWasher インスタンスのみを使って、これをより簡潔に実現する別の方法があります。これは WashGroups を使用して行います。
+
+スタイル設定リソースを作成したら、添付のプロパティ  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.resourcewasher~setwashgroup.html[WashGroup]"]  pick:[wpf=" link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~setwashgroup.html[WashGroup]"]  (ResourceWasher クラスで定義される) を使用して、個々の要素をグループ化してそれらを個別にウォッシュすることができます。もう 1 つの有効な添付のプロパティは  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.resourcewasher~setisexcludedfromwash.html[IsExcludedFromWash]"]  pick:[wpf=" link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~setisexcludedfromwash.html[IsExcludedFromWash]"]  です。これを True に設定すると、スタイルは ResourceWasher によって全く処理されません。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Page.Resources>        
+    <SolidColorBrush x:Key="Background1" Color="Wheat"
+        ig:ResourceWasher.WashGroup="WashGroup1"
+        ig:ResourceWasher.IsExcludedFromWash="False" />
+    <SolidColorBrush x:Key="Background2" Color="BlueViolet"
+        ig:ResourceWasher.WashGroup="WashGroup2"
+        ig:ResourceWasher.IsExcludedFromWash="False" />
+    <SolidColorBrush x:Key="Background3" Color="Honeydew"
+        ig:ResourceWasher.WashGroup="WashGroup3"
+        ig:ResourceWasher.IsExcludedFromWash="True" />
+    <SolidColorBrush x:Key="Background4" Color="Orange"
+        ig:ResourceWasher.WashGroup="WashGroup4"
+        ig:ResourceWasher.IsExcludedFromWash="False" />
+</Page.Resources>
+----
+
+=== ウォッシング グループ
+
+一度グループをリソースの一部に添付すると、ResourceWasher を 1 つのみ使用でき、また各 WashGroup のウォッシングのルールを定義できます。各グループに WashMode および WashColor を個別に指定することができ、また ResourceDictionary のすべての要素にグローバル ルールを定義することもできます。ResourceWasher で定義されたルール (WashColor および WashMode) は、ディクショナリのすべての要素に適用され、WashGroups コレクションで定義されたグループに対してのみオーバーライドされます。
+
+別々の WashGroup オブジェクトを WashGroupCollection で追加し、このコレクションを ResourceWasher の WashGroups プロパティに設定する必要があります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher x:Name="resWasher1"  WashColor="Red">
+   <ig:ResourceWasher.WashGroups>
+      <ig:WashGroupCollection>
+         <!--これは赤でウォッシュされます-->
+         <ig:WashGroup Name="WashGroup1" />
+         <!--これは赤をオーバーライドして、青でウォッシュされます-->
+         <ig:WashGroup Name="WashGroup2"  WashColor="Blue" />
+         <!--これは IsExcludedFromWash="True" として定義されるため、全くウォッシュされません-->
+         <ig:WashGroup Name="WashGroup3" />
+      </ig:WashGroupCollection>
+      <!--WashGroup4 は ResourceDictionary Washed の一部であるため、赤でウォッシュされます -->
+   </ig:ResourceWasher.WashGroups>
+</ig:ResourceWasher>
+----
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+link:reswash-about.html[リソース ウォッシャーについて]
+
+link:reswash-adding.html[リソース ウォッシャーをページに追加]

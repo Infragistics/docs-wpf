@@ -1,0 +1,201 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-math-calculators",
+    "controlName": ["IG Math Calculators"],
+    "tags": ["Calculations"],
+    "guid": "25209e03-d0c7-480c-81ea-a508d998fc61",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.8010415Z"
+}
+|metadata|
+////
+
+= Infragistics Math Calculators
+
+このトピックでは、 link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Infragistics Math Calculators]™ ライブラリを紹介し、数学的および統計的演算のために計算式で作業する方法を説明します。
+
+== 概要
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>>
+* <<SupportedCalculations,サポートされる計算>>
+* <<CalculatorsOverview,計算の概要>>
+
+** 計算式のタイプ
+** 値計算式
+** 誤差範囲の計算式
+
+* <<Requirements,要件>>
+
+** NuGet パッケージの要件
+** データ要件
+
+* <<UsingInfragisticsMathCalculators,Infragistics Math Calculators の使用>>
+
+** link:ig-calculators-data-calculator.html[Infragistics データ計算式]
+** link:ig-calculators-correlation-calculator.html[Infragistics 相関計算式]
+** link:ig-calculators-fixed-value-calculator.html[Infragistics 固定値計算式]
+** link:ig-calculators-mean-calculator.html[Infragistics 平均計算式]
+** link:ig-calculators-median-calculator.html[Infragistics 中央値計算式]
+** link:ig-calculators-percentage-calculator.html[Infragistics パーセンテージ計算式]
+** link:ig-calculators-standard-deviation-calculator.html[Infragistics 標準偏差計算式]
+** link:ig-calculators-standard-error-calculator.html[Infragistics 標準誤差計算式]
+** link:ig-calculators-variance-calculator.html[Infragistics バリアンス計算式]
+
+* <<RelatedTopics,関連トピック>>
+
+** link:ig-math-calculators-api-overview.html[API の概要]
+** link:datachart-series-error-bars.html[シリーズ誤差範囲]
+** link:datachart-series-data-correlation.html[シリーズ データの相関]
+** link:datachart-series-value-overlay.html[値オーバーレイ]
+
+== 概要
+
+Infragistics Math Calculators は、各種計算を行うための、すべてのインフラジスティックスの {ProductName} 製品と使用できる数学および統計的な計算式のライブラリです。
+
+== サポートされる計算
+
+このセクションは、Infragistics Math Calculators ライブラリおよび対応する計算式でサポートされる計算のリストです。
+
+[options="header", cols="a,a"]
+|====
+|計算のタイプ|計算記名
+
+|平均
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.meancalculator.html[MeanCalculator]
+
+|中央値
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.mediancalculator.html[MedianCalculator]
+
+|分散
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.variancecalculator.html[VarianceCalculator]
+
+|相関
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.correlationcalculator.html[CorrelationCalculator]
+
+|標準偏差
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarddeviationcalculator.html[StandardDeviationCalculator]
+
+|標準の誤差
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarderrorcalculator.html[StandardErrorCalculator]
+
+|誤差範囲
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.fixedvaluecalculator.html[FixedValueCalculator] 
+
+link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.datacalculator.html[DataCalculator] 
+
+link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.percentagecalculator.html[PercentageCalculator] 
+
+link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarddeviationcalculator.html[StandardDeviationCalculator] 
+
+link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarderrorcalculator.html[StandardErrorCalculator]
+
+|====
+
+== 計算の概要
+
+== 計算式のタイプ
+
+Infragistics Math Calculator は、以下の計算式タイプに分類できます。
+
+[options="header", cols="a,a"]
+|====
+|計算式タイプ|説明
+
+|値計算式
+|単一の値を計算する Infragistics Math Calculator グループを表します。値計算式を xamDataChart コントロールと統合する方法の例については、 link:datachart-series-value-overlay.html[値オーバーレイ]および link:datachart-series-data-correlation.html[シリーズ データの相関]のトピックを参照してください。
+
+|誤差範囲の計算式
+|xamDataChart コントロールにおけるシリーズ オブジェクトの誤差範囲の長さを計算する Infragistics Math Calculator のグループを表します。Error Bars Calculator を xamDataChart コントロールと統合する方法の例については、「 link:datachart-series-error-bars.html[シリーズ誤差範囲]」トピックを参照してください。
+
+|====
+
+== 値計算式
+
+[options="header", cols="a,a"]
+|====
+|計算記名|説明
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.meancalculator.html[MeanCalculator]
+|一連のデータの平均値を計算するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.mediancalculator.html[MedianCalculator]
+|一連のデータの中央値を計算するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.variancecalculator.html[VarianceCalculator]
+|一連のデータの分散を計算するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.correlationcalculator.html[CorrelationCalculator]
+|データ セット内の 2 つの変数の相関を計算するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarddeviationcalculator.html[StandardDeviationCalculator]
+|一連のデータの標準偏差を計算するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarderrorcalculator.html[StandardErrorCalculator]
+|一連のデータの標準誤差を計算するクラスを表します。
+
+|====
+
+== 誤差範囲の計算式
+
+[options="header", cols="a,a"]
+|====
+|計算記名|説明
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.datacalculator.html[DataCalculator]
+|誤差範囲のカスタム値を提供するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.fixedvaluecalculator.html[FixedValueCalculator]
+|誤差範囲の固定値を計算するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.percentagecalculator.html[PercentageCalculator]
+|誤差範囲の値のパーセントを計算するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarddeviationcalculator.html[StandardDeviationCalculator]
+|一連のデータの標準偏差を計算するクラスを表します。
+
+| link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.standarderrorcalculator.html[StandardErrorCalculator]
+|一連のデータの標準誤差を計算するクラスを表します。
+
+|====
+
+== 要件
+
+このセクションは、Infragistics Math Calculator で作業を開始する前に満たす必要のある要件をリストします。
+
+== NuGet パッケージの要件
+
+Infragistics Math Calculators ライブラリを使用するには、次の NuGet パッケージを参照する必要があります。
+
+* Infragistics.WPF.Math
+* Infragistics.WPF.Math.Calculators
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+== データ要件
+
+データ要件は、計算式のタイプにより異なります。Infragistics Math Calculators のデータ要件に関する詳細は、次のセクションにリストされる各トピックを参照してください。
+
+== Infragistics Math Calculators の使用
+
+このセクションは、 link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Infragistics Math Calculators] アセンブリにより提供される主な特徴や機能、および各計算式で作業を開始する方法に関する情報が含まれます。
+
+* link:ig-calculators-data-calculator.html[Infragistics データ計算式]
+* link:ig-calculators-correlation-calculator.html[Infragistics 相関計算式]
+* link:ig-calculators-fixed-value-calculator.html[Infragistics 固定値計算式]
+* link:ig-calculators-mean-calculator.html[Infragistics 平均計算式]
+* link:ig-calculators-median-calculator.html[Infragistics 中央値計算式]
+* link:ig-calculators-percentage-calculator.html[Infragistics パーセンテージ計算式]
+* link:ig-calculators-standard-deviation-calculator.html[Infragistics 標準偏差計算式]
+* link:ig-calculators-standard-error-calculator.html[Infragistics 標準誤差計算式]
+* link:ig-calculators-variance-calculator.html[Infragistics バリアンス計算式]
+
+== 関連トピック
+
+* link:ig-math-calculators-api-overview.html[API の概要]
+* link:datachart-series-error-bars.html[シリーズ誤差範囲]
+* link:datachart-series-data-correlation.html[シリーズ データの相関]
+* link:datachart-series-value-overlay.html[値オーバーレイ]

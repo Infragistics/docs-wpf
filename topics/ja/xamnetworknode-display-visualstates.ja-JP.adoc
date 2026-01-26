@@ -1,0 +1,327 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-display-visualstates",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["Getting Started","Templating"],
+    "guid": "ba84771b-78ba-4e1e-9de9-0d27945ae533",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.5122498Z"
+}
+|metadata|
+////
+
+= xamNetworkNode 上の視覚的な状態を表示します
+
+== トピックの概要
+
+== 目的
+
+このトピックの目的は、 link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode] コントロール内でノードの異なる視覚的な状態を表示する方法を示すことにあります。視覚的な状態はグループ編成され、それぞれが複数の視覚的状態のプロパティからなり、コントロールは選択されたグループのいずれかから 1 つの状態に設定できます。
+
+== 本トピックの内容
+
+*XamNetworkNode 用グループ内の視覚的状態について*
+
+* 共通グループ
+
+** 通常 - 選択されていません、またはフォーカスされていません
+** 無効 - 前景色がグレー表示であり、マウスを重ねる、または押すことでも選択できません。
+
+* フォーカス グループ
+
+** フォーカスのある - 暗い色の境界線で示されます
+** フォーカスのない - 暗い色のボーダーがありません
+
+* 選択グループ
+
+** 選択済み - 暗い色の強調表示された背景で示されます
+** 未選択 - 暗い色の強調表示された背景がありません
+
+* 編集グループ
+
+** 編集- 強調表示された境界線で表示されます
+** 未編集- 強調表示された境界線はありません
+
+== 前提条件
+
+以下の表は、このトピックを理解するために必要な前提条件です。
+
+[options="header", cols="a,a"]
+|====
+|背景タイプ|コンテンツ
+
+|*概念*
+|以下の概念を理解する必要があります。 
+
+* フォーカスできるのは 1 つのノードのみです 
+
+* フォーカスをノードに設定するには、ノードは通常の状態でなければなりません (通常の状態がデフォルト) 
+
+|*トピック*
+|まず以下のトピックを読む必要があります。 
+
+link:xamnetworknode-getting-started-with-xamnetworknode.html[XamNetworkNode を使用した作業の開始]
+
+|====
+
+== コントロールの構成の概要
+
+== 視覚的な状態の表示
+
+以下の表は、xamNetworkNode コントロール上のノードの構成可能な視覚的状態のリストです。
+
+[options="header", cols="a,a,a"]
+|====
+|視覚的な状態の構成|構成の詳細|構成プロパティ
+
+|共通グループ 
+
+(通常/無効)
+|通常の状態では、ノードを選択したり、フォーカスを設定できますが、無効モードではできません。
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isenabled.html[IsEnabled]
+
+|フォーカスのグループ 
+
+(フォーカスのある/フォーカスのない)
+|フォーカスのある状態は、暗い色の境界線が表示され、背景が強調表示されたノードが表示され、フォーカスのない状態では、通常と同じ状態になります。
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode_methods.html[Focus()] メソッド
+
+|選択のグループ 
+
+(選択済み/未選択)
+|選択済み状態のノードは、暗めの背景が強調表示されますが、未選択状態のノードは通常と同じです。
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isselected.html[IsSelected]
+
+|編集のグループ 
+
+(編集/未編集)
+|編集状態のノードは、ノードの周りが金色の境界線で示され目立ちますが、未編集状態は通常と同じです。
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isediting.html[IsEditing]
+
+|====
+
+== 無効状態のプロパティ設定
+
+以下の表は、対応するプロパティ設定の各種視覚的状態をマップしています。プロパティは、XamNetworkNode コントロールの *NetworkNodeNode* オブジェクトを介してアクセスされます。Focus() メソッドは、XamNetworkNode の *NetworkNodeNode.Control* オブジェクトで呼び出されます。
+
+[options="header", cols="a,a,a"]
+|====
+|ノードの視覚的状態を構成するために|使用するプロパティ:|以下のいずれかに設定します。
+
+|通常/無効
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isenabled.html[IsEnabled]
+|True/False
+
+|フォーカス状態の切り替え
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode_methods.html[Focus()]
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode_methods.html[Focus()] メソッド/ IsSelected=false を呼び出します。
+
+|選択状態の切り替え
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isselected.html[IsSelected]
+|True/False
+
+|編集状態
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isediting.html[IsEditing]
+|True/False
+
+|====
+
+== 通常/無効状態のプロパティ設定
+
+以下の図は、通常状態および無効状態の結果を示します。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|設定
+
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isenabled.html[IsEnabled]
+|True (通常状態) 
+
+False (無効状態)
+
+|====
+
+[cols="a,a"]
+|====
+|True
+|False
+
+|image::images/xamNetworkNode_Visual_States_01.png[]
+|image::images/xamNetworkNode_Visual_States_02.png[]
+
+|====
+
+== フォーカスのある/フォーカスのない状態のプロパティ設定
+
+以下の図は、ノードをフォーカスのある状態にした結果を示します。フォーカスのあるノードからフォーカスのない状態へのクリックによるノード遷移。ノードをフォーカスしないための特別なプロパティやメソッドはありません。通常状態はフォーカスされていないとみなされます。またはフォーカスしないようにするにはノードの選択を解除します。
+
+[options="header", cols="a,a"]
+|====
+|呼び出すメソッド|設定
+
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode_methods.html[Focus()]
+|[C#]: node.Control.Focus(); 
+
+[VB]: node.Control.Focus()
+
+|====
+
+image::images/xamNetworkNode_Visual_States_03.png[]
+
+== 選択済み/未選択状態のプロパティ設定
+
+以下の図は、選択状態の結果を示します。未選択状態は、上記に示すように通常と同じです。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|設定
+
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isselected.html[IsSelected]
+|True (選択済み状態) 
+
+False (通常状態 - 上記に記載)
+
+|====
+
+image::images/xamNetworkNode_Visual_States_04.png[]
+
+== 編集/未編集状態のプロパティ設定
+
+以下の図は、編集状態の結果を示します。未編集状態は、上記に示すように通常と同じです。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|設定
+
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~isediting.html[IsEditing]
+|True (編集状態) 
+
+False (通常状態 - 上記に記載)
+
+|====
+
+image::images/xamNetworkNode_Visual_States_05.png[]
+
+== コード例
+
+== 例の概要
+
+コード例を通して定義された各種グループの視覚的状態。
+
+以下の表は、以下に提供されたコード例を示しています。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|無効
+|前景色がグレー表示であり、マウスで選択できません。
+
+|フォーカスのある
+|暗い色の境界線で表示されます
+
+|選択:
+|暗い色の強調表示された背景で表示されます
+
+|編集
+|強調表示された境界線で表示されます
+
+|====
+
+== コード例: 無効
+
+== 例の詳細
+
+ノードの無効状態は、前景色がグレーで示され、マウスをクリック、ポインタを重ねる、押すなどしても反応がありません。
+
+*C# の場合:*
+
+----
+foreach (NetworkNodeNode node in xnn.Nodes)
+{
+    node.IsEnabled = false;
+}
+----
+
+*Visual Basic の場合:*
+
+----
+For Each node As NetworkNodeNode In xnn.Nodes
+    node.IsEnabled = False
+Next
+----
+
+== コード例: フォーカス
+
+== 例の詳細
+
+ノードのフォーカス状態は、デフォルトで暗い色の境界線で表示されます。ノードが無効である場合には、フォーカスできません。一度にフォーカスできるノードはひとつだけです。この例では、ノードはインデックスを使用するノードにフォーカスします。
+
+*C# の場合:*
+
+----
+xnn.Nodes.ElementAt(3).Control.Focus();
+----
+
+*Visual Basic の場合:*
+
+----
+xnn.Nodes.ElementAt(3).Control.Focus()
+----
+
+== コード例: 選択済み
+
+== 例の詳細
+
+選択状態のノードは、デフォルトで背景が暗い色になり他のノードより目立ちます。選択されたノードは XamNetworkNode の SelectedNodes コレクションで追加されます。
+
+*C# の場合:*
+
+----
+foreach( var node in xnn.Search((NodeModel item) => item.Label.Equals("1")))
+{
+     node.IsSelected = true;
+     // または
+     xnn.SelectedNodes.Add(node);
+}
+----
+
+*Visual Basic の場合:*
+
+----
+For Each node As var In xnn.Search(Function(item As NodeModel) item.Label.Equals("1"))
+    node.IsSelected = True
+    ' または
+     xnn.SelectedNodes.Add(node)
+Next
+----
+
+== コード例: 編集
+
+== 例の詳細
+
+ノードの編集状態は、視覚的状態のみです。ノードは編集できません。デフォルトでは編集の視覚的状態は、ノードの周りが金色の境界線で示されますが、未編集状態は通常と同じです
+
+*C# の場合:*
+
+----
+foreach( var node in xnn.Search((NodeModel item) => item.Label.Equals("1")))
+{
+    node.IsEditing = true;
+}
+----
+
+*Visual Basic の場合:*
+
+----
+For Each node As var In xnn.Search(Function(item As NodeModel) item.Label.Equals("1"))
+    node.IsEditing = True
+Next
+----
+
+== 関連トピック
+
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]
+* link:xamnetworknode-using-xamnetworknode.html[xamNetworkNode の使用]

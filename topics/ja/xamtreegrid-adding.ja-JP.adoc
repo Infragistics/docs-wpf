@@ -1,0 +1,329 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-adding",
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "a79d6c49-abd8-4007-b65e-70bd7975f385",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:21:37.477926Z"
+}
+|metadata|
+////
+
+= xamTreeGrid をページに追加
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールを短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-features-overview.html[機能の概要 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref409710676, xamTreeGrid をページに追加 >>
+* <<_Ref409710686, 関連コンテンツ >>
+
+[[_Ref409710676]]
+== xamTreeGrid をページに追加
+
+=== 概要
+
+この手順は、ページにコントロールを追加し、階層的に編成されたデータを表示する方法を解説します。コントロールのいくつかの基本機能を構成する方法も学習します。
+
+=== プレビュー
+
+以下のスクリーンショットは結果のプレビューです。
+
+image::images/xamTreeGrid_04.png[]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* Data Presenter Family コントロールの基本的な理解
+* フィールド レイアウトの定義方法の基本的な理解
+
+=== 概要
+
+以下はプロセスの概要です。
+
+*1.エンティティ型の定義*
+
+*2.シンプルなデータ ソースの定義*
+
+*3.コントロールをページに追加*
+
+*4.コントロールの構成とフィールド レイアウトの作成*
+
+=== 手順
+
+以下のステップでは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[xamTreeGrid] をページに追加する方法を示します。
+
+=== 1.エンティティ型の定義
+
+`Name` プロパティと `Size` プロパティを持つシンプルなエンティティ型および同じ型の `SubNodes` リストを定義します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class FileNode
+{
+    public FileNode()
+    {
+        this.SubNodes = new List<FileNode>();
+    }
+    public string Name { get; set; }
+    public int? Size { get; set; }
+    public List<FileNode> SubNodes { get; set; }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class FileNode
+ Public Sub New()
+  Me.SubNodes = New List(Of FileNode)()
+ End Sub
+ Public Property Name() As String
+  Get
+   Return m_Name
+  End Get
+  Set
+   m_Name = Value
+  End Set
+ End Property
+ Private m_Name As String
+ Public Property Size() As System.Nullable(Of Integer)
+  Get
+   Return m_Size
+  End Get
+  Set
+   m_Size = Value
+  End Set
+ End Property
+ Private m_Size As System.Nullable(Of Integer)
+ Public Property SubNodes() As List(Of FileNode)
+  Get
+   Return m_SubNodes
+  End Get
+  Set
+   m_SubNodes = Value
+  End Set
+ End Property
+ Private m_SubNodes As List(Of FileNode)
+End Class
+----
+
+=== 2.シンプルなデータ ソースの定義
+
+いくつかのデータを使用して、前のステップで定義した型に基づき階層構造を提供するデータ ソース クラスを作成します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+namespace Sample.DataSource
+{
+    public class SimpleDataSource
+    {
+        private List<FileNode> fileNodes;
+        public List<FileNode> FileNodes
+        {
+            get
+            {
+                if (fileNodes == null) fileNodes = GetDataSource();
+                return fileNodes;
+            }
+        }
+        private List<FileNode> GetDataSource()
+        {
+            List<FileNode> list = new List<FileNode>();
+            list.Add(new FileNode() { Name = "Boot", Size = null });
+            FileNode docs = new FileNode() { Name = "Documents", Size = null };
+            docs.SubNodes.Add(new FileNode() { Name = "Accounts.xlsx", Size = 6346 });
+            docs.SubNodes.Add(new FileNode() { Name = "Bills.xlsx", Size = 98732 });
+            docs.SubNodes.Add(new FileNode() { Name = "CV.docs", Size = 14453 });
+            docs.SubNodes.Add(new FileNode() { Name = "Statistics.xlsx", Size = 25343 });
+            list.Add(docs);
+            FileNode users = new FileNode() { Name = "Users", Size = null };
+            users.SubNodes.Add(new FileNode() { Name = "Admin", Size = 9403 });
+            users.SubNodes.Add(new FileNode() { Name = "Default", Size = 4956 });
+            users.SubNodes.Add(new FileNode() { Name = "John", Size = 36811 });
+            list.Add(users);
+            list.Add(new FileNode() { Name = "Windows", Size = null });
+            return list;
+        }
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Namespace Sample.DataSource   
+  Public Class SimpleDataSource
+    Private m_fileNodes As List(Of FileNode)
+    Public ReadOnly Property FileNodes() As List(Of FileNode)
+        Get
+            If m_fileNodes Is Nothing Then
+                m_fileNodes = GetDataSource()
+            End If
+            Return m_fileNodes
+        End Get
+    End Property
+    Private Function GetDataSource() As List(Of FileNode)
+        Dim list As New List(Of FileNode)()
+        list.Add(New FileNode() With { _
+            .Name = "Boot", _
+            .Size = Nothing _
+        })
+        Dim docs As New FileNode() With { _
+            .Name = "Documents", _
+            .Size = Nothing _
+        }
+        docs.SubNodes.Add(New FileNode() With { _
+            .Name = "Accounts.xlsx", _
+            .Size = 6346 _
+        })
+        docs.SubNodes.Add(New FileNode() With { _
+            .Name = "Bills.xlsx", _
+            .Size = 98732 _
+        })
+        docs.SubNodes.Add(New FileNode() With { _
+            .Name = "CV.docs", _
+            .Size = 14453 _
+        })
+        docs.SubNodes.Add(New FileNode() With { _
+            .Name = "Statistics.xlsx", _
+            .Size = 25343 _
+        })
+        list.Add(docs)
+        Dim users As New FileNode() With { _
+            .Name = "Users", _
+            .Size = Nothing _
+        }
+        users.SubNodes.Add(New FileNode() With { _
+            .Name = "Admin", _
+            .Size = 9403 _
+        })
+        users.SubNodes.Add(New FileNode() With { _
+            .Name = "Default", _
+            .Size = 4956 _
+        })
+        users.SubNodes.Add(New FileNode() With { _
+            .Name = "John", _
+            .Size = 36811 _
+        })
+        list.Add(users)
+        list.Add(New FileNode() With { _
+            .Name = "Windows", _
+            .Size = Nothing _
+        })
+        Return list
+    End Function
+ End Class
+End Namespace
+----
+
+=== 3.xamTreeGrid をページに追加
+
+_xamTreeGrid_   コントロールをページに追加します。エイリアスをデータ ソース クラスの名前空間に追加し、データ ソース クラスを  _xamTreeGrid_   のデータ コンテキストとするインスタンスを作成します。_xamTreeGrid_   の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~datasource.html[DataSource] プロパティをデータ コンテキストの `FileNodes` プロパティにバインドします。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Page 
+…
+xmlns:igDP="http://infragistics.com/DataPresenter"
+xmlns:data="clr-namespace:Sample.DataSource"
+…
+>
+  <Grid x:Name="LayoutRoot">
+    <igDP:XamTreeGrid x:Name="xtg" 
+      DataSource="{Binding Path=FileNodes}">
+      <igDP:XamTreeGrid.DataContext>
+        <data:SimpleDataSource />
+      </igDP:XamTreeGrid.DataContext>
+      <!--
+      ここにフィールド レイアウト定義を追加する        
+      -->
+    </igDP:XamTreeGrid>
+  </Grid>
+</Page>
+----
+
+=== 4.xamTreeGrid の構成とフィールド レイアウトの作成
+
+自動フィールド レイアウト生成を無効にし、 *Name*  フィールドに置くツリーを構成します。また、各ネスト レベルのインデントを 20 ピクセルに設定します。以下のパラメーターを使用して、カスタム フィールド レイアウトを提供します。
+
+*Field 1*  – エンティティ オブジェクトの `Name` プロパティにバインドされます。
+
+*Field 2*  – エンティティ オブジェクトの `Size` プロパティにバインドされます。
+
+*Field 3*  – エンティティ オブジェクトの `SubNodes` コレクションにバインドされます。これはコレクションであるため、コントロールはここから子レコードを取得します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamTreeGrid.FieldLayoutSettings>
+    <igDP:FieldLayoutSettings AutoGenerateFields="False"/>
+</igDP:XamTreeGrid.FieldLayoutSettings>
+<igDP:XamTreeGrid.ViewSettings>
+    <igDP:TreeViewSettings TreeFieldName="Name" IndentPerLevel="20" />
+</igDP:XamTreeGrid.ViewSettings>
+<igDP:XamTreeGrid.FieldLayouts>
+    <igDP:FieldLayout>
+        <igDP:TextField Name="Name" Label="Name" Width="150" />
+        <igDP:NumericField Name="Size" Label="Size" Width="70" />
+        <igDP:Field Name="SubNodes" />
+    </igDP:FieldLayout>
+</igDP:XamTreeGrid.FieldLayouts>
+----
+
+[[_Ref409710686]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-binding-to-data.html[xamTreeGrid をデータにバインド]
+|このトピックでは、コントロールをデータにバインドする方法およびそのフィールド レイアウトを定義する方法を説明します。
+
+| link:xamtreegrid-configuring.html[xamTreeGrid の構成]
+|この一連のトピックでは、コントロールを構成する方法を説明します。
+
+| link:xamtreegrid-styling.html[xamTreeGrid のスタイル設定]
+|この一連のトピックでは、コントロールのいくつかの主要要素をスタイル設定する方法を説明します。
+
+|====

@@ -1,0 +1,70 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-ribbon-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "df07487d-9a6b-4435-b4a3-ad40f2f4f937",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:53:53.1898395Z"
+}
+|metadata|
+////
+
+= リボン リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列の名前を示しています。
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|ApplicationMenuDefaultKeyTip
+|F
+
+|ContextualTabGroupString
+|ContextualTabGroup - Key: {0}, Caption: {1}
+
+|ContextualTabGroupTabAutoGeneratePrefix
+|J
+
+|Qat_QuickCustomizeMenu_MinimizeRibbon
+|リボンの最小化
+
+|Qat_QuickCustomizeMenu_ShowAboveRibbon
+|リボン上部に表示
+
+|Qat_QuickCustomizeMenu_ShowBelowRibbon
+|リボン下部に表示
+
+|Qat_QuickCustomizeMenu_Title
+|クイック アクセス ツールバーをカスタマイズ
+
+|QuickCustomizeOverflowButtonKeyTip
+|00
+
+|RibbonGroupAutoGeneratePrefix
+|Z
+
+|ToolContextMenu_AddGalleryToQat
+|クイック アクセス ツールバーにギャラリーを追加
+
+|ToolContextMenu_AddToQat
+|クイック アクセス ツールバーへ追加
+
+|ToolContextMenu_MinimizeRibbon
+|リボンの最小化
+
+|ToolContextMenu_RemoveFromQat
+|クイック アクセス ツールバーから削除
+
+|ToolContextMenu_ShowQatAboveRibbon
+|リボン上部にクイックアクセスツールバーを表示
+
+|ToolContextMenu_ShowQatBelowRibbon
+|リボン下部にクイックアクセスツールバーを表示
+
+|====

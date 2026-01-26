@@ -1,0 +1,66 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-style-the-axis-label",
+    "controlName": ["xamTimeline"],
+    "tags": ["Events","How Do I","Styling"],
+    "guid": "{066ADB75-7071-4395-9B44-1C37F717661D}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1053941Z"
+}
+|metadata|
+////
+
+= 軸ラベルのスタイル
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel.html[AxisLabel] オブジェクトは、時刻シリーズに各イベントの時刻を表示します。Axis Label に表示される値の外観またはフォーマットを変更するためにスタイルを使用できます。Axis Label のフォーマットについての詳細は、 link:xamtimeline-about-formatting-xamwebtimeline.html[xamWebTimeline の書式設定]を参照してください。
+
+以下の xaml コードは、テキストの色とフォント サイズを変更するために Axis Label をスタイルする方法を示します。
+
+*XAML の場合:*
+
+----
+    <UserControl.Resources>
+        <!-- 軸のスタイル -->
+        <Style x:Key="rscAxisLabelStyle" TargetType="igtl:AxisLabel">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="igtl:AxisLabel">
+                        <TextBlock x:Name="TextBlockElement" Foreground="Red" 
+                                   FontWeight="Bold" FontSize="15" 
+                                   Text="{TemplateBinding FormattedText}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White" >
+        <igtl:XamTimeline x:Name="xamTimeline"  
+                             Width="1000" Height="480" Margin="25">
+           <!-- Axis プロパティを設定 -->
+            <igtl:XamTimeline.Axis>
+                <igtl:NumericTimeAxis Minimum="-3200" Maximum="2600" 
+                                      AutoRange=" Unit="400" 
+                                      ShowLabels="True" ShowThumb="True" 
+                                      LabelStyle="{StaticResource rscAxisLabelStyle}"
+                                      ShowLabelsInPreview="True"/>
+            </igtl:XamTimeline.Axis>
+            <!-- TODO: 数値/日時シリーズを追加します...-->
+        </igtl:XamTimeline>
+    </Grid>
+----
+
+image::images/XamTimeline_Style_Axis_Label_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-style-the-axis.html[軸のスタイル]
+
+link:xamtimeline-style-the-axis-pane.html[軸ペインのスタイル]
+
+link:xamtimeline-style-axis-thumb.html[軸のつまみのスタイル]
+
+link:xamtimeline-style-major-and-minor-grid-lines.html[主グリッド線および副グリッド線のスタイル]
+
+link:xamtimeline-style-major-and-minor-tick-marks.html[主目盛および副目盛のスタイル]

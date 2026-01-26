@@ -1,0 +1,48 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-setting-a-path-for-xamcarouselpanel-to-use",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{E426C6FD-9771-44A2-8FD9-AE062FF6CFC3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0877707Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel のパスを使用するように設定
+
+
+
+link:xamcarousel-creating-a-named-path-on-the-artboard.html[アートボードで名前を指定したパスを作成]で、使用する xamCarouselPanel™ または xamCarouselListBox™ のカスタム パスを定義するために使用できるパスを作成します。このトピックの目標は、そのパスを取得して、xamCarouselPanel に適用する方法を示すことです。
+
+[NOTE]
+====
+*注:* このトピックでは、xamCarouselPanel をすでに設定してあることを前提とします。この操作の実行方法の詳細は、 link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]を参照してください。
+====
+
+[start=1]
+. 最初に Microsoft® Expression® Blend プロジェクトから作成したパスを Visual Studio プロジェクトにコピーする必要があります。Window1.xaml は Blend プロジェクトのデフォルトのウィンドウであるため、このファイルでパスを定義すべきです。
+[start=2]
+. パスをコピーしたら、プロジェクトのリソース セクションに貼り付けます。
+[start=3]
+. 今すぐコンパイルする場合には、これを実行するとエラーが発生します。このエラーが発生するのは、パスがリソース セクションにあり、リソース セクションのすべての項目が項目に関連付けられた Key を持つ必要があるからです。したがって、パスの Key を指定します。
+[start=4]
+. Blend が設定した Fill、Stretch、および Stroke 設定を、パスから削除することができます。それは、xamCarouselListBox はこれらの設定を必要としないためです。項目が xamCarouselPanel 内で辿るパスを見たい場合には、設定をそのままにしておくことも可能です。
+[start=5]
+. XamCarouselListBox の開始タグの下に、以下の例のコードを配置します。このコードは link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamcarousellistbox~viewsettings.html[ViewSettings] を作成します。これにはパスに割り当てた Key を指定することによって、カスタム パスも割り当てる link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[ItemPath] プロパティを持つ link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~itempath.html[CarouselViewSettings] が含まれます。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        <igWindows:CarouselViewSettings ItemPath="{StaticResource myPath}"/>
+</igWindows:XamCarouselPanel.ViewSettings>
+----
+
+[start=6]
+. プロジェクトを実行すると、xamCarouselPanel の項目が定義したパスを辿るのを確認できます。
+
+image::images/xamCarouselPanel_Setting_a_Path_for_xamCarouselPanel_to_Use_01.png[xamCarouselPanel のパスを使用するように設定]

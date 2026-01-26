@@ -1,0 +1,81 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-use-multiple-series-with-xamwebtimeline",
+    "controlName": ["xamTimeline"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "{629E1949-7A66-453C-BB4D-56FE5F720E42}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.009399Z"
+}
+|metadata|
+////
+
+= xamTimeline と複数のシリーズを使用
+
+xamTimeline コントロールは複数回のシリーズを表示できます。これはシリーズを比較して関係したタイムラインをグループ化することができます。このプロセスはシンプルで、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineseries~position.html[Position] プロパティを TopOrLeft または BottomOrRight のいずれかに設定することによって追加のシリーズをタイムラインに追加してシリーズの位置を指定するだけです。
+
+複数回のシリーズがあるタイムラインは同じペインにすべてのイベント点を表示します。これは、ひとつの点を別の点と識別するために点が明確に色付けされていることを確認する必要があることを意味します。特定の時刻シリーズに Fill または Stroke 属性を設定してこれを行うことができます。
+
+[NOTE]
+====
+時刻シリーズ link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[NumericTimeSeries] または link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeseries.html[DateTimeSeries] は同じタイプである必要があります。
+====
+
+この例は、Infragistics link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールのためにプロジェクトを設定する方法をユーザーが理解していることを前提としています。以下の xaml コードは複数の数値時刻シリーズを表示するために xamTimeline を設定する方法を示します。
+
+*XAML の場合:*
+
+----
+        <igtl:XamTimeline x:Name="xamTimeline" 
+                             Width="1000" Height="400" Margin="15">
+            <igtl:XamTimeline.Series>
+                <igtl:NumericTimeSeries Title="Numeric Time Series 1"
+                                        Fill="Red" Position="TopOrLeft">
+                    <igtl:NumericTimeSeries.Entries>
+                        <igtl:NumericTimeEntry Time="1000" Title="Numeric Time Entry 1" 
+                                                   Details="Details Time Entry 1"/>
+                        <igtl:NumericTimeEntry Time="2000" Title="Numeric Time Entry 2" 
+                                                   Details="Details Time Entry 2"/>
+                        <igtl:NumericTimeEntry Time="3000" Title="Numeric Time Entry 3" 
+                                                   Details="Details Time Entry 3"/>
+                    </igtl:NumericTimeSeries.Entries>
+                </igtl:NumericTimeSeries>
+                <igtl:NumericTimeSeries Title="Numeric Time Series 2"
+                                        Fill="Blue" Position="BottomOrRight">
+                    <igtl:NumericTimeSeries.Entries>
+                        <igtl:NumericTimeEntry Time="1500" Title="Numeric Time Entry 1" 
+                                                   Details="Details Time Entry 1"/>
+                        <igtl:NumericTimeEntry Time="2500" Title="Numeric Time Entry 2" 
+                                                   Details="Details Time Entry 2"/>
+                        <igtl:NumericTimeEntry Time="3500" Title="Numeric Time Entry 3" 
+                                                   Details="Details Time Entry 3"/>
+                    </igtl:NumericTimeSeries.Entries>
+                </igtl:NumericTimeSeries>
+                <igtl:NumericTimeSeries Title="Numeric Time Series 3"
+                                        Fill="Yellow" Position="BottomOrRight">
+                    <igtl:NumericTimeSeries.Entries>
+                        <igtl:NumericTimeEntry Time="1300" Title="Numeric Time Entry 1" 
+                                                   Details="Details Time Entry 1"/>
+                        <igtl:NumericTimeEntry Time="2300" Title="Numeric Time Entry 2" 
+                                                   Details="Details Time Entry 2"/>
+                        <igtl:NumericTimeEntry Time="3300" Title="Numeric Time Entry 3" 
+                                                   Details="Details Time Entry 3"/>
+                    </igtl:NumericTimeSeries.Entries>
+                </igtl:NumericTimeSeries>
+            </igtl:XamTimeline.Series>
+        </igtl:XamTimeline>
+----
+
+image::images/XamTimeline_Use_Multiple_Series_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-add-event-entries.html[イベント エントリの追加]
+
+link:xamtimeline-display-date-time-series.html[日時シリーズ]
+
+link:xamtimeline-display-numeric-time-series.html[数値時刻シリーズを表示]
+
+link:xamtimeline-style-time-series.html[時刻シリーズのスタイル]

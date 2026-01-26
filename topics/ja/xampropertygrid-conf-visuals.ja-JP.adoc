@@ -1,0 +1,101 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-conf-visuals",
+    "tags": ["How Do I","Layouts"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "9b8c21eb-87b9-4526-9642-ce76d3dd40ff",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:40:36.3648458Z"
+}
+|metadata|
+////
+
+= 表示外観の構成 (xamPropertyGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、一般的なコントロール オプションを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref394410296, XamPropertyGrid の構成の概要 >>
+* <<_Ref394410303, 関連コンテンツ >>
+
+[[_Ref394410296]]
+
+== XamPropertyGrid の構成の概要
+
+=== コントロール構成の要点チャート
+
+以下の表は、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[ _xamPropertyGrid_  ] コントロールの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+フィルター領域の表示 / 非表示
+|コントロールのフィルター領域を表示または非表示にします。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~filterareavisibility.html[FilterAreaVisibility]
+
+|説明領域の表示 / 非表示
+|コントロールの説明領域を表示または非表示にします。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~descriptionareavisibility.html[DescriptionAreaVisibility]
+
+|列名の幅の設定
+|プロパティ名列の幅を設定します。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~namecolumnwidth.html[NameColumnWidth]
+
+|プロパティ リストの並べ替え / グループ化の方法の変更
+|`IsCategorized` を `true` に設定すると、プロパティはカテゴリ別にグループ化され、`false` に設定すると、グループ化されずにアルファベット順に並べ替えられます。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~iscategorized.html[IsCategorized]
+
+|====
+
+[[_Ref394410303]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-conf-editors.html[エディター定義の構成 (xamPropertyGrid)]
+|このトピックでは、プロパティの値の編集に使用されるエディターをカスタマイズする方法を説明します。
+
+| link:xampropertygrid-conf-properties-filtering.html[プロパティ リストのフィルタリング (xamPropertyGrid)]
+|このトピックでは、コントロールのプロパティ リストのフィルタリングを構成する方法を説明します。
+
+| link:xampropertygrid-conf-properties-sorting.html[プロパティ リストの並べ替え (xamPropertyGrid)]
+|このトピックでは、プロパティ リストのカスタム並べ替えのロジックを設定する方法を紹介します。
+
+| link:xampropertygrid-conf-templateselector.html[エディター定義のデータ テンプレート セレクターの構成 (xamPropertyGrid)]
+|このトピックは、エディター定義で編集テンプレートを割り当てるためのカスタム ロジックを作成する方法を紹介します。
+
+|====

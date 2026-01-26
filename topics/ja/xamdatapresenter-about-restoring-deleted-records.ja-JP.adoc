@@ -1,0 +1,36 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-restoring-deleted-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing"],
+    "guid": "{53E7DB8A-6555-49D9-9CE1-DFB255E62BBB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0569645Z"
+}
+|metadata|
+////
+
+= 削除したレコードのリストアについて
+
+
+
+元に戻す操作およびレコード削除を有効にする場合、エンド ユーザーは削除したレコードを復元できます。ただし、エンド ユーザーが元に戻すことができるほかの機能とは異なり、抽象的な link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.undeleterecordsstrategy.html[UndeleteRecordsStrategy] クラスを実装し、削除したレコードをエンド ユーザーが復元できるようにする必要があります。
+
+UndeleteRecordsStrategy クラスを実装するとき、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.undeleterecordsstrategy~canundelete.html[CanUndelete] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.undeleterecordsstrategy~undelete.html[Undelete] メソッドをオーバーライドする必要があります。
+
+* *CanUndelete* - ブール値を返し、削除したレコードをエンド ユーザーが復元できるかどうかを決定することができます。
+* *Undelete* - このメソッドに渡される RecordInfo オブジェクトは、削除したレコードの情報を公開します。この情報を使って、削除されたデータ項目を link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager.html[RecordManager] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager~sourceitems.html[SourceItems] コレクションに追加/挿入できます。さらに、SourceItems コレクションに挿入/追加するデータ項目にマップした RecordInfo オブジェクトのディクショナリを返す必要があります。このマッピングは、削除する前にエンド ユーザーがレコードに適用した変更を元に戻す方法を DataPresenter コントロールに提供します。
+
+UndeleteRecordsStrategy クラスを実装した後で、DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordsdeleting_ev.html[RecordsDeleting] イベントを処理する必要があります。イベント ハンドラーで、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.recordsdeletingeventargs.html[RecordsDeletingEventArgs] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.recordsdeletingeventargs~undeletestrategy.html[UndeleteStrategy] プロパティを、UndeleteRecordsStrategy クラスを実装するクラスのインスタンスに設定します。
+
+UndeleteRecordsStrategy クラスを実装することは複雑で、データ ソースに応じて異なる場合があります。幸い、サンプル機能ブラウザーに、「Undo - Advanced」という名前のサンプルが含まれており、これは、独自に実装する際の出発点として使用できる UndeleteRecordsStrategy クラスの基本的な実装の実例を示しています。
+
+== 関連トピック
+
+link:xamdatapresenter-enable-undo-operations.html[元に戻す操作を有効にする]
+
+link:xamdatapresenter-limit-the-undo-history.html[元に戻す履歴を制限する]
+
+link:xamdatapresenter-perform-an-undo-operation.html[元に戻す操作を実行する]

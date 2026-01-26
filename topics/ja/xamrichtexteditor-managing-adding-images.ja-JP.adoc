@@ -1,0 +1,241 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-adding-images",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "dc65076a-0fce-4a0a-8b1b-726979484c01",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.514306Z"
+}
+|metadata|
+////
+
+= 画像の追加 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ を使用して画像を作成する方法を、開発者の観点から説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref365983369,はじめに>>
+* <<_Ref365983373,ImageNode クラスの主要機能>>
+* <<_Ref365983376,RichTextImage クラスの主要機能>>
+* <<_Ref365983381,RichTextImageTransform クラスの主要機能>>
+* <<_Ref365983384,関連コンテンツ>>
+
+[[_Ref365983369]]
+== はじめに
+
+=== 画像の概要
+
+_xamRichTextEditor_   コントロールは、ドキュメントのコンテンツ内の異なるファイル形式の画像をサポートします。画像は link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.imagenode_members.html[ImageNode] として表され、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.runnode_members.html[RunNode] の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes] コレクションにのみ追加できます。以下のツリー図は、画像を含む段落の構造を示します。
+
+[start=1]
+. link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode_members.html[ParagraphNode]
+
+.. `RunNode`
+
+... `ImageNode`
+
+以下の画像形式がサポートされています。BMP、DIB、EMF、GIF、JPEG、PNG、TIFF、WMF。
+
+注:
+
+[NOTE]
+====
+GIF および TIFF 画像は、リッチ テキスト ドキュメントのコンテンツを Silverlight の RTF ファイル形式で保存すると損失します。WMF および EMFファイル形式はラウンド トリップの目的のみでサポートされています。これらの画像は、 _xamRichTextEditor_   によりデフォルト画像アイコンとして描画されます。
+====
+
+[[_Ref365983373]]
+== ImageNode クラスの主要機能
+
+=== 概要
+
+このクラスは、ドキュメントのノード階層の画像を表します。トリミングとマージンを指定するメソッドを提供します。
+
+=== 主要機能
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用する項目|設定値
+
+|画像の読み込む
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.imagenode~image.html[Image] プロパティ
+|`RichTextImage` 型のインスタンス
+
+|画像の読み込む
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.imagenode~imageuri.html[ImageUri] プロパティ
+|読み込む画像ファイルの場所を指定する文字列。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+`Image` プロパティも指定された場合、このプロパティは無視されます。 
+
+====
+
+|画像のトリミング
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.imagenode~cropping.html[Cropping] プロパティ
+|各端からのオフセットのパーセンテージとして指定した link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.rectoffsets.html[RectOffsets] 型のインスタンス。たとえば、Left および Right プロパティをそれぞれ 10 に設定すると、画像の 20% がトリミングされ、中央の 80% のみが描画されます。負の値も設定できます。その場合、画像の周囲にパディングが設定されます。
+
+|画像のマージン設定
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.imagenode~rendereffectsmargin.html[RenderEffectsMargin] プロパティ
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextmargin.html[RichTextMargin] 型のインスタンス 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+多くの場合、特に Transform プロパティを使用してストレッチや回転変換が設定されている場合やトリミングが指定されている場合はこのプロパティを設定しないことをお勧めします。`RenderEffectsMargin` に null が指定されている場合は、レイアウト エンジンにより適切なマージンが自動で計算されます。自動計算されても、このプロパティの値は null のままです。 
+
+====
+
+|高度画像変換の設定
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.imagenode~transform.html[Transform] プロパティ
+|プロパティを公開して、水平または垂直方向にストレッチ、回転、反転させる link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextimagetransform.html[RichTextImageTransform] 型のインスタンス
+
+|画像サイズの設定または取得
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.imagenode~rendersize.html[RenderSize] プロパティ
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextsize.html[RichTextSize] 型の値を設定または取得します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+Transform プロパティを使用してストレッチや回転変換が設定されている場合やトリミングが指定されている場合は、このプロパティの指定を null のままとしておくことをお勧めします。null の場合、レイアウト エンジンにより適切な描画サイズが自動で計算され、このプロパティは自動で更新されます。 
+
+====
+
+|====
+
+[[_Ref365983376]]
+== RichTextImage クラスの主要機能
+
+=== 概要
+
+このクラスは、画像データを表します。コンストラクターはバイト配列からインスタンスを作成できます。このクラスは、ストリームまたはファイルの場所からインスタンスを作成するための静的メソッドを提供します。
+
+=== 主要機能
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用する項目|操作:
+
+|バイト配列からの `RichTextImage` の作成
+|クラスのコンストラクター
+|バイト配列を提供します。
+
+|データ ストリームからの `RichTextImage` の作成
+|pick:[wpf=" link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextimage~createfrom(stream,richtextimageformat).html[CreateFrom]"] pick:[sl=" link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextimage~createfrom.html[CreateFrom]"] メソッド
+|ストリームを提供します。
+
+ifdef::wpf[]
+|ファイルの場所からの `RichTextImage` の作成
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextimage~createfrom(string,nullable%7brichtextimageformat%7d).html[CreateFrom] メソッド
+|ファイルの場所を文字列で提供します。
+endif::wpf[]
+
+|====
+
+[[_Ref365983381]]
+== RichTextImageTransform クラスの主要機能
+
+=== 概要
+
+このクラスは、ドキュメントの描画時に画像に適用する変換を示します。
+
+=== 主要機能
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|画像の水平方向への反転
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextimagetransform~fliphorizontally.html[FlipHorizontally]
+|true
+
+|画像の垂直方向への反転
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextimagetransform~flipvertically.html[FlipVertically]
+|true
+
+|画像の回転
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextimagetransform~rotationangle.html[RotationAngle]
+|回転角度を表す float 型の値。負の値を設定すると画像は左に回転し、正の値を設定すると右に回転します。
+
+|画像の水平 / 垂直方向へのストレッチ
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextimagetransform~stretchsize.html[StretchSize]
+|ストレッチ幅と高さを含む `RichTextSize` 型の値。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+画像にストレッチサイズを設定すると、`RenderSize` プロパティで指定したサイズは無視されます。 
+
+====
+
+|====
+
+[[_Ref365983384]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-adding-text.html[テキストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテキストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-hyperlinks.html[ハイパーリンクの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してハイパーリンクを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-lists.html[リストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してリストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-tables.html[テーブルの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテーブルを作成する方法を、開発者の観点から説明します。
+
+|====

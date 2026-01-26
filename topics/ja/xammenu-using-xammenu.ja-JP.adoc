@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammenu-using-xammenu",
+    "controlName": ["xamMenu"],
+    "tags": ["Getting Started"],
+    "guid": "{0381C6B0-A160-442C-B9EF-38D39C91CA83}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.3462542Z"
+}
+|metadata|
+////
+
+= xamMenu の使用
+
+このセクションでは、xamMenu™ コントロールの様々な機能を使用するために役立つ、重要な概念やタスク ベースの情報について説明します。
+
+link:xammenu-binding-to-data.html[データへのバインド]
+
+このトピックでは、xamMenu および xamContextMenu を階層データにバインドする方法について説明します。
+
+link:xammenu-layout-settings.html[レイアウトの設定]
+
+このトピックでは、xamMenu コントロールの各種レイアウト プロパティ、たとえば、MenuOrientation、SubmenuPreferredLocation、ExpandOnHover 等の構成方法について説明します。
+
+link:xammenu-navigating-pages-using-xammenu.html[xamMenu を使用したページの移動]
+
+このトピックでは、xamMenu コントロールで Navigation Framework を使用して新しい XAML ページに移動できるようにする方法について説明します。
+
+link:xammenu-adding-and-removing-items.html[項目の追加と削除]
+
+このトピックでは、xamMenuItem を追加/削除する方法について説明します。
+
+link:xammenu-adding-separators-between-xammenuitems.html[XamMenuItems の間にセパレーターを追加]
+
+このトピックでは、xamMenu 項目間の仕切りとして区切り線を追加する方法について説明します。
+
+link:xammenu-adding-icons-to-xammenuitems.html[XamMenuItems にアイコンを追加]
+
+このトピックでは、xamMenu コントロールの表示項目にアイコンを追加する方法について説明します。
+
+link:xammenu-adding-check-boxes-to-xammenuitems.html[XamMenuItems にチェック ボックスを追加]
+
+このトピックでは、xamMenu の各項目にチェックボックスを表示する方法について説明します。

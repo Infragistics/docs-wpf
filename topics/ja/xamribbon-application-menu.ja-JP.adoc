@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-application-menu",
+    "controlName": ["xamRibbon"],
+    "tags": ["Getting Started"],
+    "guid": "{21D39304-8610-4F03-9645-F4E08E2EBE41}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1441819Z"
+}
+|metadata|
+////
+
+= アプリケーション メニュー
+
+
+
+ほとんどのアプリケーションの上部に配置されているメイン メニュー バーは、常にアプリケーション全体に関連するツールの集合場所です。メイン メニューには、ファイル、編集、または表示などのメニュー項目があります。link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbontabitem.html[タブ]および link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup.html[グループ]と組み合わせた xamRibbon™ コントロールのアプリケーション メニューは、メイン メニュー バーを不要にします。メニュー項目 (すなわちファイル) にいったん含まれたら、さらにいくつかのオプションと共に、アプリケーション メニューに配置できます。
+
+アプリケーション メニューには、アプリケーション メニュー ボタンをクリックして起動されるポップアップ スタイルのメニューが含まれます。開かれると、アプリケーションが以下の 3 つのセクションに分割されて表示されます。
+
+* *項目* - アプリケーション メニューの Items コレクションは、コマンドを実行できるツールのグループを含むことができます。単純なコマンド用にボタン ツールを追加、階層オプションのリスト用にメニュー ツールを追加、またはアプリケーション メニューを整理しておくためにラベル ツールを追加します。
+* *最近の項目*  - この項目のコレクションは、アプリケーション メニューの右側に表示されます。RecentItems コレクションの目的は、アプリケーションの最近に使用された項目を表示することです。たとえば、最近に表示された文書または最近に使用されたツールです。
+* *フッタ ツールバー* - フッタ ツールバーはアプリケーション メニューの下側に配置され、アプリケーションの [閉じる] または [オプション] ボタンなど重要性が高いツールを含むように設計されています。
+
+興味がある場合、xamRibbon のアプリケーション メニューについての詳細は、以下のトピックを参照してください。
+
+* link:xamribbon-add-an-image-to-the-application-menu.html[画像をアプリケーション メニューに追加]
+* link:xamribbon-add-tools-to-the-application-menu.html[ツールをアプリケーション メニューに追加]
+* link:xamribbon-add-tools-to-the-footer-toolbar.html[ツールをフッター ツールバーに追加]
+* link:xamribbon-display-a-most-recently-used-items-list.html[最近使用した項目リストを表示]

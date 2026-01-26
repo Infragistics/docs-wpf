@@ -1,0 +1,107 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-handle-window-state-changing-events",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["Events","How Do I"],
+    "guid": "{413CE87C-DC32-4042-BACA-D5576DA27232}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.9871467Z"
+}
+|metadata|
+////
+
+= ウィンドウ状態変更イベントの処理
+
+ダイアログ ウィンドウの状態が変わる時に関連付けられたイベントは 2 つあります。これらのイベントは発生する順序を反映して接尾辞 "ing" または "ed" が追加されます。ウィンドウ状態変更イベントによってウィンドウの状態が変わる前または後でカスタム ビジネス ロジックを実行できます。
+
+link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~windowstatechanging_ev.html[WindowStateChanging] - ダイアログ ウィンドウ コントロールの状態が変わる直前に WindowStateChanging イベントが発生します。特定の条件に合わない場合このイベントをキャンセルできます。
+
+link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~windowstatechanged_ev.html[WindowStateChanged] - ダイアログ ウィンドウ コントロールの状態が変わった後でこのイベントが発生します。
+
+次のコードは WindowStateChanging イベントと WindowStateChanged イベントの処理方法を説明します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamDialogWindow Content="Dialog Window" 
+      x:Name="DialogWindow" 
+      Width="200" Height="200"                                           
+      WindowStateChanged="DialogWindow_WindowStateChanged"                                   
+      WindowStateChanging="DialogWindow_WindowStateChanging"/>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Interactions
+…
+AddHandler DialogWindow.WindowStateChanging, AddressOf DialogWindow_WindowStateChanging
+AddHandler DialogWindow.WindowStateChanged, AddressOf DialogWindow_WindowStateChanged
+…
+Private Sub DialogWindow_WindowStateChanging(ByVal sender As System.Object, ByVal e As WindowStateChangingEventArgs)
+  '新しいウィンドウの状態が最小化の場合、イベントをキャンセルします。
+   If (e.NewWindowState.Equals(WindowState.Minimized)) Then
+      e.Cancel = True
+      Return
+   End If
+   System.Diagnostics.Debug.WriteLine("Window State Changing from "  
+                                       + e.CurrentWindowState.ToString() + 
+                                       " to " + e.NewWindowState.ToString())
+End Sub
+Private Sub DialogWindow_WindowStateChanged(ByVal sender As System.Object, ByVal e 
+As WindowStateChangedEventArgs)
+   System.Diagnostics.Debug.WriteLine("Window State Changed Successfully")
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Interactions;
+…
+DialogWindow.WindowStateChanging += new EventHandler<WindowStateChangingEventArgs>(DialogWindow_WindowStateChanging);
+DialogWindow.WindowStateChanged += new EventHandler<WindowStateChangedEventArgs>(DialogWindow_WindowStateChanged);
+…
+void DialogWindow_WindowStateChanged(object sender, WindowStateChangedEventArgs e)
+{
+   System.Diagnostics.Debug.WriteLine("Dialog Window State Changed Successfully");
+}
+void DialogWindow_WindowStateChanging(object sender, WindowStateChangingEventArgs e)
+{
+   //新しいウィンドウの状態が最小化の場合、イベントをキャンセルします。
+   if(e.NewWindowState.Equals(WindowState.Minimized))
+   {
+      e.Cancel = true;
+      return;
+   }
+   System.Diagnostics.Debug.WriteLine("Window State Changing from "+e.CurrentWindowState+" to "+e.NewWindowState);
+}
+----
+
+== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

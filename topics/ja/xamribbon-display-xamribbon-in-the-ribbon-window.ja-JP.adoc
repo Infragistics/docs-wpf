@@ -1,0 +1,113 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-display-xamribbon-in-the-ribbon-window",
+    "controlName": ["xamRibbon"],
+    "tags": ["Getting Started","How Do I","Layouts"],
+    "guid": "{CE8A136B-82D1-4722-BDF2-3610A0A4D74D}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1691869Z"
+}
+|metadata|
+////
+
+= リボン ウィンドウに xamRibbon を表示
+
+
+
+
+
+== 始める前に
+
+xamRibbon™ コントロールは通常、他のコントロールと同じように Window のクライアント領域内に表示されます。このレイアウトは、Window のタイトル バーの下に xamRibbon を配置します。ただし、Microsoft® Office® 2007 アプリケーションはリボンをタイトル バーに結合し、Window のアイコンをアプリケーション メニューで置き換えることに注意してください。この同じ効果を達成するには、xamRibbon と連動して xamRibbonWindow を使用する必要があります。このトピックは、 link:xamribbon-adding-xamribbon-to-your-application-.html[xamRibbon をアプリケーションに追加]する方法を理解していることを前提とします。
+
+以下のスクリーンショットは、Microsoft® Windows® Presentation Foundation Window 内で xamRibbon を使用することと xamRibbonWindow と連動して xamRibbon を使用することの相違を説明します。
+
+image::images/xamRibbon_Display_xamRibbon_in_the_Ribbon_Window_01.png[ウィンドウのアイコン、タイトル バー、および xamribbon のあるデフォルト ウィンドウ]
+
+image::images/xamRibbon_Display_xamRibbon_in_the_Ribbon_Window_02.png[ウィンドウ上の xamribbonwindow および xamribbon]
+
+== 達成すること
+
+xamRibbonWindow を使用して xamRibbon をウィンドウのタイトル バーに結合します。
+
+== xamRibbonWindow に xamRibbon を表示するには：
+
+[start=1]
+. まだ実行していなければ、開始 Window タグ内で xamRibbon の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:igRibbon="http://infragistics.com/Ribbon"
+----
+
+[start=2]
+. igRibbon:XamRibbonWindow で開始 Window タグと終了 Window タグを置き換えます。
+
+*XAML の場合:*
+
+----
+<!--<Window …></Window> の代わりに-->
+<igRibbon:XamRibbonWindow … >
+</igRibbon:XamRibbonWindow>
+----
+
+[start=3]
+. RibbonWindowContentHost 要素の開始タグと終了タグを xamRibbonWindow の最初で唯一の子として追加します。
+
+レイアウト パネルの外で RibbonWindowContentHost 要素を宣言する必要があります。
+
+*XAML の場合:*
+
+----
+…
+<igRibbon:RibbonWindowContentHost>    
+        <Grid>
+        <!--
+        Microsoft® Windows® Presentation Foundation は、このデフォルト レイアウト パネルを作成します。コントロールをここで追加できます。
+        xamRibbon コントロールは、このレイアウト パネルの外で宣言されます。
+        -->
+        </Grid>
+</igRibbon:RibbonWindowContentHost>
+…
+----
+
+[start=4]
+. RibbonWindowContentHost のタグ内で RibbonWindowContentHost の Ribbon プロパティのタグを宣言します。
+
+これらのタグ内の xamRibbon コントロールに XAML を追加できます。xamRibbon コントロールを追加する場合、配置またはレイアウト関連のプロパティを設定しないでください。xamRibbonWindow は、ウィンドウのトップで xamRibbon の結合および配置を自動的に処理します。
+
+*XAML の場合:*
+
+----
+…
+<igRibbon:RibbonWindowContentHost.Ribbon>
+        <igRibbon:XamRibbon />        
+</igRibbon:RibbonWindowContentHost.Ribbon>
+…
+----
+
+[NOTE]
+====
+*注:* Visual Studio® 2008 および Visual Basic を使用している場合、手順 5 をスキップできます。Visual Studio® 2008 では、XAML で行われた変更は非表示の $$* $$.g.vb コード ファイルを自動的に更新し、XAML で行われた変更を反映します。
+====
+
+[start=5]
+. デフォルトの Windows® Presentation Foundation Window の代わりに Infragistics.Windows.Ribbon.XamRibbonWindow から継承するように、コード ビハインドを開き、Window のクラス宣言を変更します。
+
+*C# の場合:*
+
+----
+public partial class Window1 : Infragistics.Windows.Ribbon.XamRibbonWindow
+{
+}
+----
+
+[start=6]
+. アプリケーションを実行して xamRibbon が xamRibbonWindow のタイトル バーに結合されたことを確認します。
+
+== 関連トピック
+
+link:xamribbon-add-a-status-bar-to-the-ribbon-window.html[ステータス バーをリボン ウィンドウに追加]

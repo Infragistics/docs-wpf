@@ -1,0 +1,117 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-applying-formats-when-exporting-data",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Exporting","Getting Started","Grids","How Do I"],
+    "guid": "68dcc72b-a0f5-4e9c-8f97-f43d7cdbe4aa",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3840299Z"
+}
+|metadata|
+////
+
+= データをエクスポートする時にフォーマットを適用
+
+
+
+データを Word にエクスポートする時、フォーマットをデータ レコード、グループ化レコード、ラベル、集計に適用できます。この機能は、 link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter.html[DataPresenterWordWriter] クラスによって公開される添付のフォーマット プロパティを設定することで処理されます。各添付プロパティの名前は、そのプロパティが書式設定する要素の型に対応します。添付プロパティは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenter] コントロールに影響しません。その代わりに、ユーザーにはドキュメントのレコードに適用されるフォーマットのみが表示されます。たとえば、添付の link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~setcellsettingsfordatarecord.html[CellSettingsForDataRecord] プロパティを設定することでデータ レコードを書式設定でき、添付の link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~setcellsettingsforlabel.html[CellSettingsForLabel] プロパティを設定することで列ヘッダーを書式設定できます。
+
+== フォーマット プロパティの優先順位
+
+DataPresenterWordWriter クラスの添付されたフォーマット プロパティは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトで設定する必要があります。これによって、DataPresenter コントロールの FieldSettings オブジェクトを使用してすべてのフィールドにデフォルトのフォーマットを適用し、フィールド レイアウトで特定のフィールドを選択的に書式設定することが可能となります。フォーマットプロパティは解決され、コントロールの FieldSettings オブジェクトからフィールドの FieldSettings オブジェクトまで結合されます。つまり、どのようなフォーマットを設定しても、一般的なオブジェクトに対する設定よりも、特定のオブジェクトに対する設定が優先されます。たとえば、コントロールの FontSettings プロパティで CellSettingsForDataRecord オブジェクトの ForeColor プロパティを Blue に設定し、次にフィールドの FontSettings オブジェクトで CellSettingsForDataRecord オブジェクトの Bold プロパティを True に設定すると、結果のドキュメント レコードでは、そのフィールドのテキストが太字の青色になります。
+
+== テーブルの書式設定
+
+添付のフォーマット プロパティの設定に加えて、フォーマットをドキュメントのテーブル セルと行に適用するように DataPresenterWordWriter オブジェクトのイベントを処理することも可能です。「-ing」で終わる DataPresenterWordWriter オブジェクトのイベントを処理する時、イベント引数はフォーマットを適用するために使用可能な CellSettings プロパティを公開します。DataPresenterWordWriter のイベントの処理の詳細は、 link:xamdatapresenter-exporting-to-word-events.html[エクスポート イベントを処理することでエクスポートを管理]を参照してください。
+
+== 実例: DataPresenter コントロールを Word にエクスポート
+
+以下のコード例は、DataPresenter コントロールを Word にエクスポートするためにフォーマットを適用する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataGrid Grid.Row="1" Theme="IGTheme" x:Name="xamDataGrid">
+  <igDP:XamDataGrid.FieldSettings>
+    <!-- XamDataGrid で集計を有効にします -->
+    <igDP:FieldSettings AllowSummaries="true" 
+     SummaryUIType="MultiSelect" 
+     SummaryDisplayArea="BottomFixed">
+      <!-- データ レコードのカスタム スタイルを適用します-->
+      <igWordWriter:DataPresenterWordWriter.CellSettingsForDataRecord>
+        <igWordWriter:WordTableCellSettings BackColor="#FFEFD3D2">
+          <!-- データ レコードのフォント設定を調整します-->
+          <igWordWriter:WordTableCellSettings.FontSettings>
+            <igWordWriter:WordFontSettings
+              ForeColor="#FF943634" Bold="True" Size="11pt" />
+          </igWordWriter:WordTableCellSettings.FontSettings>
+        </igWordWriter:WordTableCellSettings>
+      </igWordWriter:DataPresenterWordWriter.CellSettingsForDataRecord>
+    </igDP:FieldSettings>
+  </igDP:XamDataGrid.FieldSettings>
+</igDP:XamDataGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+import Infragistics.Windows
+import Infragistics.Windows.DataPresenter
+import Infragistics.Windows.DataPresenter.WordWriter
+import System.Windows.Media
+Me.xamDataGrid.FieldSettings = New Windows.DataPresenter.FieldSettings() _
+With { _
+        Key .AllowSummaries = True, _
+        Key .SummaryUIType = SummaryUIType.MultiSelect, _
+        Key .SummaryDisplayArea = SummaryDisplayAreas.BottomFixed _
+}
+Dim wordFontSettings As New WordFontSettings() With { _
+        Key .ForeColor = Colors.Blue, _
+        Key .Bold = True, _
+        Key .Size = New DeviceUnitLength(11, DeviceUnitType.Point) _
+}
+Dim wordTableCellSettings As New WordTableCellSettings() With { _
+        Key .BackColor = Colors.Gray, _
+        Key .FontSettings = wordFontSettings _
+}
+DataPresenterWordWriter.SetCellSettingsForDataRecord( _
+    Me.xamDataGrid.FieldSettings, wordTableCellSettings)
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows;
+using Infragistics.Windows.DataPresenter;
+using Infragistics.Windows.DataPresenter.WordWriter;
+using System.Windows.Media;
+this.xamDataGrid.FieldSettings = new Windows.DataPresenter.FieldSettings
+{
+    AllowSummaries = true,
+    SummaryUIType = SummaryUIType.MultiSelect,
+    SummaryDisplayArea = SummaryDisplayAreas.BottomFixed
+};
+WordFontSettings wordFontSettings = new WordFontSettings
+{
+    ForeColor = Colors.Blue,
+    Bold = true,
+    Size = new DeviceUnitLength(11, DeviceUnitType.Point)
+};
+WordTableCellSettings wordTableCellSettings = new WordTableCellSettings
+{
+    BackColor = Colors.Gray,
+    FontSettings = wordFontSettings
+};
+DataPresenterWordWriter.SetCellSettingsForDataRecord(
+    this.xamDataGrid.FieldSettings, wordTableCellSettings);
+----
+
+== 関連トピック
+
+link:xamdatapresenter-exporting-data-to-word.html[xamDataPresenter を使用してデータを Word にエクスポート]
+
+link:xamdatapresenter-exclude-settings.html[エクスポート時の DataPresenter の Exclude 設定]
+
+link:xamdatapresenter-exporting-to-word-events.html[エクスポート イベントを処理することでエクスポートを管理]

@@ -1,0 +1,87 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram user interactions configuration summary chart",
+    "controlName": [],
+    "tags": [],
+    "guid": "6a316ae0-8601-4169-a7b9-3a0e87d30342",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-27T07:27:54.562719Z"
+}
+|metadata|
+////
+
+以下の表は、ダイアグラム ノードの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+| link:xamdiagram-configuration-overview.html#_Ref391538068[コマンド]
+|_xamDiagram_ は、多数のコマンドを提供します。
+|
+
+| link:xamdiagram-configuration-overview.html#_Ref391538072[コンテキスト メニュー]
+|_xamDiagram_ は、項目のプロパティを編集するためのコンテキスト メニューを提供します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~optionspanevisibility.html[OptionsPaneVisibility] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~optionspaneplacement.html[OptionsPanePlacement] 
+
+| link:xamdiagram-configuration-overview.html#_Ref391538076[マウス操作とツール]
+|マウスを使用して簡単に _xamDiagram_ を操作する方法です。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~tool.html[Tool] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~defaultdraginteraction.html[DefaultDragInteraction] 
+
+| link:xamdiagram-configuration-overview.html#_Ref391538082[ナビゲーション ペイン]
+|_xamDiagram_ は、ダイアグラム全体のナビゲーション ペインを提供します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanevisibility.html[OverviewPlusDetailPaneVisibility] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanehorizontalalignment.html[NavigationPaneHorizontalAlignment] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpaneverticalalignment.html[NavigationPaneVerticalAlignment] 
+
+| link:xamdiagram-configuration-overview.html#_Ref391538088[選択]
+|_xamDiagram_ は、項目の選択機能を提供します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramselectionmode.html[SelectionMode] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~isselected.html[DiagramItem.IsSelected] 
+
+| link:xamdiagram-configuration-overview.html#_Ref391538095[キーボード ショートカット]
+|_xamDiagram_ の操作で使用されるキーボード ショートカットです。
+|
+
+| link:xamdiagram-configuration-overview.html#_Ref391538100[ツールボックス]
+|_xamDiagram_ は、項目をドラッグ アンド ドロップするための追加のツールボックス コントロールを提供します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~header.html[XamDiagramToolbox.Header] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~headerbackground.html[XamDiagramToolbox.HeaderBackground] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~headerborderbrush.html[XamDiagramToolbox.HeaderBorderBrush] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~headerborderthickness.html[XamDiagramToolbox.HeaderBorderThickness] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~headerforeground.html[XamDiagramToolbox.HeaderForeground] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~categories.html[XamDiagramToolbox.Categories] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~customcategories.html[XamDiagramToolbox.CustomCategories] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~categoryadding_ev.html[XamDiagramToolbox.CategoryAdding] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagramtoolbox~categoryadded_ev.html[XamDiagramToolbox.CategoryAdded] 
+
+| link:xamdiagram-configuration-overview.html#_Ref391538104[元に戻す / やり直し]
+|_xamDiagram_ は、元に戻す / やり直し機能を提供します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~isundoenabled.html[IsUndoEnabled] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~undomanager.html[UndoManager] 
+
+|====

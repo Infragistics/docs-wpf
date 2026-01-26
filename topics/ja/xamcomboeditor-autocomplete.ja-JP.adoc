@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-autocomplete",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{F5152570-742C-46B1-97E6-13BCCA02843A}",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7131325Z"
+}
+|metadata|
+////
+
+= AutoComplete
+
+xamComboEditor コントロールは編集可能なモードで link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~autocomplete.html[AutoComplete] 機能を提供します。
+
+入力を開始すると、コントロールはデータをフィルターして、強調表示することによって残りの候補のテキストを表示します。デフォルトでこのプロパティは無効です。オートコンプリートが実行されるときに実行されるフィルタリングは StartsWith 基準を使用します。
+
+候補のテキストを受け入れるために Enter キーと Tab キーを使用することができます。テキストにスペースが含まれない場合、スペース キーを使用することも可能です。
+
+上矢印キーと下矢印キーを使用してドロップダウン リストでその他のオプションを移動することができます。
+
+以下のコードは AutoComplete プロパティの使用の例を表示します。
+
+*XAML の場合:*
+
+----
+<ig:XamComboEditor 
+    x:Name="autoCompleteCombo" 
+	IsEditable="True" 
+    AllowFiltering="True"
+    AutoComplete="True"
+    AutoCompleteDelay="1000" .../>
+----
+
+AutoComplete 機能に関連づけられたその他の役に立つプロパティは以下の通りです:
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~autocompletedelay.html[AutoCompleteDelay]: このプロパティは、項目ソースへの移動と入力中のフィルタリングの間の遅延を制御します。この遅延はミリ秒で測定されます。
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~opendropdownontyping.html[OpenDropDownOnTyping]: このプロパティが False に設定されると、xamComboEditor ドロップダウン リストは開きません。
+
+== 関連トピック
+
+link:xamcomboeditor-using-customvalueenteredaction.html[CustomValueEnteredAction の使用]
+
+link:xamcomboeditor-dropdown-resizing.html[ドロップダウンのサイズ構成]
+
+link:xamcomboeditor-custom-filtering.html[カスタム フィルタリング]
+
+link:xamcomboeditor-working-with-itemtemplate.html[ItemTemplate での作業]
+
+link:xamcomboeditor-selection.html[選択 (xamComboEditor)]

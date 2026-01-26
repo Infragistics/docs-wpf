@@ -1,0 +1,124 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-auto-adjust-labels",
+    "controlName": ["xamTimeline"],
+    "tags": ["Data Presentation","Getting Started","How Do I"],
+    "guid": "75cd6ed7-7c0e-48c9-aa1d-8024ae214a26",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1664073Z"
+}
+|metadata|
+////
+
+= ラベルの自動調整
+
+== 目的
+
+このトピックは、データの特定のセクションでのズーム時の、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロール上のラベルと目盛の Auto-Adjust 機能を概説します。
+
+== 前提条件
+
+以下の表は、このトピックにを理解するために必要な前提条件を示しています。
+
+[options="header", cols="a,a"]
+|====
+|背景タイプ|コンテンツ
+
+|概念
+|以下の概念を理解する必要があります。 
+
+xamTimeline のデータの定義、または DateTime タイプ フィールドを使った、コントロールの既存データへのバインド。 
+
+AutoRange プロパティは true に設定する必要があります (デフォルトは true)。 
+
+|トピック
+|まず以下のトピックを読む必要があります。 
+
+link:xamtimeline-understanding-xamwebtimeline.html[xamTimeline について] 
+
+link:xamtimeline-binding-to-data-with-xamtimeline.html[データにバインドする]
+
+|====
+
+ここに示された AutoRange の設定はオプションです。これはデフォルトで true です。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline.Axis>
+     <ig:DateTimeAxis AutoRange="True" />
+</ig:XamTimeline.Axis>
+----
+
+== Auto-Adjust Labels
+
+== 概要
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeLine] コントロールは、データの選択した時間セグメント上のズームに基づいて、タイムラインのラベルと目盛を自動的に調整する機能を備えます。例：
+
+* Timeline が Year 単位タイプを表示する場合:
+
+ズーム後、目盛が Months を表示します。
+
+* Timeline が Month 単位タイプを表示する場合:
+
+ズーム後、目盛が Days を表示します。
+
+* Timeline が Day 単位タイプを表示する場合:
+
+ズーム後、目盛は Hours を表示します。
+
+== プレビュー
+
+以下は、ズーム前後の結果のプレビューです:
+
+ズーム前に、コントロールはタイムラインに「月の中の日」ラベルを示します:
+
+image::images/xamTimeline_Auto-Adjust_Labels_01.png[]
+
+「数日」でズームイン後、コントロールはラベルを自動調整して時間を示します:
+
+image::images/xamTimeline_Auto-Adjust_Labels_02.png[]
+
+== 結論:
+
+タイムライン コントロールの軸に AutoRange=False を設定することによって、Auto-Adjust 機能を無効にすることができます。これには、Minimum, Maximum、および Unit プロパティを特定の範囲で定義する必要があります。例：
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline.Axis>
+   <ig:DateTimeAxis 
+       AutoRange=" Minimum="2011/05/01" Maximum="2012/05/01" Unit="1" />
+</ig:XamTimeline.Axis>
+----
+
+*C# の場合:*
+
+----
+DateTimeAxis dt_axis = new DateTimeAxis();
+dt_axis.AutoRange = false;
+dt_axis.Minimum = DateTime.Parse("2012/01/01");
+dt_axis.Maximum = DateTime.Parse("2012/05/01");
+dt_axis.Unit = 1;
+this.xamTimeLine.Axis = dt_axis;
+----
+
+*Visual Basic の場合:*
+
+----
+Dim dt_axis As New DateTimeAxis()
+dt_axis.AutoRange = False
+dt_axis.Minimum = DateTime.Parse("2012/01/01")
+dt_axis.Maximum = DateTime.Parse("2012/05/01")
+dt_axis.Unit = 1
+Me.xamTimeLine.Axis = dt_axis
+----
+
+== 関連トピック
+
+link:xamtimeline-understanding-xamwebtimeline.html[xamTimeline について]
+
+link:xamtimeline-binding-to-data-with-xamtimeline.html[データにバインドする]

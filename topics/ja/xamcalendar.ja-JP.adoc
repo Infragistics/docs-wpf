@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcalendar",
+    "controlName": ["xamCalendar"],
+    "tags": ["How Do I"],
+    "guid": "a5f99c24-d7ae-4d25-b8ab-c2f0c282c403",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.6181259Z"
+}
+|metadata|
+////
+
+= xamCalendar
+
+このセクションは、xamCalendar コントロールに関する情報を提供します。
+
+== link:xamcalendar-about.html[xamCalendar について]
+
+以上のリンクをクリックして、xamCalendar についての重要な情報にアクセスします。
+
+== link:xamcalendar-using.html[xamCalendar の使用]
+
+xamCalendar でできる限り素早く起動して実行するために、コントロールの使用を開始する方法についての情報を提供します。
+
+== link:xamcalendar-restricting-date-selection.html[日付選択制限を実装]
+
+このトピックでは、xamCalendar の機能の理解を深める支援となる情報を提供します。
+
+== link:xamcalendar-api-overview.html[API の概要]
+
+このトピックは、xamCalendar コントロールでプログラミング中に作業する名前空間とクラスをリストします。このトピックにリストされている名前空間とクラスは、{PlatformName} ヘルプの link:api-reference-guide.html[「API 参照ガイド」]のセクションに便宜的にリンクされています。

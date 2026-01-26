@@ -1,0 +1,67 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-prevent-the-addition-of-specific-formats-to-the-clipboard",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Tips and Tricks"],
+    "guid": "{565CB001-89ED-40AD-BB4A-63E9B69651E3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2940119Z"
+}
+|metadata|
+////
+
+= クリップボードへの特定の形式の追加を防止する
+
+
+
+エンド ユーザーが切り取りまたはコピー操作を実行すると、DataPresenter コントロールはデータを HTML、CSV (コンマ区切り値)、およびテキスト形式でクリップボードに追加します。DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~clipboardcopying_ev.html[ClipboardCopying] または link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~clipboardpasting_ev.html[ClipboardPasting] イベントを処理すると、それぞれ、切り取り/コピー操作がデータをクリップボードに追加する前または貼り付け操作がデータを DataPresenter コントロールに貼り付ける前に値を変更できます。さらに、.NET Framework で DataObject クラスが公開する添付イベントを処理して、特定のフォーマットをクリップボードに追加できないようにしたり、独自のフォーマットをクリップボードに追加することもできます。
+
+以下のコード例は、HTML データをクリップボードに追加できないようにする方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" DataObject.SettingData="xamDataPresenter1_SettingData">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AllowClipboardOperations="All" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+...
+' クリップボードに追加される 1 つのフォーマットに対して SettingData イベントが 1 回発生します
+Private Sub xamDataPresenter1_SettingData(ByVal sender As Object, ByVal e As DataObjectSettingDataEventArgs) 
+    If e.Format = DataFormats.Html Then 
+        e.CancelCommand() 
+    End If 
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+...
+// クリップボードに追加される 1 つのフォーマットに対して SettingData イベントが 1 回発生します
+private void xamDataPresenter1_SettingData(object sender, DataObjectSettingDataEventArgs e)
+{
+    if (e.Format == DataFormats.Html)
+        e.CancelCommand();
+}
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-enable-clipboard-operations.html[クリップボード操作を有効にする]
+
+link:xamdatapresenter-perform-clipboard-operations.html[クリップボード操作の実行]
+
+link:xamdatapresenter-handle-clipboard-operation-errors.html[クリップボード操作エラーの処理]
+
+link:xamdatapresenter-prevent-clipboard-operations-from-modifying-a-field.html[クリップボード操作でフィールドが変更されることを防止する]

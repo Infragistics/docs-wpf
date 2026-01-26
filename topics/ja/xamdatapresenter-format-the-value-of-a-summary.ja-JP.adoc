@@ -1,0 +1,94 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-format-the-value-of-a-summary",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Summaries"],
+    "guid": "{C4355114-85E7-47E5-8743-597542CAF191}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2139959Z"
+}
+|metadata|
+////
+
+= 集計の値をフォーマット
+
+
+
+xamDataPresenter コントロールは、小数点第 2 位を使用して Double または Decimal データ型の結果となる集計値をフォーマットします。xamDataPresenter コントロールは整数および文字列値をフォーマットしません。ただし、.NET Framework コンポジットフォーマット文字列を使用して集計結果をフォーマットすることができます。たとえば、貨幣値を表すために集計値を希望する場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarydefinition.html[SummaryDefinition] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarydefinition~stringformat.html[StringFormat] プロパティを XAML で "{}{0:c}" またはプロシージャー コードで "{0:c}" に設定できます。
+
+プレースホルダ トークンの値 ('0') に加えて、コンポジット フォーマット文字列に以下のプレースホルダ トークンの組み合わせを使用することもできます。
+
+* {0} - 集計の実際の値を表します。
+* {1} - この集計を計算するために使用される集計計算の名前を表します。
+* {2} - SummaryDefinition オブジェクトの Key プロパティを表します。
+* {3} - この集計を計算するために使用されるフィールド名を表します。
+
+フィールドに集計をプログラムで追加する場合、SummaryDefinition オブジェクトをインスタンス化し、StringFormat プロパティを設定できます。ただし、エンド ユーザーが集計選択ダイアログ ボックスから集計計算式を選択後に StringFormat プロパティを設定したい場合、xamDataPresenter の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~summaryresultchanged_ev.html[SummaryResultChanged] イベントを処理し、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.summaryresultchangedeventargs.html[SummaryResultChangedEventArgs] オブジェクトを使用して集計値をフォーマットすることができます。特定の集計値をフォーマットする必要がある場合、決定する SummaryResultChangedEventArgs オブジェクトのプロパティをチェックできます。
+
+以下のコード例は、集計の値のフォーマット方法を示します。このコード例は、"BasePrice" と名前が付けられたフィールドのフィールド レイアウトがあることを想定します。
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:FieldLayout.SummaryDefinitions>
+                <igDP:SummaryDefinition 
+                    Calculator="{x:Static igDP:SummaryCalculator.Sum}" 
+                    SourceFieldName="BasePrice"  
+                    Key="priceSum" 
+                    StringFormat="{}{1} = {0:c}" />
+            </igDP:FieldLayout.SummaryDefinitions>
+        </igDP:FieldLayout>
+    </igDP:XamDataPresenter.FieldLayouts>
+</igDP:XamDataPresenter>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Dim summary As New SummaryDefinition()
+summary.Calculator = SummaryCalculator.Sum
+summary.SourceFieldName = "BasePrice"
+summary.Key = "priceSum"
+summary.StringFormat = "{1} = {0:c}"
+Me.xamDataPresenter1.FieldLayouts(0).SummaryDefinitions.Add(summary)
+' SummaryResultChanged イベントを処理している場合、イベント ハンドラーで以下のコードを使用できます。簡潔にするためコードは値を無条件に書式化します。
+'e.SummaryResult.SummaryDefinition.StringFormat = "{1} = {0:c}"
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+SummaryDefinition summary = new SummaryDefinition();
+summary.Calculator = SummaryCalculator.Sum;
+summary.SourceFieldName = "BasePrice";
+summary.Key = "priceSum";
+summary.StringFormat = "{1} = {0:c}";
+this.xamDataPresenter1.FieldLayouts[0].SummaryDefinitions.Add(summary);
+// SummaryResultChanged イベントを処理している場合、イベント ハンドラーで以下のコードを使用できます。簡潔にするためコードは値を無条件に書式化します。
+//e.SummaryResult.SummaryDefinition.StringFormat = "{1} = {0:c}"
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-apply-default-summary-formats.html[デフォルトの集計フォーマットを適用]
+
+link:xamdatapresenter-creating-a-custom-summary-calculator.html[カスタム集計計算を作成]
+
+link:xamdatapresenter-enable-row-summaries.html[行集計を有効]
+
+link:xamdatapresenter-programmatically-add-summaries-to-a-field.html[集計をフィールドにプログラムで追加]
+
+link:xamdatapresenter-retrieve-the-result-of-a-summary.html[集計結果を取得]

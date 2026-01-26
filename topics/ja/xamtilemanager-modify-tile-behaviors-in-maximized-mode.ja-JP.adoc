@@ -1,0 +1,117 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-modify-tile-behaviors-in-maximized-mode",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I"],
+    "guid": "531f4c39-aa33-44f3-a332-f505c18556f0",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7003731Z"
+}
+|metadata|
+////
+
+= 最大化モードでタイル動作を変更
+
+xamTileManager は、最大化、最小化、および最小化・展開の状態でタイルの動作を変更できる link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~maximizedmodesettings.html[MaximizedModeSettings] プロパティを公開します。link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings.html[MaximizedModeSettings] オブジェクトは以下のプロパティを公開します。
+
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~allowtiledragging.html[AllowTileDragging] - タイルのドラッグを無効にすると、エンド ユーザーは最小化されたタイルを最大化されたタイル領域に (またはその逆に) ドラッグしてその状態を変更することができません。
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~horizontaltileareaalignment.html[HorizontalTileAreaAlignment]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~intertileareaspacing.html[InterTileAreaSpacing]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~intertilespacingxmaximized.html[InterTileSpacingXMaximized]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~intertilespacingxminimized.html[InterTileSpacingXMinimized]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~intertilespacingymaximized.html[InterTileSpacingYMaximized]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~intertilespacingyminimized.html[InterTileSpacingYMinimized]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~maximizedtileconstraints.html[MaximizedTileConstraints]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~maximizedtilelayoutorder.html[MaximizedTileLayoutOrder]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~maximizedtilelocation.html[MaximizedTileLocation]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~minimizedexpandedtileconstraints.html[MinimizedExpandedTileConstraints]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~minimizedtileconstraints.html[MinimizedTileConstraints]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~minimizedtileexpandbuttonvisibility.html[MinimizedTileExpandButtonVisibility]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~minimizedtileexpansionmode.html[MinimizedTileExpansionMode]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~repositionanimation.html[RepositionAnimation]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~resizeanimation.html[ResizeAnimation]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~shouldanimate.html[ShouldAnimate]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~showallminimizedtiles.html[ShowAllMinimizedTiles]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~showtileareasplitter.html[ShowTileAreaSplitter]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings~verticaltileareaalignment.html[VerticalTileAreaAlignment]
+
+xamTileManager は MaximizedModeSettings プロパティを自動的に初期化しません。コードで MaximizedModeSettings プロパティによって公開されている任意のプロパティを設定したい場合、xamTileManager の MaximizedModeSettings プロパティを MaximizedModeSettings オブジェクトのインスタンスに設定する必要があります。
+
+以下のコード例は、最大化、最小化、展開モードでタイルの動作を変更する方法を示しています。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1">
+    <ig:XamTileManager.MaximizedModeSettings>
+        <ig:MaximizedModeSettings
+            MinimizedTileExpansionMode="AllowOne" 
+            VerticalTileAreaAlignment="Top" 
+            ShowAllMinimizedTiles="True" />
+    </ig:XamTileManager.MaximizedModeSettings >
+    <!--ここに Tiles を追加します-->
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+...
+If Me.xamTileManager1.MaximizedModeSettings Is Nothing Then
+    Me.xamTileManager1.MaximizedModeSettings =
+        New MaximizedModeSettings()
+End If
+Me.xamTileManager1.MaximizedModeSettings.MinimizedTileExpansionMode = _
+    MinimizedTileExpansionMode.AllowOne
+Me.xamTileManager1.MaximizedModeSettings.VerticalTileAreaAlignment = _
+    VerticalAlignment.Top
+Me.xamTileManager1.MaximizedModeSettings.ShowAllMinimizedTiles = True
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+...
+if (this.xamTileManager1.MaximizedModeSettings == null)
+{
+    this.xamTileManager1.MaximizedModeSettings =
+        new MaximizedModeSettings();
+}
+this.xamTileManager1.MaximizedModeSettings.MinimizedTileExpansionMode =
+    MinimizedTileExpansionMode.AllowOne;
+this.xamTileManager1.MaximizedModeSettings.VerticalTileAreaAlignment =
+    VerticalAlignment.Top;
+this.xamTileManager1.MaximizedModeSettings.ShowAllMinimizedTiles = true;
+...
+----
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

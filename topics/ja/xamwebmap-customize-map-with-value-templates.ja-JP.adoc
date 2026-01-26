@@ -1,0 +1,58 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-customize-map-with-value-templates",
+    "controlName": ["xamMap"],
+    "tags": ["Data Presentation","How Do I","Templating"],
+    "guid": "{7E42DDD8-9D2A-4538-A47F-83337B300BCB}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2182712Z"
+}
+|metadata|
+////
+
+= 値テンプレートの表示
+
+xamMap コントロールはデータ テンプレートを使用して link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement.html[MapElement] オブジェクトの外観をカスタマイズする機能を提供します。このテンプレートは、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~valuetemplate.html[MapLayer] オブジェクトの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer.html[ValueTemplate] プロパティを使用してレイヤーに設定されます。テンプレート内に配置するコントロールは各マップ エレメントに配置されます。したがってこの機能を使用して xamMap のエレメントごとに任意の種類のカスタム情報を表示できます。さらに、値テンプレートを使用すると、各要素の link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement~value.html[Value] プロパティにバインドすることができます。これによってカスタムな方法で値を表示することが非常にシンプルかつ簡単になります。
+
+以下のコードはマップ 要素の情報を表示するためにテキストブロックを使用する方法を示します。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<igMap:XamMap x:Name="map1">
+   <igMap:XamMap.Layers>
+      <igMap:MapLayer x:Name="statesLayer">
+         <igMap:MapLayer.Reader>
+            <igMap:ShapeFileReader Uri="/../../Shapefiles/usa_st" DataMapping="Caption=STATE_ABBR; Value=POP90_SQMI" />
+         </igMap:MapLayer.Reader>
+         <!-- Value Template を使用して TextBlock で Value を表示します -->
+         <igMap:MapLayer.ValueTemplate>
+            <DataTemplate>
+				<StackPanel Orientation="Horizontal" >
+					<TextBlock Margin="2" Text="{Binding Value}" 
+					Foreground ="White" FontWeight="Bold" FontSize="15" 
+					HorizontalAlignment="Center" VerticalAlignment="Center" >
+						<TextBlock.Effect>
+							<DropShadowEffect ShadowDepth="1" BlurRadius="10"/>
+						</TextBlock.Effect>
+					</TextBlock>
+					<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+						<TextBlock Text="people" FontSize="10" />
+						<Rectangle Height="0.5" Fill="Black" HorizontalAlignment="Stretch"></Rectangle>
+						<TextBlock Text="sqmi" FontSize="10" />
+					</StackPanel>
+				</StackPanel>
+			</DataTemplate>
+         </igMap:MapLayer.ValueTemplate>
+      </igMap:MapLayer>
+   </igMap:XamMap.Layers>    
+</igMap:XamMap>
+----
+
+endif::wpf[]
+
+image::images/SL_DV_XamMap_Customize_XamMap_with_Value_Templates_01.png[]

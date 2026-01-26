@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-getting-started-with-xamtreemap",
+    "controlName": ["xamTreemap"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "d0146086-c5fb-45ea-b51a-458fc0af62ac",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7453753Z"
+}
+|metadata|
+////
+
+= xamTreemap を使用した作業の開始
+
+以下のトピックをクリックすると、 link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.xamtreemap.html[xamTreemap] コントロールをすばやく起動して実行する方法についての説明が表示されます。このコントロールを使用して、単純な pick:[sl,win-phone="ページ"]   pick:[wpf="アプリケーション"] を作成する方法を学習します。
+
+link:xamtreemap-adding-xamtreemap-using-xaml.html[XAML コードを使用して xamTreemap を追加]
+
+このトピックは、XAML コードを使用して xamTreemap コントロールをアプリケーションに追加する方法を説明します。
+
+link:xamtreemap-adding-xamtreemap-using-procedural.html[プロシージャ コードを使用して xamTreemap を追加]
+
+このトピックは、プロシージャ コードを使用して xamTreemap コントロールをアプリケーションに追加する方法を説明します。
+
+link:xamtreemap-adding-xamtreemap-using-blend.html[Expression Blend を使用して xamTreemap を追加]
+
+このトピックは、Expression Blend を使用して xamTreemap を作成する方法を示します。
+
+関連トピック
+
+link:xamtreemap-understanding-xamtreemap.html[xamTreemap の理解]
+
+link:xamtreemap-using-xamtreemap.html[xamTreemap の使用]
+
+link:xamtreemap-api-overview.html[API の概要]

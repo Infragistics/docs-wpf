@@ -1,0 +1,84 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-set-a-fields-width",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{53FFCC6D-438C-4867-AD59-26058518EAB7}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3270185Z"
+}
+|metadata|
+////
+
+= フィールドの幅の設定
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~width.html[Width] プロパティや link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~width.html[Width] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlength.html[FieldLength] 構造体のインスタンスに設定して、フィールドの幅を決定できます。これによって、DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldsettings.html[FieldSettings] プロパティを使用してすべてのフィールドにデフォルトの幅を設定し、フィールド レイアウトで特定のフィールドの幅を選択的に設定することが可能となります。水平なレコード レイアウトを使用している場合、Width プロパティを設定する代わりに、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~height.html[Height] プロパティを設定する必要があります。
+
+FieldLength 構造体を link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlengthunittype.html[FieldLengthUnitType] 列挙体とともに使用して、以下のサイズ設定を表現できます。
+
+* Auto - DataPresenter コントロールは、FieldSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~autosizeoptions.html[AutoSizeOptions] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~autosizescope.html[AutoSizeScope] プロパティ値に基づいて、フィールドの幅を動的に増やし最長コンテンツをフィールドにフィットさせます。この設定は、さらに長いコンテンツが現れた場合に、DataPresenter コントロールがフィールドの幅を大きくできるようにします。ただし、DataPresenter コントロールはフィールドの幅を自動的に小さくしません。さらに、エンド ユーザーがフィールドのサイズ変更インジケーターをドラッグしフィールドをサイズ変更する場合、DataPresenter コントロールはそのフィールドを自動サイズ設定しません。エンド ユーザーが自動サイズ設定を再度有効にしたい場合には、フィールドのサイズ変更インジケーターをダブル クリックして自動調整操作を実行する必要があります。
+* InitialAuto - この設定は、Auto 設定と似ていますが、さらに長いコンテンツが現れても DataPresenter コントロールは動的にフィールドの幅を大きくしません。その代り、DataPresenter コントロールは、FieldSettings オブジェクトの AutoSizeOptions および AutoSizeScope プロパティ値に基づいて、フィールドの幅を初期化中に 1 回設定します。
+* Pixel - フィールドの幅をピクセル値に設定できます。
+* Star - WPF Grid パネルに見られるものと同じスター サイズ指定構文を使用して、フィールドの幅をパーセント値に設定できます。
+
+Field オブジェクトの Width プロパティを XAML で設定したい場合は、Width プロパティを FieldLength 構造体の文字列形式に設定する必要があります。コードでは、FieldLength 構造体をインスタンス化し、Field オブジェクトの Width プロパティを設定する必要があります。ただし、FieldLength 構造体は、Auto または InitialAuto 設定を使用したいシナリオ向けに静的な link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlength~auto.html[Auto] プロパティおよび link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlength~initialauto.html[InitialAuto] プロパティを公開しています。
+
+ピクセルおよびスター サイズ指定値に加え、センチメートル (cm)、インチ(in)、またはポイント (pt) を使用して Width プロパティを設定できます。たとえば、Field オブジェクトの Width プロパティを XAML で「2.5cm」、「1in」、または「72pt」に設定できます。ただし、コードでは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlengthconverter.html[FieldLengthConverter] オブジェクトを使用して、センチメートル、インチ、またはポイントを使用するフィールドの幅を設定する必要があります。
+
+image::images/xamDataPresenter_Set_a_Fields_Width_01.png[]
+
+以下のコード例は、異なる設定を使用してフィールドの幅を設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:Field Name="name" Width="1*" />
+            <!-- 測定単位が指定されていないので、部門フィールドはピクセル値を使用します -->
+            <igDP:Field Name="department" Width="100px" /> 
+            <igDP:Field Name="salary" Width="2in" />
+            <igDP:Field Name="email" Width="InitialAuto" />        
+        </igDP:FieldLayout>
+    </igDP:XamDataPresenter.FieldLayouts>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Dim converter1 As New FieldLengthConverter()
+Me.xamDataPresenter1.FieldLayouts(0).Fields("name").Width = New FieldLength(1, FieldLengthUnitType.Star)
+Me.xamDataPresenter1.FieldLayouts(0).Fields("department").Width = New FieldLength(100)
+Me.xamDataPresenter1.FieldLayouts(0).Fields("salary").Width = DirectCast(converter1.ConvertFrom("2in"), FieldLength)
+Me.xamDataPresenter1.FieldLayouts(0).Fields("name").Width = FieldLength.InitialAuto
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+FieldLengthConverter converter1 = new FieldLengthConverter();
+this.xamDataPresenter1.FieldLayouts[0].Fields["name"].Width = new FieldLength(1, FieldLengthUnitType.Star);
+this.xamDataPresenter1.FieldLayouts[0].Fields["department"].Width = new FieldLength(100);
+this.xamDataPresenter1.FieldLayouts[0].Fields["salary"].Width = (FieldLength)converter1.ConvertFrom("2in");
+this.xamDataPresenter1.FieldLayouts[0].Fields["name"].Width = FieldLength.InitialAuto;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-automatically-fit-fields.html[自動的にフィールドを調整]
+
+link:xamdatapresenter-modify-field-sizing-behaviors.html[フィールドのサイズ設定動作の修正]
+
+link:xamdatapresenter-perform-an-auto-sizing-operation.html[自動サイズ設定操作の実行]

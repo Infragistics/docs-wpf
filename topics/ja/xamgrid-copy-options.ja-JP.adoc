@@ -1,0 +1,55 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-copy-options",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Presentation","Grids","Selection"],
+    "guid": "4da3c0c4-71ca-4a7c-b2fb-f6872ac9406e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.216217Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= コピー オプション
+
+コピー操作が有効な時に、コピーしたデータの選択セルに対応する xamGrid 列のヘッダー テキストを含むかどうかを構成できます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardsettings.html[ClipboardSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardsettings~copyoptions.html[CopyOptions] プロパティは、以下の値のいずれかの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.gridclipboardcopyoptions.html[GridClipboardCopyOptions] 列挙体を含むことができます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.gridclipboardcopyoptions.html[IncludeHeaders] - これが CopyOptions プロパティのデフォルト値です。
+
+xamGrid link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column.html[Column] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnbase~headertext.html[HeaderText] プロパティが示される場合、その値はコピーされたデータに含まれます。このプロパティが欠落している場合、列のオブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnbase~key.html[Key] プロパティ値が含まれます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.gridclipboardcopyoptions.html[ExcludeHeaders] - コピー操作は、選択したセルの対応する列ヘッダー テキストを含みません。
+
+以下のコードは、このプロパティを XAML ファイルまたはコード ビハインドで設定できる方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="xamGrid" … >
+    <ig:XamGrid.ClipboardSettings>
+        <ig:ClipboardSettings AllowCopy="True" CopyOptions="IncludeHeaders"/>
+   </ig:XamGrid.ClipboardSettings>
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+xamGrid.ClipboardSettings.AllowCopy = True
+xamGrid.ClipboardSettings.CopyOptions=GridClipboardCopyOptions.IncludeHeaders
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+xamGrid.ClipboardSettings.AllowCopy = true;
+xamGrid.ClipboardSettings.CopyOptions=GridClipboardCopyOptions.IncludeHeaders;
+----

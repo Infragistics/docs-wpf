@@ -1,0 +1,69 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-fix-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Layouts"],
+    "guid": "{B01A0100-9B97-427A-BACF-EE19CF6C7D86}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2089949Z"
+}
+|metadata|
+////
+
+= レコードの固定
+
+
+
+実行時にプログラム的に、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowrecordfixing.html[AllowRecordFixing] プロパティ値に関係なくレコードを固定できます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record.html[Record] オブジェクトを固定するには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record~fixedlocation.html[FixedLocation] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fixedrecordlocation.html[FixedRecordLocation] 列挙体値に設定するか、または link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands.html[DataPresenterCommands] クラスが公開する以下のいずれかのコマンドを実行します。
+
+* FixRecordBottom
+* FixRecordTop
+* UnfixRecord
+
+image::images/xamDataPresenter_Fix_Records_01.png[]
+
+以下のコード例は、レコードの固定方法を示します。3 つのコマンドはいずれも、Record オブジェクトにコマンド パラメーターとして渡す必要があります。XAML は、Button コントロールの CommandParameter プロパティを DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~activerecord.html[ActiveRecord] プロパティにバインドします。
+
+*XAML の場合:*
+
+----
+<Button 
+    Content="Fix the Active Record" 
+    Command="{x:Static igDP:DataPresenterCommands.FixRecordTop}"
+    CommandTarget="{Binding ElementName=xamDataPresenter1}" 
+    CommandParameter="{Binding ElementName=xamDataPresenter1, Path=ActiveRecord}"/>
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+'Me.xamDataPresenter1.Records(0).FixedLocation = FixedRecordLocation.FixedToTop
+Me.xamDataPresenter1.ExecuteCommand(DataPresenterCommands.FixRecordTop, Me.xamDataPresenter1.ActiveRecord)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+//this.xamDataPresenter1.Records[0].FixedLocation = FixedRecordLocation.FixedToTop;
+this.xamDataPresenter1.ExecuteCommand(DataPresenterCommands.FixRecordTop, this.xamDataPresenter1.ActiveRecord);
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-fixed-non-scrolling-records.html[固定 (非スクロール) レコードについて]
+
+link:xamdatapresenter-about-fixed-records-and-sorting.html[固定されたレコードと並べ替えについて]
+
+link:xamdatapresenter-enable-fixed-records.html[固定されたレコードを有効にする]
+
+link:xamdatapresenter-limit-the-number-of-fixed-records.html[固定されたレコード数の制限]

@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousellistbox",
+    "controlName": ["xamCarouselListBox"],
+    "tags": [],
+    "guid": "{0844DD26-F29D-4858-9D21-DB090D63F78F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0227577Z"
+}
+|metadata|
+////
+
+= xamCarouselListBox
+
+
+
+xamCarouselListBox™ コントロールに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このセクションをご覧ください。このセクションは、コントロールについての概要からアプリケーションで使用する理由、コントロールを使用して共通タスクを達成するための方法の手順などの xamCarouselListBox についての有益な情報を含んでいます。
+
+以下のリンクをクリックして、xamCarouselListBox コントロールについての重要な情報にアクセスします。
+
+== link:xamcarousellistbox-understanding-xamcarousellistbox.html[xamCarouselListBox について]
+
+このセクションには xamCarouselListBox コントロールの機能をより理解するための情報があります。なぜアプリケーションのビルドの一部として使用するかも説明します。
+
+== link:xamcarousellistbox-getting-started-with-xamcarousellistbox.html[xamCarouselListBox をアプリケーションに追加]
+
+xamCarouselListBox コントロールでできる限り素早く起動して実行するために、コントロールを使用して開始する方法 (たとえば、フォームに xamCarouselListBox を追加) についての情報を提供します。
+
+== link:xamcarousellistbox-using-xamcarousellistbox.html[xamCarouselListBox の使用]
+
+このセクションには、xamCarouselListBox コントロールで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamcarousellistbox-api-overview.html[API の概要]
+
+このトピックは、xamCarouselListBox コントロールを使用して開発する際の名前空間とクラスについて説明します。このトピックにリストされる名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]に便宜上リンクします。

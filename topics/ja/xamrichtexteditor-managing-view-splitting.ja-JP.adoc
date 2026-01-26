@@ -1,0 +1,161 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-view-splitting",
+    "tags": ["How Do I","Layouts"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "e663561c-c3ad-47f0-a233-deb494d0992b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.5443073Z"
+}
+|metadata|
+////
+
+= ビュー分割の管理 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、開発者の観点から link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールのビュー分割について説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を提供します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362354755,分割構成の概要>>
+* <<_Ref360720395,現在の分割状態>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref362354755]]
+== 分割構成の概要
+
+=== 分割構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、構成に使用するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref360720395,現在の分割状態を取得>>
+|ドキュメント ビューの分割状態を取得できます。
+|
+* link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~isdocumentviewsplit.html[IsDocumentViewSplit] 
+
+|<<_Ref362354833,現在の分割状態を設定>>
+|ドキュメント ビューの分割状態を設定できます。
+|
+* `IsDocumentViewSplit` 
+
+|====
+
+[[_Ref360720395]]
+== 現在の分割状態を取得
+
+=== 概要
+
+ドキュメント ビューの分割状態を取得できます。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|ドキュメント ビューの分割状態を取得
+|`IsDocumentViewSplit`
+|値を取得
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコードは、ドキュメント ビューの分割状態を取得する方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+bool split = this.xamRichTextEditor1.IsDocumentViewSplit;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim split As Boolean = Me.xamRichTextEditor1.IsDocumentViewSplit
+----
+
+[[_Ref362354833]]
+[[_Ref359594803]]
+== 現在の分割状態を設定
+
+=== 概要
+
+ドキュメント ビューの分割状態を設定できます。ドキュメントを分割した場合、 _xamRichTextEditor_   に高さの初期値が等しい 2 つのドキュメント ビューが作成されます。(高さはプログラムで制御できませんが、ユーザー側での調整は可能です。)ドキュメント ビューの分割を無効にすると、下側のビューが残ります。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|ドキュメント ビューの分割状態を設定
+|`IsDocumentViewSplit`
+|true または false に設定
+
+|====
+
+=== 例
+
+以下のコードは、ドキュメント ビューの分割状態を設定する方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.IsDocumentViewSplit = true;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.IsDocumentViewSplit = True
+----
+
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-view-split.html[ビュー分割の構成]
+|このトピックでは、ドキュメントの分割ビューを実行できるように _xamRichTextEditor_ を構成する方法を説明します。
+
+|====

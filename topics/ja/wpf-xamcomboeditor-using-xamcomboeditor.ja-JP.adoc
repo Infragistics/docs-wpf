@@ -1,0 +1,22 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-xamcomboeditor-using-xamcomboeditor",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{948CF6AF-30CC-4A9E-9320-CD3D6F8AC327}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1099781Z"
+}
+|metadata|
+////
+
+{XamComboEditorInputHeader}
+
+= xamComboEditor の使用
+
+このセクションには、xamComboEditor™ コントロールが提供する様々な特長や機能の使用を支援する、重要な概念的情報およびタスク ベースの情報が含まれています。
+
+* link:xamcomboeditor-accessing-data.html[データ アクセス]
+* link:xamcomboeditor-editing-data.html[データの編集]

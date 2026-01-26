@@ -1,0 +1,139 @@
+﻿////
+|metadata|
+{
+    "name": "developers-guide-touch-support",
+    "controlName": [],
+    "tags": ["Getting Started","How Do I","Layouts","Selection"],
+    "guid": "4e57bca7-c9c5-4593-82a6-014112eea671",
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-03-16T09:24:21.4965724Z"
+}
+|metadata|
+////
+
+= タッチ ジェスチャのサポート
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、XAML コントロールのタッチ ジェスチャのサポート、タッチ環境でのコントロールの使用およびコントロールを使用する間に受ける制限を説明します。
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref318990814, タッチ ジェスチャのサポート >>
+* <<_Ref318990841, サポートされる  ジェスチャ >>
+* <<_Ref318990848, サポートされない  ジェスチャ >>
+* <<_Ref318989590, 関連コンテンツ >>
+
+[[_Ref318990814]]
+== タッチ ジェスチャのサポート
+
+12.1 リリースから始まったことですが、{ProductName} コントロールはタッチ ジェスチャをサポートしています。コントロールをタッチ環境で簡単に操作できるように、タッチターゲットをより大きくする、タッチバッファーを非表示にするなど、タッチジェスチャをサポートするためにコントロールに多くの改善を行いました。また、コントロールを指でより簡単に操作できるようにするために、特別に作成した link:designers-guide-using-themes.html[Metro テーマ]を適用できます。
+
+[[_Ref318990841]]
+
+=== サポートされるジェスチャ
+
+[options="header", cols="a,a,a"]
+|====
+|ジェスチャ|説明|アクティビティ
+
+|タップ
+|画面を 1 度軽く触れます。
+|
+* ボタンをクリックします。 
+
+* 項目を選択します。 
+
+* リストのセルを選択します。 
+
+* グリッドを選択します。 
+
+|長押し
+|長い時間画面に触れて、インジケーターが表示したら放します。
+|
+* コンテキスト情報/コンテキスト メニューを表示します。 
+
+* その他の機能が適用されない場合には、タップ アクションとして機能します。 
+
+|ダブル タップ
+|短時間画面に 2 度触れます。
+|以下のいずれかとして機能します: 
+
+* マウス ダブル クリック 
+
+* 拡大 
+
+* 開く 
+
+* 編集 
+
+|パンニング
+|画面に触れて、接触を保ったまますぐに指を動かします。
+|
+* 領域をスクロールします (スクロール可能な領域の場合) 
+
+* 要素を移動します (要素上の場合) 
+
+* サイズ変更 (ウィンドウ、ダイアログまたはその他のサイズ変更な要素) 
+
+|
+|画面に触れて、短時間 (1 秒未満) 静止し、接触を保ったまま指を動かします。
+|
+* 要素を移動します (要素上の場合) 
+
+* サイズ変更 (ウィンドウ、ダイアログまたはその他のサイズ変更な要素) 
+
+* 領域をスクロールします (スクロール可能な領域の場合) 
+
+|フリック
+|画面に触れてすばやく動かします。
+|スクロール可能なコンテンツの内部スクロールに使用されます。
+
+|====
+
+[[_Ref318990848]]
+
+=== サポートされないジェスチャ
+
+[options="header", cols="a,a"]
+|====
+|ジェスチャ|説明
+
+|ホバー
+|タッチ環境の性質のために、要素上でホバーを実行することができません。このためコンテキスト情報 (ツールチップのような) は、アプリケーションのユーザー インターフェイスに基づいて、その他の技法を使用して表示する必要があります。
+
+|====
+
+[NOTE]
+====
+
+注: link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~istouchsupportenabled.html[IsTouchSupportEnabled] プロパティを false に設定して、「パン」および「フリック」ジェスチャを無効にできます。この `IsTouchSupportEnabled` プロパティは、以下のコントロールで使用できます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}.html[XamGrid]
+* link:{ApiPlatform}datapresenter{ApiVersion}.html[XamDataGrid]
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}.html[XamDataTree]
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}.html[XamComboEditor および XamMultiColumnComboEditor]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}.html[XamTileManager]
+* link:{ApiPlatform}controls.schedules{ApiVersion}.html[XamSchedule ビュー]
+
+====
+
+[[_Ref318989590]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:designers-guide-using-themes.html[Metro テーマ]
+|XAML コントロールの Metro テーマについて説明します。
+
+|====

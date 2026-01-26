@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtagcloud-using-xamtagcloud",
+    "controlName": ["xamTagCloud"],
+    "tags": [],
+    "guid": "{DD7295DB-B737-4A6C-9387-7E068A3F3D84}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5293631Z"
+}
+|metadata|
+////
+
+= xamTagCloud の使用
+
+このセクションは、xamTagCloud コントロールの重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+link:xamtagcloud-add-cloud-items-to-xamtagcloud.html[クラウド項目を xamTagCloud に追加]
+
+このトピックは、クラウド項目と共に xamTagCloud を生成する方法を説明します。
+
+link:xamtagcloud-add-navigation-uris-to-cloud-items2.html[ナビゲーション URI をクラウド項目に追加]
+
+このトピックは、クラウド項目にナビゲーション URL を追加する方法について説明します。
+
+link:xamtagcloud-add-spaces-between-cloud-items.html[クラウド項目の間にスペースを追加]
+
+このトピックは、各クラウド項目の間隔を指定する方法を示します。
+
+link:xamtagcloud-xamtagcloud-events.html[xamTagCloud イベントの処理]
+
+このトピックは、各 xamTagCloud イベントとイベントを処理する方法について説明します。
+
+link:xamtagcloud-setting-minimum-and-maximum-scale-values.html[最小スケール値と最大スケール値の設定]
+
+このトピックは、xamTagCloud のスケールを使用して weight プロパティの値に基づいてタグのサイズを決定する方法を説明します。
+
+link:xamtagcloud-smooth-scaling.html[スムーズ スケーリング]
+
+このトピックは、xamTagCloud コントロールの UseSmoothScaling プロパティを使用してクラウド項目のサイズを計算する方法を示します。
+
+link:xamtagcloud-working-with-scalebreaks-collection.html[ScaleBreaks コレクションでの作業]
+
+このトピックは、ScaleBreaks を使用して同じスケール区切りでウェイト値の範囲をグループ化する方法を示します。

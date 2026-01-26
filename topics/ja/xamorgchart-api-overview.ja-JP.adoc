@@ -1,0 +1,73 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-api-overview",
+    "controlName": ["xamOrgChart"],
+    "tags": ["API"],
+    "guid": "15ab0235-2f4e-4658-b0bc-d4b6df363727",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6512959Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションは、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart.html[xamOrgChart] コントロールに関連する各名前空間をリストします。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== 名前空間：
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps_namespace.html[Infragistics.Controls.Maps]
+
+=== キー クラス:
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart.html[xamOrgChart]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodelayout.html[OrgChartNodeLayout]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode.html[OrgChartNode]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodecontrol.html[OrgChartNodeControl]
+
+=== 重要な列挙体:
+
+* link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.maps.linecap.html[LineCap]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.nodearrangementstrategy.html[NodeArrangementStrategy]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.nodeflowdirection.html[NodeFlowDirection]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartselectiontype.html[OrgChartSelectionType]
+
+=== XamOrgChart のキー メンバー:
+
+*メソッド*
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~highlight.html[Highlight]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~search.html[Search]
+
+*プロパティ*
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~actualdepth.html[ActualDepth]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~globalnodelayouts.html[GlobalNodeLayouts]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~line.html[Line]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~linecapsize.html[LineCapSize]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~lineeffect.html[LineEffect]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~linestartcap.html[LineStartCap]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~lineendcap.html[LineEndCap]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~linethickness.html[LineThickness]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~maxdepth.html[MaxDepth]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodearrangementstrategy.html[NodeArrangementStrategy]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodeflowdirection.html[NodeFlowDirection]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~rootnode.html[RootNode]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~selectednodes.html[SelectedNodes]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~selectiontype.html[SelectionType]
+
+*イベント*
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodecontrolattachedevent_ev.html[NodeControlAttachedEvent]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodelayoutassigned_ev.html[NodeLayoutAssigned]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~selectednodescollectionchanged_ev.html[SelectedNodesCollectionChanged]
+
+*関連トピック*
+
+link:xamorgchart-understanding-xamorgchart.html[xamOrgChart の理解]
+
+link:xamorgchart-adding-xamorgchart-to-your-application.html[xamOrgChart をアプリケーションに追加]
+
+link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]

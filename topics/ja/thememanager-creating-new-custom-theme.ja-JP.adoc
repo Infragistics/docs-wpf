@@ -1,0 +1,516 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager-creating-new-custom-theme",
+    "tags": ["Getting Started","How Do I","Theming"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "48c1558e-96e0-4728-8500-671455122cee",  
+    "buildFlags": [],
+    "createdOn": "2014-09-03T11:40:51.9088024Z"
+}
+|metadata|
+////
+
+= カスタム テーマの新規作成 (ThemeManager)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _Infragistics ThemeManager_™ を使用して、新しいカスタム テーマを作成し適用する方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-applying-theme-to-control.html[FrameworkElement レベルのテーマの適用]
+|このトピックでは、_Infragistics ThemeManager_ を使用して FrameworkElement にテーマを適用する方法について説明します。
+
+| link:xamtilemanager-adding-xamtilemanager-to-your-application.html[xamTileManager をアプリケーションに追加]
+|このトピックでは、_xamTileManager_ コントロールをページに追加する方法について説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref398126228,カスタム テーマの作成および一般的な WPF コントロールへの適用 - 例>>
+* <<_Ref398126237,カスタム テーマの作成および {ProductName} コントロールへの適用 - 例>>
+* <<_Ref398126247,関連コンテンツ>>
+
+[[_Ref398126228]]
+== カスタム テーマの作成および一般的な WPF コントロールへの適用 - 例
+
+=== 概要
+
+以下は、_ThemeManager_ を使用してカスタム テーマを作成し、`TabItem` コントロールに適用する手順です。
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/Creating_New_Custom_Theme_1.png[]
+
+[[_Ref397962631]]
+
+=== 要件
+
+以下は、カスタム テーマを作成し、`TabItem` コントロールに適用するための一般的な要件です。
+
+* NuGet パッケージの参照:
+
+** Infragistics.WPF
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+* 名前空間:
+
+** Infragistics® 名前空間への参照: (xmlns:ig="http://schemas.infragistics.com/xaml")
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページがある Microsoft® Visual Studio® WPF プロジェクト
+* プロジェクトに追加した必要なアッセンブリ参照および名前空間 (<<_Ref397962631,要件>>を参照)
+* カスタム テーマのリソース ディレクトリ link:resources-customtabitemtheme.html[CustomTabItemTheme.xaml] をプロジェクトに追加します。
+
+=== 概要
+
+以下はプロセスの概要です。
+
+[start=1]
+. <<_Ref398052991, リソース ディレクトリへの TabItem のカスタム テーマの作成 >>
+[start=2]
+. <<_Ref398053010, ThemeBase クラスから派生するカスタム テーマ クラスの作成 >>
+[start=3]
+. <<_Ref398053018, ThemeBase ConfigureControlMappings メソッドの実装 >>
+[start=4]
+. <<_Ref398053025, ThemeManager が使用するコントロールの登録 >>
+[start=5]
+. <<_Ref398053031, カスタム テーマのコントロールへの適用 >>
+
+=== 手順
+
+以下の手順では、カスタム テーマを作成し、`TabItem` コントロールに適用する方法を示します。
+
+1. リソース ディレクトリへの TabItem のカスタム テーマの作成
+
+詳細は、 link:resources-customtabitemtheme.html[CustomTabItemTheme.xaml] を参照してください。
+
+[start=2]
+2. ThemeBase クラスから派生するカスタム テーマ クラスの作成
+
+link:{RootAssembly}{ApiVersion}~infragistics.themes.themebase_members.html[ThemeBase] クラスから派生する `CustomTabItemTheme` という名前のクラスを作成します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class CustomTabItemTheme : ThemeBase
+{
+    // クラスの実装
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class CustomTabItemTheme Inherits ThemeBase
+    ' クラスの実装
+End Class
+----
+
+[start=3]
+3. カスタム テーマ クラスの ThemeBase ConfigureControlMappings メソッド の実装
+
+カスタム テーマ クラスの link:{RootAssembly}{ApiVersion}~infragistics.themes.themebase~configurecontrolmappings.html[ConfigureControlMappings] メソッドを実装して、完全に記述されたタイプ名によって識別される特定のコントロールのためのテーマのリソース ディレクトリの場所を指定します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+protected override void ConfigureControlMappings()
+{
+   // テーマのリリース ディクショナリが配置されているアセンブリのフル ネームを取得します
+   string assemblyFullName = typeof (CustomTabItemTheme).Assembly.FullName;
+   Mappings.Add("System.Windows.Controls.TabItem",
+		BuildLocationString(assemblyFullName, @"\CustomTabItemTheme.xaml"));
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Protected Overrides Sub ConfigureControlMappings()
+   ' テーマのリリース ディクショナリが配置されているアセンブリのフル ネームを取得します
+    Dim assemblyFullName As String = GetType(CustomTabItemTheme).Assembly.FullName 
+    Mappings.Add("System.Windows.Controls.TabItem", _
+		BuildLocationString(assemblyFullName, "\CustomTabItemTheme.xaml"))
+End Sub
+----
+
+[start=4]
+4. ThemeManager が使用するコントロールの登録
+
+`InitializeComponent` メソッドの後に、ThemeManager へのコントロールを登録します
+
+*C# の場合:*
+
+[source,csharp]
+----
+ThemeManager.RegisterControl(typeof(TabItem));
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+ThemeManager.RegisterControl(GetType(TabItem))
+----
+
+注:
+
+[NOTE]
+====
+Infragistics コントロールを登録する必要はありません。事前に静的なコンストラクターで _ThemeManager_ に登録されないカスタム コントロールの場合、これは、一般的な Microsoft のコントロールおよびカスタムの WPF コントロール のみに必要です。
+====
+
+カスタム コントロールを作成した場合は、以下の方法でカスタム コントロールの静的なコンストラクターで _ThemeManager_ に登録できます。
+
+*C# の場合:*
+
+[source,csharp]
+----
+/// <summary>
+/// <YourCustomControl> クラスの静的なコンストラクター.
+/// </summary>
+static <YourCustomControl>()
+{
+    Infragistics.Themes.ThemeManager.RegisterControl(typeof(<YourCustomControl>));    
+}
+----
+
+[start=5]
+5. カスタム テーマのコントロールへの適用
+
+カスタム テーマをコントロールに適用します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <ig:ThemeManager.Theme>
+        <theming:CustomTabItemTheme />
+    </ig:ThemeManager.Theme>
+    <TabControl>
+        <TabItem Header="Tab 1" />
+        <TabItem Header="Tab 2" />
+        <TabItem Header="Tab 3" />
+    </TabControl>
+</Grid>
+----
+
+[[_Ref382317785]]
+
+=== 全コード
+
+以下は、この手順の完全なコードです。
+
+*ウィンドウの XAML コード*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <ig:ThemeManager.Theme>
+        <theming:CustomTabItemTheme />
+    </ig:ThemeManager.Theme>
+    <TabControl>
+        <TabItem Header="Tab 1" />
+        <TabItem Header="Tab 2" />
+        <TabItem Header="Tab 3" />
+    </TabControl>
+</Grid>
+----
+
+*ウィンドウのコード ビハインド*
+
+*C# の場合:*
+[source,csharp]
+----
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        ThemeManager.RegisterControl(typeof(TabItem));
+    }
+}
+----
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Public Partial Class MainWindow Inherits Window
+    Public Sub New()
+        InitializeComponent()
+        ThemeManager.RegisterControl(GetType(TabItem))
+    End Sub
+End Class
+----
+
+*CustomTabItemTheme.cs*
+
+*C# の場合:*
+[source,csharp]
+----
+public class CustomTabItemTheme : ThemeBase
+{
+    protected override void ConfigureControlMappings()
+    {
+        // テーマのリリース ディクショナリが配置されているアセンブリのフル ネームを取得します
+        string assemblyFullName = typeof (CustomTabItemTheme).Assembly.FullName;        
+        Mappings.Add("System.Windows.Controls.TabItem",
+            BuildLocationString(assemblyFullName, @"\CustomTabItemTheme.xaml"));
+    }
+}
+----
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Public Class CustomTabItemTheme Inherits ThemeBase
+    Protected Overrides Sub ConfigureControlMappings()
+        ' テーマのリリース ディクショナリが配置されているアセンブリのフル ネームを取得します
+        Dim assemblyFullName As String = GetType(CustomTabItemTheme).Assembly.FullName
+        Mappings.Add("System.Windows.Controls.TabItem", _
+            BuildLocationString(assemblyFullName, "\CustomTabItemTheme.xaml"))
+    End Sub
+End Class
+----
+
+[[_Ref398126237]]
+== カスタム テーマの作成および {ProductName} コントロールへの適用 - 例
+
+=== 概要
+
+以下は、ThemeManager を使用してカスタム テーマを作成し、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager_members.html[XamTileManager] コントロールに適用する手順です。
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/Creating_New_Custom_Theme_2.png[]
+
+[[_Ref2]]
+=== 要件
+
+以下は、カスタム テーマを作成し、 _xamTileManager_   コントロールに適用するための一般的な要件です。
+
+* NuGet パッケージの参照:
+
+** Infragistics.WPF.TileManager
+
+* 名前空間:
+
+** Infragistics® 名前空間への参照: (xmlns:ig="http://schemas.infragistics.com/xaml")
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページがある Microsoft® Visual Studio® WPF プロジェクト
+* プロジェクトに追加した必要なアッセンブリ参照および名前空間 (<<_Ref2,要件>>を参照)
+* 以下のテーマ リソースをプロジェクトに追加します。
+
+** link:resources-customtheme-xamtilemanager.html[CustomTheme.xamTileManager.xaml]
+
+=== 概要
+
+以下はプロセスの概要です。
+
+[start=1]
+. <<_Ref398127156, リソース ディレクトリへの xamTileManager のカスタム テーマの作成 >>
+
+[start=2]
+. <<_Ref398127182, ThemeBase クラスから派生するカスタム テーマ クラスの作成 >>
+
+[start=3]
+. <<_Ref398127191, カスタム テーマ クラスの ThemeBase ConfigureControlMappings メソッド の実装 >>
+
+[start=4]
+. <<_Ref398127199, カスタム テーマのコントロールへの適用 >>
+
+=== 手順
+
+以下の手順では、カスタム テーマを作成し、 _xamTileManager_   コントロールに適用する方法を示します。
+
+1. リソース ディレクトリへの xamTileManager のカスタム テーマの作成
+
+詳細は、 link:resources-customtheme-xamtilemanager.html[CustomTheme.xamTileManager.xaml] を参照してください。
+
+[start=2]
+2. ThemeBase クラスから派生するカスタム テーマ クラスの作成
+
+link:{RootAssembly}{ApiVersion}~infragistics.themes.themebase_members.html[ThemeBase] クラスから派生する `CustomTheme` という名前のクラスを作成します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class CustomTheme : ThemeBase
+{
+    // クラスの実装
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class CustomTheme Inherits ThemeBase
+    ' クラスの実装
+End Class
+----
+
+[start=3]
+3. カスタム テーマ クラスの ThemeBase ConfigureControlMappings メソッド の実装
+
+カスタム テーマ クラスの link:{RootAssembly}{ApiVersion}~infragistics.themes.themebase~configurecontrolmappings.html[ConfigureControlMappings] メソッドを実装して、マッピング キーによって識別される  _xamTileManager_   コントロールのためのテーマのリソース ディレクトリの場所を指定します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+protected override void ConfigureControlMappings()
+{
+    string assemblyFullName = typeof(CustomTheme).Assembly.FullName;
+    Mappings.Add(ControlMappingKeys.XamTileManager, 
+        BuildLocationString(assemblyFullName, @"\CustomTheme.xamTileManager.xaml"));
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Protected Overrides Sub ConfigureControlMappings()
+    Dim assemblyFullName As String = GetType(CustomTheme).Assembly.FullName
+    Mappings.Add(ControlMappingKeys.XamTileManager, _
+        BuildLocationString(assemblyFullName, "\CustomTheme.xamTileManager.xaml"))
+End Sub
+----
+
+[start=4]
+4. カスタム テーマのコントロールへの適用
+
+カスタム テーマをコントロールに適用します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>   
+    <ig:ThemeManager.Theme>
+        <theming:CustomTheme />
+    </ig:ThemeManager.Theme>
+    <ig:XamTileManager>
+        <ig:XamTile Header="TILE 1"
+                    Content="Content Area"
+                    IsMaximized="True" />
+…
+    </ig:XamTileManager>
+</Grid>
+----
+
+=== 全コード
+
+以下は、この手順の完全なコードです。
+
+*XAML コード*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>   
+    <ig:ThemeManager.Theme>
+        <theming:CustomTheme />
+    </ig:ThemeManager.Theme>
+    <ig:XamTileManager>
+        <ig:XamTile Header="TILE 1"
+                    Content="Content Area"
+                    IsMaximized="True" />
+        <ig:XamTile Header="TILE 2"
+                    Content="Content Area" />
+        <ig:XamTile Header="TILE 3"
+                    Content="Content Area" />
+        <ig:XamTile Header="TILE 4"
+                    Content="Content Area" />
+    </ig:XamTileManager>
+</Grid>
+----
+
+*CustomTheme.cs*
+
+*C# の場合:*
+[source,csharp]
+----
+public class CustomTheme : ThemeBase
+{
+    protected override void ConfigureControlMappings()
+    {
+        // テーマのリリース ディクショナリが配置されているアセンブリのフル ネームを取得します
+        string assemblyFullName = typeof(CustomTheme).Assembly.FullName;
+        Mappings.Add(ControlMappingKeys.XamTileManager,
+            BuildLocationString(assemblyFullName, @"\CustomTheme.xamTileManager.xaml"));
+    }
+}
+----
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Public Class CustomTheme Inherits ThemeBase
+    Protected Overrides Sub ConfigureControlMappings()
+        ' テーマのリリース ディクショナリが配置されているアセンブリのフル ネームを取得します
+        Dim assemblyFullName As String = GetType(CustomTheme).Assembly.FullName
+        Mappings.Add(ControlMappingKeys.XamTileManager, _
+            BuildLocationString(assemblyFullName, "\CustomTheme.xamTileManager.xaml"))
+    End Sub
+End Class
+----
+
+[[_Ref398126247]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-applying-theme-to-control.html[FrameworkElement レベルのテーマの適用]
+|このトピックでは、_Infragistics ThemeManager_ を使用して FrameworkElement にテーマを適用する方法について説明します。
+
+| link:thememanager-applying-theme-to-application.html[アプリケーション レベルのテーマの適用]
+|このトピックでは、_Infragistics ThemeManager_ を使用してアプリケーションにテーマを適用する方法について説明します。
+
+| link:thememanager-applying-theme-to-supported-ms-wpf-controls.html[サポートされる Microsoft の WPF コントロールへのテーマの適用]
+|このトピックでは、サポートされるマイクロソフトの WPF コントロールのテーマ設定を、_Infragistics ThemeManager_ を使用して有効または無効にする方法を説明します。
+
+| link:thememanager-extending-existing-control-theme.html[既存のコントロール テーマの拡張]
+|このトピックでは、_Infragistics ThemeManager_ を使用してコントロールの既存のテーマを拡張する方法を紹介します。
+
+|====

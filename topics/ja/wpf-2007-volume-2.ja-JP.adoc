@@ -1,0 +1,18 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-2007-volume-2",
+    "controlName": [],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{075ACAAD-168E-4DEC-B6E5-19B9965F46AC}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.6666865Z"
+}
+|metadata|
+////
+
+= 2007 Volume 2
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter.html[LabelPresenter] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] などの合成エレメントは、Microsoft® Expression® Blend のアセット ライブラリに表示しません。これらのエレメントのスタイルを編集するために、{ProductName} インストールの一部として提供されているデフォルト スタイルを使用します。
+* AssemblyResourceSetLoader クラスのパラメータのない OnRegisterResourceSets メソッドは修正されており、文字列パラメータを取得するようになりました。このメソッドは、指定されたグループ化名 (たとえば DataPresenter、Editors または Primitives) で、または null で呼び出されます。特定のグループ化名が指定される時には、そのグループ化のリソース セットのみを登録することが推奨されます。null が指定される時には、すべてのリソース セットを登録すべきです。以前のリリースの場合と同様、派生クラスは保護された静的な RegisterResourceSet メソッドを使用してカスタムの ResourceSet インスタンスを登録します。

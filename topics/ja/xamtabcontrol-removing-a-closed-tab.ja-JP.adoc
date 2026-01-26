@@ -1,0 +1,261 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtabcontrol-removing-a-closed-tab",
+    "controlName": ["xamTabControl"],
+    "tags": ["Known Issues"],
+    "guid": "{E19C859A-78FF-45DC-9872-1FF7AE956318}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.4642459Z"
+}
+|metadata|
+////
+
+= 閉じたタブを削除
+
+
+== 始める前に
+
+エンド ユーザーがタブを閉じると、xamTabControl™ は link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol.html[項目コレクション]からそのタブを削除せず、非表示にします。リソースの多いオブジェクトがタブに含まれている場合、そのタブを項目コレクションから削除することもできます。これによってガベージコレクターはリソースを再要求できます。個々のタブを使用してデータ モデルからのエンティティ インスタンス (Customer、Order など) を表しており、各タブを Form と同じ様に処理している場合、項目コレクションから閉じている各タブを削除すると、アプリケーションで最小のメモリ容量およびリソースフットプリントを確保できます。
+
+XAML でタブを定義する際に気を付ける必要があることは、名前プロパティです。XAML のタブに名前を付けないと、xamTabControl の項目コレクションからそのタブを削除できます。ただし、XAML のタブに名前を付けると、項目コレクションからタブを削除した後に、2 つの追加手順を実行する必要があります。Window の名前スコープでタブの名前の登録を解除し、Window のインスタンス、変数を含む link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.tabitemex.html[TabItemEx] オブジェクトへの全ての参照を null に設定する必要があります。
+
+== 達成すること
+
+TabItemEx オブジェクトの link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.tabitemex~closed_ev.html[Closed] イベントを処理し、xamTabControl の項目コレクションから TabItemEx オブジェクトを削除します。
+
+== 次の手順を実行します
+
+[start=1]
+. xamTabControl のインスタンスを Window に追加します。
+
+.. link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol.html[Name] プロパティを設定すると、コード ビハインドで参照できます。
+.. link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol~allowtabclosing.html[AllowTabClosing] プロパティを True に設定します。
+.. TabItemEx オブジェクトの Closed イベントにイベント ハンドラーを接続します。
+
+TabItemEx オブジェクトの Closed イベントはバブルアップするルート イベントであるため、TabItemEx クラスの個々のインスタンスの代わりに、xamTabControl のイベント ハンドラーを接続できます。
+
+*XAML の場合:*
+
+----
+<igWindows:XamTabControl 
+    Name="xamTabControl1" 
+    AllowTabClosing="True" 
+    igWindows:TabItemEx.Closed="OnTabClosed">
+    <!--TODO: TabItemEx オブジェクトをここに追加します-->
+</igWindows:XamTabControl>
+----
+
+[start=2]
+. TabItemEx オブジェクトを xamTabControl に追加します。
+
+.. link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.tabitemex.html[Name] プロパティを「tab1」に設定します。
+.. link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.tabitemex.html[Header] プロパティを「Tab 1」に設定します。
+
+*XAML の場合:*
+
+----
+<igWindows:TabItemEx Header="Tab 1" Name="tab1">
+    <!--TODO: ここでパネルを追加します-->
+</igWindows:TabItemEx>
+----
+
+[start=3]
+. 2番目の TabItemEx オブジェクトを xamTabControl に追加し、その Header プロパティを「Tab 2」に設定します。
+
+*XAML の場合:*
+
+----
+<igWindows:TabItemEx Header="Tab 2">
+    <!--TODO: ここでパネルを追加します-->
+</igWindows:TabItemEx>
+----
+
+[start=4]
+. コード ビハインドを開き、using/Imports ディレクティブを配置すると、メンバーの完全修飾名を常に入力する必要がなくなります。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Controls
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Controls;
+----
+
+[start=5]
+. TabItemEx オブジェクトの Closed イベントにイベント ハンドラーを追加します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub OnTabClosed(sender As Object, e As RoutedEventArgs) 
+    'TODO: ここにタブを削除するためのコードを追加します
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void OnTabClosed(object sender, RoutedEventArgs e)
+{
+    //TODO: ここにタブを削除するためのコードを追加します
+}
+----
+
+[start=6]
+. TabItemEx オブジェクトを xamTabControl の項目コレクションから削除します。
+
+[NOTE]
+====
+*注:* XAML で TabItemEx オブジェクトに名前を付けなかった場合、手順 7 以降を実行する必要はありません。
+====
+
+*Visual Basic の場合:*
+
+----
+Me.xamTabControl1.Items.Remove(e.Source)
+----
+
+*C# の場合:*
+
+----
+this.xamTabControl1.Items.Remove(e.Source);
+----
+
+[start=7]
+. RoutedEventArg オブジェクトのソース プロパティを TabItemEx オブジェクトにキャストします。
+
+XAML の要素に名前を付けた場合、いくつかの事象が発生し、それらによってコード ビハインドの要素を参照することができます。この「マジック」によって、ランタイムにビジュアル ツリーまたは論理ツリーからそれらを削除しても、オブジェクトは有効であり続けます。
+
+*Visual Basic の場合:*
+
+----
+Dim tab As TabItemEx = DirectCast(e.OriginalSource, TabItemEx)
+----
+
+*C# の場合:*
+
+----
+TabItemEx tab = (TabItemEx)e.OriginalSource;
+----
+
+[start=8]
+. TabItemEx オブジェクトの名前プロパティが空の文字列、または null ではないことを確認してください。
+
+*Visual Basic の場合:*
+
+----
+If Not String.IsNullOrEmpty(tab.Name) Then 
+    'TODO: タブ名の登録を解除します
+    'TODO: TabItemEx オブジェクトのインスタンスの変数を null に設定します
+End If
+----
+
+*C# の場合:*
+
+----
+if(!string.IsNullOrEmpty(tab.Name))
+{
+    //TODO: タブ名の登録を解除します
+    //TODO: TabItemEx オブジェクトのインスタンスの変数を null に設定します
+}
+----
+
+[start=9]
+. タブ名の登録を Window の名前スコープから解除します。
+
+このチュートリアルを出来る限りシンプルにするため、コード例は、名前スコープの名前の存在を確認するために try/catch ブロックまたは条件付きステートメントを使用しません。
+
+*Visual Basic の場合:*
+
+----
+Me.UnregisterName(tab.Name)
+----
+
+*C# の場合:*
+
+----
+this.UnregisterName(tab.Name);
+----
+
+[start=10]
+. TabItemEx オブジェクトの名前プロパティに基づく切り替えステートメントの作成。
+
+*Visual Basic の場合:*
+
+----
+Select Case tab.Name 
+    TODO: ここに Case ステートメントを追加します
+End Select
+----
+
+*C# の場合:*
+
+----
+switch(tab.Name)
+{
+    //TODO: ここに Case ステートメントを追加します
+}
+----
+
+[start=11]
+. XAML で宣言した任意の名前の Case ステートメントを追加します。
+
+*Visual Basic の場合:*
+
+----
+Case "tab1" 
+    'TODO: タブ名に対応するインスタンスの変数を Nothing に設定します
+    Exit Select
+----
+
+*C# の場合:*
+
+----
+case "tab1":
+    //TODO: タブ名に対応するインスタンスの変数を null に設定します
+    break;
+----
+
+[start=12]
+. 各 Case ステートメントで、タブ名に対応するインスタンスの変数を null に設定します。
+
+そのタブを参照する Window 内に他のインスタンスの変数がある場合、それらも null に設定する必要があります。
+
+*Visual Basic の場合:*
+
+----
+tab1 = Nothing
+----
+
+*C# の場合:*
+
+----
+tab1 = null;
+----
+
+[start=13]
+. プロジェクトを実行します。
+
+タブのヘッダーを中クリックすることによって、タブを閉じることができます。エンド ユーザーの視点からは、タブが閉じる動作は変わりません。ただし、リソースが多いオブジェクトがタブに含まれる場合、タブが閉じる際にガベージ コレクションが行われるため、エンド ユーザー エクスペリエンスがより良くなります。
+
+== 関連トピック
+
+link:xamtabcontrol-about-styling-xamtabcontrol.html[xamTabControl のスタイリングについて]
+
+link:xamtabcontrol-add-a-tab-to-xamtabcontrol.html[タブを xamTabControl に追加]
+
+link:xamtabcontrol-add-content-to-a-tab.html[コンテンツをタブに追加]
+
+link:xamtabcontrol-close-a-tab.html[タブを閉じる]
+
+link:xamtabcontrol-enable-multiple-tab-rows.html[複数のタブ行を有効にする]
+
+link:xamtabcontrol-select-a-tab.html[タブを選択]
+
+link:xamtabcontrol-tabs-dragging-and-reordering.html[タブのドラッグおよび順序変更 (xamTabControl)]

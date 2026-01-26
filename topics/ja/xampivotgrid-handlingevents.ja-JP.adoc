@@ -1,0 +1,291 @@
+﻿////
+|metadata|
+{
+    "name": "xampivotgrid-handlingevents",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Editing","Events","Grids","How Do I"],
+    "guid": "d5fde060-f863-48b3-87a9-68bb1d1ce3cf",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.0972828Z"
+}
+|metadata|
+////
+
+= イベントの処理
+
+このセクションは、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] コントロールのイベントの処理に関するタスク ベースの手順についての役立つ情報を提供します。
+
+このトピックは以下のように構成されています。
+
+* <<Introduction,概要>>
+* <<TypesofEvents,イベントのタイプ>>
+* <<EventsforxamPivotGrid,xamPivotGrid に対するイベント>>
+* <<EventsforIOlapViewModel,IOlapViewModel に対するイベント>>
+* <<RelatedTopics,関連トピック>>
+
+** link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+** link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データを xamPivotGrid にバインド]
+** link:xampivotgrid-us-selection-and-cell-interaction.html[選択およびセルの操作]
+
+[[Introduction]]
+
+== 概要
+
+まず始めに、xamPivotGrid コントロールとそれがサポートするデータ ソースを理解するために link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]および link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データのバインディング]トピックスを読んでください。
+
+[[TypesofEvents]]
+
+== イベントのタイプ
+
+xamPivotGrid コントロールでは、イベントはそれを発生させるオブジェクトに応じて 2 つのグループにカテゴリ分けされます。
+
+表 1 - xamPivotGrid のイベント グループ
+
+[options="header", cols="a,a"]
+|====
+|コンポーネント|説明
+
+|xamPivotGrid
+|xamPivotGrid コントロールのユーザー インターフェイスに関連するイベントを公開します。
+
+|IOlapViewModel
+|xamPivotGrid コントロールのデータ ソースに関連するイベントを公開します。さまざまなデータ ソースは直接 IOlapViewModel インターフェイスを継承します。
+
+|====
+
+[NOTE]
+====
+*注:* 次のコード例はプロジェクトを xamPivotGrid コントロールと Infragistics OLAP 用に設定していることを前提としています。
+====
+
+[[EventsforxamPivotGrid]]
+
+== xamPivotGrid に対するイベント
+
+xamPivotGrid コントロールは多くのイベントをもち、イベントの完全なリストは xamPivotGrid の link:xampivotgrid-api-overview.html[APIの概要]のイベント セクションにあります。以下は、よく使われるイベントを説明しています。
+
+表 2 - xamPivotGrid コントロールによって公開されるイベント
+
+[options="header", cols="a,a"]
+|====
+|イベント|説明
+
+|AxisExpansionChanging 
+
+AxisExpansionChanged
+|これらのイベントはユーザーがヘッダー セルの Expansion インジケーターをクリックし、行が拡張または折り畳まれる時に発生します。
+
+|ActiveCellChanging 
+
+ActiveCellChanged
+|これらのイベントはアクティブ セルがコントロールのユーザーインターフェイスまたはコードを介して変更される時に発生します。
+
+|CellControlAttached
+|このイベントは xamPivotGrid コントロールによってセルの UI コントロールがロードされるたびに発生します。このイベントは条件付き書式を実装する時に特に有効です。イベント引数は PivotCell として型付けされロードされたセルへの参照を含みます。これはセルが属す列や行が容易にわかるということです。セルの視覚的なコンポーネントへの参照を取得し、セルの値を取得した時にスタイルを適用することもできます。
+
+|CellClicked 
+
+CellDoubleClicked
+|これらのイベントは、セルをクリックまたはダブルクリックすると起動します。 
+
+|ColumnResizing 
+
+ColumnResized
+|これらのイベントはユーザーが列の幅を変えるために列セパレーターをドラッグし、ユーザーがサイズ変更を開始 (ColumnResizin) または完了 (ColumnResized) した時に発生します。
+
+|ColumnSorting 
+
+ColumnSorted
+|これらのイベントはユーザーが列の並べ替えインジケーターをクリックし、列の並べ替えが開始 (ColumnSorting) または完了 (ColumnSorted) した時に発生します。
+
+|LayoutLoaded 
+|このイベントは結果が変更された後にレイアウトの更新が完了した場合に発生します。グリッドのどのような状態であっても、このイベントが起動されると、それが画面に表示されます。
+
+|SelectedCellsCollectionChanged 
+
+SelectedColumnsCollectionChanged 
+
+SelectedRowsCollectionChanged
+|これらのイベントはユーザーがセル、列または行のコレクションを選択した場合に発生します。これらのイベントの詳細は、選択とセルのインタラクションのトピックを参照してください。
+
+|PivotItemDragStart$$*$$
+|項目のドラッグ操作が開始されるときに発生します。
+
+|PivotItemDragEnter$$*$$
+|ドラッグされた項目が有効なドロップ ターゲットに入ったときに発生します。
+
+|PivotItemDragLeave$$*$$
+|ドラッグされた項目が有効なドロップ ターゲットから離れたときに発生します。
+
+|PivotItemDrop$$*$$
+|ドラッグされた項目が有効なドロップ ターゲットにドロップされたときに発生します。
+
+|PivotItemDragEnd$$*$$
+|ドラッグ操作が終了したときに発生します。
+
+|====
+
+$$*$$このイベントは、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector_members.html[XamPivotDataSelector] クラスでも使用できます。
+
+== xamPivotGrid イベントの使用
+
+以下のコード例は、CellControlAttached イベントの処理によってセルがロードされる時に列番号 2 (null でない場合) のセルにスタイルを適用します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids       
+...
+AddHandler Me.PivotGrid.DataSource.CellControlAttached, AddressOf OnPivotGridCellControlAttached
+...
+Private Sub OnPivotGridCellControlAttached( ByVal sender As Object, ByVal e As PivotCellControlAttachedEventArgs)
+        If Me.PivotGrid.DataColumns.IndexOf(e.Cell.DataColumn) = 1 Then
+            e.Cell.Style = TryCast(Me.Resources("FormattedCellStyle"), System.Windows.Style)
+        End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.PivotGrid.CellControlAttached += OnPivotGridCellControlAttached;
+...
+void OnPivotGridCellControlAttached(object sender, PivotCellControlAttachedEventArgs e)
+{
+    if (this.PivotGrid.DataColumns.IndexOf(e.Cell.DataColumn) == 1)
+    {
+        e.Cell.Style = this.Resources["FormattedCellStyle"] as System.Windows.Style;
+    }
+}
+----
+
+これらのイベントが発生する時にカスタム ロジックを実装することに加えて、これらのイベントを使用して機能の一部を無効にすることもできます。以下のコード例は、ヘッダーの拡張を無効にし、2 番目の列の列のリサイズをキャンセルし、列が並べ替えられた時にメッセージを表示します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids       
+...
+AddHandler Me.PivotGrid.AxisExpansionChanging, AddressOf OnPivotGridAxisExpansionChanging
+AddHandler Me.PivotGrid.ColumnResizing, AddressOf OnPivotGridColumnResizing
+AddHandler Me.PpivotGrid.ColumnSorted, AddressOf OnPivotGridColumnSorted
+...
+Private Sub AxisExpansionChanging(ByVal sender As Object, ByVal e As CancellableAxisEventArgs)
+        e.Cancel = True
+End Sub
+Private Sub ColumnResizing(ByVal sender As Object, ByVal e As CancellableColumnResizingEventArgs)
+        If e.Columns.Contains(Me.pivotGrid.DataColumns(1)) Then
+            e.Cancel = True
+        End If
+End Sub
+Private Sub ColumnSorted(ByVal sender As Object, ByVal e As PivotSortedColumnEventArgs)
+        MessageBox.Show(e.Column.Key + " was sorted.")
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.PivotGrid.AxisExpansionChanging += OnPivotGridAxisExpansionChanging;
+this.PivotGrid.ColumnResizing += OnPivotGridColumnResizing;
+this.PivotGrid.ColumnSorted += OnPivotGridColumnSorted;
+...
+void OnPivotGridColumnResizing(object sender, PivotCancellableColumnResizingEventArgs e)
+{
+    if (e.Columns.Contains(this.pivotGrid.DataColumns[1]))
+    {
+        e.Cancel = true;
+    }
+}
+void OnPivotGridColumnSorted(object sender, PivotSortedColumnEventArgs e)
+{
+    System.Windows.MessageBox.Show(e.Column.Key + " was sorted.");
+}
+void OnPivotGridAxisExpansionChanging(object sender, PivotCancellableAxisEventArgs e)
+{
+    e.Cancel = true;
+}
+----
+
+[[EventsforIOlapViewModel]]
+
+== IOlapViewModel に対するイベント
+
+xamPivotGrid コントロールの DataSource は IOlapViewModel インターフェイスのわずかな、いずれもデータのローディングに関係するイベントだけを公開します。完全なリストについては、API リファレンス ガイドの *Infragistics.WPF.Olap* NuGet パッケージ セクションの IOlapViewModel インターフェイスを参照してください。
+
+表 3 - IOlapViewModel インターフェイスによって公開されるイベント
+
+[options="header", cols="a,a"]
+|====
+|イベント|説明
+
+|ResultChanged
+|スライスが何らかの方法で変更される度にこのイベントが発生します。このイベントは、行に新しい階層を追加するか、メジャーを変更することによって起動する場合もあります。イベントが発生すると、DataSource.Result プロパティが完全にロードされ、ユーザーは計算されたスライス データにアクセスできます。このイベントは、変更後ただし UI が更新される前に発生することに注意してください。
+
+|LoadDimensionsComplete
+|このイベントはディメンションを読み込みするための非同期呼び出しが完了したときに発生します。
+
+|LoadMeasuresComplete
+|このイベントはメジャーを読み込みするための非同期呼び出しが完了したときに発生します。
+
+|LoadMembersComplete
+|このイベントはメンバーを読み込みするための非同期呼び出しが完了したときに発生します。
+
+|LoadCubesComplete
+|このイベントはキューブを読み込みするための非同期呼び出しが完了したときに発生します。
+
+|LoadSchemaCompleted
+|このイベントはスキーマを読み込みするための非同期呼び出しが完了したときに発生します。
+
+|====
+
+== IOlapViewModel イベントの使用
+
+ロード イベントは、DataSource がディメンション、メジャー、キューブまたはメンバー、データ ロードのプログレス インジケーターの初期化、ならびに他のアプリケーション中の異なるキューブに基づいたスタイリングを完了した時を知りたい場合に役立ちます。
+
+以下のコードは、キューブがロードされ、結果が変更されるたびにメッセージを表示する時にスタイルを適用する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids       
+...
+AddHandler Me.pivotGrid.DataSource.LoadCubesCompleted, AddressOf OnDataSourceLoadCubesCompleted
+AddHandler Me.pivotGrid.DataSource.ResultChanged, AddressOf OnDataSourceResultChanged
+...
+Private Sub OnDataSourceLoadCubesCompleted(ByVal sender As Object, ByVal e As LoadCubesCompletedEventArgs)
+     Me.pivotGrid.Style = Me.Resources("PivotGridStyle")
+End Sub
+Private Sub OnDataSourceResultChanged(ByVal sender As Object, ByVal e As AsyncCompletedEventArgs)
+    System.Windows.MessageBox.Show("The result is changed!")
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.PivotGrid.DataSource.LoadCubesCompleted += OnDataSourceLoadCubesCompleted;
+this.PivotGrid.DataSource.ResultChanged += OnDataSourceResultChanged;
+...
+void OnDataSourceResultChanged(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+{
+    System.Windows.MessageBox.Show("The result is changed!");
+}
+void OnDataSourceLoadCubesCompleted(object sender, LoadCubesCompletedEventArgs e)
+{
+    this.PivotGrid.Style = this.Resources["PivotGridStyle"] as System.Windows.Style;
+}
+----
+
+[[RelatedTopics]]
+== 関連トピック
+
+* link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+* link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データを xamPivotGrid にバインド]
+* link:xampivotgrid-us-selection-and-cell-interaction.html[選択およびセルの操作]

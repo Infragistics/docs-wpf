@@ -1,0 +1,90 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-setting-fixed-columns-programmatically",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Layouts"],
+    "guid": "{CA9484CF-F85B-42BA-BEBD-278822876B02}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7871623Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= プログラムによる固定列の設定
+
+エンドユーザーは、列をドロップ位置にドラッグする、または列のヘッダーにあるインジケーターを使用することによって、xamGrid で列を固定または固定を解除することができます (設定に基づいて異なります。詳細は link:xamgrid-fixed-columns.html[固定列を有効にする]トピックを参照してください)。ただし、固定された列がエンド ユーザーに表示されるように設定することもできます。
+
+固定列には 2 つのコレクションがあります。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumnsettings~fixedcolumnsleft.html[FixedColumnsLeft] - このコレクションは xamGrid の左側にある固定列を対象としています。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumnsettings~fixedcolumnsright.html[FixedColumnsRight] - このコレクションは xamGrid の右側にある固定列を対象としています。
+
+列を固定するには、必要な列を固定列コレクションに追加するだけです。固定列コレクションから列を削除することによって、列の固定を解除することもできます。
+
+次のコードは、これを実現する方法を示しています。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+'列を左側の固定列コレクションに追加します
+Dim DisplayAsFixedColumn As Column = Me.MyGrid.Columns.DataColumns("ProductName")      
+Me.MyGrid.FixedColumnSettings.FixedColumnsLeft.Add(DisplayAsFixedColumn)
+'列を左側の固定列コレクションから削除します
+Me.MyGrid.FixedColumnSettings.FixedColumnsLeft.Remove(DisplayAsFixedColumn)
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+//列を左側の固定列コレクションに追加します
+Column DisplayAsFixedColumn = this.MyGrid.Columns.DataColumns["ProductName"];       
+this.MyGrid.FixedColumnSettings.FixedColumnsLeft.Add(DisplayAsFixedColumn);
+//列を左側の固定列コレクションから削除します
+this.MyGrid.FixedColumnSettings.FixedColumnsLeft.Remove(DisplayAsFixedColumn);
+----
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~isfixable.html[IsFixable] プロパティを使用して固定列を設定できます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column.html[Column] オブジェクトの IsFixable プロパティは、列が固定されるかどうかを決定します。
+
+以下のコードは、IsFixable プロパティを使用して列を固定する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:TextColumn Key="ProductID" IsFixable="True"/>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Dim ColumnNotFixable As Column = Me.MyGrid.Columns.DataColumns("ProductID")
+ColumnNotFixable.IsFixable = True
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+Column ColumnNotFixable = this.MyGrid.Columns.DataColumns["ProductID"];
+ColumnNotFixable.IsFixable = true;
+----
+
+== 関連トピック
+
+link:xamgrid-fixed-columns.html[固定列]
+
+link:xamgrid-setting-the-drop-area-location.html[ドロップ領域の場所を設定]
+
+link:xamgrid-fixed-column-events.html[固定列イベント]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

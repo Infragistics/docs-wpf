@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-styling-tips",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Presenter","Styling"],
+    "guid": "{9FDE68A2-6A8D-4DE6-804B-1ED72FB6C944}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1109753Z"
+}
+|metadata|
+////
+
+= セルの前景の変更
+
+CellValuePresenter と DataRecordCellArea はどちらも、前景関連のプロパティなど、スタイリング時に競合を引き起こす可能性のあるいくつかのプロパティを共有しています。CellValuePresenter は DataRecordCellArea 内に存在するため、セルに加えられたすべての変更が優先されます。
+
+CellValuePresenter を介して前景を直接変更する例を次に示します。 
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type igDP:CellValuePresenter}">                    
+	<Setter Property="Foreground" Value="Red"/>
+</Style>
+----
+
+DataRecordCellArea のスタイルを設定する必要がある場合は、前景をネストされたスタイルとして記述するか、ForegroundStyle を null に設定して CellValuePresenter をオーバーライドする必要があります。
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type igDP:DataRecordCellArea}">
+
+	<Setter Property="Foreground" Value="Red"/>
+	<Setter Property="ForegroundStyle" Value="{x:Null}" />
+
+	<!--OR-->
+
+	<Setter Property="ForegroundStyle">
+		<Setter.Value>
+			<Style>
+				<Setter Property="TextBlock.Foreground" Value="Red" />
+			</Style>
+		</Setter.Value>
+	</Setter>
+</Style>-
+----
+
+== 関連トピック
+
+link:xamdata-terms-presenters.html[Presenters]

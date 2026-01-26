@@ -1,0 +1,19 @@
+﻿////
+
+|metadata|
+{
+    "name": "general-concepts-how-to",
+    "controlName": [],
+    "tags": ["How Do I"],
+    "guid": "c320ca17-d549-42ec-8423-f22539e5cbe9",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-03-28T15:26:18.1607445Z"
+}
+|metadata|
+////
+
+= 操作方法
+
+このセクションには、さまざまな情報カテゴリの「ハウツー」トピックが含まれます。以下はトピックのリストです。
+
+* link:creating-a-graphical-image-from-a-visual-in-wpf.html[WPF でグラフィックス画像をビジュアルから作成]

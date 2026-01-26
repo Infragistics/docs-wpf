@@ -1,0 +1,150 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-list-of-attributes",
+    "tags": ["Getting Started"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "554ef3d0-8ab2-4189-ac78-d4a9038fc8e3",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:34:39.9816794Z"
+}
+|metadata|
+////
+
+= サポートされる属性のリスト (xamPropertyGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、オブジェクトからプロパティのリストを取得する場合に、コントロールで使用される属性の一覧を示します。
+
+=== 前提条件
+
+本トピックの理解を深めるために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref394327955, サポートされる属性のリスト >>
+* <<_Ref394327963, 関連コンテンツ >>
+
+[[_Ref394327955]]
+== サポートされる属性のリスト
+
+=== 属性の概要
+
+link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[ _xamPropertyGrid_  ] コントロールは、リフレクションまたは TypeDescriptor (現在の PropertyGenerator に基づく) を使用して、提供されたオブジェクトを解析し、プロパティのリストを作成します。コントロールはプロパティを取得する場合、プロパティの属性を確認し、特別な処理が必要かどうかを決定します。
+
+=== 属性の概要表
+
+以下の表では、サポートされる属性と、属性がコントロールのプロパティの表示および編集に与える影響を簡単に説明します。
+
+[options="header", cols="a,a,a"]
+|====
+|タスク|詳細|属性
+
+|[[_Hlk356484826]] 
+
+プロパティのカテゴリの指定
+|カテゴリは、プロパティのリストでプロパティをグループ化するために使用します。
+|`System.ComponentModel.*CategoryAttribute*`
+
+|プロパティのカスタムの TypeConverter の指定
+|コントロールは、プロパティの TypeConverterAttribute を介して指定された カスタムの TypeConverter をサポートします。TypeConverter は、エディターでプロパティの値の表現を変換する場合に使用できます。
+|`System.ComponentModel.*TypeConverterAttribute*`
+
+|プロパティの表示名の指定
+|表示名は、プロパティのリストのプロパティ名列で使用されます。
+|`System.ComponentModel.*DisplayNameAttribute*`
+
+|プロパティの説明の指定
+|プロパティの説明は、プロパティの型とともに説明領域に表示されます。
+|`System.ComponentModel.*DescriptionAttribute*`
+
+|既定のプロパティの指定
+|既定のプロパティとは、最初にコントロールが描画された後に指定されたと見なされるプロパティです。
+|`System.ComponentModel.*DefaultPropertyAttribute*`
+
+|既定値の指定
+|既定値は、プロパティ値をリセットする場合に使用されます。
+|`System.ComponentModel.*DefaultValueAttribute*`
+
+|読み取り専用プロパティの指定
+|読み取り専用の属性が設定されたプロパティは、編集することはできません。
+|`System.ComponentModel.*ReadOnlyAttribute*`
+
+|コントロールが複数のオブジェクトにバインドされる場合に結合しないプロパティの指定
+|コントロールが複数のオブジェクトにバインドされる場合にプロパティの結合を無効にするには、この属性をプロパティに追加し、false に設定します。
+|`System.ComponentModel.*MergablePropertyAttribute*`
+
+|プロパティ リストのプロパティの並べ替え順序の指定
+|プロパティの並べ替え順序を指定する宣言的な方法を提供します。プロパティにこの属性を追加し、並べ替え順序を int として指定します。
+|`Infragistics.Controls.Editors.*PropertySortOrderAttribute*`
+
+|プロパティ リストのカテゴリの並べ替え順序の指定
+|カテゴリの並べ替え順序を指定するための宣言的な方法を提供します。クラスにこの属性を追加し、カテゴリ名を文字列、並べ替え順序を int として指定します。
+|`Infragistics.Controls.Editors.*CategorySortOrderAttribute*`
+
+|====
+
+=== 属性の使用
+
+以下のコード スニペットは、指定したプロパティをプロパティ リストから除外するために `MergableProperty` 属性の使用方法を紹介します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+[MergableProperty(false)]
+public string MyProperty { get; set; }
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+<MergableProperty(False)> _
+Public Property MyProperty() As String
+  Get
+    Return i_MyProperty
+  End Get
+  Set
+    i_MyProperty = Value
+  End Set
+End Property
+Private i_MyProperty As String
+----
+
+[[_Ref394327963]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-user-interactions.html[ユーザー インタラクションと操作性 (xamPropertyGrid)]
+|このトピックでは、ユーザーが実行できる操作を紹介します。
+
+| link:xampropertygrid-conf-properties-sorting.html[プロパティ リストの並べ替え (xamPropertyGrid)]
+|このトピックでは、プロパティ リストのカスタム並べ替えのロジックを設定する方法を紹介します。
+
+|====

@@ -1,0 +1,54 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-manager-logical-currentuser",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "2de331b4-bcb4-47b7-8429-1b2c3356bd2f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7463277Z"
+}
+|metadata|
+////
+
+= CurrentUser の設定とコントロールの動作に対する影響
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] は、アプリケーションのカレント ユーザーに関係する 2 つのプロパティ link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuser.html[CurrentUser] と link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuserid.html[CurrentUserId] を公開します。いずれかのプロパティが設定されると、もう一方のプロパティは適切な値に自動的に同期されます。したがって、CurrentUser プロパティを Resource に設定すると、CurrentUserId はその link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[Resource] の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~id.html[Id] に設定されます。同様に、CurrentUserId を設定すると、CurrentUser は、Id としてその値を持つデータ マネージャーの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~resourceitems.html[ResourceItems] からの Resource に設定されます。通常の状況では、開発者は CurrentUserId プロパティを設定する必要があります。このように、ResourceItems コレクションが移植されている時には必ず、CurrentUser を自動的に更新できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamScheduleDataManager
+    DataConnector="{Binding ElementName=scheduleDataConnector}"
+    CurrentUserId="own1">
+----
+
+CurrentUser は、アラーム、稼働時間情報、表示されるカレンダーをはじめとする xamSchedule 製品のいくつかの領域に影響を与えます。
+
+== アラーム
+
+xamScheduleDataManager は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningresourceid.html[OwningResourceId] がデータ マネージャーの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuserid.html[CurrentUserId] と一致する場合にアクティビティを追跡してアラーム起動するだけです。このように、ユーザーは他のユーザーのカレンダーを表示できますが、受け取ることができるのはユーザー自身のアクティビティのアラームに限定されます。
+
+アクティビティ エンティティ オブジェクト (たとえば link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment]) は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[DataConnector] によって提供されているため、これらのオブジェクトの状態は xamScheduleDataManager の状態に影響されないことに注意してください。したがって、アクティビティの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~reminderenabled.html[ReminderEnabled] は、基本データの状態に影響します。これはアラームがアクティブかどうか、そして xamScheduleDataManager によって表示されるかどうかを示すだけです。ReminderEnabled の状態は CurrentUser に依存しないため、ActivityPresenter (さまざまなアクティビティ エンティティ クラスを表すために使用される要素の基本クラスである) は CurrentUserだけでなく ReminderEnabled の状態を考慮する ReminderVisibility プロパティを公開します。
+
+== 表示されるカレンダー
+
+スケジュール ビューによって表示されるカレンダーは解決プロセスに基づいています。このプロセスは、ビュー コントロールの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~calendargroupsoverride.html[CalendarGroupsOverride] を最初に考慮します。そのコレクションにひとつ以上の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendargroup.html[CalendarGroup] インスタンスがある場合、ビューによってどのカレンダーが表示されるのかを決定します。そのコレクションが空の場合、関連付けられた DataManager の CalendarGroups が考慮されます。再度、そのコレクションにひとつ以上の CalendarGroup インスタンスがある場合、ビューによってどのカレンダーが表示されるのかを決定します。ただし、これらのコレクションはいずれもデフォルトで空になっています。解決プロセスの最後の部分は CurrentUser に関係します。CalendarGroup インスタンスを一切提供していない場合には、ビュー コントロールは CurrentUser の PrimaryCalendar を表示します。
+
+== 稼働時間/稼働日
+
+ビュー コントロールによって表示される情報は、稼働時間情報の影響を受ける可能性があります。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduleview.html[xamScheduleView] または link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdayview.html[xamDayView] の場合、WeekDisplayMode が WorkWeek に設定されていると、稼働日として解決される日のみが link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~visibledates.html[VisibleDates] に含まれます。同様に、その ShowWorkingHoursOnly が True に設定されると、稼働時間と交差するタイムスロットのみが表示に含まれます。稼働時間情報のソースは、WorkingHoursSource プロパティに基づいており、デフォルトで CurrentUser に設定されています。xamDayView の場合、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduletimecontrolbase~workinghourssource.html[ShowWorkingHoursOnly] が True に設定されると、表示されるタイムスロットは稼働時間の結合に基づいています。したがって、稼働時間情報が日の間で異なる複数日を表示する時、非稼働時間のタイムスロットが一部表示されることに注意してください。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview.html[xamMonthView] は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview~showworkingdaysofweekonly.html[ShowingWorkingDaysOfWeekOnly] プロパティを公開します。これは True に設定されると、稼働時間がある曜日しか含みません。稼働日情報のソースは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview~workingdayssource.html[WorkingDaysSource] プロパティに基づいており、デフォルトで CurrentUser に設定されています。
+
+== 週の最初の曜日
+
+最初の曜日を解決する時、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[CurrentUser] の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~firstdayofweek.html[FirstDayOfWeek] が最初に考慮されます。これが設定されていない場合には、データ マネージャーの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~settings.html[Settings] の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~firstdayofweek.html[FirstDayOfWeek] が考慮されます。解決された最初の曜日は、週を表示するコントロールによって表示される日付に影響します (たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduletimecontrolbase~weekdisplaymode.html[WeekDisplayMode] が設定されている時の xamScheduleView/xamDayView および xamMonthView)。これは、xamMonthView で Home/End を押す、または xamScheduleView/xamDayView で Alt-Home/End を押すなど、最初/最後の曜日に関係するキーボード ナビゲーションにも影響します。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-activities.html[アクティビティについて]

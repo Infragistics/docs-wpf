@@ -1,0 +1,142 @@
+﻿////
+
+|metadata|
+{
+    "name": "xam-multicee-configuring-the-behavior-on-user-input",
+    "tags": ["Editing","Getting Started","How Do I"],
+    "controlName": ["xamMultiColumnComboEditor"],
+    "guid": "55ab0031-57a9-4d37-ae7d-bb76d862fdea",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6142559Z"
+}
+|metadata|
+////
+
+= ユーザー入力の動作の構成 (xamMultiColumnComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamMultiColumnComboEditor_™ コントロールのテキストフィールドに入力し Enter キーを押した場合に、実行される動作を構成する方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticce-adding.html[xamMultiColumnComboEditor をページに追加]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールをアプリケーションに追加し、いくつかのプロパティの使用方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref382667278,ユーザー入力の動作の構成>>
+* <<_Ref382667283,関連コンテンツ>>
+
+** <<_Ref382667287,トピック>>
+
+[[_Ref382667278]]
+== ユーザー入力の動作の構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+`CustomValueEnteredAction` プロパティを使用し、ユーザーが入力テキスト フィールドに入力したときの  _xamMultiColumnComboEditor_   の動作を構成します。
+
+このプロパティはデフォルトで `Ignore` に設定され、入力テキスト フィールドへの入力で  _xamMultiColumnComboEditor_   項目をフィルタリングします。
+
+=== プロパティ設定
+
+以下の表は、任意の動作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|入力されたテキストが、基本 `ItemsSource` と選択で有効なデータとなるように新しいエントリに追加します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~customvalueenteredaction.html[CustomValueEnteredAction]
+|`Add`
+
+|テキストの入力はできますが、入力されたテキストは項目コレクションに含まれません。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~customvalueenteredaction.html[CustomValueEnteredAction]
+|`Allow`
+
+|無効なデータの入力を無効にします。入力されたテキストは、フィルタリングの値となります。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~customvalueenteredaction.html[CustomValueEnteredAction]
+|`Ignore`
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamMultiColumnComboEditor_   がどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~customvalueenteredaction.html[CustomValueEnteredAction]
+| _Add_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath]
+| _ProductName_ 
+
+|====
+
+image::images/Configuring_the_Behavior_on_User_Input_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor x:Name="MultiColumnComboEditor"
+                              ItemsSource="{Binding Path=Products}" 
+                              Height="30" Width="300"
+                              AutoGenerateColumns="False"
+                              DisplayMemberPath="ProductName"
+                              CustomValueEnteredAction="Add">
+    <ig:XamMultiColumnComboEditor.Columns>
+        <ig:TextComboColumn Key="ProductName"/>
+        <ig:TextComboColumn Key="UnitsInStock"/>
+    </ig:XamMultiColumnComboEditor.Columns>
+</ig:XamMultiColumnComboEditor>
+----
+
+[[_Ref382667283]]
+== 関連コンテンツ
+
+[[_Ref382667287]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticce-configuring-data-binding-visualization.html[データのバインディングと視覚エフェクトの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールをデータとバインドして、コントロールのドロップダウン リストの項目レイアウトを構成する方法について説明します。
+
+| link:xammulticee-configuring-the-drop-down.html[ドロップダウンの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ ドロップダウンのレイアウトおよび動作を構成する方法を説明します。
+
+| link:xammulticee-configuring-item-filtering.html[項目のフィルタリングの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールで項目のフィルタリングを構成する方法を説明します。
+
+| link:xammulticee-selection.html[選択]
+|このグループのトピックでは、 _xamMultiColumnComboEditor_ コントロールの選択機能とその使用方法について説明します。
+
+|====

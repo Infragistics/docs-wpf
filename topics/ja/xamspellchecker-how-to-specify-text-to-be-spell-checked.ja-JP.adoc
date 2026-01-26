@@ -1,0 +1,77 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamspellchecker-how-to-specify-text-to-be-spell-checked",
+    "controlName": ["xamSpellChecker"],
+    "tags": ["How Do I"],
+    "guid": "{1A51FB11-0F35-48CA-B1C0-D5CDBBA79169}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.1643827Z"
+}
+|metadata|
+////
+
+= テキストをスペルチェックするように指定する方法
+
+xamSpellChecker コントロールによって、アプリケーション内で単一または複数のコントロールをスペルチェックできます。これは入力コントロールへのバインディングを作成し、このバインディングを link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.xamspellchecker~spellchecktargets.html[SpellCheckTargets] コレクションに追加することで実現できます。コレクションには希望するだけの数のバインディングを追加でき、各入力コントロールのスペルミスはスペルチェッカー ダイアログ ユーザー インターフェイスに表示されます。
+
+以下のコードは、Binding 要素を SpellCheckerTargets コレクションに追加する方法を示します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot">
+   <ig:XamSpellChecker x:Name="spellChecker">
+      <ig:XamSpellChecker.SpellCheckTargets>
+         <!-- 入力コントロールの名前の txtSpellCheck の場所 -->
+         <Binding ElementName="txtSpellCheck" Path="Text" Mode="TwoWay" NotifyOnValidationError="True" ValidatesOnExceptions="True"></Binding>          
+      </ig:XamSpellChecker.SpellCheckTargets>
+   </ig:XamSpellChecker>
+   …
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Interactions
+Imports Infragistics
+Imports System.Windows.Data
+…
+Dim spellChecker As New XamSpellChecker()
+Dim spellBinding As New Binding()
+spellBinding.Mode = BindingMode.TwoWay
+Dim propPathSpellBinding As New PropertyPath("Text")
+spellBinding.Path = propPathSpellBinding
+' 入力コントロールがスペルチェックされるように指定します
+spellBinding.Source = txtSpellCheck
+Me.spellChecker.SpellCheckTargets.Add(spellBinding)
+…
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Interactions;
+using Infragistics;
+using System.Windows.Data;
+…
+XamSpellChecker spellChecker = new XamSpellChecker();
+Binding spellBinding = new Binding();
+spellBinding.Mode = BindingMode.TwoWay;
+PropertyPath propPathSpellBinding = new PropertyPath("Text");
+spellBinding.Path = propPathSpellBinding;
+// 入力コントロールがスペルチェックされるように指定します
+spellBinding.Source = txtSpellCheck;
+this.spellChecker.SpellCheckTargets.Add(spellBinding);
+…
+----
+
+== 関連トピック
+
+link:xamspellchecker-performance-options.html[パフォーマンス オプション]
+
+link:xamspellchecker-spelling-options.html[スペル オプション]
+
+link:xamspellchecker-dictionaries.html[辞書]

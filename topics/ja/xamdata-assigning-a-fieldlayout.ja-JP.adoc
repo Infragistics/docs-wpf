@@ -1,0 +1,81 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-assigning-a-fieldlayout",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Templating"],
+    "guid": "{ADECA58A-4B86-4F14-BFEB-C47E8BAD8FC8}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.4928517Z"
+}
+|metadata|
+////
+
+= FieldLayout の割り当て
+
+
+
+FieldLayout は、特定の DataRecord に含まれる Fields (列) を定義します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] が作成されると、その link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayouts.html[Fields] が link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[DataItem] のプロパティに一致する既存の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~fields.html[FieldLayout] を探して link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~dataitem.html[FieldLayouts] コレクションで検索が行われます。FieldLayout が見つかった場合、DataRecord と関連付けられます。見つからない場合は、新しい FieldLayout が作成されます。新しい FieldLayout が作成される時には、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutinitializing_ev.html[FieldLayoutInitializing] イベントと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutinitialized_ev.html[FieldLayoutInitialized] イベントが発生します。
+
+新しい FieldLayout の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~autogeneratefieldsresolved.html[AutoGenerateFieldsResolved] プロパティが True を返す場合には、データ項目のあらゆるパブリック プロパティに対して Fields コレクションは自動的に link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] が格納されます。
+
+[NOTE]
+====
+*注:* データ タイプによっては、「Value」という名前の単一のフィールドが代わりに生成されます。これらには、プラス、文字列、小数、DateTime、DayOfWeek、Color などのプリミティブ タイプ、および Visual または Animatable から派生した任意のタイプが含まれます。
+====
+
+Fields の自動生成は、FieldLayoutInitializing イベントと FieldLayoutInitialized イベントの間に実行されます。
+
+[NOTE]
+====
+*注:* フィールドの自動生成は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[DataRecordPresenter] 内での link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecordpresenter.html[CellValuePresenters] の配置 (レイアウト) の作成に関与する「AutoArrange」機能と混同すべきではありません。'AutoArrange' 機能は、以下の「レコード内にセルを配置」というタイトルの説明されています。
+====
+
+CellValuePresenters の自動生成とビュー依存の配置と組み合わされた Fields の自動生成 (以下に説明) は、最小の労力で、複雑なデータ ソースにバインドして、データを表示/編集するための堅牢な UI を表示するための非常に優れた「ノータッチ」配備ソリューションを提供します。
+
+次に、さまざまな FieldLayout を DataRecord に割り当てることを可能にするために link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~assigningfieldlayouttoitem_ev.html[AssigningFieldLayoutToItem] イベントが発生します。最後に、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~initializerecord_ev.html[InitializeRecord] イベントが発生します。
+
+== 派生したレコード タイプ固有のプロパティにアクセス
+
+InitializeRecord イベントが DataRecords、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyrecord.html[GroupByRecords] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.expandablefieldrecord.html[ExpandableFieldRecords] に発生するため、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.initializerecordeventargs.html[InitializeRecordEventArgs] は基本の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.initializerecordeventargs~record.html[Record] クラスを返すプロパティを公開します。したがって、派生した Record タイプのひとつに固有のプロパティにアクセスするためには、以下の例のコードに示すように、適切なタイプにキャストする必要があります。
+
+----
+private void OnInitializeRecord(object sender, InitializeRecordEventArgs e)
+{
+        DataRecord dr = e.Record as DataRecord;
+        if (dr != null)
+        {
+                Cell cell = dr.Cells["CustomerName"];
+        }
+}
+----
+
+== 手動でフィールドを追加
+
+以下の例の XAML は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[AutoGenerateFields] 機能を使用する代わりに手動でフィールドを追加する方法を示します。追加のバインドされないフィールドを追加する方法も示します。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldLayoutSettings> 
+                <igDP:FieldLayoutSettings 
+                  AutoGenerateFields="False"/> 
+        </igDP:XamDataGrid.FieldLayoutSettings> 
+        <igDP:XamDataGrid.FieldLayouts> 
+                <igDP:FieldLayout> 
+                        <igDP:FieldLayout.Fields> 
+                                <igDP:Field Name="CustomerName" Label="Customer Name"/> 
+                                <igDP:Field Name="Address"/> 
+                                <igDP:Field Name="City"/> 
+                                <igDP:Field Name="MyExtraDataColumn" BindingType="Unbound"
+                                  DataType="{x:Type sys:Decimal}"/> 
+                        </igDP:FieldLayout.Fields> 
+                </igDP:FieldLayout> 
+        </igDP:XamDataGrid.FieldLayouts> 
+</igDP:XamDataGrid>
+----
+
+[NOTE]
+====
+上記の例の XAML コードでは、AutoGenerateFields プロパティがデフォルト値の True のままだった場合には、xamDataPresenter は DataRecord にある追加のパブリック プロパティのために Fields を生成して、コレクションの最後に追加します。thefCustomerName フィールドが最初のフィールドとして手動で定義されたために、デフォルトで「主要」フィールドと見なされることに注意してください。主要フィールドは、 link:xamdata-arranging-cells-within-the-record.html[レコード内にセルを配置]トピックで説明したように、AutoArrange 機能を使用する時に特別な処理を受け取ります。
+====

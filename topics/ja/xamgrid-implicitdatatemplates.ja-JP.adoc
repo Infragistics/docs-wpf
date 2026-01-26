@@ -1,0 +1,711 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-implicitdatatemplates",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Presentation","Getting Started","Grids","How Do I","Layouts","Styling","Templating"],
+    "guid": "0ca8e330-6559-4eb3-8dd1-3cfde2077618",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.5911978Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= セルのデータ タイプによって、異なるユーザー インターフェイスを適用する
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、暗黙的データ テンプレートを使用して、xamGrid™ コントロールの TemplateColumn 内のセルのデータ タイプによって異なる視覚的表現を適用する方法を説明します。
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref320203782, TemplateColumn の異なるデータ タイプに、暗黙的データ テンプレートを使用 >>
+* <<_Ref320203793, コード例 >>
+
+** link:xamgrid-implicitdatatemplates.html#_Contact[コード例:  _連絡先_ モデル]
+** link:xamgrid-implicitdatatemplates.html#_PersonalBusiness[コード例:  _個人_ および _ビジネス_ モデル]
+** link:xamgrid-implicitdatatemplates.html#_ContactDetails[コード例:  _ContactDetails_ モデル]
+** link:xamgrid-implicitdatatemplates.html#_ViewModel[コード例:  _ContactsViewModel_ ]
+** link:xamgrid-implicitdatatemplates.html#_PersonalTemplate[コード例: 個人の暗黙的データ テンプレート]
+** link:xamgrid-implicitdatatemplates.html#_BusinessTemplate[コード例: ビジネスの暗黙的データ テンプレート]
+** link:xamgrid-implicitdatatemplates.html#_AddingGrid[コード例: xamGrid コントロールの追加]
+
+* <<_Ref320204025, 関連コンテンツ >>
+
+[[_Ref320203782]]
+== TemplateColumn の異なるデータ タイプに、暗黙的データ テンプレートを使用
+
+=== 概要
+
+暗黙的データ テンプレートは、特定のデータ タイプに適用されます。x:Key プロパティの代わりに、DataType プロパティがデータ テンプレートに設定されます。この機能は  pick:[sl="Silverlight 5 で導入され"]  pick:[sl="、"]  pick:[wpf="Windows Presentation Foundation で利用可能です"] 。
+
+この手順は、暗黙的データ テンプレートに対する xamGrid のサポートを示します。
+
+コード例は、異なるテンプレートを含む個人およびビジネス連絡先を表しています。個人とビジネス連絡先は _連絡先_  モデルを拡張し、xamGrid コントロールの  _ContactInfo_   TemplateColumn に表示されます。
+
+_ColumnInfo_   TemplateColumn は編集および並び替え可能であり、暗黙的データ テンプレートは、ビジネスと個人連絡先を区別するために使用します。
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/xamGrid_ImplicitDataTemplates_1.png[]
+
+=== 概要
+
+このトピックは、TemplateColumn の異なるデータ タイプに関して暗黙的データ テンプレートを適用する方法をステップごとに説明します。以下はプロセスの概念的概要です。
+
+[start=1]
+. link:xamgrid-implicitdatatemplates.html#_steps[*連絡先モデルの作成* ]
+[start=2]
+. link:xamgrid-implicitdatatemplates.html#_steps[*個人およびビジネス モデルの作成* ]
+[start=3]
+. link:xamgrid-implicitdatatemplates.html#_steps[*連絡先タイプのプロパティを使用したモデルの作成* ]
+[start=4]
+. link:xamgrid-implicitdatatemplates.html#_steps[*ContactsViewModel ビュー モデルの作成* ]
+[start=5]
+. link:xamgrid-implicitdatatemplates.html#_steps[*ページ DataContext プロパティ の設定* ]
+[start=6]
+. link:xamgrid-implicitdatatemplates.html#_steps[*個人連絡先用の暗黙的テンプレートの作成* ]
+[start=7]
+. link:xamgrid-implicitdatatemplates.html#_steps[*ビジネス連絡先用の暗黙的テンプレートの作成* ]
+[start=8]
+. link:xamgrid-implicitdatatemplates.html#_steps[*xamGrid コントロールをページに追加* ]
+
+=== 手順
+
+以下の手順は、xamGrid コントロールの TemplateColumn 内の暗黙的データ テンプレートの適用方法を示しています。
+
+=== 連絡先モデルの作成
+
+_連絡先_  モデルは、 _個人_  および _ビジネス_  モデルによって拡張される基本モデルです。
+
+これは、 _INotifyPropertyChanged_   および  _IComparable_   インターフェイスを実装します。
+
+=== 個人およびビジネス モデルの作成
+
+_個人_  および _ビジネス_   モデルは、 _連絡先_  モデルを拡張します。
+
+* 個人モデル
+
+_個人_  連絡先モデルには 2 つのメンバーがあります - 継承された  _Name_   プロパティおよび  _Phone_   プロパティです。
+
+* ビジネス モデル
+
+_ビジネス_  連絡先モデルには 2 つのメンバーがあります - 継承された  _Name_   プロパティおよび  _Email_   プロパティです。
+
+=== 連絡先タイプのプロパティを使用したモデルの作成
+
+このモデルは _連絡先_  プロパティを含み、連絡先詳細を保持しています。このモデル クラスには、xamGrid コントロールに表示させる他のプロパティを含めることもできます。
+
+=== ContactsViewModel ビュー モデルの作成
+
+このクラスはデータの読み込みを処理します。例の目的で、データは.ハードコーディングされています。
+
+=== ページ DataContext プロパティ の設定
+
+サンプル データ コレクションを入手し、それをページ ロード ハンドラ内のページ DataContext プロパティに設定します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ContactsViewModel _vm = new ContactsViewModel();
+this.DataContext = _vm;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim _vm As New ContactsViewModel()
+Me.DataContext = _vm
+----
+
+=== 個人連絡先用の暗黙的データ テンプレートの作成
+
+_個人_  データ タイプ エントリに自動的に適用される、暗黙的データ テンプレートを作成します。
+
+=== ビジネス連絡先用の暗黙的データ テンプレートの作成
+
+_ビジネス_  データ タイプ エントリに自動的に適用される、暗黙的データ テンプレートを作成します。
+
+=== xamGrid コントロールをページに追加
+
+TemplateColumn を含むページに xamGrid を追加して、連絡先の詳細を表示します。データは編集および並べ替え可能です。
+
+[[_Ref320203793]]
+== コード例
+
+=== 概要
+
+以下の表には、このトピックのコード例が示されています。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|link:xamgrid-implicitdatatemplates.html#_Contact[Contact モデル]
+|例で使用される基本モデル
+
+|link:xamgrid-implicitdatatemplates.html#_PersonalBusiness[個人およびビジネス モデル]
+|これらのモデルは、連絡先モデルを拡張します
+
+|link:xamgrid-implicitdatatemplates.html#_ContactDetails[ContactDetails モデル]
+|連絡先タイプのプロパティを使用したデータ モデル
+
+|link:xamgrid-implicitdatatemplates.html#_ViewModel[ContactsViewModel]
+|データを処理する、サンプルの viewmodel クラス
+
+|link:xamgrid-implicitdatatemplates.html#_PersonalTemplate[個人の暗黙的データ テンプレート]
+|個人タイプのセルに適用される暗黙的データ テンプレート
+
+|link:xamgrid-implicitdatatemplates.html#_BusinessTemplate[ビジネスの暗黙的データ テンプレート]
+|ビジネス タイプのセルに適用される暗黙的データ テンプレート
+
+|link:xamgrid-implicitdatatemplates.html#_AddingGrid[xamGrid コントロールの追加]
+|これは、編集可能な xamGrid を TemplateColumn と共に追加する XAML コードです。
+
+|====
+
+[[_Contact]]
+== コード例:  _連絡先_  モデル
+
+=== 説明
+
+このクラスは、基本データ モデルです。これは、編集および並べ替え可能なデータを含めるために  _INotifyPropertyChanged_   および  _IComparable_   インターフェイスを実装します。
+
+[[_Ref320203813]]
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class Contact : ObservableModel, IComparable<Contact>
+{
+    private string _name;
+    public string Name
+    {
+        get { return _name; }
+        set
+        {
+            if (_name != value)
+            {
+                _name = value;
+                NotifyPropertyChanged("Name");
+            }
+        }
+    }
+    public int CompareTo(Contact other)
+    {
+        int result = 1;
+        if (other != null)
+        {
+            result = this.Name.CompareTo(other.Name);
+        }
+        return result;
+    }
+}
+public class ObservableModel : INotifyPropertyChanged
+{
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void NotifyPropertyChanged(String info)
+    {
+        if (PropertyChanged != null)
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(info));
+        }
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class Contact
+    Inherits ObservableModel
+    Implements IComparable
+    Private _name As String
+    Public Property Name() As String
+        Get
+            Return _name
+        End Get
+        Set(value As String)
+            If _name <> value Then
+                _name = value
+                NotifyPropertyChanged("Name")
+            End If
+        End Set
+    End Property
+    Function CompareTo(ByVal obj As Object) As Integer 
+    Implements IComparable.CompareTo
+        Dim contact As Contact = CType(obj, Contact)
+        Return String.Compare(Me.Name, contact.Name)
+    End Function
+End Class 
+Public Class ObservableModel
+    Implements INotifyPropertyChanged
+    Public Event PropertyChanged(ByVal sender As Object, ByVal e As PropertyChangedEventArgs) Implements INotifyPropertyChanged.PropertyChanged
+    Protected Overridable Sub NotifyPropertyChanged(ByVal propertyName As String)
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    End Sub 
+End Class
+----
+
+[[_PersonalBusiness]]
+== コード例:  _個人_  および _ビジネス_  モデル
+
+=== 説明
+
+これらの 2 つのクラスは、 _連絡先_  クラスを拡張します。
+
+[[_Ref320347492]]
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class Personal : Contact
+{
+    private string _phone;
+    public string Phone
+    {
+        get { return _phone; }
+        set
+        {
+            if (_phone != value)
+            {
+                _phone = value;
+                NotifyPropertyChanged("Phone");
+            }
+        }
+    }
+}
+public class Business : Contact
+{
+    private string _email;
+    public string Email
+    {
+        get { return _email; }
+        set
+        {
+            if (_email != value)
+            {
+                _email = value;
+                NotifyPropertyChanged("Email");
+            }
+        }
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class Personal
+    Inherits Contact
+    Private _phone As String
+    Public Property Phone() As String
+        Get
+            Return _phone
+        End Get
+        Set(value As String)
+            If _phone <> value Then
+                _phone = value
+                NotifyPropertyChanged("Phone")
+            End If
+        End Set
+    End Property
+End Class
+Public Class Business
+    Inherits Contact
+    Private _email As String
+    Public Property Email() As String
+        Get
+            Return _email
+        End Get
+        Set(value As String)
+            If _email <> value Then
+                _email = value
+                NotifyPropertyChanged("Email")
+            End If
+        End Set
+    End Property
+End Class
+----
+
+[[_ContactDetails]]
+== コード例:  _ContactDetails_  モデル
+
+=== 説明
+
+このモデルは _連絡先_  プロパティを含み、連絡先詳細を保持しています。このモデル クラスには、xamGrid コントロールに表示させる他のプロパティを含めることもできます。
+
+[[_Ref320347527]]
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class ContactDetails : ObservableModel
+{
+    private Contact _contactInfo;
+    public Contact ContactInfo
+    {
+        get { return _contactInfo; }
+        set
+        {
+            if (_contactInfo != value)
+            {
+                _contactInfo = value;
+                NotifyPropertyChanged("ContactInfo");
+            }
+        }
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class ContactDetails
+    Inherits ObservableModel
+    Private _contactInfo As Contact
+    Public Property ContactInfo() As Contact
+        Get
+            Return _contactInfo
+        End Get
+        Set(value As Contact)
+            If _contactInfo IsNot value Then
+                _contactInfo = value
+                NotifyPropertyChanged("ContactInfo")
+            End If
+        End Set
+    End Property
+End Class
+----
+
+[[_ViewModel]]
+== コード例:  _ContactsViewModel_
+
+=== 説明
+
+これは、ハードコーディングされたデータを読み込む viewmodel クラスです。
+
+[[_Ref320203994]]
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class ContactsViewModel
+{
+    public ContactsViewModel() 
+    {
+        // サンプル データを読み込みます
+        this.ContactsDetails = LoadContacts(); 
+    }
+    private ObservableCollection<ContactDetails> _contacts = new ObservableCollection<ContactDetails>();
+    public ObservableCollection<ContactDetails> ContactsDetails { get; set; }     
+    public ObservableCollection<ContactDetails> LoadContacts()
+    {
+        ObservableCollection<ContactDetails> collection = new ObservableCollection<ContactDetails>();
+        collection.Add(new ContactDetails
+        {
+            ContactInfo = new Personal 
+            {
+                Name = "Mary Smith",
+                Phone = "(512) 345-6789"
+            }
+        });
+        collection.Add(new ContactDetails
+        {
+            ContactInfo = new Personal
+            {
+                Name = "David Simson",
+                Phone = "(512) 345-6789"
+            }
+        });
+        collection.Add(new ContactDetails
+        {
+            ContactInfo = new Personal
+            {
+                Name = "Bob Jonson",
+                Phone = "(358) 161-6620"
+            }
+        });
+        collection.Add(new ContactDetails
+        {
+            ContactInfo = new Business
+            {
+                Name = "Kim Peterson",
+                Email = "kim@vvv.net"
+            }
+        });
+        collection.Add(new ContactDetails
+        {
+            ContactInfo = new Business
+            {
+                Name = "Alex Richardson",
+                Email = "alex@vvv.net"
+            }
+        });
+        return collection;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class ContactsViewModel
+    Public Sub New()
+        ' サンプル データを読み込みます
+        Me.ContactsDetails = LoadContacts()
+    End Sub
+    Private _contacts As New ObservableCollection(Of ContactDetails)()
+    Public Property ContactsDetails() As ObservableCollection(Of ContactDetails)
+        Get
+            Return m_ContactsDetails
+        End Get
+        Set(value As ObservableCollection(Of ContactDetails))
+            m_ContactsDetails = value
+        End Set
+    End Property
+    Private m_ContactsDetails As ObservableCollection(Of ContactDetails)
+    Public Function LoadContacts() As ObservableCollection(Of ContactDetails)
+        Dim collection As New ObservableCollection(Of ContactDetails)()
+        Dim tempCD = New ContactDetails
+        Dim tempPerson = New Personal
+        tempPerson.Name = "Mary Smith"
+        tempPerson.Phone = "(512) 345-6789"
+        tempCD.ContactInfo = tempPerson
+        collection.Add(tempCD)
+        tempCD = New ContactDetails
+        tempPerson = New Personal
+        tempPerson.Name = "David Simson"
+        tempPerson.Phone = "(512) 345-6789"
+        tempCD.ContactInfo = tempPerson
+        collection.Add(tempCD)
+        tempCD = New ContactDetails
+        tempPerson = New Personal
+        tempPerson.Name = "Bob Jonson"
+        tempPerson.Phone = "(358) 161-6620"
+        tempCD.ContactInfo = tempPerson
+        collection.Add(tempCD)
+        tempCD = New ContactDetails
+        Dim tempBusiness = New Business
+        tempBusiness.Name = "Kim Peterson"
+        tempBusiness.Email = "kim@vvv.net"
+        tempCD.ContactInfo = tempBusiness
+        collection.Add(tempCD)
+        tempCD = New ContactDetails
+        tempBusiness = New Business
+        tempBusiness.Name = "Alex Richardson"
+        tempBusiness.Email = "alex@vvv.net"
+        tempCD.ContactInfo = tempBusiness
+        collection.Add(tempCD)
+        Return collection
+    End Function
+End Class
+----
+
+[[_PersonalTemplate]]
+== コード例: 個人の暗黙的データ テンプレート
+
+=== 説明
+
+以下のコードは、 _個人_  データ タイプ エントリに追加される暗黙的データ テンプレートを示しています。_Personal_   モデルに  _models_   という名前の名前空間参照を追加する必要があります。その後で、次のようにそれをテンプレートで使用します。
+
+ifdef::sl[]
+* Silverlight アプリケーションでは、`DataType="models:Personal"` を設定します
+
+endif::sl[]
+
+ifdef::wpf[]
+* WPF アプリケーションでは、`DataType="{x:Type models:Personal}"` を設定します
+
+endif::wpf[]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<SolidColorBrush Color="#FF216e99" x:Key="ForegroundColor_Friends"/>
+<DataTemplate DataType="models:Personal">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="120" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Personal" 
+                   Foreground="{StaticResource ForegroundColor_Friends}"
+                   FontStyle="Italic"
+                   Margin="3"
+                   VerticalAlignment="Bottom"           
+                   Grid.RowSpan="2"/>
+        <TextBlock Text="Name" Margin="3"
+                   Foreground="{StaticResource ForegroundColor_Friends}"
+                   FontWeight="Bold"
+                   Grid.Column="1" Grid.Row="0"  
+                   VerticalAlignment="Bottom" />
+        <TextBox Text="{Binding Name, Mode=TwoWay}" 
+                 Foreground="{StaticResource ForegroundColor_Friends}"
+                 Margin="3"
+                 MaxHeight="24"
+                 MaxWidth="120"
+                 Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="Phone" 
+                   Foreground="{StaticResource ForegroundColor_Friends}"
+                   Grid.Column="2" Grid.Row="0" 
+                   Margin="3"
+                   FontWeight="Bold"
+                   VerticalAlignment="Bottom"/>
+        <ig:XamMaskedInput Text="{Binding Phone, Mode=TwoWay}" 
+                   Foreground="{StaticResource ForegroundColor_Friends}"
+                   Margin="3"
+                   Mask="(###) ###-####"
+                   Grid.Column="2"
+                   Grid.Row="1"
+                   MaxWidth="120"
+                   MaxHeight="24"/>
+    </Grid>
+</DataTemplate>
+----
+
+[[_BusinessTemplate]]
+== コード例: ビジネスの暗黙的データ テンプレート
+
+=== 説明
+
+以下のコードは、 _ビジネス_  データ タイプ エントリに追加される暗黙的データ テンプレートを示しています。_Business_   モデルに  _models_   という名前の名前空間参照を追加する必要があります。その後で、次のようにそれをテンプレートで使用します。
+
+ifdef::sl[]
+* Silverlight アプリケーションでは、`DataType="models:``Business``"` を設定します
+
+endif::sl[]
+
+ifdef::wpf[]
+* WPF アプリケーションでは、`DataType="{x:Type models:``Business``}"`を設定します
+
+endif::wpf[]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<SolidColorBrush Color="#FFc62d36" x:Key="ForegroundColor_Business"/>
+<DataTemplate DataType="models:Business">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="120" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Business" 
+                   Foreground="{StaticResource ForegroundColor_Business}"
+                   FontStyle="Italic"
+                   Margin="3"
+                   VerticalAlignment="Bottom"           
+                   Grid.RowSpan="2"/>
+        <TextBlock Text="Name"
+                   Foreground="{StaticResource ForegroundColor_Business}"
+                   Margin="3"
+                   VerticalAlignment="Bottom"
+                   FontWeight="Bold"
+                   Grid.Column="1" Grid.Row="0"/>
+        <TextBox Text="{Binding Name, Mode=TwoWay}" 
+                 Foreground="{StaticResource ForegroundColor_Business}"
+                 Margin="3"
+                 MaxHeight="22"
+                 MaxWidth="120"
+                 Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="Email" 
+                   Foreground="{StaticResource ForegroundColor_Business}"
+                   FontWeight="Bold"
+                   Grid.Column="2" Grid.Row="0"
+                   Margin="3"
+                   VerticalAlignment="Bottom"/>
+        <TextBox Text="{Binding Email, Mode=TwoWay}" 
+                 Foreground="{StaticResource ForegroundColor_Business}"
+                 Margin="3"
+                 Grid.Column="2"
+                 Grid.Row="1"
+                 MaxWidth="120"/>
+    </Grid>
+</DataTemplate>
+----
+
+[[_AddingGrid]]
+== コード例: xamGrid コントロールの追加
+
+=== 説明
+
+以下のコードでは、連絡先詳細を保持する TemplateColumn と共に xamGrid を追加します。編集機能は有効です。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid ItemsSource="{Binding ContactsDetails}"
+            AutoGenerateColumns="False" >
+    <ig:XamGrid.Columns>
+        <ig:TemplateColumn Key="ContactInfo"
+                           HeaderText="連絡先" />
+    </ig:XamGrid.Columns>
+    <ig:XamGrid.EditingSettings>
+        <ig:EditingSettings AllowEditing="Cell" 
+                            IsMouseActionEditingEnabled="DoubleClick" />
+    </ig:XamGrid.EditingSettings>
+</ig:XamGrid>
+----
+
+[[_Ref320204025]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-create-a-template-column.html[テンプレート列の作成]
+|このトピックでは、TemplateColumn column 列と共にカスタム コンテンツを表示する方法を説明します。
+
+|====

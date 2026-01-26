@@ -1,0 +1,219 @@
+﻿////
+
+|metadata|
+{
+    "name": "xaminputs-masks",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "107abc47-4d60-4a68-84bc-8ace53e29880",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.8992157Z"
+}
+|metadata|
+////
+
+{XamInputHeader}
+
+= マスク
+
+== 概要
+
+xamMaskedInput および xamMaskedInput コントロールに基づくその他の入力コントロール (xamCurrencyInput や xamNumericInput など) は link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask プロパティ]を公開します。以下の表は、マスク構文がサポートするすべての可能なマスク文字とトークンをリストしています。
+
+*注:* すべてのマスクがすべての入力コントロールに関連する訳ではありません。たとえば、mm:ss (分および秒マスク) を xamCurrencyInput コントロールで使用することは通常ありません。以下の表の「コントロール」列は、一般的に使用されるマスク文字を入力コントロールにマップします。また、マスクはコントロールの ValueType によって変わります。たとえば、xamNumericInput コントロールの link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~valuetype.html[ValueType プロパティ]を Int32 に設定した場合、小数のプレースホルダ文字を含むマスクを使用する必要はありません。 
+
+[cols="a,a,a,a"]
+|====
+|*マスク文字*
+|*タイトル*
+|*コントロール*
+|*説明*
+
+|#
+|桁プレースホルダ
+|xamCurrencyInput xamNumericInput xamMaskedInput
+|文字は数字 (0～9) である必要があり、入力は必須です。例: pass:[(###)-###-####]。
+
+|.
+|小数のプレースホルダ
+|xamCurrencyInput xamNumericInput xamMaskedInput
+|文字は、システムのインターナショナル設定で定義された小数のプレースホルダのように指定する必要があります。文字はマスク用のリテラルとして扱われます。
+
+|,
+|千の位の区切り文字
+|xamCurrencyInput xamNumericInput xamMaskedInput
+|文字は、システムのインターナショナル設定で定義された千の位の区切り文字によって区切られます。この文字はマスク用のリテラルとして扱われます。
+
+|:
+|時刻の区切り文字
+|xamMaskedInput
+|文字は、システムのインターナショナル設定で定義された時間の区切り文字によって区切られます。この文字はマスク用のリテラルとして扱われます。
+
+|/
+|日付の区切り文字
+|xamMaskedInput
+|この文字はマスク用のリテラルとしても扱われます。
+
+|\
+|次の文字をエスケープ
+|xamMaskedInput
+|この文字は、マスク文字列の次の文字をリテラルとして処理するようマスクに指示します。これにより、マスクに '#'、'&'、'A'、'?' やその他の特別な意味を持つ文字を含めることができます。この文字はマスク用のリテラルとして扱われます。
+
+|&
+|文字のプレースホルダ
+|xamMaskednput
+|このプレースホルダに有効な値は、32 から 126 および 128 から 255 (キーボード入力文字および外国語の記号文字) の範囲の ANSI 文字です。
+
+|>
+|
+|xamMaskedInput
+|以降の文字をすべて大文字に変換します。
+
+|<
+|
+|xamMaskedInput
+|以降の文字をすべて小文字に変換します
+
+|。
+|英数字のプレースホルダ
+|xamMaskedInput
+|英数字を表します。例: a-z、A-Z、0-9。文字の入力は*必須* です。
+
+|a
+|英数字のプレースホルダ
+|xamMaskedInput
+|例: a-z、A-Z、0-9。文字の入力は必須ではありません。
+
+|9
+|桁プレースホルダ
+|xamCurrencyInput xamNumericInput xamMaskedInput
+|文字は数字 (0 から 9) である必要がありますが、入力は必須ではありません。
+
+|h
+|16 進の数字のプレースホルダ
+|xamNumericInput xamMaskedInput
+|文字は、16 進の数字でなければなりません (0-9 または a-f)。入力は必須です。A-F の桁は小文字に変換されます。
+
+|H
+|16 進の数字のプレースホルダ
+|xamNumericInput xamMaskedInput
+|「h」のプレースホルダと同じですが、a-f の桁は大文字に変換されます。
+
+|-
+|マイナス記号 (オプション)
+|xamCurrencyInput xamNumericInput xamMaskedInput
+|マイナス記号の後に一連の 'n' によって数字セクションを定義した場合 (例: "-nn,nnn.nn") は、負の数を指定できることを示します。'n' が後に続かない場合はリテラルと見なされます。マイナス記号は数が実際に負の場合のみ表示されます。
+
+|+
+|プラス記号 (オプション)
+|xamCurrencyInput xamNumericInput xamMaskedInput
+|プラス記号の後に一連の 'n' によって数字セクションを定義した場合 (例: "+nn,nnn.nn") は、負の数を指定できることを示します。ただし、これは数が正か負かに基づいて常に '+' または '-' 記号が表示されるという点において "-" とは異なります。
+
+|C
+|文字またはスペースのプレースホルダ
+|xamMaskedInput
+|文字の入力は必須ではありません。これは「&」プレースホルダとまったく同様に機能し、Microsoft Access との互換性を確保します。
+
+|?
+|文字のプレースホルダ
+|xamMaskedInput
+|例: a-z または A-Z を表します。文字の入力は必須ではありません。
+
+|n
+|桁プレースホルダ
+|xamCurrencyInput xamNumericInput xamMaskedInput
+|n のグループを使用して、数字が右から左に入力される数字セクションを作成できます。文字は数字 (0 から 9) である必要がありますが、入力は必須ではありません。
+
+|{char:n:s}
+|受け入れられる任意の文字セット
+|xamMaskedInput
+|{char:n:s} マスクによって、受け入れられる任意の文字セットを使用してプレースホルダを定義できます。マスク内の「n」は、マスク内の文字プレースホルダの数を指定します。「s」は、受け入れ可能な文字のセットを指定します。以下はこのマスクの例の一部です。 
+
+* {char:1:abc} - このマスクは、'a'、'b' または 'c' の文字のみを受け入れる単一文字のプレースホルダを持ちます。 
+
+* {char:4:abc} - 4 文字のプレースホルダが作成される点を除き上記と同じです。 
+
+* {char:8:0-9a-f} - 0-9 および a-f 文字を許可する 8 文字のプレースホルダ (有効な 16 進数文字)。 
+
+|mm, dd, yy
+|日付文字
+|xamMaskedInput
+|これらの 3 つのトークンの組み合わせを使って日付マスクを定義します。mm は月、dd は日、yy は 2 桁の年、および yyyy は 4 桁の年です。例: mm/dd/yyyy、yyyy/mm/dd、mm/yy。
+
+|hh, mm, ss, tt
+|時刻文字
+|xamMaskedInput
+|これらのトークンの組み合わせを使って時刻マスクを定義します。hh は時間、mm は分、ss は秒、および tt は AM/PM です。例: hh:mm、hh:mm tt、hh:mm:ss。
+
+|{date:s}
+|短い日付
+|xamMaskedInput
+|{date} トークンは、短い日付形式を入力するためのプレースホルダです。日付マスクは、基になるカルチャ設定を使用して生成されます。
+
+|{time}
+|短い時刻
+|xamMaskedInput
+|{time} トークンは、短い時刻形式を入力するためのプレースホルダです。短い時刻形式には通常、時間の秒部分は含まれません。時刻マスクは、基になるカルチャ設定を使用して生成されます。
+
+|{longtime}
+|長い時刻
+|xamMaskedInput
+|{longtime} トークンは、長い時刻形式を入力するためのプレースホルダです。長い時刻形式には通常、時間の秒部分が含まれます。長い時刻マスクは、基になるカルチャ設定を使用して生成されます。
+
+|{double:-i.f:c}
+|カスタマイズされた浮動小数点入力
+|xamNumericInput xamMaskedInput
+|{double:i.f:c} トークンは、浮動小数点の入力を許可するマスクのプレースホルダです。i と f は、それぞれ整数部分の桁数と小数部分の桁数を指定します。マスクの :c 部分はオプションで、値の整数部分と小数部分は連続している必要があることを指定します。たとえば、マスクに :c を指定した場合、12.34 と入力するためには、ユーザーは「1234」とキー入力します。小数点区切り文字を入力しない点に注意してください。このように設定すると、ユーザーは小数点区切り文字を手動で入力する必要がなくなります。i.f の前の "-" (マイナス) 記号もオプションです。"-" 記号がある場合は、負の値を使用できることを示しています。"-" 記号が含まれていない場合には負の値以外の値しか使用できません。
+
+|{currency:-i.f:c}
+|カスタマイズされた通貨入力
+|xamCurrencyInput
+|元になる書式プロバイダーまたはカルチャの現在の書式設定情報に基づいてマスクが構成される点以外は {double:i.f:c} と同じです。通常は通貨記号を含み、桁区切り文字も表示します。
+
+|{number:min-max}
+|数字の範囲
+|xamCurrencyInput xamNumericInput xamMaskedInput
+|{number:min-max} プレースホルダは、最小から最大までの範囲の値を受け入れることができる数字部分に使用されます。例: {number:0-255}、{number:-10-10}.
+
+|リテラル
+|
+|すべての入力コントロール
+|上記以外の記号はすべてリテラルとして (つまり、その記号自体として) 表示されます。
+
+|====
+
+*注:* 次の表にある記号が、元になるカルチャ設定の対応する記号にマップされることを示すために、{LOC} 文字シーケンスを使用してマスクをエスケープすることもできます。
+
+[cols="a,a"]
+|====
+|*マスク文字*
+|*説明*
+
+|$
+|通貨記号
+
+|/
+|日付の区切り文字
+
+|:
+|時刻の区切り文字
+
+|,
+|千の位の区切り文字
+
+|.
+|小数点区切り文字
+
+|+
+|正の記号
+
+|-
+|負の記号
+
+|====
+
+== 関連トピック
+
+* link:xaminputs.html[xamInputs]
+* link:xaminputs-about.html[xamInputs について]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]

@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-how-to-create-a-basic-custom-view",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started","How Do I","Layouts"],
+    "guid": "{D2F69640-23EA-43ED-ABF0-6DAF402A906C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2289989Z"
+}
+|metadata|
+////
+
+= 基本のカスタム ビューの作成方法
+
+
+*基本的な xamDataPresenter™ のカスタム ビューを作成するには、次の手順に従ってください。*
+
+[start=1]
+. ViewBase からクラスを派生し、ビューの機能と xamDataPresenter がビューの代わりに実行すべきサービスを定義する値を提供するために基本クラスで仮想のプロパティおよびメソッドをオーバーライドします。
+[start=2]
+. View の項目を配列する派生した Panel クラスを作成します。保護された抽象的な ItemsPanelType プロパティの Custom View の実装からこの派生したパネルのタイプを返します。
+[start=3]
+. Layout Panel に IViewPanel インターフェイスを実装します。このインターフェイスはページ、レコード、およびセル ナビゲーションと同様にスクロールに対するサポートを提供します。   
+
+以下は、カスタム ビューの作成のためのオプションの手順です。
+
+* xamDataPresenter の DeferredScrolling 機能をサポートしたい場合には、レイアウト パネルに IDeferredScrollPanel インターフェイスを実装します。
+* 提供する要素を使用して Custom View で xamDataPresenter が 各 RecordPresenter (各 DataRecord を表示する UIElement™) をラップするようにしたい場合には、コンテナー要素の RecordPresenterContainerType の仮想プロパティ タイプをオーバーライドし、指定したタイプの要素を返すように GetContainerForRecordPresenter 仮想メソッドをオーバーライドします。Layout Panel が各 DataRecord に状態を格納する必要がある場合、またはリストの各 RecordPresenter を取り囲む特別なスタイリングを提供したい場合には、ラッパー要素の提供を検討してください。
+* Custom View の異なる側面を制御できるようにプロパティを公開したい場合には、Custom View クラスはこれを実行するために最適な場所です。プロパティがひとつまたは 2 つしかない場合、Custom View クラスで直接公開できます。それ以上のプロパティを公開する必要がある場合には、組み込みの GridView クラスと CarouselView クラスの機能の実行を検討してもいいでしょう。これは ViewSettingsBase から派生した設定オブジェクトを返す ViewSettings と呼ばれる単一のプロパティを公開します。これによって、Custom View クラスでの混乱を減らし、開発者に分かりやすくビューの機能を公開します。
+
+== 関連トピック
+
+link:xamdatapresenter-services-provided-by-the-xamdatapresenter.html[XamDataPresenter によって提供されるサービス]
+
+link:xamdatapresenter-creating-the-custom-view-class-and-layout-panel.html[カスタム ビュー クラスとレイアウト パネルを作成]
+
+link:xamdatapresenter-how-to-use-your-custom-view-with-xamdatapresenter.html[xamDataPresenter とカスタム ビューを使用する方法]

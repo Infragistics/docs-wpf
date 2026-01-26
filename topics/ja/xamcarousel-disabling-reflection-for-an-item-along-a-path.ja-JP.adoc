@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousel-disabling-reflection-for-an-item-along-a-path",
+    "controlName": ["xamCarousel"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{FDE7A434-8C13-4CFA-A8A6-03D0192E966E}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0037539Z"
+}
+|metadata|
+////
+
+= パスに沿って項目のリフレクションを無効にする
+
+
+
+xamCarouselPanel、xamDataCarousel、xamCarouselListBox、および xamDataPresenter のカルーセルビューコントロールは、項目の下にリフレクションを付けて項目を表示します。カルーセルコントロールはデフォルトでリフレクションを使用します。このためリフレクションを表示するために必要な余分な領域を計算する必要があります。
+
+カルーセル コントロールは、アプリケーションの使いやすさを損なう場合にはリフレクションを無効にする方法を提供します。link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[CarouselViewSettings] オブジェクトの link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~reservespaceforreflections.html[ReserveSpaceForReflections] プロパティを False に設定することによって、リフレクションをオフにすることができます。以下のコードは、xamCarouselPanel のリフレクションをオフにします。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        <igWindows:CarouselViewSettings ReserveSpaceForReflections="False" />
+</igWindows:XamCarouselPanel.ViewSettings>
+----
+
+link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]の XamCarouselPanel の開始タグ内このコードを配置します。以下の画像のように、リフレクションなしでボタンを表示する xamCarouselPanel が表示されます。
+
+image::images/xamCarousel_Disabling_Reflection_for_an_Item_Along_a_Path_01.png[反映が無効される xamCarouselListBox]

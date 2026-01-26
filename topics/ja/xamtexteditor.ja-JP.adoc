@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtexteditor",
+    "controlName": ["xamTextEditor"],
+    "tags": [],
+    "guid": "{110B7C7A-A0B7-49CA-ABEF-6C0FAE9CDF75}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2419781Z"
+}
+|metadata|
+////
+
+= xamTextEditor
+
+xamTextEditor™ コントロールに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このセクションをご覧ください。このセクションは、コントロールについての概要からアプリケーションで使用する理由、コントロールを使用して共通タスクを達成するための方法の手順などの xamTextEditor についての有益な情報を含んでいます。
+
+以下のリンクをクリックして、xamTextEditor コントロールについての情報にアクセスします。
+
+* link:xamtexteditor-about-xamtexteditor.html[xamTextEditor について]
+* link:xameditors-overview-of-the-valueeditor-class.html[ValueEditor クラスの概要]
+* link:xamtexteditor-using-xamtexteditor-as-a-field-in-xamdatagrid.html[xamDataGrid でフィールドとして xamTextEditor を使用]
+* link:xameditors-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xameditors-working-with-the-isalwaysineditmode-property-and-the-editors.html[IsAlwaysInEditMode プロパティとエディターによる作業]
+* link:xamtexteditor-api-overview.html[API の概要]

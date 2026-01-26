@@ -1,0 +1,175 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-row-header-highlighting",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Grids","How Do I","Layouts","Styling","Templating"],
+    "guid": "22304253-97f9-4cc6-9811-42617c165b04",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.2453283Z"
+}
+|metadata|
+////
+
+= 行ヘッダーの強調表示
+
+== トピックの概要
+
+=== 目的
+
+_xamPivotGrid_™ コントロールの行ヘッダーの強調表示機能について説明します。
+
+=== 前提条件
+
+このトピックを理解するための必須条件となる資料。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid.html[xamPivotGrid]
+|xamPivotGrid コントロールのインスタンスの概要。
+
+|====
+
+=== 本トピックの内容
+
+* <<_Ref320692146,概要>>
+
+** <<_Ref320692156,行ヘッダーの強調表示の概要>>
+
+* <<_Ref320692166,行ヘッダーの強調表示を有効にする>>
+
+** <<_Ref320692175,プロパティ設定>>
+** <<_Ref320692182,コード>>
+
+* <<_Ref320692189,行ヘッダーの強調表示機能による行セレクターの構成>>
+
+** <<_Ref320692197,説明>>
+** <<_Ref320692204,コード>>
+
+* <<_Ref320692212,関連コンテンツ>>
+
+[[_Ref320692146]]
+== 概要
+
+[[_Ref320692156]]
+
+=== 行ヘッダーの強調表示の概要
+
+行ヘッダーの強調表示は、選択された時に行のデータ セル全体とともにグリッドの行ヘッダーをユーザーが強調表示することを可能にするオプションの機能です。これは、 _xamPivotGrid_  の行選択機能のオプションです。
+
+選択された行の残りと一緒に行ヘッダー セルを強調表示することのメリットは、グリッド内の既存のグループと階層を強調表示することによって表示されたデータの視覚的なインパクトを強調することです。以下のスクリーンショットは、効果的な強調表示がいかにセルの値に注意をひくか、またそれが配置されるデータ階層にどのように関係するかを示しています。
+
+image::images/xamPivotGrid_Row_Header_Highlighting_01.png[]
+
+行ヘッダーの強調表示オプションは、 _xamPivotGrid_  コントロールの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotselectionsettings~allowrowheaderselection.html[AllowRowHeaderSelection] プロパティを設定することによって、無効、デフォルト状態および有効を切り替えることができます。
+
+[[_Ref320692166]]
+== 行ヘッダーの強調表示を有効にする
+
+[[_Ref320692175]]
+
+=== プロパティ設定
+
+選択されたら行ヘッダーを強調表示するには、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotselectionsettings~allowrowheaderselection.html[AllowRowHeaderSelection] を  _True_   に設定します。
+
+[options="header", cols="a,a"]
+|====
+|使用するプロパティ:|次に設定
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotselectionsettings~allowrowheaderselection.html[AllowRowHeaderSelection]
+|`True`
+
+|====
+
+[[_Ref320692182]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+AllowRowHeaderSelection="True"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.pivotGrid.SelectionSettings.AllowRowHeaderSelection = true;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.pivotGrid.SelectionSettings.AllowRowHeaderSelection = True
+----
+
+[[_Ref320692189]]
+== 行ヘッダーの強調表示機能による行セレクターの構成
+
+[[_Ref320692197]]
+
+=== 説明
+
+ユーザーが選択することで行ヘッダーを行の残りと一緒に行ヘッダーを強調表示できるようにするには、`AllowRowHeaderSelection="True"` 宣言を `ig:PivotSelectionSettings` オブジェクトに追加する必要があります。
+
+[[_Ref320692204]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPivotGrid 
+    x:Name="pivotGrid" DataSource="{Binding DataSource}">
+    <ig:XamPivotGrid.SelectionSettings>
+        <ig:PivotSelectionSettings 
+            AllowRowHeaderSelection="True"
+            CellSelection="Single"
+            CellSelectionAction="SelectRow"
+            RowSelection="Single" />
+    </ig:XamPivotGrid.SelectionSettings>
+</ig:XamPivotGrid>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.pivotGrid.SelectionSettings.AllowRowHeaderSelection = true;
+this.pivotGrid.SelectionSettings.CellSelection = Infragistics.Controls.Grids.PivotSelectionType.Single;
+this.pivotGrid.SelectionSettings.CellSelectionAction = Infragistics.Controls.Grids.PivotCellSelectionAction.SelectRow;
+this.pivotGrid.SelectionSettings.RowSelection = Infragistics.Controls.Grids.PivotSelectionType.Single;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.pivotGrid.SelectionSettings.AllowRowHeaderSelection = True
+Me.pivotGrid.SelectionSettings.CellSelection = Infragistics.Controls.Grids.PivotSelectionType.[Single]
+Me.pivotGrid.SelectionSettings.CellSelectionAction = Infragistics.Controls.Grids.PivotCellSelectionAction.SelectRow
+Me.pivotGrid.SelectionSettings.RowSelection = Infragistics.Controls.Grids.PivotSelectionType.[Single]
+----
+
+[[_Ref320692212]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-understanding-xampivotgrid.html[xamPivotGrid の概要]
+|このセクションは xamPivotGrid コントロールの主要機能について説明します。以下のトピックでは、アプリケーションで _xamPivotGrid_ コントロールを効果的に使用する方法を説明します。
+
+|====

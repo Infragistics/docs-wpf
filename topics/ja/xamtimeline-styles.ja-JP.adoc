@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-styles",
+    "controlName": ["xamTimeline"],
+    "tags": ["Styling"],
+    "guid": "{D0795AF1-186D-4F2D-BEFD-5CB8BC6E5032}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.9793969Z"
+}
+|metadata|
+////
+
+= スタイル
+
+このセクションは、xamTimeline でスタイル設定を行うタスクベースの手順についての役立つ情報を提供します。
+
+link:xamtimeline-style-xamwebtimeline.html[xamTimeline のスタイル]
+
+このトピックは、スタイル可能な xamTimeline コントロールの要素を紹介します。
+
+link:xamtimeline-style-time-series.html[Time シリーズのスタイル]
+
+このトピックは、xamTimeline コントロールの Time シリーズのスタイルを設定する方法を説明します。
+
+link:xamtimeline-style-the-axis.html[Axis のスタイル]
+
+このセクションは、xamTimeline コントロールの Axis の要素に関する詳しい情報を提供します。
+
+link:xamtimeline-style-legend-and-legend-items.html[Legend と Legend Item のスタイル]
+
+このトピックは、xamTimeline コントロールの Legend と Legend Item のスタイルを設定する方法を説明します。
+
+link:xamtimeline-style-event-titles.html[Event Title のスタイル]
+
+このトピックは、xamTimeline コントロールの Event Title のスタイルを設定する方法を説明します。

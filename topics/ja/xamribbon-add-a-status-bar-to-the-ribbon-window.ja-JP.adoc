@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-add-a-status-bar-to-the-ribbon-window",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","Getting Started","How Do I"],
+    "guid": "{6DCD8776-72ED-446E-909E-20193CCC232F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1131757Z"
+}
+|metadata|
+////
+
+= ステータス バーをリボン ウィンドウに追加
+
+
+
+
+
+xamRibbonWindow の StatusBar によって、アプリケーション ウィンドウの下側にメッセージを表示できます。一般的に、この領域を使用して時間のかかるタスクの進捗状況インジケーターを表示したり、エンドユーザーによって実行された無効な操作に対するメッセージを表示できます。xamRibbonContentHost の StatusBar プロパティは、StatusBar コントロールのインスタンスに設定する必要があります。
+
+ContentControl と同じように、コントロールのプロパティは、コントロールのコンテンツの一部として宣言できません。したがって、レイアウト コンテナの外で xamRibbonContentHost の StatusBar プロパティを宣言する必要があります。StatusBar のタグを配置するために相応しい場所は、xamRibbonContentHost の Ribbon プロパティの終了タグの直後です。
+
+[NOTE]
+====
+*注:* link:http://msdn2.microsoft.com/ja-jp/library/system.windows.controls.primitives.statusbar.aspx[StatusBar] コントロールの作成は、本ヘルプ トピックの範囲外なので含まれていません。
+====
+
+以下のコード例は、StatusBar を xamRibbonWindow に追加する方法を示します。
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:RibbonWindowContentHost.StatusBar>
+        <StatusBar Name="StatusBar1">
+                <!--TODO: StatusBar Items を追加します -->
+                <TextBlock>Ready</TextBlock>
+        </StatusBar>
+</igRibbon:RibbonWindowContentHost.StatusBar>
+...
+----
+
+== 関連トピック
+
+link:xamribbon-display-xamribbon-in-the-ribbon-window.html[リボン ウィンドウに xamRibbon を表示]

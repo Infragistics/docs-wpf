@@ -1,0 +1,199 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-applying-conditional-formatting",
+    "controlName": ["xamOrgChart"],
+    "tags": ["Formatting"],
+    "guid": "30c44027-7437-4f09-9d39-fac17064eeb2",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.7812655Z"
+}
+|metadata|
+////
+
+= 条件付き書式の適用
+
+== トピックの概要
+
+=== 目的
+
+コード例を用いて、条件付き書式を  _xamOrgChart™_  ノードへ適用する方法に関する詳細手順を説明します
+
+=== 前提条件
+
+この題材を理解するのにあらかじめ必要となるトピック。
+
+[options="header", cols="a,a"]
+|====
+| *トピック* | *目的* 
+
+| link:xamorgchart-understanding-xamorgchart.html[xamOrgChart の理解]
+|_xamOrgChart_ コントロールの要素および機能の紹介。
+
+| link:xamorgchart-adding-xamorgchart-to-your-application.html[xamOrgChart をアプリケーションに追加]
+|_xamOrgChart_ コントロールを追加する場合の要件と手順を紹介します。また、詳細な XAML およびプロシージャ C#/ VB コードの説明へのリンクも記載されています。
+
+| link:xamorgchart-styling.html[スタイル設定]
+|_xamOrgChart_ コントロールの要素スタイル設定機能を紹介し、ノード スタイルを構成する方法を示します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref321318623,条件付き書式の適用 - 概念的概要>>
+
+** <<_Ref321318632,概要>>
+** <<_Ref321318639,要件>>
+** <<_Ref321318646,概要>>
+
+* <<_Ref321318653,条件付き書式の適用 - コード例>>
+
+* <<_Ref321318659,概要>>
+* <<_Ref321318666,プレビュー>>
+* <<OLE_LINK41,前提条件>>
+* <<_Ref321318680,概要>>
+* <<_Ref321318687,手順>>
+
+[[_Ref321318623]]
+== 条件付き書式の適用 - 概念的概要
+
+[[_Ref321318632]]
+
+=== 概要
+
+条件付き書式は、ノード レイアウト内の個々のノードまたはノード グループの外観をカスタマイズするカスタマイズの 1 つの方法です。ノードの外観には、スタイル、色、フォント ファミリーおよびサイズ、ノードの前景または背景などが含まれます。
+
+たとえば、データ値に基づいて条件付き書式をアプリケーションに定義しているとします。データ値が指定された条件を満たしている場合、ゼロを下回っている「勘定残高」は _赤色のイタリック体_ でノードのテキストを表示するとします。勘定残高がゼロを下回るたびに、 _xamOrgChart_  は条件付き書式にしたがってノードを描画します。この場合は、 _赤色のイタリック体_  です。
+
+条件付き書式はオプション機能であるため、条件が指定されていない場合、適用される書式およびスタイルは、コントロールのすべてのノードに適用されます。条件付き書式を使って作業をする場合、スタイルは XAML で作成してリソースとして参照できますが、基本の条件付きロジックは、C# または Visual Basic を使用したコード内でのみ実行できることに留意することが重要です。これは、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart.html[xamOrgChart] コントロール内のコードは link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode_members.html[OrgChartNode] オブジェクトによって表され、これはコード (C# または Visual Basic) 内で参照できますが、XAML では参照できないためです。その結果、条件付き書式はコード内でのみ実現できます。
+
+[[_Ref321318639]]
+
+=== 要件
+
+_xamOrgChart_  コントロールは XAML のノード オブジェクトを公開しないため、すべての条件付き書式は C# コードまたは Visual Basic コードで実装する必要があります。
+
+[[_Ref321318646]]
+
+=== 概要
+
+以下はプロセスの概念的概要です。 
+
+*1. 条件付き書式にスタイルを定義します* 
+
+*2. NodeControlAttachedEvent を処理することによる条件の確認と書式の適用*
+
+[[_Ref321318653]]
+== 条件付き書式の適用 - コード例
+
+[[_Ref321318659]]
+
+以下の例は、従業員データベース内の特定の従業員に条件付き書式を適用する方法を示しています。これによって  _xamOrgChart_   レイアウトでその従業員が強調されます。
+
+この例では、XAML を使って、特定の書式の前景、背景、およびフォント サイズ プロパティを持つ基本スタイルを作成しています。ここでは条件付きロジックを設定して、従業員データベースから個々の従業員を名前で特定し、XAML で定義されたスタイルを適用しています。これは、C# または Visual Basic を使用したコードのみ実装できます。
+
+[[_Ref321318666]]
+
+=== プレビュー
+
+ここでは、条件付き書式がツリー内のサブ ノードにどのように適用されているかを見ることができます (この場合は Rob)。
+
+image::images/xamOrgChart_Applying_Conditional_Formatting_01.png[]
+
+=== 前提条件
+
+この手順を行うには、以下の作業を行う必要があります。
+
+*  _Window_   (WPF) または  _UserControl_   (Silverlight) が追加された、WPF または Silverlight プロジェクト
+* ページに追加された xamOrgChart コントロールコントロールをデータに追加およびバインドする方法については、 link:xamorgchart-adding-xamorgchart-to-your-application.html[xamOrgChart をアプリケーションに追加]を参照してください。
+
+[[_Ref321318680]]
+
+=== 概要
+
+このトピックでは、条件付き書式のプロセスをステップごとに説明します。以下はプロセスの概念的概要です。
+
+*1. 条件付き書式にスタイルを定義します* 
+
+*2. NodeControlAttachedEvent を処理することによる条件の確認と書式の適用*
+
+[[_Ref321318687]]
+
+=== 手順
+
+条件付き書式をアプリケーションに簡単に適用するには、これらの手順を順番に実行します。
+
+=== 1.条件付き書式のスタイルを定義します。
+
+XAML の条件付き書式のスタイルを以下のように定義します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Style x:Key="EmployeeNodeStyle"
+  TargetType="ig:OrgChartNodeControl">
+  <Setter Property="Background" Value="#FFB0C4DE"/>
+  <Setter Property="Foreground" Value="#FF696969" />
+  <Setter Property="FontSize" Value="18" />
+</Style>
+----
+
+=== 2.NodeControlAttachedEventを処理することによる条件の確認と書式の適用
+
+a. コード ビハインドでは、条件付き書式の以下のコードを追加します。
+
+コードは、次のステップを実行します。
+
+[start=1]
+. データを読み出し、検証します。
+[start=2]
+. オブジェクト型が正しい型であることを確認します。
+[start=3]
+. 前に作成された XAML 書式スタイルを適用します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void XamOrgChart_NodeControlAttachedEvent(object sender, Infragistics.Controls.Maps.OrgChartNodeEventArgs e)
+        {
+            var nodeModel = e.Node.DataContext;
+            if (nodeModel == null)
+                return;
+            if (nodeModel.GetType() == typeof(Employee))
+            {
+                Employee emp = nodeModel as Employee;
+                if (emp == null)
+                    return;
+                if ((string)emp.FirstName == "Rob")
+                {
+                    e.Node.Style = this.Resources["EmployeeNodeStyle"] as Style;
+                }
+            }
+        }
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub XamOrgChart_NodeControlAttachedEvent(sender As Object, e As Infragistics.Controls.Maps.OrgChartNodeEventArgs)
+      Dim nodeModel = e.Node.DataContext
+      If nodeModel Is Nothing Then
+            Return
+      End If
+      If nodeModel.[GetType]() = GetType(Employee) Then
+            Dim emp As Employee = TryCast(nodeModel, Employee)
+            If emp Is Nothing Then
+                  Return
+            End If
+            If DirectCast(emp.FirstName, String) = "Rob" Then
+                  e.Node.Style = TryCast(Me.Resources("EmployeeNodeStyle"), Style)
+            End If
+      End If
+End Sub
+----

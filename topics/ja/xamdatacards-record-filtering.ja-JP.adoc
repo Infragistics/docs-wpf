@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards-record-filtering",
+    "controlName": ["xamDataCards"],
+    "tags": ["Filtering"],
+    "guid": "{6DBD34AC-098A-4DA5-9FBC-8C08185C6375}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6178767Z"
+}
+|metadata|
+////
+
+= レコード フィルタリング
+
+
+
+xamDataCards™ のレコード フィルタリングについての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+* link:xamdatapresenter-add-filter-conditions.html[フィルター条件の追加]
+* link:xamdatapresenter-enable-record-filtering.html[レコード フィルタリングを有効にする]
+* link:xamdatapresenter-modify-the-list-of-operators.html[演算子のリストの修正]
+* link:xamdatapresenter-modify-the-look-of-filtered-records.html[フィルターされたレコードの外観を修正]

@@ -1,0 +1,94 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-apply-formats-for-exporting",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Exporting","Styling","Templating"],
+    "guid": "{71153338-713E-4A28-BE64-1DBA8A45C47E}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0939719Z"
+}
+|metadata|
+////
+
+= エクスポートするフォーマットを適用
+
+
+
+Excel にエクスポートするとき、 link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter.html[DataPresenterExcelExporter] クラスが公開する添付フォーマット プロパティを設定することにより、セル、フィールド ラベル、group-by レコード、および集計にフォーマットを適用できます。各添付プロパティの名前は、そのプロパティが書式設定する要素の型に対応します。添付プロパティは DataPresenter コントロールに影響しません。その代わりに、エンド ユーザーにはワークシートのセルに適用されるフォーマットのみが表示されます。たとえば、添付の ExcelCellFormatSettings プロパティを設定することでセルを書式設定でき、添付の ExcelLabelFormatSettings プロパティを設定することでフィールド ヘッダーを書式設定できます。
+
+DataPresenterExcelExporter クラスの添付されたフォーマット プロパティは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトで設定する必要があります。これによって、DataPresenter コントロールの FieldSettings オブジェクトを使用してすべてのフィールドにデフォルトのフォーマットを適用し、フィールド レイアウトで特定のフィールドを選択的に書式設定することが可能となります。フォーマットプロパティは解決され、コントロールの FieldSettings オブジェクトからフィールドの FieldSettings オブジェクトまで結合されます。たとえば、コントロールの FontSettings プロパティで ExcelCellFormatSettings オブジェクトの FontColor プロパティを Blue に設定し、次にフィールドの FontSettings オブジェクトで ExcelCellFormatSettings オブジェクトの FontWeight プロパティを Bold に設定すると、結果のワークシート列では、そのフィールドのテキストが太字の青色になります。
+
+添付のフォーマット プロパティの設定に加えて、フォーマットをワークシートのセルと行に適用するように DataPresenterExcelExporter オブジェクトのイベントを処理することも可能です。「-ing」で終わる DataPresenterExcelExporter オブジェクトのイベントを処理する時、イベント引数はフォーマットを適用するために使用可能な FormatSettings プロパティを公開します。DataPresenterExcelExporter オブジェクトのイベントを処理する方法の詳細については、「エクスポート イベントの処理」を参照してください。
+
+以下のコード例は、DataPresenter コントロールを Excel にエクスポートするためにフォーマットを適用する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldSettings>
+        <igDP:FieldSettings>
+            <!-- セルのフォーマット -->
+            <igExcelExporter:DataPresenterExcelExporter.ExcelCellFormatSettings>
+                <igExcelExporter:FormatSettings
+                    FillPattern="Solid" 
+                    FillPatternForegroundColor="Green" />            
+            </igExcelExporter:DataPresenterExcelExporter.ExcelCellFormatSettings>
+            <!-- ラベルのフォーマット -->
+            <igExcelExporter:DataPresenterExcelExporter.ExcelLabelFormatSettings>
+                <igExcelExporter:FormatSettings
+                    FontColor="Red" 
+                    FontWeight="Bold" />            
+            </igExcelExporter:DataPresenterExcelExporter.ExcelLabelFormatSettings>
+        </igDP:FieldSettings>
+    </igDP:XamDataPresenter.FieldSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter.ExcelExporter
+Imports Infragistics.Documents.Excel
+...
+' セルのフォーマット
+Dim cellFormatSettings As New FormatSettings With {.FillPattern = FillPatternStyle.Solid, .FillPatternForegroundColor = Colors.Green}
+DataPresenterExcelExporter.SetExcelCellFormatSettings(Me.xamDataPresenter1.FieldSettings, cellFormatSettings)
+' ラベルのフォーマット
+Dim labelFormatSettings As New FormatSettings With {.FontColor = Colors.Red, .FontWeight = FontWeights.Bold}
+DataPresenterExcelExporter.SetExcelLabelFormatSettings(Me.xamDataPresenter1.FieldSettings, labelFormatSettings)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter.ExcelExporter;
+using Infragistics.Documents.Excel;
+...
+// セルのフォーマット
+FormatSettings cellFormatSettings = new FormatSettings
+{
+    FillPattern = FillPatternStyle.Solid,
+    FillPatternForegroundColor = Colors.Green
+};
+DataPresenterExcelExporter.SetExcelCellFormatSettings(this.xamDataPresenter1.FieldSettings, cellFormatSettings);
+// ラベルのフォーマット
+FormatSettings labelFormatSettings = new FormatSettings
+{
+    FontColor = Colors.Red,
+    FontWeight = FontWeights.Bold    
+};
+DataPresenterExcelExporter.SetExcelLabelFormatSettings(this.xamDataPresenter1.FieldSettings, labelFormatSettings);
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-export-a-datapresenter-control-to-excel.html[DataPresenter コントロールを Excel にエクスポート]
+
+link:xamdatapresenter-exclude-datapresenter-settings-when-exporting.html[エクスポート時に DataPresenter 設定を除外]
+
+link:xamdatapresenter-handle-exporting-events.html[エクスポート イベントの処理]

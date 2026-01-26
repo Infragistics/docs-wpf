@@ -1,0 +1,213 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-projectdatahelper",
+    "controlName": ["xamGantt"],
+    "tags": ["Sample Data Source"],
+    "guid": "771333e7-259d-4746-a809-87e08f669434",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2501628Z"
+}
+|metadata|
+////
+
+= ProjectDataHelper
+
+== コード例: プロジェクト データ ヘルパー
+
+=== 解説
+
+このコードは、 _xamGantt™_   コントロールのサンプル プロジェクト データを提供するヘルパー クラスを示しています。
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Schedules;
+public class ProjectDataHelper
+{
+    public static Project GenerateProjectData()
+    {
+        // プロジェクト インスタンス作成する
+        Project project = new Project();
+        // プロジェクト ルート ProjectTask を作成する
+        ProjectTask rootTask = new ProjectTask
+        {
+            TaskName = "Project Summary Task",
+            IsManual = false
+        };
+        // ルート タスクをプロジェクトに追加する
+        project.RootTask.Tasks.Add(rootTask);
+        // xamGantt 内の日付は UTC で格納する
+        DateTime startTime = DateTime.Today.ToUniversalTime();
+        // ProjectTask のサブタスクをルート プロジェクト タスクに追加する
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Planning",
+            IsManual = false,
+            Start = startTime,
+            Duration = TimeSpan.FromHours(8),
+        });
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Documenting",
+            IsManual = false,
+            Start = startTime,
+            // タスク時間を構成する
+            ManualDuration = ProjectDuration.FromFormatUnits(2, ProjectDurationFormat.Days),
+            // タスクの制約を設定する
+            ConstraintDate = DateTime.Today.AddDays(3).ToUniversalTime(),
+            ConstraintType = ProjectTaskConstraintType.FinishNoLaterThan,
+        });
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Creating Demo Application",
+            IsManual = false,
+            Start = startTime,
+            ManualDuration = ProjectDuration.FromFormatUnits(3, ProjectDurationFormat.Days),
+            ConstraintType = ProjectTaskConstraintType.MustStartOn,
+            ConstraintDate = DateTime.Today.AddDays(2).ToUniversalTime(),
+            IsEstimated = true,
+        });
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Collecting Feedback",
+            IsManual = false,
+            Start = startTime,
+            ManualDuration = ProjectDuration.FromFormatUnits(1, ProjectDurationFormat.Days),
+            IsEstimated = true,
+        });
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Designing",
+            IsManual = false,
+            Start = startTime,
+            ManualDuration = ProjectDuration.FromFormatUnits(5, ProjectDurationFormat.Days),
+        });
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Development",
+            IsManual = true,
+            // 手動タスクには開始日と終了日にフリー テキストを使用可能
+            ManualStart = new ManualDateTime("Still In Discussion"),
+            ManualDuration = ProjectDuration.FromFormatUnits(10, ProjectDurationFormat.Days),
+            ManualFinish = new ManualDateTime("Not Defined Yet"),
+        });
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Testing",
+            IsManual = true,
+            Start = startTime,
+            ManualDuration = ProjectDuration.FromFormatUnits(7, ProjectDurationFormat.Days),
+        });
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Bug Fixing",
+            IsManual = true,
+            Start = startTime,
+            ManualDuration = ProjectDuration.FromFormatUnits(4, ProjectDurationFormat.Days),
+        });
+        rootTask.Tasks.Add(new ProjectTask
+        {
+            TaskName = "Project Complete",
+            IsManual = false,
+            Start = startTime,
+            // マイルストーンを設定する
+            IsMilestone = true
+        });
+        return project;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Schedules
+Public Class ProjectDataHelper
+    Public Shared Function GenerateProjectData() As Project
+        ' プロジェクト インスタンスを作成する
+        Dim project As New Project()
+        ' プロジェクト ルート ProjectTask を作成する
+        Dim rootTask As New ProjectTask() With {
+            .TaskName = "Project Summary Task",
+            .IsManual = False
+        }
+        ' ルート タスクをプロジェクトに追加する
+        project.RootTask.Tasks.Add(rootTask)
+        ' xamGantt 内の日付は UTC で格納する
+        Dim startTime As DateTime = DateTime.Today.ToUniversalTime()
+        ' ProjectTask のサブタスクをルート プロジェクト タスクに追加する
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Planning",
+            .IsManual = False,
+            .Start = startTime,
+            .Duration = TimeSpan.FromHours(8)
+        })
+        ' タスク時間を構成する
+        ' タスクの制約を設定する
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Documenting",
+            .IsManual = False,
+            .Start = startTime,
+            .ManualDuration = ProjectDuration.FromFormatUnits(2, ProjectDurationFormat.Days),
+            .ConstraintDate = DateTime.Today.AddDays(3).ToUniversalTime(),
+            .ConstraintType = ProjectTaskConstraintType.FinishNoLaterThan
+        })
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Creating Demo Application",
+            .IsManual = False,
+            .Start = startTime,
+            .ManualDuration = ProjectDuration.FromFormatUnits(3, ProjectDurationFormat.Days),
+            .ConstraintType = ProjectTaskConstraintType.MustStartOn,
+            .ConstraintDate = DateTime.Today.AddDays(2).ToUniversalTime(),
+            .IsEstimated = True
+        })
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Collecting Feedback",
+            .IsManual = False,
+            .Start = startTime,
+            .ManualDuration = ProjectDuration.FromFormatUnits(1, ProjectDurationFormat.Days),
+            .IsEstimated = True
+        })
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Designing",
+            .IsManual = False,
+            .Start = startTime,
+            .ManualDuration = ProjectDuration.FromFormatUnits(5, ProjectDurationFormat.Days)
+        })
+        ' 手動タスクでは開始日と終了日にフリー テキストを使用可能
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Development",
+            .IsManual = True,
+            .ManualStart = New ManualDateTime("Still In Discussion"),
+            .ManualDuration = ProjectDuration.FromFormatUnits(10, ProjectDurationFormat.Days),
+            .ManualFinish = New ManualDateTime("Not Defined Yet")
+        })
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Testing",
+            .IsManual = True,
+            .Start = startTime,
+            .ManualDuration = ProjectDuration.FromFormatUnits(7, ProjectDurationFormat.Days)
+        })
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Bug Fixing",
+            .IsManual = True,
+            .Start = startTime,
+            .ManualDuration = ProjectDuration.FromFormatUnits(4, ProjectDurationFormat.Days)
+        })
+        ' マイルストーンを設定する
+        rootTask.Tasks.Add(New ProjectTask() With {
+            .TaskName = "Project Complete",
+            .IsManual = False,
+            .Start = startTime,
+            .IsMilestone = True
+        })
+        Return project
+    End Function
+End Class
+----

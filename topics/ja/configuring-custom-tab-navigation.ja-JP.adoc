@@ -1,0 +1,128 @@
+﻿////
+
+|metadata|
+{
+    "name": "configuring-custom-tab-navigation",
+    "controlName": [],
+    "tags": [],
+    "guid": "05611632-0220-4689-b4ef-63efcc18a01a",  
+    "buildFlags": [],
+    "createdOn": "2014-06-26T13:31:50.3255327Z"
+}
+|metadata|
+////
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDataPresenter_™ コントロールでデフォルトのタブ ナビゲーションをカスタマイズする方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-getting-started-with-xamdatagrid.html[xamDataGrid をページに追加]
+|このトピックでは、 _xamDataGrid_ コントロールをページに追加する方法について説明します。
+
+| link:xamdatapresenter-keyboard-navigation-in-xamdatapresenter.html[xamDataPresenter でのキーボード ナビゲーション]
+|このトピックでは、 _xamDataPresenter_ コントロールのビルトイン キーボードのサポートについて説明します。このサポートは、レコードやフィールドをキーボードを使用して移動するオプションを提供します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref388537422, カスタム タブのナビゲーションの構成 >>
+* <<_Ref388537428, 関連コンテンツ >>
+
+** <<_Ref388537432,トピック>>
+
+[[_Ref388537422]]
+== カスタム タブのナビゲーションの構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+`TAB` キーボード ボタンを使用すると、 _xamDataPresenter_   コントロールですべてのセルをナビゲートできます。
+
+`IsTabStop` プロパティを使用して、特定の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell_members.html[Cell] または link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field_members.html[Field] を、`Tab` によるナビゲーションから除外することができます。除外しても、レコードのフィルタリングや追加には影響しません。
+
+このプロパティのデフォルト値は null で、この値を `true` にします。
+
+注:
+
+[NOTE]
+====
+`Cell` `IsTabStop` プロパティの値は、Field `IsTabStop` および `IsTabStopInAddRecord` の設定をオーバーライドします。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の動作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|デフォルトのタブによるナビゲーションの変更 (データ レコード内の特定の `Cell` または`Field` のセル (追加レコードまたはフィルター レコードではなく) を除外)
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~istabstop.html[IsTabStop]
+|`false`
+
+|デフォルトのタブによるナビゲーションの変更 (追加レコード内の `Field` のセルを除外)
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~istabstopinaddrecord.html[IsTabStopInAddRecord]
+|`false`
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TextField Name="Name" Label="Product_Name" IsTabStop=" IsTabStopInAddRecord=" />
+----
+
+[[_Ref388537428]]
+== 関連コンテンツ
+
+[[_Ref388537432]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdata-selection-overview.html[選択の概要]
+|このトピックでは、xamDataGrid コントロールにおける選択の概要を説明します。
+
+| link:xamdata-accessing-records-through-the-recordmanager.html[RecordManager によるレコードへのアクセス]
+|このトピックでは、xamDataGrid RecordManager のメカニズムを説明します。
+
+| link:xamdatagrid-selected-data-items.html[選択されたデータ項目を使用した作業]
+|このトピックでは、xamDataGrid の選択された項目にアクセスする方法について説明します。
+
+| link:xamdatagrid-changing-field-record-or-cell-selection-behavior.html[フィールド、レコード、またはセルの選択動作の変更]
+|このトピックでは、xamDataPresenter コントロールの選択機能を変更する方法を説明します。
+
+| link:xamdatapresenter-keyboard-navigation-in-xamdatapresenter.html[xamDataPresenter でのキーボード ナビゲーション]
+|このトピックでは、xamDataPresenter コントロールのビルトイン キーボードのサポートについて説明します。このサポートは、レコードやフィールドをキーボードを使用して移動するオプションを提供します。ユーザーは、一般的なショートカットを使用してクリップボード操作を実行できます。
+
+| link:xamdata-using-data-presenter-family-commands.html[データ プレゼンター ファミリ コマンドの使用]
+|このトピックでは、特定の操作を xamDataPresenter コントロールで特定の操作の実行に使用するコマンド バインド セットの一覧を示します。
+
+|====

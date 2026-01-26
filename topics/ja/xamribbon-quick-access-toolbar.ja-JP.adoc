@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-quick-access-toolbar",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","Navigation","Selection"],
+    "guid": "{CC652E6E-BE6F-4077-AA72-8A466C650407}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1841899Z"
+}
+|metadata|
+////
+
+= クイック アクセス ツールバー
+
+
+
+Quick Access Toolbar (QAT) は標準ツールバーよりも若干優れています。QAT は、アプリケーション メニュー ボタンの右のリボンの上、またはリボンの下のいずれかに表示されます。このツールバーが他のツールバーやリボンのグループと異なっている点は、エンド ユーザーが QAT にグループからツールを追加できる点です。グループ全体を QAT に追加することも可能です。
+
+QAT にツールを追加する約束事はひとつだけです。QATに追加できるのは link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.qatplaceholdertool.html[QatPlaceholderTool] だけです。QatPlaceholder ツールを QAT に追加する場合、ツールの link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.qatplaceholdertool~targetid.html[TargetID] を、xamRibbon ではなく xamRibbon™ に現在配置されているツールまたはグループの ID に設定できます (link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbon~toolsnotinribbon.html[ToolsNotInRibbon] コレクションにあるツール)。ToolsNotInRibbon コレクションは、QAT を念頭において特に設計されました。QAT に配置できるのは QatPlaceholder ツールだけなので、xamRibbon の他の場所にツールを配置したくない場合は、ツール用のコレクションが必要です。
+
+興味がある場合、xamRibbon のクイック アクセス ツールバーについての詳細は、以下のトピックを参照してください。
+
+* link:xamribbon-about-quickaccesstoolbar.html[QuickAccessToolbar について]
+* link:xamribbon-add-a-tool-or-ribbongroup-to-the-quick-access-toolbar.html[クイック アクセス ツールバーにツールまたは RibbonGroup を追加]
+* link:xamribbon-adding-and-removing-common-tools.html[共通のツールを追加および削除]

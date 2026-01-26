@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-support-for-string-indexers",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Performance","Sorting"],
+    "guid": "2dcc970c-1ce8-4a3e-b5cf-dfca2d6d9926",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.2761804Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 文字列インデクサーのサポート
+
+以下のコードに示すように、xamGrid コントロールによって、オブジェクトの値をバインドするために、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column.html[Column] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnbase~key.html[Key] プロパティで文字列インデクサー構文を使用することができます。
+
+*XAML の場合:*
+
+----
+<ig:TextColumn Key="[FirstName]" HeaderText="First Name"/>
+----
+
+以下のコードで示すように、この機能は ColumnLayout オブジェクトでもサポートされます。
+
+*XAML の場合:*
+
+----
+<ColumnLayout key=”[Test].Children”/>
+----
+
+*制限:*
+
+* 文字列および整数のインデクサーだけがサポートされます。
+* すべてのインデクサーは、オブジェクトではなく特定のタイプを返します。そうでないと、フィルタリングや集計はサポートされません。ただし、GroupBy や Sorting 機能は動作しません。インデクサーがオブジェクトを返す場合、([Test].MyChildProp) などのドット表記は得られません。

@@ -1,0 +1,55 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtagcloud-smooth-scaling",
+    "controlName": ["xamTagCloud"],
+    "tags": ["How Do I","Layouts","Performance"],
+    "guid": "{6D830353-3E27-4741-9EC2-5D222295FFD8}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5924066Z"
+}
+|metadata|
+////
+
+= スムーズ スケーリング
+
+xamTagCloud™ コントロールの UseSmoothScaling プロパティを設定することによって、計算されてスケールされた項目のサイズにログ スケールが適用されます。これですべてのクラウド項目が互いに相対してスケールされることが保証されます。link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~usesmoothscaling.html[UseSmoothScaling] プロパティを有効にすると、MaxScale 値は無視され、クラウド項目は MinScale 値より小さくはスケールされません。スムーズ スケーリング機能は、最終的にスケールされたサイズの大きな差分で項目間の差分をなくすために設計されました。
+
+たとえば、MinValue が 1 で MaxValue が 100 のタグ クラウドがあり、Weight 値が広範囲なクラウド項目が多数ある場合、ひとつのクラウド項目は通常のサイズの 100 倍にスケールされ、クラウド項目の残りは非常に小さく表示される可能性があります。スムーズ スケーリングを使用すれば、この問題は解決され、最も重い Weight 値のクラウド項目は常に最も軽い Weight 値のクラウド項目に相対してスケールされます。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamTagCloud MaxScale="10" MinScale="1" x:Name="myTagCloud" UseSmoothScaling="True">
+   …
+   </ig:XamTagCloud>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+tagCloud.UseSmoothScaling = True
+----
+
+*C# の場合:*
+
+----
+tagCloud.UseSmoothScaling = true;
+----
+
+== 関連トピック
+
+link:xamtagcloud-add-cloud-items-to-xamtagcloud.html[クラウド項目を xamTagCloud に追加]
+
+link:xamtagcloud-add-navigation-uris-to-cloud-items2.html[ナビゲーション URI をクラウド項目に追加]
+
+link:xamtagcloud-add-spaces-between-cloud-items.html[クラウド項目の間にスペースを追加]
+
+link:xamtagcloud-xamtagcloud-events.html[xamTagCloud イベント]
+
+link:xamtagcloud-setting-minimum-and-maximum-scale-values.html[最小スケール値と最大スケール値の設定]
+
+link:xamtagcloud-working-with-scalebreaks-collection.html[ScaleBreaks コレクションでの作業]

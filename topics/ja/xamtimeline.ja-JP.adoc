@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline",
+    "controlName": ["xamTimeline"],
+    "tags": ["Getting Started"],
+    "guid": "{0B457D88-EB27-4B51-8E1D-4A5567F06FBA}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1734083Z"
+}
+|metadata|
+////
+
+= xamTimeline
+
+このセクションは、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールの使用に関する概要を提供します。このセクションには、コントロールの概要やそれをアプリケーションで使用する理由から、コントロールを使用して共通タスクを達成する方法の手順に至るまで、xamTimeline に関する有益な情報が含まれています。
+
+以下のリンクをクリックすると、xamTimeline コントロールの情報にアクセスできます。
+
+== link:xamtimeline-understanding-xamwebtimeline.html[xamTimeline について]
+
+このセクションを読むと、xamTimeline コントロールの機能性と、これをアプリケーション構築に使用することの利点についてよく理解できます。
+
+== xamTimeline を使用した作業の開始
+
+以下のリンクをクリックすると、xamTimeline コントロールをすばやく起動して実行する方法についての説明が表示されます。
+
+* link:xamtimeline-binding-to-data-with-xamtimeline.html[xamTimeline でデータにバインド]
+* link:xamtimeline-display-date-time-series.html[日時シリーズを表示]
+* link:xamtimeline-display-numeric-time-series.html[数値タイムラインの表示] 
+
+== xamTimeline の使用
+
+このセクションでは、xamTimeline コントロールの様々な機能を使用するために役立つ、重要な概念やタスク ベースの情報について説明します。
+
+* link:xamtimeline-axis.html[軸]
+* link:xamtimeline-about-formatting-xamwebtimeline.html[書式]
+* link:xamtimeline-style-xamwebtimeline.html[スタイル]
+* link:xamtimeline-xamwebzoombar.html[XamZoombar]
+* link:xamtimeline-auto-adjust-labels.html[ラベルの自動調整]
+
+== link:xamtimeline-api-overview.html[API の概要]
+
+このトピックでは、xamTimeline コントロールを使用して開発する際の名前空間とクラスについて説明します。このトピックの名前空間とクラスの一覧は、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]へリンクします。

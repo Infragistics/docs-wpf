@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacarousel-using-xamdatacarousel",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{DBE1741A-BEC8-473F-8A5D-8F66915E2CB8}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6748881Z"
+}
+|metadata|
+////
+
+= xamDataCarousel の使用
+
+このセクションでは、xamDataCarousel™ コントロールの様々な特長や機能を効果的に使用するための、重要なタスク ベースの情報について説明します。
+
+* link:xamdatacarousel-accessing-data.html[データ アクセス]
+* link:xamdatacarousel-clipboard-operations.html[クリップボード操作]
+* link:xamdatacarousel-defining-layouts.html[レイアウトの定義]
+* link:xamdatacarousel-designing-the-look-and-feel.html[ルック アンド フィールのデザイン]
+* link:xamdatacarousel-editing-data.html[データの編集]
+* link:xamdatacarousel-exporting-to-excel.html[Excel へエクスポート]
+* link:xamdatacarousel-field-chooser.html[フィールドの選択]
+* link:xamdatacarousel-grouping.html[グループ化]
+* link:xamdatacarousel-navigating-and-selecting.html[ナビゲーションと選択]
+* link:xamdatacarousel-optimizing-performance.html[パフォーマンスの最適化]
+* link:xamdatacarousel-printing.html[印刷]
+* link:xamdatacarousel-sorting.html[並べ替え]
+* link:xamdatacarousel-undo-operations.html[元に戻す操作]

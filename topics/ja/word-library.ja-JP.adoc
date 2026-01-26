@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "word-library",
+    "controlName": ["IG Word Library"],
+    "tags": ["Getting Started"],
+    "guid": "edaa3759-9e1a-4e0f-8819-b7aa4d47d868",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.3251104Z"
+}
+|metadata|
+////
+
+= Infragistics Word Library
+
+Word ライブラリに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このページをご覧ください。このセクションには、Word ライブラリが何を実行するのか、またアプリケーションでなぜ Word ライブラリを使用したくなるのかから、一般的なタスクを完了する方法に関するステップバイステップの手順まで、Word ライブラリに関する貴重な情報が含まれています。
+
+以下のリンクをクリックすると、Word ライブラリに関する重要な情報にアクセスします。
+
+== link:word-about-ig-word-library.html[Infragistics Word ライブラリについて]
+
+このセクションには Word ライブラリの機能をより理解するための情報があります。なぜアプリケーションのビルドの一部として使用するかも説明します。
+
+== link:word-using-the-ig-word-library.html[Infragistics Word ライブラリの使用]
+
+このセクションには、Word ライブラリで固有のタスクを実行する方法のデモを行うサンプル コード例を示す役立つトピックがあります。
+
+== link:word-api-overview.html[API の概要]
+
+このトピックでは、Word ライブラリを使ってプログラミングする際に操作しなければならない名前空間とクラスをリストします。このトピックにリストされている名前空間とクラスは、{PlatformName} ヘルプの link:api-reference-guide.html[API 参照ガイド]セクションに便宜的にリンクされています。

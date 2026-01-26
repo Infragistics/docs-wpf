@@ -1,0 +1,279 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-working-with-drag-and-drop-framework",
+    "controlName": ["xamOrgChart"],
+    "tags": ["How Do I","Tips and Tricks"],
+    "guid": "b2ea5edc-411e-444c-8e4c-0d04a3fa0ffc",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.7682645Z"
+}
+|metadata|
+////
+
+= Drag and Drop Framework での作業
+
+このトピックは、組織図および Drag and Drop Framework でドラッグ アンド ドロップを実装する方法を示します。
+
+トピックは以下のとおりです。
+
+* <<introduction,概要>>
+* <<preview,プレビュー>>
+* <<requirements,要件>>
+* <<overview,概要>>
+* <<steps,手順>>
+
+[[introduction]]
+== 概要
+
+ドラッグ アンド ドロップを実装している場合、階層の基本データは手動で更新する必要があります。これは xamOrgChart™ コントロールの要件であるため、xamOrgChart™ コントロールの変更を反映できます。
+
+[[preview]]
+== プレビュー
+
+以下は階層を再整理するためにドラッグされるノードのプレビューです:
+
+image::images/xamOrgChart_Drag_and_Drop_01.png[]
+
+図 1: ノードのドラッグ
+
+[[requirements]]
+== 要件
+
+必要な NuGet パッケージの参照:
+
+* Infragistics.WPF.OrgChart
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[[overview]]
+== 概要
+
+手順の概念的な概要
+
+[start=1]
+. <<step1,名前空間宣言の追加>>
+.. <<step1a,XML 名前空間宣言を XAML ファイルに追加>>
+.. <<step1b,コード ビハインドに using/Imports を配置>>
+
+[start=2]
+. <<step2,ドロップ ターゲットとして xamOrgChart を構成>>
+
+[start=3]
+. <<step3,ノード ドラッグ ソースとドロップ ターゲットの作成>>
+.. <<step3a,NodeControlAttachedEvent にイベント ハンドラーを指定>>
+.. <<step3b,ドラッグ ソースおよびドロップ ターゲットとして新しい OrgChartNodeControl を構成>>
+.. <<step3c,ドラッグ ソースの Drop イベントを処理>>
+
+[[steps]]
+== 手順
+
+[[step1]]
+[start=1]
+. 名前空間宣言を追加します。
+
+[[step1a]]
+.. XML 名前空間宣言を XAML ファイルに追加します:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig= http://schemas.infragistics.com/xaml
+----
+[[step1b]]
+[start=2]
+.. コード ビハインドに using/imports を配置します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Maps
+Imports Infragistics.DragDrop
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Maps;
+using Infragistics.DragDrop;
+----
+
+[[step2]]
+[start=2]
+. ドロップ ターゲットとして xamOrgChart を構成します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamOrgChart>
+    <ig:DragDropManager.DropTarget>
+        <ig:DropTarget IsDropTarget="True" />
+    </ig:DragDropManager.DropTarget>
+</ig:XamOrgChart>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim orgChart As New XamOrgChart()
+
+' 新しい DropTarget オブジェクトを作成します
+Dim dropTarget As New DropTarget()
+dropTarget.IsDropTarget = True
+
+' 組織図をドロップ ターゲットにします
+DragDropManager.SetDropTarget(orgChart, dropTarget)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamOrgChart orgChart = new XamOrgChart();
+
+//新しい DropTarget オブジェクトを作成します
+DropTarget dropTarget = new DropTarget();
+dropTarget.IsDropTarget = true;
+
+//組織図をドロップ ターゲットにします
+DragDropManager.SetDropTarget(orgChart, dropTarget);
+----
+
+[[step3]]
+[start=3]
+. ノード link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource.html[ドラッグ ソース]と link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget.html[ドロップ ターゲット]を作成します。
+
+ノードで作業するため、xamOrgChart コントロールは 2 つのキー クラスを使用します:
+
+** link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode.html[OrgChartNode] - そのオブジェクトは実際の組織図ノードです。このクラスは親および子ノード、ノードによって表示されるデータ、ノードを作成するために使用される link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodelayout.html[OrgChartNodeLayout] オブジェクトへの参照に関する情報を伝達します。
+** link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodecontrol.html[OrgChartNodeControl] - そのオブジェクトは、OrgChartNode オブジェクトのビジュアル表現として役割を果たします
+
+したがって、ドラッグ ソースおよびドロップ ターゲットは、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodecontrol.html[OrgChartNodeControl] オブジェクトです。
+
+パンニングによって、ノードが組織図の表示可能な領域から外れる時は常に、そのノードに関連した OrgChartNodeControl が破棄されます。また、ノードの子が縮小されると、その OrgChartNodeControls は破棄されます。
+
+ノードを表示する必要がある場合、そのノードに関連付けられた新しい OrgChartNodeControl が作成され、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodecontrolattachedevent_ev.html[NodeControlAttachedEvent] が発生します。
+
+Drag and Drop Framework で作業する場合、作成時に link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropmanager~dragsourceproperty.html[DragSource] および link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropmanager~droptargetproperty.html[DropTarget] プロパティを OrgChartNodeControl オブジェクトに添付する必要があります。
+
+*注:* 場合によっては、ドラッグされるノードのドロップ ターゲットに制限があります (社員だけを部署にドロップできるなど)。このビヘイビアーは、Drag and Drop Framework のドラッグ アンド ドロップ チャネルを使用して達成できます。
+
+[[step3a]]
+.. NodeControlAttachedEvent にイベント ハンドラーを指定します。
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamOrgChart
+    NodeControlAttachedEvent="OrgChart_NodeControlAttachedEvent">
+</ig:XamOrgChart>
+----
+
+[[step3b]]
+[start=2]
+.. ドラッグ ソースおよびドロップ ターゲットとして新しい OrgChartNodeControl を構成します。
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub OrgChart_NodeControlAttachedEvent(sender As Object, e As OrgChartNodeEventArgs)
+    ' 新しい DragSource  オブジェクトを作成します
+    Dim dragSource As New DragSource()
+    dragSource.IsDraggable = True
+
+    'dragSource.DragChannels = assign drag channels
+    AddHandler dragSource.Drop, AddressOf Node_Drop
+
+    ' ノードをドラッグ ソースにします
+    DragDropManager.SetDragSource(e.Node, dragSource)
+
+    ' 新しい DropTarget オブジェクトを作成します
+    Dim dropTarget As New DropTarget()
+    dropTarget.IsDropTarget = True
+
+    'dropTarget.DropChannels = assign drop channels
+    ' ノードをドロップ ターゲットにします
+    DragDropManager.SetDropTarget(e.Node, dropTarget)
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void OrgChart_NodeControlAttachedEvent(object sender, OrgChartNodeEventArgs e)
+{
+    //新しい DragSource  オブジェクトを作成します
+    DragSource dragSource = new DragSource();
+    dragSource.IsDraggable = true;
+
+    //dragSource.DragChannels = assign drag channels
+    dragSource.Drop += Node_Drop;
+
+    //ノードをドラッグ ソースにします
+    DragDropManager.SetDragSource(e.Node, dragSource);
+
+    //新しい DropTarget オブジェクトを作成します
+    DropTarget dropTarget = new DropTarget();
+    dropTarget.IsDropTarget = true;
+
+    //dropTarget.DropChannels = assign drop channels
+    //ノードをドロップ ターゲットにします
+    DragDropManager.SetDropTarget(e.Node, dropTarget);
+}
+----
+
+[[step3c]]
+[start=3]
+.. ドラッグ ソースの link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~drop_ev.html[Drop] イベントを処理します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub Node_Drop(sender As Object, e As DropEventArgs)
+    'ドラッグされる OrgChartNodeControl オブジェクトを取得します
+    Dim draggedNodeControl As OrgChartNodeControl = _
+        TryCast(e.DragSource, OrgChartNodeControl)
+        
+    'ドラッグされる OrgChartNode オブジェクトを取得します
+    Dim draggedNode As OrgChartNode = draggedNodeControl.Node
+
+    '基となるデータを取得します
+    Dim data As Object = draggedNode.Data
+
+    'TODO: 基となるデータを修正します
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void Node_Drop(object sender, DropEventArgs e)
+{
+    //ドラッグされる OrgChartNodeControl オブジェクトを取得します
+    OrgChartNodeControl draggedNodeControl = _
+        e.DragSource as OrgChartNodeControl;
+    
+    //ドラッグされる OrgChartNode オブジェクトを取得します
+    OrgChartNode draggedNode = draggedNodeControl.Node;
+
+    //基となるデータを取得します
+    object data = draggedNode.Data;
+
+    //TODO: 基となるデータを修正します
+}
+----
+
+== *関連トピック*
+
+link:xamorgchart-adding-xamorgchart-to-your-application.html[xamOrgChart をアプリケーションに追加]
+
+link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]

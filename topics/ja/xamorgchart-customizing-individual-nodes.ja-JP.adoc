@@ -1,0 +1,49 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-customizing-individual-nodes",
+    "controlName": ["xamOrgChart"],
+    "tags": ["Drilldown","Selection","Styling","Templating"],
+    "guid": "53f4031b-cbed-4f3c-bd53-8e7b2081b3c8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.7012688Z"
+}
+|metadata|
+////
+
+= 個々のノードのカスタマイズ
+
+== 概要
+
+xamOrgChart のノードは、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodecontrol.html[OrgChartNodeControl] を使用して視覚化されます。ノードが組織図の表示領域外に移動されると、それに関連する OrgChartNodeControl は破棄されます。ノードが表示領域内に移動されると、新しい OrgChartNodeControl が作成されます。
+
+ノードのデータは、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode.html[OrgChartNode] オブジェクトに保存されます。新しい OrgChartNodeControl が作成されると、OrgChartNode オブジェクトにリンクされます。ノードのビジュアル スタイルは OrgChartNode 項目に保存され、直接または link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodelayout.html[Node Layouts] から指定できます。
+
+== 個々のノードのプロパティの構成
+
+データにバインドされる時に、組織図のノードに異なる設定を適用するためにノード レイアウトを使用できます。一部の設定は、展開インジケーターの表示状態とスタイル、またノードに関係する OrgChartNodeControl のスタイルとして個々のノードに設定することも可能です。
+
+ノードの子は、ノードの link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode~isexpanded.html[IsExpanded] プロパティを使用してコードから縮小できます。
+
+各ノードは、階層レベルや親ノード、子ノードに関する情報を伝達します。ノードのカスタム トラバーサルを実装する時にこの情報は役に立ちます。
+
+xamOrgChart には link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~rootnode.html[RootNode] プロパティがあり、ルート OrgChartNode オブジェクトを返します。このオブジェクトには視覚的表現がありません。実際のルート ノードの親として機能します。ルート ノードは、ノード トラバーサルの開始点として使用できます。
+
+以下のコードは、ルート ノードから開始する OrgChartNode オブジェクトのフラットなコレクションに組織図の階層を変換します。
+
+*Visual Basic の場合:*
+
+----
+Dim flatHierarchy As IEnumerable(Of OrgChartNode) = orgChart.RootNode.HighlightChildren(orgChart.ActualDepth)
+----
+
+*C# の場合:*
+
+----
+IEnumerable<OrgChartNode> flatHierarchy = orgChart.RootNode.HighlightChildren(orgChart.ActualDepth);
+----
+
+== *関連トピック*
+
+link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]

@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcurrencyeditor",
+    "controlName": ["xamCurrencyEditor"],
+    "tags": [],
+    "guid": "{322B1244-1DD5-4DD1-8CF0-FCDEAAB2D775}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1199781Z"
+}
+|metadata|
+////
+
+= xamCurrencyEditor
+
+xamCurrencyEditor™ コントロールに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このセクションをご覧ください。このセクションは、コントロールについての概要からアプリケーションで使用する理由、コントロールを使用して共通タスクを達成するための方法の手順などの xamCurrencyEditor についての有益な情報を含んでいます。
+
+以下のリンクをクリックして、xamCurrencyEditor コントロールについての情報にアクセスします。
+
+* link:xamcurrencyeditor-about-xamcurrencyeditor.html[xamCurrencyEditor について]
+* link:xameditors-overview-of-the-valueeditor-class.html[ValueEditor クラスの概要]
+* link:xameditors-masks.html[マスク]
+* link:xamcurrencyeditor-using-xamcurrencyeditor-as-a-field-in-xamdatagrid.html[xamDataGrid でフィールドとして xamCurrencyEditor を使用]
+* link:xameditors-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xameditors-working-with-the-isalwaysineditmode-property-and-the-editors.html[IsAlwaysInEditMode プロパティとエディターによる作業]
+* link:xamcurrencyeditor-api-overview.html[API の概要]

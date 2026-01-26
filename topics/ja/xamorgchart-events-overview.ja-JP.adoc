@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-events-overview",
+    "controlName": ["xamOrgChart"],
+    "tags": ["Events"],
+    "guid": "330bbacc-6332-479e-94fa-2d41fb114b18",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6822686Z"
+}
+|metadata|
+////
+
+= イベントの概要
+
+xamOrgChart コントロールによって発生するイベント:
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodecontrolattachedevent_ev.html[NodeControlAttachedEvent] - 新しい link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodecontrol.html[OrgChartNodeControl] オブジェクトが作成される時に発生
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodelayoutassigned_ev.html[NodeLayoutAssigned] - link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodelayout.html[Node Layout] がノードに割り当てられる時に発生
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodemouseleftbuttondown_ev.html[NodeMouseLeftButtonDown]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodemouseleftbuttonup_ev.html[NodeMouseLeftButtonUp]
+
+ifdef::wpf[]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodemousedoubleclick_ev.html[NodeMouseDoubleClick]
+
+endif::wpf[]
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodemousemove_ev.html[NodeMouseMove]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodemouserightbuttondown_ev.html[NodeMouseRightButtonDown]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodemouserightbuttonup_ev.html[NodeMouseRightButtonUp]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodemousewheel_ev.html[NodeMouseWheel]
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~selectednodescollectionchanged_ev.html[SelectedNodesCollectionChanged]
+
+== *関連トピック:*
+
+link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]
+
+link:xamorgchart-api-overview.html[API の概要]

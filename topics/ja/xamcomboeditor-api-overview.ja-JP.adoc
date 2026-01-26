@@ -1,0 +1,36 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-api-overview",
+    "controlName": ["xamComboEditor"],
+    "tags": ["API"],
+    "guid": "{94519307-A261-452E-92B2-B9E51279CBB5}",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.719102Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[options="header", cols="a,a"]
+|====
+|xamComboEditor Namespace:|主要な API:
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics_namespace.html[Infragistics] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics.Controls.Editors] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.primitives_namespace.html[Infragistics.Controls.Editors.Primitives]
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor.html[xamComboEditor] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritem.html[ComboEditorItem] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemsFilters]
+
+|====

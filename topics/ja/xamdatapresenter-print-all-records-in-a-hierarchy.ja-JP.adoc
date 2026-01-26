@@ -1,0 +1,77 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-print-all-records-in-a-hierarchy",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Printing"],
+    "guid": "{E38B94B6-1EED-42C8-BB19-AE35AEE1DC4C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2970125Z"
+}
+|metadata|
+////
+
+= 階層のすべてのレコードを印刷
+
+
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトの link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~print.html[Print] または link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~export.html[Export] メソッドを呼び出すと、WPF Reporting エンジンは DataPresenter コントロールの状態を正確にそのまま印刷/エクスポートします。プリントアウトまたはエクスポートされたファイルは、印刷またはエクスポート前にエンドユーザーが DataPresenter コントロールをどのように操作するのかに基づいています。たとえば、階層的な xamDataGrid™ がある場合、エンドユーザーが印刷前にランタイムに子レコードを展開しない場合は、WPF Reporting エンジンはその子レコードを印刷しません。ただし、WPF Reporting エンジンが DataPresenter コントロールを印刷/エクスポートする際に全てのレコードが展開するように、この動作を変更することができます。
+
+階層データ モデル内の全てのレコードを印刷するには、4 ステップのプロセスを実行します。
+
+[start=1]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.tabularreportview.html[TabularReportView] オブジェクトをインスタンス化します。
+[start=2]
+. TabularReportView オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.reportviewbase~excludeexpandedstate.html[ExcludeExpandedState] プロパティを True に設定します。
+[start=3]
+. DataPresenter の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~reportview.html[ReportView] プロパティを TabularReportView オブジェクトのインスタンスに設定します。
+[start=4]
+. DataPresenter コントロールを使用してレポートを作成し印刷します。
+
+以下のコード例は、階層内の全てのレコードの印刷方法を示しています。コード例は、xamDataGrid コントロールの ReportView プロパティを設定します。ただし、xamDataGrid コントロールを xamDataPresenter™ コントロールまたは xamDataCarousel™ コントロールに置き換えることができます。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Dim reportView1 As New TabularReportView() With { .ExcludeExpandedState = True}
+Me.xamDataGrid1.ReportView = reportView1
+'TODO: xamDataGrid コントロールの使用でレポートを作成し、印刷する。
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+TabularReportView reportView1 = new TabularReportView() 
+{
+        ExcludeExpandedState = true
+};
+this.xamDataGrid1.ReportView = reportView1;
+//TODO: xamDataGrid コントロールの使用でレポートを作成し、印刷する。
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-exclude-datapresenter-settings-when-printing.html[印刷時に DataPresenter 設定を除外]
+
+link:xamdatapresenter-fit-all-fields-on-a-single-page.html[単一ページにすべてのフィールドを収める]
+
+link:xamdatapresenter-handling-events-to-customize-print-operations.html[印刷操作をカスタマイズするためにイベントを処理]
+
+link:xamdatapresenter-repeat-field-headers-on-all-pages.html[すべてのページでフィールド ヘッダーを繰り返す]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]

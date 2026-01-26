@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-configuringviews-treeview",
+    "tags": [],
+    "controlName": ["xamDataPresenter"],
+    "guid": "c9774243-136f-4c04-99e4-3621c98dccaa",  
+    "buildFlags": [],
+    "createdOn": "2015-02-19T13:11:22.8349294Z"
+}
+|metadata|
+////
+
+= ツリー ビュー
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションのトピックでは、TreeView の構成についての情報を提供します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-conftreeview-treefield.html[ツリー フィールドの構成 (TreeView)]
+|このトピックでは、コントロールのツリー フィールドを構成する方法を説明します。
+
+| link:xamdatapresenter-conftreeview-expind.html[展開インジケーターの構成 (TreeView)]
+|このトピックでは、展開インジケーターの動作を構成する方法を説明します。
+
+| link:xamdatapresenter-conftreeview-indent.html[レベルごとのインデントの構成 (TreeView)]
+|このトピックでは、子レコードの表示に使用するインデントの設定方法を説明します。
+
+| link:xamdatapresenter-conftreeview-selection.html[選択の構成 (TreeView)]
+|このトピックでは、子レベルのレコードに対して選択動作を構成する方法を説明します。
+
+| link:xamdatapresenter-conftreeview-filtering.html[フィルタリングの構成 (TreeView)]
+|このトピックでは、コントロールのフィルタリング機能を構成する方法を説明します。
+
+|====

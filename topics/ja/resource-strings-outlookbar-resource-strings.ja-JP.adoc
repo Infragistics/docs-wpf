@@ -1,0 +1,73 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-outlookbar-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "7194d59d-fa04-4e45-ac82-9adba5ba90bd",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:52:56.0441255Z"
+}
+|metadata|
+////
+
+= OutlookBar リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には ダイアログ ボックス キャプション、警告メッセージ、アラートなどの項目があります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列の名前を示しています。
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|AddOrRemoveButtonsMenuItemHeader
+|ボタンの追加と削除
+
+|MinimizeButtonExpandTooltip
+|ナビゲーション ペインを展開
+
+|MinimizeButtonMinimizeTooltip
+|ナビゲーション ペインを最小化
+
+|NavigationAreaOptionsMenuItemHeader
+|ナビゲーション ペイン オプション...
+
+|NavigationPaneMinimizedText
+|ナビゲーション ペイン
+
+|NavigationPaneMinimizedTooltip
+|クリックしてナビゲーション ペインを展開します
+
+|NavigationPaneOptionsControlCancelButton
+|キャンセル
+
+|NavigationPaneOptionsControlMoveDownButton
+|下へ移動
+
+|NavigationPaneOptionsControlMoveUpButton
+|上へ移動
+
+|NavigationPaneOptionsControlOkButton
+|OK
+
+|NavigationPaneOptionsControlOrderLabel
+|ボタンを表示する順番
+
+|NavigationPaneOptionsControlResetButton
+|リセット
+
+|NavigationPaneOptionsDialogTitle
+|ナビゲーション ペイン オプション
+
+|OverflowMenuButtonTooltip
+|ボタンを構成
+
+|ShowFewerButtonsMenuItemHeader
+|表示するボタンを減らす
+
+|ShowMoreButtonsMenuItemHeader
+|表示するボタンを増やす
+
+|====

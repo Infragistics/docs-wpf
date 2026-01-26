@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticce-configuring-xammulticolumncomboeditor",
+    "tags": [],
+    "controlName": ["xamMultiColumnComboEditor"],
+    "guid": "a6d3b0e7-0a70-46d1-b0c3-b3c85491150a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.582254Z"
+}
+|metadata|
+////
+
+= xamMultiColumnComboEditor の構成
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、 _xamMultiColumnComboEditor_™ コントロールの主な機能と、使用方法および構成について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xam-multicee-configuring-the-behavior-on-user-input.html[ユーザー入力の動作の構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールのテキストフィールドに入力し Enter キーを押した場合に、実行される動作を構成する方法について説明します。
+
+| link:xammulticce-configuring-data-binding-visualization.html[データのバインディングと視覚エフェクトの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールをデータとバインドして、コントロールのドロップダウン リストの項目レイアウトを構成する方法について説明します。
+
+| link:xammulticee-configuring-the-drop-down.html[ドロップダウンの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ ドロップダウンのレイアウトおよび動作を構成する方法を説明します。
+
+| link:xammulticee-configuring-item-filtering.html[項目のフィルタリングの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールで項目のフィルタリングを構成する方法を説明します。
+
+| link:xammulticee-selection.html[選択]
+|このグループのトピックでは、 _xamMultiColumnComboEditor_ コントロールの選択機能とその使用方法について説明します。
+
+|====

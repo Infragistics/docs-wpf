@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-nodes",
+    "tags": ["Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "69ba0c51-0ba7-4051-a67f-64f89f0174ca",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:24:48.8501477Z"
+}
+|metadata|
+////
+
+= ノードの構成 (xamDiagram)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamDiagram_™ コントロールのノードを構成する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-node-configuration-overview.html[ノードの構成の概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールの各ノードの構成可能な要素の概要を説明します。
+
+| link:xamdiagram-configuring-the-position-and-size-of-diagram-nodes.html[ダイアグラム ノードの位置およびサイズの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールのダイアグラムの各ノードのサイズと位置を制御する方法を説明します。
+
+| link:xamdiagram-configuring-the-shape-of-diagram-nodes-overview.html[ダイアグラム ノードの図形の構成 ( _xamDiagram_ )]
+|このトピックでは、定義済みの図形を選択、またはカスタム図形を適用して、 _xamDiagram_ コントロールのダイアグラム ノードの図形を構成する方法を説明します。
+
+| link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールでダイアグラム ノードの接続ポイントを構成する方法を説明します。
+
+| link:xamdiagram-idataerrorinfo-support.html[IDataErrorInfo サポート (xamDiagram)]
+| このトピックは、コントロールが検証エラーを処理する方法を説明します。
+
+|====

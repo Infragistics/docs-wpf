@@ -1,0 +1,48 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-using-xamorgchart",
+    "controlName": ["xamOrgChart"],
+    "tags": ["Getting Started"],
+    "guid": "6e93357c-6e72-43ad-9832-8be065a43dee",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6452952Z"
+}
+|metadata|
+////
+
+= xamOrgChart の使用
+
+このトピックでは、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart.html[xamOrgChart] コントロールのノード レイアウトとノード アーキテクチャを説明します。
+
+== ノード レイアウト
+
+xamOrgChart コントロールは、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodelayout.html[ノード レイアウト]と呼ばれる概念を使用して、どのノードを表示するのか、また組織のどこに配置するのかを決定します。組織図は、項目ソースをスキャンして、項目が Node Layout オブジェクトに一致する場合に、新しいノードが作成されます。
+
+ノード レイアウトは以下を実行します。
+
+* link:xamorgchart-node-layouts-and-data.html[データ ソースにバインド]
+* link:xamorgchart-expansion-indicators-visibility.html[展開インジケーターの表示状態を設定]
+* link:xamorgchart-using-custom-node-item-templates.html[項目テンプレートをノードに割り当て]
+* link:xamorgchart-node-tooltips.html[ツールチップをノードに追加]
+* link:xamorgchart-styling.html[スタイルをノードおよび展開インジケーターに適用]
+
+== ノード アーキテクチャ
+
+xamOrgChart コントロールは 2 つのキー クラスを使用してノードで作業をします。
+
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode.html[OrgChartNode] - 実際の組織図ノード。このクラスは親および子ノード、ノードによって表示されるデータ、ノードを作成するために使用される OrgChartNodeLayout オブジェクトへの参照に関する情報を伝達します。
+* link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnodecontrol.html[OrgChartNodeControl] - OrgChartNodeControl オブジェクトは、OrgChartNode オブジェクトのビジュアル表現として機能します。
+
+パンニングによって、ノードが組織図の表示可能な領域から外れる時は常に、そのノードに関連した OrgChartNodeControl が破棄されます。また、ノードの子が縮小されると、その OrgChartNodeControls は破棄されます。
+
+ノードを表示する必要がある場合、そのノードに関連付けられた新しい OrgChartNodeControl が作成され、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~nodecontrolattachedevent_ev.html[NodeControlAttachedEvent] が発生します。
+
+*関連トピック*
+
+link:xamorgchart-understanding-xamorgchart.html[xamOrgChart の理解]
+
+link:xamorgchart-adding-xamorgchart-to-your-application.html[xamOrgChart をアプリケーションに追加]
+
+link:xamorgchart-api-overview.html[API の概要]

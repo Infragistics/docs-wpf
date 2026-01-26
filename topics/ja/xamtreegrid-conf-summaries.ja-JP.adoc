@@ -1,0 +1,114 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-conf-summaries",
+    "tags": ["Summaries"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "7904d805-d6c8-4d1d-9589-d3a07345c017",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:35:40.1618937Z"
+}
+|metadata|
+////
+
+= 集計の構成 (xamTreeGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールの集計サポートの詳細を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-features-overview.html[機能の概要 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+| link:xamdatapresenter-enable-row-summaries.html[行の集計の有効化 (xamDataPresenter)]
+|このトピックでは、Data Presenter Family のコントロールで集計を有効にする方法を説明します。
+
+|====
+
+== 集計の概要
+
+=== 概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[xamTreeGrid] コントロールにより、ネストされたレコードの各グループの下に集計を表示できます。
+
+以下のスクリーンショットは、コントロールにより表示される集計をネストされたレコードの 3 つの異なるレベルで示しています。
+
+image::images/xamTreeGrid_08.png[]
+
+=== コード例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamTreeGrid x:Name="xtg" DataSource="{Binding Path=Accounts}">
+  <igDP:XamTreeGrid.FieldLayoutSettings>
+    <igDP:FieldLayoutSettings AutoGenerateFields=" />
+  </igDP:XamTreeGrid.FieldLayoutSettings>
+  <igDP:XamTreeGrid.FieldSettings>
+    <igDP:FieldSettings
+      AllowSummaries="True"
+      SummaryUIType="MultiSelect"
+      SummaryDisplayArea="Bottom" />
+  </igDP:XamTreeGrid.FieldSettings>
+  <igDP:XamTreeGrid.FieldLayouts>
+    <igDP:FieldLayout>
+      <igDP:Field Name="Name" Label="Account Name" Width="250" />
+      <igDP:Field Name="Number" Label="Account number" />
+      <igDP:Field Name="Balance" Label="Account Balance" />
+      <igDP:Field Name="Accounts" />
+      <igDP:FieldLayout.SummaryDefinitions>
+        <igDP:SummaryDefinition SourceFieldName="Number" Calculator="Count" />
+        <igDP:SummaryDefinition SourceFieldName="Balance" Calculator="Count" />
+        <igDP:SummaryDefinition SourceFieldName="Balance" Calculator="Sum" />
+      </igDP:FieldLayout.SummaryDefinitions>
+    </igDP:FieldLayout>
+  </igDP:XamTreeGrid.FieldLayouts>
+</igDP:XamTreeGrid>
+----
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-conf-tree-field.html[ツリー フィールドの構成 (xamTreeGrid)]
+|このトピックでは、コントロールのツリー フィールドを構成する方法を説明します。
+
+| link:xamtreegrid-conf-expansion-indicators.html[展開インジケーターの構成 (xamTreeGrid)]
+|このトピックでは、展開インジケーターの動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-indentation-per-level.html[レベルごとのインデントの構成 (xamTreeGrid)]
+|このトピックでは、子レコードの表示に使用するインデントの設定方法を説明します。
+
+| link:xamtreegrid-conf-selection.html[選択の構成 (xamTreeGrid)]
+|このトピックでは、子レベルのレコードに対して選択動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-filtering.html[フィルタリングの構成 (xamTreeGrid)]
+|このトピックでは、コントロールのフィルタリング機能を構成する方法を説明します。
+
+| link:xamdatapresenter-enable-row-summaries.html[行の集計の有効化 (xamDataGrid)]
+|このトピックのグループは、フィールド値に基づいて結果を集計するために、集計フィールドを設定し、カスタマイズする方法を説明します。
+
+|====

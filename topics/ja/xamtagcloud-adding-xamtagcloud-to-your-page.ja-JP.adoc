@@ -1,0 +1,190 @@
+﻿////
+|metadata|
+{
+    "name": "xamtagcloud-adding-xamtagcloud-to-your-page",
+    "controlName": ["xamTagCloud"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{52ACA076-BFAB-43F9-825F-BB93C7CC983B}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5473641Z"
+}
+|metadata|
+////
+
+= xamTagCloud をページに追加
+
+== 始める前に
+
+このトピックではユーザーができるだけ早く操作に慣れることができるよう、プロシージャー コードおよび XAML を使用して、xamTagCloud コントロールをページに追加するために最低限必要な基本手順について説明します。
+
+== 達成すること
+
+基本的な xamTagCloud をユーザーのページに追加します。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName} アプリケーションを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をアプリケーションに追加します。
+
+** Infragistics.WPF.TagCloud
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. UserControl の Loaded イベントにイベント ハンドラを接続します。
+
+*XAML の場合:*
+
+----
+<UserControl Loaded="UserControl_Loaded"
+  … >
+    …
+</UserControl>
+----
+
+[start=4]
+. コード ビハインドに using/Imports 命令を配置するか xamTagCloud の XML 名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Menus
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Menus;
+----
+
+[start=5]
+. xamTag コントロールのインスタンスを LayoutRoot という名前のデフォルトのグリッド レイアウト パネルに追加します。プロシージャー コードでこれを行う場合、ユーザー コントロールの Loaded イベントを処理し、イベント ハンドラーにこのコードを配置することができます。
+
+** link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloudpanel~horizontalcontentalignment.html[HorizontalContentAlignment] - Stretch
+** link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloudpanel~verticalcontentalignment.html[VerticalContentAlignment] - Stretch
+** Height - 300
+** Width - 250
+** link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloudpanel~maxscale.html[MaxScale] - 5
+** link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloudpanel~minscale.html[MinScale] - 1
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamTagCloud x:Name="xamTagCloud" Width="250" 
+                              Height="300" 
+                              HorizontalContentAlignment="Stretch"
+                              VerticalContentAlignment="Stretch"
+                              MaxScale="5" MinScale="1">
+      <!-- TODO: クラウド アイテムを追加します -->
+   </ig:XamTagCloud>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim myTagCloud As New XamTagCloud()
+myTagCloud.HorizontalContentAlignment = HorizontalAlignment.Stretch
+myTagCloud.VerticalContentAlignment = VerticalAlignment.Stretch
+myTagCloud.Height = 300
+myTagCloud.MaxScale = 5
+myTagCloud.MinScale = 1
+----
+
+*C# の場合:*
+
+----
+XamTagCloud myTagCloud = new XamTagCloud();
+myTagCloud.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+myTagCloud.VerticalContentAlignment = VerticalAlignment.Stretch;
+myTagCloud.Height = 300;
+myTagCloud.MaxScale = 5;
+myTagCloud.MinScale = 1;
+----
+
+[start=6]
+. クラウド項目を xamTagCloud コントロールに追加します。詳細は、 link:xamtagcloud-add-cloud-items-to-xamtagcloud.html[「クラウド項目を xamTagCloud に追加」]を参照してください。
+
+*XAML の場合:*
+
+----
+<ig:XamTagCloud MaxScale="5" MinScale="1" Name="tagCloud">
+<ig:XamTagCloudItem Content = "Silverlight" Weight = "10" />
+<ig:XamTagCloudItem Content = "ASP.Net" Weight = "2" />
+<ig:XamTagCloudItem Content = "WPF" Weight = "5" />
+<ig:XamTagCloudItem Content = "Window Forms" Weight = "5" />
+<ig:XamTagCloudItem Content = ".NET" Weight = "7" />
+ …
+----
+
+*Visual Basic の場合:*
+
+----
+Dim cloudItem1 As New XamTagCloudItem With {.Content = "Silverlight",   
+   .Weight = 10}
+myTagCloud.Items.Add(cloudItem1)
+Dim cloudItem2 As New XamTagCloudItem With {.Content = "ASP.NET", 
+   .Weight = 2}
+myTagCloud.Items.Add(cloudItem2)
+Dim cloudItem3 As New XamTagCloudItem With {.Content = "WPF", .Weight = 
+   5}
+myTagCloud.Items.Add(cloudItem3)
+Dim cloudItem4 As New XamTagCloudItem With {.Content = "Windows Forms", 
+   .Weight = 5}
+myTagCloud.Items.Add(cloudItem4)
+Dim cloudItem5 As New XamTagCloudItem With {.Content = ".NET", .Weight 
+   = 7}
+myTagCloud.Items.Add(cloudItem5)
+…
+----
+
+*C# の場合:*
+
+----
+XamTagCloudItem cloudItem1 = new XamTagCloudItem { Content = 
+   "Silverlight", Weight = 10 };
+myTagCloud.Items.Add(cloudItem1);
+XamTagCloudItem cloudItem2 = new XamTagCloudItem { Content = 
+   "ASP.NET", Weight = 2 };
+myTagCloud.Items.Add(cloudItem2);
+XamTagCloudItem cloudItem3 = new XamTagCloudItem { Content = "WPF", 
+   Weight = 5 };
+myTagCloud.Items.Add(cloudItem3);
+XamTagCloudItem cloudItem4 = new XamTagCloudItem { Content = 
+   "Windows Forms", Weight = 5 };
+myTagCloud.Items.Add(cloudItem4);
+XamTagCloudItem cloudItem5 = new XamTagCloudItem { Content = ".NET", 
+   Weight = 7 };
+myTagCloud.Items.Add(cloudItem5);
+…
+----
+
+[start=7]
+. xamTagCloud のインスタンスを Grid パネルの Children コレクションに追加します。_注: 新しいページを初めて作成する時には、デフォルトでグリッド パネルが作成され、パネル名が LayoutRoot に指定されます。_ 
+
+*Visual Basic の場合:*
+
+----
+Me.LayoutRoot.Children.Add(myTagCloud)
+----
+
+*C# の場合:*
+
+----
+this.LayoutRoot.Children.Add(myTagCloud);
+----
+
+[start=8]
+. アプリケーションを保存して実行します。
+
+== 関連トピック
+
+link:xamtagcloud-binding-xamtagcloud-to-data.html[xamTagCloud をデータにバインド]

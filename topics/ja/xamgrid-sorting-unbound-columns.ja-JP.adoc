@@ -1,0 +1,102 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-sorting-unbound-columns",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Sorting","Styling"],
+    "guid": "d8e707ef-7d73-435e-afa5-76839e2f1728",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.3241911Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 非バインド列の並べ替え
+
+IValueConverter がフックアップされている限り、非バインド列を並べ替えることができます。ただし、非バインド列の並べ替えは通常の列の並べ替えほど高速かつ効率的ではありません。すべてのセルは並べ替える前に評価する必要があるからです。通常レベルのパフォーマンスを実現するには、IComparer を Columns.SortComparer プロパティに結合します。これは、既存の列でカスタムの並べ替えを作成するのと同じです。詳細については、 link:xamgrid-custom-sort.html[並べ替えのカスタマイズ]トピックを参照してください。
+
+以下のコードは、非バインド列で SortComparer を設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<!-- 開始 UserControl タグに ValueConverter の名前空間宣言を追加します。 -- >
+xmlns:helper="clr-namespace:xamSamples_XAML"
+<!--コンバーターおよび並べ替え比較演算子のリソースを追加します。 -->
+<UserControl.Resources>
+   <helper:TotalUnitsConverter x:Key="TotalUnitsConverter"/>
+   <helper:MySortComparer x:Key="MySortComparer"/>
+</UserControl.Resources>
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamGrid Grid.Row="0" x:Name="MyDataGrid" AutoGenerateColumns="False">
+      <ig:XamGrid.Columns>
+         <ig:TextColumn Key="ProductID"/>
+         <ig:TextColumn Key="ProductName"/>
+         <ig:TextColumn Key="QuantityPerUnit"/>
+         <ig:TextColumn Key="UnitPrice"/>
+         <ig:TextColumn Key="UnitsInStock"/>
+         <ig:TextColumn Key="UnitsOnOrder"/>
+         <ig:TextColumn Key="ReorderLevel"/>
+         <ig:TextColumn Key="Discontinued"/>
+         <!--非バインド列を作成し、ValueConverter および SortComparer にフックアップします。 -->
+         <ig:UnboundColumn Key="Total Units" ValueConverter="{StaticResource TotalUnitsConverter}" SortComparer="{StaticResource MySortComparer}" IsSortable="True"/>
+      </ig:XamGrid.Columns>
+   </ig:XamGrid>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim MyColumn As New UnboundColumn() 
+MyColumn.Key = "Total Units" 
+MyColumn.ValueConverter = New TotalUnitsConverter()
+MyColumn.SortComparer = New MySortComparer()
+Me.MyDataGrid.Columns.Add(MyColumn)
+----
+
+*C# の場合:*
+
+----
+this.MyDataGrid.Columns.Add(new UnboundColumn() { Key = "Total Units", ValueConverter = new TotalUnitsConverter(), SortComparer = new MySortComparer() });         
+----
+
+以下のコードは、前述の例で使用された IComparer です。
+
+*Visual Basic の場合:*
+
+----
+Public Class MySortComparer
+Inherits IComparer
+   Public Function Compare(ByVal x As NorthwindServiceReference.Product, ByVal y As NorthwindServiceReference.Product) As Integer
+      Dim x1 As Integer = (x.UnitsInStock + x.UnitsOnOrder)
+      Dim y1 As Integer = (y.UnitsInStock + y.UnitsOnOrder)
+      Return x1.CompareTo(y1)
+   End Function
+End Class
+----
+
+*C# の場合:*
+
+----
+public class MySortComparer : IComparer<NorthwindServiceReference.Product> 
+{
+   public int Compare(NorthwindServiceReference.Product x, NorthwindServiceReference.Product y)
+   {
+      int x1 = x.UnitsInStock + x.UnitsOnOrder;
+      int y1 = y.UnitsInStock + y.UnitsOnOrder;
+      return x1.CompareTo(y1);
+   }
+ }
+----
+
+関連トピック
+
+link:xamgrid-unbound-column.html[非バインド列]
+
+link:xamgrid-itemtemplate-binding.html[ItemTemplate のバインド]
+
+link:xamgrid-editing-unbound-columns.html[非バインド列の編集]

@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamspellchecker-dictionaries",
+    "controlName": ["xamSpellChecker"],
+    "tags": ["Getting Started"],
+    "guid": "{ABFF9416-F8B2-4347-B402-912210AC1737}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.1703827Z"
+}
+|metadata|
+////
+
+= 辞書
+
+== 始める前に
+
+xamSpellChecker™ コントロールには、オランダ、英語 (アメリカ、オーストラリア、イギリス、カナダ)、フランス、ドイツ、スペイン、ポルトガルの 9 ヶ国語の辞書が標準で付属します。デフォルトの辞書は英語 (アメリカ) です。
+
+すべての辞書は、{ProductName} のインストール フォルダーにあります。
+
+{InstallPath}\Dictionaries
+
+_前提_
+
+_このトピックは、ページに xamSpellChecker コントロールが追加済みであることを前提とします。詳細は、 link:xamspellchecker-adding-xamspellchecker-to-your-page.html[「xamSpellChecker の追加」]トピックを参照してください。_
+
+== 達成すること
+
+このトピックは、xamSpellChecker コントロールが使用する辞書を変更するプロセスを説明します。この例では、フランス語の辞書を使用します。
+
+== 次の手順を実行します
+
+[start=1]
+. アプリケーションの ClientBin にフォルダーを作成し、Dictionaries という名前を付けます。
+[start=2]
+. デフォルトの位置から Dictionaries フォルダーにフランス語の辞書 (fr-french-v2-whole.dict) をコピーします。
+[start=3]
+. link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.xamspellchecker~dictionaryuri.html[DictionaryUri] プロパティをフランス語の辞書の Uri に設定します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot">
+   <ig:XamSpellChecker x:Name="spellChecker" DictionaryUri="Dictionaries/fr-french-v2-whole.dict">
+   …
+   </ig:XamSpellChecker>
+   …
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.spellChecker.DictionaryUri = New Uri("Dictionaries/fr-french-v2-whole.dict", UriKind.Relative)
+----
+
+*C# の場合:*
+
+----
+this.spellChecker.DictionaryUri = new Uri("Dictionaries/fr-french-v2-whole.dict", UriKind.Relative);
+----
+
+== 関連トピック
+
+link:xamspellchecker-performance-options.html[パフォーマンス オプション]
+
+link:xamspellchecker-spelling-options.html[スペル オプション]
+
+link:xamspellchecker-how-to-specify-text-to-be-spell-checked.html[テキストをスペルチェックするように指定する方法]

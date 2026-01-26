@@ -1,0 +1,168 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-removing-nodes-from-network",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["Data Presentation","Editing","Getting Started","How Do I"],
+    "guid": "4adbdd9b-258f-4b4b-a5d3-a9706f0df713",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.5002499Z"
+}
+|metadata|
+////
+
+= ネットワークからのノードの削除
+
+このトピックはノードをネットワーク レイアウトから削除する方法を示し、ノードをデータ ソースから削除する方法を説明します。
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>>
+* <<Requirements,要件>>
+* <<Removing-Nodes,ノードの解除>>
+** <<Code-Examples-Removing-Nodes,コードの例: ノードの削除>>
+** <<Code-Example-Removing-Node-from-NetworkNodeLayout,コードの例: NetworkNodeLayout からノードを削除する>>
+** <<Code-Example-Removing-Node-from-Data-Source,コードの例: データ ソースからノードを削除する>>
+* <<Related-Topics,関連トピック>>
+
+[[Introduction]]
+== 概要
+
+このトピックの例はノードを NetworkNodeLayout から、およびデータ ソースから削除する方法を示します。
+
+[[Requirements]]
+== 要件
+
+開始するには、 link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使った作業の開始]トピックをお読みください。このチュートリアルでは「はじめに」トピックからのコードを開始点として使用しています。
+
+データ ソースはノードを削除する機能を実装するために INotifyPropertyChanged インターフェイスを実装していなければなりません。これは、変更が下位のデータ ソースに伝えられ、更新が実行されるために必要です。
+
+[[Removing-Nodes]]
+== ノードの解除
+
+[[Code-Examples-Removing-Nodes]]
+== コードの例: ノードの削除
+
+=== 例の概要
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|NetworkNodeLayoutからノードを削除する
+|NetworkNodeNode の表示/非表示プロパティを折り畳みに設定することでネットワーク レイアウトからのノードの削除が行われます。
+
+|データ ソースからノードを削除する
+|データ ソースからのノードの削除にはそれを基本のコレクションから削除する必要があります。コントロールにはノードのコレクションに行われた変更が通知され、データモデルの変更を反映するよう更新されます。変更通知のためにはデータに link:http://msdn.microsoft.com/ja-jp/library/system.componentmodel.inotifypropertychanged.aspx[INotifyPropertyChanged] インターフェイスが実装されていなければなりません。
+
+|====
+
+[[Code-Example-Removing-Node-from-NetworkNodeLayout]]
+== コードの例: NetworkNodeLayout からノードを削除する
+
+=== 例の詳細
+
+ノードを選択し SelectedNodeCollectionChanged イベント中でノードの表示プロパティを「Collapsed」に設定するだけでノードは削除されます。これはノードをデータ ソースから削除するわけではありません。選択されたノードをビューで非表示にします。
+
+*C# の場合:*
+
+----
+foreach (var nd in xnn.SelectedNodes)
+{
+nd.Visibility = System.Windows.Visibility.Collapsed;
+}
+----
+
+*Visual Basic の場合:*
+
+----
+For Each nd As var In xnn.SelectedNodes
+    nd.Visibility = System.Windows.Visibility.Collapsed
+Next
+----
+
+ノードの削除はノードを選択した後キーボードの Delete キーを押すことに対応した KeyDown ハンドラーを実装することで達成することもできます。
+
+*C# の場合:*
+
+----
+private void xnn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                if (xnn.SelectedNodes.Count > 0)
+                {
+                    xnn.SelectedNodes[0].Visibility = System.Windows.Visibility.Collapsed;
+                }
+            }
+        }
+----
+
+*Visual Basic の場合:*
+
+----
+Private Sub xnn_KeyDown(sender As Object, e As KeyEventArgs)
+    If e.Key = Key.Delete Then
+        If xnn.SelectedNodes.Count > 0 Then
+            xnn.SelectedNodes(0).Visibility = System.Windows.Visibility.Collapsed
+        End If
+    End If
+End Sub
+----
+
+次の画像はノードがネットワーク レイアウトから削除された時の結果を示します。
+
+最初のレイアウト:
+
+image::images/xamNetworkNode_Removing_Nodes_From_Network_01.png[]
+
+図 1
+
+ノード 8 の Visibility を「Collapsed」に設定
+
+image::images/xamNetworkNode_Removing_Nodes_From_Network_02.png[]
+
+図 2
+
+ノード 5 の Visibility を「Collapsed」に設定ノード 5 に接続されたノード (6 と ７) は直接接続されているノードが非表示であるため、それらが切り離されて表示されることに注意してください。
+
+image::images/xamNetworkNode_Removing_Nodes_From_Network_03.png[]
+
+図 3
+
+[[Code-Example-Removing-Node-from-Data-Source]]
+== コードの例: データ ソースからノードを削除する
+
+=== 例の詳細
+
+xamNetworkNode は変更通知によりデータ モデルからノードを削除するためにノードのコレクションの変更をリスニングします。コントロールにはノードのコレクションに行われた変更が通知され、データモデルの変更を反映するよう更新されます。データ オブジェクトはデータ ソースが更新されるよう INotifyPropertyChanged インターフェイスを実装しなければなりません。
+
+[NOTE]
+====
+*注:* ノードがデータ ソースから削除されると、それは永久に削除されます。また、ノードは SelectionNodesCollectionChanged または PropertyChanged イベントでは削除できないことに注意してください。
+====
+
+次の例は先頭ノードをデータ ソースから削除する例を示します。
+
+*C# の場合:*
+
+----
+ObservableCollection<NodeModel> nMod = 
+	xnn.ItemsSource as ObservableCollection<NodeModel>;
+nMod.RemoveAt(0);
+----
+
+*Visual Basic の場合:*
+
+----
+Dim nMod As ObservableCollection(Of NodeModel) = 
+	TryCast(xnn.ItemsSource, ObservableCollection(Of NodeModel))
+nMod.RemoveAt(0)
+----
+
+== 関連トピック
+
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]
+
+* link:xamnetworknode-using-xamnetworknode.html[xamNetworkNode の使用]

@@ -1,0 +1,158 @@
+﻿////
+
+|metadata|
+{
+    "name": "word-about-ig-word-library",
+    "controlName": ["IG Word Library"],
+    "tags": ["How Do I"],
+    "guid": "ca9b338a-5da3-42c1-9dfc-2d34d60ca5ca",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.3310776Z"
+}
+|metadata|
+////
+
+= Infragistics Word ライブラリについて
+
+このトピックは、フォーワードのみのストリーマー アプローチとオブジェクト モデル アプローチという、Word 文書の作成に使用可能なアプローチを例を挙げて説明します。
+
+トピックは以下のとおりです。
+
+* <<Streamer,フォワードのみのストリーマーを使用して Word 文書を生成する>>
+
+** <<WordDocumentWriterIntro,WordDocumentWriter オブジェクトの紹介>>
+** <<StreamerReq,要件>>
+** <<Instance,インスタンスの作成>>
+** <<BlankDoc,ブランクの Word 文書の作成>>
+** <<StreamerPara,段落の追加>>
+
+* <<RefAndDep,Word 文書生成の参照と依存関係>>
+* <<RelatedTopics,関連トピック>>
+
+[[Streamer]]
+=== フォワードのみのストリーマーを使用して Word 文書を生成する
+
+[[WordDocumentWriterIntro]]
+===== WordDocumentWriter オブジェクトの紹介
+
+link:{ApiPlatform}documents.io{ApiVersion}~infragistics.documents.word.worddocumentwriter.html[WordDocumentWriter] は、ワード プロセッシング データを含むストリームやファイルを生成する、高速で、キャッシュを使用しないフォーワードのみの方法を提供するストリーマー オブジェクトです。このオブジェクトは link:{ApiPlatform}documents.io{ApiVersion}.html[{VersionedApiPlatform}.Documents.IO.v{ProductVersion}.dll] アセンブリで利用できます。WordDocumentWriter オブジェクトによって、フォーワードのみのストリーマー アプローチを使用して、Word 文書を優れたパフォーマンスで作成できます。
+
+以下のセクションでは、コード例を使用して WordDocumentWriter クラスを使用する方法を示します。
+
+[[StreamerReq]]
+===== 要件
+
+link:{ApiPlatform}documents.io{ApiVersion}.html[{VersionedApiPlatform}.Documents.IO.v{ProductVersion}.dll] アセンブリへの参照が必要とされます。
+
+[[Instance]]
+===== インスタンスの作成
+
+WordDocumentWriter クラスは抽象で、直接的なインスタンス作成をサポートしません。このため、派生クラスのインスタンスを作成するために link:{ApiPlatform}documents.io{ApiVersion}~infragistics.documents.word.worddocumentwriter~create.html[Create] メソッドを公開します。
+
+*C# の場合:*
+
+----
+//  ファイル名をコンパイルします
+string filename = "C:\\SampleWordDoc";
+//  静的な 'Create' メソッドを使用して、WordDocumentWriter クラスの
+// 新しいインスタンスを作成します
+using ( WordDocumentWriter writer = WordDocumentWriter.Create(filename) )
+{
+}
+----
+
+*Visual Basic の場合:*
+
+----
+' ファイル名をコンパイルします
+Dim filename As String = "C:\SampleWordDoc"
+'  静的な 'Create' メソッドを使用して、WordDocumentWriter クラスの
+' 新しいインスタンスを作成します
+Using writer As WordDocumentWriter = WordDocumentWriter.Create(filename)
+End Using
+----
+
+[[BlankDoc]]
+===== ブランクの Word 文書の作成
+
+Word 文書を作成する時に最初に実行することは、ドキュメントの開始を指示することです。これは出力ストリームに and タグを書いて、さらなる入力のためにライターを準備します。以下のコードは、ブランクの Word 文書を開始および閉じる方法を示します。
+
+*C# の場合:*
+
+----
+//  静的な 'Create' メソッドを使用して、WordDocumentWriter クラスの
+// 新しいインスタンスを作成します
+string filename = "C:\\SampleWordDoc";
+ using ( WordDocumentWriter writer = WordDocumentWriter.Create(filename) )
+{
+// ドキュメントを開始します。StartDocument への各呼び出しは
+// EndDocument への対応する呼び出しとバランスを取らなければならないことに留意します
+writer.StartDocument();
+//  TODO: ドキュメント コンテンツを追加する
+// ドキュメントを終了します
+writer.EndDocument();
+}
+----
+
+*Visual Basic の場合:*
+
+----
+'  静的な 'Create' メソッドを使用して、WordDocumentWriter クラスの
+' 新しいインスタンスを作成します
+Dim filename As String = "C:\SampleWordDoc"
+Using writer As WordDocumentWriter = WordDocumentWriter.Create(filename)
+    '   ドキュメントを開始します。StartDocument への各呼び出しは
+    '  EndDocument への対応する呼び出しとバランスを取らなければならないことに留意します
+    writer.StartDocument()
+    '  TODO: ドキュメント コンテンツを追加する
+    '  ドキュメントを終了します
+    writer.EndDocument()
+End Using
+----
+
+[[StreamerPara]]
+===== 段落の追加
+
+以下のコード サンプルは、特定のフォントを使用して、テキスト ランで段落を追加する方法を示します。
+
+*C# の場合:*
+
+----
+private void WriteParagraph(
+    WordDocumentWriter writer,
+    string text,
+    Infragistics.Documents.Word.Font font )
+{
+    // 段落を開きます
+    writer.StartParagraph();
+    // 指定したテキストとフォントでテキスト ランを追加します
+    writer.AddTextRun( text, font );
+    // 段落を閉じます
+    writer.EndParagraph();
+}
+----
+
+*Visual Basic の場合:*
+
+----
+Private Sub WriteParagraph(writer As WordDocumentWriter, text As String, font As Infragistics.Documents.Word.Font)
+    '  段落を開きます
+    writer.StartParagraph()
+    '  指定したテキストとフォントでテキスト ランを追加します
+    writer.AddTextRun(text, font)
+    '  段落を閉じます
+    writer.EndParagraph()
+End Sub
+----
+
+[[RefAndDep]]
+== Word 文書生成の参照と依存関係
+
+$$.NET$$ CLR 3.0 以上のバージョンの使用
+
+Microsoft® Word® ドキュメントを生成するために Infragistics® Word ライブラリおよびエクスポーターを使用する場合、.NET Framework CLR バージョン 3.0 以上が必要です。このシナリオでは、 link:{ApiPlatform}documents.io{ApiVersion}.html[{VersionedApiPlatform}.Documents.IO.v{ProductVersion}.dll] アセンブリを参照します。Word 文書作成ロジックに組み込まれる圧縮およびパッケージ機能は、.NET Framework CLR3.0 に依存します。
+
+[[RelatedTopics]]
+== 関連トピック
+
+link:word-using-the-ig-word-library.html[Infragistics Word ライブラリの使用]

@@ -1,0 +1,122 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-scheduling-project-from-start-or-finish-date",
+    "controlName": ["xamGantt"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "4bb89c7b-5298-421f-bb42-b275f8566279",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.3011254Z"
+}
+|metadata|
+////
+
+= 開始日または終了日からプロジェクトをスケジュール
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、プロジェクトの開始日と終了日に基づいて  _xamGantt™_   コントロールがプロジェクトおよびタスクの日付を計算する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-binding-arbitrary-tasks-collection-listbackedproject.html[ListBackedProject によるタスク コレクションとのバインディング]
+|このトピックでは、ListBackedProject で _xamGantt_ コントロールを任意のタスク コレクションにバインドする方法を説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref334818613, 開始日または終了日からプロジェクトをスケジュール >>
+* <<_Ref334818619, 関連コンテンツ >>
+
+[[_Ref334818613]]
+== 開始日または終了日からプロジェクトをスケジュール
+
+=== 概要
+
+デフォルトで、 _xamGantt_   コントロールを使用するプロジェクト スケジュールは開始日から始まります。この場合、スケジューリング エンジンはプロジェクトの開始日に基づいてタスクの日付だけでなく、プロジェクトの終了日も計算します。
+
+プロジェクトの終了日が指定されている場合、プロジェクトの終了日に基づいて、タスクの日付とプロジェクトの開始日を計算するようにエンジンを構成します。
+
+これを達成するには、`Project` `IsScheduledFromStart` プロパティを `false` に設定し、`Project` `Finish` プロパティをタイプ DateTime の終了日に設定します。
+
+注:
+
+[NOTE]
+====
+プロジェクトの開始日または終了日からスケジュールすると、 _xamGantt_   コントロールのユーザー インターフェイスによって新たに挿入されたタスクのデフォルトの制約タイプを決定します。
+
+開始日からプロジェクトをスケジュールする場合 - 新たに作成されたタスクの制約タイプ = AsSoonAsPossible
+
+終了日からプロジェクトをスケジュールする場合 - 新たに作成されたタスクの制約タイプ = AsLateAsPossible
+
+制約タイプが無効な場合スケジューリング モードの変更は既存のサマリー タスクの制約に影響します。これは、終了に基づいたスケジュールがあるプロジェクトでは As Soon As Possible 制約は無効なサマリー制約となり、As Late as Possible は開始からスケジュールされたプロジェクトでは無効となることを意味します。
+====
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|次に設定:
+
+|プロジェクトを開始日からスケジュール
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~isscheduledfromstart.html[IsScheduledFromStart]
+|`True`
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~start.html[Start]
+|`DateTime` 値
+
+|プロジェクトを終了日からスケジュール
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~isscheduledfromstart.html[IsScheduledFromStart]
+|`False`
+
+|
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~finish.html[Finish]
+|`DateTime` 値
+
+|====
+
+=== 例
+
+以下の例は終了日からプロジェクトをスケジュールする方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ListBackedProject x:Name="dataProvider" 
+                      TaskItemsSource="{Binding Tasks}"
+                      Finish="8/9/2012" 
+                      IsScheduledFromStart=">
+----
+
+[[_Ref334818619]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-project-configuration-overview.html[プロジェクトの構成の概要]
+|このトピックでは、 _xamGantt_ Project クラスとその構成可能な項目の概要を提供します。
+
+| link:xamgantt-calculating-explicitly-a-project.html[プロジェクトの明示的計算]
+|このトピックでは、xamGantt コントロールでプロジェクトが明示的に計算される方法を説明します。
+
+|====

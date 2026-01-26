@@ -1,0 +1,19 @@
+﻿////
+
+|metadata|
+{
+    "name": "designersguide-location-of-generic-xaml-file",
+    "controlName": [],
+    "tags": ["FAQ","How Do I","Styling"],
+    "guid": "{6BB3D971-8356-48E1-9D64-419435645AA1}",  
+    "buildFlags": ["sl","wpf","win-phone"],
+    "createdOn": "2012-01-30T16:46:26.9348012Z"
+}
+|metadata|
+////
+
+= Generic.xaml ファイルの場所
+
+Generic.xaml ファイルには {ProductName} コントロールを描画するすべてのスタイル、テンプレート、およびブラシが含まれます。これらのスタイルは、カスタムスタイルを作成するための土台として使用したり、特定のスタイルをアプリケーションで変更したりすることができます。
+
+デフォルトのテーマ ファイルは、link:https://github.com/Infragistics/wpf-resources/tree/main/DefaultStyles[WPF Resources  GitHub リポジトリ]で公開されています。

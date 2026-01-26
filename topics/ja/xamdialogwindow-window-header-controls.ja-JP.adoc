@@ -1,0 +1,80 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-window-header-controls",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["Editing","How Do I"],
+    "guid": "{14B9BE28-C2DF-442F-BC2C-E4D0781F766B}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.0291107Z"
+}
+|metadata|
+////
+
+= ウィンドウ ヘッダー コントロール
+
+xamDialogWindow™ コントロールの既定のテンプレートには、このコントロールの [最小化]/[最大化] ボタンと [閉じる] ボタンが含まれています。表示されているボタンの切換を簡単にするために 3 つのプロパティがコントロールに追加されましたが、これはテンプレートで VisualStates を切り替えるだけです。
+
+エンドユーザーはこれらのボタンを使用することによって、ダイアログ ウィンドウのウィンドウ状態を操作および変更できます。ウィンドウ状態の詳細は、 link:xamdialogwindow-handle-window-state-changing-events.html[「ウィンドウ変更イベントの処理」]を参照してください。
+
+エンドユーザーがダイアログ ウィンドウを最小化または最大化すると、そのボタンは [元に戻る] ボタンに変わります。[元に戻る] ボタンによってダイアログ ウィンドウは元のサイズと位置に戻ります。
+
+デフォルトで [最小化]、[最大化]、[閉じる] ボタンが表示されます。ただし、以下のコードに示すように、xamDialogWindow コントロールの link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~closebuttonvisibility.html[CloseButtonVisibility]、 link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~maximizebuttonvisibility.html[MaximizeButtonVisibility] および link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~minimizebuttonvisibility.html[MinimizeButtonVisibility] プロパティを Visibility 列挙体の Collapse 値に設定することによって、デフォルトの機能を変更できます。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamDialogWindow Content="Dialog Window" 
+       x:Name="DialogWindow" 
+       Width="200" Height="200" 
+       CloseButtonVisibility="Collapsed"
+       MaximizeButtonVisibility="Collapsed"
+       MinimizeButtonVisibility="Collapsed"/>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports System.Windows
+…
+DialogWindow.CloseButtonVisibility = Visibility.Collapsed
+DialogWindow.MaximizeButtonVisibility = Visibility.Collapsed
+DialogWindow.MinimizeButtonVisibility = Visibility.Collapsed
+----
+
+*C# の場合:*
+
+----
+using System.Windows;
+…
+DialogWindow.MaximizeButtonVisibility = Visibility.Collapsed;
+DialogWindow.MinimizeButtonVisibility = Visibility.Collapsed;
+DialogWindow.CloseButtonVisibility = Visibility.Collapsed;
+----
+
+== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]

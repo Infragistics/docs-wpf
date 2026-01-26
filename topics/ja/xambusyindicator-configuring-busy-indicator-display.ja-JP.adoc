@@ -1,0 +1,141 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-configuring-busy-indicator-display",
+    "tags": ["Getting Started","How Do I"],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "970bc810-0a29-41f7-9500-13b65aa1dc7b",  
+    "buildFlags": [],
+    "createdOn": "2015-08-04T11:21:29.3648597Z"
+}
+|metadata|
+////
+
+= ビジー インジケータ (xamBusyIndicator) の表示の構成
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamBusyIndicator_   コントロールを表示する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-features-overview.html[機能の概要]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xambusyindicator-visual-elements.html[視覚要素]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref426362477, ビジー インジケータの表示の構成 >>
+
+** <<_Ref426391669,概要>>
+** <<_Ref426391673,プロパティ設定>>
+** <<_Ref426391677,例>>
+
+* <<_Ref426366458, 関連コンテンツ >>
+
+** <<_Ref426366463,トピック>>
+
+[[_Ref426362477]]
+== ビジー インジケータの表示の構成
+
+[[_Ref426391669]]
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator_members.html[XamBusyIndicator] link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isbusy.html[IsBusy] プロパティを使用して、 _xamBusyIndicator_   コントロールを表示します。
+
+デフォルトでは、`IsBusy` プロパティの初期値は `False` です。
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isindicatorvisible.html[IsIndicatorVisible] プロパティを使用して、 _xamBusyIndicator_   コンテンツが実際に表示されることを確認します。このプロパティは読み取り専用です。
+
+`IsIndicatorVisible` プロパティは、`IsBusy` が `True` に設定され、`DisplayAfter` に任意の間隔が設定されているような場合に役立ちます。この場合、設定された間隔が経過するまで、 _xamBusyIndicator_   コンテンツは表示されません。その後、`IsIndicatorVisible` プロパティが内部で `True` に設定されます。
+
+[[_Ref426391673]]
+
+=== プロパティ設定
+
+以下の表は、任意の動作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|_xamBusyIndicator_ コントロールのアクティブ化 / 非アクティブ化
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isbusy.html[IsBusy]
+|`bool`
+
+|====
+
+[[_Ref426391677]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   の外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isbusy.html[IsBusy]
+| _true_ 
+
+|====
+
+image::images/Configuring_Busy_Indicator_Display_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" />
+----
+
+[[_Ref426366458]]
+== 関連コンテンツ
+
+[[_Ref426366463]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-configuring-busy-content.html[ビジー コンテンツの構成]
+|このトピックでは、 _xamBusyIndicator_  ビジー コンテンツを構成する方法を説明します。
+
+| link:xambusyindicator-configuring-delayed-display.html[表示の遅延の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する前の遅延時間を構成する方法を説明します。
+
+| link:xambusyindicator-configuring-focus-target.html[フォーカス ターゲットの構成]
+|このトピックでは、 _xamBusyIndicator_ が非アクティブな場合に、UIElement がフォーカスを受け取るように明示的に構成する方法を説明します。
+
+| link:xambusyindicator-configuring-determinate-xambusyindicator.html[既定のプログレス バーの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを構成して、既定の進行状況を表示する方法を説明します。
+
+| link:xambusyindicator-configuring-overlay-style.html[オーバーレイ スタイルの構成]
+|このトピックでは、 _xamBusyIndicator_ のオーバーレイ スタイルをカスタマイズする方法を説明します。
+
+| link:xambusyindicator-configuring-animations-brushes.html[アニメーション ブラシの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールのデフォルトのアニメーション ブラシをカスタマイズする方法を説明します。
+
+|====

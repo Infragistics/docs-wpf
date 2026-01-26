@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistence-about-ig-control-persistence-framework",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{C48FB41A-7C32-4584-AD6E-C09A694DB603}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.5420357Z"
+}
+|metadata|
+////
+
+= Infragistics Control Persistence Framework について
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence_namespace.html[Infragistics Persistence Framework]™ ライブラリはコントロールの現在の状態を保存およびロードするために使用できる統一された API を提供します。
+
+Persistence Framework では、{ProductName} に固有なもので、クロスプラットフォームコントロールではないコントロールは完全にはサポートされません。
+
+パーシステンス プロセスのすべての段階を管理できます。どの DependencyObjects が保持され、どの DependencyObjects プロパティを保存およびロードできるのかを定義できます。保存およびロード プロセスは簡単にカスタマイズできます。
+
+静的な link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencemanager~save.html[Save] メソッドはさらに処理できる MemoryStream を返します。独立したストレージなど、保存先はユーザーが決定します。
+
+* ひとつのコントロール設定は PersistenceManager オブジェクトの Save および link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencemanager~load.html[Load] メソッドによって保存およびロードできます。
+* 複数のコントロール プロパティは、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencegroup.html[PersistenceGroup] プロパティによってひとつのデータ ストアに保存できます。
+* 保存するプロパティをカスタマイズするには、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings.html[PersistenceSettings] オブジェクトと、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings~propertysettings.html[PropertySettings] と link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings~ignorepropertysettings.html[IgnorePropertySettings] の 2 つのコレクション プロパティを使用する必要があります。
+* コントロール プロパティは名前またはタイプで識別できます。link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertynamepersistenceinfo.html[PropertyNamePersistenceInfo] プロパティまたは link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertytypepersistenceinfo.html[PropertyTypePersistenceInfo] プロパティをそれぞれ使用できます。link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertypersistenceinfobase.html[PropertyPersistenceInfoBase] クラスを拡張する新しいクラスを作成することによって、情報を保存およびロードする方法に固有のビジネス ロジックを実装できます。
+* 各プロパティの保存とロードのためにイベントが発生します。プロパティの保存とロード方法を変更できます。イベントは、PersistenceSettings オブジェクトによって保存される各 DependencyObject に、または PersistenceGroup オブジェクトによってコントロール グループ全体に添付できます。link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceevents~persistencesaved_ev.html[PersistenceSaved] イベントと link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceevents~persistenceloaded_ev.html[PersistenceLoaded] イベントはすべてのオブジェクトが保存およびロードされた後に限り発生します。PersistenceSettings では、すべてのプロパティが保存およびロードされた後にイベントが発生します。
+* ロード中にスローされるすべての例外が取得され、オブジェクトがロードされた後に発生する PersistenceLoaded イベントで提示されます。
+
+注:
+
+[NOTE]
+====
+_xamComboEditor_ コントロールで `SelectedItems` コレクションを永続し、復元するには、データ モデル クラスには空のコンストラクターを持ち、`IEquitable` インターフェイスを実装し、`Equals` および `GetHashCode` メソッドをオーバーライドする必要があります。
+====
+
+== 関連トピック
+
+ifdef::sl,wpf,win-rt[]
+link:persistenceframework-getting-started-with-infragistics-control-persistence-framework.html[Infragistics Control Persistence Framework を使用した作業の開始]
+endif::sl,wpf,win-rt[]
+
+link:persistence-using-ig-control-persistence-framework.html[Infragistics Control Persistence Framework の使用]

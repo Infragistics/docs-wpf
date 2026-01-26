@@ -1,0 +1,124 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-about-group-resizing",
+    "controlName": ["xamRibbon"],
+    "tags": ["Getting Started"],
+    "guid": "{63782BAE-D182-40A7-8D79-FCD1C56D3E7A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.0811693Z"
+}
+|metadata|
+////
+
+= リボン グループのリサイズについて
+
+== RibbonGroup サイズ変更の概要
+
+xamRibbon™ コントロールは、リボンのサイズ変更時に link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbontabitem~ribbongroups.html[RibbonTabItem] の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbontabitem.html[RibbonGroups] 内のツールのサイズ変更をするための機能を持ちます。デフォルトで、XamRibbon は最大サイズを使用して選択したタブのツールのサイズ設定を試みます。ただし、十分な領域がなければ、リボンは現在選択されているタブ内の各グループのサイズを削減する反復プロセスを行います。発生可能なサイズ変更アクションの順序とタイプは、選択した RibbonTabItem の RibbonGroups に定義されている link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.groupvariant.html[GroupVariants] に基づきます。
+
+== Group Variants の概要
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~variants.html[RibbonGroup] の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup.html[Variants] コレクションは、発生するサイズ変更アクションの順序とタイプを決定します。GroupVariant の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.groupvariant~priority.html[Priority] は、含んでいる RibbonTabItem の兄弟 RibbonGroups の GroupVariants に基づいて、GroupVariants をソートするために使用されます。link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.groupvariant~resizeaction.html[ResizeAction] は、GroupVariant が処理される時に発生するサイズ変更動作を決定します。
+
+== リサイズ アクション
+
+6 種類のリサイズ アクションがあります。
+
+* ReduceGalleryPreviewItems - GalleryTool のプレビュー領域の列の数を削減します。
+* IncreaseHorizontalWrapRowCount - MinRows から MaxRows プロパティに ToolHorizontalWrapPanel の行数をインクリメントで増します。
+* HideGalleryPreview - ImageAndTextLarge のサイズ設定されたツールに GalleryTool のプレビューを表示している MenuTool のサイズ変更をします。
+* ReduceImageAndTextLargeTools - SizingMode が ImageAndTextLarge に現在設定されている連続するツールは、ImageAndTextSmall の SizingMode で垂直方向にスタックされたツールに削減されます。
+* ReduceImageAndTextNormalTools - SizingMode が現在 ImageAndTextSmall に設定されている連続するツールは、ImageOnly の SizingMode に削減されます。
+* CollapseRibbonGroup - RibbonGroup は、クリックされた時に RibbonGroup のコンテンツを表示するドロップダウン ボタンとして表示されます。
+
+== Group Variant 処理
+
+デフォルトでは、RibbonGroup に定義された GroupVariants はありません。RibbonTabItem のすべての RibbonGroup の Vairants コレクションが空の場合、RibbonGroup は GroupVariants のデフォルトセットを使用します。RibbonGroup の Variants コレクションで定義された GroupVariants がある場合、明示的に定義された GroupVariants だけが処理されます。
+
+たとえば、両方の RibbonGroups の Variants コレクションが空である 'Clipboard' および 'Font' という名前が付けられた 2 つの RibbonGroups を含む RibbonTabItem を検討します。以下は、ResizeActions が処理される順序です。
+
+[options="header", cols="a,a"]
+|====
+|グループ名|ResizeAction
+
+|フォント
+|ReduceGalleryPreviewItems
+
+|クリップボード
+|ReduceGalleryPreviewItems
+
+|フォント
+|IncreaseHorizontalWrapRowCount
+
+|クリップボード
+|IncreaseHorizontalWrapRowCount
+
+|フォント
+|HideGalleryPreview
+
+|クリップボード
+|HideGalleryPreview
+
+|フォント
+|ReduceImageAndTextLargeTools
+
+|クリップボード
+|ReduceImageAndTextLargeTools
+
+|フォント
+|ReduceImageAndTextNormalTools
+
+|クリップボード
+|ReduceImageAndTextNormalTools
+
+|フォント
+|CollapseRibbonGroup
+
+|クリップボード
+|CollapseRibbonGroup
+
+|====
+
+前述の RibbonGroups が以下の定義された GroupVariants を持つ別の例を検討します。
+
+== フォント GroupVariants:
+
+* GroupVariant 1 - 10 に設定された Priority および ReduceGalleryPreviewItems に設定された ResizeAction。
+* GroupVariant 2 - 20 に設定された Priority および ReduceImageAndTextLargeTools に設定された ResizeAction。
+* GroupVariant 3 - 30 に設定された Priority および ReduceImageAndTextNormalTools に設定された ResizeAction。
+
+== クリップボード GroupVariants:
+
+* GroupVariant 1 - 15 に設定された Priority および IncreaseHorizontalWrapRowCount に設定された ResizeAction。
+* GroupVariant 2 - 35 に設定された Priority および CollapseRibbonGroup に設定された ResizeAction。
+
+以下は、ResizeActions が処理される順序です。
+
+[options="header", cols="a,a"]
+|====
+|グループ名|ResizeAction
+
+|フォント
+|ReduceGalleryPreviewItems
+
+|クリップボード
+|IncreaseHorizontalWrapRowCount
+
+|フォント
+|ReduceImageAndTextLargeTools
+
+|フォント
+|ReduceImageAndTextNormalTools
+
+|クリップボード
+|CollapseRibbonGroup
+
+|====
+
+== 関連トピック
+
+link:xamribbon-add-a-ribbon-group-to-a-ribbon-tab.html[リボン タブにリボン グループを追加]
+
+link:xamribbon-using-the-dialog-box-launcher-to-display-a-dialog-box.html[ダイアログ ボックス ランチャーを使用してダイアログ ボックスを表示]

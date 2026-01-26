@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-breaking-changes-in-2011-volume-1",
+    "controlName": [],
+    "tags": ["Known Issues"],
+    "guid": "d247514c-aeea-42fa-bdea-29709547c88d",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.7156963Z"
+}
+|metadata|
+////
+
+= 2011 Volume 1
+
+== アセンブリ名の変更
+
+[options="header", cols="a,a"]
+|====
+|以前のアセンブリ名|新しいアセンブリ名
+
+|{VersionedApiPlatform}.Excel.v{ProductVersion}.dll
+|{VersionedApiPlatform}.Documents.Excel.v{ProductVersion}.dll
+
+|====

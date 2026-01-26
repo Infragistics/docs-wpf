@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-field-chooser",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{31B6976E-8549-4AEB-95DA-E55F86E86029}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2009933Z"
+}
+|metadata|
+////
+
+= フィールドの選択
+
+
+
+フィールドの選択についての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-about-the-field-chooser.html[フィールドの選択について]
+* link:xamdatapresenter-display-the-field-chooser.html[フィールドの選択の表示]
+* link:xamdatapresenter-about-field-chooser-settings.html[フィールドの選択の設定について]
+* link:xamdatapresenter-prevent-fields-from-being-hidden.html[フィールドが非表示にされることを防止する]
+* link:xamdatapresenter-create-an-external-field-chooser.html[外部のフィールドの選択の作成]
+* link:xamdatapresenter-change-the-display-order-of-fields-in-the-field-chooser.html[フィールドの選択でフィールドの表示順序を変更]

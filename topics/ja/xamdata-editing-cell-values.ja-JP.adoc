@@ -1,0 +1,70 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-editing-cell-values",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","How Do I"],
+    "guid": "{77C01635-5F26-48BD-BC27-4304C1240CCB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5108553Z"
+}
+|metadata|
+////
+
+= セル値の編集
+
+デフォルトで、UI によるセル値の編集は有効に設定されています。UI によるセル値の編集を無効にするには、以下の例に示すように、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowedit.html[AllowEdit] を False に設定します。以下の例はすべてのセルの編集を無効にします。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldSettings> 
+                <igDP:FieldSettings 
+                  AllowEdit="False"/> 
+        </igDP:XamDataGrid.FieldSettings> 
+</igDP:XamDataGrid>
+----
+
+[NOTE]
+====
+*注:* セル値の編集はすべてのフィールドでサポートされるわけではありません。
+====
+
+== セルの編集の仕組み
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] は、UI にあるセルを表しますが、"PART_EditorSite" という名前を持つ視覚的ツリーで ContentPresenter を探します。ContentPresenter が見つかると、適切な link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor] 派生クラスがインスタンス化され、ContentPresenter の Content として設定されます。このエディターは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellclickaction.html[CellClickAction] プロパティ設定に基づいて、クリックされた時にまたはユーザーが F2 キーを押した時に Edit モードを起動します。
+
+F2 を再び押すと、エディターは編集モードでなくなります。
+
+作成されるエディターのタイプと FieldSettings クラス内の以下のプロパティを使用してどのようにセルがスタイルされるのかを指定できます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editortype.html[EditorType] -- データを効果的に編集できる ValueEditor から派生するタイプに設定する必要があります。たとえば、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamdatetimeeditor.html[DataType] プロパティが Decimal に設定されているフィールドを編集するために link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~datatype.html[XamDateTimeEditor] を指定することは意味をなしません。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editastype.html[EditAsType] -- EditorType プロパティ (上記) が指定されなかった場合、このプロパティを使用して、EditAsType のデフォルトとして登録されているエディター タイプに基づいて作成するエディター タイプを決定します (ValueEditor の link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~registerdefaulteditorfortype.html[RegisterDefaultEditorForType] メソッドを参照)。EditAsType が設定されていない場合には、フィールドの DataType が同じ目的のために代わりに使用されます。
+
+[NOTE]
+====
+*注:* EditAsType プロパティは、基本データが一般的なタイプ (たとえば文字列やオブジェクト) として公開されるが、セルが別のタイプ (たとえば DateTime) を表すある値を実際に含むときに役に立ちます。
+====
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editorstyle.html[EditorStyle] -- このプロパティは、エディター関連のプロパティ設定を指定するために使用されます。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editorstyleselector.html[EditorStyleSelector] -- StyleSelector から派生するオブジェクトをここで提供できます。異なるスタイルをセルごとの単位に適用できるように、SelectStyle メソッドがセルごとに呼び出されます。
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cell] クラスもセルごとの単位でエディター設定を指定するために EditorType、EditAsType、および EditorStyle プロパティを公開します。ただし、これらのプロパティは XAML で設定できません。これらは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~initializerecord_ev.html[InitializeRecord] イベントのハンドラで通常設定されます。以下の例のコードは、DataRecords の給与フィールドのセルに対してエディターで ReadOnly プロパティを設定します。この場合 "Department" は "Sales" です。
+
+----
+private void OnInitializeRecord(object sender, InitializeRecordEventArgs e)
+{
+        DataRecord dr = e.Record as DataRecord;
+        if (dr != null)
+        {
+                if ("Sales" == (string)dr.Cells["Department"].Value)
+                {
+                        Style style = new Style(typeof(XamCurrencyEditor));
+                        style.Setters.Add(
+                          new Setter(XamCurrencyEditor.ReadOnlyProperty, 
+                          true));
+                        dr.Cells["Salary"].EditorStyle = style;
+                }
+        }
+}
+----

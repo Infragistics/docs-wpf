@@ -1,0 +1,104 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousel-terms-architecture",
+    "controlName": ["xamCarousel"],
+    "tags": ["Getting Started"],
+    "guid": "{BAD2A83E-6ED2-46AB-991C-7F2567962385}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0177567Z"
+}
+|metadata|
+////
+
+= アーキテクチャ
+
+link:xamdata-terms-presentation-formats-carousel-view.html[カルーセルビュー]をサポートするすべてのコントロールは、共通のアーキテクチャの基盤上に構築されています。適切なコントロールを適切なタスクに選択するためには、これを理解する必要があります。
+
+image::images/Terms_Architecture_01.png[カルーセル コントロールの概念図]
+
+これらのコントロールは、デフォルトでカルーセル レイアウトを使用して項目を表示しますが、定義する任意のパスに基づいて項目の柔軟なレイアウトを可能にするために設計されてます。この link:xamcarousel-path.html[パス]はこれらのコントロールで作業する上で最も基本的な原則のひとつです。コントロールは項目が移動して自らを整列し、 link:xamcarousel-path-effects.html[パスエフェクト]が発生するガイドとしてパスを使用するからです。
+
+4 つのコントロールの一番の基本は xamCarouselPanel™ です。これはコンテンツがパスを辿ることを可能にするコンテナです。これは、他のコントロールのエンジンです。パスに沿った項目のレイアウトをサポートするために必要なすべてのプロパティ、メソッド、イベントを提供します。その他の各コントロールは、カルーセル ビューでの項目のプレゼンテーションを処理するために、内部で xamCarouselPanel を使用します。コントロール間の関係は、継承ではなくデリゲーションのひとつです。
+
+これによって、コントロールは機能に関して最大のメリットを提供することができる最も適切な基本クラスから自由に継承します。xamDataCarousel™ と xamDataPresenter™ の両コントロールは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] クラスから派生しており、 link:xamdata-terms-records.html[レコード]と link:xamdata-terms-fields.html[フィールド]に基づいたより強力なデータ管理の実行を可能にします。
+
+image::images/Terms_Architecture_02.png[CarouselViewSettings でのプロパティのカテゴリ]
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[CarouselViewSettings] クラスは、xamCarouselPanel コントロールが公開する最も重要なプロパティのひとつです。このコントロールのプロパティは、上記の図に示した 3 つのカテゴリーに分類されます。これによって項目の配置とプレゼンテーションに対して詳細な制御を実行することができます。カルーセルビューで表示する機能を持っているあらゆるコントロールは、コントロール上の ViewSettings という名前のプロパティを介してこのタイプのオブジェクトを公開します。
+
+[NOTE]
+====
+*注:* プラグ可能なビュー アーキテクチャのために、xamDataPresenter コントロールはその link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatapresenter~view.html[View] からこのプロパティを公開します。ただし、View が link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.carouselview.html[CarouselView] の場合に限ります。
+====
+
+以下の表は、カルーセル ビューをサポートするコントロールの機能を要約し、これらのコントロールが適用する使用のシナリオについて説明しています。
+
+[options="header", cols="a,a,a"]
+|====
+|コントロール|基本機能|このコントロールを使用すべき時
+
+|xamCarouselPanel
+|
+* 指定したパスに沿って項目のレイアウトを実行 
+
+* レイアウトを制御するためのプロパティとメソッドを公開 
+
+* プレゼンテーションの影響とリアルさの両方またはいずれか一方を強化するために個々の項目にさまざまな視覚的効果を適用するためのプロパティを公開 
+
+* 項目のアニメートしたスクローリングをサポート 
+
+* 一度に 1 項目スクロールする、または一度に複数項目を含む 1 ページをスクロールするための UI を提供 
+
+|
+* 実行する必要があるのが要素のレイアウトのみの時 (つまり、任意のパネル派生のクラスを通常使用する時) で、ただしカスタム パスに沿って項目を配置する必要がある場合 
+
+|xamCarouselListBox™
+|
+* すべての xamCarouselPanel 機能を含む 
+
+* データ ソースへのバインドをサポート 
+
+* 項目の単一の選択 
+
+* 項目の大きなリストでパフォーマンスを改善するために項目を表す UI 要素の仮想化 
+
+|
+* データのリストにバインドする必要はあるが、xamDataCarousel または xamDataPresenter の自動フィールド レイアウト生成機能は不要の場合 
+
+* 多数の項目を表示しており、最適なパフォーマンスを保証したい場合 
+
+* 項目の単一の選択をサポートする場合 
+
+|xamDataCarousel
+|
+* すべての xamCarouselListBox 機能を含む 
+
+* 基本のデータ ソースからのレコードとフィールドを生成をサポート 
+
+* データ構造に基づいたセルおよびセル ラベルの UI 要素の自動生成をサポート 
+
+* 階層的なデータの表示をサポート 
+
+* WPF の自動化をサポート 
+
+|
+* データのリストにバインドする必要があり、データの構造を反映するデータ テンプレートの手動の作成を回避したい場合 
+
+* 階層的なデータにバインドして表示する必要がある場合 
+
+|xamDataPresenter
+|
+* すべての xamDataCarousel 機能を含む 
+
+* CarouselView (xamDataCarousel と同じユーザー エクスペリエンス) と GridView (従来の link:xamdata-terms-presentation-formats-grid-view-format.html[グリッド ビュー]) を含む複数のビュー (つまり UI レイアウト) をサポート 
+
+* ランタイムでのビュー間の動的に切り替えをサポート 
+
+|
+* ランタイムに異なるビュー (つまり UI レイアウト) を切り替える必要がある場合 
+
+* xamDataPresenter のカスタムのプラガブルなビュー アーキテクチャに基づいて固有のカスタム ビューを作成する必要がある場合 
+
+|====

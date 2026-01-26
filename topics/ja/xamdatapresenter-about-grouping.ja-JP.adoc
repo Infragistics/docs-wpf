@@ -1,0 +1,63 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-grouping",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Grouping"],
+    "guid": "{0541BFBA-CDF0-486E-90DB-92BA59067B37}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0519635Z"
+}
+|metadata|
+////
+
+= グループ化情報
+
+
+
+DataPresenter コントロールのグループ化機能では、エンド ユーザーが、同じ値を含むフィールドに基づいてレコードをグループ化できます。DataPresenter コントロールはエンドユーザーがレコードをグループ化するために 2 つの異なる方法も提供します。
+
+* デフォルトの動作によって、エンドユーザーは複数のフィールド レイアウトから group-by 領域にフィールド ヘッダーをドラッグできます。
+
+image::images/xamDataPresenter_About_Grouping_01.png[]
+
+* 2 つ目のオプションは group-by 領域の下にあるデフォルトのレイアウトに各フィールドのボタンを表示します。エンドユーザーはデフォルトのフィールド レイアウトでレコードをグループ化するためにこれらのボタンを group-by 領域にドラッグできます。このオプションによってエンドユーザーは複数のフィールド レイアウトでフィールドを使用してレコードをグループ化することができません。このオプションは以前のリリースとの後方互換性をサポートするために利用できます。
+
+コントロールとその group-by 設定にかかわらず、コードまたは XAML でレコードをグループ化できます。このため、DataPresenter コントロールでフィールド ヘッダーを表示していない時でさえレコードをグループ化するための固有のユーザー インターフェイスを提供できます。
+
+3 つのコントロールはすべて group-by 機能の修正を可能にする以下のプロパティを公開します。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyareamode.html[GroupByAreaMode] - このプロパティは 3 つの個別の目的に役立ちます。
+
+** 主要な目的は、複数のフィールド レイアウトからフィールドを使用してエンドユーザーがレコードをグループ化できるかどうかを決定することです。たとえば、Customer および Order データ項目のネストされた階層がある場合、このプロパティはエンドユーザーが Customer データ項目と Order データ項目をグループ化できるかどうかを決定します。
+** 2 番目の目的は、複数のフィールド レイアウトのグループ化を有効にする時に group-by 領域がどのくらいの領域を使用するかを決定します。MultipleFieldLayoutsCompact 設定を使用する場合、コントロールは group-by 領域に一行で group-by の基準を表示します。ただし、MultipleFieldLayoutsFull 設定で、DataPresenter コントロールは group-by 領域に個別の行でそれぞれの一意のフィールド レイアウトを表示します。
+** 3 番目の目的はレコードのグループ化に使用できる 2 つの異なるユーザー インターフェイス間を切り替えることです。グループ化の有効化をデフォルトのフィールド レイアウトに限定する場合 (DefaultFieldLayoutOnly)、group-by 領域はデフォルトのフィールド レイアウトにフィールドのボタンを表示します。そうでない場合、エンドユーザーはフィールド ヘッダーを複数のフィールド レイアウトから group-by 領域にドラッグできます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyarea.html[GroupByArea] - 外部の group-by 領域を DataPresenter コントロールに添付する、または GroupByArea コントロールのプロパティを修正するためにこのプロパティを GroupByArea コントロールに設定できます。この group-by 領域はデフォルトのフィールド レイアウトでフィールドでグループすることのみを可能にします。DataPresenter コントロールは、GroupByAreaMode プロパティを DefaultFieldLayoutOnly に設定する時に GroupByArea コントロールのみを使用します。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyareamulti.html[GroupByAreaMulti] - 外部の group-by 領域を DataPresenter コントロールに添付する、または GroupByAreaMulti コントロールのプロパティを修正するためにこのプロパティを GroupByAreaMulti コントロールに設定できます。この group-by 領域が動作するのは、GroupByAreaMode プロパティを MultipleFieldLayoutsCompact または MultipleFieldLayoutsFull に設定する時のみです。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyarealocation.html[GroupByAreaLocation] - このプロパティによって group-by 領域の位置を設定することができます。外部の group-by 領域を使用している場合には、このプロパティはコントロールに影響しません。
+
+上記にリストされたプロパティに加えて、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトは特定の Field オブジェクトでのグループ化関連動作の修正を可能にするプロパティを公開します。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowgroupby.html[AllowGroupBy] - このプロパティはエンドユーザーがフィールドをグループ化の基準として使用できるかどうかを決定します。
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~groupbycomparer.html[GroupByComparer] - .NET Framework にある IComparer インターフェイスを実装するオブジェクトにこのプロパティを設定することによって、group-by レコードの開発者固有のソート ロジックを提供できます。
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~groupbyevaluator.html[GroupByEvaluator] - IGroupByEvaluator インターフェイスを実装するオブジェクトにこのプロパティを設定することによって、開発者固有のグループ化ロジックを提供できます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~groupbymode.html[GroupByMode] - DataPresenter コントロールはいくつかの一般的に使用される group-by エバリュエーターを提供します。このプロパティを組み込みの group-by エバリュエーターに設定して、デフォルトのグループ化ロジックを変更できます。
+
+== 関連トピック
+
+link:xamdatapresenter-about-sorting.html[並べ替えについて]
+
+link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[フィールドのプログラムによる並べ替えおよびグループ化]
+
+link:xamdatapresenter-modify-the-group-by-area.html[Group-By 領域の修正]
+
+link:xamdatapresenter-create-an-external-group-by-area.html[外部の Group-By 領域の作成]
+
+link:xamdatapresenter-disable-groupby.html[グループ化を無効にする]
+
+link:xamdatapresenter-change-the-location-of-the-groupbyarea.html[GroupByArea の位置の変更]

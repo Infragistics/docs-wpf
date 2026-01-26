@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacarousel-designing-the-look-and-feel",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{6DC01D82-E16B-47AE-80A3-54D654096E3E}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6438819Z"
+}
+|metadata|
+////
+
+= ルック アンド フィールのデザイン
+
+
+
+xamDataCarousel™ コントロールのルック アンド フィールのデザインに役立つトピックをご覧になる場合は、以下のリンクをクリックしてください。
+
+* link:xamdata-changing-the-record-hover-color.html[レコード ホバーの色の変更]
+* link:xamdata-referencing-a-themepack-in-xaml.html[XAML でテーマパックを参照]
+* link:xamdata-using-built-in-themes.html[組み込みテーマを使用]
+* link:xamdatapresenter-enabling-alternating-row-colors.html[隔行の色を有効にする]
+* link:xamdatapresenter-changing-the-column-headers-style.html[列ヘッダーのスタイルを変更]
+* link:xamcarousel-overview-of-path-effects.html[パス エフェクトの概要]
+* link:xamcarousel-changing-the-location-of-carousel-navigator-element.html[カルーセル ナビゲーション 要素の位置を変更]
+* link:xamcarousel-creating-a-named-path-on-the-artboard.html[アートボードで名前を指定したパスを作成]
+* link:xamcarousel-disabling-reflection-for-an-item-along-a-path.html[パスに沿って項目のリフレクションを無効にする]
+* link:xamdatapresenter-modifying-the-opacity-effect-of-items-on-a-path.html[パスで項目の不透明効果を変更]
+* link:xamdatapresenter-modifying-the-scale-of-elements-on-a-path.html[パスで要素のスケールを変更]
+* link:xamdatapresenter-modifying-the-skew-effect-of-items-on-a-path.html[パスで項目の傾斜効果を変更]
+* link:xamdatapresenter-setting-a-path-for-xamdatapresenter-to-use.html[xamDataPresenter のパスを使用するように設定]

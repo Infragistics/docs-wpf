@@ -1,0 +1,17 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram coordinate system",
+    "controlName": [],
+    "tags": [],
+    "guid": "b418f275-a23c-476f-883a-017003ca24b2",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-25T05:40:35.7219853Z"
+}
+|metadata|
+////
+
+ダイアグラム項目 (ノードまたは接続) の位置は、ダイアグラムの座標系に対して相対的に決定されます。この座標系では左上隅を原点 (0、0) とします。座標値は、原点からのオフセット (単位はピクセル) を表します。最初の数値は垂直方向のオフセット、2 番目の数値は垂直方向のオフセットを表します。 *ノードの座標値は左上隅の位置を表します。接続の場合の座標は、接続の始点と終点の個別のプロパティで管理、またはスナップ ポイントの位置によって決定されます。* 以下の画像は、ダイアグラムの座標系と座標 (100, 100) にあるノードを示します。
+
+image::images/xamDiagram_Configuring_the_Position_and_Size_of_Diagram_Nodes_1.png[]

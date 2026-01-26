@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-api-overview",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["API"],
+    "guid": "cd4b0acd-e1fa-49c7-99fc-ac2b4d0cf897",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4903613Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションでは、コントロールに関係のある名前空間をそれぞれ紹介します。また、このコントロールでプログラミングするときに使用する主なクラスを紹介します。このページの名前空間とクラスは弊社の API トピックに対応しています。
+
+=== xamSyntaxEditor 名前空間
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics.Controls.Editors]
+
+link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents_namespace.html[Infragistics.Documents]
+
+=== キー クラス
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor.html[XamSyntaxEditor]
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.classificationappearancemap.html[ClassificationAppearanceMap]
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.textdocumentappearance.html[TextDocumentAppearance]
+
+link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument.html[TextDocument]
+
+link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.parsing.plaintextlanguage.html[PlainTextLanguage]
+
+link:{ApiPlatform}documents.textdocument.csharp{ApiVersion}~infragistics.documents.parsing.csharplanguage.html[CSharpLanguage]
+
+link:{ApiPlatform}documents.textdocument.visualbasic{ApiVersion}~infragistics.documents.parsing.visualbasiclanguage.html[VisualBasicLanguage]
+
+link:{ApiPlatform}documents.textdocument.tsql{ApiVersion}~infragistics.documents.parsing.tsqllanguage_members.html[TSqlLanguage]
+
+link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.classificationtype.html[ClassificationType]

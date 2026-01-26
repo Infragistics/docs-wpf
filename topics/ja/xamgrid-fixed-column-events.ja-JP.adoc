@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-fixed-column-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I","Layouts"],
+    "guid": "{BCBCC614-B405-4704-A46F-465B71E4BF60}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7811924Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 固定列イベント
+
+xamGrid には固定列に関連付けられたイベントが 2 つあります。これらのイベントは発生する順序を反映して接尾辞 "ing" または "ed" が追加されます。固定列イベントによって、列の固定状態が変化する前または後にカスタム ビジネス ロジックを実行できます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columnfixedstatechanging_ev.html[ColumnFixedStateChanging] イベント - 列の固定状態が変わる直前に、ColumnFixedStateChanging イベントが発生します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columnfixedstatechanged_ev.html[ColumnFixedStateChanged] イベント - このイベントは列の固定状態が変わった後で発生します。
+
+これらのイベントによって、エンド ユーザーが xamGrid コントロールの固定列機能を操作する方法を制御できます。エンド ユーザーがその列を固定するのを禁止する、ColumnFixedStateChanging イベントをキャンセルできます。ColumnFixedStateChanged イベントによって、エンド ユーザーが固定した列を確認できます。
+
+== 関連トピック
+
+link:xamgrid-fixed-columns.html[固定列]
+
+link:xamgrid-setting-the-drop-area-location.html[ドロップ領域の場所を設定]
+
+link:xamgrid-setting-fixed-columns-programmatically.html[プログラムによる固定列の設定]

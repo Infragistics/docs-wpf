@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-terms-fields-field-settings",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","Getting Started","Tips and Tricks"],
+    "guid": "{828AB29E-4709-4569-AC44-EC088F4DFD53}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5468625Z"
+}
+|metadata|
+////
+
+= フィールド設定
+
+
+
+フィールド設定は、Field の必須ではないデフォルト設定可能な特性を述べます。Field Settings クラスと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] クラス自体間のこの区別をより適切に評価するために、小さいレトロスペクティブが呼び出されます。
+
+Field クラスのプロパティが link:xamdata-terms-records-data-record.html[データレコード]の単一の「属性」を表す特定の仲間のオブジェクトに関連していることを思い出してください。Field オブジェクトのプロパティは、常に値を持っており、指定されないままの場合、これらに値を割り当てることなく、意味のある値に本質的に解決することができます。これらの Field オブジェクトプロパティには以下が含まれます。
+
+* Name -- Field が参照できるハンドルとして使用されます。Field 名はデフォルトでデータの「属性」にある名前に設定されます。
+* Label -- Field を説明する人間が読むことができるテキストのキャプション。Label はデフォルトで Name に設定されます。詳細は link:xamdata-terms-fields-field-label.html[フィールド ラベル]を参照してください。
+* 位置関連のプロパティ -- これらのプロパティは、グリッド ベースのレイアウト パネルで X-、Y-、および Field の範囲を定義します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autoarrangecells.html[AutoArrangeCells] プロパティの支援のままの場合、これらの値はグリッドで次に使用可能なスポットにデフォルトで設定されます。
+
+DataPresenterBase 派生のコントロールが Field オブジェクトのこれらの値を分かっている場合、この Field をユーザーに提示するための必須情報をすべて持っています。外観と動作を定義するすべてのさらなる特性 (および特性が多数あります) は、フィールド設定に属しています。メリットは、以下に示す解決プロセスに従ってデフォルト値が解決できることです。
+
+image::images/Terms_Fields_Field_Settings_01.png[フィールド設定の解像度]
+
+FieldSettings クラス上の任意のプロパティ値が必要な場合には、その値を探す最初の場所は、特定の Field の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~settings.html[Settings] プロパティです。これはその外観、動作、ならびにセルの外観と動作に対する各 Field 個別の制御を提供します。あらゆる Field オブジェクトのフィールド設定でこの設定を行う場合には、異なる link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellclickaction.html[CellClickAction] をあらゆるセルに割り当てることができます。
+
+多くの場合、個々の Field オブジェクトの Field Settings プロパティに割り当てられる値がありません。FieldSettings クラスに非常に多くのプロパティがあるため、あらゆる Field オブジェクトでそれらすべてを設定しなければならないことは非常に不便です。個々の Field オブジェクトがそのフィールド設定のプロパティに対して明示的な値を持たない場合、そのプロパティの値は、 link:xamdata-terms-fields-field-layout.html[フィールド レイアウト]上の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~fieldsettings.html[FieldSettings] に解決します。したがって、個々の Field から離れた論理的な次の層にデフォルトで設定します。フィールド レイアウトがデータ レコードの特定のタイプに共通する Field に関してすべて知っていることを思い出してください。フィールド レイアウトのレベルでこのように実行することで、データ レコードの特定のタイプに関連したすべての Field はしたがって同じフィールド設定を共有できます。
+
+フィールド レイアウトが Field Settings プロパティの値を明示的に設定しない場合、そのプロパティの解決された値は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldsettings.html[DataPresenterBase] 派生コントロール上の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase.FieldSettings] にデフォルト設定する必要があります。コントロール レベルでフィールド設定に割り当てられたプロパティ値はすべての Field に共通しており、この Field と異なるデータを持つデータ レコードに関するこれらの Field でさえも共通しています。すべての Field が同じようにスタイルされたセルを持つようにしたい場合には、コントロール レベルで link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellpresenterstyle.html[CellPresenterStyle] にひとつだけの割り当てを取得して持ちます。
+
+フィールド設定解決プロセスについて理解すべき最も重要なことは次のことです。フィールド レイアウトまたは個々のフィールド レベルのいずれかでオーバーライドしない限り、すべてのデフォルトのフィールド設定値はコントロール レベルからきます。

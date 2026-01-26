@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticce-api-overview",
+    "controlName": ["xamMultiColumnComboEditor"],
+    "tags": ["API"],
+    "guid": "bbbfd344-e994-49e0-9ed5-d3a074a24624",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.5642579Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== コントロールの名前空間:
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics_namespace.html[Infragistics]
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers]
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics.Controls.Editors]
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.primitives_namespace.html[Infragistics.Controls.Editors.Primitives]
+
+=== 主要な API:
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor.html[XamMultiColumnComboEditor]
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritem.html[ComboEditorItem]
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemsFilters]

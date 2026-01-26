@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-field-operations",
+    "tags": [],
+    "controlName": ["xamDataGrid"],
+    "guid": "36d3e470-0ccd-40e5-a27d-b0e72041da27",  
+    "buildFlags": [],
+    "createdOn": "2014-04-03T11:21:23.8916934Z"
+}
+|metadata|
+////
+
+= フィールドの操作 (xamDataGrid)
+
+== このグループのトピックについて
+
+=== 概要
+
+このトピックのグループは、 _xamDataGrid_™ のフィールドのコンテンツ編集、列集計の構成、フィールド レイアウト、およびフィールド表示状態などのフィールドに関連する操作を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-cell-merging.html[セル結合 ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ で結合したセルを定義し、カスタマイズする方法を説明します。
+
+| link:xamdatagrid-defining-layouts.html[フィールド レイアウトの定義 ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ でフィールドを定義し、カスタマイズする方法を説明します。
+
+| link:xamdatagrid-editing-data.html[データの編集 ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ でフィールド エディターを定義し、カスタマイズする方法を説明します。
+
+| link:xamdatagrid-field-chooser.html[フィールド選択 ( _xamDataGrid_ )]
+|このトピックのグループは、フィールド選択を表示し、構成する方法を説明します。フィールド選択は _xamDataGrid_ で列の表示/非表示を構成するコンポーネントです。
+
+| link:xamdatagrid-row-summaries.html[行の集計 ( _xamDataGrid_ )]
+|このトピックのグループは、 _xamDataGrid_ コントロールでフィールド値に基づいて集計フィールドを設定し、カスタマイズする方法を説明します。
+
+|====

@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-sorting",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Sorting"],
+    "guid": "{FA298DD6-9329-4E78-A777-2D1796C0CD4D}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0589649Z"
+}
+|metadata|
+////
+
+= 並べ替えについて
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~labelclickaction.html[LabelClickAction] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelclickaction.html[LabelClickAction] 列挙値に設定すると、並べ替えを有効にすることができます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~labelclickactionresolved.html[LabelClickActionResolved] プロパティが以下のいずれかの値に解決される場合に、エンド ユーザーはヘッダーをクリックすることによってフィールドを並べ替えることができます。
+
+SortByOneFieldOnly - エンドユーザーはヘッダーをクリックすることによってひとつのフィールドを並べ替えることができます。ただし、複数のフィールドずつ並べ替えることはできなくなります。エンドユーザーがひとつのフィールドを並べ替えた後で、ヘッダーをクリックして並べ替えの昇順と降順を切り替えることができます。
+
+* SortByMultipleFields - エンドユーザーは CTRL キーを押し下げていくつかのフィールド ヘッダーをクリックして複数のフィールドずつ並べ替えることができます。SortByOneFieldOnly 列挙値とまったく同じように、エンドユーザーは並べ替えの昇順と降順を切り替えることができます。
+* SortByOneFieldOnlyTriState - エンドユーザーはヘッダーをクリックすることによってひとつのフィールドを並べ替えることができます。エンドユーザーがフィールドを並べ替えた後で、ヘッダーをクリックして並べ替えない、昇順の並べ替えおよび降順の並べ替えの順に切り替えることができます。
+* SortByMultipleFieldsTriState - エンドユーザーは CTRL キーを押し下げていくつかのフィールド ヘッダーをクリックして複数のフィールドで並べ替えることができます。SortByMultipleFieldsTriState 列挙値とまったく同じように、エンドユーザーは並べ替えない、昇順の並べ替えおよび降順の並べ替えの順に切り替えることができます。
+
+LabelClickAction プロパティを Nothing または SelectField に設定することによって並べ替えを無効にするとしても、プログラムを使用してフィールドを並べ替えることが可能です。これに加えて、FieldSettings オブジェクトによって公開される以下のプロパティを設定することによって並べ替え関連の動作をさらに修正できます:
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~sortcomparer.html[SortComparer] - .NET Framework にある IComparer インターフェイスを実装するオブジェクトにこのプロパティを設定することによって、独自のソート ロジックを提供できます。
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~sortcomparisontype.html[SortComparisonType] - このプロパティを FieldSortComparisonType 列挙値に設定して、デフォルトのソート ロジックが大文字と小文字を区別するかどうかを決定できます。
+
+最後に、Field オブジェクトと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter.html[LabelPresenter] オブジェクトは共にフィールドの現在の並べ替えの状態を決定するために使用できる読み取り専用の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter~sortstatus.html[SortStatus] プロパティを公開します。コードでフィールドの並べ替え順序を決定する必要がある場合には、Field オブジェクトの SortStatus プロパティを使用します。ただし、LabelPresenter オブジェクトのスタイルまたはテンプレートを作成している場合には、トリガーで SortStatus プロパティを使用して並べ替えインジケーターを表示または非表示にすることができます。
+
+== 関連トピック
+
+link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[フィールドのプログラムによる並べ替えおよびグループ化]
+
+link:xamdatapresenter-disable-sorting.html[並べ替えを無効にする]

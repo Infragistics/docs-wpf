@@ -1,0 +1,321 @@
+﻿////
+
+|metadata|
+{
+    "name": "configuring-template-field",
+    "controlName": [],
+    "tags": [],
+    "guid": "791749c5-7ea8-444e-bc21-a9859f0c7649",  
+    "buildFlags": [],
+    "createdOn": "2014-06-26T13:33:16.4505233Z"
+}
+|metadata|
+////
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、カスタム表示のフィールドを作成し、 _xamDataPresenter_™ コントロールで TemplateField を使用してテンプレートを編集する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:wpf-terms-and-concepts.html[用語と概念]
+|このセクションでは、Data Presenter Family のコントロールを構成する主要な要素を定義します。
+
+| link:xamdatagrid-getting-started-with-xamdatagrid.html[xamDataGrid をページに追加]
+|このトピックでは、 _xamDataGrid_ コントロールをページに追加する方法について説明します。
+
+| link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+|このトピックでは、 _xamDataGrid_ コントロールで FieldLayout および Field を手動で指定する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref390115051,テンプレート フィールドの構成の概要>>
+* <<_Ref390760850,テンプレート フィールドの表示テンプレートの構成>>
+* <<_Ref390113007,テンプレート フィールドの編集テンプレートの構成>>
+* <<_Ref390691228,コード例: テンプレート フィールドの使用>>
+* <<_Ref390115068,関連コンテンツ>>
+
+** <<_Ref390115073,トピック>>
+
+[[_Ref390115051]]
+== テンプレート フィールドの構成の概要
+
+=== テンプレート フィールドの構成の概要
+
+テンプレート フィールドは、 _xamDataPresenter_   コントロールで、表示モードおよび編集モード用のカスタム データ テンプレートを指定する機能を提供します。
+
+=== テンプレート フィールドの構成の概要表
+
+以下の表は、`TemplateField` コントロールの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref390112988,テンプレート フィールドの表示テンプレートの構成>>
+|フィールドの表示をカスタマイズするには、`TemplateField` の `DisplayTemplate` プロパティを使用します。
+|
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield~displaytemplate.html[DisplayTemplate] 
+
+|<<_Ref390113007,テンプレート フィールドの編集テンプレートの構成>>
+|カスタム フィールド エディターを提供するには、`TemplateField` の `EditTemplate` プロパティを使用します。
+|
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield~edittemplate.html[EditTemplate] 
+
+|====
+
+[[_Ref390112988]]
+[[_Ref390760850]]
+== テンプレート フィールドの表示テンプレートの構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+編集モードが選択されていない場合にフィールドの表示をカスタマイズするには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield_members.html[TemplateField] の `DisplayTemplate` プロパティを使用します。
+
+基本データへのバインドを容易にするために、`TemplateEditorValueBinding` マークアップ拡張子を使用します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|カスタム フィールド表示の提供
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield~displaytemplate.html[DisplayTemplate]
+|`DataTemplate`
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のスクリーンショットは、以下のコードを使用した結果、フィールドがどのように表示されるかを示しています。
+
+image::images/Configuring_Template_Field_1.png[]
+
+以下のコードは、「給与」テンプレート フィールドを実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TemplateField Name="salary" >
+    <!-- [ここに表示テンプレートを指定]  -->
+    <!-- [ここに編集テンプレートを指定]  -->
+</igDP:TemplateField>
+----
+
+以下のコードは、`TemplateField` の表示テンプレートを実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TemplateField.DisplayTemplate>
+    <DataTemplate>
+        <TextBlock Text="{igEditors:TemplateEditorValueBinding}"
+                   HorizontalAlignment="Right"/>
+    </DataTemplate>
+</igDP:TemplateField.DisplayTemplate>
+----
+
+以下のコードは、前述のコードと同じ結果になります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TemplateField.DisplayTemplate>
+    <DataTemplate>
+        <TextBlock Text="{Binding Path=(igEditors:TemplateEditor.Editor).Value, RelativeSource={RelativeSource Self}}"
+                   HorizontalAlignment="Right"/>
+    </DataTemplate>
+</igDP:TemplateField.DisplayTemplate>
+----
+
+[[_Ref390113007]]
+== テンプレート フィールドの編集テンプレートの構成
+
+=== 概要
+
+カスタム フィールド エディターを使用してテンプレートの内容を指定するには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield_members.html[TemplateField] の `EditTemplate` を使用します。
+
+基本データへのバインドを容易にするために、`TemplateEditorValueBinding` マークアップ拡張子を使用します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|カスタム フィールド エディターの提供
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield~edittemplate.html[EditTemplate]
+|`DataTemplate`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下のコードを使用した結果、カスタム エディター フィールドがどのように表示され動作するかを示しています。
+
+image::images/Configuring_Template_Field_2.png[]
+
+以下のコードは、「給与」テンプレート フィールドを実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TemplateField Name="salary" >
+    <!-- [ここに表示テンプレートを指定]  -->
+    <!-- [ここに編集テンプレートを指定]  -->
+</igDP:TemplateField>
+----
+
+以下のコードは、`TemplateField` の編集テンプレートを実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TemplateField.EditTemplate>
+    <DataTemplate>
+        <Border BorderBrush="LightGreen" BorderThickness="1">
+            <igEditors:XamNumericEditor Value="{igEditors:TemplateEditorValueBinding}"                                                                  SpinButtonDisplayMode="Always"
+SpinIncrement="50"/>
+        </Border>
+    </DataTemplate>
+</igDP:TemplateField.EditTemplate>
+----
+
+以下のコードは、前述のコードと同じ結果になります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:TemplateField.EditTemplate>
+    <DataTemplate>
+        <Border BorderBrush="LightGreen" BorderThickness="1">
+            <igEditors:XamNumericEditor Value="{Binding Path=(igEditors:TemplateEditor.Editor).Value, RelativeSource={RelativeSource Self}, UpdateSourceTrigger=PropertyChanged}"                                                       SpinButtonDisplayMode="Always"                                                                 SpinIncrement="50"/>
+        </Border>
+    </DataTemplate>
+</igDP:TemplateField.EditTemplate>
+----
+
+[[_Ref390691228]]
+== コード例: テンプレート フィールドの使用
+
+=== 説明
+
+以下のコードは、 _xamDataGrid_   コントロールで `TemplateField` を使用する完全なコード例です。
+
+=== コード
+
+以下の名前空間を使用します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+xmlns:igEditors="http://infragistics.com/Editors"
+----
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataGrid x:Name="DataGrid" BindToSampleData="True" AutoFit="True">
+    <igDP:XamDataGrid.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:FieldLayout.Fields>
+                <igDP:TextField Name="name"/>
+                <igDP:TextField Name="department"/>
+                <igDP:TextField Name="email" Visibility="Collapsed" />
+                <igDP:TemplateField Name="salary" >
+                    <igDP:TemplateField.DisplayTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{igEditors:TemplateEditorValueBinding}"
+                                       HorizontalAlignment="Right"/>
+                        </DataTemplate>
+                    </igDP:TemplateField.DisplayTemplate>
+                    <igDP:TemplateField.EditTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightGreen" BorderThickness="1">
+                                <igEditors:XamNumericEditor Value="{igEditors:TemplateEditorValueBinding}"                                    SpinButtonDisplayMode="Always" SpinIncrement="50"/>
+                            </Border>
+                        </DataTemplate>
+                    </igDP:TemplateField.EditTemplate>                                             </igDP:TemplateField>
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+    </igDP:XamDataGrid.FieldLayouts>
+</igDP:XamDataGrid>
+----
+
+[[_Ref390115068]]
+== 関連コンテンツ
+
+[[_Ref390115073]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、表示するフィールドを指定し、 _xamDataPresenter_ コントロールでこれらのフィールドに関連するプロパティを設定するために、フィールドのレイアウトを定義する方法を説明します。
+
+| link:xamdatapresenter-configuring-specific-editor-fields.html[特定のエディター フィールドの構成]
+|このトピックでは、 _xamDataPresenter_ コントロールのさまざまなデータ タイプに対し、特定のエディター フィールドを簡単に構成する方法を説明します。
+
+| link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+|このトピックでは、 _xamDataPresenter_ コントロールによるフィールドの自動生成と手動生成の違いを説明します。
+
+| link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[フィールド レイアウトの xamDataPresenter への手動割り当て]
+|このトピックでは、 _xamDataPresenter_ コントロールに対する複数の FieldLayouts を作成する方法を説明します。
+
+| link:xam-data-grid-displaying-an-image-in-a-field.html[フィールドへの画像の表示]
+|このトピックでは、画像を表示させるフィールドを追加し、 _xamDataPresenter_ コントロールで CellValuePresenter のテンプレートをオーバーライドする方法を説明します。
+
+| link:xamdatapresenter-load-field-customizations.html[フィールドのカスタマイズの読み込み]
+|このトピックでは、 _xamDataPresenter_ コントロール用にカスタマイズされたフィールドを読み込む方法を説明します。
+
+| link:xamdatapresenter-save-field-customizations.html[フィールドのカスタマイズの保存]
+|このトピックでは、 _xamDataPresenter_ コントロール用にカスタマイズされたフィールドを保存する方法を説明します。
+
+| link:xamdatagrid-changing-the-default-column-and-row-definitions.html[デフォルトの行および列定義の変更]
+|このトピックでは、各フィールドの Row、Column、ColumnSpan または RowSpan をカスタマイズして、レコードを一層使いやすくなるようにレイアウトを変更する方法を説明します。
+
+| link:xamdatagrid-changing-the-record-orientation.html[レコードの方向の変更]
+|このトピックでは、レコードの方向を変更する方法について説明します。
+
+| link:xamdata-enabling-right-to-left-support.html[右から左へのサポートの有効化]
+|このトピックでは、内容のフロー方向を変更する方法について説明します。
+
+| link:xamdatagrid-fields-editors-configuration-.html[フィールドのエディター構成]
+|このトピックでは、データ プレゼンター フィールド エディターのコントロールを構成する方法を説明します。
+
+|====

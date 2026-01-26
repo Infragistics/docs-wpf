@@ -1,0 +1,132 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-limitations",
+    "tags": ["Known Issues"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "bf3eb4f3-7aac-438c-a69b-f2c4a7473670",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:21:29.8384614Z"
+}
+|metadata|
+////
+
+= 制限 (xamTreeGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、このコントロールでサポートされていない Data Presenter の機能を説明します。
+
+=== 前提条件
+
+以下の表は、このトピックを理解するための前提条件として必要な概念とトピックの一覧です。
+
+[options="header", cols="a,a"]
+|====
+|タイプ|コンテンツ
+
+|概念
+|Data Presenter Family
+|==== 
+=== トピック
+[options="header", cols="a,a"] 
+
+|==== 
+
+|トピック|目的 
+
+| link:wpf-about-the-data-presenter-family.html[Data Presenter Family について] 
+
+|このトピックでは、コントロールの Data Presenter Family の概念を説明します。 
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について] 
+
+|このトピックは、 _xamDataGrid_ コントロールの概要を提供し、要素のダイアグラムを含みます。 
+
+| link:xamtreegrid-features-overview.html[機能の概要 (xamTreeGrid)] 
+
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。 
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)] 
+
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。 
+
+| link:xamtreegrid-user-interactions-and-usability.html[ユーザー インタラクションと操作性 (xamTreeGrid)] 
+
+|このトピックでは、ユーザーが実行できる操作を紹介します。 
+
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+*  *<<_Ref410378901,制限>>*
+*  *<<_Ref410378914,関連コンテンツ>>* 
+
+[[_Ref410378901]]
+== 制限
+
+=== 制限の概要表
+
+以下の表に、 _xamTreeGrid_   コントロールの制限の概要を示します。概要表の後にすべての制限の詳細な説明があります。
+
+==== 凡例:
+
+image:images/Yes.png[] - 回避策
+
+image:images/No.png[] - 既知の回避策なし
+
+image:images/Fix.png[] - 修正予定です
+
+[options="header", cols="a,a,a"]
+|====
+|制限|説明|状態
+
+|レコードの追加はサポートしていません
+|_xamTreeGrid_ コントロールは、レコードの追加に使用する UI を提供していないため、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowaddnew.html[AllowAddNew] プロパティは無視されます。
+|image::images/No.png[]
+
+|展開可能なフィールド レコードはサポートしていません
+|_xamTreeGrid_ コントロールは、 _xamDataGrid_ と同様、展開可能なフィールドレコードをサポートしていません。代わりに、単一フィールド レイアウトを使用して描画される展開可能なレコードをサポートしています。そのため、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldsettings.html[FieldSettings] オブジェクトの "ExpandableFieldRecord…" で始まるすべてのプロパティは、このコントロールで機能しません。
+|image::images/No.png[]
+
+|グループはサポートしていません
+|_xamTreeGrid_ コントロールは、レコードのグループをサポートしていないため、"GroupBy…" プロパティはすべて無視されます。
+|image::images/No.png[]
+
+|セル内のラベル位置はサポートしていません
+|FieldLayoutSettings の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~labellocation.html[LabelLocation] プロパティに対する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labellocation.html[InCells] の設定は、`SeperateHeader` として解決されます。
+|image::images/No.png[]
+
+|UseCollectionView フィルタリングはサポートしていません。
+|_xamTreeGrid_ コントロールは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filterevaluationmode.html[FilterEvaluationMode] プロパティの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.filterevaluationmode.html[UseCollectionView] フィルタリング オプションをサポートしていません。`UseCollectionView` オプションを設定した場合、`Auto` として解決されます。
+|image::images/No.png[]
+
+|====
+
+[[_Ref410378914]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-adding.html[xamTreeGrid をページに追加]
+|このトピックでは、コントロールを短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+| link:xamtreegrid-binding-to-data.html[xamTreeGrid をデータにバインド]
+|このトピックでは、コントロールをデータにバインドする方法およびそのフィールド レイアウトを定義する方法を説明します。
+
+| link:xamtreegrid-configuring.html[xamTreeGrid の構成]
+|この一連のトピックでは、コントロールを構成する方法を説明します。
+
+|====

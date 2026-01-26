@@ -1,0 +1,453 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-configuring-kpis-visualization",
+    "tags": ["Application Scenarios","Data Binding","Grids","How Do I"],
+    "controlName": ["xamPivotGrid"],
+    "guid": "dc59aa45-eb54-406f-8b2c-84ea9abc6e77",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.3003336Z"
+}
+|metadata|
+////
+
+= KPI (キー パフォーマンス インジケーター) 視覚エフェクトの構成 (xamPivotGrid, xamPivotDataSelector)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamPivotGrid_™ および  _xamPivotDataSelector_™ コントロールで KPI の視覚化をカスタマイズする方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-kpis-visualization-overview.html[KPI の概要]
+|このトピックは、多次元 (OLAP) データ セットからの KPI データが {ProductName}® で視覚化される状態を概念的に説明します。
+
+| link:xampivotgrid-databinding-using-xmladatasource.html[XmlaDataSource の使用]
+|このトピックでは、 _XmlaDataSource_™ コンポーネントを使用して _xamPivotGrid_ コントロールをデータにバインドする方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref380418734,KPI 視覚エフェクトの構成 - 概要>>
+
+** <<_Ref380418739,KPI 視覚エフェクトの構成の概要>>
+** <<_Ref377459969,KPI 視覚エフェクトの構成の概要表>>
+
+* <<_Ref380418751,プログラムによるピボット表での KPI の表示>>
+
+** <<_Ref377459977,はじめに>>
+** <<_Ref377459981,プレビュー>>
+** <<_Ref382416579,前提条件>>
+** <<_Ref377459986,手順>>
+
+* <<_Ref380411551,定義済みの KPI 視覚エフェクトの選択>>
+
+** <<_Ref380418790,はじめに>>
+** <<_Preview,プレビュー>>
+** <<_Prerequisites,前提条件>>
+** <<_Overview,概要>>
+** <<_Ref380418807,手順>>
+
+* <<_Ref380418811,プロパティを使用したカスタム視覚エフェクトの構成>>
+
+** <<_Ref380418818,はじめに>>
+** <<_Ref380418822,プレビュー>>
+** <<_Ref380418826,前提条件>>
+** <<_Ref380418829,手順>>
+
+* <<_ConfiguringCustomTemplate,カスタム テンプレートを使用したカスタム視覚エフェクトの構成>>
+
+[[_Ref380418734]]
+== KPI 視覚エフェクトの構成 - 概要
+
+[[_Ref380418739]]
+
+=== KPI 視覚エフェクトの構成の概要
+
+各 KPI は、メタデータ ツリーからピボット グリッドのメジャー領域にドラッグ アンド ドロップする、またはプログラムでメジャー コレクションに追加すると、 _xamPivotGrid_   で視覚化できます。
+
+KPI タイプに依存しますが適用できる場合は、KPI を値またはグラフィック表現 (アイコン) として視覚化できます。
+
+デフォルトで、事前定義されたグラフィック表現 (形状のセット) が利用できます。この設定は link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~graphic.html[KpiCellTemplate] オブジェクトの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate_members.html[Graphic] プロパティで制御されています。
+
+`Graphic` プロパティを  _ThreeStateImages_   に設定し、使用する画像ソースを提供すると、各 KPI の値 (-1、0 および 1) を表す画像を任意の画像にカスタマイズすることができます (詳細は、 link:xampivotgrid-configuring-kpis-visualization.html#_Ref377459969[KPI 視覚エフェクトの構成の概要表]を参照してください)。代わりに、カスタム テンプレートで、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~template.html[KpiCellTemplate] インスタンスの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate_members.html[Template] プロパティをオーバーライドする方法もあります。
+
+[[_Ref377459969]]
+
+=== KPI 視覚エフェクトの構成の概要表
+
+以下の表は、ピボット グリッド ( _xamPivotGrid_   と  _xamPivotDataSelector_   コントロール) の KPI 視覚エフェクトの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。緑で強調表示された部分のタスクは、このヘルプの別の手順でさらに詳しく説明しています。
+
+[options="header", cols="a,a,a,a"]
+|====
+|構成可能な項目2|タスク|詳細|プロパティ/イベント
+
+|メタデータ ツリーの KPI 視覚エフェクト
+2|KPI の表示の回避
+|KPI はデフォルトで表示に設定されています。KPI データを非表示にする場合は、明示的に設定する必要があります。
+|
+* link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource~metadatatreeitemadding_ev.html[MetadataTreeItemAdding] 
+
+|[[_Hlk356484826]] 
+
+ピボット グリッドの KPI 視覚エフェクト
+2|プログラムによるピボット グリッドでの KPI の表示
+|`KpiMeasure` を `DataSourceBase` インスタンスの `Measures` コレクションに追加します。
+|
+* link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase~measures.html[DataSourceBase.Measures] 
+
+.3|グラフィック表現
+2|事前定義された視覚エフェクトの選択
+|`KpiCellTemplate` の `Indicator` および `Graphic` プロパティを設定します。
+|
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~indicator.html[KpiCellTemplate.Indicator] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~graphic.html[KpiCellTemplate.Graphic] 
+
+.2|カスタム視覚エフェクトの構成
+|プロパティの使用
+|`KpiCellTemplate` の `Graphic` プロパティを _「_ _ThreeState_ _Images」_ に設定し、各状態に対応する画像を各プロパティの値で供給します。
+|
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~graphic.html[KpiCellTemplate.Graphic] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~negativeimagesource.html[KpiCellTemplate.NegativeImageSource] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~zeroimagesource.html[KpiCellTemplate.ZeroImageSource] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~positiveimagesource.html[KpiCellTemplate.PositiveImageSource] 
+
+|カスタム テンプレートの使用
+|カスタム テンプレートを KpiCellTemplate インスタンスの `Template` プロパティに指定します。
+|
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~template.html[KpiCellTemplate.Template] 
+
+|====
+
+[[_Ref377459973]]
+
+[[_Displaying_KPIs_in]]
+[[_Ref380418751]]
+== プログラムによるピボット グリッドでの KPI の表示
+
+[[_Ref377459977]]
+
+=== はじめに
+
+プログラムで  _xamPivotGrid_   にKPI の値を表示、またはグラフィック表現を表示するには、 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.icube~measures.html[ICube.Measures] コレクションから link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.base.kpimeasure_members.html[KpiMeasure] メンバーにアクセスし、 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase~measures.html[DataSourceBase.Measures] コレクションに追加します。表示するすべての KPI に、これを実行する必要があります。
+
+以下の手順は、XMLA をデータ ソース (Adventure Works DW 2008 データベース) として使用し、 _ステータス_  に基づいた KPI のグラフィック表現を  _xamPivotGrid_   のセルに追加する方法について説明します。
+
+[[_Ref377459981]]
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/xamPivotGrid_Configuring_KPIs_Visualization_1.png[]
+
+[[_Ref382416579]]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページがある {PlatformName} アプリケーション
+* ページに追加されたデータ ソース (Adventure Works DW 2008 データベース) として XMLA を使用する  _xamPivotGrid_   と  _xamPivotDataSelector_   のインスタンス
+
+[[_Ref377459986]]
+
+=== 手順
+
+以下の手順では、プログラムでピボット グリッドに KPI を表示する方法を説明します。
+
+=== 1.一意の名前で KPI 項目を取得します。
+
+** `ICube.Kpis`  * コレクションから KPI 項目を取得します。*
+
+*C# の場合:*
+
+[source,csharp]
+----
+IKpi kpi = dataSource.Cube.Kpis["Product Gross Profit Margin"];
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim kpi As IKpi = dataSource.Cube.Kpis("Product Gross Profit Margin")
+----
+
+=== 2.KPI メンバーのメタデータ タイプを指定します。
+
+*手順 1 で作成した*  link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.ikpi.html[IKpi]  *オブジェクト* から、任意のメタデータ タイプを選択します。
+
+この手順では、`Status` メンバーを選択します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+KpiMeasure kpiStatusMeasure = (KpiMeasure)dataSource.Cube.Measures[kpi.KpiStatus];
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim kpiStatusMeasure As KpiMeasure = DirectCast(dataSource.Cube.Measures(kpi.KpiStatus), KpiMeasure)
+----
+
+=== 3.KPI 項目を表示する領域を指定します。
+
+_xamPivotGrid_    *データ ソース* の `Measures`  *コレクション* に `KpiMeasure`  *を*  *追加し* 、Measures 領域が表示できるようにします。
+
+*C# の場合:*
+
+[source,csharp]
+----
+IMeasureViewModel mvm = dataSource.CreateMeasureViewModel(kpiStatusMeasure);
+dataSource.Measures.Add(mvm);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim mvm As IMeasureViewModel = dataSource.CreateMeasureViewModel(kpiStatusMeasure)
+dataSource.Measures.Add(mvm)
+----
+
+[[_Ref377459991]]
+
+[[_Specifying_a_Pre-Defined]]
+[[_Ref380411551]]
+== 定義済みの KPI 視覚エフェクトの指定
+
+[[_Ref380418790]]
+
+=== はじめに
+
+解析サービス (グラフィック タイプ) から導出された KPI のグラフィック表現は、各 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.base.kpimeasure_members.html[KpiMeasure] が link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase.html[DataSourceBase] クラスの link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource~measures.html[Measures] コレクションに追加されると、デフォルトのタイプに対応する事前定義されたテンプレートを使用して視覚化されます。
+
+この手順では、 link:xampivotgrid-kpis-visualization-overview.html#_Ref382419114[ステータスに基づく KPI (キー パフォーマンス インジケーター)] は、 _xamPivotGrid_   コントロールのセルに、矢のような形状で表示されるように構成されます (link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.graphictype.html[GraphicType] 列挙型には KPI メンバーの項目を直観的に表現する事前定義された形状のセットがあります)。
+
+[[_Preview]]
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/xamPivotGrid_Configuring_KPIs_Visualization_2.png[]
+
+[[_Prerequisites]]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページがある {PlatformName} アプリケーション
+* ページに追加されたデータ ソース (Adventure Works DW 2008 データベース) として XMLA を使用する  _xamPivotGrid_   のインスタンス。
+
+[[_Overview]]
+
+=== 概要
+
+以下はプロセスの概要です。
+
+[start=1]
+. *データ ソースの構成* 
+[start=2]
+. *使用される KPI メンバーの選択* 
+[start=3]
+. *KPI メンバーのメタデータ タイプの指定* 
+[start=4]
+. *デフォルトのグラフィックスの変更* 
+[start=5]
+. *セル テンプレートの適用* 
+
+[[_Ref380418807]]
+
+=== 手順
+
+以下の手順では、矢印のような形状を使用して、 _xamPivotGrid_   のセルにステータスに基づいた KPI を表示する方法を説明します。
+
+=== データ ソースを構成します。
+
+*xamPivotGrid のデータ ソースを構成します。この手順では、以下の設定を使用します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igOlap:XmlaDataSource
+ServerUri="http://sampledata.infragistics.com/olap/msmdpump.dll"
+Database="Adventure Works DW 2008"
+Cube="Adventure Works"
+Columns="[Product].[Category]"
+Rows="[Date].[Fiscal]"
+Measures="[Measures].[Internet Revenue Status]"/>
+----
+
+=== 1.使用される KPI メンバーを選択します。
+
+使用する KPI を**指定するには****、** *新しい*  link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate_members.html[KpiCellTemplate] インスタンスの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~membername.html[MemberName]  *プロパティを任意の値に設定します。*この手順では、`MemberName` プロパティを「 **  _Internet Revenue_   ** 」*に設定します。 ** *
+
+*XAML の場合:*
+
+[source,xaml]
+----<ig:KpiCellTemplate MemberName="Internet Revenue"/>
+----
+
+=== 2.メンバー項目のメタデータ タイプを指定します。
+
+`KpiCellTemplate`  *インスタンスの*  `Indicator`  *プロパティ* を、任意の`メタデータ タイプ`に *設定します* 。
+
+この手順では、`Indicator` プロパティを「 _Status_  」に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:KpiCellTemplate MemberName="Internet Revenue" Indicator="Status"/>
+----
+
+=== 3.デフォルトのグラフィックスを変更します。
+
+`GraphicType` 列挙型の値に対応する事前定義された形状のセットから、使用する形状を選択し、任意の形状を `KpiCellTemplate`  *オブジェクト* の link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~graphic.html[Graphic]  *値として設定します* 。
+
+この手順では、`Graphic` プロパティを _StandardArrow_   に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+ <ig:KpiCellTemplate MemberName="Internet Revenue" Indicator="Status" Graphic="StandardArrow"/>
+----
+
+事前定義された形状のリストは、API マニュアルを参照してください。
+
+=== 4.セル テンプレートを適用します。
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate_members.html[KpiCellTemplate]  *オブジェクト* を  _xamPivotGrid_   の `KpiCellTemplates`  *コレクションに *追加します* 。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+ <ig:XamPivotGrid.KpiCellTemplates>
+                <ig:KpiCellTemplate MemberName="Internet Revenue" Indicator="Status" Graphic="StandardArrow"/>
+            </ig:XamPivotGrid.KpiCellTemplates>
+----
+
+[[_Ref377460012]]
+
+[[_Configuring_a_Custom]]
+[[_Ref380418811]]
+[[_Ref382424437]]
+== プロパティを使用したカスタム視覚エフェクトの構成
+
+[[_Ref380418818]]
+
+=== はじめに
+
+カスタム 視覚エフェクトを提供するには、KPI の各状態を表すカスタム画像のセットが必要です。link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate_members.html[KpiCellTemplate] オブジェクトの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~graphic.html[Graphic] プロパティを _「_  _ThreeStateImages_  _」_ に設定し、各状態に対応する画像を各プロパティの値として提供します。テンプレートを  _xamPivotGrid_   のセルに適用するには、KpiCellTemplate オブジェクトを  _xamPivotGrid_   の `KpiCellTemplates` コレクションに追加する必要があります。
+
+[[_Ref380418822]]
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/xamPivotGrid_Configuring_KPIs_Visualization_3.png[]
+
+[[_Ref380418826]]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページがある {PlatformName} アプリケーション
+* ページに追加されたデータ ソース (Adventure Works DW 2008 データベース) として XMLA を使用する  _xamPivotGrid_   のインスタンス。
+
+[[_Ref380418829]]
+
+=== 手順
+
+以下のステップでは、プロパティを使用してカスタム KPI メンバー項目の視覚エフェクトを構成する方法を紹介します。
+
+[start=1]
+. データ ソースを構成します。
+
+_xamPivotGrid_   コントロールのデータ ソースを構成します。この手順では、以下の設定を使用します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igOlap:XmlaDataSource
+ServerUri="http://sampledata.infragistics.com/olap/msmdpump.dll"
+Database="Adventure Works DW 2008"
+Cube="Adventure Works"
+Columns="[Product].[Category]"
+Rows="[Date].[Fiscal]"
+Measures="[Measures].[Product Gross Profit Margin Status]"/>
+----
+
+[start=2]
+. カスタム画像の使用を構成します。
+
+異なった KPI 値を資格化するために、3 つの画像が明示的に提供されることを示します。これを実行するには、`KPICellTemplate`  *オブジェクトの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~graphic.html[Graphic]  *プロパティ* を「*  _ThreeStateImages_  」に *設定します* 。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPivotGrid.KpiCellTemplates>
+                <ig:KpiCellTemplate MemberName="Product Gross Profit Margin"
+                                    Indicator="Status"
+                                    Graphic="ThreeStateImages"/>
+</ig:XamPivotGrid.KpiCellTemplates>
+----
+
+[start=3]
+. 画像を指定します。
+
+以下のスニペットを使用して、KPIメンバー項目の3つの可能な値 (0、-1 および 1) のインジケーターとして *表示される3つの画像のソースを提供します* 。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPivotGrid.KpiCellTemplates>
+                <ig:KpiCellTemplate MemberName="Product Gross Profit Margin"
+                                    Indicator="Status"
+                                    Graphic="ThreeStateImages"
+                                    NegativeImageSource="..\..\StatusFlagRed256.png"
+                                    ZeroImageSource="..\..\StatusFlagYellow256.png"
+                                    PositiveImageSource="..\..\StatusFlagGreen256.png"/>
+            </ig:XamPivotGrid.KpiCellTemplates>
+----
+
+[[_Ref377460028]]
+
+[[_ConfiguringCustomTemplate]]
+== カスタム テンプレートを使用したカスタム視覚エフェクトの構成
+
+=== カスタム テンプレートの概要の構成
+
+インスタンスの `Template` プロパティをオーバーライドすることにより、KPI のグラフィック表現のカスタム テンプレートを適用することができます。次に、 `KpiCellTemplate` オブジェクトが  _xamPivotGrid_   の `KpiCellTemplates` コレクションに追加されます。このようなオーバーライドは、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.kpicelltemplate~graphic.html[Graphic] タイプで設定された _「ThreeStateImages_   _」_  や提供された画像のソースをに優先します (「 link:xampivotgrid-configuring-kpis-visualization.html#_Ref382424437[プロパティを使用したカスタム視覚エフェクトの構成]」で説明したアプローチ)。
+
+テンプレートの `DataContext` は、各セルの値によって異なります。これにより、任意の値を表示/ _取得する_  ために直接バインディングすることが可能になり、`IValueConverter` を使用して、値を要求される 3 つの状態のカスタム表現に変換することができます。

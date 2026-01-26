@@ -1,0 +1,217 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-calculated-measures",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Calculations","Grids","How Do I","Tips and Tricks"],
+    "guid": "6ca9496c-9e0a-44f1-a889-6af49a7fbb4b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.2392895Z"
+}
+|metadata|
+////
+
+= 計算メジャー
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、コード例を使用して  _xamPivotGrid_™ メンバーによる計算方法を説明します。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データを xamPivotGrid にバインド]
+|このトピックでは、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] コントロールをデータにバインドする方法を説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref320042779,計算メジャー機能の概要>>
+* <<_Ref318894808,計算メジャーの作成 - 概念的概要>>
+
+** <<_Ref318978532,概要>>
+** <<_Ref318978548,要件>>
+
+* <<_Ref318894826,計算メジャーの作成 - コード例>>
+
+** <<_Ref318978565,概要>>
+** <<_Ref318978571,要件>>
+** <<_Ref318978577,概要>>
+** <<_Ref318978582,手順>>
+
+* <<_Ref318894856,関連コンテンツ>>
+
+[[_Ref320042779]]
+== 計算メジャー機能の概要
+
+=== 計算メジャー機能の概要
+
+計算メジャー機能は、定義されたメジャーの結果を表す、行または列に追加できるメンバーを作成する方法を提供します。計算されるメンバーで表されるデータは、行または列の他の項目のデータと相互に結合され、計算結果を表示します。
+
+計算メジャーでは、セルに表示される値に使用する独自の計算を作成することもできます。計算メジャーは、Measures コレクションに追加されます。
+
+_xamPivotGrid_   では他のデータ ソースがサポートされますが、計算メジャー機能では XMLA データ ソースのみサポートされます。
+
+.注:
+[NOTE]
+====
+メジャー計算で使用されるメンバー階層は、すでに行や列で定義されたメンバーと同じ階層にすることはできません。
+====
+
+[[_Ref318894808]]
+== 計算メジャーの作成 - 概念的概要
+
+[[_Ref318978532]]
+
+=== 概要
+
+この手順では、計算のためのメジャー、また計算メジャーからの結果を表示するメンバーを別の列で作成する必要があります。
+
+.注:
+[NOTE]
+====
+計算メジャーは C# または VB で実装できます。現時点では、XAML では実装できません。
+====
+
+計算メジャーは 2 段階で行われます。最初の手順は、計算式でメジャーを作成することです。次の手順は、計算メジャーと式に関連付けられたメンバーを作成することです。
+
+デフォルトでは、計算メジャーはすべて Measures ディメンションにアタッチされます。Measures ディメンションは、 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.calculatedmeasureviewmodel_members.html[CalculatedMeasureViewModel] のコンストラクターの第 4 および第 5 パラメーターを使用して変更できます。
+
+[[_Ref318978548]]
+
+=== 要件
+
+_xamPivotGrid_   にバインドされた XMLA データ ソース。
+
+[[_Ref318894826]]
+== 計算メジャーの作成 - コード例
+
+[[_Ref318978565]]
+
+=== 概要
+
+次の例では、 _InternetSalesAmount_   列のメジャーを使用してその値を 2 倍にし、 _計算式として使用された  ___  __2005__  ____  __～ 2008__  ____   __年に対して結果を別の列に表示しています。__ 計算メジャーを表すメンバーの名前は  _Doubled Sales Amount_   となっています。
+
+=== プレビュー
+
+以下は最終結果のプレビューです。
+
+image::images/xamPivotGrid_CalculatedMeasures_01.png[]
+
+[[_Ref318978571]]
+
+=== 要件
+
+XMLA データ ソースにバインドされた  _xamPivotGrid_  。
+
+[[_Ref318978577]]
+
+=== 概要
+
+以下はプロセスの概念的概要です。
+
+*1. 計算メジャーの作成*
+
+*2. 計算されるメンバーの作成*
+
+[[_Ref318978582]]
+
+=== 手順
+
+=== 1.計算されたメジャーを作成します。
+
+Measures 階層内で計算式を定義する計算されるメジャーを作成します。ここに示す例では、メジャー階層内の`インターネット売上高`が、`インターネットの売上高` を 2 倍にする (2 を掛ける) 式の一部になっています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ICalculatedItemViewModel calcMeasureViewModel = 
+    new CalculatedMeasureViewModel(
+        "Doubled Amount", 
+        "Doubled Sales Amount", 
+        "[Measures].[Internet Sales Amount] * 2");
+this.pivotGrid.DataSource.Measures.Add(calcMeasureViewModel);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim calcMeasureViewModel As ICalculatedItemViewModel = New CalculatedMeasureViewModel("Doubled Amount", "Doubled Sales Amount", "[Measures].[Internet Sales Amount] * 2")
+Me.pivotGrid.DataSource.Measures.Add(calcMeasureViewModel)
+----
+
+=== 2.計算メジャーを作成します。
+
+アタッチされる階層を含む計算メンバーを作成します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+IHierarchy dateCalendar = this.pivotGrid.DataSource.Cube.Dimensions["[Date]"].Hierarchies["Calendar"];
+ICalculatedItemViewModel dateCalendarCalcItem = new CalculatedMemberViewModel(
+    dateCalendar, 
+    "2005-2008", 
+    "Period 2005-2008", 
+    "[Date].[Calendar].[Calendar Year].[CY 2008] - [Date].[Calendar].[Calendar Year].[CY 2005]",
+    false);
+this.pivotGrid.DataSource.Rows.Add(dateCalendarCalcItem);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim dateCalendar As IHierarchy = Me.pivotGrid.DataSource.Cube.Dimensions("[Date]").Hierarchies("Calendar")
+Dim dateCalendarCalcItem As ICalculatedItemViewModel = New CalculatedMemberViewModel(dateCalendar, "2005-2008", "Period 2005-2008", "[Date].[Calendar].[Calendar Year].[CY 2008] - [Date].[Calendar].[Calendar Year].[CY 2005]", True)
+Me.pivotGrid.DataSource.Rows.Add(dateCalendarCalcItem)
+----
+
+.注:
+[NOTE]
+====
+上記の計算メンバー内の階層は、[Date] に対して定義されています。[Calendar].複数行または複数列内で同じ階層を定義できません。以下は、この例で行および列に対して定義された階層です。
+====
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igOlap:XmlaDataSource 
+     x:Key="DataSource" 
+     ServerUri="http://sampledata.infragistics.com/olap/msmdpump.dll" 
+     Database="Adventure Works DW Standard Edition"
+     Cube="Adventure Works"
+     Columns="[Geography].[City]"
+     Rows="[Product].[Product Categories]"
+     Measures="Internet Sales Amount" />
+----
+
+[[_Ref318894856]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データを xamPivotGrid にバインド]
+|このトピックでは、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] コントロールをデータにバインドする方法を説明します。
+
+|====

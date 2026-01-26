@@ -1,0 +1,294 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatetimeinput-using",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "d7c5196a-07ed-428d-8b93-12f34429a16b",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.0072305Z"
+}
+|metadata|
+////
+
+{XamDateTimeInputHeader}
+
+= xamDateTimeInput の使用
+
+== 目的
+
+このトピックでは、xamDateTimeInput コントロールをアプリケーションに追加し、その有益なプロパティのいくつかを使用する方法について説明します。
+
+== 前提条件
+
+まず以下のトピックを読む必要があります。
+
+* link:xamdatetimeinput-about.html[xamDateTimeInput について]
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+== xamDateTimeInput の構成の概要
+
+== コントロールの構成チャート
+
+以下の表は、xamDateTimeInput コントロールの構成可能な動作の一部を示しています。
+
+[cols="a,a,a"]
+|====
+|*構成可能な動作*
+|*構成の詳細*
+|*構成プロパティ*
+
+|xamDateTimeInput コントロールをアプリケーションに追加
+|xamDateTimeInput コントロールをアプリケーションに追加するために必要な手順。
+|なし
+
+|xamDateTimeInput の修正
+|コントロールの主なプロパティの一部を構成します。
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~autofilldate.html[AutoFillDate] 
+
+link:{ApiPlatform}controls.editors.xamdatetimeinput{ApiVersion}~infragistics.controls.editors.xamdatetimeinput~dropdownbuttondisplaymode.html[DropDownButtonDisplayMode] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinbuttondisplaymode.html[SpinButtonDisplayMode] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinincrement.html[SpinIncrement]
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~isundoenabled.html[IsUndoEnabled]
+
+|====
+
+== xamDateTimeInput コントロールをアプリケーションに追加
+
+[start=1]
+. *Infragistics 名前空間を追加します。*
+.. *必要な参照を追加します。*
+
+xamDateTimeInput コントロールをアプリケーションに追加するには、以下の NuGet パッケージへの参照をプロジェクトに追加する必要があります。
+
+*** Infragistics.WPF.Controls.Editors.XamDateTimeInput
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+.. *Infragistics 名前空間を追加します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+[start=2]
+. *xamDateTimeInput コントロールを追加します。*
+
+*XAML  の場合:*
+
+[source,xaml]
+----
+<ig:XamDateTimeInput/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim input As XamDateTimeInput = New XamDateTimeInput()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamDateTimeInput DateTimeInput = new XamDateTimeInput();
+----
+
+== xamDateTimeInput の修正
+
+以下の表は、プロパティ設定の推奨構成をマップしています。プロパティは xamDateTimeInput コントロールから直接アクセスされます。
+
+[cols="a,a,a"]
+|====
+|目的
+|プロパティ
+|設定値
+
+|<<SetMask,マスクの設定>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+|選択した文字列
+
+|<<InvalidValueBehavior,無効な値が入力されたときにエラー メッセージを表示します>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+|DisplayErrorMessage
+
+|<<AutoFillDate,xamDateTimeInput が月と年を自動的に埋めるようにする>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~autofilldate.html[AutoFillDate]
+|MonthAndYear
+
+|<<DropDownButtonDisplayMode,カレンダー ドロップダウン ボタンを常に表示>>
+| link:{ApiPlatform}controls.editors.xamdatetimeinput{ApiVersion}~infragistics.controls.editors.xamdatetimeinput~dropdownbuttondisplaymode.html[DropDownButtonDisplayMode]
+|Always
+
+|<<SpinButtons,値を増加/減少するためのボタンを表示します>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinbuttondisplaymode.html[SpinButtonDisplayMode]
+|Always/Focused/MouseOver
+
+|<<SpinIncrement,増加値の変更>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinincrement.html[SpinIncrement]
+|値を増加/減少する #y #m #d #h (‘#’ は年、月などの数) のパターンのいずれかを含む文字列。
+
+|<<IsUndoEnabled,元に戻す/やり直し操作の有効化/無効化>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~isundoenabled.html[IsUndoEnabled]
+|True/False
+
+|====
+
+== xamDateTimeInput の詳細を修正
+
+[[SetMask]]
+[start=1]
+. *Mask の設定*
+
+入力コントロールの設定の最も重要な要素は、Mask プロパティの構成です。によって、自分のニーズに合ったマスクを設定します:
+
+*XAML  の場合:*
+
+[source,xaml]
+----
+<ig:XamDateTimeInput Mask="[Your Mask]"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+DateTimeInput.Mask = "[Your Mask]"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+DateTimeInput.Mask = "[Your Mask]";
+----
+
+マスクの作成方法の詳細は、 link:xaminputs-masks.html[マスク] を参照してください。
+
+[[InvalidValueBehavior]]
+[start=2]
+. *無効な値が入力されたときにエラー メッセージを表示します。*
+
+ユーザーが無効な値を入力したときの xamDateTimeInput の動作方法には、複数のオプションがあります。InvalidValueBehavior プロパティを DisplayErrorMessage に設定した場合、ユーザーが無効な値を入力してから入力コントロールを終了しようとすると、常にエラー メッセージの詳細が表示されます。
+
+[[AutoFillDate]]
+[start=3]
+. *xamDateTimeInput が月と年を自動的に埋めるようにします。*
+
+AutoFillDate プロパティが MonthAndYear に設定されている場合、ユーザーが日付の日の部分に値を入力しからコントロールを終了すると、月と年の部分は現在の月と年で自動的に埋められます。同様に、AutoFillDate を Year に設定した場合、日と月を入力してユーザーがコントロールを終了すると、年は自動的に埋められます。
+
+[[DropDownButtonDisplayMode]]
+[start=4]
+. *カレンダー ドロップダウン ボタンを常に表示します。*
+
+デフォルトで、マウス オーバーするとカレンダー ドロップダウン ボタンが表示されます。これを常に可視にするには、DropDownButtonDisplayMode を Always に設定します。3 番目のオプション、Focused を使用すると、コントロールにフォーカスがある場合にのみ、カレンダー ドロップダウン ボタンが表示されます。
+
+[[SpinButtons]]
+[start=5]
+. *値を増加/減少するためのボタンを表示します。*
+
+xamDateTimeInput の値を増加または減少させるためのボタンを表示したい場合、SpinButtonDisplayMode を Always、Focused、または MouseOver に設定する必要があります。
+
+[[SpinIncrement]]
+[start=6]
+. *増加値の変更。*
+
+SpinIncrement プロパティを指定しない場合、テキスト カーソルがある日付/時刻の部分の値が 1 つ増加/減少します。たとえば、テキスト カーソルが日付/時刻値の秒の部分にあり、エンドユーザーが増加ボタンをクリックすると、値は 1 秒増加します。ただし、SpinIncrement に、2 日などの特定の値を指定することができます。これを実現するには、SpinIncrement を「2d」に設定します。可能性のあるその他のパターンは、上記のプロパティ設定テーブルに示されています。また、コード ビハインドでは、SpinIncrement property を特定の TimeSpan 構造体オブジェクトに設定することができます。
+
+[[IsUndoEnabled]]
+[start=7]
+. *元に戻す/やり直し操作を有効/無効にします。*
+
+xamInputs は CTRL + Z および CTRL + Y キーの組み合わせによってトリガーされた元に戻す/やり直し操作をデフォルトでサポートします。この機能を無効にするには、IsUndoEnabled プロパティを False に設定します。
+
+注:
+
+[NOTE]
+====
+`IsUndoEnabled` プロパティを無効にすると、元に戻す/やり直すスタックをクリアします。元に戻す/やり直すを無効にした後に再び有効にする場合、元に戻す/やり直すの履歴がクリアされるためコマンドは実行されません。
+====
+
+== xamDateTimeInput の修正例
+
+以下の画像は、以下の設定の結果として、編集モードと表示モードの xamDateTimeInput コントロールを示しています。
+
+[cols="a,a"]
+|====
+|*プロパティ*
+|*設定*
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+|mm/dd/yyyy hh:mm:ss
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+|DisplayErrorMessage
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~autofilldate.html[AutoFillDate]
+|MonthAndYear
+
+| link:{ApiPlatform}controls.editors.xamdatetimeinput{ApiVersion}~infragistics.controls.editors.xamdatetimeinput~dropdownbuttondisplaymode.html[DropDownButtonDisplayMode]
+|Always
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinbuttondisplaymode.html[SpinButtonDisplayMode]
+|Focused
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinincrement.html[SpinIncrement]
+|1m
+
+|====
+
+[cols="a,a"]
+|====
+|編集モード:
+|表示モード:
+
+|image::images/xamInputs_xamDateTimeInput_Using_2.png[] 
+|image::images/xamInputs_xamDateTimeInput_Using_1.png[] 
+
+|====
+
+=== xamDateTimeInput プロパティの参照の修正
+
+これらのプロパティの詳細情報は、プロパティ参照セクションのリストを参照してください。
+
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~autofilldate.html[AutoFillDate]
+* link:{ApiPlatform}controls.editors.xamdatetimeinput{ApiVersion}~infragistics.controls.editors.xamdatetimeinput~dropdownbuttondisplaymode.html[DropDownButtonDisplayMode]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinbuttondisplaymode.html[SpinButtonDisplayMode]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~spinincrement.html[SpinIncrement]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+* link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[データ編集用の xamGrid セルにおける xamInput コントロールの使用]

@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "reswash-about",
+    "controlName": ["Resource Washer"],
+    "tags": ["How Do I","Styling","Templating"],
+    "guid": "ef1bcb73-5831-4360-aa1f-0687f297d22c",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.2514036Z"
+}
+|metadata|
+////
+
+= リソース ウォッシャーについて
+
+== ResourceWasher の構成の概要
+
+pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.resourcewasher.html[ResourceWasher]"]  pick:[wpf=" link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher.html[ResourceWasher]"]  コンポーネントは XAML のクロス プラットフォーム機能です。これには ResourceDictionary のような視覚的表現はありません。このコンポーネントの目的は、ランタイムに単色または複数色で 1 つの ResourceDictionary をウォッシュするための簡単かつ強力な方法を提供することです。
+
+カラー ウォッシングは、新しい色 ( pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.resourcewasher~washcolor.html[WashColor]"]  pick:[wpf=" link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washcolor.html[WashColor]"]  プロパティ) およびリソースに適用される色の変換 ( pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.resourcewasher~washmode.html[WashMode]"]  pick:[wpf=" link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washmode.html[WashMode]"]  プロパティ) を指定することによって、リソースの元の色を変更するプロセスです。以下の表は、ウォッシング前後のピボット グリッドを表しています。「After」ピボット グリッドは、デフォルトの  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.washmode.html[WashMode]"]  pick:[wpf=" link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.washmode.html[WashMode]"]   (SoftLightBlend) で Lime でウォッシュされています。
+
+[cols="a"]
+|====
+|前
+
+|image::images/Resource_Washer_About_01.png[]
+
+|====
+
+[cols="a"]
+|====
+|後
+
+|image::images/Resource_Washer_About_02.png[]
+
+|====
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+link:reswash-adding.html[リソース ウォッシャーをページに追加]
+
+link:reswash-using.html[リソース ウォッシャーの使用]

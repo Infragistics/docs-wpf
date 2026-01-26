@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-activation-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I"],
+    "guid": "{6A1BDB9B-9ED8-4B9D-B716-DB90543C346E}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6631463Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= アクティブ化イベント
+
+xamGrid にはアクティブ化に関連付けられたイベントが 2 つあります。これらのイベントは発生する順序を反映して接尾辞 "ing" または "ed" が追加されます。アクティブ化イベントによって、セルが xamGrid コントロールでアクティブになる前または後にカスタム ビジネス ロジックを実行できます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~activecellchanging_ev.html[ActiveCellChanging] - セルがアクティブになる直前に、ActiveCellChanging イベントが発生します。特定の条件に合わない場合このイベントをキャンセルできます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~activecellchanged_ev.html[ActiveCellChanged] - このイベントは、アクティブなセルが変更された後に発生します。
+
+これらのイベントを使用して、xamGrid コントロールのどのセルをアクティブ化するかを制御することができ、またアクティブ化されたセルに基づいて、エンド ユーザーと相互にやりとりすることができます。
+
+== *関連トピック*
+
+link:xamgrid-activation.html[アクティブ化]

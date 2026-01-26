@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-about-xamribbonscreentip",
+    "controlName": ["xamRibbon"],
+    "tags": ["Getting Started"],
+    "guid": "{C061C0F8-DF9D-407D-8604-376103CE1CBF}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.0921715Z"
+}
+|metadata|
+////
+
+= xamRibbonScreenTip について
+
+
+
+
+
+xamRibbon 画面ヒントは、ToolTip プロパティを公開する Ribbon ツールのために使用できる拡張されたツールチップです。ToolTip プロパティを link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbonscreentip.html[xamRibbonScreenTip] のインスタンスに設定するだけです。
+
+xamRibbonScreenTip クラスは、Microsoft Windows Presentation Foundation の System.Windows.Controls.ToolTip クラスから派生する xamScreenTip クラスから派生します。したがって、標準の .NET Framework ToolTip コントロールと同じように xamRibbonScreenTip を使用できます。ただし、.NET Framework ToolTips と異なり、xamRibbon 画面ヒントは、Microsoft® Office® UI ガイドラインに準拠するように、独自のサイズを制限する付加機能を提供します。自動サイズ設定機能と共に xamRibbon 画面ヒントによって、ヘッダー、フッター、および画像を表示することができ、エンドユーザーに特定の Ribbon ツールが何を行うのかをより明確に示すことができます。
+
+== 関連トピック
+
+link:xamribbon-add-a-xamribbonscreentip-to-a-ribbon-tool.html[xamRibbonScreenTip を Ribbon ツールに追加]
+
+link:xamribbon-add-a-simple-tooltip-to-a-ribbon-tool.html[単純なツールチップをリボン ツールに追加]

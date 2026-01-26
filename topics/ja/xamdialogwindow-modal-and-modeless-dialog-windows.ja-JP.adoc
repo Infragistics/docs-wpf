@@ -1,0 +1,68 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-modal-and-modeless-dialog-windows",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["How Do I"],
+    "guid": "{F8C47CC2-7B8B-4222-924A-4B14953BE232}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.998149Z"
+}
+|metadata|
+////
+
+= モーダルおよびモーダレス ダイアログ ウィンドウ
+
+xamDialogWindow コントロールによって、アプリケーション内でモーダルまたはモーダレス ダイアログ ウィンドウを作成することが可能となります。
+
+* モーダル ダイアログ - このダイアログ ウィンドウは閉じられるまでアクティブ ウィンドウの状態を常に保持します。モーダル ダイアログ ウィンドウが開かれていると、ダイアログ ウィンドウが閉じられるまでエンドユーザーはアプリケーションのその他の部分を操作できません。たとえばエラーが発生しエンドユーザーがエラーを修正後でなければ続行できない場合にこれは役に立ちます。 
+* モーダレス ダイアログ - このダイアログ ウィンドウによって、ダイアログ ウィンドウが開かれている間エンドユーザーはアプリケーションの残りの部分を操作できます。モーダレス ダイアログ ウィンドウは通常情報目的に使用され、エンドユーザーからの応答を必要としません。
+
+モーダル タイプのダイアログ ウィンドウを設定するには、xamDialogWindow コントロールの link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~ismodal.html[IsModal] プロパティを設定するだけです。
+
+以下のコードはモーダル ダイアログ ウィンドウを作成する方法を示します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Width="600" Height="400">
+   <ig:XamDialogWindow x:Name="DialogWindow"  Width="200" Height="200"        IsModal="True" />
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+DialogWindow.IsModal = True
+----
+
+*C# の場合:*
+
+----
+DialogWindow.IsModal = true;
+----
+
+== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

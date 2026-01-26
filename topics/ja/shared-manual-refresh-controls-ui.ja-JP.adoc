@@ -1,0 +1,90 @@
+﻿////
+
+|metadata|
+{
+    "name": "shared-manual-refresh-controls-ui",
+    "tags": [],
+    "controlName": ["xamDataPresenter"],
+    "guid": "572098f8-05fa-4f57-b4aa-0de7dec0771d",  
+    "buildFlags": [],
+    "createdOn": "2015-05-08T14:18:27.9797274Z"
+}
+|metadata|
+////
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールのユーザー インターフェイスを手動で更新する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-understanding-xamdatapresenter.html[ _xamDataPresenter_ について]
+|このトピックのグループは、 _xamDataPresenter_ コントロールの概要を提供します。
+
+| link:xamdatagrid-understanding-xamdatagrid.html[ _xamDataGrid_ について]
+|このトピックは、 _xamDataGrid_ コントロールとコントロールが構成されるさまざまな要素を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref418859481, セル値の更新 >>
+* <<_Ref418859490, 関連コンテンツ >>
+
+[[_Ref418859481]]
+== セル値の更新
+
+=== 機能概要
+
+DataPresenter のコントロールが、データ項目に対しプロパティ変更を通知しないコレクションにバインドされている場合があります。具体的にはコレクションが `IBindingList` インターフェイスを実装しない、またはデータ項目が `INotifyPropertyChanged` インターフェイスを実装しない場合などで、その場合はデータ項目のプロパティの変更後に、ユーザー インターフェイスを手動で更新する必要があります。
+
+=== メソッドの概要
+
+以下の表は、コントロールが実行する更新のタスクを説明します。
+
+[options="header", cols="a,a,a"]
+|====
+|タスク|詳細|メソッド
+
+|参照する単一のセルの更新
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cell] クラスでメソッドを呼び出し、単一のセルを更新できます。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell~refreshvalue.html[RefreshValue]
+
+|関連するフィールドの参照による単一のセルの更新
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] クラスでメソッドを呼び出し、引数として関連する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] を提供すると、単一のセルを更新できます。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~refreshcellvalue.html[RefreshCellValue]
+
+|レコードのすべてのセルの更新
+|`DataRecord` クラスでメソッドを呼び出し、レコードに関連するすべてのセルを更新できます。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~refreshcellvalues.html[RefreshCellValues]
+
+|====
+
+[[_Ref418859490]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-iterate-through-the-records-collection.html[レコード コレクションの反復]
+|このトピックでは、コントロールのレコードにアクセスする方法を説明します。
+
+| link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]
+|このトピックでは、DataItems と DataRecords の相違点について説明します。
+
+|====

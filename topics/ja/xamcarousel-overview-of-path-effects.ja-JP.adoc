@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousel-overview-of-path-effects",
+    "controlName": ["xamCarousel"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{D6ACBC91-0126-4C38-B12B-D4A339FDBB6A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0107553Z"
+}
+|metadata|
+////
+
+= パス エフェクトの概要
+
+
+
+パス エフェクトを適用して、xamCarouselPanel™、xamCarouselListBox™、xamDataCarousel™、および xamDataPresenter™ のカルーセル ビューのパスを拡張することができます。使用可能なパス エフェクトは以下のとおりです。
+
+* 不透明度
+* スケーリング
+* Z オーダー
+* 傾斜-X
+* 傾斜-Y
+
+パス エフェクトは、各効果が link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.effectstop.html[EffectStops] のコレクションで構成されている点で、グラデーションのストップと同じように定義されます。これらの効果は、以下の 3 つのいずれかの方法でコントロールに配置されます。
+
+* 水平
+* 垂直
+* 項目パスのストップの方向
+
+これらのオプションを以下に示します。
+
+image::images/xamCarousel_Overview_of_Path_Effects_01.png[xamcarousellistbox のサンプル パス エフェクト]
+
+各 EffectStop はパスで位置を決定するためのオフセット値を持っています。オフセットはストップの方向の長さ全体に対する小数のパーセント (0-1) で表されます。たとえば、ストップの方向が水平の場合、オフセットはコントロールの幅に対するパーセントです。
+
+各 EffectStop も設定されている特定の効果に対応する値を持っています。効果はそれぞれ異なるので、指定された値の範囲は効果ごとに解釈が異なります。
+
+以下のコードは、3 つの OpacityEffectStops で OpacityEffectStopCollection を定義する方法を示します。不透明度値は 0 (完全に透明) から 1 (完全に不透明) までの小数のパーセントで表されます。
+
+*XAML の場合:*
+
+----
+...
+        <igWindows:OpacityEffectStopCollection>
+                <igWindows:OpacityEffectStop Offset="0" Value="1" />
+                <igWindows:OpacityEffectStop Offset=".5" Value="0" />
+                <igWindows:OpacityEffectStop Offset="1" Value="1" />
+        </igWindows:OpacityEffectStopCollection>
+...
+----
+
+EffectStops が決定されたら、コントロールはストップの値と補間を使用して、各ストップのオフセット間の項目の位置に適用するための値の線形の範囲を作成します。
+
+[NOTE]
+====
+*注:* パスは常にストップのパス エフェクトのコレクションがゼロから始まるオフセットを持っていることが前提となります。0 のオフセットでストップを明示的に定義する、またはコントロールがゼロのオフセットのストップの存在を理解できるようにするという選択肢があります。
+====
+
+== 関連トピック
+
+link:xamcarouselpanel-modifying-the-opacity-effect-of-items-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで項目の不透明効果を変更]
+
+link:xamcarouselpanel-modifying-the-scale-of-elements-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで要素のスケールを変更]
+
+link:xamcarouselpanel-modifying-the-skew-effect-of-items-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで項目の傾斜効果を変更]
+
+link:xamcarousellistbox-modifying-the-opacity-effect-of-items-on-xamcarousellistboxs-path.html[xamCarouselListBox のパスで項目の不透明効果を変更]
+
+link:xamcarousellistbox-modifying-the-scale-of-elements-on-xamcarouselistboxs-path.html[xamCarouselListBox のパスで要素のスケールを変更]
+
+link:xamcarousellistbox-modifying-the-skew-effect-of-items-on-xamcarousellistboxs-path.html[xamCarouselListBox のパスで項目の傾斜効果を変更]

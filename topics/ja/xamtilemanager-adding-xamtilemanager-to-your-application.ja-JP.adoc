@@ -1,0 +1,172 @@
+﻿////
+|metadata|
+{
+    "name": "xamtilemanager-adding-xamtilemanager-to-your-application",
+    "controlName": ["xamTileManager"],
+    "tags": ["Application Scenarios","Getting Started"],
+    "guid": "6927aecc-b70a-4f9a-94d8-fd05aa78e555",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6244063Z"
+}
+|metadata|
+////
+
+= xamTileManager をアプリケーションに追加
+
+== 始める前に
+
+レイアウト コンテナーを使用し、レイアウト コンテナーの Children コレクションにコントロールを追加して、xamTileManager をページに追加することができます。
+
+== 達成すること
+
+xamTileManager をページに追加します。完成したプロジェクトを実行すると、以下のスクリーンショットのような xamTileManager がページに表示されます。
+
+image::images/xamTilesControl_Adding_xamTilesControl_to_Your_Application_01.png[]
+
+== 次の手順を実行します
+
+[start=1]
+. {PlatformName} プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.TileManager
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. コード ビハインドに using/Imports のディレクティブを配置するか、または xamTileManager の XML 名前空間定義を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+----
+
+[start=4]
+. Page でデフォルトの Grid レイアウト パネルに名前を付け、コード ビハインドでそれを参照できます。
+
+*XAML の場合:*
+
+----
+<Grid Name="LayoutRoot">
+</Grid>
+----
+
+[start=5]
+. xamTileManager のインスタンスをデフォルトの Grid レイアウト パネルに追加します。プロシージャ コードでこれを行う場合、Page Loaded イベントを処理し、イベント ハンドラーにこのコードを配置することができます。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1">
+    <!--TODO: ここに XamTile オブジェクトを追加します-->
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim xamTileManager1 As XamTileManager
+Private Sub Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    xamTileManager1 = New XamTileManager()
+    Me.LayoutRoot.Children.Add(xamTileManager1)
+    ' TODO: XamTile オブジェクトを xamTileManager に追加します。
+End Sub
+----
+
+*C# の場合:*
+
+----
+private XamTileManager xamTileManager1;
+private void Loaded(object sender, RoutedEventArgs e)
+{
+    xamTileManager1 = new XamTileManager();
+    this.LayoutRoot.Children.Add(xamTileManager1);
+    // TODO: XamTile オブジェクトを xamTileManager に追加します。
+}
+----
+
+[start=6]
+. link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトをxamTileManager の Items コレクションに追加します。
+
+.. link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~header.html[Header] プロパティを「Tile 1」に設定します。
+.. Content プロパティを「Content Area」に設定します。
+
+*XAML の場合:*
+
+----
+<ig:XamTile Header="Tile 1" Content="Content Area" />
+----
+
+*Visual Basic の場合:*
+
+----
+Dim tile1 As New XamTile With _
+    {.Header = "Tile 1", .Content = "Content Area"}
+Me.xamTileManager1.Items.Add(tile1)
+----
+
+*C# の場合:*
+
+----
+XamTile tile1 = new XamTile
+{
+    Header = "Tile 1",
+    Content = "Content Area"
+};
+this.xamTileManager1.Items.Add(tile1);
+----
+
+[start=7]
+. 2 番目の XamTile オブジェクトを xamTileManager の Items コレクションに追加します。
+
+.. Header プロパティを「Tile 2」に設定します。
+.. Content プロパティを "Content Area" に設定します。
+
+*XAML の場合:*
+
+----
+<ig:XamTile Header="Tile 2" Content="Content Area" />
+----
+
+*Visual Basic の場合:*
+
+----
+Dim tile2 As New XamTile With _
+    {.Header = "Tile 2", .Content = "Content Area"}
+Me.xamTileManager1.Items.Add(tile2)
+----
+
+*C# の場合:*
+
+----
+XamTile tile2 = new XamTile
+{
+    Header = "Tile 2",
+    Content = "Content Area"
+};
+this.xamTileManager1.Items.Add(tile2);
+----
+
+[start=8]
+. プロジェクトを実行します。
+
+== 関連トピック
+
+link:xamtilemanager-about-xamtilemanager.html[xamTileManager について]
+
+link:xamtilemanager-using-xamtilemanager.html[xamTileManager の使用]

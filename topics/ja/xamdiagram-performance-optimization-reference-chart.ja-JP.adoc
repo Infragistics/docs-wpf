@@ -1,0 +1,48 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram performance optimization reference chart",
+    "controlName": [],
+    "tags": [],
+    "guid": "91960c51-3671-49fa-9689-dcd0c4f3d2b9",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-27T07:36:13.5556133Z"
+}
+|metadata|
+////
+
+以下の表は、 _xamDiagram_  のパフォーマンスの最適化に関連した可能な構成を簡単に説明しています。
+
+[options="header", cols="a,a"]
+|====
+|最適化要素|説明
+
+|レイアウト
+|_xamDiagram_ の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~layout.html[Layout] プロパティを使用すると、すべてのノードに対して追加の反復が実行されます。適用するレイアウトにより大量の計算が実行されると、さらにパフォーマンスに影響を与えます。その場合は、できるだけ、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~position.html[DiagramNode.Position] プロパティを事前に計算した位置に設定することを検討してください。
+
+|表示項目数
+|たとえば、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~minimumzoomlevel.html[MinimumZoomLevel] を増加させ、同時に表示する項目の数を制限してみてください。
+
+|ナビゲーション ペイン
+|ナビゲーション ペインを表示すると、項目を表示するための追加のオーバーヘッドが発生します。そのため、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~navigationpanevisibility.html[NavigationPaneVisibility] を `Collapsed` に設定することを検討してください。
+
+|選択
+|項目の操作で待機時間がある場合は、同時に多数の項目の操作が発生しないように、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramselectionmode.html[SelectionMode] を link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramselectionmode.html[Single] または link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramselectionmode.html[None] に設定することを検討してください。
+
+|項目テンプレート
+|レンダリング時間を短くするために、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DiagramItem.DisplayTemplate] には小さなサイズの `DataTemplate` を使用してください。データ テンプレートに含める要素およびバインドは、できる限り少なくする必要があります。
+
+|ノードの図形
+|ノードのカスタム図形を作成するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DiagramItem.DisplayTemplate] に対して link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[DiagramNode.Geometry] プロパティを使用します。
+
+|接続の種類
+|接続で link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~connectiontype.html[DiagramConnection.ConnectionType] を link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectiontype.html[Straight] に設定すると、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectiontype.html[RightAngle] に設定した場合より、明らかにパフォーマンスが向上します。
+
+|接続キャップ
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapstyle.html[DiagramConnection.StartCapStyle] プロパティおよび link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapstyle.html[EndCapStyle] プロパティでカスタム キャップを設定し、各キャップのビジュアル ツリーに新しいコントロールを貼り付けます。データ集約型のアプリケーションの場合は、定義済みのキャップ タイプのいずれかを link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcaptype.html[DiagramConnection.StartCapType] および link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcaptype.html[EndCapType] で使用することを検討してください。可能な場合は、キャップ タイプに link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncaptype.html[None] を設定し、キャップを使用しないでください。
+
+|接続の始点および終点
+|接続の両端をターゲット ノード上の特定のポイントに関連付け、最も近い接続ポイントを決定するルーチンをスキップするために、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodeconnectionpointname.html[DiagramConnection.StartNodeConnectionPointName] プロパティおよび link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodeconnectionpointname.html[EndNodeConnectionPointName] プロパティを設定することを検討してください。
+
+|====

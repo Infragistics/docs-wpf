@@ -1,0 +1,299 @@
+﻿////
+
+|metadata|
+{
+    "name": "resources-xamgantt-custom-calendar-code-example",
+    "controlName": [],
+    "tags": [],
+    "guid": "24a1c8f1-2785-4b4e-b199-e721f91f55d3",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.4760617Z"
+}
+|metadata|
+////
+
+= カスタム カレンダーのコード例
+
+=== 説明
+
+このコード例は、`CustomCalendar` クラスを提供します。このクラスはカスタムのプロジェクト カレンダーを作成するために使用されます。
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public class CustomCalendar : INotifyPropertyChanged
+    {
+        #region Private variables
+        private string id;
+        private string name;
+        private string baseCalendarId;
+        private bool isBaseCalendar;
+        private string daysOfWeek;
+        private string exceptions;
+        private string workWeeks;
+        private string customDescription;
+        #endregion // Private variables
+        #region Public properties
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                if (value != id)
+                {
+                    id = value;
+                    this.OnPropertyChanged("Id");
+                }
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                if (value != name)
+                {
+                    name = value;
+                    this.OnPropertyChanged("Name");
+                }
+            }
+        }
+        public string BaseCalendarId
+        {
+            get
+            {
+                return baseCalendarId;
+            }
+            set
+            {
+                if (value != baseCalendarId)
+                {
+                    baseCalendarId = value;
+                    this.OnPropertyChanged("BaseCalendarId");
+                }
+            }
+        }
+        public bool IsBaseCalendar
+        {
+            get
+            {
+                return isBaseCalendar;
+            }
+            set
+            {
+                if (value != isBaseCalendar)
+                {
+                    isBaseCalendar = value;
+                    this.OnPropertyChanged("IsBaseCalendar");
+                }
+            }
+        }
+        public string DaysOfWeek
+        {
+            get
+            {
+                return daysOfWeek;
+            }
+            set
+            {
+                if (value != daysOfWeek)
+                {
+                    daysOfWeek = value;
+                    this.OnPropertyChanged("DaysOfWeek");
+                }
+            }
+        }
+        public string Exceptions
+        {
+            get
+            {
+                return exceptions;
+            }
+            set
+            {
+                if (value != exceptions)
+                {
+                    exceptions = value;
+                    this.OnPropertyChanged("Exceptions");
+                }
+            }
+        }
+        public string WorkWeeks
+        {
+            get
+            {
+                return workWeeks;
+            }
+            set
+            {
+                if (value != workWeeks)
+                {
+                    workWeeks = value;
+                    this.OnPropertyChanged("WorkWeeks");
+                }
+            }
+        }
+        public string CustomDescription
+        {
+            get { return customDescription; }
+            set
+            {
+                if (value != customDescription)
+                {
+                    customDescription = value;
+                    OnPropertyChanged("CustomDescription");
+                }
+            }
+        }
+        #endregion // Public properties
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion // INotifyPropertyChanged
+    }
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class CustomCalendar
+      Implements INotifyPropertyChanged
+      #Region "Private variables"
+      Private m_id As String
+      Private m_name As String
+      Private m_baseCalendarId As String
+      Private m_isBaseCalendar As Boolean
+      Private m_daysOfWeek As String
+      Private m_exceptions As String
+      Private m_workWeeks As String
+      Private m_customDescription As String
+      #End Region
+      #Region "Public properties"
+      Public Property Id() As String
+            Get
+                  Return m_id
+            End Get
+            Set
+                  If value <> m_id Then
+                        m_id = value
+                        Me.OnPropertyChanged("Id")
+                  End If
+            End Set
+      End Property
+      Public Property Name() As String
+            Get
+                  Return m_name
+            End Get
+            Set
+                  If value <> m_name Then
+                        m_name = value
+                        Me.OnPropertyChanged("Name")
+                  End If
+            End Set
+      End Property
+      Public Property BaseCalendarId() As String
+            Get
+                  Return m_baseCalendarId
+            End Get
+            Set
+                  If value <> m_baseCalendarId Then
+                        m_baseCalendarId = value
+                        Me.OnPropertyChanged("BaseCalendarId")
+                  End If
+            End Set
+      End Property
+      Public Property IsBaseCalendar() As Boolean
+            Get
+                  Return m_isBaseCalendar
+            End Get
+            Set
+                  If value <> m_isBaseCalendar Then
+                        m_isBaseCalendar = value
+                        Me.OnPropertyChanged("IsBaseCalendar")
+                  End If
+            End Set
+      End Property
+      Public Property DaysOfWeek() As String
+            Get
+                  Return m_daysOfWeek
+            End Get
+            Set
+                  If value <> m_daysOfWeek Then
+                        m_daysOfWeek = value
+                        Me.OnPropertyChanged("DaysOfWeek")
+                  End If
+            End Set
+      End Property
+      Public Property Exceptions() As String
+            Get
+                  Return m_exceptions
+            End Get
+            Set
+                  If value <> m_exceptions Then
+                        m_exceptions = value
+                        Me.OnPropertyChanged("Exceptions")
+                  End If
+            End Set
+      End Property
+      Public Property WorkWeeks() As String
+            Get
+                  Return m_workWeeks
+            End Get
+            Set
+                  If value <> m_workWeeks Then
+                        m_workWeeks = value
+                        Me.OnPropertyChanged("WorkWeeks")
+                  End If
+            End Set
+      End Property
+      Public Property CustomDescription() As String
+            Get
+                  Return m_customDescription
+            End Get
+            Set
+                  If value <> m_customDescription Then
+                        m_customDescription = value
+                        OnPropertyChanged("CustomDescription")
+                  End If
+            End Set
+      End Property
+      #End Region
+      #Region "INotifyPropertyChanged"
+      Public Event PropertyChanged As PropertyChangedEventHandler
+      Public Sub OnPropertyChanged(propertyName As String)
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+      End Sub
+      #End Region
+End Class
+----
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-custom-calendars-for-xamgantt.html[xamGantt のカスタム カレンダーの構成]
+|このトピックでは、カスタム カレンダー クラスを作成して xamGantt と使用する方法を紹介します。
+
+|====

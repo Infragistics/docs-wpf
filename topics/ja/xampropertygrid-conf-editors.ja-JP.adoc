@@ -1,0 +1,191 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-conf-editors",
+    "tags": ["Editing","How Do I"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "18d8b04a-243c-45fa-88ca-74aaf7a7faa7",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:43:52.2361397Z"
+}
+|metadata|
+////
+
+= エディター定義の構成 (xamPropertyGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、プロパティの値の編集に使用されるエディターのカスタマイズする方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref394493694, エディター定義の構成の概要 >>
+* <<_Ref394493700, コード例:プロパティ名によるエディター定義のターゲティング >>
+* <<_Ref394493705, コード例:カテゴリとタイプによるエディター定義のターゲティング >>
+* <<_Ref394493711, 関連コンテンツ >>
+
+[[_Ref394493694]]
+== エディター定義の構成の概要
+
+=== エディター定義の構成の概要
+
+link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[ _xamPropertyGrid_  ] は、プロパティのタイプに応じて、編集コントロールを各プロパティに自動的に割り当てます。同じタイプの読み取り専用プロパティと読み取り / 書き込みプロパティには同一の編集コントロールが割り当てられます。ただし、読み取り専用プロパティの編集コントロールは無効になっています。link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition_members.html[PropertyGridEditorDefinition] を  _xamPropertyGrid_   の link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~editordefinitions.html[EditorDefinitions] コレクションに追加すると、 _xamPropertyGrid_   が任意のプロパティ (またはプロパティのグループ) のための既定のエディターの代わりに、異なったエディター コントロールを使用することを強制できます。
+
+エディターをカスタマイズするプロパティ カテゴリ、プロパティ名 / プロパティ タイプを指定する `PropertyGridEditorDefinition` を作成すると、特定のプロパティ (またはプロパティのグループ) に割り当てられたエディターを変更できます。
+
+.注:
+[NOTE]
+====
+カスタム エディターを持つすべてのプロパティがデフォルトで、展開可能な場合も展開可能として描画されません。カスタム エディターを持つ特定のプロパティを展開可能として構成する場合、関連付けられた link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridpropertyitem.html[PropertyGridPropertyItem] の link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridpropertyitem~allowexpansionwhenusingcustomeditor.html[AllowExpansionWhenUsingCustomEditor] プロパティを `true` に設定します。
+====
+
+=== エディター定義の構成の概要表
+
+以下の表は、プロパティ エディターのカスタマイズを提供に使用される `PropertyGridEditorDefinition` オブジェクトの構成可能な項目を簡単に説明し、それらをプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+カテゴリ別のターゲット プロパティ
+|指定されたカテゴリのすべてのプロパティにエディターを割り当てるために、カテゴリ名を提供します。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition~category.html[Category]
+
+|タイプ別のターゲット プロパティ
+|このタイプのすべてのプロパティにエディターを割り当てるために、タイプを提供します。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition~targettype.html[TargetType]
+
+|ターゲット プロパティ / 名前別のプロパティ
+|指定された名前のすべてのプロパティにエディターを割り当てるために、プロパティ名のリストを提供します。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition~targetproperties.html[TargetProperties]
+
+|編集するテンプレートの設定
+|編集するときに使用されるコントロールを含むテンプレートを提供します。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition~edittemplate.html[EditTemplate]
+
+|読み取り専用のテンプレートの設定
+|読み取り専用のプロパティを表示するときに使用されるコントロールを含むテンプレートを提供します。
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition~readonlytemplate.html[ReadOnlyTemplate]
+
+|====
+
+注:
+
+[NOTE]
+====
+テンプレートのデータ コンテキストは、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridpropertyitem_members.html[PropertyGridPropertyItem] のインスタンスに設定されます。これによってプロパティ値は、「Value」に設定されたパスを持つバインディングを提供することで、アクセスできるようになります。
+====
+
+[[_Ref394493700]]
+== コード例:プロパティ名によるエディター定義のターゲティング
+
+=== 説明
+
+以下のコード例では、「Level」という名前のプロパティを編集するためにエディターを定義する方法 (スライダーに基づく) を示します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+Code
+<ig:XamPropertyGrid>
+  <ig:XamPropertyGrid.EditorDefinitions>
+    <ig:PropertyGridEditorDefinition>
+      <ig:PropertyGridEditorDefinition.TargetProperties>
+        <sys:String>Level</sys:String>
+      </ig:PropertyGridEditorDefinition.TargetProperties>
+      <ig:PropertyGridEditorDefinition.EditTemplate>
+        <DataTemplate>
+          <Slider Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+            Value="{Binding Value}" />
+        </DataTemplate>
+      </ig:PropertyGridEditorDefinition.EditTemplate>
+    </ig:PropertyGridEditorDefinition>
+  </ig:XamPropertyGrid.EditorDefinitions>
+</ig:XamPropertyGrid>
+----
+
+[[_Ref394493705]]
+== コード例:カテゴリとタイプによるエディター定義のターゲティング
+
+=== 説明
+
+以下のコード例では、「Personal」カテゴリのタイプ `Int32` のすべてのプロパティを編集するためにエディターを定義する方法 (スライダーに基づく) を示します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+Code
+<ig:XamPropertyGrid>
+  <ig:XamPropertyGrid.EditorDefinitions>
+    <ig:PropertyGridEditorDefinition Category="Personal" TargetType={x:Type sys:Int32}>
+      <ig:PropertyGridEditorDefinition.EditTemplate>
+        <DataTemplate>
+          <Slider Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+            Value="{Binding Value}" />
+        </DataTemplate>
+      </ig:PropertyGridEditorDefinition.EditTemplate>
+    </ig:PropertyGridEditorDefinition>
+  </ig:XamPropertyGrid.EditorDefinitions>
+</ig:XamPropertyGrid>
+----
+
+注:
+
+[NOTE]
+====
+タイプまたはカテゴリのみによってエディター定義をターゲットにできます。
+====
+
+[[_Ref394493711]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-conf-visuals.html[表示外観の構成 (xamPropertyGrid)]
+|このトピックでは、一般的なコントロール オプションを構成する方法を説明します。
+
+| link:xampropertygrid-conf-properties-filtering.html[プロパティ リストのフィルタリング (xamPropertyGrid)]
+|このトピックでは、コントロールのプロパティ リストのフィルタリングを構成する方法を説明します。
+
+| link:xampropertygrid-conf-properties-sorting.html[プロパティ リストの並べ替え (xamPropertyGrid)]
+|このトピックでは、プロパティ リストのカスタム並べ替えのロジックを設定する方法を紹介します。
+
+| link:xampropertygrid-conf-templateselector.html[エディター定義のデータ テンプレート セレクターの構成 (xamPropertyGrid))]
+|このトピックは、エディター定義で編集テンプレートを割り当てるためのカスタム ロジックを作成する方法を紹介します。
+
+|====

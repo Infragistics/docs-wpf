@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-about-xamdatatree",
+    "controlName": ["xamDataTree"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "ecda680c-c651-4ce0-8bd9-8769468dac7a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8371101Z"
+}
+|metadata|
+////
+
+= xamDataTree について
+
+xamDataTree™ コントロールは、データ バインドされるツリーのシナリオを重視した高いパフォーマンスのために設計されたツリー コントロールです。このコントロールは、N レベルの深さのデータ構造にバインドされるツリーを作成するプロセスを簡素化します。また、XAML で提供されるノード表示で柔軟性を保ちながら、ノード階層を作成するプロセスも自動化します。
+
+以下は xamDataTree コントロールの主要な機能のリストです:
+
+*高パフォーマンス* - 大量のデータを処理する時に xamDataTree は非常に軽量かつ高速です。
+
+*完全にテンプレート可能* - ツリー ノードのすべての面をカスタマイズできます。
+
+*キーボードでナビゲート可能* - いくつかの馴染みのあるキーだけを使用して xamDataTree コントロールの周囲を簡単に移動できます。
+
+*ドラッグ アンド ドロップ* - xamDataTree コントロールの周囲にノードをドラッグ アンド ドロップできます。
+
+関連トピック
+
+link:xamdatatree-adding-xamdatatree-to-your-page.html[xamDataTree をページに追加]
+
+link:xamdatatree-xamdatatree-data-binding.html[xamDataTree をデータにバインド]
+
+link:xamdatatree-using-xamdatatree.html[xamDataTree の使用]

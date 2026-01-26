@@ -1,0 +1,86 @@
+﻿////
+|metadata|
+{
+    "name": "wpf-referencing-your-themepack",
+    "controlName": [],
+    "tags": ["Styling","Theming"],
+    "guid": "{C0CB9806-BBA6-42D2-961D-EF78BA457890}",
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-01-30T20:33:32.0650404Z"
+}
+|metadata|
+////
+
+= テーマパックの参照
+
+このトピックは複数部から構成される詳細なガイドの第 6 部の最終トピックで、 link:wpf-modifying-the-assemblyinfo-file.html[AssemblyInfo ファイルの修正]の続きです。このトピックでは、xamDataGrid™ をスタイルするために新たに作成したテーマパックを参照する方法を示します。
+
+[start=1]
+. ソリューション エクスプローラーで、ソリューションをマウスの右ボタンでクリックして [追加] をクリックし、次に [新しいプロジェクト...] をクリックします。プロジェクト名を "ThemePackTestProject" に指定します。
+[start=2]
+. "Data" というプロジェクトに新しいフォルダーを追加して、その中に Orders.xml ファイルを配置します。
+[start=3]
+. NuGet パッケージ参照を以下に追加します。
+
+** Infragistics.WPF.DataGrids
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=4]
+. MyThemePack プロジェクトが生成したアセンブリに参照を追加します。
+[start=5]
+. Window1.xaml ファイルで、開始の Window タグ内に以下の名前空間宣言を配置します。
+
+*XAML の場合:*
+
+----
+...
+xmlns:igDP="http://infragistics.com/DataPresenter"
+xmlns:igThemeOrangePeel="http://infragistics.com/Themes/OrangePeel"
+...
+----
+
+[start=6]
+. MergedDictionary オブジェクトを定義する Window Resources セクションを作成します。これはテーマパックからすべてのスタイルを公開します。
+
+*XAML の場合:*
+
+----
+<Window.Resources>
+        <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                        <igThemeOrangePeel:DataPresenter/>
+                </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+</Window.Resources>
+----
+
+[start=7]
+. XmlDataProvider を定義する Grid パネルのリソース セクションを生成します。XmlDataProvider は Orders XML ファイルを参照します。
+
+*XAML の場合:*
+
+----
+<Grid.Resources>
+        <XmlDataProvider Source="../Data/Orders.xml" 
+          x:Key="OrderData" XPath="/Orders" />
+</Grid.Resources>
+----
+
+[start=8]
+. XamDataGrid のインスタンスを作成して名前を指定し、前述の手順で作成された XmlDataProvider にその DataSource を設定します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataGrid x:Name="XamDataGrid1" 
+  DataSource="{Binding Source={StaticResource OrderData}, XPath=Order}"/>
+----
+
+[start=9]
+. プロジェクトを実行する前に、ThemePackTestProject をマウスの右ボタンでクリックして、[スタートアッププロジェクトに設定] をクリックします。
+[start=10]
+. プロジェクトを実行します。レコードの上にマウスを移動すると、ゴールドのグラデーションで強調表示されます。
+
+image::images/WPF_Referencing_Your_ThemePack_01.png[カスタムに作成された themePack を使用する xamDataGrid]

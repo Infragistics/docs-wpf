@@ -1,0 +1,93 @@
+﻿////
+
+|metadata|
+{
+    "name": "resources-custom-pager",
+    "controlName": [],
+    "tags": ["Data Presentation"],
+    "guid": "{0F09A7DA-9D8C-4CFB-B86D-C6C643985868}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.2360105Z"
+}
+|metadata|
+////
+
+= カスタム ページャー
+
+このトピックでは、 link:xamgrid-customize-the-pager.html[「ページャーのカスタマイズ」]トピックで使用されるデータを提示します。
+
+*XAML の場合:*
+
+----
+<UserControl x:Class="xamGrid_2009._1.CreateCustomPager"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:ig="http://schemas.infragistics.com/xaml"
+             xmlns:igPrim="http://schemas.infragistics.com/xaml/primitives"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Style x:Name="CustomPager1" TargetType="igPrim:PagerCellControl" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="igPrim:PagerCellControl">
+                        <igPrim:PagerControl x:Name="PagerItemControl">
+                            <!-- 特定の PagerControl イベントが起動すると PagerCellControl でコマンドを実行します-->
+                            <ig:Commanding.Commands>
+                                <ig:XamGridPagingCommandSource EventName="FirstPage"  CommandType="FirstPage" >
+                                </ig:XamGridPagingCommandSource>
+                                <ig:XamGridPagingCommandSource EventName="LastPage"  CommandType="LastPage" >
+                                </ig:XamGridPagingCommandSource>
+                                <ig:XamGridPagingCommandSource EventName="PreviousPage"  CommandType="PreviousPage" >
+                                </ig:XamGridPagingCommandSource>
+                                <ig:XamGridPagingCommandSource EventName="NextPage"  CommandType="NextPage" >
+                                </ig:XamGridPagingCommandSource>
+                                <ig:XamGridPagingCommandSource EventName="GoToPage"  CommandType="GoToPage" >
+                                </ig:XamGridPagingCommandSource>
+                            </ig:Commanding.Commands>
+                            <igPrim:PagerControl.Style>
+                                <Style TargetType="igPrim:PagerControl">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="igPrim:PagerControl">
+                                                <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}" HorizontalAlignment="Right" >
+                                                    <Button x:Name="PreviouspageButton" Content="Prev">
+                                                        <ig:Commanding.Command>
+                                                            <ig:XamGridPagingControlsCommandSource EventName="Click" CommandType="PreviousPage"  ></ig:XamGridPagingControlsCommandSource>
+                                                        </ig:Commanding.Command>
+                                                    </Button>
+                                                    <ComboBox x:Name="PagerItems">
+                                                        <ComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock Width="20" TextAlignment="Center" Text="{Binding}"></TextBlock>
+                                                            </DataTemplate>
+                                                        </ComboBox.ItemTemplate>
+                                                        <ig:Commanding.Command>
+                                                            <ig:XamGridPagingControlsCommandSource EventName="SelectionChanged" CommandType="GoToPage"  ></ig:XamGridPagingControlsCommandSource>
+                                                        </ig:Commanding.Command>
+                                                    </ComboBox>
+                                                    <Button x:Name="NextPageButton" Content="Next">
+                                                        <ig:Commanding.Command>
+                                                            <ig:XamGridPagingControlsCommandSource EventName="Click" CommandType="NextPage"  ></ig:XamGridPagingControlsCommandSource>
+                                                        </ig:Commanding.Command>
+                                                    </Button>
+                                                </StackPanel>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </igPrim:PagerControl.Style>
+                        </igPrim:PagerControl>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+        <ig:XamGrid x:Name="xamGrid1">
+            <ig:XamGrid.PagerSettings>
+                <ig:PagerSettings AllowPaging="Bottom" PageSize="10" Style="{StaticResource CustomPager1}" />
+            </ig:XamGrid.PagerSettings>
+        </ig:XamGrid>
+    </Grid>
+</UserControl>
+----

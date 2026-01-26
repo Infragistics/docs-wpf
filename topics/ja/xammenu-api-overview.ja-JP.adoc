@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammenu-api-overview",
+    "controlName": ["xamMenu"],
+    "tags": ["API"],
+    "guid": "{85563D36-8C7C-4684-841B-137B81EF4D2B}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.3522542Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[cols="a,a"]
+|====
+|*xamMenu 名前空間*
+|*キー クラス*
+
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus_namespace.html[Infragistics] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus_namespace.html[Infragistics.Controls.Menus] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.primitives_namespace.html[Infragistics.Controls.Menus.Primitives]
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenu.html[XamMenu] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenuitem.html[XamMenuItem] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenuseparator.html[XamSeparator]
+
+|====

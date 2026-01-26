@@ -1,0 +1,98 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-selection",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Selection"],
+    "guid": "{E5BE5DCF-9546-4BD4-82B3-CCA91F64D3AF}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7511515Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 選択
+選択機能によって、xamGrid の行、セル、および列の選択が有効になります。一度選択が有効になると、様々なプロパティを設定して、希望の選択のタイプを構成する必要があります。エンド ユーザーは、連続するブロックまたは範囲、および非連続のブロックのセルを選択できます。
+
+[NOTE]
+====
+*注:* SelectionSettings オブジェクトの CellClickAction プロパティが SelectCell に設定され、RowSelection が有効な場合、行を選択するための唯一の方法は行セレクターを使用することです。詳細は行セレクターのトピックを参照してください。
+====
+
+デフォルトでは、選択は xamGrid コントロールで有効ではありません。セル、行、列の選択を有効にするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.selectionsettings.html[SelectionSettings] オブジェクトの以下のプロパティを、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.selectiontype.html[SelectionType] 列挙値に設定することができます。
+
+* CellSelection - xamGrid でセル選択を有効にします。
+* ColumnSelection - xamGrid で列選択を有効にします。
+* Row Selection - xamGrid で行選択を有効にします。
+
+単一選択が有効な場合、エンド ユーザーはセル、列または行を一度に 1 つのみ選ぶことができます。
+
+複数選択が有効な場合、エンドユーザーは複数のセル、列または行を以下の方法で選択できます。
+
+* 列ヘッダークリックして選択します。
+* 複数の連続選択の場合はクリック アンド ドラッグします。
+* 複数の連続選択の場合は SHIFT キーを押しながらクリックします。
+* 複数の非連続選択の場合は CTRL キーを押しながらクリックします。
+
+ifdef::win-rt[]
+タッチ ジェスチャを使用して選択の詳細については、 link:xamgrid-touch-support.html[タッチ サポート] トピックを参照してください。
+endif::win-rt[]
+
+SelectionSettings オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.selectionsettings~cellclickaction.html[CellClickAction] プロパティは、クリック アクションが発生した場合に、行またはセルが選択されるかどうかを判断します。デフォルトで、これは SelectCell に設定されます。
+
+以下のコードは xamGrid コントロールでセル、列、行選択を有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyGrid" AutoGenerateColumns="False">
+   <ig:XamGrid.SelectionSettings>
+      <ig:SelectionSettings CellSelection="Multiple" 
+         ColumnSelection="Multiple" RowSelection="Multiple"/>
+   </ig:XamGrid.SelectionSettings>
+…     
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Me.MyGrid.SelectionSettings.CellSelection = SelectionType.Multiple
+Me.MyGrid.SelectionSettings.ColumnSelection = SelectionType.Multiple
+Me.MyGrid.SelectionSettings.RowSelection = SelectionType.Multiple
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.MyGrid.SelectionSettings.CellSelection = SelectionType.Multiple;
+this.MyGrid.SelectionSettings.ColumnSelection = SelectionType.Multiple;
+this.MyGrid.SelectionSettings.RowSelection = SelectionType.Multiple;
+----
+
+== 以下のスクリーン ショットは、選択が有効なグリッドを示しています。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Selection_01.png[選択]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Selection_01.png[選択]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-selection-events.html[セル イベント]
+
+link:xamgrid-setting-selection-programmatically.html[選択をプログラムで設定]
+
+link:xamgrid-select-all-xamgrid-rows-in-groups-bands-and-at-the-root.html[すべての xamGrid 行をグループ、バンドおよびルートで選択]
+
+pick:[win-rt=" link:xamgrid-touch-support.html[タッチ サポート]"]

@@ -1,0 +1,167 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-explicitly-arrange-tiles",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I"],
+    "guid": "a80bfc2c-a244-4027-b64e-bb2c6e390f91",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6423784Z"
+}
+|metadata|
+////
+
+= 明示的にタイルを配列
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings.html[NormalModeSettings] オブジェクトの link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~tilelayoutorder.html[TileLayoutOrder] プロパティを UseExplicitRowColumnOnTile に設定した場合、XamTileManager の添付プロパティ - link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~columnproperty.html[Column]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~columnspanproperty.html[ColumnSpan]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~rowproperty.html[Row] および link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~rowspanproperty.html[RowSpan] を設定することで、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトを列と行に配置する必要があります。Column、ColumnSpan、Row および RowSpan プロパティは、Grid パネルと同じように機能します。これらのプロパティの値を設定しなければ、Grid パネルと同じように 0 にデフォルト設定されます。これによって、xamTileManager は左上角にすべてのタイルを互いに重なり合ってスタックさせます。
+
+image::images/xamTilesControl_Explicitly_Arrange_Tiles_01.png[]
+
+以下のコード例は、明示的にタイルを配列する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1">
+    <!--明示的レイアウトを有効にする-->
+    <ig:XamTileManager.NormalModeSettings>
+        <ig:NormalModeSettings
+            TileLayoutOrder="UseExplicitRowColumnOnTile" />
+    </ig:XamTileManager.NormalModeSettings>
+    <ig:XamTile Header="Tile 1" Content="Content Area"
+        ig:XamTileManager.Column="0"
+        ig:XamTileManager.Row="0"
+        ig:XamTileManager.RowSpan="4"
+        ig:XamTileManager.ColumnSpan="1" />
+    <ig:XamTile Header="Tile 2" Content="Content Area"
+        ig:XamTileManager.Column="1"
+        ig:XamTileManager.Row="0"
+        ig:XamTileManager.RowSpan="2"
+        ig:XamTileManager.ColumnSpan="2" />
+    <ig:XamTile Header="Tile 3" Content="Content Area"
+        ig:XamTileManager.Column="1"
+        ig:XamTileManager.Row="2"
+        ig:XamTileManager.RowSpan="2"
+        ig:XamTileManager.ColumnSpan="2" />
+    <ig:XamTile Header="Tile 4" Content="Content Area"
+        ig:XamTileManager.Column="3"
+        ig:XamTileManager.Row="0"
+        ig:XamTileManager.RowSpan="4"
+        ig:XamTileManager.ColumnSpan="1" />
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+...
+Me.xamTileManager1.NormalModeSettings.TileLayoutOrder = _
+    TileLayoutOrder.UseExplicitRowColumnOnTile
+Dim tile1 As New XamTile With _
+    {.Header = "Tile 1", .Content = "Content Area"}
+XamTileManager.SetColumn(tile1, 0)
+XamTileManager.SetRow(tile1, 0)
+XamTileManager.SetRowSpan(tile1, 4)
+XamTileManager.SetColumnSpan(tile1, 4)
+Dim tile2 As New XamTile With _
+    {.Header = "Tile 2", .Content = "Content Area"}
+XamTileManager.SetColumn(tile1, 1)
+XamTileManager.SetRow(tile1, 0)
+XamTileManager.SetRowSpan(tile1, 2)
+XamTileManager.SetColumnSpan(tile1, 2)
+Dim tile3 As New XamTile With _
+    {.Header = "Tile 3", .Content = "Content Area"}
+XamTileManager.SetColumn(tile1, 1)
+XamTileManager.SetRow(tile1, 2)
+XamTileManager.SetRowSpan(tile1, 2)
+XamTileManager.SetColumnSpan(tile1, 2)
+Dim tile4 As New XamTile With _
+    {.Header = "Tile 4", .Content = "Content Area"}
+XamTileManager.SetColumn(tile1, 3)
+XamTileManager.SetRow(tile1, 0)
+XamTileManager.SetRowSpan(tile1, 4)
+XamTileManager.SetColumnSpan(tile1, 1)
+Me.xamTileManager1.Items.Add(tile1)
+Me.xamTileManager1.Items.Add(tile2)
+Me.xamTileManager1.Items.Add(tile3)
+Me.xamTileManager1.Items.Add(tile4)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+...
+this.xamTileManager1.NormalModeSettings.TileLayoutOrder =
+    TileLayoutOrder.UseExplicitRowColumnOnTile;
+XamTile tile1 = new XamTile
+{
+    Header = "Tile 1",
+    Content = "Content Area"
+};
+XamTileManager.SetColumn(tile1, 0);
+XamTileManager.SetRow(tile1, 0);
+XamTileManager.SetRowSpan(tile1, 4);
+XamTileManager.SetColumnSpan(tile1, 4);
+XamTile tile2 = new XamTile
+{
+    Header = "Tile 2",
+    Content = "Content Area"
+};
+XamTileManager.SetColumn(tile1, 1);
+XamTileManager.SetRow(tile1, 0);
+XamTileManager.SetRowSpan(tile1, 2);
+XamTileManager.SetColumnSpan(tile1, 2);
+XamTile tile3 = new XamTile
+{
+    Header = "Tile 3",
+    Content = "Content Area"
+};
+XamTileManager.SetColumn(tile1, 1);
+XamTileManager.SetRow(tile1, 2);
+XamTileManager.SetRowSpan(tile1, 2);
+XamTileManager.SetColumnSpan(tile1, 2);
+XamTile tile4 = new XamTile
+{
+    Header = "Tile 4",
+    Content = "Content Area"
+};
+XamTileManager.SetColumn(tile1, 3);
+XamTileManager.SetRow(tile1, 0);
+XamTileManager.SetRowSpan(tile1, 4);
+XamTileManager.SetColumnSpan(tile1, 1);
+this.xamTileManager1.Items.Add(tile1);
+this.xamTileManager1.Items.Add(tile2);
+this.xamTileManager1.Items.Add(tile3);
+this.xamTileManager1.Items.Add(tile4);
+...
+----
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

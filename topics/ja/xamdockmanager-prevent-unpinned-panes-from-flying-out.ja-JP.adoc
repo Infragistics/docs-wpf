@@ -1,0 +1,60 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-prevent-unpinned-panes-from-flying-out",
+    "controlName": ["xamDockManager"],
+    "tags": ["How Do I"],
+    "guid": "{90027EC2-7143-4888-A873-0CBF44CF4837}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5180567Z"
+}
+|metadata|
+////
+
+= ピン固定されていないペインがフライアウトすることを禁止
+
+
+
+エンドユーザーがペインのピン固定を解除すると、ピン固定が解除されたタブペイン領域に自動的に縮小されます。エンドユーザーがペインのヘッダーにホバーすると、ペインはコンテンツを表示するために自動的にフライアウトします。ピン固定されていないペインが自動的にフライアウトすることを禁止できますが、代わりにエンドユーザーがペインのヘッダーをクリックする必要があります。xamDockManager™ コントロールの link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~unpinnedtabhoveraction.html[UnpinnedTabHoverAction] プロパティを None に設定するだけです。
+
+以下の例のコードは、ピン固定されていないペインがフライアウトすることを禁止する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDock:XamDockManager Name="xamDockManager1" UnpinnedTabHoverAction="None">
+    <igDock:XamDockManager.Panes>
+        <igDock:SplitPane>
+            <igDock:ContentPane Header="Pane 1" IsPinned=">
+            </igDock:ContentPane>
+        </igDock:SplitPane>
+    </igDock:XamDockManager.Panes>
+</igDock:XamDockManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DockManager
+...
+Me.xamDockManager1.UnpinnedTabHoverAction = UnpinnedTabHoverAction.None
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DockManager;
+...
+this.xamDockManager1.UnpinnedTabHoverAction = UnpinnedTabHoverAction.None;
+...
+----
+
+== 関連トピック
+
+link:xamdockmanager-add-panes-to-xamdockmanager.html[ペインを xamDockManager に追加]
+
+link:xamdockmanager-add-content-to-a-contentpane.html[コンテンツを ContentPane に追加]
+
+link:xamdockmanager-pin-and-unpin-a-pane.html[ペインのピンを固定および解除]

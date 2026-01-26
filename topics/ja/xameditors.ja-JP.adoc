@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "xameditors",
+    "controlName": [],
+    "tags": [],
+    "guid": "{EA6F939C-621D-411F-BE0B-632A5655720D}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1579781Z"
+}
+|metadata|
+////
+
+= xamEditors
+
+以下のリンクをクリックして、xamEditor コントロールについての情報にアクセスします。
+
+* link:xameditors-about-xameditors.html[xamEditor について]
+* link:xameditors-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xameditors-masks.html[マスク]
+* link:xameditors-modifying-the-edit-template-of-a-xameditor-control.html[xamEditor コントロールの編集テンプレートを変更]
+* link:xameditors-overview-of-the-valueeditor-class.html[ValueEditor クラスの概要]

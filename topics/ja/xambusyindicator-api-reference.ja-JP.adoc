@@ -1,0 +1,49 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-api-reference",
+    "tags": ["API"],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "f0d91a66-abcf-4912-a677-84ab2093b0eb",  
+    "buildFlags": [],
+    "createdOn": "2015-07-30T15:11:41.2037305Z"
+}
+|metadata|
+////
+
+= API リファレンス (xamBusyIndicator)
+
+=== 概要
+
+このトピックでは、コントロールに関連したキー クラスに関する参考情報を提供します。
+
+=== xamBusyIndicator API リファレンス表
+
+以下の表に、 _xamBusyIndicator_   コントロールに関連する最も重要な名前空間を示します。
+
+[options="header", cols="a,a"]
+|====
+|名前空間|説明
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions_namespace.html[Infragistics.Controls.Interactions]
+|xamBusyIndicator 名前空間
+
+|====
+
+以下の表に、 _xamBusyIndicator_   コントロールに関連する最も重要なクラスを示します。
+
+[options="header", cols="a,a"]
+|====
+|クラス|説明
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator.html[XamBusyIndicator]
+|xamBusyIndicator 名前空間
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.busyanimation.html[BusyAnimation]
+|XamBusyIndicator の定義済みアニメーションのインスタンスを提供する静的クラスです。
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.primitives.busyanimationpresenter.html[BusyAnimationPresenter]
+|BusyAnimation の視覚的表現を提供する要素の基本クラスです。
+
+|====

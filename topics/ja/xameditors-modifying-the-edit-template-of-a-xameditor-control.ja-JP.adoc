@@ -1,0 +1,85 @@
+﻿////
+
+|metadata|
+{
+    "name": "xameditors-modifying-the-edit-template-of-a-xameditor-control",
+    "controlName": [],
+    "tags": ["How Do I","Templating"],
+    "guid": "{95024137-17A6-41AC-8DFC-552AF6BBD794}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1769781Z"
+}
+|metadata|
+////
+
+= xamEditor コントロールの編集テンプレートを変更
+
+== 始める前に
+
+xamEditor コントロールは、値を表示するためと値を編集するための 2 つのテンプレートを使用します。xamEditor コントロールによって公開されている link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~edittemplate.html[EditTemplate] プロパティを設定して、編集機能に使用されるコントロールテンプレートを変更できます。
+
+== 達成すること
+
+xamNumericEditor™ コントロールの値を変更するためにスライダーを使用するコントロール テンプレートを作成します。
+
+== 次の手順を実行します
+
+[start=1]
+. Window のローカル リソース ディクショナリのタグを追加します。
+
+*XAML の場合:*
+
+----
+<Window.Resources>
+    <!--TODO: ここにコントロール テンプレートを作成します-->
+</Window.Resources>
+----
+
+[start=2]
+. コントロール テンプレートをリソース ディクショナリに追加します。
+
+.. Key プロパティを "sliderEditTemplate"に設定すれば、後の手順でこのコントロール プロパティを参照できます。
+.. TargetType プロパティを "{x:Type igEditors:XamNumericEditor}" に設定します。
+
+*XAML の場合:*
+
+----
+<ControlTemplate x:Key="sliderEditTemplate" TargetType="{x:Type igEditors:XamNumericEditor}">
+    <!--TODO: ここにスライダー コントロールを追加します-->
+</ControlTemplate>
+----
+
+[start=3]
+. Slider コントロールを ControlTemplate オブジェクトに追加します。
+
+.. Minimum プロパティを 0 に設定します。
+.. Maximum プロパティを 100 に設定します。
+.. Value プロパティを xamNumericEditor コントロールの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~value.html[Value] プロパティ (TemplatedParent) にバインドするバインディング式に設定します。
+
+親から一方方向にしかバインドできないので、TemplateBinding マークアップ拡張を使用できません。スライダーの値が xamNumericEditor コントロールの値を更新するためには完全な RelativeSource バインディング式を使用する必要があります。
+
+*XAML の場合:*
+
+----
+<Slider 
+    Minimum="0" 
+    Maximum="100" 
+    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Value}" 
+    />
+----
+
+[start=4]
+. xamNumericEditor コントロールの EditTemplate プロパティを手順 2 で作成した ControlTemplate オブジェクトに設定します。
+
+xamNumericEditor コントロールの Value プロパティを設定していない場合、NULL にデフォルト設定されます。Slider コントロールの Value プロパティは NULL にすることができないので、初めて編集モードにした時に Debug Output Window にバインディング エラーが表示されます。xamNumericEditor コントロールの Value プロパティを設定するか、NULL 値とスライダーの最小値を変換するためのコンバーターを作成して、この問題を解決できます。link:http://msdn.microsoft.com/ja-jp/library/system.windows.data.ivalueconverter.aspx[コンバーター]についての詳細は、MSDN を参照してください。
+
+*XAML の場合:*
+
+----
+<igEditors:XamNumericEditor EditTemplate="{StaticResource sliderEditTemplate}" Value="0" />
+----
+
+[start=5]
+. プロジェクトを実行します。
+
+xamNumericEditor コントロールを編集モードにすると、テキストボックスの代わりにスライダーが表示されます。スライダーの値を変更して編集モードを離れると、xamNumericEditor コントロールは値を表示します。

@@ -1,0 +1,268 @@
+﻿////
+|metadata|
+{
+    "name": "xamnetworknode-working-with-drag-and-drag-framework",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["Data Presentation","Editing","Getting Started","How Do I"],
+    "guid": "6333a2e9-e16e-4235-9d75-33a4c29f7245",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.4882484Z"
+}
+|metadata|
+////
+
+= Drag and Drop Framework を使った作業
+
+このトピックでは、NetworkNode および Drag and Drop Framework を使ったドラッグ アンド ドロップの実装方法を説明します。
+
+トピックは以下のとおりです。
+
+* <<introduction,概要>>
+* <<preview,プレビュー>>
+* <<requirements,要件>>
+* <<overview,概要>>
+* <<steps,手順>>
+
+[[introduction]]
+== 概要
+
+ドラッグ アンド ドロップを実装している場合、階層の基本データは手動で更新する必要があります。これは xamNetworkNode コントロールの必要条件であるため、変更を反映することがあります。
+
+[[preview]]
+== プレビュー
+
+以下は、ネットワーク構造を再編成する、ドラッグされているノードのプレビューです。
+
+image::images/xamNetworkNode_Drag_and_Drop_01.png[]
+
+図 1: ノードのドラッグ
+
+[[requirements]]
+== 要件
+
+必要な NuGet パッケージの参照:
+
+* Infragistics.WPF.NetworkNode
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[[overview]]
+== 概要
+
+手順の概念的な概要
+
+. <<step1,名前空間宣言の追加>>
+.. <<step1a,XML 名前空間宣言を XAML ファイルに追加>>
+.. <<step1b,コード ビハインドに using/Imports を配置>>
+. <<step2,Drop Target として xamNetworkNode を構成します。>>
+. <<step3,ノード ドラッグ ソースとドロップ ターゲットの作成>>
+.. <<step3a,NodeControlAttachedEvent にイベント ハンドラーを指定>>
+.. <<step3b,新しい NetworkNodeNodeControl を Drag Source および Drop Target として構成します>>
+.. <<step3c,ドラッグ ソースの Drop イベントを処理>>
+
+[[steps]]
+== 手順
+
+[[step1]]
+[start=1]
+. 名前空間宣言を追加します。
+[[step1a]]
+.. XML 名前空間宣言を XAML ファイルに追加します:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+[start=2]
+[[step1b]]
+.. コード ビハインドに using/imports を配置します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Maps
+Imports Infragistics.DragDrop
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Maps;
+using Infragistics.DragDrop;
+----
+[[step2]]
+[start=2]
+. Drop Target として xamNetworkNode を構成します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamNetworkNode>
+    <ig:DragDropManager.DropTarget>
+        <ig:DropTarget IsDropTarget="True" />
+    </ig:DragDropManager.DropTarget>
+</ig:XamNetworkNode>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim networkNode As New XamNetworkNode()
+' 新しい DropTarget オブジェクトを作成します
+Dim dropTarget As New DropTarget()
+dropTarget.IsDropTarget = True
+' NetworkNode を Drop Target にします。
+DragDropManager.SetDropTarget(networkNode, dropTarget)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamNetworkNode networkNode = new XamNetworkNode();
+
+//新しい DropTarget オブジェクトを作成します
+DropTarget dropTarget = new DropTarget();
+dropTarget.IsDropTarget = true;
+
+// NetworkNode を Drop Target にします。
+DragDropManager.SetDropTarget(networkNode, dropTarget);
+----
+[[step3]]
+[start=3]
+. ノード link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource.html[ドラッグ ソース]と link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget.html[ドロップ ターゲット]を作成します。
+
+ノードで作業するため、xamNetworkNode コントロールは 2 つのキー クラスを使用します:
+
+** link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode.html[NetworkNodeNode] - そのオブジェクトは実際の Network ノードです。このクラスは、親ノードと子ノード、ノードが表示するデータ、ノードの作成のために使用される link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenodelayout.html[NetworkNodeNodeLayout] オブジェクトへの参照に関する情報を持っています。
+** link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenodecontrol.html[NetworkNodeNodeControl] - そのオブジェクトは NetworkNodeNode オブジェクトのビジュアル表現として機能します。
+
+そのため、Drag Sources および Drop Targets は link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenodecontrol.html[NetworkNodeNodeControl] オブジェクトです。
+
+ノードがパンニングのために NetworkNode の可視領域から出るときは常に、そのノードに関連する NetworkNodeNodeControl が破棄されます。また、ノードの子が折り畳まれるときは、その NetworkNodeNodeControls が破棄されます。
+
+ノードを表示する必要がある場合、そのノードに関連する新しい NetworkNodeNodeControl が作成され、 link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~nodecontrolattachedevent_ev.html[NodeControlAttachedEvent] が発生します。
+
+Drag and Drop Framework で作業をする場合、その作成時に link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropmanager~dragsourceproperty.html[DragSource] および link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropmanager~droptargetproperty.html[DropTarget] プロパティを NetworkNodeNodeControl オブジェクトに添付する必要があります。
+
+[NOTE]
+====
+*注:* 場合によっては、ドラッグされるノードのドロップ ターゲットに制限があります (社員だけを部署にドロップできるなど)。このビヘイビアーは、Drag and Drop Framework のドラッグ アンド ドロップ チャネルを使用して達成できます。
+
+[[step3a]]
+.. NodeControlAttachedEvent にイベント ハンドラーを指定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamNetworkNode    NodeControlAttachedEvent="NetworkNode_NodeControlAttachedEvent">
+</ig:XamNetworkNode>
+----
+
+[start=2]
+[[step3b]]
+.. 新しい NetworkNodeNodeControl を Drag Source および Drop Target として構成します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub NetworkNode_NodeControlAttachedEvent(sender As Object, e As NetworkNodeNodeEventArgs)
+    ' 新しい DragSource  オブジェクトを作成します
+    Dim dragSource As New DragSource()
+    dragSource.IsDraggable = True
+    
+    'dragSource.DragChannels = assign drag channels
+    dragSource.Drop += Node_Drop
+
+    ' ノードをドラッグ ソースにします
+    DragDropManager.SetDragSource(e.Node, dragSource)
+
+    ' 新しい DropTarget オブジェクトを作成します
+    Dim dropTarget As New DropTarget()
+    dropTarget.IsDropTarget = True
+    
+    'dropTarget.DropChannels = assign drop channels
+    ' ノードをドロップ ターゲットにします
+    DragDropManager.SetDropTarget(e.Node, dropTarget)
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void NetworkNode_NodeControlAttachedEvent(object sender, NetworkNodeNodeEventArgs e)
+{
+    //新しい DragSource  オブジェクトを作成します
+    DragSource dragSource = new DragSource();
+    dragSource.IsDraggable = true;
+    
+    //dragSource.DragChannels = assign drag channels
+    dragSource.Drop += Node_Drop;
+    
+    //ノードをドラッグ ソースにします
+    DragDropManager.SetDragSource(e.Node, dragSource);
+    
+    //新しい DropTarget オブジェクトを作成します
+    DropTarget dropTarget = new DropTarget();
+    dropTarget.IsDropTarget = true;
+    
+    //dropTarget.DropChannels = assign drop channels
+    //ノードをドロップ ターゲットにします
+    DragDropManager.SetDropTarget(e.Node, dropTarget);
+}
+----
+
+[start=3]
+[[step3c]]
+.. ドラッグ ソースの link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~drop_ev.html[Drop] イベントを処理します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub Node_Drop(sender As Object, e As DropEventArgs)
+    ' ドラッグされた NetworkNodeNodeControl オブジェクトを取得します。
+    Dim draggedNodeControl As NetworkNodeNodeControl = _
+        TryCast(e.DragSource, NetworkNodeNodeControl)
+    
+    ' ドラッグされた NetworkNodeNode オブジェクトを取得します。
+    Dim draggedNode As NetworkNodeNode = draggedNodeControl.Node
+    '基となるデータを取得します
+    Dim data As Object = draggedNode.Data
+
+    'TODO: 基となるデータを修正します
+End Sub   
+----
+
+*C# の場合:*
+
+[source,cshare]
+----
+private void Node_Drop(object sender, DropEventArgs e)
+{
+    // ドラッグされた NetworkNodeNodeControl オブジェクトを取得します。
+    NetworkNodeNodeControl draggedNodeControl =
+        e.DragSource as NetworkNodeNodeControl;
+    
+    // ドラッグされた NetworkNodeNode オブジェクトを取得します。
+    NetworkNodeNode draggedNode = draggedNodeControl.Node;
+
+    //基となるデータを取得します
+    object data = draggedNode.Data;
+    
+    //TODO: 基となるデータを修正します
+}
+----
+
+== 関連トピック
+
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]
+* link:xamnetworknode-using-xamnetworknode.html[xamNetworkNode の使用]

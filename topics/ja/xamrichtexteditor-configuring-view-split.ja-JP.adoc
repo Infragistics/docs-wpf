@@ -1,0 +1,122 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-configuring-view-split",
+    "tags": ["How Do I","Layouts"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "1671f007-4402-4bcd-a463-b5d3df437992",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4163403Z"
+}
+|metadata|
+////
+
+= ビュー分割の構成 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、ドキュメントの分割ビューを実行できるように link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ を構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362343961,分割構成の概要>>
+* <<_Ref360716739,ドキュメント ビューの分割>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref362343961]]
+== 分割構成の概要
+
+=== 分割構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、特定のプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref360716739,ドキュメント ビューの分割>>
+|この構成は、ドキュメント ビューの分割を有効または無効にします。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~allowdocumentviewsplitting.html[AllowDocumentViewSplitting]
+
+|====
+
+[[_Ref360716739]]
+== ドキュメント ビューの分割
+
+=== 概要
+
+`AllowDocumentViewSplitting` を `true` または `false` に設定すると、分割ハンドルが表示または非表示になります。分割ハンドルの表示または非表示を切り替えると、ドキュメント ビューを分割できる機能を効果的に有効または無効にできます。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|ドキュメント ビューの分割の許可
+|`AllowDocumentViewSplitting`
+|true
+
+|ドキュメント ビューの分割を許可しない
+|`AllowDocumentViewSplitting`
+|false
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコードは、ドキュメント ビューの分割を許可する方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.AllowDocumentViewSplitting = true;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.AllowDocumentViewSplitting = True
+----
+
+[[_Ref359594803]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-view-splitting.html[ビュー分割の管理]
+|このトピックは、 _xamRichTextEditor_ コントロールのビュー分割について、開発者の観点から説明します。
+
+|====

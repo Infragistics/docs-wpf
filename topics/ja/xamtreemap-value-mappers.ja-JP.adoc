@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-value-mappers",
+    "controlName": ["xamTreemap"],
+    "tags": ["How Do I"],
+    "guid": "823be5e4-8950-48df-a45e-3742293e00e7",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.8283797Z"
+}
+|metadata|
+////
+
+= 値のマッパー
+
+このセクションは、xamTreemap コントロールの値マッピング機能についての詳細を提供します。
+
+link:xamtreemap-colormapper.html[ColorMapper]
+
+このトピックでは、ColorMapper を使用して xamTreemap コントロールのノードに色をマップする方法を学習します。
+
+link:xamtreemap-radialcolormapper.html[RadialColorMapper]
+
+このトピックでは、RadialColorMapper を使用して xamTreemap コントロールのノードにラジアル カラー ブラシをマップする方法を学習します。
+
+link:xamtreemap-groupvaluemapper.html[GroupValueMapper]
+
+このトピックでは、GroupValueMapper を使用して xamTreemap コントロールのノードのさまざまなグループに値をマップする方法を学習します。
+
+link:xamtreemap-doublemapper.html[DoubleMapper]
+
+このトピックでは、DoubleMapper を使用して xamTreemap コントロールのノードに数値をマップする方法を学習します。
+
+link:xamtreemap-custom-value-mappers.html[xamTreemap のカスタムの Value Mapper]
+
+このトピックでは、カスタムの Value Mapper を作成する方法を示します。

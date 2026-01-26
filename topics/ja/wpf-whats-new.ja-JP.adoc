@@ -1,0 +1,22 @@
+﻿////
+|metadata|
+{
+    "name": "wpf-whats-new",
+    "controlName": [],
+    "tags": [],
+    "guid": "{1B606998-580B-42C2-A570-E55DE7B5E753}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.6866905Z"
+}
+|metadata|
+////
+
+= 新機能
+
+== link:changelog.html[変更ログ]
+
+Ultimate UI for WPF 製品の最新リリースに追加された新機能。
+
+== link:wpf-revision-history.html[改訂履歴]
+
+特定の機能がコントロールに追加されたかどうか、いつ追加されたかを確認できます。このセクションでは 2007 Volume 2 以降の新機能についてすばやく簡単に調べることができます。

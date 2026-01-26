@@ -1,0 +1,28 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-optimizing-performance",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Performance","Tips and Tricks"],
+    "guid": "{E68B2C77-15BB-486D-8204-9FAFA970990B}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2760083Z"
+}
+|metadata|
+////
+
+= xamDataPresenter のパフォーマンスの最適化
+
+
+
+NASCAR のレーサーは、メンテナンス不足の規格外の車でレースに勝つことはできません。最高のパフォーマンスのために車のエンジンを調整することでレースに勝てます。アプリケーションも同じように考えることができます。パフォーマンスをアンダー ザ フードで調整すると、アプリケーションはより高速により効率的に実行します。最適化とは、エンド ユーザーがファイルを開く待ち時間が 3 秒間か8 秒間かという違いです。データ テーブル全体ではなく必要なデータ量のみをロードするためにコントロールを最適化することは、パフォーマンスの最適化の好例です。
+
+不要なダウンタイムからエンド ユーザーを保護するために必要な優位性を xamDataPresenter™ に提供する際に実行できるヒントがいくつかあります。
+
+xamDataPresenter のパフォーマンスを最適化することに特化したトピックをご覧になるには、以下のリンクをクリックしてください。
+
+* link:xamdata-performance-optimizations-overview.html[パフォーマンス最適化の概要]
+* link:xamdatapresenter-hierarchical-records-and-performance.html[階層的なレコードとパフォーマンス]
+* link:xamdata-impact-styles-have-on-performance-of-controls.html[スタイルがコントロールのパフォーマンスに与える影響]
+* link:xamdatapresenter-optimizing-performance-grid-view.html[グリッド ビュー]

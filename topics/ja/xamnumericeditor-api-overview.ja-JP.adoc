@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnumericeditor-api-overview",
+    "controlName": ["xamNumericEditor"],
+    "tags": ["API"],
+    "guid": "{A8625384-361C-4894-B0B8-50D4E45903FA}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2329781Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== Editors の名前空間:
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors_namespace.html[Infragistics.Windows.Editors]
+
+=== 主要な API:
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamnumericeditor.html[XamNumericEditor]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor~mask.html[Mask]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~value.html[Value]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuetype.html[ValueType]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuechanged_ev.html[ValueChanged]

@@ -1,0 +1,899 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-datapresenter-resource-strings",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "1d9e7767-6176-404d-adc8-7e4cef26bafa",  
+    "buildFlags": [],
+    "createdOn": "2012-08-15T11:12:45.9563726Z"
+}
+|metadata|
+////
+
+= DataPresenter リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列名をリストします。
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|CalculationAdapter_InvalidValue
+|CalculationAdapter は、DataPresenterCalculationAdapter のインスタンスのみに設定できます。
+
+|CalculationAdapter_NotMultiUse
+|CalculationAdapter は DataPresenterBase の他のインスタンスに設定されています
+
+|Card_AddNewRecordTitle
+|新規レコードを追加
+
+|Card_FilterRecordTitle
+|フィルター条件
+
+|CardHeaderPresenter_CollapseCardToolTip
+|カードを縮小
+
+|CardHeaderPresenter_CollapseEmptyCellsToolTip
+|空のセルの縮小
+
+|CardHeaderPresenter_UnCollapseCardToolTip
+|カードを復元
+
+|CardHeaderPresenter_UnCollapseEmptyCellsToolTip
+|空のセルを復元
+
+|ClipboardError_ClearContentsTitle
+|コンテンツ エラーをクリア
+
+|ClipboardError_ConversionErrorMessage
+|{0} フィールドの値をターゲット タイプに変換できません。詳細情報: {1} 
+
+残りのセルで続行しますか?
+
+|ClipboardError_CopyTitle
+|コピー エラー
+
+|ClipboardError_CutTitle
+|切り取りエラー
+
+|ClipboardError_ExceptionMessageCanContinue
+|操作を実行できません。詳細情報: {0} 
+
+残りのセルで続行しますか?
+
+|ClipboardError_ExceptionMessageCannotContinue
+|操作を実行できません。詳細情報: {0}
+
+|ClipboardError_InsertRecordErrorMessage
+|新しいレコードを挿入するときにエラーが発生しました。
+
+|ClipboardError_MixedSelectionMessage
+|コマンドは複数の選択項目では実行できません。
+
+|ClipboardError_NonRectangularSelectionMessage
+|選択は四角形にする必要があります。単一セルの範囲を選択してください。または、選択項目を含むすべてのレコードで同じフィールドが選択されたことを確認してください。
+
+|ClipboardError_NotEnoughColumnsMessage
+|クリップボード情報を貼り付けようとしている領域の列数が不足しています。続行すると使用可能なセルに情報を貼り付けますが、失われるデータがあります。この操作を続行しますか？
+
+|ClipboardError_NotEnoughRowsMessage
+|クリップボード情報を貼り付けようとしている領域の行数が不足しています。続行すると使用可能なセルに情報を貼り付けますが、失われるデータがあります。この操作を続行しますか？
+
+|ClipboardError_PasteTitle
+|貼り付けエラー
+
+|ClipboardError_ReadOnlyCellMessage
+|{0} セルは読み取り専用です。残りのセルで続行しますか?
+
+|ClipboardError_SetCellValueErrorMessage
+|セルを変更したときにエラーが発生しました。詳細情報: {0}残りのセルで続行しますか?
+
+|ClipboardError_UpdateRecordErrorMessage
+|変更をレコードにコミットするときにエラーが発生しました。残りのセルで続行しますか?
+
+|ClipboardError_ValidationErrorMessage
+|セルの値を検証するときにエラーが発生しました。詳細情報: {0}残りのセルで続行しますか?
+
+|CustomFilterSelectionControl_AddConditionLabelProperty
+|条件の追加
+
+|CustomFilterSelectionControl_AndGroupLegendDescriptionProperty
+|'And' グループ
+
+|CustomFilterSelectionControl_CancelButtonLabelProperty
+|キャンセル
+
+|CustomFilterSelectionControl_CancelMessageTextProperty
+|ひとつ以上のフィルターに変更が行われました。変更を破棄して終了してもよろしいですか?
+
+|CustomFilterSelectionControl_CancelMessageTitleProperty
+|カスタム フィルターの変更をキャンセル
+
+|CustomFilterSelectionControl_ChangeGroupLogicalOperatorTo_And
+|クリックしてこのグループの LogicalOperator を 'And' に変更します
+
+|CustomFilterSelectionControl_ChangeGroupLogicalOperatorTo_Or
+|クリックしてこのグループの LogicalOperator を 'Or' に変更します
+
+|CustomFilterSelectionControl_ConditionError_Empty
+|条件は空です。
+
+|CustomFilterSelectionControl_ConditionError_IncompatibleOperator
+|互換性のない演算子。
+
+|CustomFilterSelectionControl_ConditionErrorMessageTextProperty
+|ひとつ以上の条件に検証エラーが含まれています。続行する前にエラーを修正してください。
+
+|CustomFilterSelectionControl_ConditionErrorMessageTitleProperty
+|条件エラー
+
+|CustomFilterSelectionControl_FieldDescriptionProperty
+|フィールド {0} に対して
+
+|CustomFilterSelectionControl_GroupSelectedConditionsAsAndGroupLabelProperty
+|'And' グループ
+
+|CustomFilterSelectionControl_GroupSelectedConditionsAsOrGroupLabelProperty
+|'Or' グループ
+
+|CustomFilterSelectionControl_GroupSelectedLabelProperty
+|選択されたグループ:
+
+|CustomFilterSelectionControl_OkButtonLabelProperty
+|OK
+
+|CustomFilterSelectionControl_OperandFieldLabel
+|オペランド
+
+|CustomFilterSelectionControl_OperatorFieldLabel
+|演算子
+
+|CustomFilterSelectionControl_OrGroupLegendDescriptionProperty
+|'Or' グループ
+
+|CustomFilterSelectionControl_RemoveSelectedConditionsLabelProperty
+|条件を削除
+
+|CustomFilterSelectionControl_TitleDescriptionProperty
+|カスタムのフィルター選択
+
+|CustomFilterSelectionControl_ToggleOperatorOfSelectedConditionsLabelProperty
+|トグル
+
+|CustomFilterSelectionControl_UngroupSelectedConditionsLabelProperty
+|グループ化の解除
+
+|DataError_GetCellValue
+|セル値を取得できません。
+
+|DataError_UpdateCellValue
+|セル値を設定できません。
+
+|DataError_UpdateRecord
+|レコードを更新できません。
+
+|DataErrorDeleteRecordUnableToDelete
+|次のレコードを削除できません: {0}
+
+|DataErrorMessageTitle
+|データ エラー
+
+|DeleteMultipleRecordsPrompt
+|削除対象として {0} レコードを選択しました。[はい] を選択するとレコードが削除され、[いいえ] を選択すると終了します。
+
+|DeleteRecordsMessageTitle
+|レコードの削除
+
+|DeleteSingleRecordMessageTitle
+|レコードの削除
+
+|DeleteSingleRecordPrompt
+|削除対象として 1 レコードを選択しました。[はい] を選択するとレコードが削除され、[いいえ] を選択すると終了します。
+
+|Export_CannotExportMultipleTimes
+|他の操作が保留中または処理中であるため、エクスポート操作を初期化できません。
+
+|ExportOperationDisabled_Message
+|'{0}' はエクスポート処理中に許可されません。
+
+|ExportOperationDisabled_Title
+|操作はキャンセルされません。
+
+|FieldChooser_Title
+|フィールドの選択
+
+|FilterDropDown_AsynchLoadingIndicator
+|値を読み込んでいます...
+
+|FilterDropDownLoadingIndicator
+|読み込んでいます...
+
+|FilterMenuCaption_AboveAverage_Operand
+|平均より上(A)
+
+|FilterMenuCaption_After
+|指定の値より後(A)...
+
+|FilterMenuCaption_AllDates
+|期間内の全日付(P)...
+
+|FilterMenuCaption_April_Operand
+|４月 (A)
+
+|FilterMenuCaption_August_Operand
+|8 月 (T)
+
+|FilterMenuCaption_Before
+|指定の値より前(B)...
+
+|FilterMenuCaption_BeginsWith
+|で始まる
+
+|FilterMenuCaption_BelowAverage_Operand
+|平均より下(O)
+
+|FilterMenuCaption_Between
+|指定の範囲内(W)...
+
+|FilterMenuCaption_ClearFieldFilter
+|"{0}" からフィルタをクリア
+
+|FilterMenuCaption_Contains
+|含む
+
+|FilterMenuCaption_CustomFilter
+|ユーザー設定フィルタ(F)...
+
+|FilterMenuCaption_DateFilters
+|日付フィルタ(F)
+
+|FilterMenuCaption_December_Operand
+|12 月(D)
+
+|FilterMenuCaption_EndsWith
+|で終わる
+
+|FilterMenuCaption_Equals
+|指定の値に等しい(E)...
+
+|FilterMenuCaption_February_Operand
+|2 月(F)
+
+|FilterMenuCaption_GreaterThan
+|指定の値より大きい(G)...
+
+|FilterMenuCaption_GreaterThanOrEqual
+|指定の値以上(O)...
+
+|FilterMenuCaption_January_Operand
+|1 月(J)
+
+|FilterMenuCaption_July_Operand
+|7 月(L)
+
+|FilterMenuCaption_June_Operand
+|6 月(U)
+
+|FilterMenuCaption_LastMonth_Operand
+|先月(N)
+
+|FilterMenuCaption_LastQuarter_Operand
+|前四半期(Q)
+
+|FilterMenuCaption_LastWeek_Operand
+|先週(L)
+
+|FilterMenuCaption_LastYear_Operand
+|昨年(Y)
+
+|FilterMenuCaption_LessThan
+|指定の値より小さい(L)...
+
+|FilterMenuCaption_LessThanOrEqual
+|指定の値以上(O)...
+
+|FilterMenuCaption_March_Operand
+|3 月(M)
+
+|FilterMenuCaption_May_Operand
+|5 月(Y)
+
+|FilterMenuCaption_NextMonth_Operand
+|来月(M)
+
+|FilterMenuCaption_NextQuarter_Operand
+|来四半期(Q)
+
+|FilterMenuCaption_NextWeek_Operand
+|来週(K)
+
+|FilterMenuCaption_NextYear_Operand
+|来年(X)
+
+|FilterMenuCaption_NotContains
+|を含まない
+
+|FilterMenuCaption_NotEquals
+|指定の値に等しくない(N)...
+
+|FilterMenuCaption_November_Operand
+|11 月(N)
+
+|FilterMenuCaption_NumberFilters
+|数値フィルター
+
+|FilterMenuCaption_October_Operand
+|10 月(O)
+
+|FilterMenuCaption_Quarter1_Operand
+|第一四半期
+
+|FilterMenuCaption_Quarter2_Operand
+|第二四半期
+
+|FilterMenuCaption_Quarter3_Operand
+|第三四半期
+
+|FilterMenuCaption_Quarter4_Operand
+|第四四半期
+
+|FilterMenuCaption_September_Operand
+|9 月(S)
+
+|FilterMenuCaption_TextFilters
+|テキスト フィルター
+
+|FilterMenuCaption_ThisMonth_Operand
+|今月(M)
+
+|FilterMenuCaption_ThisQuarter_Operand
+|今四半期(U)
+
+|FilterMenuCaption_ThisWeek_Operand
+|今週(H)
+
+|FilterMenuCaption_ThisYear_Operand
+|今年(I)
+
+|FilterMenuCaption_Today_Operand
+|今日(O)
+
+|FilterMenuCaption_Tomorrow_Operand
+|明日(T)
+
+|FilterMenuCaption_Top10
+|トップテン(T)
+
+|FilterMenuCaption_YearToDate_Operand
+|今年の初めから今日まで(A)
+
+|FilterMenuCaption_Yesterday_Operand
+|昨日(D)
+
+|FixedFieldButton_FixToFarEdgePromptProperty
+|遠い端に固定します。
+
+|FixedFieldButton_FixToNearEdgePromptProperty
+|近い端に固定します。
+
+|FixedFieldButton_UnfixPromptProperty
+|固定の解除
+
+|FixedRecordButton_FixToBottomPromptProperty
+|下に固定
+
+|FixedRecordButton_FixToTopPromptProperty
+|上に固定
+
+|FixedRecordButton_UnfixPromptProperty
+|固定の解除
+
+|GroupByArea_Prompt1
+|グループ化機能の領域
+
+|GroupByArea_Prompt2
+|そのフィールドでグループ化するためにフィールドをここにドラッグします。
+
+|GroupByDescription_Format_NotOneChild
+|{0} ({1} 項目)
+
+|GroupByDescription_Format_OneChild
+|{0} ({1} 項目)
+
+|GroupByDescription_NullValue_Literal
+|[null]
+
+|LE_ArgumentException_1
+|セル値を変更できません。
+
+|LE_ArgumentException_10
+|ActiveRecord は、この DataPresenterBase からである必要があります。
+
+|LE_ArgumentException_11
+|オブジェクトで渡されるのは、セルやレコードである必要があります。
+
+|LE_ArgumentException_13
+|他の DataPresenterBase と関連しているレコードを使用できません。
+
+|LE_ArgumentException_14
+|キーがみつかりませんでした。
+
+|LE_ArgumentException_15
+|このフィールドは、オーナーであるフィールド コレクションに含まれていない限り、'PrimaryField' にできません。
+
+|LE_ArgumentException_16
+|このフィールドは、オーナーであるフィールド コレクションに含まれていない限り、'ScrollTipField' にできません。
+
+|LE_ArgumentException_2
+|record.FieldLayout は Null 値にできません。
+
+|LE_ArgumentException_20
+|FieldSettings.EditorType プロパティは、ValueEditor から派生する型に設定される必要があります。
+
+|LE_ArgumentException_22
+|FieldSortDescription は、コレクションに追加されると変更できません。
+
+|LE_ArgumentException_23
+|フィールドが見つかりません
+
+|LE_ArgumentException_24
+|フィールド名が見つかりません
+
+|LE_ArgumentException_25
+|フィールドは、同じフィールド レイアウトからである必要があります。
+
+|LE_ArgumentException_26
+|このフィールドの FieldSortDescription は、すでにコレクションにあります。
+
+|LE_ArgumentException_27
+|指定したフィールド レイアウトは、リスト オブジェクトと互換性がありません。
+
+|LE_ArgumentException_28
+|フィールドは、レコードとして同じフィールド レイアウトからである必要があります。
+
+|LE_ArgumentException_29
+|異なるタイプのオブジェクトを比較することはできません。
+
+|LE_ArgumentException_3
+|DefaultFieldLayout は、フィールド レイアウト コレクションに含まれる FieldLayout のみに設定できます。
+
+|LE_ArgumentException_30
+|レコードは、同じフィールド レイアウトからである必要があります。
+
+|LE_ArgumentException_31
+|レコードは、同じ dataPresenter の表示レイアウトからの有効なレコードである必要があります。
+
+|LE_ArgumentException_32
+|セルは、同じフィールド レイアウトからである必要があります。
+
+|LE_ArgumentException_33
+|セルは、同じ dataPresenter のフィールド レイアウトからの有効なセルである必要があります。
+
+|LE_ArgumentException_34
+|フィールドは、同じフィールド レイアウトからである必要があります。
+
+|LE_ArgumentException_35
+|フィールドは、同じ dataPresenter の表示レイアウトからの有効なフィールドである必要があります。
+
+|LE_ArgumentException_36
+|フィールドを選択できません。SelectionType の設定が無効です。
+
+|LE_ArgumentException_37
+|RecordFilter は Null 値にできません
+
+|LE_ArgumentException_38
+|RecordManager は Null 値にできません。
+
+|LE_ArgumentException_4
+|このセルは、正しく初期化されていません。
+
+|LE_ArgumentException_5
+|セルは、このコントロールと関連付けられていません。
+
+|LE_ArgumentException_6
+|レコードは、このコントロールと関連付けられていません。
+
+|LE_ArgumentException_7
+|DataRecord は、同じ DataPresenterBase からである必要があります。
+
+|LE_ArgumentException_8
+|表示によって提供される ItemsPanelType が、パネルに基づいていません。
+
+|LE_ArgumentException_9
+|ActiveCell は、この DataPresenterBase からである必要があります。
+
+|LE_ArgumentNullException_1
+|CarouselBreadcrumb が null です。
+
+|LE_ArgumentNullException_2
+|RangeSelectionEvaluator のコンストラクター。
+
+|LE_ArgumentNullException_3
+|{0} は null にできません。
+
+|LE_ArgumentNullException_4
+|ExpandableFieldRecord コンストラクター内のフィールド
+
+|LE_ArgumentNullException_5
+|RecordListControl コンストラクター内の dataPresenter
+
+|LE_ArgumentNullException_6
+|CustomFilterSelectionControl の ExecuteCommandImpl メソッドのコマンド
+
+|LE_CannotPerformAutomationOperation
+|この操作を実行できません。
+
+|LE_DuplicateSummaryDefinitionKey
+|指定されたキー '{0}' を持つ集計はコレクションで既に存在します。
+
+|LE_EditorStyleTargetTypeMissingOrInvalid
+|FieldSettings.EditorStyle プロパティに設定された Style の不明または無効な TargetType。
+
+|LE_InvalidCustomizationRootElement
+|LoadCustomizations で無効なルート要素があります。
+
+|LE_InvalidMoveToPagePosition
+|TabularReportViewPanel の MoveToPosition メソッドで無効な PagePosition '{0}' があります。
+
+|LE_InvalidOperationException_1
+|セルがアクティブ化されていません。
+
+|LE_InvalidOperationException_10
+|FieldLayout は、他の DataPresenterBase へ移動できません。
+
+|LE_InvalidOperationException_11
+|GridViewPanel の RecordListControl は見つかりませんでした。
+
+|LE_InvalidOperationException_12
+|GroupByArea.StyleVersionNumber PropertyInvalidatedCallback 内で無効なターゲットです。
+
+|LE_InvalidOperationException_13
+|OnToggleExpandedState 内での無効なターゲット。
+
+|LE_InvalidOperationException_14
+|レコードの固定状態を変更できません。 {0}
+
+|LE_InvalidOperationException_15
+|表示の GetContainerForRecordPresenter メソッドは、無効なコンテナーを返しました。コンテナーは、ContentControl または、implement IRecordPresenterContainer のどちらかに基づいている必要があります。
+
+|LE_InvalidOperationException_16
+|RecordPresenterContainer.RecordPresenter の RecordPresenter コンテナの実装は、RecordPresenter を返しませんでした。カスタムビューを実装する場合は、View の GetContainerForRecordPresenter によって返されるコンテナが、派生されていることを確認してください。
+
+|LE_InvalidOperationException_17
+|レコードを選択できません。SelectionType の設定が無効です。
+
+|LE_InvalidOperationException_18
+|SelectionType が Single または SingleAutoDrag に設定されている場合、1 つ以上の行を選択することはできません。
+
+|LE_InvalidOperationException_19
+|列を選択できません。SelectionType がありません。
+
+|LE_InvalidOperationException_2
+|セルは、編集モードにできません。
+
+|LE_InvalidOperationException_20
+|列を選択できません。SelectionType の設定が無効です。
+
+|LE_InvalidOperationException_21
+|SelectionType が Single または SingleAutoDrag に設定されている場合、1 つ以上のセルを選択することはできません。
+
+|LE_InvalidOperationException_22
+|セルを選択できません。SelectionType がありません。
+
+|LE_InvalidOperationException_23
+|SelectionType が Single または SingleAutoDrag に設定されている場合、1 つ以上の行を選択することはできません。
+
+|LE_InvalidOperationException_24
+|フィールドを選択できません。SelectionType がありません。
+
+|LE_InvalidOperationException_25
+|列挙体は、開始されていません。
+
+|LE_InvalidOperationException_26
+|列挙体は、終了しました。
+
+|LE_InvalidOperationException_26B
+|UnboundField の Binding と {0} プロパティは相互に排他的です。両方の設定は指定できません。
+
+|LE_InvalidOperationException_27
+|1 つの RecordFilter オブジェクトを複数の RecordFilterCollection に追加できません。
+
+|LE_InvalidOperationException_28
+|ルート レコード マネージャーの RecordFilter は廃止されました。代わりに FieldLayout の RecordFilter を使用してください。
+
+|LE_InvalidOperationException_3
+|'{0}' は、表示へスクロールできません。
+
+|LE_InvalidOperationException_4
+|SelectionStrategy が null です。
+
+|LE_InvalidOperationException_5
+|DataPresenterBase は、初期化されていません。
+
+|LE_InvalidOperationException_6
+|UnboundField: {0} の CellValuePresenter の Value プロパティをバインドする際に例外が発生しました。
+
+|LE_InvalidOperationException_7
+|DataItems コレクションを介して、明示的に追加された項目のある DataPresenter で DataSource を設定できません。
+
+|LE_InvalidOperationException_8
+|DataSource にバインドされた DataPresenter 項目を追加できません。
+
+|LE_InvalidOperationException_9
+|フィールドは、他のコレクションへ移動できません。
+
+|LE_LoadCustomizationInProgress
+|カスタマイズを読み込んでいます。
+
+|LE_MismatchedFieldInRecordFilter
+|ShowCustomFilterSelectionControl メソッドに渡された RecordFilter は別の FieldLayout にある Field ({0}) を参照します。
+
+|LE_MissingField
+|Field '{0}' はフィールド コレクションに存在しません。
+
+|LE_NotInFieldLayoutFields
+|フィールドを FieldLayout の Field コレクションに追加する必要があります。
+
+|LE_NotSupportedException_1
+|メソッドはサポートされていません。このコレクションは読み取り専用です。
+
+|LE_NotSupportedException_10
+|このメソッドまたは操作はサポートされていません。
+
+|LE_NotSupportedException_11
+|AllocateNewRecord はサポートされていません。
+
+|LE_NotSupportedException_12
+|GroupByRecords は、このコレクションでサポートされていません。
+
+|LE_NotSupportedException_13
+|クリア操作はサポートされていません。
+
+|LE_NotSupportedException_14
+|XamDataGrid は、その Dispatcher スレッド以外のスレッドから DataSource の (ListChangedType.ItemChange 以外の) 変更をサポートしません。
+
+|LE_NotSupportedException_2
+|CellPresenter.IsFieldSelected を設定できません。
+
+|LE_NotSupportedException_3
+|CellValuePresenter.IsFieldSelected を設定できません。
+
+|LE_NotSupportedException_4
+|{2} の名前は {0} '{1}' だけで、{3} にはできません。
+
+|LE_NotSupportedException_5
+|強制的に編集モードの終了をキャンセルできません。
+
+|LE_NotSupportedException_6
+|ISparseArrayItem.GetOwnerData を呼び出すことができません。
+
+|LE_NotSupportedException_7
+|ISparseArrayItem.SetOwnerData を呼び出すことができません。
+
+|LE_NotSupportedException_8
+|フィールド名 {0} はデータソース {1} で見つかりませんでした。
+
+|LE_NotSupportedException_9
+|DataRecordCellAreaGridTemplate はビジュアル ツリーとしてグリッドが必要です。
+
+|LE_NotSupportedInExpress
+|{0} は、Express バージョンではサポートされていません。
+
+|LE_SetDataSourceDuringExport
+|DataSource プロパティは、エクスポートに使用されるクローン DataPresenter に割り当てられません。
+
+|LE_SummaryDefinitionAlreadyInCollection
+|SummaryDefinition '{0}' は既に SummaryDefinitionCollection に属しています。SummaryDefinition を複数 SummaryDefinitionCollection に追加できません。
+
+|LE_ValueCannotBeNegative
+|値は 0 以上に設定する必要があります。現在の値 = {0}
+
+|LE_ValueMustBePositive
+|値は 0 よりも大きい値に設定する必要があります。現在の値 = {0}
+
+|LE_ValueProperty_InvalidIndex
+|セル値を更新できません。項目が含まれるリストに既存しません。
+
+|LE_ValueProperty_ListIsReadOnly
+|セル値を更新できません。含まれるリストが読み取り専用です。
+
+|Outlook_GroupByMode_Description_BeyondNextMonth
+|翌月以降
+
+|Outlook_GroupByMode_Description_DayOfWeekFormatString
+|{0:dddd}
+
+|Outlook_GroupByMode_Description_EarlierThisMonth
+|今月上旬
+
+|Outlook_GroupByMode_Description_LastMonth
+|先月
+
+|Outlook_GroupByMode_Description_LastWeek
+|先週
+
+|Outlook_GroupByMode_Description_LaterThisMonth
+|今月下旬
+
+|Outlook_GroupByMode_Description_NextMonth
+|翌月
+
+|Outlook_GroupByMode_Description_NextWeek
+|翌週
+
+|Outlook_GroupByMode_Description_None
+|なし
+
+|Outlook_GroupByMode_Description_Older
+|2 カ月前以前
+
+|Outlook_GroupByMode_Description_ThreeWeeksAgo
+|3 週間前
+
+|Outlook_GroupByMode_Description_ThreeWeeksAway
+|3 週間後
+
+|Outlook_GroupByMode_Description_Today
+|Today
+
+|Outlook_GroupByMode_Description_TwoWeeksAgo
+|2 週間前
+
+|Outlook_GroupByMode_Description_TwoWeeksAway
+|2 週間後
+
+|Outlook_GroupByMode_Description_Yesterday
+|昨日
+
+|RecordExportStatus_CancelExportToolTip
+|エクスポートをキャンセルします。
+
+|RecordExportStatus_Message_Exporting
+|'{0}' へエクスポート - {1} レコードが処理されました
+
+|RecordExportStatus_Message_Initializing
+|'{0}' へエクスポート - 初期化しています
+
+|RecordExportStatus_Message_Pending
+|'{0}' へエクスポート - 保留中
+
+|RecordFilterTreeItem_AddToFilter
+|現在の選択をフィルターに追加
+
+|RecordFilterTreeItem_SelectAll
+|(すべて選択)
+
+|RecordFilterTreeItem_SelectAllSearch
+|(検索結果をすべて選択)
+
+|RecordFilterTreeNoSearchMatches
+|一致する項目はありませんでした。
+
+|RecordFilterTreeSearchScope_All
+|(すべて)
+
+|RecordFilterTreeSearchScope_Day
+|日付
+
+|RecordFilterTreeSearchScope_Hour
+|時
+
+|RecordFilterTreeSearchScope_Minute
+|分
+
+|RecordFilterTreeSearchScope_Month
+|月
+
+|RecordFilterTreeSearchScope_Second
+|秒
+
+|RecordFilterTreeSearchScope_Year
+|年
+
+|RecordFilterTreeSearchTextPrompt
+|検索
+
+|RecordFilterTreeSearchTextPromptScoped
+|{0} の検索
+
+|SR_FilterDropDownItem_All
+|(すべて)
+
+|SR_FilterDropDownItem_Custom
+|(カスタム)
+
+|SummaryCalculator_Average_Description
+|平均を計算します。
+
+|SummaryCalculator_Average_Name
+|平均値
+
+|SummaryCalculator_Count_Description
+|空でない値の数を計算します。
+
+|SummaryCalculator_Count_Name
+|カウント
+
+|SummaryCalculator_Maximum_Description
+|最大値を計算します
+
+|SummaryCalculator_Maximum_Name
+|最大
+
+|SummaryCalculator_Minimum_Description
+|最小値を計算します
+
+|SummaryCalculator_Minimum_Name
+|最小
+
+|SummaryCalculator_Sum_Description
+|合計を計算します
+
+|SummaryCalculator_Sum_Name
+|合計
+
+|SummarySelectionControl_None_Entry_Text
+|なし
+
+|SummarySelectionControl_None_Entry_Tooltip
+|既存の計算を削除します。
+
+|UIOperation_ClearCellContents
+|セル コンテンツを削除しています
+
+|UIOperation_DeleteRecord
+|レコードを削除しています
+
+|UIOperation_Edit
+|編集
+
+|UIOperation_FieldAutoSizing
+|サイズ変更
+
+|UIOperation_FieldFixing
+|フィールドの固定/固定解除
+
+|UIOperation_FieldGrouping
+|グループ化/グループ化解除
+
+|UIOperation_FieldMoving
+|フィールドの移動
+
+|UIOperation_FieldResizing
+|サイズ変更
+
+|UIOperation_FieldSorting
+|並べ替え
+
+|UIOperation_FieldSummaries
+|集計の変更
+
+|UIOperation_FieldVisibility
+|フィールドの表示/非表示
+
+|UIOperation_Paste
+|貼り付け
+
+|UIOperation_RecordExpandCollapse
+|展開/縮小
+
+|UIOperation_RecordFiltering
+|フィルターの変更
+
+|UIOperation_RecordFixing
+|レコードの固定/固定解除
+
+|UIOperation_RecordResizing
+|サイズ変更
+
+|UIOperation_Undo
+|元に戻す/やり直し
+
+|UnknownTypeName
+|{1} で TreatAsTypeName '{0}' を解決できません
+
+|====

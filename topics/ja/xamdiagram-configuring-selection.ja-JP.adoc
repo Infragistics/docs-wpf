@@ -1,0 +1,255 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-selection",
+    "tags": ["Charting","How Do I","Selection"],
+    "controlName": ["xamDiagram"],
+    "guid": "546f8907-dd3c-49b9-b203-a1b85f08c276",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:40:45.6562673Z"
+}
+|metadata|
+////
+
+= 選択の構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールでダイアグラムの複数の項目の選択を有効または無効にする方法、およびプログラムによって選択を実行する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを {PlatformName} アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+*  *<<_Ref389311954,概要>>*
+
+** <<_Ref386534590,ダイアグラム項目の選択の構成の概要>>
+** <<_DiagramItemsSelectionConfigurationSummaryChart,ダイアグラム項目の選択の構成の概要表>>
+
+*  *<<_Ref388956251,選択モードの構成>>*
+
+** <<_Ref385408401,概要>>
+** <<_DiagramItemsSelectionInteractionsRefChart,ダイアグラムの項目選択インタラクションのリファレンス表>>
+** <<_PropertySettings,プロパティ設定>>
+
+*  *<<_Ref389311986,プログラムによる項目の選択 / 選択解除>>*
+
+** <<_Ref389311991,概要>>
+** <<_Ref389311996,プロパティ設定>>
+** <<_Ref389312001,例>>
+
+*  *<<_Ref385408430,関連コンテンツ>>*
+
+** <<_Ref385408435,トピック>>
+
+[[_Ref389311954]]
+== 概要
+
+[[_Ref386534590]]
+
+=== ダイアグラム項目の選択の構成の概要
+
+_xamDiagram_   コントロールでは、ダイアグラム領域にあるダイアグラムの項目をプログラムによって選択できるようにする機能が提供されています。使用できる選択機能には、「Single」、「Multiple」、「None」があり、いずれもプロパティの設定で構成できます。デフォルトでは、ダイアグラムの複数の項目の選択が有効になっています。
+
+ダイアグラム項目を選択するには、マウスの左ボタンをクリックする、またはすべての目的の項目が破線で縁取りした [選択] ツールの境界線内に収まるまで、ダイアグラム上でマウスを移動させながらマウスの左ボタンを押し続け、[選択] ツールを描画します。(詳細は、 link:xamdiagram-user-interactions-configuration-overview.html#_Ref391566819[ダイアグラムの項目のインタラクションと操作性]を参照してください。)
+
+ダイアグラム コントロールのコンテキストでダイアグラムの項目を選択することは、項目のレンダリングや構成の際に、項目や項目のグループを強調表示する (項目を破線で縁取りした四角形で囲む) 上で役立ちます。これは、オプション ペインを使用、またはコードを使用して実行できます。_xamDiagram_   コントロールの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selectionmode.html[SelectionMode] プロパティで使用する特定のタイプの選択を設定し、ダイアグラムの項目選択の動作を構成します。プロパティのデフォルト設定は、複数要素の選択です (`SelectionMode = "Multiple"`)。
+
+ダイアグラムの項目の選択状態は、ユーザー インタラクションによる選択機能とは別に実装されるプロパティの設定 (link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~isselected.html[DiagramItem.IsSelected]) を使用してプログラムにより変更できます。
+
+image::images/xamDiagram_Configuring_Selection_1.png[]
+
+ダイアグラム項目の選択は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selecteditems.html[SelectedItems] コレクションを事前設定し、このコレクションを変更するたびに、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selectionchanged_ev.html[SelectionChanged] イベントを発生させメンバーに対してカスタム ロジックを適用できるようにします。たとえば、プログラムによるダイアグラムの項目の追加や削除などの操作ができます。データ バインディングの場合、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selecteddataitems.html[SelectedDataItems] コレクションは link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selecteditems.html[SelectedItems] と同期され、選択したダイアグラム項目に対応するデータ項目を含みます。
+
+[[_DiagramItemsSelectionConfigurationSummaryChart]]
+
+=== ダイアグラム項目の選択の構成の概要表
+
+以下の表は、ダイアグラムの項目選択の構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+選択モード
+|複数のダイアグラム項目を同時に選択します。
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selectionmode.html[SelectionMode]
+
+|====
+
+[[_Ref388552386]]
+[[_Ref388956251]]
+== 選択モードの構成
+
+[[_Ref385408401]]
+
+=== 概要
+
+ダイアグラムのスペースで選択できるダイアグラム項目の数を指定するには、コントロールの選択モードを構成します。デフォルト設定では、ダイアグラムで複数のダイアグラム項目が選択できるようになっています。項目数を 1 つに制限するには、`SelectionMode` プロパティの値を _「Single」_  に設定します。または、 _「None」_  に設定すると選択できなくなります。
+
+[[_DiagramItemsSelectionInteractionsRefChart]]
+
+=== ダイアグラムの項目選択インタラクションのリファレンス表
+
+以下の表では、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selectionmode.html[SelectionMode] プロパティの設定に対する  _xamDiagram_   コントロールのユーザー インタラクション機能を簡単に説明します。
+
+[options="header", cols="a,a,a"]
+|====
+|ユーザーのアクション|方法|`SelectionMode` プロパティの設定値:
+
+|ダイアグラムのスペースの 1 つの項目の選択
+|
+* マウス クリック 
+
+* [選択] ツール 
+
+|Single
+
+|複数のダイアグラム項目の選択
+|
+* ShiftまたはCtrl を押しながら、選択範囲に含める項目をクリックします。 
+
+* [選択] ツール 
+
+|_Multiple_
+
+|現在の選択範囲全体のクリア
+|[選択] ツールで選択された領域以外のダイアグラム領域をマウスでクリックします。
+|
+* _Single_ 
+
+* _Multiple_ 
+
+|特定のダイアグラム項目の複数選択 / 複数選択の解除
+|ShiftまたはCtrl を押しながら、選択範囲に含める項目をクリック、または選択範囲を解除する項目をクリックします。
+|_Multiple_
+
+|====
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ダイアグラムのスペースの 1 つの項目を選択する機能の構成
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selectionmode.html[SelectionMode]
+|_Single_
+
+|ダイアグラムのスペースの複数の項目を選択する機能の構成
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selectionmode.html[SelectionMode]
+| _Multiple_ 
+
+|ダイアグラムのスペースの複数の項目の選択禁止
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~selectionmode.html[SelectionMode]
+| _None_ 
+
+|====
+
+[[_Ref389311986]]
+== プログラムによる項目の選択 /選択解除
+
+[[_Ref389311991]]
+
+=== 概要
+
+_xamDiagram_   コントロールでは、プログラムによる項目の選択、および選択の解除ができます。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~isselected.html[IsSelected] プロパティの値で選択状態を構成し、項目を選択または選択解除します。
+
+[[_Ref389311996]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ダイアグラムの項目選択機能の有効化
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~isselected.html[IsSelected]
+| _True_ 
+
+|ダイアグラムの項目選択機能の無効化
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~isselected.html[IsSelected]
+| _False_ 
+
+|====
+
+[[_Ref389312001]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果のノードの選択状態の構成を示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~isselected.html[IsSelected]
+| _True_ 
+
+|====
+
+image::images/xamDiagram_Configuring_Selection_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="diagram"
+               Width="300"
+               Height="250"
+               Background="#F9F9F9">
+    <ig:DiagramNode x:Name="node0"
+                    Position="5,125"
+                    IsSelected=”True”/>
+</ig:XamDiagram>
+----
+
+[[_Ref385408430]]
+== 関連コンテンツ
+
+[[_Ref385408435]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-user-interactions-configuration-overview.html[ユーザー インタラクションの構成の概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールで実行されるユーザー インタラクションのすべてのタスクの概要を説明します。
+
+| link:xamdiagram-configuring-keyboard-shortcuts.html[キーボード ショートカットの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールが提供するコマンドを使用する方法、およびコマンドに関連付けられたキーボードのショートカットを変更する方法を説明します。
+
+|====

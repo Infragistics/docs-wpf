@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-crossfieldrecordfiltering",
+    "tags": ["Filtering"],
+    "controlName": ["xamDataPresenter"],
+    "guid": "3a68ef44-52d6-4314-bad7-c5fade64af8a",  
+    "buildFlags": [],
+    "createdOn": "2016-06-02T13:19:15.8764289Z"
+}
+|metadata|
+////
+
+= クロス フィールド レコード フィルタリング (xamDataPresenter)
+
+== 目的
+
+このトピックは、高度なデータ フィルタリング ルールおよびその間の論理接続を作成する方法を紹介します。
+
+== 前提条件
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-understanding-xamdatapresenter.html[xamDataPresenter について]
+|このトピックのグループは、 _xamDataPresenter_ コントロールの概要を提供します。
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、データ エンティティが表示されるフィールドのカスタム セットを定義する方法を説明します。
+
+| link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+|このトピックは、フィルタリング機能の概要を説明します。
+
+|====
+
+include::shared-crossfieldrecordfiltering.ja-JP.adoc[]

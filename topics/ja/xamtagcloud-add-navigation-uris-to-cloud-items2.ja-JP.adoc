@@ -1,0 +1,60 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtagcloud-add-navigation-uris-to-cloud-items2",
+    "controlName": ["xamTagCloud"],
+    "tags": ["How Do I","Navigation"],
+    "guid": "{8B9B5D6F-D5EF-42EE-8D67-0183E6587C9D}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5733657Z"
+}
+|metadata|
+////
+
+= ナビゲーション URI をクラウド項目に追加
+
+Uniform Resource Identifiers (URI) を xamTagCloud™ コントロールのクラウド項目に追加できます。これによってエンドユーザーは、クラウド項目をクリックして定義した URI にナビゲートできます。
+
+クラウド項目の URI を設定するには、以下のコードで示すように、 link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagclouditem.html[xamTagCloudItem] オブジェクトの NavigateUri プロパティを設定できます。
+
+*XAML の場合:*
+
+----
+<ig:XamTagCloud x:Name="xamTagCloud">
+   <ig:XamTagCloudItem Content = "Silverlight" Weight = "10" NavigateUri = "http://www.infragistics.com/products/silverlight/tag-cloud" />
+…
+</ig:XamTagCloud>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim cloudItemURI As New XamTagCloudItem
+cloudItemURI.Content = "Silverlight"
+cloudItemURI.Weight = 10
+cloudItemURI.NavigateUri = New Uri("http://www.infragistics.com/products/silverlight/tag-cloud")
+----
+
+*C# の場合:*
+
+----
+CloudItem uriCloudItem = new XamTagCloudItem ();
+uriCloudItem.Content = "Silverlight";
+uriCloudItem.Weight = 10;
+uriCloudItem.NavigateUri = new Uri("http://www.infragistics.com/products/silverlight/tag-cloud");
+----
+
+== 関連トピック
+
+link:xamtagcloud-add-cloud-items-to-xamtagcloud.html[クラウド項目を xamTagCloud に追加]
+
+link:xamtagcloud-add-spaces-between-cloud-items.html[クラウド項目の間にスペースを追加]
+
+link:xamtagcloud-xamtagcloud-events.html[xamTagCloud イベント]
+
+link:xamtagcloud-setting-minimum-and-maximum-scale-values.html[最小スケール値と最大スケール値の設定]
+
+link:xamtagcloud-smooth-scaling.html[スムーズ スケーリング]
+
+link:xamtagcloud-working-with-scalebreaks-collection.html[ScaleBreaks コレクションでの作業]

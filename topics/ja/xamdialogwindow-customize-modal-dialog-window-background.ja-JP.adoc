@@ -1,0 +1,94 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-customize-modal-dialog-window-background",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{DEBF02B3-CD4E-4C1E-B692-6FFCFC15DB6C}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.9751468Z"
+}
+|metadata|
+////
+
+= モーダル ダイアログ ウィンドウの背景のカスタマイズ
+
+モーダル ダイアログ ウィンドウは閉じられるまでアクティブ ウィンドウの状態を常に保持します。モーダル ダイアログ ウィンドウが開かれていると、ダイアログ ウィンドウが閉じられるまでエンドユーザーはアプリケーションのその他の部分を操作できません。
+
+ダイアログ ウィンドウが開かれていると、アプリケーションの残りの部分はグレー表示になります。ただし、この既定のスタイルは、xamDialogWindow コントロールの link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~modalbackground.html[ModalBackground]、link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~modalbackgroundopacity.html[ModalBackgroundOpacity] および link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~modalbackgroundeffect.html[ModalBackgroundEffect] プロパティの設定によって変更できます。
+
+以下のコードはこれらのモーダル ダイアログ プロパティを設定する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamDialogWindow x:Name="DialogWindow" Width="200" 
+       Height="200" Content="This is a sample dialog" 
+       IsModal="True"  
+       ModalBackground="Green" ModalBackgroundOpacity="0.8">
+      <ig:XamDialogWindow.ModalBackgroundEffect>
+         <BlurEffect Radius="10"/>
+      </ig:XamDialogWindow.ModalBackgroundEffect>
+   </ig:XamDialogWindow>    
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports System.Windows.Media.Effects
+...
+Dim modalBrush As New SolidColorBrush()
+modalBrush.Color = Colors.Green
+DialogWindow.ModalBackground = modalBrush
+DialogWindow.ModalBackgroundOpacity = 0.8
+
+Dim myBlurEffect As New BlurEffect()
+blurEffectModal.Radius = 10
+DialogWindow.ModalBackgroundEffect = blurEffectModal  
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using System.Windows.Media.Effects;
+...
+SolidColorBrush colorModal = new SolidColorBrush();
+colorModal.Color = Colors.Green;
+DialogWindow.ModalBackground = colorModal;
+DialogWindow.ModalBackgroundOpacity = 0.8;
+BlurEffect blurEffectModal = new BlurEffect();
+blurEffectModal.Radius = 10;
+DialogWindow.ModalBackgroundEffect = blurEffectModal;
+----
+
+image::images/SL_xamDialogWindow_Customize_Modal_Dialog_Window_Background_01.png[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+==== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

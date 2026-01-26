@@ -1,0 +1,176 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector-exchange",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "a2cf30a3-9b48-4c55-a9b0-ddc10a0a7e67",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.9143668Z"
+}
+|metadata|
+////
+
+= Exchange Data Connector を使用して xamSchedule を Exchange Server に接続
+
+このトピックは、xamSchedule コントロールを Exchange Server に接続するために使用されるコンポーネントである Exchange Data Connector の使用について紹介および説明します。
+
+トピックは以下のとおりです。
+
+* *概要*
+* *Exchange Data Connector の作成*
+* *Exchange Server への接続*
+* *更新の構成*
+* *Exchange Server から切断*
+* *関連トピック*
+
+== 概要
+
+xamSchedule コントロールは、Exchange Data Connector と呼ばれる非表示型コンポーネントを使用して Exchange Server に接続します。link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector.html[Exchange Data Connector] は、xamSchedule をユーザーのマシンと同じドメインに置かれている Exchange Server に接続します。Exchange Server に保存されているスケジュール データを表示および編集することもできます。
+
+== Exchange Data Connector の作成
+
+Exchange Data Connector の作成は簡単です。コード ビハインドでインスタンスを作成するか、XAML で宣言し、以下に示すように Data Manager に添付します。
+
+*XAML の場合:*
+
+----
+<ig:XamScheduleDataManager Name="dataManager">
+    <ig:XamScheduleDataManager.DataConnector>
+        <ig:ExchangeScheduleDataConnector Name="exchangeConnector" />
+    </ig:XamScheduleDataManager.DataConnector>
+</ig:XamScheduleDataManager>
+----
+
+*VB の場合:*
+
+----
+Dim connector As New ExchangeScheduleDataConnector()
+Dim dataManager As New XamScheduleDataManager()
+dataManager.DataConnector = connector
+----
+
+*C# の場合:*
+
+----
+ExchangeScheduleDataConnector connector = new ExchangeScheduleDataConnector();
+XamScheduleDataManager dataManager = new XamScheduleDataManager();
+dataManager.DataConnector = connector;
+----
+
+== Exchange Server への接続
+
+Exchange Server に接続するには次の手順に従います。
+
+[start=1]
+. *Exchange Server の URL を設定します。*
+
+link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangeserverconnectionsettings.html[ExchangeServerConnectionSettings] インスタンスを作成し、Exchange Server 接続 URL を link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangeserverconnectionsettings~url.html[Url] プロパティに設定します。
+[start=2]
+. *Exchange Server のバージョンを設定します。*
+
+link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangeserverconnectionsettings~requestedserverversion.html[RequestedServerVersion] プロパティに Exchange Server バージョンを設定します。ExchangeServerConnectionSettings インスタンスをコネクタの link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~serverconnectionsettings.html[ServerConnectionSettings] プロパティに設定します。
+[start=3]
+. *Exchange Server ユーザー資格情報を提供します。*
+
+コネクタの link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~users.html[Users] コレクションで有効な資格情報とともに link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangeuser.html[ExchangeUser] インスタンスを追加します。
+[start=4]
+. *接続メソッドを起動します。*
+
+コネクタの設定と  link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~connect.html[Connect] メソッドの起動の例:
+
+*VB の場合:*
+
+----
+Dim users As New List(Of ExchangeUser)()
+users.Add(New ExchangeUser("user-name", "user-password", "domain"))
+connector.Users = users
+connector.ServerConnectionSettings =_
+    New ExchangeServerConnectionSettings()
+connector.ServerConnectionSettings.RequestedServerVersion =_
+    ExchangeVersion.Exchange2007_SP1
+connector.ServerConnectionSettings.Url =_
+    New Uri("https://exchange.mydomain.local/exchange.asmx")
+connector.Connect()
+----
+
+*C# の場合:*
+
+----
+List<ExchangeUser> users = new List<ExchangeUser>();
+users.Add(new ExchangeUser("user-name", "user-password", "domain"));
+connector.Users = users;
+connector.ServerConnectionSettings = new ExchangeServerConnectionSettings();
+connector.ServerConnectionSettings.RequestedServerVersion =
+    ExchangeVersion.Exchange2007_SP1;
+connector.ServerConnectionSettings.Url =
+    new Uri("https://exchange.mydomain.local/exchange.asmx");
+connector.Connect();
+----
+
+[NOTE]
+====
+*注:*
+
+[start=1]
+. Connect メソッドの起動は必須ではありません。Exchange Data Connector は、すべての必要な情報が設定されると接続を開始します。ただし、 link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~disconnect.html[Disconnect] メソッドを使用して接続を閉じる場合、再接続するためには Connect メソッドを起動する必要があります。
+[start=2]
+. 本書の執筆時点では、以下の Exchange Data Servers がサポートされています:
+
+** Exchange 2007 SP1
+** Exchange 2010
+** Exchange 2010 SP1
+
+これらのサーバーは link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangeversion.html[ExchangeVersion] 列挙体の選択で使用できます。
+
+====
+
+[start=5]
+. *特定のユーザーのアクティビティを表示します。*
+
+Data Manager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuserid.html[CurrentUserId] プロパティを構成します。以下のように小文字でドメインとユーザー名を指定する必要があります:
+
+*C# の場合:*
+
+----
+dataManager.CurrentUserId = "domain\\user-name"
+----
+
+*C# の場合:*
+
+----
+dataManager.CurrentUserId = "domain\\user-name";
+----
+
+[NOTE]
+====
+*注:*
+
+ユーザーとカレンダーの選択についての詳細は、「 link:xamschedule-using-manager-logical-currentuser.html[CurrentUser の設定とコントロールの動作に対する影響]」トピックを参照してください。複数のリソース カレンダーのデータを取得する方法については、「 link:xamschedule-understanding-resources-calendars.html[リソースおよびカレンダーについて]」トピックも確認してください。
+====
+
+Exchange Server に正常に接続した後で、コネクタは入手可能なスケジュール情報を取得し、選択したユーザーのアクティビティは Data Manager に添付されたすべての xamSchedule ビューに表示されます。
+
+== 更新の構成
+
+情報は定期的に更新されます。以下のように、更新期間を構成するか、強制的に直ちにデータを更新するかのオプションがあります。
+
+* 更新期間を設定するには、 link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~pollinginterval.html[PollingInterval] プロパティを使用します。
+* 即時更新を強制するには、 link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~pollforchanges.html[PollForChanges] メソッドを使用します。
+
+これに加えて、 link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector~ispolling.html[IsPolling] と呼ばれるプロパティがあります。このプロパティを使用して、起動時に Exchange Server から実際にデータを取得したかどうかを判断することができます。
+
+== Exchange Server から切断
+
+Exchange Server から切断するには、Disconnect メソッドを起動するか、ServerConnectionsSettings プロパティをクリアします。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-using-connector-list.html[ListScheduleConnector]
+
+link:xamschedule-using-connector-wcf.html[WCFScheduleConnector]
+
+link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]

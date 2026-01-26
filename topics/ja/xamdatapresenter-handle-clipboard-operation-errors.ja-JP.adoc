@@ -1,0 +1,85 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-handle-clipboard-operation-errors",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Events"],
+    "guid": "{1A094DB3-5296-43C1-8444-1A393595C649}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2189969Z"
+}
+|metadata|
+////
+
+= クリップボード操作エラーの処理
+
+
+
+クリップボード操作中にエラーが発生する場合、DataPresenter コントロールはエラーを説明するダイアログ ボックスを表示します。貼り付け操作については、ダイアログ ボックスはエラーから回復するためのオプションも提供します。
+
+発生可能なエラーの数を制限するためには、クリップボード操作で以下の制限に注意してください。
+
+* *異なるタイプを混ぜて選択* - エンドユーザーは、クリップボード操作を実行する時に同じタイプの DataPresenter オブジェクトを選択する必要があります。たとえば、エンドユーザーはセル、レコード、またはフィールドのグループを選択できますが、これらのオブジェクトの組み合わせを選択できません。クリップボード操作の実行時、コードで DataPresenter オブジェクトを選択する場合にも同じ制限が適用されます。
+* *非矩形選択* - エンドユーザーは切り取りまたはコピー操作を実行する前にセルの矩形セットを選択する必要があります。ただし、選択されたセルは互いに隣接する必要はありません。たとえば、最初と 5 番目の両方のデータ レコードで同じ対応するフィールドを選択する限り、エンドユーザーは最初のデータ レコードと 5 番目のデータ レコードでセルを切り取りまたはコピーできます。
+* *列が不十分* - エンドユーザーは貼り付け操作の開始ポイントとしてセルを選択する必要があります。そうすれば、開始ポイント以降のフィールド数がクリップボードのフィールド数に調整されます。たとえば、DataPresenter コントロールに 3 つのフィールドがあり、エンドユーザーがすべての 3 つのフィールドをまたいでセルを選択する場合、貼り付け操作の開始ポイントとして最初のフィールドでセルを選択する必要があります。そうしなければ、DataPresenter コントロールは、データをクリップまたは貼り付け操作をキャンセルするためのオプションをエンドユーザーに提供するダイアログ ボックスを表示します。
+* *行が不十分* - このエラーは、クリップボードのレコード数に適用されることを除いて、前のエラーに似ています。
+
+クリップボード エラーの動作をカスタマイズするために link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~clipboardoperationerror_ev.html[ClipboardOperationError] イベントを処理できます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.clipboardoperationeventargs.html[ClipboardOperationErrorEventArgs] オブジェクトは、発生したエラーのタイプ、そしてその操作を続行できるかどうかをそれぞれ判断するために使用できる link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.clipboardoperationerroreventargs~error.html[Error] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.clipboardoperationerroreventargs~cancontinuewithremainingcells.html[CanContinueWithRemainingCells] プロパティを公開します。このエラーから回復できる場合、ClipboardOperationErrorEventArgs オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.clipboardoperationerroreventargs~action.html[Action] プロパティを ClipboardErrorAction 列挙値に設定して、デフォルトの正しい動作に変更できます。
+
+以下の例は、変換エラーがあって、貼り付け操作を続行する場合にダイアログ ボックスを抑制するためにクリップボード操作エラーを処理する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter 
+    Name="xamDataPresenter1" 
+    BindToSampleData="True" 
+    ClipboardOperationError="xamDataPresenter1_ClipboardOperationError">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AllowClipboardOperations="All" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter.Events
+Imports Infragistics.Windows.DataPresenter
+...
+Private Sub xamDataPresenter1_ClipboardOperationError(ByVal sender As Object, ByVal e As ClipboardOperationErrorEventArgs) 
+    If e.Error = ClipboardError.ConversionError AndAlso e.CanContinueWithRemainingCells Then 
+        e.DisplayErrorMessage = False 
+        e.Action = ClipboardErrorAction.Continue 
+    End If 
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter.Events;
+using Infragistics.Windows.DataPresenter;
+...
+private void xamDataPresenter1_ClipboardOperationError(object sender, ClipboardOperationErrorEventArgs e)
+{
+    if (e.Error == ClipboardError.ConversionError && e.CanContinueWithRemainingCells)
+    {
+        e.DisplayErrorMessage = false;
+        e.Action = ClipboardErrorAction.Continue;
+    }
+}
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-enable-clipboard-operations.html[クリップボード操作を有効にする]
+
+link:xamdatapresenter-perform-clipboard-operations.html[クリップボード操作の実行]
+
+link:xamdatapresenter-prevent-clipboard-operations-from-modifying-a-field.html[クリップボード操作でフィールドが変更されることを防止する]
+
+link:xamdatapresenter-prevent-the-addition-of-specific-formats-to-the-clipboard.html[クリップボードへの特定の形式の追加を防止する]

@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-control-the-virtualization-process",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Binding","Grids","Virtualization"],
+    "guid": "{E7C55A92-D28D-454A-BB66-DF4040F549E1}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9061996Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 仮想化プロセスの制御
+
+仮想化を行うには、ビュー ポートでセルのコントロールを作成するだけです。したがって、予期しない動作を回避するために、xamGrid コントロールのセルをカスタマイズするときはいくつかの点に注意する必要があります。
+
+最初に、セルに添付されたコンテンツ コントロールに直接アクセスしないようにすべきです。コンテンツ コントロールが存在しないからです。前に述べたように、コントロールは表示されるときに限り作成されます。したがって、セルの添付コンテンツ コントロールにアクセスするのはビューポートにあることが分かっている時に限定すべきです。xamGrid コントロールは link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellcontrolattached_ev.html[CellControlAttached] イベントを公開して、コントロールがセルに添付されたタイミングを知らせます。
+
+第 2 に、セルの外観をカスタマイズするためにスタイルを使用すべきです。UIElements はリサイクルされるため、セルの添付コンテンツ コントロールで外観関連プロパティを直接設定すると、予測せぬことが再現される場合があります。たとえば、セルの添付コンテンツ コントロールの Background プロパティを設定し、より多くのセルをスクロールして表示する場合、UIElement が再利用されるため、その他のセルに同じ色が表示される場合があります。ただし、何らかの理由でスタイルを設定できない場合、CellControlAttached イベントで添付コンテンツ コントロールのプロパティを設定し、コンテンツ コントロールを再利用すべきでないことをマークするために IsDirty プロパティを設定できます。
+
+以下のコードは、CellControlAttached イベントを処理して、セルの添付コンテンツ コントロールのプロパティを設定する方法を示します。Visual Basic の場合:
+
+*Visual Basic の場合:*
+
+----
+Private Sub xamGrid1_CellControlAttached(ByVal sender As System.Object, ByVal e As Infragistics.Controls.Grids.CellControlAttachedEventArgs)
+    If e.Cell.Column.Key = "ReorderLevel" Then
+        Dim product As Product = TryCast(e.Cell.Row.Data, Product)
+        If product.ReorderLevel = 0 Then
+                ' コントロールのプロパティを直接設定します。
+                e.Cell.Control.Background = New SolidColorBrush(Colors.Red)
+                ' コントロールを再利用すべきでないことのフラグを付けるために IsDirty プロパティを設定します。
+                e.IsDirty = True
+        End If
+    End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void xamGrid1_CellControlAttached(object sender, Infragistics.Controls.Grids.CellControlAttachedEventArgs e)
+{
+    if (e.Cell.Column.Key == "ReorderLevel")
+    {
+        Product product = e.Cell.Row.Data as Product;
+        if (product.ReorderLevel == 0)
+        {
+            // コントロールのプロパティを直接設定します。
+            e.Cell.Control.Background = new SolidColorBrush(Colors.Red);
+            // コントロールを再利用すべきでないことのフラグを付けるために IsDirty プロパティを設定します。
+            e.IsDirty = true;
+        }
+    }
+}
+----
+
+ifdef::sl,wpf[]
+image::images/sl_xamGrid_Control_the_Virtualization_Process_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Control_the_Virtualization_Process_01.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-virtualization.html[仮想化]

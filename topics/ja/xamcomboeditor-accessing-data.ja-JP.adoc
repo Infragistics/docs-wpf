@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-accessing-data",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Data Binding","Getting Started"],
+    "guid": "{955AEB48-DD99-412F-96D0-70CFEA0B152A}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0729781Z"
+}
+|metadata|
+////
+
+= データ アクセス
+
+データ バインドされたアプリケーションは至る所にあります。データがなければ、エンドユーザーは設定を保存、顧客の発注にアクセスするまたは電子メールをチェックすることさえできなくなります。アプリケーションの基本データに素早くまた効率的にアクセスできることは、すべての開発者にとって優先順位の高いことです。
+
+Microsoft® Access™ データベース、SQL サーバー、固有のカスタム オブジェクト、XML ファイルのいずれを使用するとしても、データ バインドされたアプリケーションにつきものの頭痛やフラストレーションを感じることなく、xamComboEditor™ コントロールにそれぞれを接続する方法を紹介します。このセクションは、xamComboEditor を任意のデータ ソースにバインドするために必要なすべての知識を提供します。
+
+以下のリンクをクリックして、xamComboEditor コントロールを使用してデータにアクセスする支援を特に行うために記述されたトピックを表示します。
+
+* link:xamcomboeditor-bind-xamcomboeditor-to-a-collection.html[xamComboEditor をコレクションにバインド]
+* link:xamcomboeditor-bind-xamcomboeditor-to-a-dataset.html[xamComboEditor を DataSet にバインド]
+* link:xamcomboeditor-bind-xamcomboeditor-to-an-xmldataprovider.html[xamComboEditor を XmlDataProvider にバインド]
+* link:xamcomboeditor-manually-add-items-to-xamcomboeditor.html[項目を xamComboEditor に手動で追加]
+* link:xamcomboeditor-handling-enums.html[列挙型データの処理 (xamComboEditor)]

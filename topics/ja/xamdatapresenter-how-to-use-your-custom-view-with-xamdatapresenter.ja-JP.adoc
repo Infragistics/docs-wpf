@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-how-to-use-your-custom-view-with-xamdatapresenter",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{D5FD45E5-367F-4D4F-8707-83341DF33829}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2309993Z"
+}
+|metadata|
+////
+
+= xamDataPresenter とカスタム ビューを使用する方法
+
+
+
+xamDataPresenter™ とカスタム ビューを使用するには、XamDataPresenter.View プロパティを View のインスタンスに設定するだけです。これは非常にシンプルです。
+
+開発者が Microsoft® Expression® Blend で xamDataPresenter を含むプロジェクトを編集しており、プロジェクトがカスタム ビューを含むアセンブリへの参照も含む場合には、開発者が Blend の [プロパティ] パネル (XamDataPresenter.View プロパティの入力内にある) で [新規] をクリックした時に、ダイアログ ボックスが開き、どの種類のビューを作成する必要があるかを尋ねます。組み込みの GridView と CarouselView に加えて、リストにはカスタム ビューの入力も含まれます。
+
+== 関連トピック
+
+link:xamdatapresenter-how-to-create-a-basic-custom-view.html[基本のカスタム ビューの作成方法]
+
+link:xamdatapresenter-services-provided-by-the-xamdatapresenter.html[XamDataPresenter によって提供されるサービス]
+
+link:xamdatapresenter-creating-the-custom-view-class-and-layout-panel.html[カスタム ビュー クラスとレイアウト パネルを作成]

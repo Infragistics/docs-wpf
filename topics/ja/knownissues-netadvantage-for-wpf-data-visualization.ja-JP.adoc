@@ -1,0 +1,21 @@
+﻿////
+
+|metadata|
+{
+    "name": "knownissues-netadvantage-for-wpf-data-visualization",
+    "controlName": [],
+    "tags": [],
+    "guid": "3a2c44a7-70e0-4e2f-838e-ff4ad0d08509",  
+    "buildFlags": [],
+    "createdOn": "2012-01-31T21:13:20.8023228Z"
+}
+|metadata|
+////
+
+= {ProductName} Data Visualization
+
+{ProductName} 製品を使用する時には、既知の問題と重大な変更点に注意してください。
+
+以下のリンクをクリックすると、既知の問題と重大な変更点を最初に紹介したさまざまなバージョンの {ProductName} のリストを参照できます。
+
+* link:breaking-changes-2011-volume-2.html[2011 Volume 2]

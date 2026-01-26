@@ -1,0 +1,81 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-using-xampivotgrid",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Getting Started","Grids"],
+    "guid": "{53FC1132-79A9-4522-BB8B-9BACDFAEC7A4}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.9493122Z"
+}
+|metadata|
+////
+
+= XamPivotGrid の使用
+
+=== 概要
+
+このセクションのトピックでは、xamPivotGrid™ のさまざまな機能を使用する方法について幅広い観点から説明します。
+
+=== トピック
+
+xamPivotGrid の使用方法に関する詳しい情報は以下のトピックで扱われています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-interaction-with-xampivotgrid.html[xamPivotGrid との相互作用]
+|このセクションのトピックでは、UI またはコードを通じて実行可能な、xamPivotGri コントロールとの主な相互作用について説明します。
+
+| link:xampivotgrid-filtering-and-sorting.html[フィルター処理と並べ替え]
+|xamPivotGridコントロールでは、データのフィルター処理と並べ替えのためのさまざまな機能が提供されています。このセクションには、これらの機能について説明したトピックが含まれています。
+
+| link:xampivotgrid-layout-and-formatting.html[レイアウトとフォーマット]
+|xamPivotGrid™ コントロールには、表示されるデータのレイアウトとフォーマットを指定するためのさまざまな方法があります。
+
+| link:xampivotgrid-editingdatacells.html[データ セルの編集]
+|このトピックは xamPivotGrid コントロール内でデータ セルの編集を有効化し、データ ソースを修正するために編集に関連するイベントを処理する方法を説明します。
+
+| link:xampivotgrid-handlingevents.html[イベントの処理]
+|このセクションは、xamPivotGrid™ コントロールのイベントの処理に関するタスク ベースの手順についての役立つ情報を提供します。
+
+| link:xampivotgrid-dataselector.html[DataSelector]
+|このトピックでは、xamPivotDataSelector™ コントロールの概要について説明しています。
+
+| link:xampivotgrid-field-chooser.html[フィールドの選択]
+|xamPivotGrid™ コントロールには、Field Chooser コントロールが組み込まれています。このコントロールによりユーザーは、行、列、フィルター、およびメジャーに追加する階層を素早く選択できます。このセクションのトピックでは、フィールド選択について詳しく説明します。
+
+| link:xampivotgrid-dataslicer.html[DataSlicer]
+|このトピックの目的は、フィルタリング機能の強化されたピボット グリッドの DataSlicer 機能を紹介することにあります。データ スライサにより、列、行およびフィルター領域で選択された階層をピボット グリッドの測定値と併せてフィルタリングできます。
+
+| link:xampivotgrid-integration-with-other-controls.html[他のコントロールとの統合]
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid_members.html[xamPivotGrid]、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector_members.html[xamPivotDataSelector]、およびデータ ソース ViewModels (link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource_members.html[FlatDataSource]、 link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource_members.html[XmlaDataSource] など) は、他の Infragistics コントロールと組み合わせて使用できます。
+
+| link:xampivotgrid-component-locking.html[コンポーネントのロック]
+|このトピックでは、xamPivotGrid™ のコンポーネント ロック機能と、それによって提供されるエンドユーザー機能の概要を説明しています。
+
+| link:xampivotgrid-calculated-measures.html[計算メジャー]
+|このトピックでは、xamPivotGrid™ メンバーを使用して計算を実行する方法について、コード例とともに説明しています。
+
+|====
+
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-understanding-xampivotgrid.html[xamPivotGrid の概要]
+|このセクションは xamPivotGrid コントロールの主要機能について説明します。
+
+| link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+|このトピックでは、xamPivotGrid コントロールを使用して作業を開始する方法について説明するため、このコントロールを {PlatformName} アプリケーションに追加するための手順を順を追って説明しています。コード例には、XAML およびプロシージャ コードのリストが含まれます。
+
+| link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データを xamPivotGrid にバインド]
+|このトピックでは、xamPivotGrid コントロールでサポートされるデータ ソースの概要について説明しています。
+
+|====

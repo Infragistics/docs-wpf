@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacarousel-sorting",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{5513DD3A-7AE6-4664-8913-43366B056716}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6668865Z"
+}
+|metadata|
+////
+
+= 並べ替え
+
+
+
+xamDataCarousel™ コントロールを使用してデータを並べ替えることに特化したトピックをご覧になるには、以下のリンクをクリックしてください。
+
+* link:xamdatapresenter-about-sorting.html[並べ替えについて]
+* link:xamdatapresenter-disable-sorting.html[並べ替えを無効にする]
+* link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[フィールドのプログラムによる並べ替えおよびグループ化]

@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-reporting-understanding-wpf-reporting",
+    "controlName": ["IG WPF Reporting"],
+    "tags": ["Reporting"],
+    "guid": "{4FF36DF3-0ED5-439E-9611-C128D9AF705C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.9187369Z"
+}
+|metadata|
+////
+
+= WPF レポーティング について
+
+
+
+WPF レポーティング エンジンを使用すると、XML Paper Specification (XPS) 形式で印刷またはエクスポートできるレポートを作成できます。また、WPF レポーティング エンジンは、印刷またはエクスポートする前にエンド ユーザーがレポートをプレビューできるようにする xamReportPreview™ コントロールも含んでいます。
+
+== レポート
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトは、レポートを作成、印刷、およびエクスポートできるようにするプロパティおよびメソッドを公開します。Report オブジェクト自体はコンテンツをホストしませんが、コンテンツのホストを行うセクションを含む空のドキュメントとして機能します。
+
+== レポート セクション
+
+各 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection.html[EmbeddedVisualReportSection] オブジェクトは、アプリケーションのビジュアル要素に対応するレポートのセクションを定義します。Report オブジェクトの link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~sections.html[Sections コレクション]にセクションを必要な数だけ追加できます。
+
+== 印刷プレビュー
+
+また、WPF レポーティング エンジンには、レポートのプレビューをエンド ユーザーに表示するために使用できる xamReportPreview コントロールも含まれています。
+
+image::images/WPF_Reporting_About_WPF_Reporting_01.png[]
+
+== 印刷とエクスポートについて
+
+Microsoft® Windows® Presentation Foundation の組み込み印刷サポートと同様に、WPF レポーティング エンジンは画面に描画されているとおりにビジュアル要素を印刷およびエクスポートします。さらに、WPF レポーティングエンジンは、アプリケーション側で中央揃えしなくても、ビジュアル要素をページ上で水平および垂直に中央揃えします。これらの規則の例外は、xamDataGrid™ コントロールです。
+
+xamDataGrid コントロールには、組み込みのページング ロジックがあり、WPF レポーティング エンジンが印刷やエクスポートに使用します。本質的には、WPF レポーティング エンジンは、xamDataGrid コントロールのコンテンツを別々のページに分割します。WPF レポーティング エンジンは自動的に xamDataGrid コントロールを改ページしますが、WPF レポーティング エンジンは階層内の子レコードを自動的に展開、印刷、エクスポートはしません。たとえば、定義済みの階層がある場合、WPF レポーティング エンジンは最初のフィールドレイアウトにあるすべてのレコードを印刷しますが、展開されている子レコードのみを印刷します。幸い、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.tabularreportview.html[TabularReportView] オブジェクトを DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~reportview.html[ReportView] プロパティと合わせて使用することで、DataPresenter 固有の印刷動作の多くを変更できます。
+
+== 関連トピック
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-using-wpf-reporting.html[WPF レポーティング の使用]

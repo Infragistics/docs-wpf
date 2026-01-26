@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-editing-the-carouselpanelitem-template",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["How Do I","Templating"],
+    "guid": "{5971B904-10C7-493E-882E-6988A0586328}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0717675Z"
+}
+|metadata|
+////
+
+= CarouselPanelItem テンプレートを編集
+
+ListBoxItem から派生した link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselpanelitem.html[CarouselPanelItem] は、xamCarouselPanel™ コントロール内に含まれる項目の選択可能なコンテナーです。xamCarouselPanel コントロールには、CarouselPanelItems のコレクションが含まれます。
+
+テンプレートは非常に複雑な場合があります。コントロールのテンプレートには特定のコントロールを描画するために必要なすべての設定が含まれます。
+
+これらの手順に従って、CarouselPanelItem テンプレートを修正します。xamCarouselListBox で各項目の周囲に境界線を配置します。このトピックは、 link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]のタスクを完了していることが前提となります。
+
+[start=1]
+. Border を作成して、BorderBrush を Tomato に、BorderThickness を 1 に設定します。リンク先の link:resources-editing-the-carouselpanelitem-template.html[スタイル テンプレート] 全体をプロジェクトにコピーすることができます。
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type igWindows:CarouselPanelItem}">
+        ...
+                <ScrollViewer ...>
+                        ...
+                                <Border x:Name="itemContentHolderBackground" 
+                                  Background="#00000000"  
+                                  BorderBrush="Tomato" BorderThickness="5"/>
+                        ...
+                </ScrollViewer ...>
+        ...
+</Style>
+----
+
+[start=2]
+. プロジェクトをビルドして実行します。透明な背景を持つ画像の周囲に赤の境界線が表示されます。
+
+image::images/xamCarouselPanel_Editing_the_CarouselPanelItem_Template_01.png[カスタム テンプレートを適用した xamcarouselpanel]

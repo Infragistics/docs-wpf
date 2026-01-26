@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using",
+    "controlName": ["xamSchedule"],
+    "tags": [],
+    "guid": "d7c1a3f7-f8f6-4cf4-ade2-9862a92bad76",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6503226Z"
+}
+|metadata|
+////
+
+= xamSchedule の使用
+
+このセクションは、xamSchedule コントロールの重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+link:xamschedule-using-connector-minimum.html[xamSchedule コンポーネントを使用するために最小限必要となる設定]
+
+link:xamschedule-using-connector.html[データ コネクター]
+
+link:xamschedule-using-manager.html[データ マネージャー]
+
+link:xamschedule-using-styling.html[スタイル設定]
+
+link:xamschedule-using-activities.html[アクティビティ]
+
+link:xamschedule-using-control.html[コントロール]
+
+link:xamschedule-using-enduserinteraction.html[エンドユーザーによるアクティビティの操作]
+
+link:xamschedule-using-activitydialogs.html[アクティビティ ダイアログ]
+
+link:xamschedule-using-timezone-support.html[xamSchedule での TimeZone のサポート]

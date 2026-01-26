@@ -1,0 +1,60 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-reporting-show-a-print-preview",
+    "controlName": ["IG WPF Reporting"],
+    "tags": ["Reporting"],
+    "guid": "{18C1CF1A-017F-4A27-B098-3304FD2A3511}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.9157363Z"
+}
+|metadata|
+////
+
+= 印刷プレビューの表示
+
+
+
+xamReportPreview™ コントロールを使用して、レポートの印刷プレビューをエンド ユーザーに表示できます。印刷プレビューを表示するには、次の 4 つのステップを行う必要があります。
+
+[start=1]
+. link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加し、レポートを作成します]。
+[start=2]
+. link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトを xamReportPreview コントロールをホストしている Window に渡します。
+
+このトピックでは、Report オブジェクトを xamReportPreview コントロールをホストしている Window に渡す点についての実装の詳細は説明していません。
+[start=3]
+. xamReportPreview の link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.xamreportpreview~generatepreview.html[GeneratePreview] メソッドを呼び出し、パラメーターとして Report オブジェクトに渡します。
+
+2 つのブール値パラメーターにより、プレビューを生成したときに、エンド ユーザーに印刷ダイアログとプロブレス バーが表示されるかどうかが決まります。
+
+以下のコード例は、印刷プレビューを表示する方法を示します。コード例は、report1 という Report オブジェクトと xamReportPreview1 という xamReportPreview コントロールをすでに持っていることを前提とします。
+
+*Visual Basic の場合:*
+
+----
+'印刷ダイアログはエンド ユーザーには表示されませんが、プログレス バーはエンド ユーザーに表示されます。
+xamReportPreview1.GeneratePreview(report1, False, True)
+----
+
+*C# の場合:*
+
+----
+//印刷ダイアログはエンド ユーザーには表示されませんが、プログレス バーはエンド ユーザーに表示されます。
+xamReportPreview1.GeneratePreview(report1, false, true);
+----
+
+== 関連トピック
+
+link:wpf-reporting-understanding-wpf-reporting.html[WPF レポーティング について]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-align-content-to-the-top-of-a-page.html[コンテンツをページの上側に揃える]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]

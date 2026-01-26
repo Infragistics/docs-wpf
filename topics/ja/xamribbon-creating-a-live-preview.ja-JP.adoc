@@ -1,0 +1,268 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-creating-a-live-preview",
+    "controlName": ["xamRibbon"],
+    "tags": ["Application Blocks","Data Presentation","How Do I","Selection"],
+    "guid": "{82D6BD53-75E4-4A97-8340-0D76143CC2E5}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1581847Z"
+}
+|metadata|
+////
+
+= ライブ プレビューを作成
+
+
+
+
+
+== 始める前に
+
+Microsoft® Office® 2007 の Gallery コントロールによって、Gallery の項目の上にマウスを移動する時に文書に行った変更をプレビューすることができます。この機能によって、項目を選択するまで効果の変更を適用せずに特定の項目が文書に与える効果を表示することができます。クリックせずに Gallery 項目からマウスを外に移動すると、文書は Gallery で現在選択されている項目に戻ります。
+
+== 達成すること
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.gallerytool~itemselected_ev.html[GalleryTool] の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.gallerytool~itemactivated_ev.html[ItemSelected] および link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.gallerytool.html[ItemActivated] イベントを処理して、TextBox コントロールの背景色を変更するライブ プレビューを作成します。
+
+== 次の手順を実行します
+
+[start=1]
+. GalleryTool を xamRibbon™ に追加し、galleryTool1 と名前を付けます。
+
+.. ItemSelected イベントの GalleryTool にイベント ハンドラを接続します。
+
+ItemSelected イベントは、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.galleryitem.html[GalleryItem] をクリックすると必ず発生します。GalleryTool は一度にひとつの選択された項目を持つことができます。
+.. ItemActivated イベントの GalleryTool にイベント ハンドラを接続します。
+
+ItemActivated イベントは、GalleryItem の上にマウスを移動すると必ず発生します。link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.gallerytool~activationinitialactiondelay.html[ActivationInitialActionDelay] プロパティおよび link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.gallerytool~activationactiondelay.html[ActivationActionDelay] プロパティを設定して、ユーザー アクションと ItemActivated イベントを発生させる GalleryTool の間のタイミングを制御することができます。
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:MenuTool ShouldDisplayPreview="True">
+        <igRibbon:GalleryTool ItemSelected="GalleryTool_ItemSelected" 
+          ItemActivated="GalleryTool_ItemActivated">
+        </igRibbon:GalleryTool>
+</igRibbon:MenuTool>
+...
+----
+
+[start=2]
+. GalleryItems を GalleryTool に追加します。
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:GalleryTool.Items>
+        <!--デフォルトの GalleryItem 選択-->
+        <igRibbon:GalleryItem IsSelected="True" Key="itemWhite" 
+          Image="imageWhite.png" />
+        <igRibbon:GalleryItem Key="itemRed" Image="imageRed.png" />
+        <igRibbon:GalleryItem Key="itemBlue" Image="imageBlue.png" />
+        <igRibbon:GalleryItem Key="itemGreen" Image="imageGreen.png" />
+</igRibbon:GalleryTool.Items>
+...
+----
+
+[start=3]
+. .NET Framework TextBox コントロールを Window に追加し、textBox1 と名前を付けます。
+
+*XAML の場合:*
+
+----
+...
+<TextBox Text="Hello World" Name="textBox1" />
+...
+----
+
+[start=4]
+. コード ビハインドに using/imports のディレクティブを配置します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+----
+
+[start=5]
+. パラメーターとして GalleryItem を受け付け、Brush オブジェクトを返す GetBackground と名前が付けられたヘルパー メソッドを作成します。ItemSelected および ItemActivated イベント ハンドラでこのメソッドを呼び出します。
+
+*Visual Basic の場合:*
+
+----
+...
+Private Function GetBackground(ByVal item As GalleryItem) As Brush 
+        Select Case item.Key 
+                Case "RedItem" 
+                        Return Brushes.Red 
+                Case "BlueItem" 
+                        Return Brushes.Blue 
+                Case "GreenItem" 
+                        Return Brushes.Green 
+                Case "WhiteItem" 
+                        Return Brushes.White 
+        End Select
+Return Nothing 
+End Function 
+...
+----
+
+*C# の場合:*
+
+----
+...
+private Brush GetBackground(GalleryItem item)
+{
+        switch (item.Key)
+        {
+                case "RedItem":
+                        return Brushes.Red;
+                case "BlueItem":
+                        return Brushes.Blue;
+                case "GreenItem":
+                        return Brushes.Green;
+                case "WhiteItem":
+                        return Brushes.White;
+        }
+        return null;
+}
+...
+----
+
+[start=6]
+. メソッド スタブが未だ作成されていない場合、GalleryTool の ItemSelected イベントを処理するためのメソッドを作成します。
+
+ItemSelected イベントは、GalleryItem をクリックする必ず発生します。GalleryItem の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.galleryitem~isselected.html[IsSelected] プロパティまたは GalleryTool の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.gallerytool~selecteditem.html[SelectedItem] プロパティをプログラムで設定すると、このイベントも発生します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub GalleryTool_ItemSelected(ByVal sender As Object, _
+  ByVal e As GalleryItemEventArgs) 
+        'TODO: TextBox コントロールの Background プロパティを
+        ' GetBackground メソッドの戻り値に設定します。
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void GalleryTool_ItemSelected(object sender, 
+  GalleryItemEventArgs e)
+{
+        //TODO: TextBox コントロールの Background プロパティを
+        // GetBackground メソッドの戻り値に設定します。
+}
+----
+
+[start=7]
+. ItemSelected イベント ハンドラでは、TextBox コントロールの Background プロパティを GetBackground メソッドの戻り値に設定します。
+
+エンド ユーザーが GalleryTool で選択したら、異なる GalleryItem を選択せずに選択を解除する方法はありません。この動作の問題は、エンド ユーザーが最初に選択した後は、選択した GalleryItem が常に存在する点です。選択を解除できる唯一の方法は、GalleryTool の SelectedItem プロパティを null にプログラムで設定することです。
+
+*Visual Basic の場合:*
+
+----
+...
+Me.TextBox1.Background = GetBackground(e.Item)
+...
+----
+
+*C# の場合:*
+
+----
+...
+this.TextBox1.Background = GetBackground(e.Item);
+...
+----
+
+[start=8]
+. メソッド スタブが未だ作成されていない場合、GalleryTool の ItemActivated イベントを処理するためのメソッドを作成します。
+
+ItemActivated イベントは、GalleryItem にマウスを移動すると必ず発生します。GalleryTool からマウスを移動することによって GalleryItem を非アクティブ化すると、このイベントが再度発生して、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.events.galleryitemeventargs~item.html[GalleryItemEventArgs] オブジェクトの link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.events.galleryitemeventargs.html[Item] プロパティが null になります。Item プロパティが null の場合、TextBox の Background プロパティをユーザーが最初に選択した GalleryItem に戻す必要があります。
+
+*Visual Basic の場合:*
+
+----
+...
+Private Sub GalleryTool_ItemActivated(ByVal sender As Object, _
+  ByVal e As GalleryItemEventArgs) 
+        'TODO: TextBox コントロールの Background プロパティを
+        ' GetBackground メソッドの戻り値に設定します。
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+...
+private void GalleryTool_ItemActivated(object sender, 
+  GalleryItemEventArgs e)
+{
+        //TODO: TextBox コントロールの Background プロパティを
+        // GetBackground メソッドの戻り値に設定します。
+}
+...
+----
+
+[start=9]
+. ItemActivated イベント ハンドラでは、GalleryItemEventArgs オブジェクトの Item プロパティが null かどうかをチェックします。Item プロパティが null の場合、GetBackground メソッドを呼び出し、GalleryTool の SelectedItem プロパティを渡すことができます。それ以外は、GetBackground メソッドを呼び出し、GalleryItemEventArgs オブジェクトの Item プロパティを渡します。
+
+この例では、デフォルトの GalleryItem が手順 2 で選択されました。したがって、SelectedItem プロパティが常に値を持つと想定しても安全です。GalleryItem をプログラムで選択解除する場合、 SelectedItem プロパティを GetBackground メソッドに渡す前に null 値をチェックすることを確認してください。
+
+*Visual Basic の場合:*
+
+----
+...
+If e.Item is Nothing
+        ' Item プロパティが null の場合、GetBackground メソッドを呼び出し
+        ' GalleryTool の SelectedItem プロパティを渡します。
+        Me.TextBox1.Background = GetBackground(Me.galleryTool1.SelectedItem)
+Else
+        ' それ以外は、単に GetBackground メソッドを呼び出し
+        ' Item プロパティを渡します。
+        Me.TextBox1.Background = GetBackground(e.Item)
+End If
+...
+----
+
+*C# の場合:*
+
+----
+...
+if (e.Item == null)
+{
+        // Item プロパティが null の場合、GetBackground メソッドを呼び出し
+        // GalleryTool の SelectedItem プロパティを渡します。
+        this.TextBox1.Background = GetBackground(this.galleryTool1.SelectedItem);
+}
+else
+{
+        // それ以外は、単に GetBackground メソッドを呼び出し
+        // Item プロパティを渡します。
+        this.TextBox1.Background = GetBackground(e.Item);
+}
+...
+----
+
+[start=10]
+. プロジェクトを実行します。GalleryItem 上にマウスを移動すると TextBox コントロールの背景の色が変わります。他の GalleryItems の上にマウスを移動すると、TextBox の背景色はそれに伴って変わります。GalleryTool からマウスを移動すると、TextBox の背景は選択した GalleryItem に戻ります。
+
+== 関連トピック
+
+link:xamribbon-add-a-galleryitem-to-a-gallerytool.html[GalleryItem を GalleryTool に追加]
+
+link:xamribbon-add-a-gallerytool-to-a-ribbongroup.html[GalleryTool を RibbonGroup に追加]
+
+link:xamribbon-create-groups-of-galleryitems.html[GalleryItems のグループを作成]

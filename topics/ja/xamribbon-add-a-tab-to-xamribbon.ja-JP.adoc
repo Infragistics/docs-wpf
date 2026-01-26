@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-add-a-tab-to-xamribbon",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","Grouping","How Do I","Layouts","Navigation","Selection"],
+    "guid": "{44A839D9-96B3-4206-836A-6FBD16ED1D41}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1151761Z"
+}
+|metadata|
+////
+
+= タブを xamRibbon に追加
+
+
+
+
+
+タブは、アプリケーションのタスクの高レベルの概要をエンド ユーザーを提示することでアプリケーションを整理します。RibbonGroups をタブに追加して、さらに小さいツールに基づくグループにタスクを整理することができます。
+
+以下のコード例は、xamRibbon™ コントロールに 2 つのタブを追加してヘッダーを設定する方法を示します。
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:XamRibbon Name="xamRibbon1">
+    <igRibbon:XamRibbon.Tabs>
+        <igRibbon:RibbonTabItem Header="Home" />
+        <igRibbon:RibbonTabItem Header="Insert" />
+    </igRibbon:XamRibbon.Tabs>
+</igRibbon:XamRibbon>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+...
+Dim tab As RibbonTabItem
+tab = New RibbonTabItem()
+tab.Header = "Home"
+Me.xamRibbon1.Tabs.Add(tab)
+tab = New RibbonTabItem()
+tab.Header = "Insert"
+Me.xamRibbon1.Tabs.Add(tab)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+...
+RibbonTabItem tab;
+tab = new RibbonTabItem();
+tab.Header = "Home";
+this.xamRibbon1.Tabs.Add(tab);
+tab = new RibbonTabItem();
+tab.Header = "Insert";
+this.xamRibbon1.Tabs.Add(tab);
+...
+----
+
+== 関連トピック
+
+link:xamribbon-adding-xamribbon-to-your-application-.html[xamRibbon をアプリケーションに追加]
+
+link:xamribbon-add-a-contextual-tab-to-xamribbon.html[コンテキスト タブを xamRibbon に追加]

@@ -1,0 +1,98 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamslider-tooltips",
+    "controlName": ["xamSlider"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{BC688A4F-1211-44B9-A882-F558A148472E}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0863384Z"
+}
+|metadata|
+////
+
+= ツールチップ
+
+== 始める前に
+
+xamSlider コントロールにツールチップを表示できます。ツールチップによって、エンドユーザーはマウスをその上に移動すると常にスライダーのつまみの値を確認できます。xamSlider コントロールのツールチップも完全にカスタマイズ可能です。
+
+このトピックは、ページに xamSlider コントロールが追加済みであることを前提とします。詳細は、 link:xamslider-getting-started-with-xamslider.html[「xamSlider を使用した作業の開始」]トピックを参照してください。
+
+== 達成すること
+
+このトピックで以下の手順に従えば、スタイルされたツールチップが表示されます。
+
+== 次の手順を実行します
+
+[start=1]
+. link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamslidernumericthumb.html[xamSliderNumericThumb] オブジェクトの link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderthumbbase~tooltipvisibility.html[ToolTipVisibility] プロパティを Visible に設定します。
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderthumbbase~tooltiptemplate.html[ToolTipTemplate] プロパティのタグを xamSliderNumericThumb に追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamSliderNumericThumb Value="15" InteractionMode="Push" ToolTipVisibility="Visible">
+   <ig:XamSliderNumericThumb.ToolTipTemplate>
+      <!-- DataTemplate を追加します -->                
+   </ig:XamSliderNumericThumb.ToolTipTemplate>
+</ig:XamSliderNumericThumb>
+----
+
+[start=2]
+. DataTemplate を作成します。
+
+Grid パネルを DataTemplate に追加します。
+
+Rectangle を Grid パネルに追加します。
+
+以下のプロパティを Rectangle に設定します。
+
+** Fill - Blue
+** Opacity - 0.65
+
+*XAML の場合:*
+
+----
+<DataTemplate>
+   <Grid>
+      <Rectangle Fill="Blue" Opacity="0.65"/>
+      <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+         <!-- TextBlock を追加します -->                
+      </StackPanel>
+   </Grid>
+</DataTemplate>
+----
+
+[start=3]
+. TextBox コントロールを StackPanel コンテナーに追加します。以下のプロパティを設定します。
+
+** Text - {Binding}
+** Foreground - White
+
+*XAML の場合:*
+
+----
+<TextBlock Foreground="White" Text="{Binding}"/>
+----
+
+[start=4]
+. アプリケーションを保存して実行します。
+
+image::images/xamSlider_ToolTip_01.png[]
+
+== 関連トピック
+
+link:xamslider-interaction-modes.html[操作モード]
+
+link:xamslider-xamslider-thumbs.html[xamSlider につまみを追加]
+
+link:xamslider-xamslider-tick-marks.html[xamSlider の目盛]
+
+link:xamslider-value-tick-marks.html[目盛値]
+
+link:xamslider-retrieve-the-thumb-values.html[つまみの値の取得]
+
+link:xamslider-programmatically-add-or-remove-thumbs-at-runtime.html[プログラムによってランタイムでつまみを追加または削除]

@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "methods-and-properties-reference",
+    "controlName": ["IG Undo Redo Framework"],
+    "tags": ["Getting Started"],
+    "guid": "1e7c1eb2-658f-4ec4-ac5c-6c5c3ad7dcdb",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.2040649Z"
+}
+|metadata|
+////
+
+= Undo/Redo Framework メソッドおよびプロパティ参照
+
+=== 概要
+
+このセクションには、Infragistics Undo/Redo Framework™ のキー メソッドおよびプロパティに関する参照情報が含まれます。含まれるトピックは、主要なフレームワーク クラスの参照情報、および Undo/Redo API で実行したいタスクに基づいた参照情報を解説します。
+
+=== トピック
+
+Infragistics Undo/Redo Framework キー メソッドおよびプロパティについての情報は、以下のトピックで解説します。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:undo-redo-framework-methods-and-properties-reference-by-class.html[クラスによる Undo/Redo Framework メソッドおよびプロパティ参照]
+|このセクションには、Infragistics Undo/Redo Framework のキー クラス メソッドおよびプロパティに関する参照情報が含まれます。
+
+| link:undo-redo-framework-methods-and-properties-reference-by-task.html[タスクによる Undo/Redo Framework メソッドおよびプロパティ参照]
+|このセクションには、特定の元に戻す/やり直し機能を実装するために役に立つ Infragistics Undo/Redo Framework のキー メソッドおよびプロパティに関する参照情報が含まれます。
+
+|====

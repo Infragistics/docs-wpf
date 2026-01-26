@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-record-filtering2",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{23359443-0571-481B-8DE9-27B01B5F2AA3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3060143Z"
+}
+|metadata|
+////
+
+= レコード フィルタリング
+
+xamDataCarousel™ のレコード フィルタリングについての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+* link:xamdatapresenter-add-filter-conditions.html[フィルター条件の追加]
+* link:xamdatapresenter-crossfieldrecordfiltering.html[クロス フィールド レコード フィルタリング (xamDataPresenter)]
+* link:xamdatapresenter-enable-record-filtering.html[レコード フィルタリングを有効にする]
+* link:xamdatapresenter-enable-excelstyle-record-filtering.html[Excel スタイル レコード フィルタリングを有効にする]
+* link:xamdatapresenter-modify-the-list-of-operators.html[演算子のリストの修正]
+* link:xamdatapresenter-modify-the-look-of-filtered-records.html[フィルターされたレコードの外観を修正]

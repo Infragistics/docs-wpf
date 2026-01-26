@@ -1,0 +1,94 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-card-settings",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Layouts","Tips and Tricks"],
+    "guid": "{EC59D321-3A1D-4CBB-A96E-8AD3EBE220AD}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3600251Z"
+}
+|metadata|
+////
+
+= カード設定について
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardviewsettings.html[CardViewSettings] オブジェクトはカードのレイアウトと動作の変更を可能にするいくつかのプロパティを公開します。たとえば、カードの幅と高さ、カードの向き、カードのヘッダーの可視性などを設定できます。CardViewSettings オブジェクトが公開するよく使用されるプロパティのリストは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardviewsettings.html[API リファレンス ガイドの注釈セクション]を参照してください。
+
+CardViewSettings オブジェクトが公開するプロパティが xamDataCards™ コントロールでカードのレイアウトまたは動作にどのように影響するのかを理解すると、カード ビューで xamDataPresenter コントロールを使用して作業をする時に同じ知識を活用できます。カード ビューにおける xamDataCards と xamDataPresenter の唯一の違いは CardViewSettings オブジェクトにアクセスする方法です。
+
+xamDataCards コントロールを使用する際、xamDataCards link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatacards~viewsettings.html[ViewSettings] プロパティを通して CardViewSettings オブジェクトに直接アクセスできます。ただし、カード ビューで xamDataPresenter コントロールを使用する時には、xamDataPresenter の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatapresenter~view.html[View] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardview.html[CardView] オブジェクトのインスタンスに最初にキャストする必要があります。キャストに成功した後で、CardView オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardview~viewsettings.html[ViewSettings] プロパティを通して CardViewSettings オブジェクトにアクセスできます。
+
+以下の例のコードは同じ CardViewSettings プロパティを、ひとつは xamDataCards コントロールで、もうひとつは xamDataPresenter コントロールでカード表示で設定しています。
+
+*XAML の場合:*
+
+----
+<!--xamDataCards-->
+<igDP:XamDataCards Name="xamDataCards1">
+    <igDP:XamDataCards.ViewSettings>
+        <igDP:CardViewSettings ShouldCollapseEmptyCells="True" />
+    </igDP:XamDataCards.ViewSettings>
+</igDP:XamDataCards>
+<!--xamDataPresenter-->
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <!--View プロパティを設定しない場合、xamDataPresenter は自動的に GridView オブジェクトを使用します-->
+    <igDP:XamDataPresenter.View>
+        <igDP:CardView>
+            <igDP:CardView.ViewSettings>
+                <igDP:CardViewSettings ShouldCollapseEmptyCells="True" />
+            </igDP:CardView.ViewSettings>
+        </igDP:CardView>
+    </igDP:XamDataPresenter.View>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+'xamDataCards
+Me.xamDataCards1.ViewSettings.ShouldCollapseEmptyCells = True
+'xamDataPresenter
+Dim cardView1 As CardView = TryCast(Me.xamDataPresenter1.View, CardView)
+If cardView1 IsNot Nothing Then
+    cardView1.ViewSettings.ShouldCollapseEmptyCells = True
+End If
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+//xamDataCards
+this.xamDataCards1.ViewSettings.ShouldCollapseEmptyCells = true;
+//xamDataPresenter
+CardView cardView1 = this.xamDataPresenter1.View as CardView;
+if(cardView1 != null)
+{
+    cardView1.ViewSettings.ShouldCollapseEmptyCells = true;
+}
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-card-sizing.html[カード サイズについて]
+
+link:xamdatapresenter-about-repositioning-animations.html[リポジション アニメーションについて]
+
+link:xamdatapresenter-collapse-a-card.html[カードの縮小]
+
+link:xamdatapresenter-collapse-an-empty-cell.html[空のセルの縮小]
+
+link:xamdatapresenter-set-the-maximum-number-of-viewable-cards.html[表示可能なカードの最大数の設定]
+
+link:xamdatapresenter-set-the-space-between-cards.html[カード間のスペースの設定]
+
+link:xamdatapresenter-working-with-card-headers.html[カード ヘッダーでの作業]

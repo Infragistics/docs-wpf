@@ -1,0 +1,281 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-the-start-and-end-of-diagram-connections",
+    "tags": ["Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "a8c7dcb7-e126-486f-876e-b637bc4e9310",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:35:18.8015336Z"
+}
+|metadata|
+////
+
+= ダイアグラム接続の開始および終了の構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ でダイアグラム接続の始点および終点を構成する場合に使用する 2 つの方法について説明します。1 つは、接続先のノードを指定し、もう 1 つは、ダイアグラムのスペースに接続の始点と終点の座標を指定します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref388885767, 概要 >>
+
+** <<_Ref388553009,ダイアグラム スペースの座標系>>
+** <<_Ref388553014,接続の始点および終点の構成の概要>>
+** <<_Ref388553019,接続の始点および終点の構成の概要表>>
+
+* <<_Ref388553048, 接続の始点および終点の相対位置による構成 (開始ノードと終了ノードの指定) >>
+
+** <<_Ref388553055,概要>>
+** <<_PropertySettings,プロパティ設定>>
+** <<_Ref388553066,例>>
+
+* <<_Ref388553075, 接続の始点および終点の絶対位置による構成 (始点と終点の座標の指定) >>
+
+** <<_Ref388553084,概要>>
+** <<_Ref388553088,プロパティ設定>>
+** <<_Ref388553093,例>>
+
+* <<_Ref388553107, 関連コンテンツ >>
+
+** <<_Ref388553113,トピック>>
+
+[[_Ref388885767]]
+== 概要
+
+[[_Ref388553009]]
+
+=== ダイアグラム スペースの座標系
+
+include::xamdiagram-coordinate-system.ja-JP.adoc[]
+
+[[_Ref388553014]]
+
+=== 接続の始点および終点の構成の概要
+
+_xamDiagram_   コントロールでダイアグラム接続の始点および終点は、以下の 2 つの方法で構成されます。
+
+*  *相対*  - 接続するノード、すなわち開始ノードと終了ノードを指定します。
+
+この方法を使用する場合は、接続を開始ノードと終了ノードに関連付ける必要があります。この方法では、接続の始点と終点がこれらのノードによって制御され、ノードが移動すると自動的に接続が調整されます。
+*  *絶対*  - ダイアグラム上の接続の始点および終点の座標を指定します。
+
+接続の一端にノードを指定し、もう一端に座標を指定する方法もあります
+
+構成は、接続プロパティを介して前述のどちらかの方法で管理します。いずれの方法も、異なるプロパティのセットを使用します (<<_Ref388549185,接続の始点および終点の構成の概要表>>を参照)。以前の設定は最新のプロパティ構成でオーバーライドされます。
+
+[[_Ref388549185]]
+
+=== 接続の始点および終点の構成の概要表
+
+以下の表は、ダイアグラムの接続の開始および終了に関連する構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成アプローチ|詳細|プロパティ
+
+|<<_Ref388553048,相対>>
+|接続の始点および終点を、開始ノードと終了ノードを指定して構成します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnode.html[StartNode] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodekey.html[StartNodeName] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodeconnectionpointname.html[StartNodeConnectionPointName] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnode.html[EndNode] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodekey.html[EndNodeName] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodeconnectionpointname.html[EndNodeConnectionPointName] 
+
+|<<_Ref388553075,絶対>>
+|接続の始点および終点を、ダイアグラムのスペース上の始点と終点の座標を指定することで、接続の始点と終点を構成します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startposition.html[StartPosition] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endposition.html[EndPosition] 
+
+|====
+
+[[_Ref388553048]]
+== 接続の始点および終点の相対位置による構成 (開始ノードと終了ノードの指定)
+
+[[_Ref388553055]]
+
+=== 概要
+
+接続のいずれかの終点を link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode_members.html[DiagramNode] に関連付けると、終点はノードの位置に関連して配置されます。接続をノードに関連付けるには、その link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodekey.html[StartNodeKey] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodekey.html[EndNodeKey] プロパティをターゲット ノードの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~key.html[DiagramNode.Key] プロパティに設定された値に設定、またはその link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnode.html[StartNode] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnode.html[EndNode] プロパティをターゲット ノードに設定します。
+
+接続端のノードの指定に加え、ノードの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~connectionpoints.html[ConnectionPoints] コレクションの特定の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint_members.html[DiagramConnectionPoint] を、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodeconnectionpointname.html[StartNodeConnectionPointName] および link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodeconnectionpointname.html[EndNodeConnectionPointName] プロパティで接続に割り当てることができます。
+
+接続ロジックは、接続対象のノードに対して指定された接続ポイントが存在するかどうかに基づきます。以下に接続ロジックを示します。
+
+*1.* ノードに接続ポイントが存在し、そのいずれかが接続に対して明示的に選択されている場合は、その接続ポイントを使用します。
+
+*2.* ノードに接続ポイントが存在し、そのいずれに対しても特定の接続ポイントが設定されいない場合は、最も近いポイントを使用します。
+
+*3.* 接続ポイントがない場合は、境界四角形のいずれかの辺の中央を使用します。
+
+ノードに対する接続ポイントの構成の詳細は、 link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成]を参照してください。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+.2|接続の終点とノードの関連付け
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodekey.html[StartNodeKey] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodekey.html[EndNodeKey]
+|ターゲット ノードの名前
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnode.html[StartNode] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnode.html[EndNode]
+|対象とする `DiagramNode`
+
+|接続の終点とノードの特定の接続ポイントの関連付け
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodeconnectionpointname.html[StartNodeConnectionPointName] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodeconnectionpointname.html[EndNodeConnectionPointName]
+|ターゲット ノードの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint_members.html[DiagramConnectionPoint] の名前
+
+|====
+
+[[_Ref388553066]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamDiagram_  の接続がどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodekey.html[StartNodeKey]
+| _Node1_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodekey.html[EndNodeKey]
+| _Node2_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodeconnectionpointname.html[EndNodeConnectionPointName]
+| _Right_ 
+
+|====
+
+image::images/xamDiagram_Configuring_the_Start_and_End_of_Diagram_Connections_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="Diagram">
+      <ig:DiagramConnection StartNodeKey="Node1" EndNodeKey="Node2" EndNodeConnectionPointName="Right"/>
+      <ig:DiagramNode Name="Node1"/>
+      <ig:DiagramNode Name="Node2" Position="200,200"/>
+</ig:XamDiagram>
+----
+
+[[_Ref388553075]]
+== 接続の始点および終点の絶対位置による構成 (始点と終点の座標の指定)
+
+[[_Ref388553084]]
+
+=== 概要
+
+スタンドアロンの接続を表示するには、始点と終点の座標を指定します。接続の始点または終点を設定すると、各ターゲット ノード (存在する場合) からの接続が切断されます。同様に開始ノードと終了ノードを設定すると、絶対ポイントの構成がオーバーライドされます。
+
+[[_Ref388553088]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|接続の開始 / 終了ポイントを絶対位置として設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startposition.html[StartPosition]/ link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endposition.html[EndPosition]
+|目的のポイントの座標 (ピクセル数)
+
+|====
+
+[[_Ref388553093]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、ダイアグラムの接続がどのように表示されるかを示します。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startposition.html[StartPosition]
+| _20,20_ 
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endposition.html[EndPosition]
+| _200,200_ 
+
+|====
+
+image::images/xamDiagram_Configuring_the_Start_and_End_of_Diagram_Connections_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="Diagram">
+      <ig:DiagramConnection StartPosition="20,20" EndPosition="200,200" />
+</ig:XamDiagram>
+----
+
+[[_Ref388553107]]
+== 関連コンテンツ
+
+[[_Ref388553113]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールでダイアグラム ノードの接続ポイントを構成する方法を説明します。これは、カスタム ノードを使用する場合や、標準ノードの事前設定された接続ポイントをカスタマイズする場合に必要です。
+
+|====

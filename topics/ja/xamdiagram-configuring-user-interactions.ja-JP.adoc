@@ -1,0 +1,62 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-user-interactions",
+    "tags": ["Charting"],
+    "controlName": ["xamDiagram"],
+    "guid": "5ce646b9-0e8c-47b6-a30c-9989cf2ea0f4",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:37:02.0484523Z"
+}
+|metadata|
+////
+
+= ユーザー インタラクションの構成 (xamDiagram)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamDiagram_™ コントロールでユーザー インタラクションを構成する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-user-interactions-configuration-overview.html[ユーザー インタラクションの構成の概要 (xamDiagram)]
+|このトピックでは、 _xamDiagram_ コントロールで実行されるユーザー インタラクションのすべてのタスクの概要を説明します。
+
+| link:xamdiagram-configuring-ui-elements-with-commands.html[xamDiagram コマンドを使用した UI 要素の構成]
+|このトピックでは、 _xamDiagram_ が提供するコマンドを、メニューやボタンなどの UI 要素で使用する方法を説明します。
+
+| link:xamdiagram-configuring-the-context-menu.html[コンテキスト メニューの構成 (xamDiagram)]
+|このトピックでは、 _xamDiagram_ コントロールが提供するコンテキスト メニューを使用する方法を説明します。
+
+| link:xamdiagram-configuring-the-mouse-tool-and-default-interaction.html[マウス ツールおよびデフォルトのドラッグ操作の構成 (xamDiagram)]
+|このトピックでは、 _xamDiagram_ のマウス操作とツールを構成する方法を説明します。
+
+| link:xamdiagram-configuring-the-navigation-pane.html[ナビゲーション ペインの構成 (xamDiagram)]
+|このトピックでは、 _xamDiagram_ コントロールのナビゲーション ペインを構成する方法を説明します。
+
+| link:xamdiagram-configuring-selection.html[選択の構成 (xamDiagram)]
+|このトピックでは、 _xamDiagram_ コントロールでダイアグラムの複数の項目の選択を有効または無効にする方法、およびプログラムによって選択を実行する方法を説明します。
+
+| link:xamdiagram-configuring-keyboard-shortcuts.html[キーボード ショートカットの構成 (xamDiagram)]
+|このトピックでは、 _xamDiagram_ コマンドに関連付けられたキーボード ショートカットを変更する方法について説明します。
+
+| link:xamdiagram-configuring-the-toolbox.html[ツールボックスの構成 (xamDiagram)]
+|このトピックでは、 _xamDiagram_ のダイアグラム ツールボックスを構成する方法について説明します。
+
+| link:xamdiagram-configuring-undo-redo-operations.html[元に戻す / やり直し操作の構成 (xamDiagram)]
+|このトピックでは、 _xamDiagram_ コントロールで元に戻す / やり直し操作を構成する方法を説明します。
+
+| link:xamdiagram-configuring-restricting-user-interactions.html[ユーザー インタラクションの制限の構成 (xamDiagram)]
+|このトピックは、_xamDiagram_ コントロールで特定のユーザー インタラクションを制限する方法を説明します。
+
+| link:xamdiagram-copy-when-drop-from-toolbox.html[ツールボックスから項目をドロップ (xamDiagram)]
+|このトピックは、ダイアグラム項目がツールボックスからダイアグラムのサーフェスにドロップされるときにコピーされる方法について説明します。
+
+|====

@@ -1,0 +1,147 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-idataerrorinfo-support",
+    "tags": ["Charting"],
+    "controlName": ["xamDiagram"],
+    "guid": "",
+    "buildFlags": [],
+    "createdOn": "2017-04-26T09:37:02.0484523Z"
+}
+|metadata|
+////
+
+= IDataErrorInfo Support (xamDiagram)
+
+== Topic Overview
+
+=== Purpose
+
+This topic explains how the control handles validation errors.
+
+=== Required background
+
+The following topic is a prerequisite to understanding this topic:
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdiagram-general-overview.html[General Overview ( _xamDiagram_ )]
+|This topic provides a conceptual overview of the _xamDiagram_ control and its main features and capabilities.
+
+|====
+
+=== In this topic
+
+* <<Ref00001, IDataErrorInfo Support Overview>>
+* <<Ref00002, Customizing Display Template>>
+* <<Ref00003, Customizing Edit Template>>
+* <<Ref00004, Related Topics>>
+
+[[Ref00001]]
+== IDataErrorInfo Support Overview
+
+When the control is bound to a data source comprised of data items implementing the IDataErrorInfo interface, it validation errors can be indicated to the user. By default this is done by rendering red border around the error information in both display and edit mode. To enable the errors indication use the link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~supportdataerrorinfo.html[SupportDataErrorInfo] property and set it to `true`.
+
+The following image shows two diagram items. The one on the left does not have validation errors and the one on the right has a validation error because its has an empty field:
+
+image::images/xamDiagram_Validation01.png[]
+
+
+[[Ref00002]]
+== Customizing Display Template
+
+You can customize the error validation display template by defining a style targeting the `TextBlock` type as shown in the code snippet below:
+
+*In XAML:*
+[source, xaml]
+----
+<Style TargetType="{x:Type TextBlock}">
+    <Setter Property="Validation.ErrorTemplate">
+        <Setter.Value>
+            <ControlTemplate>
+                <DockPanel LastChildFill="true">
+                    <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0"
+                        Width="20" Height="20" CornerRadius="10"
+                        ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                        <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center"
+                            FontWeight="Bold" Foreground="white" />
+                    </Border>
+                    <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                        <Border BorderBrush="red" BorderThickness="1" />
+                    </AdornedElementPlaceholder>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+The following screenshot shows how the above custom error validation display template looks like:
+
+image::images/xamDiagram_Validation02.png[]
+
+.Note
+[NOTE]
+====
+The above display template style must be set on an application level in order for it to be picked up by the text block.
+====
+
+[[Ref00003]]
+== Customizing Edit Template
+
+You can customize the error validation edit template by defining a style targeting the link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.primitives.advancedfocustextbox.html[AdvancedFocusTextBox] type as shown in the code snippet below:
+
+*In XAML:*
+[source, xaml]
+----
+<Style TargetType="{x:Type igPrim:AdvancedFocusTextBox}" >
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="0,2,40,2" />
+    <Setter Property="Validation.ErrorTemplate">
+        <Setter.Value>
+            <ControlTemplate>
+                <DockPanel LastChildFill="True">
+                    <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0"
+                        Width="20" Height="20" CornerRadius="10"
+                        ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                        <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        FontWeight="Bold" Foreground="White" />
+                    </Border>
+                    <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center">
+                        <Border BorderBrush="Red" BorderThickness="1" />
+                    </AdornedElementPlaceholder>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+The following screenshot shows the above custom error validation edit template looks like:
+
+image::images/xamDiagram_Validation03.png[]
+
+[[Ref00004]]
+== Related Topics
+
+The following topics provide additional information related to this topic.
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdiagram-configuring-node-configuration-overview.html[Nodes Configuration Overview ( _xamDiagram_ )]
+|This topic provides an overview of the configurable aspects of the nodes of the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-the-position-and-size-of-diagram-nodes.html[Configuring the Position and Size of Diagram Nodes ( _xamDiagram_ )]
+|This topic explains how to control the size and position of individual diagram nodes of the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-the-shape-of-diagram-nodes-overview.html[Configuring the Shape of the Diagram Nodes ( _xamDiagram_ )]
+|This topic explains how to configure the shape of the diagram nodes of the _xamDiagram_ control by either selecting a Pre-Defined shape or applying a custom shape.
+
+| link:xamdiagram-nodes-connection-points.html[Configuring the Connection Points of Diagram Nodes ( _xamDiagram_ )]
+|This topic explains how to configure the connection points of diagram nodes in the _xamDiagram_ control.
+
+|===

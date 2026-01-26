@@ -1,0 +1,69 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-prevent-columns-from-being-hidden",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I"],
+    "guid": "af4e0c15-ce3b-41fd-9e2d-4eafedefeb93",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.1582115Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列が非表示にされることを防止する
+
+列チューザー機能を有効にした場合、または列チューザーをプログラムで表示する場合、エンド ユーザーは以下のメソッドのいずれかを使用して列を非表示にすることができます。
+
+* 列ヘッダー上の列チューザー アイコンをクリックします。
+* 列チューザー ダイアログ ウィンドウから、列の対応するチェックボックスを選択します。
+
+ただし、ColumnBase オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnbase~ishideable.html[IsHideable] を False に設定することによって、エンド ユーザーが列を完全に非表示にするのを防ぐことができます。デフォルトで、このプロパティは True に設定されます。このプロパティが False に設定されていると、列チューザー アイコンはその特定の列ヘッダーに現れず、列チューザー ダイアログのチェックボックスは無効になります。
+
+[NOTE]
+====
+*注:* これは UI を厳しく制限するプロパティであり、コード ビハインドで可視性を変更することもできます。
+====
+
+以下のスクリーンショットでは、CategoryID 列が無効になっています。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_columnChooser6.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_columnChooser6.png[]
+endif::win-rt[]
+
+以下のコード例は、列が非表示になるのを防ぐ方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:TextColumn IsHideable=" Key="CategoryID"/> 
+----
+
+*C# の場合:*
+
+----
+this.MyDataGrid.Columns.DataColumns["CategoryID"].IsHideable = false;
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyDataGrid.Columns.DataColumns("CategoryID").IsHideable = True
+----
+
+== 関連トピック
+
+link:xamgrid-enabling-column-chooser.html[列の選択を有効にする]
+
+link:xamgrid-column-chooser-dialog-window.html[列の選択ダイアログ ウィンドウ]
+
+link:xamgrid-column-chooser-settings.html[列の選択設定]
+
+pick:[win-rt=" link:xamgrid-touch-support.html[タッチ サポート]"]

@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-configuring",
+    "tags": [],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "01afd844-4d2b-49c4-9ab0-0156366f5aca",  
+    "buildFlags": [],
+    "createdOn": "2015-07-30T16:05:43.1732219Z"
+}
+|metadata|
+////
+
+= xamBusyIndicator の構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションのトピックでは、 _xamBusyIndicator_   コントロールの構成についての情報を提供します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-configuring-busy-indicator-display.html[ビジー インジケータの表示の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する方法を説明します。
+
+| link:xambusyindicator-configuring-busy-content.html[ビジー コンテンツの構成]
+|このトピックでは、 _xamBusyIndicator_  ビジー コンテンツを構成する方法を説明します。
+
+| link:xambusyindicator-configuring-delayed-display.html[表示の遅延の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する前の遅延時間を構成する方法を説明します。
+
+| link:xambusyindicator-configuring-focus-target.html[フォーカス ターゲットの構成]
+|このトピックでは、 _xamBusyIndicator_ が非アクティブな場合に、`UIElement` がフォーカスを受け取るように明示的に構成する方法を説明します。
+
+| link:xambusyindicator-configuring-determinate-xambusyindicator.html[既定のプログレス バーの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを構成して、既定の進行状況を表示する方法を説明します。
+
+| link:xambusyindicator-configuring-animation-duration.html[アニメーション時間の構成]
+|このトピックでは、 _xamBusyIndicator_  コントロールのアニメーション時間を設定する方法を説明します。
+
+| link:xambusyindicator-configuring-overlay-style.html[オーバーレイ スタイルの構成]
+|このトピックでは、 _xamBusyIndicator_ のオーバーレイ スタイルをカスタマイズする方法を説明します。
+
+| link:xambusyindicator-configuring-animations-brushes.html[アニメーション ブラシの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールのデフォルトのアニメーション ブラシをカスタマイズする方法を説明します。
+
+|====

@@ -1,0 +1,147 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-configuring-animation-duration",
+    "tags": ["Getting Started","How Do I"],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "389b1566-521e-4715-a024-75e50c241127",  
+    "buildFlags": [],
+    "createdOn": "2015-08-26T05:52:07.7948604Z"
+}
+|metadata|
+////
+
+= アニメーション時間の構成 (xamBusyIndicator)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamBusyIndicator_   コントロールのアニメーション時間を設定する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-features-overview.html[機能の概要]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xambusyindicator-visual-elements.html[視覚要素]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref428345835, アニメーション時間の構成 >>
+* <<_Ref428345839, 関連コンテンツ >>
+
+** <<_Ref428345843,トピック>>
+
+[[_Ref428345835]]
+== アニメーション時間の構成
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.busyanimation_members.html[BusyAnimation] の link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.busyanimation~animationtotalduration.html[AnimationTotalDuration] プロパティを使用して、 _xamBusyIndicator_   アニメーションの全体時間を構成します。アニメーションのスピードは、この方法でコントロールされます。
+
+デフォルトで、`AnimationTotalDuration` プロパティの初期値は 3 秒です。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|アニメーション時間の指定
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.primitives.busyanimationpresenter~animationtotalduration.html[AnimationTotalDuration]
+|`期間?`
+
+|====
+
+=== 例
+
+以下の例では次の設定を使用します。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+|`AnimationTotalDuration`
+|_10 秒_
+
+|====
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator Name="BusyIndicator" IsBusy="True" IsIndeterminate="True">
+    <ig:XamBusyIndicator.Animation>
+        <ig:ProgressRingBusyAnimation AnimationTotalDuration="0:0:10"  />
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+BusyIndicator.Animation = new ProgressRingBusyAnimation();
+BusyIndicator.Animation.AnimationTotalDuration = new Duration(TimeSpan.FromSeconds(10));
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+BusyIndicator.Animation = New ProgressRingBusyAnimation()
+BusyIndicator.Animation.AnimationTotalDuration = New Duration(TimeSpan.FromSeconds(10))
+----
+
+[[_Ref428345839]]
+== 関連コンテンツ
+
+[[_Ref428345843]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-configuring-busy-indicator-display.html[ビジー インジケータの表示の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する方法を説明します。
+
+| link:xambusyindicator-configuring-busy-content.html[ビジー コンテンツの構成]
+|このトピックでは、 _xamBusyIndicator_  ビジー コンテンツを構成する方法を説明します。
+
+| link:xambusyindicator-configuring-delayed-display.html[表示の遅延の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する前の遅延時間を構成する方法を説明します。
+
+| link:xambusyindicator-configuring-focus-target.html[フォーカス ターゲットの構成]
+|このトピックでは、 _xamBusyIndicator_ が非アクティブな場合に、`UIElement` がフォーカスを受け取るように明示的に構成する方法を説明します。
+
+| link:xambusyindicator-configuring-determinate-xambusyindicator.html[既定のプログレス バーの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを構成して、既定の進行状況を表示する方法を説明します。
+
+| link:xambusyindicator-configuring-overlay-style.html[オーバーレイ スタイルの構成]
+|このトピックでは、 _xamBusyIndicator_ のオーバーレイ スタイルをカスタマイズする方法を説明します。
+
+| link:xambusyindicator-configuring-animations-brushes.html[アニメーション ブラシの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールのデフォルトのアニメーション ブラシをカスタマイズする方法を説明します。
+
+|====

@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamzoombar-api-overview",
+    "controlName": ["xamZoombar"],
+    "tags": ["API","Navigation"],
+    "guid": "82def050-0acb-4ad6-9263-3440a05ae785",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.2294101Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションでは xamZoombar コントロールに関連する各名前空間を示します。このコントロールでプログラムする間に使用するいくつかのキー クラスも提供します。このページにリストされる名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[options="header", cols="a,a"]
+|====
+|名前空間：|キー クラス:
+
+| link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls_namespace.html[Infragistics.Controls]
+| link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[XamZoombar] 
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.range.html[Range] 
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.zoomchangedeventargs.html[ZoomChangedEventArgs] 
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.zoomchangeeventargs.html[ZoomChangeEventArgs]
+
+|====

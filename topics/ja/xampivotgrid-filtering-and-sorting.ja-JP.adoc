@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-filtering-and-sorting",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Filtering","Grids","Sorting"],
+    "guid": "99939fef-0039-4385-af13-b56d62c8ce55",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.1302869Z"
+}
+|metadata|
+////
+
+= フィルター処理と並べ替え
+
+=== はじめに
+
+xamPivotGrid™ コントロールでは、データのフィルター処理と並べ替えのためのさまざまな機能が提供されています。
+
+=== トピック
+
+xamPivotGrid™ のフィルター処理と並べ替えに関する詳しい情報については、次のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-us-filtering.html[フィルタリング]
+|xamPivotGrid コントロールで、グリッドのデータの範囲を狭めるためにユーザーが利用できる複数のオプションがあります。コードから、または UI フィルター メニューを使用してこれを実行することができます。
+
+| link:xampivotgrid-us-sorting-data.html[データの並べ替え]
+|xamPivotGrid での並べ替えは、グリッドと列の 2 つのレベルで構成できます。デフォルトで並べ替えはすべての列に有効に設定されています。各ヘッダー セルには、昇順、降順、並べ替えないという 3 つの状態を示した並べ替えインジケーターが付いています。エンドユーザーはこのインジケーターをクリックして並べ替えを起動できます。
+
+| link:xampivotgrid-sorting-rows-and-columns.html[行と列の並べ替え]
+|xamPivotGrid は列と行が表示される順序を並べ替える機能をユーザーに提供しています。このトピックでは、XamPivotGrid のこの機能について説明しています。
+
+| link:xampivotgrid-excel-style-filtering.html[Excel フィルタリング (xamPivotGrid, xamPivotDataSelector)]
+|このグループのトピックでは、 _xamPivotGrid_™/ _xamPivotDataSelector_™ コントロールの Microsoft® Excel® フィルタリング機能を説明します。
+
+|====

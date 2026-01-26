@@ -1,0 +1,79 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-add-a-galleryitem-to-a-gallerytool",
+    "controlName": ["xamRibbon"],
+    "tags": ["Getting Started","How Do I","Selection"],
+    "guid": "{79F5F980-FF81-4E2D-8F7C-65D73A863D19}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1021735Z"
+}
+|metadata|
+////
+
+= GalleryItem を GalleryTool に追加
+
+
+
+
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.gallerytool.html[GalleryTool] を xamRibbon に追加後、エンド ユーザーが GalleryTool 内で項目を選択できるように、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.galleryitem.html[GalleryItems] を GalleryTool に追加する必要があります。
+
+設定する必要があるプロパティがいくつかあるだけなので、GalleryItem オブジェクトは簡単に使用できます。GalleryTool に追加する各 GalleryItem は一意のキーを持つ必要があります。キーを使用して、コード ビハインドで選択した GalleryItem を識別するか、GalleryItems を GalleryItemGroup に追加することができます。link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.galleryitem~key.html[Key] プロパティに加えて、GalleryItem に一意の外観を与えるために link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.galleryitem~text.html[Text] プロパティや link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.galleryitem~image.html[Image] プロパティなどの単純なプロパティを設定することもできます。GalleryTool レベルで指定した GalleryItemSettings をオーバーライドしたい場合、GalleryItem レベルで link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.galleryitemsettings.html[GalleryItemSettings] を指定することもできます。
+
+以下の例のコードは、GalleryItem を GalleryTool に追加する方法を示します。ユーザー自身の画像を使用してコード例で参照されているすべての画像を置き換える必要があります。
+
+image::images/xamRibbon_Add_a_GalleryItem_to_a_GalleryTool.png[xamRibbon で galleryitem を gallerytool に追加する]
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:GalleryTool Name="galleryTool1" ItemBehavior="StateButton">
+        <igRibbon:GalleryTool.Items>
+                <igRibbon:GalleryItem 
+                        Key="RedItem" 
+                        Text="Red"
+                        Image="GalleryItemImages/Red.png" />
+                <!--TODO: ここで GalleryItems をさらに追加します-->
+        </igRibbon:GalleryTool.Items>
+</igRibbon:GalleryTool>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+...
+Dim item as New GalleryItem()
+item.Key = "RedItem"
+item.Text = "Red"
+'TODO: 画像のひとつをポイントするように Uri を置き換えます。
+item.Image = new BitMapImage(new Uri("pack://application:,,,/GalleryItemImages/Red.png"))
+Me.galleryTool1.Items.Add(item)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+...
+GalleryItem item = new GalleryItem();
+item.Key = "RedItem";
+item.Text = "Red";
+//TODO: 画像のひとつをポイントするように Uri を置き換えます。
+item.Image = new BitmapImage(new Uri("pack://application:,,,/GalleryItemImages/Red.png"));
+this.galleryTool1.Items.Add(item);
+...
+----
+
+== 関連トピック
+
+link:xamribbon-add-a-gallerytool-to-a-ribbongroup.html[GalleryTool を RibbonGroup に追加]
+
+link:xamribbon-create-groups-of-galleryitems.html[GalleryItems のグループを作成]
+
+link:xamribbon-creating-a-live-preview.html[ライブ プレビューを作成]

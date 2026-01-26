@@ -1,0 +1,52 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-using-xamtreemap",
+    "controlName": ["xamTreemap"],
+    "tags": ["Getting Started"],
+    "guid": "9e28a483-dbb0-4803-ad84-15b63da94d29",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7523786Z"
+}
+|metadata|
+////
+
+= xamTreemap の使用
+
+このセクシヨンでは、 link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.xamtreemap.html[xamTreemap] コントロールのさまざまな機能の効果的な使用ができるよう、タスク ベースの重要な情報を収めています。
+
+link:xamtreemap-data-binding.html[データ バインディング]
+
+このトピックでは、xamTreemape コントロールにデータをバインドする方法を学習します。
+
+link:xamtreemap-node-binders.html[ノード バインダー]
+
+このトピックでは、ノード バインダーの効果的な使用法を学習します。
+
+link:xamtreemap-wpf-bind-xamtreemap-to-ado-net-entity-data-model.html[xamTreemap を ADO.NET エンティティ データモデルにバインドする]
+pick:[sl,wpf="このトピックでは、xamTreemap をデータベースからデータにバインドする手順を解説します。"]
+
+link:xamtreemap-value-mappers.html[値マッパー]
+
+このトピックでは、xamTreemap コントロールの値マッピング機能について説明します。
+
+link:xamtreemap-features.html[機能]
+
+このトピックでは、xamTreemap コントロールの機能を使う方法について学習します。
+
+link:xamtreemap-changing-the-style-of-the-nodes.html[ノードのスタイルの変更]
+
+このトピックでは、 xamTreemap コントロールのノードのスタイルの設定方法を説明します。
+
+link:xamtreemap-data-drill-down.html[データ ドリルダウン]
+
+このトピックでは、データをドリルダウンするために xamTreemap コントロールの使用方法について学習します。
+
+関連トピック
+
+link:xamtreemap-understanding-xamtreemap.html[xamTreemap の理解]
+
+link:xamtreemap-getting-started-with-xamtreemap.html[xamTreemap を使用した作業の開始]
+
+link:xamtreemap-api-overview.html[API の概要]

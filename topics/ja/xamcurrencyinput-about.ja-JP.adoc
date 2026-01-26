@@ -1,0 +1,42 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcurrencyinput-about",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "ac866318-508d-41cb-867a-6805f9b4cc4e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.9572192Z"
+}
+|metadata|
+////
+
+{XamCurrencyInputHeader}
+
+= xamCurrencyInput について
+
+== トピックの概要
+
+xamCurrencyInput コントロールは、数値を通貨タイプとして表示するためにマスクを使用するシンプルなテキスト ボックス コントロールです。このマスクを使用して、所定のカルチャの通貨記号を値の前に追加することができます。余りがなくても、小数点第 2 位まで値の小数部分がそのまま残ることを保証することも可能です。xamCurrencyInput コントロールは、 link:xamcurrencyinput-using.html[スタンドアロンのテキスト ボックスとして] pick:[sl,wpf,win-rt="、または link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[xamGrid™ コントロールのセルで]"] 使用することができます。
+
+ifdef::sl,wpf,win-phone[]
+image::images/xamInputs_xamCurrencyInput_About.png[]
+endif::sl,wpf,win-phone[]
+
+ifdef::win-rt[]
+image::images/xamInputs_RT_xamCurrencyInput_About.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xamcurrencyinput-using.html[xamCurrencyInput の使用]
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+ifdef::sl,wpf,win-rt[]
+* link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[データ編集用の xamGrid セルにおける xamInput コントロールの使用]
+
+endif::sl,wpf,win-rt[]

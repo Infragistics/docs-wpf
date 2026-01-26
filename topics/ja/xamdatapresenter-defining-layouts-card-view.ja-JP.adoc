@@ -1,0 +1,51 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-defining-layouts-card-view",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{95B73374-C55E-448A-80C5-4BCD55B0EA2F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1339799Z"
+}
+|metadata|
+////
+
+= カード ビュー
+
+
+
+以下のリンクをクリックして、CardView の設定の変更に役立つトピックを確認してください。
+
+link:xamdatapresenter-about-card-settings.html[カード設定について]
+
+カード ビューのレイアウトと動作を変更する方法を学習します。
+
+link:xamdatapresenter-about-card-sizing.html[カード サイズについて]
+
+カード サイズを変更する方法および使用可能なスペースをすべて占有するようにそれを拡大する方法を学習します。
+
+link:xamdatapresenter-about-repositioning-animations.html[再配置アニメーションについて]
+
+カードのアニメーションのタイミングを変更する方法を学習します。
+
+link:xamdatapresenter-collapse-a-card.html[カードの縮小]
+
+カードを縮小する様々な方法について学習します。
+
+link:xamdatapresenter-collapse-an-empty-cell.html[空のセルの縮小]
+
+空のセルを非表示にする様々な方法について学習します。
+
+link:xamdatapresenter-set-the-maximum-number-of-viewable-cards.html[表示可能なカードの最大数の設定]
+
+カードが占有できる列と行の最大数を制限する方法を説明します。
+
+link:xamdatapresenter-set-the-space-between-cards.html[カード間のスペースの設定]
+
+カード間の水平方向および垂直方向のすき間を変更する方法を説明します。
+
+link:xamdatapresenter-working-with-card-headers.html[カード ヘッダーでの作業]
+
+カード ヘッダーに表示される値の変更方法を学習します。

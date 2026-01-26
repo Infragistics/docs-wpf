@@ -1,0 +1,176 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-activation",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Navigation","Paging","Selection"],
+    "guid": "{AC4A873E-2076-4C83-8E20-1F50FBC4A85A}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6561837Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= アクティブ化
+
+xamGrid コントロールはセルのアクティブ化をサポートします。セルがフォーカスを持つ現在のセルである場合、セルはアクティブと見なされます。編集など、単一セルに限り実行可能なアクションを実行できるように、アクティブ化は xamGrid コントロールに実装されます。
+
+*アクティブ化動作*
+
+xamGrid コントロールのセルのアクティブ化は以下のように動作します:
+
+ifdef::win-rt[]
+* エンドユーザーがセルをタップすると、そのセルがアクティブになります。
+
+endif::win-rt[]
+
+* エンドユーザーがセルをクリックすると、そのセルがアクティブになります。
+* エンドユーザーが xamGrid にタブ移動すると、最初のセルがアクティブになり、エンドユーザーはその他のセルにも継続してタブ移動するか、矢印キーを使用してナビゲートすることができます。
+* アクティブ化とフォーカスは関係がありません。たとえば、セルがいったんアクティブ化されたら、フォーカスを失っても xamGrid はアクティブ化を保持します。
+* 行セレクターがクリックされるとその行の最初のセルがアクティブ化されます。
+
+*コードによるアクティブ化*
+
+xamGrid コントロールの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~activecell.html[ActiveCell] プロパティを使用してアクティブ セルを取得または設定することができます。以下のコードは、2 番目の Row、2 番目の Column にあるセルをアクティブに設定する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.ActiveCell = Me.MyGrid.Rows(1).Cells(1)
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.ActiveCell = this.MyGrid.Rows[1].Cells[1];
+----
+
+セル オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.cellbase~isactive.html[IsActive] プロパティを使用してアクティブ セルを設定することもできます。以下のコードは、2 番目の Row、2 番目の Column にあるセルをアクティブに設定する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.Rows(1).Cells(1).IsActive = True
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.Rows[1].Cells[1].IsActive = true;
+----
+
+*キーボードによるアクティブ化*
+
+以下はキーボードを使用して xamGrid をアクティブ化する方法です。
+
+*プラス記号 (+)*
+
+* アクティブ行を展開します。
+
+*マイナス記号 (-)*
+
+* アクティブ行を縮小します。
+
+*Tab*
+
+* 現在のアクティブ セルを右に 1 つ進めます。
+* アクティブ セルが最後の列にある場合、アクティブ セルは次の行に移動します。
+* アクティブ セルが最後の行の最後の列にある場合、フォーカスは、ページ上の次のコントロールに移動します。
+
+*Shift + Tab*
+
+* Tab とは逆の方向に同様の動作をします。ただし、これは xamGrid 上の TabNavigation プロパティが KeyboardNavigationMode.Once に設定されている場合にのみ発生します。
+
+*Page Up / Page Down*
+
+* 上または下に 1 ページ移動します。1 ページは現在表示されている行数として定義されます。
+
+*Home*
+
+* アクティブ セルが最初の表示列にない場合、その行の最初の表示列がアクティブになります。
+* アクティブ セルが最初の表示列にある、ただし現在のバンドの最初の行ではない場合、現在のバンドの最初の行の最初のセルがアクティブ セルになります。
+* アクティブ セルが現在のバンドの最初の行の最初のセルの場合、親バンドの最初の行の最初のセルがアクティブになります。アクティブ セルがルート レベルにある場合、何も発生しません。
+
+*End*
+
+* アクティブ セルが最後の表示列にない場合、その行の最後の表示列がアクティブになります。
+* アクティブ セルが最後の表示列にある、ただし現在のバンドの最後の行ではない場合、現在のバンドの最後の行の最後のセルがアクティブ セルになります。
+* アクティブ セルが現在のバンドの最後の行の最後のセルの場合、親バンドの最後の行の最後のセルがアクティブになります。アクティブ セルがルート レベルにある場合、何も発生しません。
+
+*上矢印キー*
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.keyboardnavigation.html[KeyboardNavigation.CurrentLayout] ｰ 同じバンドの前の兄弟行の同じ列がアクティブ セルになります。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.keyboardnavigation.html[KeyboardNavigation.AllLayouts] ｰ 前の行の同じ表示列インデックスがアクティブ セルになります。前の行で現在のアクティブ セル列インデックスよりも列が少ない場合、その行の最後の表示列がアクティブになります。
+
+*下矢印キー*
+
+* KeyboardNavigation.CurrentLayout ｰ 同じバンドの次の兄弟行の同じ列がアクティブ セルになります。
+* KeyboardNavigation.AllLayouts ｰ 次の行の同じ表示列インデックスがアクティブ セルになります。次の行で現在のアクティブ セル列インデックスよりも列が少ない場合、その行の最後の表示列がアクティブになります。
+
+*左矢印キー*
+
+* アクティブ セルを前の表示可能な兄弟に移動します。
+* 前の行兄弟が展開されていない行の最初の表示列にアクティブ セルがある場合、前の兄弟行の最後の表示セルに移動します。
+* 前の兄弟行が展開されている行の最初の表示列にアクティブ セルがある場合、前の兄弟行の最後の子行の最後の表示セルに移動します。
+
+*右矢印キー*
+
+* アクティブ セルを次の表示可能な兄弟に移動します。
+* 展開されていない行の最後の表示列にアクティブ セルがある場合、次の兄弟行の最初の表示セルに移動します。
+* 展開されている行の最後の表示列にアクティブ セルがある場合、最初の子行の最初の表示セルに移動します。
+* 展開されている行の最後の表示列にアクティブ セルがあり、ChildBandHeaderRows がその子に表示される場合、最初の childBandHeader がアクティブ セルになります。
+
+*スペースバー*
+
+* アクティブ セルを選択/選択を解除します。これは Ctrl キーが押される時だけ発生します。
+
+ifdef::win-rt[]
+タッチ ジェスチャを使用するアクティブ化の詳細については、 link:xamgrid-touch-support.html[タッチ サポート] トピックを参照してください。
+endif::win-rt[]
+
+以下の例のコードは KeyboardNavigation プロパティを設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid KeyboardNavigation="CurrentLayout" x:Name="MyGrid" AutoGenerateColumns="True">
+   ...
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Me.MyGrid.KeyboardNavigation = KeyboardNavigation.CurrentLayout
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.MyGrid.KeyboardNavigation = KeyboardNavigation.CurrentLayout;
+----
+
+以下のスクリーン ショットは、xamGrid の 2 番目の行、2 番目の列に配置されているセルをアクティブとして表示します。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Activation_01.png[Activation]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Activation_01.png[Activation]
+endif::win-rt[]
+
+関連トピック
+
+link:xamgrid-activation-events.html[アクティブ化イベント]
+
+ifdef::win-rt[]
+link:xamgrid-touch-support.html[タッチ サポート]
+endif::win-rt[]

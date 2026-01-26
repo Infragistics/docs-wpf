@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-understanding-data-manager",
+    "controlName": ["xamSchedule"],
+    "tags": ["Scheduling"],
+    "guid": "390ba387-52c2-45ee-93ba-65f97d213b91",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6193218Z"
+}
+|metadata|
+////
+
+= データ マネージャーについて
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[データ マネージャー]は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[データ コネクター]とビュー (つまり、カレンダー情報を表示するコントロール) 間の通信を調整および管理する非視覚的なコントロールです。リソース、カレンダー、アクティビティをビューに提供します。アクティビティはデータ コネクターによってだけでなく、データ マネージャーによってプログラムを使用しても追加できます。link:xamschedule-using-manager-logical-events.html[「データ マネージャー イベントの処理」]を参照してください。
+
+データ マネージャーは、どの操作が許可されるのかを決定するための設定だけでなく、稼働時間および稼働日情報を定義する設定をを公開します。詳細は、 link:xamschedule-using-manager.html[「データ マネージャー」]のセクションとそのサブセクションを参照してください。
+
+単一のデータ マネージャーからデータを取得する xamSchedule ビューを複数作成できるため、単一のアクティビティの変更が多くのビューに影響します。また、複数のデータ マネージャーを作成して、各データ マネージャーを異なるデータ コネクターに接続し異なるビュー セットを持たせることができます。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-understanding-views.html[xamSchedule ビューについて]
+
+link:xamschedule-understanding-resources-calendars.html[リソースおよびカレンダーについて]
+
+link:xamschedule-understanding-activities.html[アクティビティについて]

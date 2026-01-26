@@ -1,0 +1,25 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatapresenter-apply-cell-value-templates-conditionally",
+    "tags": ["How Do I","Templating"],
+    "controlName": ["xamDataPresenter"],
+    "guid": "2b71c0b5-a6f0-4189-b121-51c436cb7a8d",
+    "buildFlags": [],
+    "createdOn": "2015-05-18T10:54:25.9121416Z"
+}
+|metadata|
+////
+
+= Apply Cell Value Templates Conditionally (xamDataPresenter)
+
+include::shared-apply-cell-value-templates-conditionally.adoc[]
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdatapresenter-configuring-template-field.html[Configuring Template Field (xamDataPresenter)]
+|This topic describes how to create a field with a custom display and edit template using a TemplateField in the _xamDataPresenter_ controls.
+
+|====

@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-sorting-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I","Sorting"],
+    "guid": "{F1F19607-C912-437D-AEF9-2B14DDF68C46}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.693148Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 並べ替えイベント
+
+xamGrid には並べ替えに関連付けられたイベントが 2 つあります。これらのイベントは発生する順序を反映して接尾辞 "ing" または "ed" が追加されます。並べ替えイベントによって、列が並べ替えられる前後にいくつかのカスタム ビジネス ロジックを実行できます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columnsorting_ev.html[ColumnSorting] イベント - 列が並べ替えられる直前に、ColumnSorting イベントが発生します。特定の条件に合わない場合このイベントをキャンセルできます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columnsorted_ev.html[ColumnSorted] イベント - このイベントは列の並べ替え後に発生します。
+
+これらのイベントによって、エンド ユーザーが xamGrid コントロールの列並べ替え機能を操作する方法を制御することができます。エンド ユーザーがその列を並び替えるのを禁止するため、ColumnSorting イベントをキャンセルすることができます。ColumnSorted イベントによって、エンド ユーザーがどの列を並び替えたのかを確認することができます。
+
+== 関連トピック
+
+link:xamgrid-sorting.html[並べ替え]
+
+link:xamgrid-multi-column-sorting.html[複数列の並べ替え]
+
+link:xamgrid-remove-sort-indicator.html[並べ替えインジケーターの削除]
+
+link:xamgrid-disable-sorting-on-certain-columns.html[特定の列の並べ替えを無効にする]
+
+link:xamgrid-custom-sort.html[並べ替えのカスタマイズ]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

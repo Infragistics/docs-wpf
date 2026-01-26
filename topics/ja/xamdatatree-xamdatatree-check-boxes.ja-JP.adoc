@@ -1,0 +1,126 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-xamdatatree-check-boxes",
+    "controlName": ["xamDataTree"],
+    "tags": ["Editing"],
+    "guid": "527db322-c923-4ad8-a8ad-4ab27f711e18",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8811112Z"
+}
+|metadata|
+////
+
+= チェックボックスの表示状態の構成
+
+xamDataTree コントロールの各ノード項目の横にチェックボックスを表示できます。チェックボックスを有効にするには、 link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings.html[CheckBoxSettings] オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings~checkboxvisibility.html[CheckBoxVisibility] プロパティを Visible に設定します。
+
+CheckBoxSettingsOverride オブジェクトのプロパティを設定することによって、異なるノード レベルでチェックボックスを有効または無効にすることもできます。link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettingsoverride.html[CheckBoxSettingsOverride] オブジェクトは、CheckBoxSettings オブジェクトに優先します。
+
+以下のコードは、ツリー全体でチェックボックスを有効にする方法と、Product レベルでチェックボックスを無効にする方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDataTree x:Name="MyTree" ItemsSource={StaticResource DataUtil}>
+   <!-- チェックボックスを有効にします-->
+   <ig:XamDataTree.CheckBoxSettings>
+      <ig:CheckBoxSettings CheckBoxVisibility="Visible"/>
+   </ig:XamDataTree.CheckBoxSettings>
+   <ig:XamDataTree.GlobalNodeLayouts>
+      <ig:NodeLayout Key="CategoryLayout" TargetTypeName="Category" 
+                     DisplayMemberPath="CategoryName"/>
+      <ig:NodeLayout Key="ProductLayout" TargetTypeName="Product" 
+                     DisplayMemberPath="ProductName">
+         <!-- Product レベルでチェックボックスを無効にします -->         
+         <ig:NodeLayout.CheckBoxSettings>
+            <ig:CheckBoxSettingsOverride CheckBoxVisibility="Collapsed"/>
+         </ig:NodeLayout.CheckBoxSettings>
+      </ig:NodeLayout>
+   </ig:XamDataTree.GlobalNodeLayouts>
+</ig:XamDataTree>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+MyTree.CheckBoxSettings.CheckBoxVisibility = Visibility.Visible
+MyTree.GlobalNodeLayouts(1).CheckBoxSettings.CheckBoxVisibility = Visibility.Collapsed
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+MyTree.CheckBoxSettings.CheckBoxVisibility = Visibility.Visible;
+MyTree.GlobalNodeLayouts[1].CheckBoxSettings.CheckBoxVisibility = Visibility.Collapsed;
+----
+
+image::images/xamDataTree_Check_Boxes_01.png[]
+
+CheckBoxSettings オブジェクトには、以下のプロパティも含まれます。
+
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings~checkboxstyle.html[CheckBoxStyle] - CheckBox コントロールをターゲットとするこのプロパティを設定することによって、チェックボックスをスタイルできます。
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings~ischeckboxthreestate.html[IsCheckBoxThreeState] - このプロパティは、チェックボックスが異なるチェックされた状態を受け入れることができるかどうかを決定します。
+** Checked - チェックマークとして表示されます
+** Unchecked - 空白として表示されます
+** Indeterminate - 水平線として表示されます
++
+このプロパティは、CheckboxMode プロパティが Manual に設定されている場合のみ使用できます。
+
+* link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings~checkboxmode.html[CheckBoxMode] - このプロパティは、以下の TreeCheckBoxMode 列挙値のいずれかに設定する必要があります。
+
+** link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treecheckboxmode.html[Auto] - 自動モードでは、子ノードは Checked または Unchecked の 2 つの状態のチェックボックスに限定されます。ただし、親ノードは Checked、Unchecked または Indeterminate の 3 つの状態があります。親ノードが選択されると、すべての子ノードも選択されます。すべての子が同じ状態であれば、親は同じ状態になります。子の一部が選択されると、親は不確定の状態になります。
+** link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treecheckboxmode.html[Manual] - 手動モードの場合、各ノードのチェックボックスは、すべての他のノードから独立します。
+
+CheckBoxSettingsOverride オブジェクトには、CheckBoxStyle および CheckBoxVisibilty プロパティ、そして現在の値が何を評価するかを決定する CheckBoxSettingsOverrideResolved と CheckBoxStyleResolved の 2 つの追加的な読み取り専用プロパティが含まれます。
+
+特定のノードを選択する、または特定のノードが選択されるかどうかを決定するため、XamDataTreeNode オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatreenode~ischecked.html[IsChecked] プロパティを使用できます。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+MyTree.Nodes(0).Nodes(1).IsChecked = True
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+MyTree.Nodes[0].Nodes[1].IsChecked = true;
+----
+
+NodeLayout オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.nodelayout~checkboxmemberpath.html[CheckBoxMemberPath] をオブジェクトのフィールドに設定することによって、チェックボックスをデータ オブジェクトの固有のフィールドにバインドすることもできます。このバインディングの値は、バインディング時に正しい必要があります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:NodeLayout
+	Key="ProductLayout"
+	DisplayMemberPath="ProductName"
+	TargetTypeName="Product"
+	CheckBoxMemberPath="UnitsInStock" >                  
+----
+
+*関連トピック*
+
+link:xamdatatree-xamdatatree-activation.html[アクティブ化]
+
+link:xamdatatree-active-data-item.html[アクティブなデータ アイテムの構成]
+
+link:xamdatatree-expanded-and-collapsed-xamdatatree-nodes.html[ノードの展開と縮小状態の構成]
+
+link:xamdatatree-xamdatatree-drag-and-drop.html[ドラッグ アンド ドロップの構成]
+
+link:xamdatatree-xamdatatree-editing.html[編集の構成]
+
+link:xamdatatree-xamdatatree-node-connectors.html[ノード コネクターの表示状態の構成]
+
+link:xamdatatree-xamdatatree-node-layouts.html[ノード レイアウトの構成]
+
+link:xamdatatree-xamdatatree-selection.html[選択]

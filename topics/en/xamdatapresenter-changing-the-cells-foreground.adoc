@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-styling-tips",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Presenter","Styling"],
+    "guid": "{9FDE68A2-6A8D-4DE6-804B-1ED72FB6C944}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1109753Z"
+}
+|metadata|
+////
+
+= Changing the Foreground of Cells
+
+Both the CellValuePresenter and DataRecordCellArea share several properties that may cause conflicts when styling, such as the Foreground related properties. The CellValuePresenter resides within the DataRecordCellArea, thus prioritizing all modifications made to the cell.
+
+Here is an example of modifying the foreground directly via the CellValuePresenter. 
+
+*In XAML:*
+
+----
+<Style TargetType="{x:Type igDP:CellValuePresenter}">                    
+	<Setter Property="Foreground" Value="Red"/>
+</Style>
+----
+
+When the DataRecordCellArea needs to be styled; the Foreground must be written as it's own nested style or by setting the ForegroundStyle to null to override the CellValuePresenter. 
+
+*In XAML:*
+
+----
+<Style TargetType="{x:Type igDP:DataRecordCellArea}">
+
+	<Setter Property="Foreground" Value="Red"/>
+	<Setter Property="ForegroundStyle" Value="{x:Null}" />
+
+	<!--OR-->
+
+	<Setter Property="ForegroundStyle">
+		<Setter.Value>
+			<Style>
+				<Setter Property="TextBlock.Foreground" Value="Red" />
+			</Style>
+		</Setter.Value>
+	</Setter>
+</Style>-
+----
+
+== Related Topics
+
+link:xamdata-terms-presenters.html[Presenters]

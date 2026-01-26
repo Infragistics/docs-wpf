@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-diagram-connections",
+    "tags": ["Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "a95db7fd-d917-4c17-880c-7b51a7cbd88f",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:31:51.2794156Z"
+}
+|metadata|
+////
+
+= 接続の構成 (xamDiagram)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamDiagram_™ コントロールの接続を構成する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-connections-configuration-overview.html[ダイアグラム接続の構成の概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールの接続の構成可能な要素の概要を説明します。
+
+| link:xamdiagram-connections-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールでダイアグラム ノードの接続ポイントを構成する方法を説明します。
+
+| link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[ダイアグラム接続の開始および終了の構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ でダイアグラム接続の始点および終点を構成する場合に使用する 2 つの方法について説明します。1 つは、接続先のノードを指定し、もう 1 つは、ダイアグラムのスペースに接続の始点と終点の座標を指定します。
+
+| link:xamdiagram-configuring-the-caps-of-diagram-connections.html[ダイアグラム接続のキャップの構成 ( _xamDiagram_ )]
+|このトピックでは、定義済みのキャップを選択、またはカスタム キャップを適用して、 _xamDiagram_ コントロールのダイアグラム接続のキャップを構成する方法を説明します。
+
+| link:xamdiagram-configuring-connections-line-jumps.html[ダイアグラム接続の飛び越し線の構成 ( _xamDiagram_ )]
+|このトピックでは、2 つの接続が交差する場合に xamDiagram の描画動作を構成する方法を説明します。
+
+|====

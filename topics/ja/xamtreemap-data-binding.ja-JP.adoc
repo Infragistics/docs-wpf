@@ -1,0 +1,138 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-data-binding",
+    "controlName": ["xamTreemap"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "172d9fbb-9f91-4010-96ff-bc51b05ee80e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7843832Z"
+}
+|metadata|
+////
+
+= データ バインディング
+
+== 始める前に
+
+ここでは、データに対する適切なクラスを作る方法とそれを xamTreemap コントロールに渡す方法を学習します。
+
+== 達成すること
+
+データを xamTreemap コントロールにバインドします。
+
+== 以下の手順を実行します。
+
+[start=1]
+. xamTreemap コントロールをページに追加します。これに関する詳細は、 link:xamtreemap-adding-xamtreemap-using-xaml.html[XAML コードを使用して xamTreemap を追加]または link:xamtreemap-adding-xamtreemap-using-procedural.html[プロシージャ コードを使用して xamTreemap を追加]を参照してください。
+
+INotifyPropertyChanged インターフェイスを実装する Data という名前のクラスを作成します。このクラスは xamTreemap コントロールに対するデータのノードを表し、各ノードには名前、値、サブノードのコレクションがあります。
+
+*Data クラスのアクセス修飾子はpublicでなければなりません。*
+
+*Visual Basic の場合:*
+
+----
+Public Class Data
+        Implements INotifyPropertyChanged
+        Private _Name As String
+        Public Property Name() As String
+        Get
+                Return _Name
+        End Get
+        Set(ByVal value As String)
+                _Name = value
+        End Set
+        End Property
+        Private _value As Integer
+        Public Property Value() As Integer
+        Get
+               Return _value
+        End Get
+        Set(ByVal value As Integer)
+                _value = value
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Value"))
+        End Set
+        End Property
+        Public Event PropertyChanged(ByVal sender As Object, ByVal e As PropertyChangedEventArgs) Implements INotifyPropertyChanged.PropertyChanged
+End Class
+----
+
+*C# の場合:*
+
+----
+public class Data : INotifyPropertyChanged
+{
+        public string Name { get; set; }
+        private int _value;
+        public int Value
+        {
+                get { return _value; }
+                set
+                {
+                        _value = value;
+                        if (this.PropertyChanged != null) this.PropertyChanged(this, new PropertyChangedEventArgs("Value"));
+                }
+        }
+        private ObservableCollection<Data> _subData = new ObservableCollection<Data>();
+        public ObservableCollection<Data> SubData
+        {
+                get { return _subData; }
+                set
+                {
+                        _subData = value;
+                        if (this.PropertyChanged != null) this.PropertyChanged(this, new PropertyChangedEventArgs("SubData"));
+                }
+        }
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+}
+----
+
+[start=2]
+. Data 項目のコレクションを設定した後、コレクションを xamTreemap.DataContext プロパティに渡します。例：
+
+*Visual Basic の場合:*
+
+----
+Dim data As ObservableCollection(Of Data) = GetData()
+myTreemap.DataContext = data
+----
+
+*C# の場合:*
+
+----
+ObservableCollection<Data> data = GetData();
+myTreemap.DataContext = data;
+----
+
+*XAML の場合:*
+
+----
+<ig:xamTreemap
+        x:Name="myTreemap" 
+        ItemsSource="{Binding}">
+    <ig:xamTreemap.NodeBinders>
+        <ig:NodeBinder
+                TextPath="Name"
+                ValuePath="Value"
+                TargetTypeName="Data"
+                ItemsSourcePath="SubData"/>
+    </ig:xamTreemap.NodeBinders>
+</ig:xamTreemap>
+----
+
+[start=3]
+. アプリケーションを保存して実行します。
+
+image::images/xamTreemap_Data_Binding.png[]
+
+関連トピック
+
+link:xamtreemap-node-binders.html[ノード バインダー]
+
+link:xamtreemap-wpf-bind-xamtreemap-to-ado-net-entity-data-model.html[xamTreemap を ADO.NET エンティティ データ モデルにバインド]
+
+link:xamtreemap-value-mappers.html[値のマッパー]

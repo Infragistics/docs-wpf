@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-repositioning-animations",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Layouts","Tips and Tricks"],
+    "guid": "{01CBA19F-F818-48BC-9406-0E9643B891B3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3650261Z"
+}
+|metadata|
+////
+
+= リポジション アニメーションについて
+
+
+
+xamDataCards コントロールはカードを再配置する時にカードを位置にアニメートします。カードをスクロール、縮小、リサイズすることによってエンドユーザーが xamDataCards を操作する時、またはデータ ソースをリセットする時にこれが生じる可能性があります。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardviewsettings.html[CardViewSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardviewsettings~shouldanimatecardpositioning.html[ShouldAnimateCardPositioning] プロパティまたは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardviewsettings~repositionanimation.html[RepositionAnimation] プロパティをそれぞれ設定することによって、アニメーションを無効にしたり、アニメーションのタイミングをカスタマイズできます。
+
+アニメーションのタイミングをカスタマイズしたい場合には、CardViewSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardviewsettings~repositionanimation.html[RepositionAnimation] プロパティを、DoubleAnimationBase クラスから派生するオブジェクトのインスタンス、たとえば DoubleAnimation オブジェクトに設定できます。ただし、アニメーションを無効にすると、xamDataCards コントロールはユーザーが提供するカスタムのアニメーションタイミングを無視します。詳細は、API リファレンス ガイドの RepositionAnimation プロパティの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardviewsettings~repositionanimation.html[解説]を参照してください。
+
+以下の例のコードは、アニメーション タイミングを変更する方法を示します。
+
+*XAML の場合:*
+
+----
+<Window.Resources>
+    <DoubleAnimationUsingKeyFrames x:Key="repositionAnimation1">
+        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+        <SplineDoubleKeyFrame KeyTime="00:00:01" Value="1.5" />
+        <SplineDoubleKeyFrame KeyTime="00:00:01.5" Value="0.8" />
+        <SplineDoubleKeyFrame KeyTime="00:00:02" Value="1" />
+    </DoubleAnimationUsingKeyFrames> 
+</Window.Resources>
+...
+<igDP:XamDataCards Name="xamDataCards1">
+    <igDP:XamDataCards.ViewSettings>
+        <igDP:CardViewSettings RepositionAnimation="{StaticResource repositionAnimation1}" />
+    </igDP:XamDataCards.ViewSettings>
+</igDP:XamDataCards>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xamDataCards1.ViewSettings.RepositionAnimation = TryCast(Me.Resources("repositionAnimation1"), DoubleAnimationBase)
+----
+
+*C# の場合:*
+
+----
+this.xamDataCards1.ViewSettings.RepositionAnimation = this.Resources["repositionAnimation1"] as DoubleAnimationBase;
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-card-settings.html[カード設定について]
+
+link:xamdatapresenter-about-card-sizing.html[カード サイズについて]
+
+link:xamdatapresenter-collapse-a-card.html[カードの縮小]
+
+link:xamdatapresenter-collapse-an-empty-cell.html[空のセルの縮小]
+
+link:xamdatapresenter-set-the-maximum-number-of-viewable-cards.html[表示可能なカードの最大数の設定]
+
+link:xamdatapresenter-set-the-space-between-cards.html[カード間のスペースの設定]
+
+link:xamdatapresenter-working-with-card-headers.html[カード ヘッダーでの作業]

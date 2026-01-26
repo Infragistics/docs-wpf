@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager-working-with-thememanager",
+    "tags": ["Getting Started","Theming"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "28b08292-8707-4aa1-a8fe-432fe64a9ca8",  
+    "buildFlags": [],
+    "createdOn": "2014-09-03T11:20:13.639034Z"
+}
+|metadata|
+////
+
+= ThemeManager の操作
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _Infragistics ThemeManager_™ のさまざまな機能を構成する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-applying-theme-to-control.html[FrameworkElement レベルのテーマの適用]
+|このトピックでは、 _Infragistics ThemeManager_ を使用して FrameworkElement にテーマを適用する方法について説明します。
+
+| link:thememanager-applying-theme-to-application.html[アプリケーション レベルのテーマの適用]
+|このトピックでは、 _Infragistics ThemeManager_ を使用してアプリケーションにテーマを適用する方法について説明します。
+
+| link:thememanager-applying-theme-to-supported-ms-wpf-controls.html[サポートされる Microsoft の WPF コントロールへのテーマの適用]
+|このトピックでは、サポートされるマイクロソフトの WPF コントロールのテーマ設定を、 _Infragistics ThemeManager_ を使用して有効または無効にする方法を説明します。
+
+| link:thememanager-creating-new-custom-theme.html[新規のカスタム テーマの作成]
+|このトピックでは、 _Infragistics ThemeManager_ を使用して新しいカスタム コントロールのテーマを作成する方法を説明します。
+
+| link:thememanager-extending-existing-control-theme.html[既存のコントロール テーマの拡張]
+|このトピックでは、 _Infragistics ThemeManager_ を使用して既存のコントロール テーマを拡張する方法について説明します。
+
+|====

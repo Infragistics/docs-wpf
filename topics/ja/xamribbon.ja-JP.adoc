@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon",
+    "controlName": ["xamRibbon"],
+    "tags": [],
+    "guid": "{AEBD085A-8285-4EA2-82DD-5D4B42B84703}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.0781687Z"
+}
+|metadata|
+////
+
+= xamRibbon
+
+
+
+xamRibbon™ コントロールに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このセクションをご覧ください。このセクションには、コントロールが何を実行するのか、またアプリケーションでなぜコントロールを使用したくなるのかから、コントロールを使用して一般的なタスクを完了する方法に関するステップバイステップの手順まで、xamRibbon に関する貴重な情報が含まれています。
+
+以下のリンクをクリックして、xamRibbon コントロールについての情報にアクセスします。
+
+== link:xamribbon-about-xamribbon.html[xamRibbon について]
+
+このセクションには xamRibbon コントロールの機能をより理解するための情報があります。なぜアプリケーションのビルドの一部として使用するかも説明します。
+
+== link:xamribbon-adding-xamribbon-to-your-application-.html[xamRibbon をアプリケーションに追加]
+
+xamRibbon コントロールを使ってすばやく起動して実行するためのコントロールの使用方法を提供します。
+
+== link:xamribbon-using-xamribbon.html[xamRibbon の使用]
+
+このセクションには、xamRibbon コントロールで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamribbon-api-overview.html[API の概要]
+
+このトピックは、xamRibbon コントロールでプログラミングする間に作業をする名前空間とクラスをリストします。このトピックにリストされる名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]に便宜上リンクします。

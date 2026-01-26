@@ -1,0 +1,70 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-terms-presenters",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","Data Presentation","Getting Started"],
+    "guid": "{77B6F15E-29A3-40AD-BC6D-4393EAA6E3D8}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5538639Z"
+}
+|metadata|
+////
+
+= プレゼンタ
+
+Infragistics.Windows.DataPresenter 名前空間における多くのクラスは、プレゼンタの区分に該当します (これらはすべて名前に「Presenter」という語が含まれているためすぐに識別できます)。プレゼンタは、スタイル リソースと (オプションで) コントロール テンプレートの選択を使用した DataPresenterBase 派生コントロールのオブジェクト モデルのピア オブジェクトを視覚的に表示します。プレゼンターの使用は、ユーザーに表示するコンテンツをスタイルおよび形成する機能の中心です。
+
+link:xamdata-terms-fields.html[フィールド]、 link:xamdata-terms-records.html[レコード]、および link:xamcarousel-terms-carousel-panel-navigator.html[CarouselPanelNavigator] など、ピア オブジェクトの多くの例をすでに確認し、いくつかに名前を指定してきました。オブジェクトは、DataPresenterBase 派生コントロールの Object Model にあるデータについて何らかを表すか、コントロール自体の機能的な装置を表しています (たとえば、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyarea.html[GroupByArea] クラス)。
+
+ただし、ピア オブジェクトはスタンドアロンにはできません。ピア オブジェクトには画面上に自身を表示する機能がないためです。これはプレゼンターが機能する場所です。プレゼンターは、Windows® Presentation Foundation グラフィックス パイプラインによって画面上に描画される Visual Tree に存在します。プレゼンターは、FrameworkElements ({ProductName} コントロール テンプレートを通して) とリソース チェーンの任意の場所を定義することができる関連スタイル リソースを定義し、これが画面上の一部に描画されるものを決定します。
+
+[NOTE]
+====
+パフォーマンスの最適化のために、プレゼンターは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.iviewpanel.html[IViewPanel] インターフェイスの仮想実装に集合的に存在できます。常に表示できるのでプレゼンター多くのインスタンスとして作成するだけです。
+====
+
+image::images/Terms_Presenters_01.png[プレゼンターの図]
+
+上記の画像は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataRecordPresenter] オブジェクトとそのピア オブジェクト、および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] の関係を示しています。プレゼンタ内のグレイの箱は、より複雑なプロパティを示しています (たとえば link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordselector.html[RecordSelector])。これらはもともとプレゼンターではありませんが、スタイリングのための追加のポイントを公開します。文字が斜体になっているボックスは、コントロールのその他の設定によって存在することができる要素を示しています。たとえば、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labellocation.html[LabelLocation] が InCells に設定される場合に限り、 link:xamdata-terms-fields-field-label.html[フィールド ラベル]がレコード内に存在します。上記の画像では、DataRecordPresenter クラスが提供する主要なプロパティの多くも確認できます。特に、プレゼンターは通常基本的なピア オブジェクトと Style Triggers 内の条件として役に立つブール値プロパティへのアクセスを提供します。
+
+XAML でプレゼンターを設定することは、シンプルな 2 段階の手順で行います。スタイル リソース (または可能な場合にはコントロール テンプレート) を作成してリソース チェーンに配置することによって常に開始します。リソース チェーンは、WPF がリソースを解決する方法で、コントロールの範囲から開始し、コントロールを含む Page (.xaml ファイル) 上の ResourceDictionary に上がり、最終的に Application (App.xaml ファイル) で終わります。リソースとリソース チェーンがどのように機能するのかに関する情報が必要な場合には、Windows Presentation Foundation の .NET Framework 3.0 SDK ドキュメントを参照してください。
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type igDP:CellValuePresenter}" 
+  x:Key="MyCustomCellValuePresenter">
+        <!-- 以下のスタイル プロパティは、設定したいプロパティです。-->
+        <Setter Property="ForegroundStyle">
+                <Setter.Value>
+                        <Style>
+                                <Setter Property="TextBlock.Foreground"
+                                  Value="#FFFF00FF" />
+                        </Style>
+                </Setter.Value>
+        </Setter>
+</Style>
+----
+
+スタイル リソース (またはコントロール テンプレート) を定義した後で、プレゼンターに対応する Style プロパティを指定してリソースにバインドするように設定します。このプロパティは、通常同じ名前を持っていますが、「Style」という語で終わります。ピア オブジェクトに対応する Settings オブジェクトでこのプロパティを通常見つけることができます。
+
+*XAML の場合:*
+
+----
+<igDP:Field Name="MyPurpleField">
+        <igDP:Field.Settings>
+                <igDP:FieldSettings 
+                  CellValuePresenterStyle="{StaticResource MyCustomCellValuePresenter}" />
+        </igDP:Field.Settings>
+</igDP:Field>
+----
+
+Presenter オブジェクトは実際的には視覚的ツリーにあるため、マウスを使用してピア オブジェクトでエンドユーザーが持ちたい操作 (つまり選択やドラッグ) はプレゼンターで最初に処理される必要があります。選択の論理がこの動作を容易にする方法は、そのタイプを問わず、Presenter オブジェクトからピア オブジェクトにアクセスするためのシンプルなインターフェイス、 link:{RootAssembly}{ApiVersion}~infragistics.windows.selection.iselectableelement.html[ISelectableElement] を実装することでプレゼンタにピア オブジェクトを切り替えさせることです。選択の論理の詳細については、 link:xamdata-selection-overview.html[「選択の概要」]を参照してください。
+
+このトピックでは、プレゼンターの概念を学習しました。DataPresenterBase 派生コントロールのオブジェクト モデル内でプレゼンターがピア オブジェクトとどのように関係するのか、また Windows Presentation Foundation レンダリング パイプラインによって画面に描画される Visual Tree にあることを見てきました。最後に、プレゼンターを Style プロパティに取り込むための基本パターンによって、Windows Presentation Foundation アプリケーションでこれらのコントロールのルック アンド フィールを大幅にカスタマイズする準備が整いました。
+
+== 関連トピック
+
+link:wpf-working-with-xamdatagrid-xamdatacarousel-and-xamdatapresenter-styling-points.html[xamDataGrid、xamDataCarousel、および xamDataPresenter スタイリング ポイントでの作業]

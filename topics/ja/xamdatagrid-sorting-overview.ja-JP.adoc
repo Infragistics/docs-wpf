@@ -1,0 +1,212 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-sorting-overview",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Getting Started","Sorting"],
+    "guid": "81791845-f9ab-407b-beec-a6392eca3c84",  
+    "buildFlags": [],
+    "createdOn": "2013-02-26T13:52:29.6271465Z"
+}
+|metadata|
+////
+
+= 並べ替えの概要 (xamDataGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、更新された link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatagrid.html[ _xamDataGrid™_  ] コントロールの並べ替え機能の概要を提供します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックは、 _xamDataGrid_ コントロールとコントロールが構成されるさまざまな要素を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref340222659, 並べ替え概要 >>
+
+* <<_Ref340222669, 主要な設定の概要 >>
+
+** <<_Ref340222680,主要な設定の概要表>>
+
+** <<_Ref340222684,ラベル クリック アクション>>
+
+** <<_Ref340222688,並べ替え比較演算子>>
+
+** <<_Ref340222692,並べ替え評価タイプ>>
+
+** <<_Ref340222695,並べ替え評価モード>>
+
+* <<_Ref335407927, 関連コンテンツ >>
+
+[[_Ref340222659]]
+[[_Ref340063168]]
+== 並べ替えの概要
+
+=== 並べ替えの概要
+
+_xamDataGrid_   並べ替え機能は、ユーザーに UI で表示データ並べ替え機能を提要します。または、カスタム コードを使用することもできます。ユーザーは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter.html[LabelPresenter] をクリックして UI 内の列データを並べ替えることができます。ユーザーは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~sortedfields.html[SortedFields] のコレクションを変更してコードで並べ替えを実行できます。_xamDataGrid_   コントロールは、タスクの表示と並べ替え機能を提供します。ユーザーはグリッドで列ヘッダーをクリックして列を並べ替えるこができます。
+
+[[_Ref340222669]]
+== 主要な設定の概要
+
+[[_Ref340222680]]
+
+=== 主要な設定の概要表
+
+以下の表は、並べ替えの構成と実行のためのさまざまな設定とその関係についての概要です。
+
+[options="header", cols="a,a"]
+|====
+|設定|説明
+
+|`LabelClickAction`
+|ユーザーがフィールド ラベルをクリックしたときに実行されるアクションを決定します。並べ替えを有効にするために、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~labelclickaction.html[LabelClickAction] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelclickaction.html[LabelClickAction] 列挙値に設定する必要があります。
+
+|`SortComparer`
+|$$.NET$$ フレームワークの IComparer インターフェイスを実装するオブジェクトにこのプロパティを設定することにより、ユーザーはカスタムな並べ替えロジックを使用できます。
+
+|`SortComparisonType`
+|このプロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsortcomparisontype.html[FieldSortComparisonType] 列挙値に設定すると、デフォルトの並べ替えロジックが大文字小文字を区別するかどうかを決定できます。
+
+|`SortEvaluationMode`
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] クラスのこのプロパティを設定すると、データ プレゼンターで並べ替え処理する方法を指定します。 
+
+これは、各フィールド レイアウトおよびコントロール全般の並べ替え評価モードを指定できる、各 `FieldLayout` のプロパティ設定および _xamDataGrid_ の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutsettings.html[FieldLayoutSettings] プロパティによって構成できる `FieldLayoutSettings` クラスを公開します。
+
+|`SortStatus`
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] と`LabelPresenter` オブジェクトの両方でこの並べ替え専用プロパティを公開し、フィールドの現在の並べ替え状態を決定します。 
+
+フィールドの並べ替え順序をコードで決定する必要がある場合、Field オブジェクトの `SortStatus` プロパティを使用します。ただし、`LabelPresenter` オブジェクトのスタイルまたはテンプレートを作成する場合、並べ替えインジケーターの表示と非表示のトリガーとして `SortStatus` プロパティを使用できます。
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~sortstatusgroupby.html[SortStatusGroupBy]
+|この設定は、フィールド オブジェクトで読み取り専用プロパティを公開します。現在のグループ化並べ替え状態 (GroupByRecords の順序) を返します。 
+
+Label Presenter がグループ領域にある場合、Label Presenter の `SortStatus` プロパティはこのプロパティをバインドします。
+
+|====
+
+[[_Ref340222684]]
+
+=== ラベル クリック アクション
+
+ユーザーは、オブジェクトの `LabelClickActionResolved` プロパティが以下の値のいずれかに解決する場合、ヘッダーをクリックしてフィールドを並べ替えできます。
+
+[options="header", cols="a,a"]
+|====
+|値:|説明
+
+|`SortByOneFieldOnly`
+|ユーザーは、ヘッダーをクリックして単一フィールドの並べ替えを実行できます。複数フィールドの並べ替えはできません。 
+
+列ヘッダーを切り替えてデータを昇順または降順に並べ替えます。
+
+|`SortByMultipleFields`
+|エンドユーザーが Ctrl キーを押しながら複数フィールドの並べ替えに含む各フィールドヘッダーをクリックし、複数フィールドの並べ替えを同時に実行できます。 
+
+`SortByOneFieldOnly` 値を使用すると、ユーザーは列ヘッダーをクリックして昇順と降順を切り替えができます。
+
+|`SortByOneFieldOnlyTriState`
+|ユーザーは、フィールド ヘッダーをクリックしてフィールドの並べ替えを実行できます。 
+
+また、ユーザーは昇順または降順を選択し、列ヘッダーをクリックしてデータを並べ替えできます。
+
+|`SortByMultipleFieldsTriState`
+|ユーザーは、Ctrl キーを押しながらフィールド ヘッダーを複数選択し、複数フィールドを同時に並べ替えできます。 
+
+以前のケースでは、ユーザーは選択した列ヘッダーをクリックして昇順と降順の並べ替えを交互に行うことができます。
+
+|====
+
+.注:
+[NOTE]
+====
+`LabelClickAction` プロパティを `Nothing` または `SelectField` に設定して並べ替えを無効にした場合も、プログラムでフィールドを並べ替えることが可能です。デフォルトでは、ラベル クリック アクション プロパティが `SortByMultipleFields` に設定されます。
+====
+
+[[_Ref340222688]]
+
+=== 並べ替え比較演算子
+
+指定により、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyrecord.html[GroupByRecord] グループ内の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] の並べ替えに比較演算子として使用されます。更に、この比較演算子は、以下の 2 つのシナリオのいずかで `GroupByRecord` の並べ替え順序を決定します。
+
+* カスタム link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~groupbyevaluator.html[GroupByEvaluator] を指定した場合、`SortComparer` プロパティは null を返します。
+* `GroupByEvaluator` および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~groupbymode.html[GroupByMode] プロパティを指定した場合、`Text` または `Value` のどちらかを返します。
+
+[[_Ref340222692]]
+
+=== 並べ替え比較タイプ
+
+デフォルトで、この設定は `CaseSensitive` に解決されます。
+
+このコントロールは、カスタム `SortComparer` を指定した場合この設定を無視します。
+
+[[_Ref340222695]]
+
+=== 並び替え評価モード
+
+この列挙型には 4 つのメンバーがあります。
+
+[options="header", cols="a,a"]
+|====
+|値:|説明
+
+|`Auto`
+|データ プレゼンターは、レコード コレクションのすべての並べ替え操作を内部で実行します。
+
+|`Default`
+|デフォルトは Auto に解決されます。
+
+|`Manual`
+|ユーザーがフィールドを並べ替えし、並べ替えがユーザーに基づく場合、データ プレゼンターはアクションを実行しません。Sorting および Sorted イベントを使用して並べ替え条件の変更を検出できます。基になるデータ ソースでデータ項目の順序を適切に変更します。
+
+|`UseCollectionView`
+|データ プレゼンターは、基になるデータソースが ICollectionView の場合、ユーザーが選択した並べ替え条件を反映するために ICollectionView の `SortedDescriptions` コレクションを操作します。_xamDataGrid_ は `ICollectionView` 並び替えの説明に反映するために `SortedFields` を同期しますが、ルート フィールド レイアウトのみです。 
+
+このモードでは _xamDataGrid_ は重複フィールドのエントリを除外します。グループ フィールドで発生し、`GroupByRecords` および他の同じフィールドの順序を決定するフィールドにつき 1 エントリが可能で、各グループ内の `DataRecords` の順序を決定します。
+
+|====
+
+[[_Ref335407927]]
+== 関連コンテンツ
+
+[[_Ref335665218]]
+
+=== トピック
+
+このトピックにの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-disable-sorting.html[並べ替えの無効化]
+|このトピックは、ユーザーによる並べ替えを無効にする方法を説明します。
+
+| link:xamdatagrid-grouping-overview.html[グループ化の概要]
+|このトピックは、xamDataGrid™ のグループ化機能の概要を提供します。この機能は、ユーザーがデータをより読みやすくナビゲーションしやすくグループ化できます。
+
+| link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[コードでフィールドを並べ替えおよびグループ化]
+|このトピックは、XAML またはコードを使用し、ユーザーによるフィールド ラベルのクリックまたはフィールド ラベルをグループ領域へドラッグして、並べ替えおよび (または) グループ化する方法を説明します。
+
+| link:xamdatagrid-sorting-and-grouping-process-overview.html[並べ替えとグループ化プロセスの概要]
+|このトピックは、 _xamDataGrid_ の内部比較演算子が、並べ替えおよびグループ化処理中に内部で実行するアクションを説明します。
+
+| link:xamdatagrid-user-interaction-sorting-records.html[レコードの並べ替えとグループ化時のユーザー操作]
+|このトピックは、 _xamDataGrid_ レコード グループ化時の並べ替えレコードのユーザー操作について説明します。
+
+|====

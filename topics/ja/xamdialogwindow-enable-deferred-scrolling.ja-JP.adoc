@@ -1,0 +1,61 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-enable-deferred-scrolling",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Layouts","Performance","Virtualization"],
+    "guid": "{D6360AC1-91F3-4356-996A-613C7FB4AB01}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9932045Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 遅延スクロールを有効にする
+
+デフォルトでは、xamGrid で遅延スクロールは有効ではありません。遅延スクロールを有効または無効にするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.deferredscrollingsettings.html[DeferredScrollingSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.deferredscrollingsettings~allowdeferredscrolling.html[AllowDeferredScrolling] プロパティを Deferred ScrollingType 列挙体の以下の値のいずれかに設定するだけです:
+
+* Default - この値は遅延スクロールを有効にするので、デフォルトのテンプレートが表示されます。
+* None ｰ この値は遅延スクロールを無効にします。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.deferredscrollingsettings~defaultcolumnkey.html[DefaultColumnKey] プロパティによってエンドユーザーがデータをスクロールした時に表示したい列の情報を設定することができます。このプロパティを設定しない場合、データ セットの最初の列が表示されます。
+
+以下のコードは遅延スクロールを有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamGrid x:Name="MyGrid" AutoGenerateColumns="True">
+      <ig:XamGrid.DeferredScrollingSettings>
+         <ig:DeferredScrollingSettings AllowDeferredScrolling="Default" DefaultColumnKey="ProductName" />
+         </ig:XamGrid.DeferredScrollingSettings> 
+       ...
+    </ig:XamGrid>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.DeferredScrollingSettings.AllowDeferredScrolling = DeferredScrollingType.Default
+Me.MyGrid.DeferredScrollingSettings.DefaultColumnKey = "ProductName"
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.DeferredScrollingSettings.AllowDeferredScrolling = DeferredScrollingType.Default;
+this.MyGrid.DeferredScrollingSettings.DefaultColumnKey = "ProductName";
+----
+
+== 関連トピック
+
+link:xamgrid-customize-deferred-scrolling-template.html[遅延スクロール テンプレートのカスタマイズ]
+
+link:xamdialogwindow-enable-deferred-scrolling.html[遅延スクロールを有効にする]
+
+link:xamgrid-customize-groupby-deferred-scrolling-template.html[GroupBy の遅延スクロール テンプレートのカスタマイズ]

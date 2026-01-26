@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-prevent-end-users-from-resizing-floating-panes",
+    "controlName": ["xamDockManager"],
+    "tags": ["How Do I"],
+    "guid": "{FC918009-65BD-4D7E-B48A-2E79E93EB71C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5160563Z"
+}
+|metadata|
+////
+
+= エンドユーザーがフローティング ペインのサイズを変更することを禁止
+
+
+
+エンド ユーザーがペインをフロートすると、ペインをホストするために xamDockManager™ は link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.panetoolwindow.html[PaneToolWindow] オブジェクトを作成します。スタンドアローン Window と同じように、エンド ユーザーはペイン ツール ウィンドウのサイズを変更できます。ペイン ツール ウィンドウのサイズ変更をエンド ユーザーに禁止したい場合、 link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~toolwindowloaded_ev.html[ToolWindowLoaded] イベントを処理し、ペイン ツール ウィンドウの link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.toolwindow~resizemode.html[ResizeMode] プロパティを NoResize に設定できます。
+
+以下のコード例は、エンド ユーザーがフローティング ペインのサイズ変更をできないようにする方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DockManager.Events
+...
+'このイベント ハンドラを XAML またはコード ビハインドの ToolWindowLoaded イベントに添付できます。
+Private Sub xamDockManager1_ToolWindowLoaded(ByVal sender As Object, ByVal e As PaneToolWindowEventArgs) 
+    e.Window.ResizeMode = ResizeMode.NoResize 
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DockManager.Events;
+...
+//このイベント ハンドラを XAML またはコード ビハインドの ToolWindowLoaded イベントに添付できます。
+private void xamDockManager1_ToolWindowLoaded(object sender, PaneToolWindowEventArgs e)
+{
+    e.Window.ResizeMode = ResizeMode.NoResize;
+}
+...
+----
+
+== 関連トピック
+
+link:xamdockmanager-about-opening-and-closing-panes.html[開始ペインと終了ペインについて]
+
+link:xamdockmanager-add-content-to-a-contentpane.html[コンテンツを ContentPane に追加]
+
+link:xamdockmanager-add-panes-to-the-documentcontenthost-object.html[ペインを DocumentContentHost オブジェクトに追加]
+
+link:xamdockmanager-add-panes-to-xamdockmanager.html[ペインを xamDockManager に追加]
+
+link:xamdockmanager-creating-a-tabbed-mdi-application.html[タブ付き MDI アプリケーションを作成]
+
+link:xamdockmanager-pin-and-unpin-a-pane.html[ペインのピンを固定および解除]
+
+link:xamdockmanager-set-the-location-of-a-floating-pane.html[フローティング ペインの場所を設定]
+
+link:xamdockmanager-set-the-initial-location-of-a-pane.html[ペインの最初の位置を設定]
+
+link:xamdockmanager-set-the-size-of-a-floating-pane.html[フローティング ペインのサイズを設定]
+
+link:xamdockmanager-show-the-pane-navigator-programmatically.html[プログラミングによるペインナビゲータの表示]
+
+link:xamdockmanager-end-user-settings.html[エンドユーザー設定]
+
+link:xamdockmanager-styling-xamdockmanager.html[xamDockManager のスタイリング]

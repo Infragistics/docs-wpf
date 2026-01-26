@@ -1,0 +1,289 @@
+﻿////
+|metadata|
+{
+    "name": "xamrichtexteditor-binding-to-data",
+    "tags": ["Data Binding"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "d858c7af-15e1-44c7-a9b6-599c86e87247",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.3983381Z"
+}
+|metadata|
+////
+
+= xamRichTextEditor とデータのバインド
+
+[[_Ref365036939]]
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールを各種データ ソースにバインドするドキュメント アダプターの使用方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref365036944,ドキュメント アダプターの概要>>
+* <<_Ref365036970,ドキュメント アダプターの構成>>
+* <<_Ref365036979,ドキュメント アダプターの詳細>>
+* <<_Ref365036984,ドキュメント アダプターの実例>>
+* <<_Ref365036991,関連コンテンツ>>
+
+[[_Ref365036944]]
+== ドキュメント アダプターの概要
+
+=== ドキュメント アダプターの概要
+
+ドキュメント アダプターを使用して  _xamRichTextEditor_   ドキュメントを各種データk形式にバインドできます。以下の表は、利用可能なドキュメント アダプターと配置される NuGet パッケージを示しています。
+
+[options="header", cols="a,a"]
+|====
+|ドキュメント アダプター|NuGet パッケージ
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.plaintextdocumentadapter_members.html[PlainTextDocumentAdapter]
+| *Infragistics.WPF.RichTextDocument* 
+
+| link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}~infragistics.documents.richtext.rtf.rtfdocumentadapter_members.html[RtfDocumentAdapter]
+| *Infragistics.WPF.RichTextDocument.Rtf* 
+
+| link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.word.worddocumentadapter_members.html[WordDocumentAdapter]
+| *Infragistics.WPF.RichTextDocument.Word* 
+
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.html.htmldocumentadapter_members.html[HtmlDocumentAdapter]
+| *Infragistics.WPF.RichTextDocument.Html* 
+
+|====
+
+[[_Ref365036970]]
+== ドキュメント アダプターの構成
+
+=== 概要
+
+ドキュメント アダプターを使用するには、最初に主な複数のプロパティを設定する必要があります。
+
+=== 主なプロパティ
+
+以下の表では、目的の構成を特定のプロパティ設定にマップしています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|目的
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.richtextdocumentadapterbase~document.html[Document]
+|コンテンツを取得 / 追加する `RichTextDocument` のインスタンス。
+
+|`Value`
+|このプロパティは各アダプターに個別に定義され、アダプターの目的に応じてさまざまな型、プレーン テキストと RTF ファイル形式の文字列、および DOCX 形式用のバイト配列で構成されます。
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.richtextdocumentadapterbase~refreshtrigger.html[RefreshTrigger]
+|Value が更新されるときに設定します。以下の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.richtextrefreshtrigger.html[RichTextRefreshTrigger] 値のどちらかを使用します。 
+
+* `Explicit` - `Value` の自動更新を防止します。`Value` の更新には、アダプターで、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.richtextdocumentadapterbase~refreshvalue.html[RefreshValue] メソッドを呼び出す必要があります。 
+
+* `Delayed` - 特定のユーザーによる編集後に `Value` の更新が必要な場合、`DelayAfterFirstEdit` および `DelayAfterLastEdit` 間隔を非 null 値に設定して遅延時間を指定できます。どちらも設定されていない場合、このトリガーは `Explicit` トリガーと同様に機能します。 
+
+* `ContentChanged` - 編集のたびに `Value` を更新します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+このトリガーは、コンテンツ量が少ないエディターにのみ使用してください。大きなドキュメント サイズの場合、パフォーマンスが低下する可能性があります。 
+
+==== 
+
+* `LostFocus` ( _既定値_ ) - `RichTextDocument` をホストするエディターの終了後に `Value` を更新します。エディター以外でドキュメントを表示した場合、このトリガーは `Explicit` トリガーと同様に機能します。 
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.richtextdocumentadapterbase~delayafterfirstedit.html[DelayAfterFirstEdit]
+|`Value` の更新のため、`RichTextDocument` の最後の編集後に設けられる null 許容型の間隔。`RefreshTrigger` が `Delayed` に設定されている場合のみ、この間隔を使用します。ドキュメントの編集が表示後「最初の編集」である場合、または `Value` プロパティの更新後の最初の編集である場合。この遅延時間は、`DelayAfterLastEdit` と併用することもできます。`Value` 更新時に経過する最初の遅延時間。
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.richtextdocumentadapterbase~delayafterlastedit.html[DelayAfterLastEdit]
+|`Value` の更新のため、`RichTextDocument` の最初の編集後に設けられる null 許容型の間隔。`RefreshTrigger` が `Delayed` に設定されている場合のみ、この間隔を使用します。最新の編集が「最後の編集」である場合。遅延時間が未経過の間に別の編集を実行すると、タイマーがリセットされて、 `Value` 更新まで再度完全な間隔の経過が必要になります。この遅延時間は、`DelayAfterFirstEdit` と併用すると、`作業を中断することがありません`。`Value` 更新時に経過する最初の遅延時間。
+
+|====
+
+=== キー メソッド
+
+以下の表は、任意の動作と特定のメソッドのマップを示します。
+
+[options="header", cols="a,a"]
+|====
+|メソッド|目的
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.richtextdocumentadapterbase~refreshdocument.html[RefreshDocument()]
+|このメソッドは、`RefreshDocumentCore``(``)` を呼び出し、アダプターに設定された新規の値がドキュメント コンテンツに変換されたことがない場合に限り、新規の値を `RichTextDocument` のコンテンツに強制的に反映します。
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.richtextdocumentadapterbase~refreshvalue.html[RefreshValue()]
+|このメソッドは、アダプターの公開された値にプッシュされていないドキュメントの変更がある場合に `RefreshValueCore``(``)` を呼び出します。
+
+|====
+
+=== キー イベント
+
+[options="header", cols="a,a"]
+|====
+|イベント|目的
+| link:{ApiPlatform}Documents.RichTextDocument{ApiVersion}~Infragistics.Documents.RichText.Serialization.RichTextDocumentAdapterBase~DocumentLoadError_EV.html[DocumentLoadError]
+|このイベントは、ドキュメントを読み込みようとする際に例外がスローされた場合に発生します。
+|====
+
+[[_Ref365036979]]
+== ドキュメント アダプターの詳細
+
+=== 概要
+
+以下の表は、サポート対象のドキュメント アダプターによって公開される他のメンバーを示します。
+
+=== アダプターの特定のプロパティ
+
+`PlainTextDocumentAdapter`
+
+[options="header", cols="a,a"]
+|====
+|メンバー|説明
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.plaintextdocumentadapter~formatoptions.html[FormatOptions]
+|リッチ テキスト コンテンツをプレーン テキストに変換する方法を決定する場合、またはプレーン テキストをリッチ テキストに変換する方法を決定する場合に使用するさまざまなオプションを指定します。
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.plaintextdocumentadapter~value.html[Value]
+|`RichTextDocument` のプレーン テキスト コンテンツを含む文字列。
+
+|====
+
+`RtfDocumentAdapter`
+
+[options="header", cols="a,a"]
+|====
+|メンバー|説明
+
+| link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}~infragistics.documents.richtext.rtf.rtfdocumentadapter~value.html[Value]
+|`RichTextDocument` の RTF コンテンツを含む文字列。
+
+|====
+
+`WordDocumentAdapter`
+
+[options="header", cols="a,a"]
+|====
+|メンバー|説明
+
+| link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.word.worddocumentadapter~format.html[Format]
+|Value を保存するファイル形式を定義します。ファイル形式はデータから判断できるため、この設定はデータのロード時に使用されません。現在サポートされている値: 
+
+* StrictOpenXml - DOCX、Strict Open XML ファイル形式。 
+
+* Word2007Document - Word 2007 で使用する DOCX ファイル形式。 
+
+| link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.word.worddocumentadapter~value.html[Value]
+|`RichTextDocument` の Word ファイル形式のコンテンツを含むバイト配列。
+
+|====
+
+`HtmlDocumentAdapter`
+
+[options="header", cols="a,a"]
+|====
+|メンバー|説明
+
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.html.htmldocumentadapter~baseuri.html[BaseUri]
+|相対ファイルの読み込み元 / 保存先のベース アドレスを指定します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+`<base>` ヘッダー タグを使用して、HTML ドキュメントに新しいベース URI を指定できます。 
+
+==== 
+
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.html.htmldocumentadapter~imagesavepreference.html[ImageSavePreference]
+|画像の保存方法を指定します。
+
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.html.htmldocumentadapter~localfilepath.html[LocalFilePath]
+|画像などの外部ファイルの書き込み先の相対または絶対パスを返す、または設定します。
+
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.html.htmldocumentadapter~saveabsolutelocalfilepaths.html[SaveAbsoluteLocalFilePaths]
+|相対または絶対ローカル ファイル パスを保存するかどうかを返す、または設定します。
+
+| link:{ApiPlatform}documents.richtextdocument.html{ApiVersion}~infragistics.documents.richtext.html.htmldocumentadapter~value.html[Value]
+|_RichTextDocument_ の HTML コンテンツを含む文字列。
+
+|====
+
+[[_Ref365036984]]
+== ドキュメント アダプターの実例
+
+=== 実例
+
+以下のコード スニペットは、ドキュメント アダプターを使用して  _xamRichTextEditor_   ドキュメントを各種コンテンツにバインドする方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:RtfDocumentAdapter
+    Document="{Binding Path=Document, ElementName=xamRichTextEditor1}" 
+    Value="{Binding RtfData, Mode=TwoWay}"
+    RefreshTrigger="Delayed"
+    DelayAfterLastEdit="00:00:10.00" />
+<ig:XamRichTextEditor x:Name="xamRichTextEditor1" />
+<ig:WordDocumentAdapter
+    Document="{Binding Path=Document, ElementName=xamRichTextEditor1}" 
+    Value="{Binding Path=WordData, Mode=TwoWay}"
+    Format="StrictOpenXml" />
+<ig:XamRichTextEditor x:Name="xamRichTextEditor1" />
+<ig:HtmlDocumentAdapter
+    Document="{Binding Path=Document, ElementName=xamRichTextEditor1}"
+    Value="{Binding Path=HtmlData, Mode=TwoWay}"
+    BaseUri="C:\\WebSites\\"
+    LocalFilePath="MyWebSite1"
+    SaveAbsoluteLocalFilePaths="True" />
+<ig:XamRichTextEditor x:Name="xamRichTextEditor1" />
+----
+
+注:
+
+[NOTE]
+====
+HTML ドキュメント アダプターを示す前述のコード スニペットは、アダプターにより画像などの外部コンテンツが "C:\\WebSites\\MyWebSite1" に保存されます。
+====
+
+[[_Ref365036991]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-import-export.html[インポート / エクスポート]
+|このグループのトピックでは、リッチ テキストのインポートおよびエクスポートに関する情報を提供します。
+
+|====

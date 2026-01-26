@@ -1,0 +1,89 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-value-scales",
+    "controlName": ["xamMap"],
+    "tags": [],
+    "guid": "{F1EAA7EE-152B-44D3-A4B0-845FBA38F529}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2992381Z"
+}
+|metadata|
+////
+
+= 値スケールの使用
+
+MapLayer オブジェクト link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~valuescale.html[ValueScale]は、提供する値スケールに基づいて link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement.html[MapElement] オブジェクトから数値またはブラシへの値のマッピングを指定することができます。手動でこれらのプロパティを設定する、または link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~isautorange.html[IsAutoRange] プロパティを設定することによって link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap] に自動的に設定させることができます。
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[Choropleth] 塗りつぶしモードを使用するときに link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale.html[ValueScale] オブジェクトを必要とします。Choropleth モードによって、値にしたがって XamMap の要素に色を付けることができます。
+
+Linear、Logarithmic、および Distribution の 3 つのタイプの値スケールがあります。
+
+*リニア値スケール*
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.linearscale.html[LinearScale] オブジェクトによって値をリニアにマップすることができます。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~minimumvalue.html[MinimumValue] プロパティと link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~maximumvalue.html[MaximumValue] プロパティを設定して使用する値の範囲を指定します。
+
+*対数値スケール*
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.logarithmicscale.html[LogarithmicScale] オブジェクトは対数関数を使用して値をマップします。これによって広範囲に分散している値をよりはっきりと示すことができます。再度、MinimumValue プロパティと MaximumValue プロパティを設定して使用する値の範囲を設定します。
+
+*分布値スケール*
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.distributionscale.html[DistributionScale] オブジェクトによって値に従って値をグループ化することができます。使用する範囲セットを指定できます。特定の範囲に属する値を持つマップ 要素は一緒にグループ化されます。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~valuestops.html[ValueStops] プロパティと link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~valuestopcount.html[ValueStopCount] プロパティを使用して希望の範囲を設定します。
+
+自動的な値分布のために、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~isautorange.html[IsAutoRange] プロパティを True に設定し、ValueStopCount プロパティに数値を指定します。ValueStopCount は異なる範囲を指定するために使用される値の数を指定します。値は自動的に決定されます。
+
+== 分配値スケールを使用した色要素
+
+xamMap コントロールは、要素を類似する値を持つグループに配置できます。これによって、各グループに個別の外観または動作を定義することができます。Distribution Value Scale と共に Choropleth モードを使用して要素をグループ化できます。
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.distributionscale.html[DistributionScale] オブジェクトで、要素をグループ化するために値の範囲のセットを指定でき、特定の範囲に属する値を持つマップ 要素は一緒にグループ化されます。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~valuestops.html[ValueStops] プロパティと link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~valuestopcount.html[ValueStopCount] プロパティを使用して希望の範囲を設定します。
+
+*自動*
+
+自動的な値分布のために、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale~isautorange.html[IsAutoRange] プロパティを True に設定し、ValueStopCount プロパティに数値を指定します。ValueStopCount プロパティは、異なる範囲を指定するために使用される値の数を指定し、これらの値は自動的に決定されます。
+
+*手動*
+
+範囲のセットを手動で指定するには、ValueStops プロパティを空間で区切られた値の文字列に設定します。
+
+以下のコード スニペットは、自動値分布の設定およびユーザー自身の値の定義方法を示します。最初のスニペットでは、値分布を自動的に設定するために ValueStopCount プロパティが使用されます。2 番目のスニペットでは、ValueStops プロパティは値の範囲を明示的に定義するために使用されます。
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer.Brushes>
+   <ig:BrushCollection>
+      <SolidColorBrush Color="Blue" />
+      <SolidColorBrush Color="Green" />
+      <SolidColorBrush Color="Yellow" />
+      <SolidColorBrush Color="Red" />
+   </ig:BrushCollection>
+</igMap:MapLayer.Brushes>
+<igMap:MapLayer.ValueScale>
+   <igMap:DistributionScale IsAutoRange="True" 
+                            ValueStopCount="6" />
+</igMap:MapLayer.ValueScale>
+----
+
+image::images/XamMap_Color_Group_Elements_Using_Distribution_Value_Scale_01.png[]
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer.Brushes>
+   <ig:BrushCollection>
+      <SolidColorBrush Color="ForestGreen" />
+      <SolidColorBrush Color="Orange" />
+      <SolidColorBrush Color="Red" />
+      <SolidColorBrush Color="DarkRed" />
+   </ig:BrushCollection>
+</igMap:MapLayer.Brushes>
+<igMap:MapLayer.ValueScale>
+   <igMap:DistributionScale IsAutoRange=" 
+                            ValueStops="0 100 200 300 400 500" />
+</igMap:MapLayer.ValueScale>
+----
+
+image::images/XamMap_Color_Group_Elements_Using_Distribution_Value_Scale_02.png[]

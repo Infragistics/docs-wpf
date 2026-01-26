@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-crossfieldrecordfiltering",
+    "tags": ["Filtering"],
+    "controlName": ["xamDataGrid"],
+    "guid": "8b287fc1-9e27-4b84-9fd0-123a215e4836",  
+    "buildFlags": [],
+    "createdOn": "2016-06-02T13:23:38.7065511Z"
+}
+|metadata|
+////
+
+= クロス フィールド レコード フィルタリング (xamDataGrid)
+
+== 目的
+
+このトピックは、高度なデータ フィルタリング ルールおよびその間の論理接続を作成する方法を紹介します。
+
+== 前提条件
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックのグループは、 _xamDataGrid_ コントロールの概要を提供します。
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、データ エンティティが表示されるフィールドのカスタム セットを定義する方法を説明します。
+
+| link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+|このトピックは、フィルタリング機能の概要を説明します。
+
+|====
+
+include::shared-crossfieldrecordfiltering.ja-JP.adoc[]

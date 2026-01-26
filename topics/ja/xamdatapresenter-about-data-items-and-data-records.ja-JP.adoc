@@ -1,0 +1,54 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-data-items-and-data-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding"],
+    "guid": "{89488927-A4C8-42A0-91AC-00D9C2557DDE}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0409613Z"
+}
+|metadata|
+////
+
+= データ項目とデータ レコードについて
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~dataitem.html[DataItem] プロパティはレコードが表すデータ項目への参照です。DataRecord オブジェクトへの参照がすでにある場合、データ項目への参照を取得するのは簡単な作業であるべきです。
+
+一方、データ項目への参照がある場合、対応する DataRecord オブジェクトを見つけることは複雑な繰り返しの作業になる可能性があります。幸運なことに、コントロールの DataPresenter ファミリーはデータ項目に対応する DataRecord オブジェクトを返すことができる link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~getrecordfromdataitem.html[GetRecordFromDataItem] メソッドを公開します。このメソッドはルートレベルでレコードの検索を開始し、一致が見つかるまで子孫へと検索を続行することに留意すべきです。したがって、GetRecordFromDataItem メソッドは深くネストされたデータ ソースがある場合には負荷のかかる作業となる場合があります。
+
+以下の例のコードは、GetRecordFromDataItem メソッドの使用を示します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+'TODO: 「YOUR_DATA_ITEM」をデータ項目への実際の参照と置き換えます。
+Dim record As DataRecord = Me.xamDataPresenter1.GetRecordFromDataItem(YOUR_DATA_ITEM, True)
+If record IsNot Nothing Then
+    'TODO: ここにレコードのロジックを追加します
+End If
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+//TODO: 「YOUR_DATA_ITEM」をデータ項目への実際の参照と置き換えます。
+DataRecord record = this.xamDataPresenter1.GetRecordFromDataItem(YOUR_DATA_ITEM, true);
+if(record != null)
+{
+    //TODO: ここにレコードのロジックを追加します
+}
+----
+
+== 関連トピック
+
+link:xamdatapresenter-add-items-manually-to-a-datapresenter-control.html[項目を手動で DataPresenter コントロールに追加]
+
+link:xamdatapresenter-iterate-through-the-records-collection.html[レコード コレクションで繰り返し]

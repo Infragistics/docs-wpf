@@ -1,0 +1,21 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammaskededitors-using-xammaskededitor",
+    "controlName": ["xamMaskedEditor"],
+    "tags": [],
+    "guid": "{BCD57782-5AD2-4F71-BE81-C6C5592B3DDC}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2179781Z"
+}
+|metadata|
+////
+
+= xamMaskedEditor の使用
+
+このセクションでは、xamMaskedEditor™ コントロールの様々な特長や機能を効果的に使用するための、重要なタスク ベースの情報について説明します。
+
+* link:xameditors-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xammaskededitor-using-xammaskededitor-as-a-field-in-xamdatagrid.html[xamDataGrid でフィールドとして xamMaskedEditor を使用]
+* link:xameditors-working-with-the-isalwaysineditmode-property-and-the-editors.html[IsAlwaysInEditMode プロパティとエディターによる作業]

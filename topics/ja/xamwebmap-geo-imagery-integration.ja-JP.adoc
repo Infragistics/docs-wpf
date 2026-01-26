@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-geo-imagery-integration",
+    "controlName": ["xamMap"],
+    "tags": [],
+    "guid": "{8D5A9002-7601-4526-82EE-0C97E0707E3B}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1512295Z"
+}
+|metadata|
+////
+
+= 地理画像の統合
+
+xamWebMap コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~maptilesource.html[MapTileSource] プロパティは、地図画像がロードされるソースを構成するために使用されます。サポートされる地理的画像のソースの完全なリストについては、 link:xamwebmap-supported-geo-imagery.html[「サポートされる地理的画像」]セクションを参照してください。画像タイル プロバイダーによって使用される地図投影タイプに一致させるために link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~maptilesource.html[xamMap] コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~mapprojectiontype.html[MapProjectionType] プロパティを設定しなければならない場合があることを理解することが重要です。そうでなければ、使用される Shapefiles は画像に正しく配置されません。シェープファイルが画像タイルと揃わない場合、xamMap コントロールの MapProjectionType プロパティを使用可能な列挙値のいずれかに変更して、問題が解決されるかどうかを確認します。現在サポートされているマップ投影法のタイプの完全なリストについては、 link:xamwebmap-understanding-xamwebmap.html[xamMap について]セクションを参照してください。
+
+地図画像は、上空から見た世界の非常に詳細な表現を提供します。地図画像は、航空地図表示または道路地図表示で構成されます。xamMap と地図画像を併用することができるので、エンドユーザーに豊かでインタラクティブな世界地図を提供できます。
+
+以下の画像は xamMap でサポートされる地図画像の例です。
+
+image::images/xamMap_Geo_Imagery_Intergration_01.png[]
+
+xamMap コントロールを使用したデータ アクセスに特化したトピックをご覧になるには、以下のリンクをクリックしてください。
+
+* link:xamwebmap-add-bing-maps-as-geo-imagery-data-source.html[Bing Maps へバインド]
+* link:xamwebmap-add-open-street-maps-as-geo-imagery-data-source.html[Open Street Maps へバインド]
+* link:xamwebmap-merge-bing-maps-with-shapefile.html[Bing Maps をシェープファイルと結合]
+* link:xamwebmap-merge-open-street-maps-with-shapefile.html[OpenStreetMap をシェープファイルと結合]
+* link:xamwebmap-display-different-layer-types.html[異なるレイヤー タイプを表示]
+* link:xamwebmap-supported-geo-imagery.html[サポートされる地図画像]
+* link:xamwebmap-navigate-geo-imagery-map.html[地図画像マップをナビゲート]

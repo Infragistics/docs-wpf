@@ -1,0 +1,119 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamradialmenu-items-sub-items-configuration-overview",
+    "tags": ["How Do I","Layouts","Tips and Tricks"],
+    "controlName": ["xamRadialMenu"],
+    "guid": "e181fc4e-f672-4fa0-9ade-b3fc8e93edc2",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.8873086Z"
+}
+|metadata|
+////
+
+= 項目 / サブ項目の構成 - 概要 (xamRadialMenu)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、メニュー項目およびその構成プロパティの概要について説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-features.html[xamRadialMenu の機能]
+|このトピックでは、コントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamradialmenu-visual-elements.html[xamRadialMenu の視覚要素]
+|このトピックでは、コントロールの視覚要素の概要を紹介します。
+
+| link:xamradialmenu-configuration-overview.html[xamRadialMenu 構成の概要]
+|このトピックでは、 _xamRadialMenu_ を構成する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref377994935,メニュー項目の構成の概要>>
+* <<_Ref377994940,関連コンテンツ>>
+
+[[_Ref377994935]]
+== メニュー項目の構成の概要
+
+=== メニュー項目の構成の概要表
+
+_xamRadialMenu_   コントロールは複数の項目タイプをサポートします。項目タイプはすべて link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenuitembase_members.html[RadialMenuItemBase] 基本クラスから派生されます。
+
+以下の表は、メニュー項目で構成できる主要な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+メニュー項目インデックス
+|メニュー項目の位置を指定します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+この項目インデックスを指定しない場合は、定義した順に項目が描画されます。 
+
+====
+|
+* link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenuitembase~wedgeindex.html[WedgeIndex] 
+
+|メニュー項目のスパン
+|メニュー項目がスパンするウェッジの数を指定します。
+|
+* link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenuitembase~wedgespan.html[WedgeSpan] 
+
+|最近の項目
+|最後に選択されたサブ項目への参照を保持します。サブ項目の自動配置 (回転) 機能が使用できます。
+|
+* link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenuitem~recentitem.html[RecentItem] 
+
+|サブ項目の自動配置 (回転)
+|項目のサブ項目を自動回転するかどうかを指定し、最近選択された項目の位置を親項目の位置と一致させます。 
+
+たとえば、ボタン項目の場合は、`RecentItem` プロパティに指定された項目に一致させることができます。色項目またはカラーウェルは、親のカラーウェル / 色項目と一致する子のカラーウェルが使用されます。
+|
+* link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenuitembase~autorotatechildren.html[AutoRotateChildren] 
+
+|====
+
+[[_Ref377994940]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-configuring-button-items.html[ボタン項目の構成]
+|このトピックでは、 _xamRadialMenu_ のボタン項目について説明します。
+
+| link:xamradialmenu-configuring-numeric-items.html[数値項目の構成]
+|このトピックでは、 _xamRadialMenu_ の数値項目について説明します。
+
+| link:xamradialmenu-configuring-color-items.html[色項目の構成]
+|このトピックでは、 _xamRadialMenu_ の色項目について説明します。
+
+| link:xamradialmenu-configuring-list-items.html[リスト項目の構成]
+|このトピックでは、 _xamRadialMenu_ のリスト項目について説明します。
+
+|====

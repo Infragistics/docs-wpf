@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-radio-button",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","Selection"],
+    "guid": "{45990F6A-D117-4C09-98CA-86F650D9D66F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1891909Z"
+}
+|metadata|
+////
+
+= ラジオ ボタン
+
+
+
+
+
+Radio Button ツールは、相互排他的オプションのグループをエンドユーザーに示したい場合に役立ちます。この機能のタイプは、左、中央、右などのワープロアプリケーションのテキスト揃えと同期します。ボタンをクリックすると関連付けられたオプションが選択され、以前に選択したオプションの選択が解除されます。ワープロアプリケーションでは、左揃えになったテキストを強調表示したり、右揃えボタンをクリックします。右揃えボタンが選択されると、以前に選択した左揃えボタンの選択は解除されます。Radio Button ツールは、Microsoft® Windows® Presentation Foundation の System.Windows.Controls.ButtonBase クラスから派生します。したがって、標準の .NET Framework RadioButton コントロールと同じ機能を得られます。
+
+Radio Button ツールは IRibbonTool インターフェイスも実装します。これは、高度な xamRibbon™ 機能を容易にするためのクローンおよびバインド機能を追加します。ユーザー独自のカスタム xamRibbon ツールを作成していなければ、IRibbonTool インターフェイスについての心配は不要です。
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.radiobuttontool.html[RadioButtonTool] クラスは、xamRibbon でボタンを容易に管理する上で役立つ複数の追加プロパティを公開します。RadioButtonTool は、プロパティが設定された場合、またはラジオ ボタンが特定の状態にある場合に確認を手助けするために複数の 'Has' および 'Is' プロパティを公開します。xamRibbon で RadioButton ツール (または他のツール) を設定する際に役立つ標準プロパティには以下が含まれます。
+
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.radiobuttontool~caption.html[Caption] - ツールのキャプションが表示可能である状態にツールのサイズが設定されている場合、ツールの隣りにこのテキストが表示されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.radiobuttontool~id.html[Id] - 異なる複数の場所 (つまり、リボン グループとクイック アクセス ツールバーに同時に) に配置された時にツールを関連付けるために xamRibbon が使用する識別文字列。Id は不要ですが、ランタイムに link:xamribbon-access-a-tool-by-its-id.html[ツールにアクセス]する手助けとなります。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.radiobuttontool~keytip.html[KeyTip] - 各ツールには、それに関連付けられた link:xamribbon-key-tips.html[キーチップ]があります (メイン メニュー ニーモニックに似ている)。明示的にキーチップを提供しなければ、ユーザーに代わって xamRibbon が内部的に選択します。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.radiobuttontool~largeimage.html[LargeImage] - 通常は 32 x 32 ピクセルの画像です。ツールの SizingMode が ImageAndTextLarge に設定される場合にこの画像が表示されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.radiobuttontool~sizingmode.html[SizingMode] - このプロパティは読み取り専用で、ツールが関連付けられたリボン グループで現在どのようにサイズ設定されているかを返します。link:xamribbon-resize-a-tool.html[ツールのサイズを設定]したい場合、RibbonGroup の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~minimumsizeproperty.html[MinimumSize] および/または link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~maximumsizeproperty.html[MaximumSize] 添付プロパティを設定できます。また、 link:xamribbon-add-tools-to-a-buttongroup.html[ボタン グループにツールを配置]する場合、ツールは自動的に ImageOnly にサイズ設定されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.radiobuttontool~smallimage.html[SmallImage] - 通常は 16 x 16 ピクセルの画像です。ツールの SizingMode が ImageAndTextNormal に設定される場合にこの画像が表示されます。
+
+xamRibbon ツールすべては同じオブジェクトから派生および実装するので、ツールの各機能は非常に似ています。以下のトピックはすべての xamRibbon ツールに適用されます。
+
+== 関連トピック
+
+link:xamribbon-access-a-tool-by-its-id.html[ID でツールにアクセス]
+
+link:xamribbon-add-tools-to-a-buttongroup.html[ツールを ButtonGroup に追加]
+
+link:xamribbon-add-tools-to-a-ribbon-group.html[リボン グループにツールを追加]
+
+link:xamribbon-resize-a-tool.html[ツールのサイズ変更]

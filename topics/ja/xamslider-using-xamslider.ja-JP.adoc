@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamslider-using-xamslider",
+    "controlName": ["xamSlider"],
+    "tags": [],
+    "guid": "{F76AA50B-8E3B-46A6-8028-14A68582532E}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0233702Z"
+}
+|metadata|
+////
+
+= xamSlider の使用
+
+このセクションは、xamSlider コントロールの様々な特徴や機能を効果的に使用するための重要なタスク ベースの情報について説明します。
+
+link:xamslider-interaction-modes.html[操作モード]
+
+このトピックは、xamSlider コントロールの対話モードを設定する方法を示します。
+
+link:xamslider-xamslider-thumbs.html[xamSlider につまみを追加]
+
+このトピックは、xamSlider コントロールにつまみを追加する方法、更に、異なるプロパティを設定する方法を示します。
+
+link:xamslider-xamslider-tick-marks.html[xamSlider の目盛]
+
+このトピックは、xamSlider コントロールに目盛を追加する方法、更に、異なるプロパティを設定する方法を示します。
+
+link:xamslider-value-tick-marks.html[目盛値]
+
+このチュートリアルは、目盛のデフォルト設定をオーバーライドして目盛の値を表示する方法を示します。
+
+link:xamslider-retrieve-the-thumb-values.html[つまみの値の取得]
+
+このトピックは、つまみの値を取得する方法を紹介します。
+
+link:xamslider-programmatically-add-or-remove-thumbs-at-runtime.html[プログラムによってランタイムでつまみを追加または削除]
+
+このトピックは、手続き型コードを使用してつまみを追加または削除する方法を示します。
+
+pick:[win-phone=" link:xamslider-displaying-thumb-values.html[つまみ値の表示]"]
+
+ifdef::win-phone[]
+このトピックでは、xamSlider をコールアウト (xamInfoBox) と組み合わせて、つまみの実効値を表示する方法を示します。
+endif::win-phone[]
+
+pick:[win-phone=" link:xamslider-configuring-touch-area.html[タッチ エリアの構成]"]
+
+ifdef::win-phone[]
+このトピックでは、ユーザーがコントロールを操作できるようにタッチエリアのサイズを構成する方法を示します。
+endif::win-phone[]

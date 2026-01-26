@@ -1,0 +1,63 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-modify-field-sizing-behaviors",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","How Do I","Layouts","Tips and Tricks"],
+    "guid": "{418BBC2A-4E35-44E1-AE6E-2A41728680EB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2540039Z"
+}
+|metadata|
+////
+
+= フィールドのサイズ設定動作の修正
+
+
+
+エンド ユーザーはフィールドのサイズ変更インジケーターをダブルクリックして、フィールドのサイズを変更し、最も細長いコンテンツをフィールド内にフィットさせることができます。エンド ユーザーがフィールドを自動的にサイズ変更すると、DataPresenter コントロールは複数の要因に基づいてフィールドをサイズ変更します。第 1 の要因は、データ セル、ラベル、集計セルなどの DataPresenter コントロールが測定する要素です。第 2 の要因は、これらの要素がビュー内にあるかどうかです。デフォルトでは、エンドユーザーが自動的にフィールドをサイズ変更するとき、DataPresenter コントロールはビュー内のコントロールをすべて考慮します。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~autosizeoptions.html[AutoSizeOptions] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~autosizescope.html[AutoSizeScope] プロパティを設定することによりこのデフォルト動作を変更できます。
+
+AutoSizeOptions プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldautosizeoptions.html[FieldAutoSizeOptions] 列挙値のビット単位の組み合わせに設定できます。このプロパティは、DataPresenter コントロールが測定する要素を決定します。たとえば、AutoSizeOptions プロパティを DataCells に設定する場合、ビュー内にラベルやフィルターセルなどの他の要素があっても、フィールドをサイズ変更するとき、DataPresenter コントロールはデータ セルのみを測定します。
+
+AutoSizeScope プロパティは、DataPresenter コントロールがビュー外の要素を測定するかどうかを決定します。ただし、エンド ユーザーがフィールドのサイズ変更インジケーターをダブルクリックしてフィールドをサイズ変更するとき、DataPresenter コントロールはビュー外の要素を測定するためにレコードを割り当てる必要があります。DataPresenter コントロールでの要素の測定には時間がかかることに留意してください。そのため、大きなデータ ソースを扱うときは、ViewableRecords および AllRecords 列挙値を使用すべきではありません。
+
+以下のコード例は、フィールドのサイズ設定の動作を変更する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldSettings>
+        <igDP:FieldSettings AutoSizeOptions="DataCells, Label" AutoSizeScope="ViewableRecords" />
+    </igDP:XamDataPresenter.FieldSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldSettings.AutoSizeOptions = FieldAutoSizeOptions.DataCells Or FieldAutoSizeOptions.Label
+Me.xamDataPresenter1.FieldSettings.AutoSizeScope = FieldAutoSizeScope.ViewableRecords
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldSettings.AutoSizeOptions = FieldAutoSizeOptions.DataCells | FieldAutoSizeOptions.Label;
+this.xamDataPresenter1.FieldSettings.AutoSizeScope = FieldAutoSizeScope.ViewableRecords;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-set-a-fields-width.html[フィールドの幅の設定]
+
+link:xamdatapresenter-automatically-fit-fields.html[自動的にフィールドを調整]
+
+link:xamdatapresenter-perform-an-auto-sizing-operation.html[自動サイズ設定操作の実行]

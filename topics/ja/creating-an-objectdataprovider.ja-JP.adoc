@@ -1,0 +1,85 @@
+﻿////
+|metadata|
+{
+    "name": "creating-an-objectdataprovider",
+    "controlName": [],
+    "tags": [],
+    "guid": "{B7E419E2-39B2-47AF-9E24-656947012C12}",
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-02-01T16:01:19.6138357Z"
+}
+|metadata|
+////
+
+= ObjectDataProvider の作成
+
+== 始める前に
+
+Microsoft® Windows® Presentation Foundation でコレクションをコントロールにバインドするためには、コレクションは IEnumerable インタフェースを実装する必要があります。この要件を満たすと、プロシージャコードを使用してデータバインドされたコントロールにコレクションをバインドできます。さらに、ObjectDataProvider を使用してコレクションをコントロールに宣言的にバインドできます。
+
+このトピックでは、ObjectDataProvider を特定のコントロールにバインドする方法についての説明はありません。ただし、コントロール固有のタスクについてはこのトピックで作成された ObjectDataProvider を使用する必要があります。このトピックで作成した ObjectDataProvider にコントロールをバインドする方法については、このトピックの最後にあるリンクをご覧ください。
+
+== 達成すること
+
+このトピックは、ObjectDataProvider を設定する方法を示します。ObjectDataProvider を設定するために示された Extensible Application Markup Language (XAML) は、一般的にコントロールに依存しなくても十分な程度に記述されています。
+
+この例で使用される ObservableCollection は Car オブジェクトのコレクションです。link:resources-car-business-logic.html[CarBusinessLogic] クラスは、C# および VB.NET 言語で利用可能で、ダウンロードしてこのサンプルで作業をする間にプロジェクトで使用することができます。
+
+[NOTE]
+====
+*注*:ダウンロード可能な ObservableCollection クラス ファイルは、このトピックの範囲外であるため、このトピックでは扱いません。
+====
+
+== 次の手順を実行します
+
+[start=1]
+. CarsBusinessLogic クラスをプロジェクトに追加します。
+[start=2]
+. Window または Page の開始タグに、属性として CarsBusinessLogic クラスの XML 名前空間を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<!--
+Visual Basic を使用している場合、プロジェクトのルートの名前空間で CarsBusinessLogic クラスに割り当てている XML 名前空間を置き換えます。
+-->
+xmlns:Cars="clr-namespace:IGDocumentation"
+----
+
+[start=3]
+. Resources セクションを Window または Page に追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+...
+<Window.Resources>
+        <!--TODO: ここで ObjectDataProvider を追加します。-->
+</Window.Resources>
+...
+----
+
+[start=4]
+. 手順 3 で追加した Resources セクションに ObjectDataProvider を追加します。
+
+.. Key - Key プロパティを CarData に設定します。この Key を使用してデータ プロバイダを後で参照します。
+.. ObjectType - ObjectType プロパティを '{x:Type Cars:CarsBusinessLogic}' に設定します。データ プロバイダは、ObjectType プロパティに基づいてオブジェクトをインスタンス化します。
+.. MethodName - MethodName プロパティを 'GetCars' に設定します。データ プロバイダはオブジェクトをインスタンス化した後でこのメソッドを呼び出します。ObjectDataProvider はオブジェクトのコレクションに返すことが制限されています。DataSet または DataTable を返すメソッドを指定することもできます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+...
+<ObjectDataProvider x:Key="CarData" ObjectType="{x:Type Cars:CarsBusinessLogic}" MethodName="GetCars" />
+...
+----
+
+[start=5]
+. この時点でアプリケーションを実行すると、空の Window を表示するだけです。結果を確認するためには、コントロールを Window に追加して、このトピックで作成した ObjectDataProvider をコントロールにバインドする必要があります。
+
+== 関連トピック
+
+link:xamcomboeditor-bind-xamcomboeditor-to-a-collection.html[xamComboEditor をコレクションにバインド]

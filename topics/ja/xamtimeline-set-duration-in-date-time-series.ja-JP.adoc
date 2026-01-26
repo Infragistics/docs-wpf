@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-set-duration-in-date-time-series",
+    "controlName": ["xamTimeline"],
+    "tags": ["API","Application Scenarios","How Do I"],
+    "guid": "{9DCA8A3F-8E3E-4B47-82EA-7DB262D3A76F}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.9183939Z"
+}
+|metadata|
+////
+
+= 日時シリーズで時間を設定
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeseries.html[DateTimeSeries] のイベントが長時間発生する場合、xamTimeline で時間スパンとしてこれを表すことができます。これは、DateTime エントリの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeentry~duration.html[Duration] プロパティを TimeSpan 値に設定することで実現されます。
+
+この例は、Infragistics link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールのためにプロジェクトを設定する方法をユーザーが理解していることを前提としています。以下の xaml コードは、xamTimeline で DateTime エントリの時間スパンを表示する方法を示します。このコードは link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis~minimum.html[Minimum] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis~maximum.html[Maximum] 値だけでなく、エンド ユーザーはデータを容易に解釈できるように、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineaxis~unit.html[DateTimeAxis] オブジェクトで link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis~unittype.html[Unit] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis.html[UnitType] プロパティを定義します。
+
+*XAML の場合:*
+
+----
+        <igtl:XamTimeline x:Name="xamTimeline"  
+                             Width="1000" Height="380" Margin="15">
+            <igtl:XamTimeline.Series>
+                <!-- 日時エントリを追加します -->
+                <igtl:DateTimeSeries Title="CNN TV GUIDE" Position="TopOrLeft" Fill="Red">
+                    <igtl:DateTimeSeries.Entries>
+                        <igtl:DateTimeEntry Time="12/21/2012 6:00 AM" Duration="2:55:00" Title="CNN Sunday Morning"/>
+                        <igtl:DateTimeEntry Time="12/21/2012 9:00 AM" Duration="3:30:00" Title="State of the Union"/>
+                        <igtl:DateTimeEntry Time="12/21/2012 1:00 PM" Duration="1:55:00" Title="CNN GPS"/>
+                        <igtl:DateTimeEntry Time="12/21/2012 3:00 PM" Duration="2:45:00" Title="YOUR $"/>
+                        <igtl:DateTimeEntry Time="12/21/2012 6:00 PM" Duration="2:55:00" Title="CNN Newsroom"/>
+                        <igtl:DateTimeEntry Time="12/21/2012 9:00 PM" Duration="1:00:00" Title="AC360"/>
+                    </igtl:DateTimeSeries.Entries>
+                </igtl:DateTimeSeries>
+            </igtl:XamTimeline.Series>
+            <!-- Axis オブジェクトの Minimum/Maximum および UnitType を設定します -->
+            <igtl:XamTimeline.Axis>
+                <igtl:DateTimeAxis Minimum="12/21/2012 4:00 AM" Maximum="12/21/2012 11:00 PM"
+                                   AutoRange=" UnitType="Hours" Unit="2"/>
+            </igtl:XamTimeline.Axis>
+        </igtl:XamTimeline>
+----
+
+image::images/XamTimeline_Set_Duration_In_Date_Time_Series_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-about-date-time-series.html[DateTimeSeries について]
+
+link:xamtimeline-display-date-time-series.html[DateTimeSeries の表示]

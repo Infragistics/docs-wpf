@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-overview",
+    "tags": [],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "bca91c38-3c7b-4c7a-8183-1d270e62640d",  
+    "buildFlags": [],
+    "createdOn": "2015-07-30T16:00:12.4650949Z"
+}
+|metadata|
+////
+
+= 概要 (xamBusyIndicator)
+
+== このグループのトピックについて
+
+=== 概要
+
+このトピックのグループでは、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator.html[xamBusyIndicator] コントロールの機能および視覚要素の概要を説明します。
+
+=== トピック
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-features-overview.html[機能の概要]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xambusyindicator-visual-elements.html[視覚要素]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====

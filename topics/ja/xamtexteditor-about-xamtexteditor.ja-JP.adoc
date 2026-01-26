@@ -1,0 +1,19 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtexteditor-about-xamtexteditor",
+    "controlName": ["xamTextEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{288BA5BB-A142-4CB0-9ED2-2216CB07FEDD}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2469781Z"
+}
+|metadata|
+////
+
+= xamTextEditor について
+
+xamTextEditor™ コントロールは、エンド ユーザーが任意のタイプのテキストを入力できるシンプルなテキスト ボックス コントロールです。スタンドアロン エディタとして、または xamDataGrid™ コントロールの Field で xamTextEditor コントロールを使用します。xamDataGrid のフィールドとして、xamTextEditor は特定のグリッド列の適切なフォーマットを維持すると同時に、エンド ユーザーのデータ入力を支援します。
+
+xamTextEditor は、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuetype.html[ValueType] プロパティによって、複数のデータ タイプをサポートします。エディタは、値タイプに対する入力テキストを解析および検証します。たとえば、ValueType を DateTime に設定することができ、xamTextEditor は DateTime オブジェクトに対するユーザー入力を自動的に解析します。ユーザーが正しい DateTime フォーマット以外で入力した場合、入力は無効と見なされて、それに応じてユーザーにプロンプトが表示されます。

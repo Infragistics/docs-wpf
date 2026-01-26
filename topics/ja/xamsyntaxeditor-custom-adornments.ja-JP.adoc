@@ -1,0 +1,498 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-custom-adornments",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Application Blocks","Editing"],
+    "guid": "6b641155-092e-4383-ba16-03a0c8e69a70",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4773599Z"
+}
+|metadata|
+////
+
+= カスタム装飾 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは装飾を説明し、カスタム装飾を作成する方法を紹介します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref339446274, はじめに >>
+* <<_Ref340582068, カスタム装飾の作成 >>
+* <<_Ref339446338, コード例 >>
+** <<_Ref340582135,コード例: カスタム装飾ジェネレーター プロバイダーの作成>>
+** <<_Ref340569984,コード例: カスタム装飾ジェネレーターの作成>>
+** <<_Ref340582157,コード例: カスタム装飾ジェネレーター プロバイダーのインスタンス化と登録>>
+
+* <<_Ref339446363, 関連コンテンツ >>
+
+[[_Ref339446274]]
+== はじめに
+
+=== 装飾の概要
+
+装飾は  _xamSyntaxEditor_   _™_   コントロールのテキスト編集領域に表示される視覚要素です。装飾はカスタム描画レイヤーまたは定義済みの描画レイヤーでレンダーできます。_xamSyntaxEditor_   コントロールの拡張子可能な API を使用すると、カスタム装飾および装飾レイヤーを作成できます。_xamSyntaxEditor_   のカレット、 link:xamsyntaxeditor-selection.html[選択]、 link:xamsyntaxeditor-error-reporting.html[エラー報告]などの機能を実装するために内部で使用される API です。
+
+[[_Ref340582068]]
+== カスタム装飾の作成
+
+=== はじめに
+
+以下の手順を行うと、現在のドキュメントのすべての空白をマークするカスタム装飾を作成します。
+
+=== プレビュー
+
+以下のスクリーンショットは結果のプレビューです。空白はドットによってマークされ、タブは矢印によってマークされます。
+
+image::images/xamSyntaxEditor_Adornments01.png[]
+
+=== 前提条件
+
+この手順を実行するには、最初に link:xamsyntaxeditor-adding-to-your-page.html[ _xamSyntaxEditor_   をページに追加]してください。
+
+=== 概要
+
+以下はプロセスの概念的概要です。
+
+*1.装飾ジェネレーター プロバイダーから派生した `AdornmentGeneratorProvider` クラスを作成します。このクラスは、コントロールがインスタンスを要求するときに、装飾ジェネレーター クラスのインスタンスを作成します。*
+
+*2.派生 `AdornmentGeneratorProvider` を TextDocument の Language に公開された `ServicesManager` と登録します。*
+
+*3.装飾ジェネレーターから派生した `SyntaxEditorAdornmentGeneratorBase` を作成します。このクラスは、特定のドキュメント ビューに実際の装飾を描画します。このクラスのインスタンスは、手順 2 に登録した `AdornmentGeneratorProvider` によって自動的に作成されます。*
+
+=== 手順
+
+以下の手順は、カスタム装飾を作成する方法を示しています。
+
+=== 1.AdornmentGeneratorProvider から派生するクラスを使用して装飾ジェネレーター プロバイダーを作成します。
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.adornmentgeneratorprovider~createadornmentgenerator.html[CreateAdornmentGenerator] メソッドを実装する link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.adornmentgeneratorprovider_members.html[AdornmentGeneratorProvider] を拡張するクラスを作成します。そのメソッドは、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.syntaxeditoradornmentgeneratorbase_members.html[SyntaxEditorAdornmentGeneratorBase] から派生するクラスのインスタンスを作成して返します。_xamSyntaxEditor_   がこのメソッドを呼び出すときに、関連する link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.documentviewbase_members.html[DocumentViewBase] を提供します。`DocumentViewBase` は、ビューおよびコントロール情報にアクセスするためのコンテキストを含むため、装飾に渡すことを推薦します。
+
+注:
+
+[NOTE]
+====
+AdornmentGeneratorProvider クラスから派生して装飾ジェネレーター プロバイダーの作成については、<<_Ref340582135,関連するコード例>>を参照してください。
+====
+
+=== 2.派生した装飾ジェネレーター プロバイダーを TextDocument の Language に公開された ServicesManager と登録します。
+
+ページを作成して  _xamSyntaxEditor_   コントロールを追加します。link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.parsing.servicesmanager.html[ServicesManager] の link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.parsing.servicesmanager~registerservice.html[RegisterService] メソッドを使用して装飾ジェネレーター プロバイダーを登録します。
+
+注:
+
+[NOTE]
+====
+TextDocument の `ServicesManager` を使用して派生した装飾ジェネレーター プロバイダーの登録については、<<_Ref340582157,関連するコード例>>を参照してください。
+====
+
+=== 3.SyntaxEditorAdornmentGeneratorBase から派生するクラスを使用して装飾ジェネレーターを作成します。
+
+`SyntaxEditorAdornmentGeneratorBase` クラスから拡張する装飾ジェネレーター クラスを作成します。ベース コンストラクターを呼び出すと、装飾ジェネレーターを定義済みの装飾レイヤーと関連するか、新しいレイヤーを作成し、他のレイヤーに相対する z-order 位置を指定できます。
+
+装飾ジェネレーターと関連する要素を追加するには、`AdornmentLayer` プロパティを使用して装飾レイヤーの link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.primitives.adornmentlayer~addadornment.html[AddAdornment] メソッドにアクセスします。
+
+普通には、表示線が変更するときに装飾を更新するためにドキュメント ビューの link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.documentviewbase~layoutchanged_ev.html[LayoutChanged] イベントにハンドラーを追加します。
+
+設定を変更したときに  _xamSyntaxEditor_   によって発生した `OnRefreshAdornments` メソッドをオーバーライドします。
+
+追加した装飾要素を解除し、使用中のリソースを解除するために `OnUnloaded` メソッドをオーバーライドします。
+
+注:
+
+[NOTE]
+====
+`SyntaxEditorAdornmentGeneratorBase` から派生したクラスについては、<<_Ref340569984,関連するコード例>>を参照してください。
+====
+
+[[_Ref339446338]]
+== コード例
+
+=== コード例の概要
+
+以下の表は、このトピックで使用したコード例をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|例|解説
+
+|<<_Ref340582135,コード例: カスタム装飾ジェネレーター プロバイダーの作成>>
+|このコード例は、カスタム装飾ジェネレーター プロバイダーの作成を紹介します。
+
+|<<_Ref340569984,コード例: カスタム装飾ジェネレーターの作成>>
+|このコード例は、カスタム装飾ジェネレーターの作成を紹介します。この例のカスタム装飾ジェネレーターは、現在のドキュメントのすべての空白およびタブを識別する記号と変換します。
+
+|<<_Ref340582157,コード例: カスタム装飾ジェネレーター プロバイダーのインスタンス化と登録>>
+|このコード例は、カスタム装飾ジェネレーター プロバイダーを TextDocument の言語によって提供されるサービス マネージャーに登録する方法を紹介します。
+
+|====
+
+[[_Ref340582135]]
+==== コード例: カスタム装飾ジェネレーター プロバイダーの作成
+
+=== 解説
+
+このコード例は、カスタム装飾ジェネレーター プロバイダーを作成する方法を紹介します。
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+Code
+public class WhiteSpaceAdornmentProvider : AdornmentGeneratorProvider
+{
+    public override SyntaxEditorAdornmentGeneratorBase CreateAdornmentGenerator(DocumentViewBase documentView)
+    {
+        WhiteSpaceAdornment adornment = new WhiteSpaceAdornment(documentView);
+        return adornment;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class WhiteSpaceAdornmentProvider
+    Inherits AdornmentGeneratorProvider
+    Public Overrides Function CreateAdornmentGenerator(documentView As DocumentViewBase) As SyntaxEditorAdornmentGeneratorBase
+        Dim adornment As New WhiteSpaceAdornment(documentView)
+        Return adornment
+    End Function
+End Class
+----
+
+[[_Ref340569984]]
+==== コード例: カスタム装飾ジェネレーターの作成
+
+=== 解説
+
+このコード例は、現在のドキュメントですべての空白およびタブを記号と変換するカスタム装飾ジェネレーターを作成する方法を紹介します。
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+Code
+// this adornment will draw symbols to indicate tabs and spaces
+public class WhiteSpaceAdornment : SyntaxEditorAdornmentGeneratorBase
+{
+    private AdornmentInfo adornmentInfo;
+    private Canvas adornmentCanvas;
+    // the adornment will draw symbols in its own layer defined between the Caret layer and the Text Foreground layer
+    public WhiteSpaceAdornment(DocumentViewBase dv) :
+        base(dv, new AdornmentLayerInfo("WhiteSpaceLayer",
+            new string[] { AdornmentLayerKeys.CaretLayer },
+            new string[] { AdornmentLayerKeys.TextForegroundLayer }))
+    {
+        // create a canvas for showing the whitespace marks
+        this.adornmentCanvas = new Canvas();
+        this.adornmentCanvas.Width = this.DocumentView.TextAreaBounds.Width;
+        this.adornmentCanvas.Height = this.DocumentView.TextAreaBounds.Height;
+        // add the adornment and position the canvas at 0,0 with respect to the editing area
+        this.adornmentInfo = this.AdornmentLayer.AddAdornment(this.adornmentCanvas, new Point(0, 0), null);
+        // listen for layout changed so that the whitespace marks will be redrawn when scrolling the docuemnt
+        this.DocumentView.LayoutChanged += UpdateWhiteSpaces;
+    }
+    // create new geometries to update the whitespace marks
+    private void UpdateWhiteSpaces(object sender, EventArgs e)
+    {
+        // obtain all visible lines
+        DocumentViewLineCollection visLines = this.DocumentView.VisibleLines;
+        // clear old geometry
+        this.adornmentCanvas.Children.Clear();
+        // iterate over all visible lines
+        foreach (DocumentViewLine visLine in visLines)
+        {
+            SnapshotLineInfo sli = visLine.SnapshotLineInfo;
+            // iterate over the characters in a single line
+            for (int charIndex = 0; charIndex < sli.Length; charIndex++)
+            {
+                char ch = sli.GetCharacter(charIndex);
+                if (ch.Equals('\t'))
+                {
+                    // if the adornment encounter a tab - create the tab mark
+                    Rect bounds = GetCharBounds(charIndex, visLine, sli);
+                    Path path = CreateTabMarker(Colors.Blue, Colors.Blue, bounds);
+                    this.adornmentCanvas.Children.Add(path);
+                }
+                else if (ch.Equals(' '))
+                {
+                    // if the adornment encounter a space - create the space mark
+                    Rect bounds = GetCharBounds(charIndex, visLine, sli);
+                    Path path = CreateSpaceMarker(Colors.Black, Colors.Black, bounds);
+                    this.adornmentCanvas.Children.Add(path);
+                }
+            }
+        }
+        // force repaint of the canvas
+        this.adornmentCanvas.InvalidateMeasure();
+    }
+    // calculate the bounds of a given character
+    private Rect GetCharBounds(int charIndex, DocumentViewLine visLine, SnapshotLineInfo sli)
+    {
+        Rect result = new Rect();
+        Point startPoint = visLine.PointFromCharacterIndex(charIndex);
+        result.X = startPoint.X;
+        result.Y = startPoint.Y;
+        Point endPoint;
+        if (charIndex == sli.Length - 1)
+        {
+            // last line character
+            endPoint = new Point(visLine.Bounds.Right, visLine.Bounds.Bottom);
+        }
+        else
+        {
+            // not last line character
+            endPoint = visLine.PointFromCharacterIndex(charIndex + 1);
+            endPoint.X--;
+            endPoint.Y = visLine.Bounds.Bottom;
+        }
+        result.Width = endPoint.X - startPoint.X + 1;
+        result.Height = endPoint.Y - startPoint.Y + 1;
+        return result;
+    }
+    // create the geometries for a tab mark
+    private Path CreateTabMarker(Color stroke, Color fill, Rect bounds)
+    {
+        PathGeometry geo = new PathGeometry();
+        GeometryGroup geoGroup = new GeometryGroup();
+        // Draw the center line
+        LineGeometry line = new LineGeometry();
+        line.StartPoint = new Point(bounds.Left + 3, bounds.Top + bounds.Height / 2);
+        line.EndPoint = new Point(bounds.Right, bounds.Top + bounds.Height / 2);
+        geoGroup.Children.Add(line);
+        // Draw the upper part of the arrow tip.
+        line = new LineGeometry();
+        line.StartPoint = new Point(bounds.Right, bounds.Top + bounds.Height / 2);
+        line.EndPoint = new Point(bounds.Right - 4, bounds.Top + (bounds.Height / 2) - 3);
+        geoGroup.Children.Add(line);
+        // Draw the lower part of the arrow tip.
+        line = new LineGeometry();
+        line.StartPoint = new Point(bounds.Right, bounds.Top + bounds.Height / 2);
+        line.EndPoint = new Point(bounds.Right - 4, bounds.Top + (bounds.Height / 2) + 3);
+        geoGroup.Children.Add(line);
+        Path path = new Path();
+        path.Fill = new SolidColorBrush(fill);
+        path.Stroke = new SolidColorBrush(stroke);
+        path.Data = geoGroup;
+        return path;
+    }
+    // create the geometries for a space mark
+    private Path CreateSpaceMarker(Color stroke, Color fill, Rect bounds)
+    {
+        EllipseGeometry geo = new EllipseGeometry();
+        geo.Center = new Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2);
+        geo.RadiusX = .5;
+        geo.RadiusY = .5;
+        Path path = new Path();
+        path.Fill = new SolidColorBrush(fill);
+        path.Stroke = new SolidColorBrush(stroke);
+        path.Data = geo;
+        return path;
+    }
+    // invoked from the Syntax Editor, when there are changes and update is needed
+    protected override void OnRefreshAdornments()
+    {
+        UpdateWhiteSpaces(null, null);
+    }
+    // unregister event handlers on unload
+    protected override void OnUnloaded()
+    {
+        this.DocumentView.LayoutChanged -= UpdateWhiteSpaces;
+        bool removed = this.AdornmentLayer.RemoveAdornment(this.adornmentInfo);
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' this adornment will draw symbols to indicate tabs and spaces
+Public Class WhiteSpaceAdornment
+      Inherits SyntaxEditorAdornmentGeneratorBase
+      Private adornmentInfo As AdornmentInfo
+      Private adornmentCanvas As Canvas
+      ' the adornment will draw symbols in its own layer defined between the Caret layer and the Text Foreground layer
+      Public Sub New(dv As DocumentViewBase)
+            MyBase.New(dv, New AdornmentLayerInfo("WhiteSpaceLayer", New String() {AdornmentLayerKeys.CaretLayer}, New String() {AdornmentLayerKeys.TextForegroundLayer}))
+            ' create a canvas for showing the whitespace marks
+            Me.adornmentCanvas = New Canvas()
+            Me.adornmentCanvas.Width = Me.DocumentView.TextAreaBounds.Width
+            Me.adornmentCanvas.Height = Me.DocumentView.TextAreaBounds.Height
+            ' add the adornment and position the canvas at 0,0 with respect to the editing area
+            Me.adornmentInfo = Me.AdornmentLayer.AddAdornment(Me.adornmentCanvas, New Point(0, 0), Nothing)
+            ' listen for layout changed so that the whitespace marks will be redrawn when scrolling the docuemnt
+            AddHandler Me.DocumentView.LayoutChanged, AddressOf UpdateWhiteSpaces
+      End Sub
+      ' create new geometries to update the whitespace marks
+      Private Sub UpdateWhiteSpaces(sender As Object, e As EventArgs)
+            ' obtain all visible lines
+            Dim visLines As DocumentViewLineCollection = Me.DocumentView.VisibleLines
+            ' clear old geometry
+            Me.adornmentCanvas.Children.Clear()
+            ' iterate over all visible lines
+            For Each visLine As DocumentViewLine In visLines
+                  Dim sli As SnapshotLineInfo = visLine.SnapshotLineInfo
+                  ' iterate over the characters in a single line
+                  For charIndex As Integer = 0 To sli.Length - 1
+                        Dim ch As Char = sli.GetCharacter(charIndex)
+                        If ch.Equals(ControlChars.Tab) Then
+                              ' if the adornment encounter a tab - create the tab mark
+                              Dim bounds As Rect = GetCharBounds(charIndex, visLine, sli)
+                              Dim path As Path = CreateTabMarker(Colors.Blue, Colors.Blue, bounds)
+                              Me.adornmentCanvas.Children.Add(path)
+                        ElseIf ch.Equals(" "C) Then
+                              ' if the adornment encounter a space - create the space mark
+                              Dim bounds As Rect = GetCharBounds(charIndex, visLine, sli)
+                              Dim path As Path = CreateSpaceMarker(Colors.Black, Colors.Black, bounds)
+                              Me.adornmentCanvas.Children.Add(path)
+                        End If
+                  Next
+            Next
+            ' force repaint of the canvas
+            Me.adornmentCanvas.InvalidateMeasure()
+      End Sub
+      ' calculate the bounds of a given character
+      Private Function GetCharBounds(charIndex As Integer, visLine As DocumentViewLine, sli As SnapshotLineInfo) As Rect
+            Dim result As New Rect()
+            Dim startPoint As Point = visLine.PointFromCharacterIndex(charIndex)
+            result.X = startPoint.X
+            result.Y = startPoint.Y
+            Dim endPoint As Point
+            If charIndex Is sli.Length - 1 Then
+                  ' last line character
+                  endPoint = New Point(visLine.Bounds.Right, visLine.Bounds.Bottom)
+            Else
+                  ' not last line character
+                  endPoint = visLine.PointFromCharacterIndex(charIndex + 1)
+                  endPoint.X -= 1
+                  endPoint.Y = visLine.Bounds.Bottom
+            End If
+            result.Width = endPoint.X - startPoint.X + 1
+            result.Height = endPoint.Y - startPoint.Y + 1
+            Return result
+      End Function
+      ' create the geometries for a tab mark
+      Private Function CreateTabMarker(stroke As Color, fill As Color, bounds As Rect) As Path
+            Dim geo As New PathGeometry()
+            Dim geoGroup As New GeometryGroup()
+            ' Draw the center line
+            Dim line As New LineGeometry()
+            line.StartPoint = New Point(bounds.Left + 3, bounds.Top + bounds.Height / 2)
+            line.EndPoint = New Point(bounds.Right, bounds.Top + bounds.Height / 2)
+            geoGroup.Children.Add(line)
+            ' Draw the upper part of the arrow tip.
+            line = New LineGeometry()
+            line.StartPoint = New Point(bounds.Right, bounds.Top + bounds.Height / 2)
+            line.EndPoint = New Point(bounds.Right - 4, bounds.Top + (bounds.Height / 2) - 3)
+            geoGroup.Children.Add(line)
+            ' Draw the lower part of the arrow tip.
+            line = New LineGeometry()
+            line.StartPoint = New Point(bounds.Right, bounds.Top + bounds.Height / 2)
+            line.EndPoint = New Point(bounds.Right - 4, bounds.Top + (bounds.Height / 2) + 3)
+            geoGroup.Children.Add(line)
+            Dim path As New Path()
+            path.Fill = New SolidColorBrush(fill)
+            path.Stroke = New SolidColorBrush(stroke)
+            path.Data = geoGroup
+            Return path
+      End Function
+      ' create the geometries for a space mark
+      Private Function CreateSpaceMarker(stroke As Color, fill As Color, bounds As Rect) As Path
+            Dim geo As New EllipseGeometry()
+            geo.Center = New Point(bounds.Left + bounds.Width / 2, bounds.Top + bounds.Height / 2)
+            geo.RadiusX = 0.5
+            geo.RadiusY = 0.5
+            Dim path As New Path()
+            path.Fill = New SolidColorBrush(fill)
+            path.Stroke = New SolidColorBrush(stroke)
+            path.Data = geo
+            Return path
+      End Function
+      ' invoked from the Syntax Editor, when there are changes and update is needed
+      Protected Overrides Sub OnRefreshAdornments()
+            UpdateWhiteSpaces(Nothing, Nothing)
+      End Sub
+      ' unregister event handlers on unload
+      Protected Overrides Sub OnUnloaded()
+            RemoveHandler Me.DocumentView.LayoutChanged, AddressOf UpdateWhiteSpaces
+            Dim removed As Boolean = Me.AdornmentLayer.RemoveAdornment(Me.adornmentInfo)
+      End Sub
+End Class
+----
+
+[[_Ref340582157]]
+==== コード例: カスタム装飾ジェネレーター プロバイダーのインスタンス化と登録
+
+=== 解説
+
+このコード例は、カスタム装飾ジェネレーター プロバイダーを TextDocument の言語によって提供されるサービス マネージャーに登録する方法を紹介します。
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+Code
+this.xamSyntaxEditor1.Document.Language.ServicesManager.RegisterService(
+    "WhiteSpaceAdornment",
+    new WhiteSpaceAdornmentProvider());
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.Document.Language.ServicesManager.RegisterService( _
+"WhiteSpaceAdornment", New WhiteSpaceAdornmentProvider())
+----
+
+[[_Ref339446363]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-changing-font-and-styles.html[フォントとスタイルの変更]
+|このトピックでは、 _xamSyntaxEditor_ 内のドキュメントのコンテンツの表示の変更方法を説明します。
+
+| link:xamsyntaxeditor-currentlinehl.html[現在の行の強調表示]
+|このトピックは現在の行の強調表示機能について説明します。
+
+| link:xamsyntaxeditor-custom-margins.html[カスタム マージン]
+|このトピックでは、カスタム マージンの作成方法を解説します。
+
+|====

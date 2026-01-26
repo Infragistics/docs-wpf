@@ -1,0 +1,55 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-limit-the-number-of-fixed-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Layouts"],
+    "guid": "{A4E2681D-DD9F-413C-88F1-A21459111150}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2390009Z"
+}
+|metadata|
+////
+
+= 固定されたレコード数の制限
+
+
+
+エンド ユーザーがレコードを固定できるようにする場合、エンド ユーザーはビュー内のすべてのレコードを固定できます。ただし、そうすると、表示可能領域全体を固定レコードで埋めることになり、固定されていないレコードをビューの中にスクロールすることができません。このシナリオを防ぐために、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~fixedrecordlimit.html[FixedRecordLimit] プロパティを設定して、エンド ユーザーが固定できるレコード数を制限できます。
+
+FixedRecordLimit プロパティは DataPresenter コントロールの上部と下部の固定レコードの合計を制限するのではなく、場所ごとの制限です。ある場所の固定レコードが最大数に達すると、エンドユーザーがその場所に固定しようとする以降のレコードは、その場所にある最も古い固定レコードと置換されます (FIFO - 先入れ先出し法)。
+
+以下のコード例は、固定レコードの数を制限する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AllowRecordFixing="Top" FixedRecordLimit="3" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>    
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xamDataPresenter1.FieldLayoutSettings.FixedRecordLimit = 3
+----
+
+*C# の場合:*
+
+----
+this.xamDataPresenter1.FieldLayoutSettings.FixedRecordLimit = 3;
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-fixed-non-scrolling-records.html[固定 (非スクロール) レコードについて]
+
+link:xamdatapresenter-about-fixed-records-and-sorting.html[固定されたレコードと並べ替えについて]
+
+link:xamdatapresenter-enable-fixed-records.html[固定されたレコードを有効にする]
+
+link:xamdatapresenter-fix-records.html[レコードの固定]

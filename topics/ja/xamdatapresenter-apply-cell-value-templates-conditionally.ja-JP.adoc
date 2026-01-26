@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-apply-cell-value-templates-conditionally",
+    "tags": ["How Do I","Templating"],
+    "controlName": ["xamDataPresenter"],
+    "guid": "2b71c0b5-a6f0-4189-b121-51c436cb7a8d",  
+    "buildFlags": [],
+    "createdOn": "2015-05-18T10:54:25.9121416Z"
+}
+|metadata|
+////
+
+= 条件に基づきセルの値テンプレートを適用 (xamDataPresenter)
+
+include::shared-apply-cell-value-templates-conditionally.ja-JP.adoc[]
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-configuring-template-field.html[テンプレート フィールドの構成 (xamDataPresenter)]
+|このトピックでは、カスタム表示のフィールドを作成し、 _xamDataPresenter_ コントロールの TemplateField を使用してテンプレートを編集する方法を説明します。
+
+|====

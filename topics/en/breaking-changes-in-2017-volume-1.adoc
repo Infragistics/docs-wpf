@@ -1,0 +1,205 @@
+﻿////
+|metadata|
+{
+    "name": "breaking-changes-in-2017-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "d03c1f2a-72f5-44e4-b766-366ce6a89fbc",
+    "buildFlags": [],
+    "createdOn": "2016-12-15T11:57:27.7825621Z"
+}
+|metadata|
+////
+
+= Breaking Changes in 2017 Volume 1
+
+== Breaking Changes Summary
+
+The following table summarizes the breaking changes of the {ProductName} 2017 Volume 1 Release. Detailed explanations of the issues are provided after the summary table.
+
+==== Legend:
+image:images/Yes.png[] - Workaround available +
+image:images/No.png[] - No known workaround +
+image:images/Fix.png[] - No known workaround, fix planned
+
+[options="header", cols="a,a,a"]
+|====
+|Control|Issue|Status
+
+|<<_Ref018, DataSeriesDataProviderAnalyzer>>
+|<<_Ref019, Method Implementation Changed>>
+|image::images/No.png[]
+
+|<<_Ref016, InterpolationUtil>>
+|<<_Ref017, Namespace Changed>>
+|image::images/No.png[]
+
+|<<_Ref014, xamBulletGraph>>
+|<<_Ref015, Defaults Changed>>
+|image::images/Yes.png[]
+
+|<<_Ref001,xamBusyIndicator>>
+|<<_Ref002,Types Moved between XML Namespaces>>
+|image::images/Yes.png[]
+
+|<<_Ref003,xamColorPicker>>
+|<<_Ref004,Changes in Control's Themes>>
+|image::images/Yes.png[]
+
+
+
+|<<_Ref007,xamDiagram>>
+|<<_Ref008,Method Renaming>>
+|image::images/Yes.png[]
+|<<_Ref007,xamDiagram>>
+|<<_Ref009,New Behavior When Dropping or Copy-Pasting xamDiagram's Items>>
+|image::images/Yes.png[]
+
+|<<_Ref005,xamEditors>>
+|<<_Ref006,Spin Wrap Default Behavior Changed>>
+|image::images/Yes.png[]
+
+|<<_Ref010, xamLinearGauge>>
+|<<_Ref011, Defaults Changed>>
+|image::images/Yes.png[]
+
+|<<_Ref012, xamRadialGauge>>
+|<<_Ref013, Defaults Changed>>
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref018]]
+== DataSeriesDataProviderAnalyzer
+
+[[_Ref019]]
+==== Method Implementation Changed
+The GetTitleString method implementation has changed to include a String[] specificProperties parameter.
+
+[[_Ref016]]
+== InterpolationUtil
+
+[[_Ref017]]
+==== Namespace Changed
+The InterpolationUtil class has been added to the Infragistics.Controls namespace. This was moved from the Infragistics namespace.
+
+[[_Ref014]]
+== xamBulletGraph
+
+[[_Ref015]]
+==== Defaults Changed
+
+|====
+|Property|Previous Value|New Value
+
+|RangeBrushes
+|----
+|New Default Brushes for Ranges
+
+|TickStartExtent
+|0.1
+|0.06
+
+|MinorTickStartExtent
+|0.06
+|0.1
+
+|====
+
+
+[[_Ref001]]
+== xamBusyIndicator
+
+[[_Ref002]]
+==== Types Moved between XML Namespaces
+The types defined in the *Infragistics.Controls.Interactions.Primitives* namespace of the *{ApiPlatform}dll* assembly which were previously mapped to the *\http://schemas.infragistics.com/xaml* XML namespace are now mapped to the *\http://schemas.infragistics.com/xaml/primitives* XML namespace. These are mostly types related to the `xamBusyIndicator` control.
+
+
+[[_Ref003]]
+== xamColorPicker
+
+[[_Ref004]]
+==== Changes in Control's Themes
+In order to enable setting of the Advanced Color Shade Picker's strings through a style and through the `RegisterResources` method as well, the following change was made in all `xamColorPicker`{empty}'s themes – in the `AdvancedColorShadePicker` style `TemplateBinding` is changed to `Binding` for the following properties - *RedCaption*, *GreenCaption*, *BlueCaption*, *HueCaption*, *SaturationCaption*, *LightnessCaption*, *CyanCaption*, *MagentaCaption*, *YellowCaption*, *BlackCaption*, *AlphaCaption*, *OKCaption* and *CancelCaption*. This change affects all control's themes and also the default control style defined in the generic.xaml file.
+If you have create custom themes for the xamColorPicker control you need to replace the `TemplateBinding` to `Binding` in the `AdvancedColorShadePicker` style for the above mentioned properties.
+
+[[_Ref007]]
+== xamDiagram
+
+[[_Ref008]]
+==== Method Renaming
+
+Because of a typo the following methods were renamed:
+
+[options="header", cols="a,a,a"]
+|====
+|Class|Old Name|New Name
+|DiagramNode|CloneDiagramItemPropetries|CloneDiagramItemProperties
+|DiagramConnection|CloneDiagramConnectionPropetries|CloneDiagramConnectionProperties
+|====
+
+[[_Ref009]]
+==== New Behavior When Dropping or Copy-Pasting xamDiagram's Items.
+
+From 17.1 the DiagramNode's and DiagramConnection's Content property is copied when an item is dropped from the toolbox or an item is copy-pasted.
+
+*Related topic:* +
+link:xamdiagram-copy-when-drop-from-toolbox.html[Dropping an Item from the Toolbox (xamDiagram)]
+
+[[_Ref005]]
+== xamEditors
+
+[[_Ref006]]
+==== Spin Wrap Default Behavior Changed
+
+Up until now the xamEditor's default spin wrap behavior was to wrap value on the current section only (for example, if you spin up a month section whose value is 12, the month value will wrap around to 1, but this will not affect the year).
+
+Now the default spin wrap behavior will affect the related sections too (for example, if you spin up a month section whose value is 12, the month value will wrap around to 1, and the year section will be incremented by 1).
+
+.Note
+[NOTE]
+====
+If you want to achieve the old spin wrap behavior you need to set the related editor's link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor~spinwrapbehavior.html[SpinWrapBehavior] property to link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.spinwrapbehavior.html[WrapCurrentSection].
+====
+
+[[_Ref010]]
+== xamLinearGauge
+
+[[_Ref011]]
+==== Defaults Changed
+|====
+|Property|Previous Value|New Value
+
+|RangeBrushes
+|----
+|New Default Brushes for Ranges
+
+|ScaleInnerExtent
+|double.NaN
+|0.05
+
+|ScaleOuterExtent
+|double.NaN
+|0.65
+
+|====
+
+
+[[_Ref012]]
+== xamRadialGauge
+
+[[_Ref013]]
+==== Defaults Changed
+
+|====
+|Property|Previous Value|New Value
+
+|RangeBrushes
+|----
+|New Default Brushes for Ranges
+
+|NeedleShape
+|Needle
+|Trapezoid
+
+|====

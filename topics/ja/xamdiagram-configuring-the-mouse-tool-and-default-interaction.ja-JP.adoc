@@ -1,0 +1,165 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-the-mouse-tool-and-default-interaction",
+    "tags": ["Application Scenarios","Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "9b5eca33-04f0-4063-879d-3e8e0004b7ee",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:39:29.1021527Z"
+}
+|metadata|
+////
+
+= マウス ツールおよびデフォルトのドラッグ操作の構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ のマウス操作とツールを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref386477912, 概要 >>
+
+** <<_Ref390187797,マウス操作とツールの概要>>
+** <<_MouseInteractionAndToolsSummaryChart,マウス操作とツールの概要表>>
+
+* <<_Ref386478000, マウス操作の構成 >>
+
+** <<_Ref386478019,概要>>
+** <<_PropertySettings,プロパティ設定>>
+
+* <<_Ref386478097, 関連コンテンツ >>
+
+** <<_Ref386478106,トピック>>
+
+[[_Ref386477912]]
+== 概要
+
+[[_Ref390187797]]
+
+=== マウス操作とツールの概要
+
+_xamDiagram_   では、 _xamDiagram_   でマウスのさまざまな操作方法を構成する、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramtool.html[Tool] と link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~defaultdraginteraction.html[DefaultDragInteraction] の 2 つのプロパティが提供されています。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramtool.html[Tool] 設定では、 _xamDiagram_   上でクリックとドラッグを実行した場合の状態を設定します。以下のツールを使用できます。
+
+* ポインター  _(デフォルト)_  
+* コネクタ
+
+ポインター ツールでは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~defaultdraginteraction.html[DefaultDragInteraction] 設定によって複数の操作を制御できます。サポートされる操作は以下のとおりです。
+
+* なし
+* ズーム
+* パン
+* 選択  _(デフォルト)_  
+
+コネクタ ツールでは、マウスをダイアグラムにドラッグすることで接続を描画できます。
+
+.注:
+[NOTE]
+====
+ノードの接続ポイントを表示するタイミングを制御するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectionpointsdisplaymode.html[ConnectionPointsDisplayMode] プロパティを使用します。このプロパティの使用についての詳細は、 link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成]を参照してください。
+====
+
+[[_MouseInteractionAndToolsSummaryChart]]
+
+=== マウス操作とツールの概要表
+
+以下の表は、目的のマウス操作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|マウス ツールの構成
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramtool.html[Tool]
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramtool.html[DiagramTool] 列挙体のメンバーの 1 つ
+
+|ポインター ツール操作の構成
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~defaultdraginteraction.html[DefaultDragInteraction]
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramdraginteraction.html[DiagramDragInteraction] 列挙体のメンバーの 1 つ
+
+|====
+
+[[_Ref386478000]]
+== マウス操作の構成
+
+[[_Ref386478019]]
+
+=== 概要
+
+目的のマウス操作を設定するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramtool.html[Tool] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~defaultdraginteraction.html[DefaultDragInteraction] プロパティの値として、対応する列挙値を指定します。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|ドラッグ操作の目的:| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramtool.html[Tool] プロパティの設定:| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~defaultdraginteraction.html[DefaultDragInteraction] プロパティの設定:
+
+|なし
+|_Pointer_
+|_None_
+
+|拡大
+|_Pointer_
+|_Zoom_
+
+|パン
+|_Pointer_
+| _Pan_ 
+
+|矩形の選択
+|_Pointer_
+| _Select_ 
+
+|接続の描画
+| _Connector_ 
+|適用不可
+
+|====
+
+[[_Configuring_a_Custom]]
+[[_Ref386478097]]
+== 関連コンテンツ
+
+[[_Ref386478106]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールのダイアグラムのノードの接続ポイントを構成する方法を説明します。カスタム ノードを使用する場合、または標準ノードの事前設定された接続ポイントをカスタマイズする場合にのみ必要です。
+
+| link:xamdiagram-binding-to-nodes-and-connections-data-with-keys.html[キーを持つノードおよび接続データへのバインド ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールのダイアグラムのノードの接続ポイントを構成する方法を説明します。カスタム ノードを使用する場合、または標準ノードの事前設定された接続ポイントをカスタマイズする場合にのみ必要です。
+
+|====

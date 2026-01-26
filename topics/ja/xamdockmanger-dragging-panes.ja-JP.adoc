@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanger-dragging-panes",
+    "controlName": ["xamDockManager"],
+    "tags": ["Getting Started","How Do I","Layouts"],
+    "guid": "33d970fe-f846-400c-9a58-877ff1710623",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5510633Z"
+}
+|metadata|
+////
+
+= ペイン ドラッグのモード
+
+
+
+xamDockManager は、フローティング ペインのドラッグでいくつかの異なるモードをサポートします。link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager.html[xamDockManager] の link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~floatingwindowdragmode.html[FloatingWindowDragMode] プロパティのそれぞれの値を設定することによって、ユーザーがどのモードを使用できるのかを制御できます。以下は値のリストで、値が設定するドラッグモードの説明が付いています。
+
+* link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.floatingwindowdragmode.html[Immediate] - ウィンドウはドラッグと同期して移動されます。
+
+image::images/xamDockManager_drag_1.png[]
+
+図 1: Immediate ドラッグ
+* link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.floatingwindowdragmode.html[Deferred] - ドラッグが終了しマウス ボタンを放した時にウィンドウのコンテンツが移動されます。ドラッグの間、透明または半透明のウィンドウ フレームが代わりに移動されます。
+
+image::images/xamDockManager_drag_2.png[]
+
+図 2: Deferred ドラッグ
+* link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.floatingwindowdragmode.html[UseDragFullWindowsSystemSettings] - このオプションを選択すると、 link:http://msdn.microsoft.com/ja-jp/library/system.windows.systemparameters.dragfullwindows.aspx[System.Windows.SystemParameters.DragFullWindows] プロパティが使用されます。
+link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.floatingwindowdragmode.html[UseSystemWindowDrag] - ドラッグの間にウィンドウのコンテンツを表示設定に基づいてオペレーティング システムによってドラッグ操作は処理されます。*Windows® 7 での注意事項:*
+
+ドラッグの間にウィンドウのコンテンツを表示設定が許可する時、UseSystemWindowDrag 設定はウィンドウを最大化された状態にドラッグしたり、最大化された状態からドラッグすることが可能となりますが、この場合 link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.dragging.movewindowaction~newlocation.html[Infragistics.Windows.DockManager.Dragging.MoveWindowAction.NewLocation] などの設定はサポートされなくなります。
+
+image::images/xamDockManager_drag_3.png[]
+
+図 3: ウィンドウを最大化された状態にドラッグ (Windows 7)

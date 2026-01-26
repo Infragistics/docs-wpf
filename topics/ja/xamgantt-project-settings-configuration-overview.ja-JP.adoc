@@ -1,0 +1,160 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-project-settings-configuration-overview",
+    "controlName": ["xamGantt"],
+    "tags": ["API","Data Presentation","How Do I","Scheduling"],
+    "guid": "8a75ae86-67ec-4cdd-bfea-818d31d55abc",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.3251652Z"
+}
+|metadata|
+////
+
+= プロジェクト設定構成の概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings_members.html[ProjectSettings] クラスとその構成可能な項目の概要を提供します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-overview.html[xamGantt の概要]
+|このトピックでは、 _xamGantt_ 、プロジェクト、タスクおよびその他の _xamGantt_ 要素についての基本的な概念的な情報を説明します。
+
+| link:xamgantt-xamgantt-in-detail.html[xamGantt の詳細]
+|このグループのトピックでは、 _xamGantt_ コントロールの詳細について説明します。
+
+| link:xamgantt-project-configuration-overview.html[プロジェクトの構成の概要]
+|このトピックでは、 _xamGantt_ Project クラスとその構成可能な項目の概要を提供します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref334894028, 概要 >>
+* <<_Ref334823701, プロジェクト設定構成プロパティの概要 >>
+* <<_Ref334823713, 関連コンテンツ >>
+
+[[_Ref334894028]]
+== 概要
+
+=== ProjectSettings クラスの概要
+
+`ProjectSettings` クラスは、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] のさまざまな項目に影響を与える設定を提供します。
+
+これらの構成可能な項目は以下の通りです。
+
+* スケジューリング エンジンのビヘイビアー (例 `AlwaysHonorTaskConstraintDates`、`ShouldCalculateAfterEachEdit` プロパティ)
+* 入力された期間が実際の時間にどのように変換されるか (例、`DaysPerMonth`、`MinutesPerDay`、`MinutesPerWeek` プロパティ)
+* クリティカル パス計算 (例、`CriticalSlackLimit`、`ShouldCalculateMultipleCriticalPaths` プロパティ)
+* プロジェクトの情報のビジュアル表現 (例、`DateStringFormat` プロパティ)。
+
+ほとんどの `ProjectSettings` のプロパティは Microsoft Project 2010 で公開されたプロパティと一致します。
+
+[[_Ref334823701]]
+== プロジェクト設定構成プロパティの概要
+
+=== プロジェクト設定構成プロパティの概要表
+
+以下の表は、xamGantt `ProjectSettings` の主要な構成可能な項目の一部を説明しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|説明|プロパティ
+
+|タスクの依存関係よりも優先するタスク制約日付を構成
+|タスク制約日付がタスクの関係よりも優先するかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~alwayshonortaskconstraintdates.html[AlwaysHonorTaskConstraintDates]
+
+|新しいリソースをプロジェクトに追加することを許可するかどうかを構成
+|非認識名をタスク リソースに入力する時に、新しい link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectresource_members.html[ProjectResource] が link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~resourceitems.html[ResourceItems] に追加されるかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~autoaddnewresources.html[AutoAddNewResources]
+
+|クリティカル スラック制限を日で構成
+|プロジェクトのクリティカル パスを計算する時にタスクがクリティカルであると見なすスラックの日数を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~criticalslacklimit.html[CriticalSlackLimit]
+
+|日付の書式を構成
+|コントロール内で日付を表示する方法を示すために使用する `DateTime` 文字列形式を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~datestringformat.html[DateStringFormat]
+
+|月の日数を構成
+|月の単位を計算する時に使用される日数を示す値を返すか、設定します (たとえば、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectduration_members.html[ProjectDuration] に月の書式設定がある)。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~dayspermonth.html[DaysPerMonth]
+
+|期間の書式を構成
+|タスクの期間の書式を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~durationformat.html[DurationFormat]
+
+|週の最初の日を構成
+|週の最初の日として使用される日を返すまたは設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~firstdayofweek.html[FirstDayOfWeek]
+
+|_xamGantt_ コントロールのユーザー インターフェイスでプロジェクトのルート タスクが表示されるかどうかを構成
+|プロジェクトがその link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~roottask.html[RootTask] を表示するかどうかを示すタイプ ブール値を返すか、設定します。 
+
+デフォルトで、プロジェクトのルート タスクは非表示です。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~isroottaskvisible.html[IsRootTaskVisible]
+
+|日ごとの分を構成
+|日の単位を計算する時に使用される分の数を示す値を返すか、設定します (たとえば、`ProjectDuration` に日の書式設定がある)。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~minutesperday.html[MinutesPerDay]
+
+|週ごとの分を構成
+|週の単位を計算する時に使用される分の数を示す値を返すか、設定します (たとえば、`ProjectDuration` に週の書式設定がある)。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~minutesperweek.html[MinutesPerWeek]
+
+|新しく作成されたタスクがデフォルトで手動スケジュールされるかどうかを構成
+|新しく作成されたタスクが手動スケジュールされるかどうかを示すタイプ ブール値を返すか、設定します。 
+
+デフォルトで、新しく作成されたタスクが手動スケジュールされます。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~newtasksaremanual.html[NewTasksAreManual]
+
+|タスクへの変更が行われるたびにプロジェクトを再計算するかどうかを構成
+|プロジェクトが変更されるたびにスケジューリング エンジンが再計算を行うかどうかを示すブール値を返すか、設定します。 
+
+デフォルトで、プロジェクトはタスクの変更のたびに再計算します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~shouldcalculateaftereachedit.html[ShouldCalculateAfterEachEdit]
+
+|複数のクリティカル パスの計算を構成
+|スケジューリング エンジンがタスクの依存するネットワークごとにクリティカル パスを計算するかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~shouldcalculatemultiplecriticalpaths.html[ShouldCalculateMultipleCriticalPaths]
+
+|先行処理または後続処理で変更が行われると手動タスクが更新されるかどうかを構成
+|開始、終了、および手動スケジュール タスクの期間が先行タスクまたは後続タスクが変更されるときに更新されるかどうかを示すブール値を返すか、設定します。 
+
+デフォルトでは、手動タスクが更新されます。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~shouldupdatemanualtaskswheneditinglinks.html[ShouldUpdateManualTasksWhenEditingLinks]
+
+|====
+
+[[_Ref334823713]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-showing-the-project-summary-task.html[プロジェクトのサマリー タスクの表示]
+|このトピックでは、 _xamGantt_ コントロールを使用してプロジェクトのサマリー タスクを表示する方法を説明します。
+
+| link:xamgantt-configuring-critical-slack-limit.html[クリティカル スラック制限を構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してプロジェクト タスクにクリティカル スラック制限を構成する方法を説明します。
+
+|====

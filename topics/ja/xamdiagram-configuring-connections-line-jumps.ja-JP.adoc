@@ -1,0 +1,121 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-configuring-connections-line-jumps",
+    "tags": ["How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "",
+    "buildFlags": [],
+    "createdOn": "2017-01-26T09:31:51.2794156Z"
+}
+|metadata|
+////
+
+= ダイアグラム接続の飛び越し線の構成 (xamDiagram)
+
+[[_topic_overview]]
+== トピックの概要
+
+[[_purpose]]
+=== 目的
+
+このトピックは、2 つの接続が交差する場合に xamDiagram™ の描画動作を構成する方法を説明します。
+
+[[_required_background]]
+=== 前提条件
+
+本トピックの理解を深めるために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 (xamDiagram)] 
+
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。 
+
+| link:xamdiagram-connections-configuration-overview.html[ダイアグラム接続の構成の概要 (xamDiagram)] 
+
+|このトピックでは、コントロールの接続の構成可能な要素の概要を説明します。 
+
+|====
+
+[[_configuring_line_jumps]]
+== 飛び越し線の構成
+
+[[_overview]]
+=== 概要
+
+2 つの接続が交差する場合、それぞれの経路が追いにくくなる場合があります。そのため、コントロールが交差点に「飛び越し線」を描画できます。飛び越し線は複数のタイプがあります。飛び越し線が上接続で描画され、ダイアグラム項目が境界線 (位置、サイズ、または両方) を変更するときに更新されます。
+
+.注:
+[NOTE]
+====
+たとえば、2 つの接続が上接続の終了点の近くに交差するなどの続で飛び越し線の描画スペースがない場合、下接続で描画されます。
+====
+
+[[_property_settings]]
+=== プロパティ設定
+
+以下の表では、飛び越し線タイプを link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectionlinejumps.html[ConnectionLineJumps] プロパティ値にマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|飛び越し線 タイプ:|説明:|値:
+
+|image:images/xamDiagram_LineJumps_None.png[xamDiagram_LineJumps_None.png] 
+|飛び越し線が描画されていません。接続が交差しています (デフォルト動作)。 
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionlinejumps.html[None] 
+
+|image:images/xamDiagram_LineJumps_Arc.png[xamDiagram_LineJumps_Arc.png] 
+|接続の交差点に円弧が描画されます。 
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionlinejumps.html[Arc] 
+
+|image:images/xamDiagram_LineJumps_Gap.png[xamDiagram_LineJumps_Gap.png] 
+|接続の交差点にギャップが描画されます。 
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionlinejumps.html[Gap] 
+
+|image:images/xamDiagram_LineJumps_Square.png[xamDiagram_LineJumps_Square.png] 
+|接続の交差点に四角が描画されます。 
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionlinejumps.html[Square] 
+
+|====
+
+[[_example]]
+=== 例
+
+以下の例は、xamDiagram コントロールを円弧タイプの飛び越し線を描画することの構成方法を紹介します。
+
+[source,xaml]
+----
+<xamDiagram ConnectionLineJumps="Arc">
+...
+</xamDiagram>
+----
+
+[[_related_content]]
+== 関連コンテンツ
+
+このトピックに関連する追加情報については、以下のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-connections-configuration-overview.html[ダイアグラム接続の構成の概要 ( _xamDiagram_ )] 
+
+|このトピックでは、 _xamDiagram_ コントロールの接続の構成可能な要素の概要を説明します。 
+
+| link:xamdiagram-connections-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )] 
+
+|このトピックでは、 _xamDiagram_ コントロールでダイアグラム ノードの接続ポイントを構成する方法を説明します。 
+
+| link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[ダイアグラム接続の開始および終了の構成 ( _xamDiagram_ )] 
+
+|このトピックでは、 _xamDiagram_ でダイアグラム接続の始点および終点を構成する場合に使用する 2 つの方法について説明します。1 つは、接続先のノードを指定し、もう 1 つは、ダイアグラムのスペースに接続の始点と終点の座標を指定します。 
+
+| link:xamdiagram-configuring-the-caps-of-diagram-connections.html[ダイアグラム接続のキャップの構成 ( _xamDiagram_ )] 
+
+|このトピックでは、定義済みのキャップを選択、またはカスタム キャップを適用して、 _xamDiagram_ コントロールのダイアグラム接続のキャップを構成する方法を説明します。 
+
+|====

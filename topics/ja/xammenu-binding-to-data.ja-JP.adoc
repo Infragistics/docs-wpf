@@ -1,0 +1,114 @@
+﻿////
+|metadata|
+{
+    "name": "xammenu-binding-to-data",
+    "controlName": ["xamMenu"],
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "guid": "{209C7064-EC88-436D-90D4-C3E5DCCEE334}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.365248Z"
+}
+|metadata|
+////
+
+= データにバインドする
+
+== 始める前に
+
+xamMenu コントロールと xamContextMenu コントロールは、階層的なデータ バインディングをサポートします。これを行うには、階層的なデータ バインディングを敏速かつ簡単に行う手助けをする階層的なデータ テンプレートが必要です。link:{RootAssembly}{ApiVersion}~infragistics.controls.hierarchicaldatatemplate.html[HierarchicalDataTemplate] オブジェクトは、ネストされたデータ用の補足テンプレートを追加した DataTemplate オブジェクトと全く同じように動作します。
+
+データの 2 つのレベルを表示するには、HierarchicalDataTemplate オブジェクトの ItemsSource プロパティを、そのコントロールのデータ ソースから公開された IEnumerable プロパティに設定し、次に表示するトップ レベルのデータに DataTemplate オブジェクトを設定し、ItemTemplate オブジェクトを設定して子コレクションからパブリック プロパティを表示します。追加的なデータのレベルには追加のテンプレートが必要です。
+
+== 達成すること
+
+xamMenu を階層的なデータ ソースにバインドする方法を学習します。例のコードは xamMenu コントロールを使用しますが、同じ原則を xamContextMenu コントロールに適用することができます。サンプル データ コレクションは link:resources-datautil.html[DataUtil] クラス ファイルにあります。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® Visual Studio® で {PlatformName}™ アプリケーションを新規作成します。
+[start=2]
+. 以下の NuGet パッケージへの参照を追加します。
+
+** Infragistics.WPF.Menus
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. 開始の UserControl タグ内で以下の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:local="clr-namespace:IGDocumentation"
+----
+
+[start=4]
+. ユーザー コントロール リソースとして DataUtil オブジェクトを追加します。
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+   <local:DataUtil x:Key="DataUtil" />
+</UserControl.Resources>
+----
+
+[start=5]
+. xamMenu をアプリケーションに追加し、その link:https://msdn.microsoft.com/ja-jp/library/system.windows.controls.itemscontrol.itemssource(v=vs.110).aspx[ItemsSource] プロパティを DataUtil オブジェクトの CategoriesAndProducts プロパティにバインドします。これで、ネストされた Products コレクションと共に Categories コレクションを返します。
+
+*XAML の場合:*
+
+----
+<ig:XamMenu x:Name="xamMenu1" Height="25" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=CategoriesAndProducts}">
+   <!-- TODO: 階層的なデータ テンプレートを追加し、子コレクションにバインドします -->
+</ig:XamMenu>
+----
+
+[start=6]
+. 階層的なデータ テンプレートを設定します。
+
+** ItemSource プロパティをデータ ソースの各 Category オブジェクトの Products コレクションにバインドします。
+** TextBlock コントロールを定義して、親データ コレクションのカテゴリ名を表示します。
+** ItemTemplate プロパティを使用して、子データ コレクションの製品名を表示します。
+
+*XAML の場合:*
+
+----
+<ig:XamMenu.HierarchicalItemTemplate>
+   <!-- 階層的なテンプレートは、各 Category オブジェクトの Products コレクションにバインドします -->
+   <ig:HierarchicalDataTemplate ItemsSource="{Binding Products}">
+      <!-- データ テンプレートは、トップ レベル データの CategoryName プロパティを表示します -->
+      <DataTemplate>
+         <TextBlock Text="{Binding CategoryName}" />
+      </DataTemplate>
+      <!-- 項目テンプレートは子製品名の情報を表示します -->
+      <ig:HierarchicalDataTemplate.ItemTemplate>
+         <DataTemplate>
+            <TextBlock Text="{Binding ProductName}" />
+         </DataTemplate>
+      </ig:HierarchicalDataTemplate.ItemTemplate>
+   </ig:HierarchicalDataTemplate>
+</ig:XamMenu.HierarchicalItemTemplate>
+----
+
+[start=7]
+. アプリケーションを実行します。xamMenu コントロールは、Catagories データを含むメイン メニュー レベルおよび Products データを含むサブメニュー レベルのオプションの 2 つのレベルを表示します。
+
+image::images/SL_xamMenu_Bind_xamMenu_to_Hierarchical_Data_01.png[]
+
+== 関連トピック
+
+link:xammenu-layout-settings.html[レイアウト設定]
+
+link:xammenu-navigating-pages-using-xammenu.html[xamMenu を使用してページをナビゲート]
+
+link:xammenu-adding-and-removing-items.html[項目の追加と削除]
+
+link:xammenu-adding-separators-between-xammenuitems.html[セパレーターを XamMenuItems 間に追加]
+
+link:xammenu-adding-icons-to-xammenuitems.html[アイコンを XamMenuItems に追加]
+
+link:xammenu-adding-check-boxes-to-xammenuitems.html[チェックボックスを XamMenuItems に追加]

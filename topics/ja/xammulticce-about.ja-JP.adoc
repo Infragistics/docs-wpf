@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticce-about",
+    "controlName": ["xamMultiColumnComboEditor"],
+    "tags": ["How Do I"],
+    "guid": "809789a1-1713-4131-878c-41c18698adf1",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.544254Z"
+}
+|metadata|
+////
+
+= xamMultiColumnComboEditor について
+
+== コントロールの構成の概要
+
+xamMultiColumnComboEditor コントロールは、クロスプラットフォームの XAML コントロールであり、別々の  pick:[sl="Silverlight"]  pick:[wpf="WPF"]  アセンブリで使用することができます。すべてのコンボボックス タイプのエディターと同様に、xamMultiColumnComboEditor コントロールは、コントロールの矢印をクリックすることによって表示/非表示となるドロップダウン リストを備える選択コントロールです。
+
+image::images/xamMultiCCE_About_1.png[]
+
+多数のコントロールのプロパティを利用することができるため、構成と使用が簡単になります。DisplayMemberPath プロパティは、ユーザーが選択を行った時に表示するフィールドを決定します。単一および複数選択モードの両方がサポートされており、これは link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection] プロパティで構成されます。
+
+xamMultiColumnComboEditor コントロールを xamComboEditor コントロールで使用する利点は、複数のグリッドに似た列を使用して、(DisplayMemberPath フィールド内のデータだけでなく) 各データ項目に対してより多くの情報を表示できることです。コントロールは、以下のようなすべての基本的な列タイプをサポートします。
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.imagecombocolumn.html[ImageComboColumn]
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.checkboxcombocolumn.html[CheckboxComboColumn]
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.datecombocolumn.html[DateComboColumn]
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.textcombocolumn.html[TextComboColumn]
+
+*注:* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~autogeneratecolumns.html[AutoGenerateColumns] プロパティを False に設定し、これらのタイプの列を手動で (コード ビハインドまたは XAML で) 追加できます。またはこれを True のままにし、コントロールに列の生成を処理させることもできます。
+
+注:
+
+[NOTE]
+====
+_xamMultiColumnComboEditor_   コントロールは、プリミティブ型のコレクションにバインドできません。
+====
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+link:xammulticce-adding.html[xamMultiColumnComboEditor をページに追加]
+
+link:xammulticce-configuring-xammulticolumncomboeditor.html[xamMultiColumnComboEditor の構成]

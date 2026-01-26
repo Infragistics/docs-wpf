@@ -1,0 +1,86 @@
+﻿////
+
+|metadata|
+{
+    "name": "designers-guide-styling-points-for-xammulticolumncomboeditor",
+    "controlName": [],
+    "tags": ["Styling","Templating"],
+    "guid": "7752490f-7ed0-4f85-a8d0-6cd8010b9bcb",  
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-01-30T16:46:26.9688012Z"
+}
+|metadata|
+////
+
+= xamMultiColumnComboEditor のスタイリング ポイント
+
+=== はじめに
+
+_xamMultiColumnComboEditor_™ コントロールを使用して、コントロールのプロパティを介してターゲットの種類のデフォルトのルック アンド フィールをカスタマイズします。
+
+=== プレビュー
+
+以下の画像は、 _xamMultiColumnComboEditor_   のコントロール プロパティを使用して構成可能な、さまざまなターゲット タイプを示しています。これによって、必要なスタイルを使用して、このコントロールに関連するターゲットの種類をカスタマイズできます。
+
+image::images/xamMultiColumnComboEditor_StylingPoints_01.png[]
+
+== xamMultiColumnComboEditor のスタイリング プロパティ
+
+以下の表は、 _xamMultiColumnComboEditor_   _™_   コントロールのスタイリング プロパティを示しています。
+
+[options="header", cols="a,a,a"]
+|====
+|ターゲットの種類|Style プロパティ|説明
+
+|`XamMultiColumnComboEditor`
+|XamMultiColumnComboEditor.Style
+|xamMultiColumnComboEditor コントロールのスタイル設定。
+
+|`SpecializedTextBox`
+|SpecializedTextBox.Style
+|xamMultiColumnComboEditor コントロール内のテキスト ボックスのスタイル設定。
+
+|`xamMultiColumnComboEditorDialog`
+|xamMultiColumnComboEditorDialog.Style
+|xamMultiColumnComboEditorDialog コントロールのスタイル設定。
+
+|`RowSelectionCheckBoxHeaderCellControl`
+|RowSelectionCheckBoxHeaderCellControl.Style
+|行セレクター エリアのチェック ボックスのヘッダー セルのスタイル設定。
+
+|`RowSelectionCheckBoxCellControl`
+|RowSelectionCheckBoxCellControl.Style
+|行セレクター エリアのチェック ボックス コントロールのスタイル設定。
+
+|`ComboCellHeaderControl`
+|ComboCellHeaderControl.Style
+|列のヘッダー セルのスタイル設定。
+
+|`ComboCellControl`
+|ComboCellControl.Style
+|xamMultiColumnComboEditor コントロールのセルのスタイル設定。
+
+|`HighlightingTextBlock`
+|HighlightingTextBlock.Style
+|xamMultiColumnComboEditor コントロールのセルのテキスト ブロックのスタイル設定。
+
+|`PopupResizer`
+|PopupResizer.Style
+|マウスを使ったダイアログのサイズ変更を可能にする、resizer コントロール (ポップアップ ダイアログ ウィンドウの下部セクション) のスタイル設定。
+
+|====
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticolumncomboeditor.html[xamMultiColumnComboEditor]
+|このセクションには、コントロールが行うことや、アプリケーションでのコントロールの使用手順など、 _xamMultiColumnComboEditor_™ コントロールに関する情報が含まれています。
+
+|====

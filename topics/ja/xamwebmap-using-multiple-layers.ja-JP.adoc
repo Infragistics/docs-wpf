@@ -1,0 +1,211 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-using-multiple-layers",
+    "controlName": ["xamMap"],
+    "tags": ["Application Scenarios","Data Presentation","How Do I"],
+    "guid": "{1D9C66CA-B4C2-4791-B2F0-45D9DE133ACC}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2872371Z"
+}
+|metadata|
+////
+
+= 複数レイヤーの使用
+
+== 始める前に
+
+複数レイヤーを xamMap に追加することで、州、都市、道路の付いたマップなど複数の表示サーフェイスを持つマップを作ることができます。各 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer.html[MapLayer] オブジェクトは Shapefile または地理的画像データ ソースにバインドできます (注: ひとつの地理的画像データ ソースにバインドできるのはコレクションのひとつのレイヤーです)。これらのレイヤーが結合されると、Layers コレクションに追加された順番に基づいて積み重ねされます。最後のレイヤーが最上位レイヤーとして追加されます。
+
+特定のウィンドウ スケールでレイヤーを表示したい場合、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~visiblefromscale.html[VisibleFromScale] プロパティを設定できます。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap] コントロールは、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~windowscale.html[WindowScale] が VisibleFromScale プロパティの値以上に増やされた場合にレイヤーを表示します。
+
+== 達成すること
+
+世界の国々のレイヤーとアメリカのレイヤーの 2 つのレイヤーがあるマップの作成方法を学習します。マップは特定のズーム レベルで米国を示しますが、ユーザーがズームインすると、各州の詳細を見ることができます。
+
+image::images/XamMap_Using_Multiple_Layers_01.png[]
+
+== 次の手順を実行します
+
+以下の一連の指示は、xamMap コントロールのために {PlatformName} プロジェクトをすでに設定済みであることを前提とします。
+
+[start=1]
+. {PlatformName} プロジェクトの  pick:[wpf="Shapefiles"]   pick:[sl="ClientBin"]  フォルダーに 2 つのシェープファイルを追加します。
+[start=2]
+. xamMap コントロールを XAML のメイン ページに追加します。xamMap を表示するように Microsoft® {PlatformName} アプリケーションを設定する方法は、 link:xamwebmap-display-map-using-shapefiles.html[「シェープファイルをバインド」]を参照してください。
+
+*XAML の場合:*
+
+----
+<igMap:XamMap x:Name="xamMap" >
+        <!-- TODO: シェープファイルで MapLayers を追加 -->
+</igMap:XamMap>
+----
+
+[start=3]
+. コード ビハインドで、xamMap コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~windowrectchanged_ev.html[WindowRectChanged] イベントのイベント ハンドラーを追加します。マップ ウィンドウが変更されると (たとえば、マップのパンまたはズームが変更すると) このイベントが発生します。
+
+*Visual Basic の場合:*
+
+----
+Public Sub New()
+        InitializeComponent()
+        AddHandler xamMap.WindowRectChanged, AddressOf xamMap_WindowRectChanged
+End Sub
+----
+
+*C# の場合:*
+
+----
+public MainPage()
+{
+       InitializeComponent();
+       xamMap.WindowRectChanged += new MapWindowRectChangedEventHandler(xamMap_WindowRectChanged);
+}
+----
+
+[start=4]
+. シェープファイルからの情報を表示するために 2 つの MapLayer オブジェクトを追加します。特定のスケールで州のレイヤーを表示したいだけなので、そのレイヤーで link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~visiblefromscale.html[VisibleFromScale] プロパティを 2 に設定します。
+
+*XAML の場合:*
+
+----
+        <igMap:XamMap.Layers>
+                <igMap:MapLayer x:Name="worldLayer">
+                        <!-- TODO: 世界のシェープファイルを読み取るために ShapeFileReader オブジェクトを追加 -->
+                </igMap:MapLayer>
+                <igMap:MapLayer x:Name="statesLayer" VisibleFromScale="2">
+                        <!-- TODO: 州のシェープファイルを読み取るために ShapeFileReader オブジェクトを追加 -->
+                </igMap:MapLayer>
+        </igMap:XamMap.Layers>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim worldLayer As New MapLayer()
+worldLayer.LayerName = "worldLayer"
+xamMap.Layers.Add(worldLayer)
+Dim statesLayer As New MapLayer()
+statesLayer.LayerName = "statesLayer"
+statesLayer.VisibleFromScale = 2
+xamMap.Layers.Add(statesLayer)
+----
+
+*C# の場合:*
+
+----
+MapLayer worldLayer = new MapLayer();
+worldLayer.LayerName = "worldLayer";
+xamMap.Layers.Add(worldLayer);
+MapLayer statesLayer = new MapLayer();
+statesLayer.LayerName = "statesLayer";
+statesLayer.VisibleFromScale = 2;
+xamMap.Layers.Add(statesLayer);
+----
+
+[start=5]
+. 2 つの ShapeFileReader オブジェクトを追加して、シェープファイルから情報を読み取り、希望のデータ マッピングを実行します。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<!--世界のシェープファイルのシェイプ ファイル リーダー -->
+<igMap:MapLayer.Reader>
+   <igMap:ShapeFileReader Uri="/../../Shapefiles/world" DataMapping="Caption=CNTRY_NAME" />
+</igMap:MapLayer.Reader>
+<!--州のシェープファイルのシェイプ ファイル リーダー -->
+<igMap:MapLayer.Reader>
+   <igMap:ShapeFileReader Uri="/../../Shapefiles/usa_st" />
+</igMap:MapLayer.Reader>
+----
+
+endif::wpf[]
+
+ifdef::wpf[]
+
+*Visual Basic の場合:*
+
+----
+Dim reader As New ShapeFileReader()
+reader.Uri = "/../../Shapefiles/world"
+Dim converter As New DataMapping.Converter()
+reader.DataMapping = TryCast(converter.ConvertFromString("Caption=CNTRY_NAME"), DataMapping)
+worldLayer.Reader = reader
+reader = New ShapeFileReader()
+reader.Uri = "/../../Shapefiles/usa_st"
+converter = New DataMapping.Converter()
+reader.DataMapping = TryCast(converter.ConvertFromString("Caption=STATE_ABBR"), DataMapping)
+statesLayer.Reader = reader
+----
+
+endif::wpf[]
+
+ifdef::wpf[]
+
+*C# の場合:*
+
+----
+ShapeFileReader reader = new ShapeFileReader();
+reader.Uri = "/../../Shapefiles/world";
+DataMapping.Converter converter = new DataMapping.Converter();
+reader.DataMapping = converter.ConvertFromString("Caption=CNTRY_NAME") as DataMapping;
+worldLayer.Reader = reader;
+reader = new ShapeFileReader();
+reader.Uri = "/../../Shapefiles/usa_st";
+converter = new DataMapping.Converter();
+reader.DataMapping = converter.ConvertFromString("Caption=STATE_ABBR") as DataMapping;
+statesLayer.Reader = reader;
+----
+
+endif::wpf[]
+
+[start=6]
+. WindowRectChanged イベント ハンドラーにコードを追加して、米国のレイヤーが表示される時に米国のキャプションを表示しないようにします。
+
+*Visual Basic の場合:*
+
+----
+Private Sub xamMap_WindowRectChanged(ByVal sender As Object, ByVal e As Infragistics.Controls.Maps.MapWindowRectChangedEventArgs)
+        Dim map As xamMap = DirectCast(sender, xamMap)
+        If Math.Round(map.ScaleToZoom(e.WindowScale)) = 3 Then
+            Dim layer As MapLayer = DirectCast(map.Layers.FindName("worldLayer").ElementAt(0), MapLayer)
+            Dim elements As IEnumerable(Of MapElement) = TryCast(layer.Elements.FindElement("Caption", "UNITED STATES"), IEnumerable(Of MapElement))
+            If elements.Count() > 0 Then
+                Dim element As MapElement = TryCast(elements.ElementAt(0), MapElement)
+                element.Caption = Nothing
+            End If
+        End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void xamMap_WindowRectChanged(object sender, Infragistics.Controls.Maps.MapWindowRectChangedEventArgs e)
+{
+            xamMap map = (XamMap)sender;
+            if (Math.Round(map.ScaleToZoom(e.WindowScale)) == 3)
+            {
+                MapLayer layer = (MapLayer)map.Layers.FindName("worldLayer").ElementAt(0);
+                IEnumerable<MapElement> elements = layer.Elements.FindElement("Caption", "UNITED STATES") as IEnumerable<MapElement>;
+                if (elements.Count<MapElement>() > 0)
+                {
+                    MapElement element = elements.ElementAt<MapElement>(0) as MapElement;
+                    element.Caption = null;
+                }
+            }
+}
+----
+
+[start=7]
+. アプリケーションを実行します。xamMap コントロールは世界の図形を表示していますが、アメリカを 3 倍以上拡大すると、個々の州も表示されます。
+
+image::images/XamMap_Using_Multiple_Layers_01.png[]
+
+== 関連トピック
+
+link:xamwebmap-display-map-using-shapefiles.html[シェープファイルをバインド]

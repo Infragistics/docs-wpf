@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-optimizing-performance",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{F466BB83-7C9B-49BB-9C72-717ED6B56859}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0129557Z"
+}
+|metadata|
+////
+
+= xamDataGrid のパフォーマンスの最適化
+
+
+
+以下のリンクをクリックすると、xamDataGrid™ コントロールのパフォーマンスの最適化に特に役立つトピックが表示されます。
+
+* link:xamdata-performance-optimizations-overview.html[パフォーマンス最適化の概要]
+* link:xamdata-impact-styles-have-on-performance-of-controls.html[スタイルがコントロールのパフォーマンスに与える影響]
+* link:xamdata-displaying-tooltips-while-scrolling-the-grid.html[グリッドをスクロールする間にツールチップを表示]

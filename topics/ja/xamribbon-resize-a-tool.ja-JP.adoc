@@ -1,0 +1,88 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-resize-a-tool",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","How Do I","Styling"],
+    "guid": "{8BD7297E-98D7-41A9-808B-1B0BD0E1E077}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1921915Z"
+}
+|metadata|
+////
+
+= ツールのサイズ変更
+
+
+
+
+
+Ribbon ツールが RibbonGroup に配置されると、Ribbon ツールは 3 つの異なる SizingModes を取ることができます。
+
+* ImageOnly - ツールのキャプションが非表示になり、SmallImage を表示します。
+* ImageAndTextNormal - ツールのキャプションが表示され、SmallImage を表示します。
+* ImageAndTextLarge - ツールのキャプションが表示され、LargeImage を表示します。
+
+Ribbon ツールのデフォルトの最小サイズと最大サイズは、Microsoft® Office® 2007 UI ガイドラインに基づきます。たとえば、ボタンは通常、小さい画像とキャプションで Office 2007 に表示されます。これは Ribbon ツール用の ImageAndTextNormal の MaximumSize と一致します。Office 2007 のリボンが小さいサイズに縮小されると、ボタンはキャプションを非表示にして画像だけを表示します。これは Ribbon ツールの ImageOnly の MinimumSize と一致します。
+
+Ribbon ツールのデフォルトの最小および最大 SizingMode を変更できます。この目的のため、RibbonGroup クラスは 2 つの添付プロパティ MaximumSize および MinimumSize を公開します。これらの添付プロパティを Ribbon ツールで設定することによって、ユーザーのニーズを満たすためにツールの SizingMode を制御できます。
+
+以下のコード例は、ButtonTool に MaximumSize および MinimumSize RibbonGroup 添付プロパティを設定する方法を示します。
+
+[NOTE]
+====
+*注:* 以下の XAML で参照される画像は、本トピックでは提供されません。SmallImage および LargeImage を自分自身の画像で置き換えてください。
+====
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:ButtonTool
+        Caption="Format"
+        SmallImage="Small_Button.gif"
+        Id="btnTool1"
+        LargeImage="Large_Button.gif"
+        igRibbon:RibbonGroup.MaximumSize="ImageAndTextLarge"
+        igRibbon:RibbonGroup.MinimumSize="ImageOnly" />
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+...
+Dim btnTool As New ButtonTool()
+btnTool.Caption = "Format"
+btnTool.Id = "btnTool1"
+btnTool.LargeImage = New BitmapImage(New Uri("pack://application:,,,/Large_Button.png"))
+btnTool.SmallImage = New BitmapImage(New Uri("pack://application:,,,/Small_Button.png"))
+RibbonGroup.SetMaximumSize(btnTool, RibbonToolSizingMode.ImageAndTextLarge)
+RibbonGroup.SetMinimumSize(btnTool, RibbonToolSizingMode.ImageOnly)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+...
+ButtonTool btnTool = new ButtonTool();
+btnTool.Caption = "Format";
+btnTool.Id = "btnTool1";
+btnTool.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Large_Button.png")); 
+btnTool.SmallImage = new BitmapImage(new Uri("pack://application:,,,/Small_Button.png"));
+RibbonGroup.SetMaximumSize(btnTool, RibbonToolSizingMode.ImageAndTextLarge);
+RibbonGroup.SetMinimumSize(btnTool, RibbonToolSizingMode.ImageOnly);
+...
+----
+
+== 関連トピック
+
+link:xamribbon-adding-xamribbon-to-your-application-.html[xamRibbon をアプリケーションに追加]
+
+link:xamribbon-add-a-tab-to-xamribbon.html[タブを xamRibbon に追加]
+
+link:xamribbon-add-a-ribbon-group-to-a-ribbon-tab.html[リボン タブにリボン グループを追加]

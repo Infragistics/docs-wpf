@@ -1,0 +1,146 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistence-handle-persistencesaved-and-persistenceloaded-events",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["Events","Persistence"],
+    "guid": "{F27B9249-269F-4A71-9E78-392C8BDFB658}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6190326Z"
+}
+|metadata|
+////
+
+= PersistenceSaved イベントと PersistenceLoaded イベントの処理
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceevents~persistencesaved_ev.html[PersistenceSaved] イベントと link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceevents~persistenceloaded_ev.html[PersistenceLoaded] イベントによってパーシステンス プロセスをカスタマイズできます。これらのイベントはすべてのプロパティが保存またはロードされた後に限り発生します。
+
+PersistenceSaved イベント ハンドラーを使用して、保存プロセスが完了したことをアプリケーションに通知できます。このとき、インジケーターまたはメッセージを表示して、エンドユーザーにこのステップが正常に実行されたことを通知できます。
+
+PersistenceLoaded イベント ハンドラーは、コントロールの設定のロードが完了したことをエンドユーザーに通知できます。ロード プロセスの間に例外がある場合、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceloadedeventargs.html[PersistenceLoadedEventArgs] イベント引数の link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceloadedeventargs~propertyexceptions.html[PropertyExceptions] プロパティによって、それらを取得およびレポートできます。ロード プロセスが正常に完了した場合、通知を表示できます。
+
+以下の例では、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings.html[PersistenceSettings] オブジェクトのイベントを登録および使用する方法を示します。
+
+[start=1]
+. XAML ファイルに「txtAccountName」という名前の TextBox コントロールを追加します。
+[start=2]
+. 2 つのボタンを追加して、保存およびロード プロセスを実行します。
+[start=3]
+. コード ビハインドで電話ページ クラスに以下を追加します。
+
+*Visual Basic の場合:*
+
+----
+Dim memoryStream As New MemoryStream()
+Dim settings As New PersistenceSettings()
+' 保存されたプロパティのカウンター
+Dim SavedPropertiesCount As Integer = 0
+----
+
+*C# の場合:*
+
+----
+MemoryStream memoryStream = new MemoryStream();
+PersistenceSettings settings = new PersistenceSettings();
+// 保存されたプロパティのカウンター
+int SavedPropertiesCount = 0;
+----
+
+[start=4]
+. InitializeComponent メソッドの後でページ コンストラクターに以下のコードを追加します。
+
+*Visual Basic の場合:*
+
+----
+' 保持グループを保存およびロードする間に発生するイベントを登録します。
+AddHandler settings.Events.SavePropertyPersistence, AddressOf Events_SavePropertyPersistence
+AddHandler settings.Events.PersistenceSaved, AddressOf Events_PersistenceSaved
+AddHandler settings.Events.PersistenceLoaded, AddressOf Events_PersistenceLoaded
+----
+
+*C# の場合:*
+
+----
+// 保持グループを保存およびロードする間に発生するイベントを登録します。
+settings.Events.SavePropertyPersistence +=
+    new EventHandler<SavePropertyPersistenceEventArgs>(Events_SavePropertyPersistence);
+settings.Events.PersistenceSaved +=
+	new EventHandler<PersistenceSavedEventArgs>(Events_PersistenceSaved);
+settings.Events.PersistenceLoaded +=
+	new EventHandler<PersistenceLoadedEventArgs>(Events_PersistenceLoaded);
+----
+
+[start=5]
+. イベント ハンドラーを追加します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub BtnSave_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    memoryStream = PersistenceManager.Save(txtAccountName, settings)
+End Sub
+Private Sub Events_PersistenceSaved(ByVal sender As Object, ByVal e As PersistenceSavedEventArgs)
+    ' 保存プロセスの完了の通知
+    MessageBox.Show("Save process completed for " & SavedPropertiesCount.ToString() & " properties.")
+End Sub
+Private Sub BtnLoad_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    memoryStream.Position = 0
+    PersistenceManager.Load(txtAccountName, memoryStream, settings)
+End Sub
+Private Sub Events_PersistenceLoaded(ByVal sender As Object, ByVal e As PersistenceLoadedEventArgs)
+    Dim excCount As Integer = e.PropertyExceptions.Count
+    If excCount > 0 Then
+        For Each details As PropertyPersistenceExceptionDetails In e.PropertyExceptions
+        MessageBox.Show(("The property " & details.PropertyInfo.Name & " has invalid value.") + details.Exception.Message.ToString())
+        Next
+    End If
+End Sub
+
+Private Sub Events_SavePropertyPersistence(ByVal sender As Object, ByVal e As SavePropertyPersistenceEventArgs)
+    ' Count the properties being saved
+    SavedPropertiesCount += 1
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void BtnSave_Click(object sender, RoutedEventArgs e)
+{
+    memoryStream = PersistenceManager.Save(txtAccountName, settings);
+}
+private void Events_PersistenceSaved(object sender, PersistenceSavedEventArgs e)
+{
+    // 保存プロセスの完了の通知
+    MessageBox.Show("Save process completed for " + SavedPropertiesCount.ToString() + " properties.");
+}
+private void BtnLoad_Click(object sender, RoutedEventArgs e)
+{
+    memoryStream.Position = 0;
+    PersistenceManager.Load(txtAccountName, memoryStream, settings);
+}
+void Events_PersistenceLoaded(object sender, PersistenceLoadedEventArgs e)
+{
+    int excCount = e.PropertyExceptions.Count;
+    if (excCount > 0)
+    {
+        foreach (PropertyPersistenceExceptionDetails details in e.PropertyExceptions)
+        {
+            MessageBox.Show("The property " + details.PropertyInfo.Name + " has invalid value." + details.Exception.Message.ToString());
+        }
+    }
+}
+----
+
+== 関連トピック
+
+link:persistence-persistence-settings.html[保持の設定]
+
+link:persistence-exclude-specific-control-properties.html[特定のコントロールのプロパティを除外]
+
+link:persistence-persistence-groups.html[保持グループ]
+
+link:persistence-persisting-specific-control-properties.html[特定のコントロールのプロパティを保持]
+
+link:persistence-using-typeconverte.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]

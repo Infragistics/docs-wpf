@@ -1,0 +1,42 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-understanding-xamdatapresenter",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started"],
+    "guid": "{E0826A54-27A4-44EC-B44E-10DBA41A4D96}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3410213Z"
+}
+|metadata|
+////
+
+= xamDataPresenter について
+
+xamDataPresenter™ はレイアウト コントロールです。データを複数のビューおよびカスタム ビューでの視覚化を許可します。動的にデータ ビューを変更する場合に便利です。{ProductName} 製品は link:xamdatapresenter-about-gridview.html[GridView]、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cardview.html[CardView]、link:xamdatapresenter-about-carouselview.html[CarouselView]、および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treeview.html[TreeView] の 4 つのビューを提供します。これらのビューによって、表 (グリッド) 形式またはカルーセル形式でデータを簡単に表示できます。ユーザーが link:xamdatapresenter-creating-custom-views.html[カスタムな表示]を作成することにより、データを最適に表示できます。
+
+異なるビューに加えて、xamDataPresenter は以下の広範な機能をサポートします。
+
+* link:xamdatapresenter-defining-layouts.html[カスタマイズ可能なフィールド配置] - GridView で link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[フィールド]のレイアウトをカスタマイズできます。
+* link:xamdatapresenter-editing-data.html[データの編集] - xamMaskedEditor™、xamNumericEditor™ などの {ProductName} エディターをフィールドで使用してデータを入力できます。
+* 異種データ - xamDataPresenter コントロールは、データ ソースでそれぞれの一意の型で link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] を作成します。結果の FieldLayouts は DataRecord ベースで link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] で指定されます。これによって、ひとつのバンド内で異なるデータを表示できます。
+* link:xamdatapresenter-sorting.html[レコードのグループ化] - Microsoft® Outlook のように、ユーザーはフィールドの値に基づいてレコードをグループ化できます。
+* 並べ替え - ユーザーはフィールドのラベルをクリックするだけで、フィールドにあるデータを並べ替えることができます。CarouselView はフィールド ラベルを表示しないので、この機能は GridView だけで使用できます。ただし、プロシージャ コードを使用してフィールドを並べ替えることができます。
+* ユーザーがサイズ変更可能なフィールドとレコード - ユーザーは GridView のフィールドやレコードの端をクリック アンド ドラックしてサイズを変更することができます。
+
+== 関連トピック
+
+link:wpf-terms-and-concepts.html[用語と概念]
+
+link:xamdata-theoryofoperation.html[操作の理論]
+
+link:xamdatapresenter-about-carouselview.html[CarouselView について]
+
+link:xamdatapresenter-about-gridview.html[GridView について]
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treeview.html[TreeView について]
+
+link:xamdatapresenter-xamdatapresenters-carousel-view-composition-diagram.html[xamDataPresenter のカルーセル ビューの構成図]
+
+link:xamdatapresenter-xamdatapresenters-grid-view-composition-diagram.html[xamDataPresenter のグリッド ビューの構成図]

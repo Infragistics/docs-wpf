@@ -1,0 +1,28 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-defining-layouts",
+    "controlName": ["xamCarouselPanel"],
+    "tags": [],
+    "guid": "{C8AC7E25-5D8F-44EC-86D5-B8FE513AEA7A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0677667Z"
+}
+|metadata|
+////
+
+= レイアウトの定義
+
+
+
+xamCarouselPanel™ にデータをバインドするための手順は完了したので、データを提示する準備は整いました。ただし、データはそれだけで画面から飛び出すことはありません。パターンを作成し、意味のある形式でデータを整理する必要があります。レイアウトの定義は、xamCarouselPanel コントロールの主要な機能です。
+
+フラットなデータ ソースまたは階層的なデータ ソースのいずれであっても、ニーズに合ったいくつかのレイアウトがあります。このセクションでは、最も使用に適したフォーマットでデータを提示するために、xamCarouselPanel のためのレイアウトの定義に必要なすべての知識を提供します。
+
+xamCarouselPanel コントロールを使用したレイアウト定義に特化したヘルプトピックをご覧になるには以下のリンクをクリックしてください。
+
+* link:xamcarousel-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xamcarouselpanel-limiting-the-number-of-items-viewed-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで表示される項目数を制限]
+* link:xamcarouselpanel-making-the-xamcarouselpanels-path-continuous.html[xamCarouselPanel のパスを継続]
+* link:xamcarouselpanel-setting-padding-on-xamcarouselpanels-path.html[xamCarouselPanel のパスでパディングを設定]

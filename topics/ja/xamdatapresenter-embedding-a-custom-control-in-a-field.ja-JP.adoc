@@ -1,0 +1,173 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-embedding-a-custom-control-in-a-field",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Tips and Tricks"],
+    "guid": "{773A23D9-FEA5-4A5C-9FCE-F43BEE1A9245}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1619855Z"
+}
+|metadata|
+////
+
+= フィールドにカスタム コントロールを組み込む
+
+
+== 始める前に
+
+セルにユーザー固有の視覚的なツリーを供給するために link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[Template] プロパティを変更できます。本質的には、ユーザー固有のテンプレートを作成することでセルに任意のコントロールを組み込むことができます。
+
+== 達成すること
+
+フィールドのセルに Button コントロールを組み込みます。Button コントロールにセルの値を表示するためにデータ バインディングも使用します。
+
+== 次の手順を実行します
+
+[start=1]
+. Window の開始タグ内に以下の XML 名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+----
+
+[start=2]
+. Window のローカル リソース ディクショナリのタグを追加します。
+
+*XAML の場合:*
+
+----
+<Window.Resources>
+    <!--方法: ここに Styles を作成します-->
+</Window.Resources>
+----
+
+[start=3]
+. CellValuePresenter オブジェクトをターゲットにする Style を作成し、それを Window のローカル リソース ディクショナリに追加します。
+
+*XAML の場合:*
+
+----
+<Style x:Key="buttonInCellStyle" TargetType="{x:Type igDP:CellValuePresenter}">
+    <!--方法: ここに Setters を追加します-->
+</Style>
+----
+
+[start=4]
+. Setter を追加して CellValuePresenter オブジェクトの Template プロパティを変更します。
+
+*XAML の場合:*
+
+----
+<Setter Property="Template">
+    <Setter.Value>
+        <!--方法: ここに ControlTemplate を作成します-->
+    </Setter.Value>
+</Setter>
+----
+
+[start=5]
+. CellValuePresenter オブジェクトをターゲットにする ControlTemplate に Setter の Value プロパティを設定します。
+
+*XAML の場合:*
+
+----
+<ControlTemplate TargetType="{x:Type igDP:CellValuePresenter}">
+    <!--方法: ここにビジュアル ツリーを定義します-->
+</ControlTemplate>
+----
+
+[start=6]
+. Button コントロールをコントロール テンプレートに追加します。
+
+使用するバインディング構文は、テンプレートが編集を許可するかどうかによって異なります。この例では、Button コントロールはセルの値を表示するだけなので、軽量の TemplateBinding マークアップ拡張で十分です。ただし、エンドユーザー入力を受け入れるコントロールを持っている場合、テンプレートされた親からの一方通行なので、TemplateBinding マークアップ拡張を使用できません。セルの値を編集する能力をエンドユーザーに与えたい場合、通常の Binding オブジェクトを使用する必要があります。フル バインディング式の例については、以下のコメント行を参照してください。
+
+*XAML の場合:*
+
+----
+<Button Content="{TemplateBinding Value}" />
+<!--
+テンプレートが、TextBox コントロールなどのセル値を変更するために、エンド ユーザー入力を受け入れるコントロールを持つ場合、フル バインディングを使用する必要があります。
+<TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Value}" />
+-->
+----
+
+[start=7]
+. xamDataGrid コントロール、xamDataCarousel コントロール、または xamDataPresenter コントロールを Window のレイアウト パネルに追加します。
+
+*XAML の場合:*
+
+----
+<!--xamDataGrid のXAML-->
+<igDP:XamDataGrid Name="xamDataGrid1" BindToSampleData="True">
+    <!--方法: ここに FieldLayout を追加します-->
+</igDP:XamDataGrid>
+<!--xamDataCarousel の XAML-->
+<igDP:XamDataCarousel Name="xamDataCarousel1" BindToSampleData="True">
+    <!--方法: ここに FieldLayout を追加します-->
+</igDP:XamDataCarousel>
+<!--xamDataPresenter の XAML-->
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <!--方法: ここに FieldLayout を追加します-->
+</igDP:XamDataPresenter>
+----
+
+[start=8]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] オブジェクトを xamDataGrid/xamDataCarousel/xamDataPresenter コントロールに追加します。
+
+*XAML の場合:*
+
+----
+<!--xamDataGrid のXAML-->
+<igDP:XamDataGrid.FieldLayouts>
+    <igDP:FieldLayout>
+        <!--方法: ここに Fields を追加します-->
+    </igDP:FieldLayout>
+</igDP:XamDataGrid.FieldLayouts>
+<!--xamDataCarousel の XAML-->
+<igDP:XamDataCarousel.FieldLayouts>
+    <igDP:FieldLayout>
+        <!--方法: ここに Fields を追加します-->
+    </igDP:FieldLayout>
+</igDP:XamDataCarousel.FieldLayouts>
+<!--xamDataPresenter の XAML-->
+<igDP:XamDataPresenter.FieldLayouts>
+    <igDP:FieldLayout>
+        <!--方法: ここに Fields を追加します-->
+    </igDP:FieldLayout>
+</igDP:XamDataPresenter.FieldLayouts>
+----
+
+[start=9]
+. フィールド レイアウトに名前フィールドの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトを追加します。
+
+*XAML の場合:*
+
+----
+<igDP:FieldLayout.Fields>
+    <igDP:Field Name="name">
+        <!--TODO: ここに FieldSettings を追加します-->
+    </igDP:Field>
+</igDP:FieldLayout.Fields>
+----
+
+[start=10]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトをフィールドに追加し、その link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellvaluepresenterstyle.html[CellValuePresenterStyle] プロパティを手順 3 で作成した Style に設定します。
+
+*XAML の場合:*
+
+----
+<igDP:Field.Settings>
+    <igDP:FieldSettings CellValuePresenterStyle="{StaticResource buttonInCellStyle}" />
+</igDP:Field.Settings>
+----
+
+[start=11]
+. プロジェクトを実行します。
+
+以下のスクリーンショット のような xamDataGrid コントロールが表示されます。
+
+image::images/xamData_Embedding_a_Custom_Control_in_a_Field_01.png[フィールドにカスタム コントロールを組み込む]

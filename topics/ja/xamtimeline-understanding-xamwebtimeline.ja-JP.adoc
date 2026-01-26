@@ -1,0 +1,54 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-understanding-xamwebtimeline",
+    "controlName": ["xamTimeline"],
+    "tags": ["Getting Started"],
+    "guid": "{E455A5F7-C710-44B3-8521-4B6F6BDE28C1}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.0163969Z"
+}
+|metadata|
+////
+
+= xamTimeline について
+
+ここでは、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロール、およびその主要な特性と機能について解説しています。このセクションのトピックを読むと、アプリケーションで xamTimeline コントロールを使用することの利点を理解できます。
+
+== xamTimeline について
+
+xamTimeline コントロールは、イベントの連続するシリーズを表示することを目的としています。コントロールによって、エンド ユーザーが簡単に視覚化および理解できる情報を素早く表示できるように、データ バインディングだけでなく手動でのデータ操作が可能となります。
+
+使用できるタイムラインには以下の 2 つの異なるタイプがあります:
+
+* *Numeric* - Double タイプの時刻値を表示します。
+* *DateTime* - DateTime タイプの時刻値を表示します。
+
+それぞれの時刻シリーズは、イベント点のタイトル、時刻、時間、および詳細を表示することができます。タイトルはエントリを説明し、時刻はタイムラインの点をマークし、時間はイベントの時間スパンを指定し、詳細はイベントの完全な説明を表示します。イベントの詳細は、つまみがイベント点に置かれた時に表示されます。
+
+以下は xamTimeline で使用できる機能の一部です。
+
+*データの表示* - インタラクティブ軸のデータ ポイントとして時系列および順次的なデータを表示します。それぞれのデータ ポイントは、十分な領域がある場合はタイトルを表示し、または情報を表示するためにズームが必要である場合は点が黄色になります。
+
+*インタラクティブ化* - 各タイムラインはインタラクティブであるため、エンド ユーザーは必要な情報を選択および検索することができます。xamTimeline のそれぞれのイベント点はクリック可能で、つまみをその点に移動したり、詳細情報を表示できます。
+
+*タイムラインの比較* - ひとつのコントロールに複数のイベント シーケンスがある場合があり、ユーザーは複数のタイムライン内のイベントを比較できます。
+
+*カスタマイズ* - xamTimeline のあらゆる要素をスタイルすることができ、ユーザーはユニークなルック アンド フィールであらゆるタイムラインを作成できます。
+
+image::images/XamTimeline_About_XamTimeline_01.png[]
+
+== 衝突防止イベント タイトルについて
+
+xamTimeline コントロールは、このコントロールの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline~eventtitlelayoutsettings.html[EventTitleLayoutSettings] プロパティを使用して、衝突防止イベント タイトルをサポートします。この機能によって使用できる領域にイベントタイトルは配列されるので、最大数のタイトルが重ならずに配置されます。タイムライン領域に収めることができないタイトルは削除され、軸のイベント点/スパンは異なる塗りつぶしレンダリングで描画されます (デフォルトは白抜き)。イベント タイトル レイアウト設定の使用方法の詳細は、 link:xamtimeline-change-event-title-layout-for-time-series.html[時刻シリーズのイベント タイトル レイアウトを変更]を参照してください。
+
+image::images/XamTimeline_Change_Event_Title_Layout_for_Time_Series_01.png[]
+
+== シリーズについて
+
+xamTimeline に含まれる link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineseries.html[Series] は、タイムラインでどのような種類のデータ (数値または時刻値) が表示されるかを決定します。link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[NumericTimeSeries] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeseries.html[DateTimeSeries] の 2 つのタイプのシリーズがあります。それぞれが各軸タイプおよびそれぞれのエントリのコレクション タイプに対応します。詳細は、 link:xamtimeline-display-date-time-series.html[日時シリーズを表示] トピックを参照してください。
+
+== スタイルについて
+
+xamTimeline コントロールは、コントロール背景の変更から個々のイベント タイトルまたはイベント点のスタイルまでの多数の方法でスタイルできます。シリーズ コレクション、タイムライン軸、およびタイムライン凡例オブジェクトのすべての要素のためにカスタム スタイルを作成することもできます。

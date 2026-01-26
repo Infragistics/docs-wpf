@@ -1,0 +1,79 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-start-up-position-of-xamdialogwindow",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{1D869E90-BEDA-4B93-9EE9-3769AA35D2ED}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.016118Z"
+}
+|metadata|
+////
+
+= xamDialogWindow の開始位置
+
+xamDialogWindow コントロールの初期位置は、 link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~startupposition.html[StartupPosition] プロパティを以下の link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.startupposition.html[StartupPosition] 列挙値のいずれかに設定することによって設定できます:
+
+* Center - アプリケーションまたはコンテナーの中央にダイアログ ウィンドウが現れます。
+* Manual - Top および Left プロパティの値を手動で設定します。
+
+ダイアログ ウィンドウが通常の状態に戻ると、直前に現れた位置に戻ります。
+
+以下のコードは Top および Left プロパティを設定することによって、ダイアログ ウィンドウの開始位置を指定する方法を示します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Width="600" Height="400">
+   <ig:XamDialogWindow x:Name="DialogWindow" Width="200" 
+       Height="200" IsModal="True" 
+       StartupPosition="Manual" Top="250" Left="350">
+   </ig:XamDialogWindow>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Interactions
+…
+DialogWindow.StartupPosition = StartupPosition.Manual
+DialogWindow.Top = 250
+DialogWindow.Left = 350
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Interactions;
+…
+DialogWindow.StartupPosition = StartupPosition.Manual;
+DialogWindow.Top = 250;
+DialogWindow.Left = 350;
+----
+
+== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

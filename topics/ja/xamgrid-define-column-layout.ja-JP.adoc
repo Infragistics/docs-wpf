@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-define-column-layout",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Presentation","Grids","Layouts"],
+    "guid": "{E0C05436-BCA5-4D56-8CF2-B5AF4A572A49}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8771978Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列レイアウトの定義
+
+xamGrid は、列レイアウトと呼ばれる概念を使用して、表示する列、および列の配置方法を決定します。グリッド内で複数の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnlayout.html[ColumnLayout] オブジェクトを定義でき、それによって階層的なデータ構造を表示できます。各列のレイアウトは xamGrid で定義されたその他のレイアウトからは通常独立しています。
+
+*関連トピック*
+
+link:xamgrid-auto-generate-columns.html[列の自動生成]
+
+link:xamgrid-defining-a-self-related-hierarchical-structure.html[自己関連階層構造の定義]
+
+link:xamgrid-defining-hierarchical-layouts.html[階層的レイアウトの定義]
+
+link:xamgrid-defining-unstructured-column-layout-collections.html[構造化されていない列レイアウト コレクションの定義]
+
+link:xamgrid-manually-defining-a-basic-column-structure.html[基本的な列構造を手動で定義]
+
+link:xamgrid-targettypename-resolution.html[TargetTypeName の解決]

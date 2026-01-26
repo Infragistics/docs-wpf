@@ -1,0 +1,62 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector-list",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "e825ee50-5097-471b-a310-fa3e1e0ff22a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.668324Z"
+}
+|metadata|
+////
+
+= ListScheduleConnector
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleConnector] は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] とスケジュール データ ソース間のコネクターとして使用される非視覚的な要素です。これはスケジュール データ マネージャーに提供されるビュー モデル オブジェクト (link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[リソース]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[カレンダー]および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[アクティビティ]) を作成します。開発者はコネクターを IEnumerable 項目ソースのセットにバインドできます。データが UI で操作されると、データは XamScheduleDataManager に送られ、これが要求を順々にデータ コネクターに向けます。データ コネクターは、基本項目ソースへの変更を実行するために必要な手順を取ります。
+
+*XAML の場合:*
+
+----
+<ig:ListScheduleDataConnector
+  ResourceItemsSource="{Binding resources}"
+  ResourceCalendarItemsSource="{Binding calendars}"
+  AppointmentItemsSource="{Binding appointments}"
+  TaskItemsSource="{Binding tasks}"
+  JournalItemsSource="{Binding journals}"/>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim dataConnector = New ListScheduleDataConnector()
+dataConnector.ResourceItemsSource = resources
+dataConnector.ResourceCalendarItemsSource = calendars
+dataConnector.AppointmentItemsSource = appointments
+dataConnector.TaskItemsSource = tasks
+dataConnector.JournalItemsSource = journals
+----
+
+*C# の場合:*
+
+----
+var dataConnector = new ListScheduleDataConnector();
+dataConnector.ResourceItemsSource = resources;
+dataConnector.ResourceCalendarItemsSource = calendars;
+dataConnector.AppointmentItemsSource = appointments;
+dataConnector.TaskItemsSource = tasks;
+dataConnector.JournalItemsSource = journals;
+----
+
+上記のコード例では、すべてのコレクションは IEnumerable<T> を実装します。ここで T は適切な型になります。たとえば、リソースは IEnumerable<Resource>、予定は IEnumerable<Appointment> というようになります。コレクターは、カスタム データ型にもバインド可能で、適切な PropertyMapping 設定を指定してオプションでプロパティをマップできます (関連トピックを参照)。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-understanding-activities.html[アクティビティについて]
+
+link:xamschedule-understanding-resources-calendars.html[リソースおよびカレンダーについて]
+
+link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]

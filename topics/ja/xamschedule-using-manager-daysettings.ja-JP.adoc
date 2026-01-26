@@ -1,0 +1,128 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-manager-daysettings",
+    "controlName": ["xamSchedule"],
+    "tags": ["Data Presentation","How Do I","Scheduling"],
+    "guid": "cb7282fd-f079-4452-a266-4644767e218e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7713293Z"
+}
+|metadata|
+////
+
+= 1 日の設定
+
+XamSchedule は、週のどの日が稼働日で、それらの日のどの時間が稼働時間なのかに関する設定を行う機能を提供します。稼働週および特定の日の稼働時間の設定をオーバーライドすることもできます。これらの設定を指定するためのプロパティは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~settings.html[Settings] プロパティを介して link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] で公開されます。さらに、これらの設定は個々のリソースに提供できるので、異なる link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[リソース] (ユーザー) が異なる稼働日および稼働時間を持つことができます。
+
+デフォルトでは、月曜から金曜が稼働日、9am から 5pm が稼働時間とされます。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings.html[ScheduleSettings] クラス (xamScheduleDataManager.Settings プロパティを介して公開される) の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~workdays.html[WorkDays] プロパティと link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~workinghours.html[WorkingHours] プロパティを介して、デフォルトの稼働日とデフォルトの稼働時間を変更できます。これは、どの日が稼働日であるかを選択し、それらの日で 1 セットの稼働時間を指定する Outlook で提供されるオプションに対応します。注: Outlook と異なり、xamSchedule のアーキテクチャによって、複数の隣接しない範囲を稼働時間に指定できます。
+
+ScheduleSettings は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledaysofweek.html[ScheduleDaysOfWeek] 型オブジェクトの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~daysofweek.html[DaysOfWeek] プロパティを公開します。これは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledayofweek.html[ScheduleDayOfWeek] 型の 7 つのプロパティを公開します。週の各日にひとつです。ScheduleDayOfWeek は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledayofweek~daysettings.html[DaySettings] プロパティを介して link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.daysettings.html[DaySettings] オブジェクトを公開します。DaySettings クラスは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.daysettings~isworkday.html[IsWorkDay] プロパティと link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.daysettings~workinghours.html[WorkingHours] プロパティを公開します。これによって、異なる稼働日に異なる稼働時間を定義できます。
+
+*注:* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[Resource] はまた link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~daysofweek.html[DaysOfWeek] プロパティを公開することで、特定のリソースが ScheduleSettings に設定された値をオーバーライドすることができます。
+
+以下の例は、開発者が毎週金曜にカスタムの DaySettings を設定できる方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamScheduleDataManager>
+  <ig:XamScheduleDataManager.Settings>
+    <ig:ScheduleSettings>
+      <ig:ScheduleSettings.DaysOfWeek>
+        <ig:ScheduleDaysOfWeek>
+          <ig:ScheduleDaysOfWeek.Friday>
+            <ig:ScheduleDayOfWeek>
+              <ig:ScheduleDayOfWeek.DaySettings>
+                <ig:DaySettings IsWorkday="True">
+                  <ig:DaySettings.WorkingHours>
+                    <ig:WorkingHoursCollection>
+                      <ig:TimeRange Start="08:00" End="12:00" />
+                      <ig:TimeRange Start="16:00" End="20:00" />
+                    </ig:WorkingHoursCollection>
+                  </ig:DaySettings.WorkingHours>
+                </ig:DaySettings>
+              </ig:ScheduleDayOfWeek.DaySettings>
+            </ig:ScheduleDayOfWeek>
+          </ig:ScheduleDaysOfWeek.Friday>
+        </ig:ScheduleDaysOfWeek>
+      </ig:ScheduleSettings.DaysOfWeek>
+    </ig:ScheduleSettings>
+  </ig:XamScheduleDataManager.Settings>
+</ig:XamScheduleDataManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim range1 As New TimeRange() With { _
+    Key .Start = New TimeSpan(8, 0, 0), _
+    Key .[End] = New TimeSpan(12, 0, 0) _
+}
+Dim range2 As New TimeRange() With { _
+    Key .Start = New TimeSpan(13, 0, 0), _
+    Key .[End] = New TimeSpan(17, 0, 0) _
+}
+If dataManager.Settings.DaysOfWeek Is Nothing Then
+    dataManager.Settings.DaysOfWeek = _
+        New ScheduleDaysOfWeek()
+End If
+If dataManager.Settings.DaysOfWeek.Friday Is Nothing Then
+    dataManager.Settings.DaysOfWeek.Friday = _
+        New ScheduleDayOfWeek()
+End If
+If dataManager.Settings.DaysOfWeek.Friday.DaySettings Is Nothing Then
+    dataManager.Settings.DaysOfWeek.Friday.DaySettings = _
+        New DaySettings()
+End If
+dataManager.Settings.DaysOfWeek.Friday.DaySettings. _
+    IsWorkday = True
+dataManager.Settings.DaysOfWeek.Friday.DaySettings. _
+    WorkingHours.Add(range1)
+dataManager.Settings.DaysOfWeek.Friday.DaySettings. _
+    WorkingHours.Add(range2)
+----
+
+*C# の場合:*
+
+----
+TimeRange range1 = new TimeRange()
+{
+    Start = new TimeSpan(8, 0, 0),
+    End = new TimeSpan(12, 0, 0)
+};
+TimeRange range2 = new TimeRange()
+{
+    Start = new TimeSpan(13, 0, 0),
+    End = new TimeSpan(17, 0, 0)
+};
+if (dataManager.Settings.DaysOfWeek == null)
+    dataManager.Settings.DaysOfWeek = new ScheduleDaysOfWeek();
+if (dataManager.Settings.DaysOfWeek.Friday == null)
+    dataManager.Settings.DaysOfWeek.Friday =
+        new ScheduleDayOfWeek();
+if (dataManager.Settings.DaysOfWeek.Friday.DaySettings == null)
+    dataManager.Settings.DaysOfWeek.Friday.DaySettings =
+        new DaySettings();
+dataManager.Settings.DaysOfWeek.Friday.DaySettings.
+    IsWorkday = true;
+dataManager.Settings.DaysOfWeek.Friday.DaySettings.
+    WorkingHours.Add(range1);
+dataManager.Settings.DaysOfWeek.Friday.DaySettings.
+    WorkingHours.Add(range2);
+----
+
+さらに、開発者は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.daysettingsoverride.html[DaySettingsOverride] オブジェクトを定義することで、特定の日付 (または繰り返しパターンで定義された日付のシリーズ) の設定をオーバーライドできます。ScheduleSettings クラスの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~daysettingsoverrides.html[DaySettingsOverrides] コレクションを使用して、xamScheduleDataManager 全体 (つまり、すべてのリソースのデフォルト) に対してこれを実行できます。これは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~daysettingsoverrides.html[DaySettingsOverrides] プロパティを使用して、特定の Resource でオーバーライドすることもできます。
+
+*注:* IsWorkDay プロパティが false の場合、WorkingHoursCollection は無視されます。これによって、特定の日を稼働時間のセットがある稼働日として定義することができます。また特定の Date を稼働日でない日としてマークできますが、この場合、コントロールはより一般的なレベルで指定された稼働時間を認識しません。
+
+== 関連トピック
+
+link:xamschedule-using-manager.html[データ マネージャー]
+
+link:xamschedule-using-manager-logical-day.html[論理的な 1 日とタイムスロット]
+
+link:xamschedule-using-manager-working-hours.html[稼働時間]
+
+link:xamschedule-understanding-views.html[xamSchedule ビューについて]

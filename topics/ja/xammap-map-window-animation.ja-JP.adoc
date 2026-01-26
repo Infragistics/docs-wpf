@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammap-map-window-animation",
+    "controlName": ["xamMap"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "9d4f91d6-b9c6-4431-a7be-b4f28920e72d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.3052385Z"
+}
+|metadata|
+////
+
+= マップ ウインドウ アニメーションの使用
+
+マップ ウィンドウ アニメーション機能は、パンニングまたはズーム操作が発生する時に xamMap コントロールのウィンドウがアニメートされる方法を変更するための機能を提供します。コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~windowanimationmode.html[WindowAnimationMode] プロパティと link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~windowanimationduration.html[WindowAnimationDuration] プロパティをそれぞれ使用して、マップ ウィンドウ アニメーションのモードと期間を変更できます。
+
+マップ ウィンドウ アニメーションを使用中に考慮する必要があるシナリオは 3 つあります。
+
+* マップがマップ レイヤーとタイル ソース プロバイダで構成されている場合、ズームとパンニングのためのアニメーションは WindowAnimationMode 値と WindowAnimationDuration 値に従います。
+* マップにマップ レイヤーしか含まれていない場合には、WindowAnimationMode 値と WindowAnimationDuration 値に従ってアニメーションが実行されます。
+* マップにマップ タイル ソース プロバイダしか含まれていない場合には、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapviewport~multiscaleimage.html[MultiScaleImage] プロパティのタイプ オブジェクトのアルゴリズムに従ってアニメーションが実行されます。
+
+以下の表はすべてのサポートされるアニメーション モードとその説明をリストします。
+
+[options="header", cols="a,a"]
+|====
+|WindowAnimationMode|説明
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapwindowanimationmode.html[None]
+|マップ ウィンドウはある位置から別の位置に移動し、WindowAnimationDuration は無視されます。
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapwindowanimationmode.html[Linear]
+|マップ ウィンドウは、WindowAnimationDuration を使用して、ある位置から別の位置に一定のスピードで移動します。
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapwindowanimationmode.html[Logarithmic]
+|マップ ウィンドウは、WindowAnimationDuration を使用して、ある位置から別の位置にゆっくりと移動します。
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapwindowanimationmode.html[Trigonometric]
+|マップ ウィンドウは、WindowAnimationDuration を使用して、ある位置から別の位置に移動する速度が速くなったり遅くなったりします。
+
+|====
+
+以下のコードは、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] コントロールで 2 秒間で対数マップ ウィンドウ アニメーションを追加する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamMap x:Name="igMap" 
+           WindowAnimationMode="Logarithmic"
+           WindowAnimationDuration="0:0:2" >
+</ig:XamMap>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.igMap.WindowAnimationMode = MapWindowAnimationMode.Logarithmic
+Me.igMap.WindowAnimationDuration = TimeSpan.FromMilliseconds(2000)
+----
+
+*C# の場合:*
+
+----
+this.igMap.WindowAnimationMode = MapWindowAnimationMode.Logarithmic;
+this.igMap.WindowAnimationDuration = TimeSpan.FromMilliseconds(2000);
+----
+
+== 関連トピック
+
+* link:xamwebmap-map-elements.html[マップ要素の表示]
+* link:xamwebmap-map-panes.html[マップ ペインの表示]
+* link:xamwebmap-using-multiple-layers.html[複数レイヤーの使用]

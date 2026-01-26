@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards-clipboard-operations",
+    "controlName": ["xamDataCards"],
+    "tags": [],
+    "guid": "{C676D38C-32A8-4D92-BB7B-5F686B408F65}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5968725Z"
+}
+|metadata|
+////
+
+= クリップボード操作
+
+
+
+クリップボード操作に関する詳細は、以下のトピックを参照してください。
+
+* link:xamdatapresenter-enable-clipboard-operations.html[クリップボード操作を有効にする]
+* link:xamdatapresenter-perform-clipboard-operations.html[クリップボード操作の実行]
+* link:xamdatapresenter-handle-clipboard-operation-errors.html[クリップボード操作エラーの処理]
+* link:xamdatapresenter-prevent-clipboard-operations-from-modifying-a-field.html[クリップボード操作でフィールドが変更されることを防止する]
+* link:xamdatapresenter-prevent-the-addition-of-specific-formats-to-the-clipboard.html[クリップボードへの特定の形式の追加を防止する]

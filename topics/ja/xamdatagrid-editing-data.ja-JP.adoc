@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-editing-data",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{A1A1BD40-6717-446F-B338-CA3FFDB51859}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.9939519Z"
+}
+|metadata|
+////
+
+= データの編集
+
+
+
+以下のリンクをクリックして、xamDataGrid コントロールを使用してデータ編集する支援を特に行うために記述されたトピックを表示します。
+
+* link:xamdata-about-xamdatapresenter-and-xameditors.html[xamDataPresenter および xamEditors について]
+* link:xamdatagrid-conf-editing.html[編集動作の構成 (xamDataGrid)]
+* link:xamdatapresenter-accessing-cell-values-in-the-active-record.html[アクティブ レコードでセル値にアクセス]
+* link:xamdatapresenter-accessing-cell-values-in-the-recordactivated-event.html[RecordActivated イベントでセル値にアクセス]
+* link:xamdatagrid-configuring-readonly-fields-disabling-cells.html[読み取り専用フィールドの構成およびフィールドのセルの無効化]
+* link:xamdata-changing-field-record-cell-selection-behavior.html[フィールド、レコード、またはセル選択の動作を変更]
+* link:xamdata-default-editor-types-for-different-data-types.html[異なるデータ タイプのデフォルトのエディター タイプ]
+* link:xamdatapresenter-embedding-a-custom-control-in-a-field.html[フィールドにカスタム コントロールを組み込む]
+* link:xamdatapresenter-embedding-a-xameditor-in-a-field.html[フィールドに xamEditor を組み込む]
+
+== データ値の変更をトラッキング
+
+* link:xamdatapresenter-about-the-datavaluechanged-event.html[DataValueChanged イベントについて]
+* link:xamdatapresenter-enable-data-value-change-tracking.html[データ値の変更追跡を有効にする]
+* link:xamdatapresenter-reset-a-cells-value-history.html[セルの値の履歴をリセット]
+
+== データの検証
+
+* link:xamdatapresenter-validating-data.html[データの検証]
+* link:xamdatapresenter-enable-idataerrorinfo-interface-support.html[IDataErrorInfo インターフェイスのサポートを有効にする]
+* link:xamdatapresenter-validate-data-as-your-end-users-edit-a-cell.html[エンドユーザーがセルを編集するとデータを検証]
+* link:xamdatapresenter-styling-data-errors.html[データ エラーのスタイリング]
+* link:xamdatapresenter-validating-edited-cell-data-in-xamdatapresenter.html[xamDataPresenter で編集したセル データを検証]

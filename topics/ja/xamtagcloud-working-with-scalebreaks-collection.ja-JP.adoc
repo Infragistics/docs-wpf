@@ -1,0 +1,69 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtagcloud-working-with-scalebreaks-collection",
+    "controlName": ["xamTagCloud"],
+    "tags": ["How Do I","Layouts","Performance"],
+    "guid": "{477692F9-5C72-4451-9BF8-4113594D3B9F}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5984066Z"
+}
+|metadata|
+////
+
+= ScaleBreaks コレクションでの作業
+
+xamTagCloud コントロールには link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.scalebreak.html[ScaleBreak] コレクションが含まれ、これによって同じスケール ブレイクでウェイト値の範囲をグループ化することができます。たとえば、大きなウェイト値の範囲を持つクラウド項目の大きいコレクションがある場合、スケール ブレイクを作成して、1 から 50 のウェイト範囲ですべてのクラウド項目に同じウェイトを適用することができます。
+
+各 ScaleBreak には以下のプロパティが含まれます。
+
+* link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.scalebreak~startweight.html[StartWeight] - これはスケール ブレイクに適用したいウェイト値の開始範囲を指定します。
+* link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.scalebreak~endweight.html[EndWeight] - これはスケール ブレイクに適用したいウェイト値の終了範囲を指定します。
+* link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.scalebreak~weight.html[Weight] - これは StartWeight および EndWeight プロパティによって指定されるウェイト値の範囲に適用したいウェイトを指定します。
+
+以下のコードはスケール ブレイクを設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamTagCloud MaxScale="5" MinScale="1" x:Name="myTagCloud">
+   <ig:XamTagCloud.ScaleBreaks>
+      <ig:ScaleBreak StartWeight="1" EndWeight="10" Weight="1"/>
+      <ig:ScaleBreak StartWeight="11" EndWeight="20" Weight="2"/>
+   </ig:XamTagCloud.ScaleBreaks>
+   …
+</ig:XamTagCloud>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim scaleBreak1 As New ScaleBreak With {.StartWeight = 1, .EndWeight = 5, .Weight = 1}
+tagCloud.ScaleBreaks.Add(scaleBreak1)
+Dim scaleBreak2 As New ScaleBreak With {.StartWeight = 6, .EndWeight = 10, .Weight = 2}
+tagCloud.ScaleBreaks.Add(scaleBreak2)
+----
+
+*C# の場合:*
+
+----
+ScaleBreak scaleBreak1 = new ScaleBreak {StartWeight=1, EndWeight=5, Weight=1};
+tagCloud.ScaleBreaks.Add(scaleBreak1);
+ScaleBreak scaleBreak2 = new ScaleBreak {StartWeight=6, EndWeight=10, Weight=2};
+tagCloud.ScaleBreaks.Add(scaleBreak2);
+----
+
+== 関連トピック
+
+link:xamtagcloud-add-cloud-items-to-xamtagcloud.html[クラウド項目を xamTagCloud に追加]
+
+link:xamtagcloud-add-navigation-uris-to-cloud-items2.html[ナビゲーション URI をクラウド項目に追加]
+
+link:xamtagcloud-add-spaces-between-cloud-items.html[クラウド項目の間にスペースを追加]
+
+link:xamtagcloud-xamtagcloud-events.html[xamTagCloud イベント]
+
+link:xamtagcloud-setting-minimum-and-maximum-scale-values.html[最小スケール値と最大スケール値の設定]
+
+link:xamtagcloud-smooth-scaling.html[スムーズ スケーリング]

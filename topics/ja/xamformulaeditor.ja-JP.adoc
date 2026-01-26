@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamformulaeditor",
+    "controlName": ["xamFormulaEditor"],
+    "tags": ["Calculations"],
+    "guid": "b1f7e499-5707-4da9-a6cd-c50662e26327",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.0721514Z"
+}
+|metadata|
+////
+
+= xamFormulaEditor
+
+このセクションでは、xamFormulaEditor コントロールのコンテンツへのリンクを提供します。これには、コントロールの動作や、アプリケーションでコントロールを使用する理由から、コントロールを使用して共通タスクを実現する方法の手順などが含まれます。
+
+以下のトピックでは、xamFormulaEditor コントロールに関する必要な情報を扱います。
+
+* link:xamformulaeditor-about.html[xamFormulaEditor について]
+* link:xamformulaeditor-contextualhelp.html[コンテクストのヘルプ]
+* link:xamformulaeditor-using.html[xamCalculationManager での xamFormulaEditor および FormulaEditorDialog の使用]
+* link:xamformulaeditor-api-overview.html[API の概要]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。 
+
+* link:xamcalculationmanager.html[xamCalculationManager を使用した作業の開始]
+* link:xamcalculationmanager-using-xamcalculationmanager.html[xamCalculationManager の使用]

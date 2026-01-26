@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-overview",
+    "tags": [],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "ea7d8128-3eaf-4172-ac06-b77dc13bc256",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.3743379Z"
+}
+|metadata|
+////
+
+= xamRichTextEditor の概要
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ のドキュメントのコンテンツ論理構造を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+ifdef::wpf[]
+| link:xamrichtexteditor-ime-support.html[IME サポート]
+|このトピックは、xamRichTextEditor の IME サポートを説明します。
+endif::wpf[]
+
+|====

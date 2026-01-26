@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-ribbon-window",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "{41E15277-5195-4954-9C64-1D6770FF89D6}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.2041939Z"
+}
+|metadata|
+////
+
+= リボン ウィンドウ
+
+
+
+xamRibbon™ コントロールは標準 Window のクライアント領域内に表示する必要がありますが、xamRibbon Window は System.Window から派生する弊社独自のカスタム Window で、{ProductName} コントロールに期待してきた洗練された外観が得られます。xamRibbon Window を使用する主な利点は、リボンのキャプションが Window のヘッダーに表示されることで、この方法で、リボンは Microsoft® Office® 2007 と同様に Window 自体の一部のように見えます。
+
+xamRibbon Window のもうひとつの必須機能は、Window の下側に含むことが選択できるステータス バーです。ヘルプ、アプリケーションのタスク進捗状況、またはアプリケーション自体についての重要情報などのアプリケーションの影響を受ける情報をステータス バーに配置できます。
+
+興味がある場合、xamRibbon のリボン ウィンドウについての詳細は、以下のトピックを参照してください。
+
+* link:xamribbon-display-xamribbon-in-the-ribbon-window.html[リボン ウィンドウに xamRibbon を表示]
+* link:xamribbon-add-a-status-bar-to-the-ribbon-window.html[ステータス バーをリボン ウィンドウに追加]

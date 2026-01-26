@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatetimeinput",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "76796c4f-37a0-4a79-9840-e3c6cafc8141",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.9942288Z"
+}
+|metadata|
+////
+
+{XamDateTimeInputHeader}
+
+= xamDateTimeInput
+
+このセクションには、コントロールの動作、アプリケーションでコントロールを使用する理由から、コントロールを使用して共通タスクを実現する方法の手順まで、xamDateTimeInput コントロールに関する有益な情報が含まれています。
+
+以下のトピックでは、xamDateTimeInput コントロールに関して必要な情報を扱います。
+
+* link:xamdatetimeinput-about.html[xamDateTimeInput について]
+* link:xamdatetimeinput-using.html[xamDateTimeInput の使用]
+* link:xamdatetimeinput-api-overview.html[API の概要]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+ifdef::sl,wpf,win-rt[]
+* link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[データ編集用の xamGrid セルにおける xamInput コントロールの使用]
+
+endif::sl,wpf,win-rt[]

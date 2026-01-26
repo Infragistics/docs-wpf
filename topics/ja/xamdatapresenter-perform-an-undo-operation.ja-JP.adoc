@@ -1,0 +1,64 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-perform-an-undo-operation",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Tips and Tricks"],
+    "guid": "{59C3E994-52FC-44C1-A609-287290127F59}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2840099Z"
+}
+|metadata|
+////
+
+= 元に戻す操作を実行する
+
+
+
+DataPresenter コントロールは、元に戻すおよびやり直しの操作を、多くのオペレーティング システムにみられる通常のキーボード ショートカットにマップします。たとえば、DataPresenter コントロールは、その元に戻す操作を「CTRL + Z」キーボードショートカットにマップします。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands.html[DataPresenterCommands] クラスが公開する以下のコマンドを実行することにより、元に戻すややり直しの操作をコードまたは XAML 内で実行することもできます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands~undo.html[元に戻す]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands~redo.html[やり直し]
+
+以下のコード例は元に戻す操作を実行する方法を示します。元に戻すコマンドを有効にするためには、元に戻す操作を有効にして、DataPresenter コントロールで操作を実行する必要があります。
+
+*XAML の場合:*
+
+----
+<Button 
+    Content="Undo Action" 
+    Command="{x:Static igDP:DataPresenterCommands.Undo}" 
+    CommandTarget="{Binding ElementName=xamDataPresenter1}" />
+<!-- 元に戻すまたはやり直しコマンドを有効にするには、元に戻す操作を有効にする必要があります -->
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True" IsUndoEnabled="True">
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+'TODO: このコードを Button の Click イベント ハンドラーなどのイベント ハンドラに配置します
+Me.xamDataPresenter1.ExecuteCommand(DataPresenterCommands.Undo)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+//TODO: このコードを Button の Click イベント ハンドラーなどのイベント ハンドラに配置します
+this.xamDataPresenter1.ExecuteCommand(DataPresenterCommands.Undo);
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-enable-undo-operations.html[元に戻す操作を有効にする]
+
+link:xamdatapresenter-limit-the-undo-history.html[元に戻す履歴を制限する]
+
+link:xamdatapresenter-about-restoring-deleted-records.html[削除したレコードのリストアについて]

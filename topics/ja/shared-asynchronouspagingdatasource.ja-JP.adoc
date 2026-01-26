@@ -1,0 +1,259 @@
+﻿////
+|metadata|
+{
+    "name": "shared-asynchronouspagingdatasource",
+    "tags": ["Data Binding","Sample Data Source","Virtualization"],
+    "controlName": ["xamDataPresenter"],
+    "guid": "97d2d3e5-f19e-484b-a80c-8dc2aac4e435",
+    "buildFlags": [],
+    "createdOn": "2016-03-09T09:42:14.1436886Z"
+}
+|metadata|
+////
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、非同期およびページ化アクセスを使用して待ち時間の長いリモート データストアからデータを取得できるデータソースを作成する方法について説明します。
+
+=== 前提条件
+
+本トピックの理解を深めるために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-understanding-xamdatapresenter.html[xamDataPresenter について]
+|このトピックのグループは、 _xamDataPresenter_ コントロールの概要を提供します。
+
+| link:xamdatapresenter-getting-started-with-xamdatapresenter.html[ _xamDataPresenter_ をページに追加]
+|このトピックは、ベーシックな _xamDataPresenter_ をページに追加する手順を提供します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_RefLink01, 概要 >>
+* <<_RefLink02, 使用方法 >>
+** <<_RefLink03,概要>>
+** <<_RefLink04,データ プレゼンターとの統合>>
+** <<_RefLink05,パフォーマンスの最適化>>
+** <<_RefLink06,オーバーレイ要素のカスタマイズ>>
+** <<_RefLink07,制限>>
+
+* <<_RefLink08, サンプル アプリケーション >>
+* <<_RefLink09, 関連コンテンツ >>
+
+[[_RefLink01]]
+== 概要
+
+=== 概要
+
+link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase.html[AsyncPagingDataSourceBase] は、 _xamDataPresenter_   コントロール群と動作するよう特別にデザインされたスレッド非同期ページング データソースの作成に使用できる抽象基本クラスです。
+
+`AsyncPagingDataSourceBase` の主要な機能は、インフラジスティックスの非同期でページ化された link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.datasource.virtualdatasource.html[VirtualDataSource] クラスと  _xamDataPresenter_   コントロール群との間でコミュニケーションを調整する機能です。
+
+_xamDataPresenter_   は、`VirtualDataSource` クラスと  _xamDataPresenter_   コントロール群の機能を繋ぐブリッジを提供します。
+
+`VirtualDataSource` クラスは、ページ要求の発行/予測や非同期データ アクセスのスレッドを管理するロジックを含みます。特定のバックエンド プロトコルを使用するデータへアクセスするロジックを持ちませんが、要求の管理や予測および非同期データ アクセスのスレッド管理に関連する基本的なタスクを処理します。これにより、必要なデータ アクセス コードを含む `VirtualDataSource` クラスに派生を提供し、必要なプロトコルで特定のバックエンドへアクセスする作業に集中することができます。
+
+具体的な `AsyncPagingDataSourceBase` の実装方法はありませんが、`AsyncPagingDataSourceBase` から派生される link:http://www.odata.org/[OData] データソースのオープンソース参照実装は、 _GitHub_   プロジェクトとして提供されます (<<_RefLink08,サンプル アプリケーション>> セクション参照)。
+
+`VirtualDataSource` クラス (および関連クラス) が特定のバックエンド プロトコル用にデザインされていないため、 _GitHub_   プロジェクトは、派生 `VirtualDataSource` 関連クラス (`ODataVirtualDataSource`、`ODataVirtualDataSourceDataProvider`、および `ODataVirtualDataSourceDataProviderWorker`) の参照実装も含み、特殊な `OData` 特定の機能を提供します。
+
+データソース プロジェクトの `AsyncPagingDataSourceBase` を使用するには、以下の NuGet パッケージへの参照を追加する必要があります。
+
+* Infragistics.WPF.DataGrids.Async
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[[_RefLink02]]
+== 使用方法
+
+[[_RefLink03]]
+
+=== 概要
+
+具体的なデータソースの実装の作成には、`AsyncPagingDataSourceBase` の派生実装および `AsyncPagingDataSourceBase` とその関連クラスを提供する必要があります。
+
+`AsyncPagingDataSourceBase` は、抽象 `AsyncPagingDataSourceBase` クラスから派生し、1 つ以上の仮想プロパティと以下のメソッドを提供します。
+
+* [必須] link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase~createunderlyingdatasource.html[CreateUnderlyingDataSource] メソッドをオーバーライドし、`VirtualDataSource` 派生クラスのインスタンスを提供します。
+* [オプション] link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase~canfilter.html[CanFilter]、 link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase~cangroup.html[CanGroup]、 link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase~cansort.html[CanSort] プロパティをバックエンドデータ ソースの機能に基づいてオーバーライドします。仮想プロパティはデフォルトで false を返します。
+
+注:
+[NOTE]
+====
+`AsyncPagingDataSourceBase` 派生の例として参照実装プロジェクトの `ODataDataSource` クラスを参照してください。
+====
+
+`VirtualDataSource` とその関連クラスが特定のバックエンド アクセスに必要な機能を提供する派生/実装クラスを作成します。
+
+* [必須] `VirtualDataSource` の派生クラスを作成し、バックエンド データへアクセスする方法の定義および制御するために必要なプロパティを公開します。カスタム link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.datasource.idatasourcevirtualdataprovider.html[IDataSourceVirtualDataProvider] 実装を返す link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.datasource.virtualdatasource~resolvedataprovideroverride.html[ResolveDataProviderOverride] メソッドをオーバーライドします。
+
+注:
+[NOTE]
+====
+`AsyncPagingDataSourceBase` 派生の例として参照実装プロジェクトの `ODataDataSource` クラスを参照してください。
+====
+
+* [必須] `IDataSourceVirtualDataProvider` を実装するクラスを作成します。
+
+注:
+[NOTE]
+====
+`IDataSourceVirtualDataProvider` 実装の例として参照実装プロジェクトの ODataVirtualDataSourceDataProvider クラスを参照してください。
+====
+
+* [必須] link:{ApiPlatform}datavisualization{ApiVersion}~gridodatatest.asyncvirtualdatasourceproviderworker.html[AsyncVirtualDataSourceProviderWorker] から派生するクラスを作成します。
+
+注:
+[NOTE]
+====
+`AsyncVirtualDataSourceProviderWorker` 派生の例として参照実装プロジェクトの `ODataVirtualDataSourceDataProviderWorker` クラスを参照してください。
+====
+
+[[_RefLink04]]
+
+=== データ プレゼンターとの統合
+
+_xamDataPresenter_   群のコントロールは、他のデータソース同様 `AsyncPagingDataSourceBase` データソースとも動作するようデザインされています。コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~datasource.html[DataSource] プロパティを `AsyncPagingDataSourceBase` 派生クラスのインスタンスに設定し、コントロールを通常通り使用します。
+
+_xamDataPresenter_   でそのようなデータソースを使用した場合に動作が大きく変わりますが、これはデータが非同期にアクセスされていることに関係しています。
+
+特にエンドユーザーが  _xamDataPresenter_   でレコードをスクロールする際に `AsyncPagingDataSourceBase` がバックエンド ストアにフェッチ要求を発行し、データが返却されるのを待たずに直ちに返します。_xamDataPresenter_   UI はレスポンシブ状態を保持しますが、バックエンドがフェッチ要求を処理し、要求データを含むページを返すまで要求されたデータを表示できません。
+
+データ フェッチが保留中であるこをエンド ユーザーに知らせるために、 _xamDataPresenter_   は一時的にデータが保留中の各レコードのセル領域にオーバーレイ要素を描画します。要求データを受け取ると、コントロールは自動的にオーバーレイ要素を削除し、実際のデータを表示します。
+
+データストアのパフォーマンス最大化と拡張機能 (存在する場合) を利用するために、 _xamDataPresenter_   はすべての並べ替えとフィルタリング操作を `AsyncPagingDataSourceBase` 介してバックエンドへデリゲートします。これらの処理を実行するためにサーバー接続でデータセット全体をプルするための  _xamDataPresenter_   の必要性を排除します。
+
+`AsyncPagingDataSourceBase` データソースの非同期では、 _xamDataPresenter_   が以前要求したデータが返されるのを待つかどうかをクエリする必要があることに注意してください。以下のプロパティを使用してデータ要求が保留になっているかどうかを決定できます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecordcellarea~isdynamicdatapending.html[DataRecordCellArea.IsDynamicDataPending] - 関連する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] のデータが要求されていて、まだ返されてない場合に true を返します。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~isasyncdatapending.html[DataPresenterBase.IsAsyncDataPending] - 現在表示されているレコードが非同期データ フェッチの結果として待機データの場合 true を返します。そうでない場合は False。
+
+注:
+[NOTE]
+====
+このプロパティは、表示されているレコードのみのデータ取得状態を示します。ビュー外にレコードと待機中のデータがある場合も表示されているレコードが待機していない場合は、このプロパティは false を返します。
+====
+
+[[_RefLink05]]
+
+=== パフォーマンスの最適化
+
+以下の手順で `AsyncPagingDataSourceBase` データソースを使用する  _xamDataPresenter_   のパフォーマンスを最適化できます。
+
+* link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase~fieldsrequested.html[FieldsRequested] プロパティを設定してデータがフェッチされるフィールド数を制限してサーバー接続によるデータ返却を減らします。`AsyncPagingDataSourceBase` のこのプロパティをバックエンド スキーマのフィールドのサブセットに に設定し、リモート データソースからデータをフェッチする際の応答時間を向上できます。あるいは、スキーマ フィールドのサブセットを要求することになるデータ プレゼンターでカスタム フィールド レイアウトを定義することで、最終的にサーバー接続でデータ転送の量を削減できます。
+* バックエンドにデータのページを返す要求を発行する際のローカル ページのサイズを設定します。これは、 link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase~pagesizerequested.html[PageSizeRequested] プロパティを使用して行うことができます。デフォルトのページ サイズは 200 に設定されています。ページ サイズを縮小することにより各フェッチの接続で返されるデータが少なくなるため、フェッチに要する時間を短縮できます。ただし、大量のデータをスクロールする場合はフェッチ数が増加します。バックエンドのパフォーマンス/応答は、ページ サイズの選択に影響する別の要因です。
+* 論理ページの最大数を設定し、 link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase~maxcachedpages.html[MaxCachedPages] プロパティの設定により要求がバックエンド データソースへ送信される前にメモリを保持します。キャッシュが大きくなるとメモリ使用量は増えますが、すでに表示されたデータのページ要求時にパフォーマンスが向上します。バックエンドのパフォーマンス/応答は、キャッシュ サイズの選択に影響する別の要因があります。
+
+[[_RefLink06]]
+
+=== オーバーレイ要素のカスタマイズ
+
+オーバーレイ要素 (ブラシとキーによって、要求されているが提供されていないデータを待つ間に _xamDataPresenter_   コントロールで表示される要素) の色をカスタマイズできます。
+
+以下の例は、xamDataGrid コントロール使用時にオーバーレイ要素の色をカスタマイズする方法の例です。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataGrid>
+    <igDP:XamDataGrid.Resources>
+        <SolidColorBrush
+            x:Key="{x:Static igDP:DataPresenterBrushKeys.DataPendingOverlayBrushKey}"
+            Color="Yellow" />
+    </igDP:XamDataGrid.Resources>
+</Page.Resources>
+----
+
+[[_RefLink07]]
+
+=== 制限
+
+以下の機能は、`AsyncPagingDataSourceBase` データソース使用時にサポートされません。
+
+* 階層および非同種データはサポートされません。フラット同種データのみサポートされます。
+* レコードの編集および追加と削除はサポートされません。
+*  _xamDataPresenter_   のフィルター ドロップダウンは、データソースがバックエンドで一意の値をクエリする機能をサポートしないため、関連する列の一意のデータ値のリストを含みません。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.filteruitype.html[LabelIcons] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filteruitype.html[FieldLayoutSettings.FilterUIType] はサポートされません。前の黒点で説明したクリックされたラベルアイコンが無効な場合にフィルター ドロップダウンに通常表示される一意のデータ値であるため、データソースを使用する際に常に link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.filteruitype.html[FilterRecord] に解決します。
+* 以下の link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.comparisonoperator.html[ComparisonOperator] がフィルター時にサポートされます。
+** Match
+** DoesNotMatch
+** Like
+** NotLike
+** Top
+** TopPercentile
+** Bottom
+** BottomPercentile
+
+* 以下の link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.specialfilteroperands.html[SpecialFilterOperands] はサポートされません。
+** BlanksOperand
+** AverageOperand
+
+* グループ化は現在サポートされません。
+*  _xamDataPresenter_   はデータソースでバックエンド ストアへデリゲートしてフィルタリングと並べ替えを最適化するため、並べ替えとフィルタリングは実際のデータ値のみでサポートされます。表示値および非バインド値は、並べ替えまたはフィルターに使用できません。
+
+[[_RefLink08]]
+== サンプル アプリケーション
+
+=== 概要
+
+以下で構成される  _GitHub_   サンプルで `AsyncPagingDataSourceBase` コンポーネントの使用方法を学べます。
+
+`ODataDataSource` の具体的な実装の `ODataDataSource` クラス。RESTful API のセットでサーバーベースのデータを公開する link:http://www.odata.org/[industrial standard Open Data Protocol (OData)] で公開されたデータへアクセスするようデザインされています。
+
+`AsyncPagingDataSourceBase` は以下のプロパティを公開します。
+
+* `FieldsRequested` - データをリモート データ ソースから取得する際に含むデータ スキーマのプロパティのリストを返すか、設定します。
+* `MaxCachedPages` – ローカルでキャッシュするためにフェッチされたページの最大数を取得または設定します。
+* `PageSizeRequested` – リモート データソースからデータをフェッチする際に必要なページ サイズを返すか、設定します。
+* link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}~infragistics.windows.datapresenter.datasources.asyncpagingdatasourcebase~recordcount.html[RecordCount] – リモート データ ソース内のレコード数を返します。(読み取り専用)
+
+`ODataDataSource` クラスは以下のパブリック プロパティを公開します (`AsyncPagingDataSourceBase` 基本クラスで公開されるものに加えて)。
+
+* `BaseUri` – データをフェッチする OData サービス エンドポイントのルート Uri を返すか、設定します。
+* `EntitySet` – データをフェッチする必要なエンティティのセット (テーブル) を返すか、設定します。この `EntitySet` は、`BaseUri` で指定した場所で見つかったサービスで公開する必要があります。
+* `TimeoutMilliseconds` – OData API で要求するときに使用するために必要なタイムアウト (ミリ秒) を返すか、設定します。
+
+注:
+[NOTE]
+====
+データのフェッチ処理を開始するために `BaseUri` および `EntitySet` プロパティの両方を設定する必要があります。
+====
+
+=== 位置
+
+`ODataDataSource` 実装クラスを使用したサンプル アプリケーションは、 _xamDataPresenter_   の使用方法や複数のパブリック OData サービス エンドポイントの選択可能な一覧を提供します。
+
+link:https://github.com/Infragistics/DataSource-Reference-Implementations[Infragistics データソース参照実装]
+
+または、 _NuGet_   パッケージの `ODataDataSource` 実装をダウンロードできます。
+
+[[_RefLink09]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-bind-a-datapresenter-control-to-an-xmldataprovider.html[DataPresenter コントロールの XmlDataProvider へのバインド]
+|このトピックでは、DataPresenter を XmlDataProvider にバインドする方法を説明します。
+
+| link:xamdatapresenter-bind-a-datapresenter-control-to-a-collection.html[DataPresenter コントロールの Collection へのバインド]
+|このトピックでは、DataPresenter を Collection にバインドする方法を説明します。
+
+| link:xamdatapresenter-binding-a-datapresenter-control-to-a-dataset.html[DataPresenter コントロールの DataSet へのバインド]
+|このトピックでは、DataPresenter を DataSet にバインドする方法を説明します。
+
+|====

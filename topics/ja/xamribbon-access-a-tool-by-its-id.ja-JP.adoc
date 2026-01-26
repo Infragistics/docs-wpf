@@ -1,0 +1,50 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-access-a-tool-by-its-id",
+    "controlName": ["xamRibbon"],
+    "tags": ["How Do I"],
+    "guid": "{018C251D-402A-434C-90D8-70A7F0E2FA1C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.0961723Z"
+}
+|metadata|
+////
+
+= ID でツールにアクセス
+
+
+
+
+
+Ribbon ツールの ID プロパティによって、一意のキーとツールを関連付けることができます。一意のキーと Ribbon ツールを関連付けたら、キーを使用してランタイムにツールへの参照を取得することができます。ただし、ID プロパティはツールのクラスレベル変数を作成しません。特定のツールへの参照を取得したい場合、xamRibbon の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbon~gettoolbyid.html[GetToolById] メソッドを使用する必要があります。
+
+ID プロパティでツールにアクセスするには、xamRibbon コントロールのインスタンスへの参照を持つ必要があります。これを達成するための最も簡単な方法は、コード ビハインドから直接コントロールにアクセスできるように、xamRibbon の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbon.html[Name] プロパティを設定することです。xamRibbon への参照を持ったら、GetToolById メソッドを使用し、パラメーターとして Ribbon ツールの ID を渡します。
+
+以下のコード例は、ランタイムに ID プロパティによってツールにアクセスする方法を示します。このコード例は、xamRibbon の Name プロパティが 'xamRibbon1'、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.buttontool~id.html[RibbonGroup] 内の ButtonTool の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup.html[Id] プロパティが 'ButtonTool1' に設定されていることを前提とします。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+...
+Dim bt As ButtonTool = TryCast(Me.xamRibbon1.GetToolById("ButtonTool1"), ButtonTool) 
+If bt IsNot Nothing Then
+        bt.Caption = "I found my ButtonTool"
+End If
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+...
+ButtonTool bt = this.xamRibbon1.GetToolById("ButtonTool1") as ButtonTool;
+if(bt != null)
+{
+        bt.Caption = "I found my ButtonTool";
+}
+...
+----

@@ -1,0 +1,165 @@
+﻿////
+|metadata|
+{
+    "name": "xampivotgrid-field-chooser-property-reference",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["API","Grids"],
+    "guid": "d1babae5-f6a6-4202-96d1-2843d6daf7b7",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.1973283Z"
+}
+|metadata|
+////
+
+= フィールド選択プロパティ参照
+
+== フィールド選択 API リファレンス
+
+=== 概要
+
+これはフィールド選択コントロールに関係する最も重要な API メンバーのリストです。
+
+=== API リファレンスの概要
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid_members.html[XamPivotGrid] クラス
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~fieldchooser.html[FieldChooser]
+|xamPivotGrid で使用される `FieldChooser` への参照を取得/設定します。
+
+|====
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~fieldchooser.html[FieldChooser] クラス
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+|フィールド選択のグループに項目を設定するのに使用するプロパティ
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~columns.html[Columns]
+|FieldChooserGroup の列に関連付けられた `ItemsCollection` を取得します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~columnsitemssource.html[ColumnsItemsSource]
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchoosergroup_members.html[FieldChooserGroup] の列を生成するのに使用するコレクションへの参照を取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~filters.html[Filters]
+|`FieldChooserGroup` のフィルターに関連付けられた `ItemsCollection` を取得します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~filtersitemssource.html[FiltersItemsSource]
+|`FieldChooserGroup` のフィルターを生成するのに使用するコレクションへの参照を取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~measures.html[Measures]
+|`FieldChooserGroup` のメジャーに関連付けられた `ItemsCollection` を取得します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~measuresitemssource.html[MeasuresItemsSource]
+|`FieldChooserGroup` のメジャーを生成するのに使用するコレクションへの参照を取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~rows.html[Rows]
+|`FieldChooserGroup` の行に関連付けられた `ItemsCollection` を取得します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~rowsitemssource.html[RowsItemsSource]
+|`FieldChooserGroup` の行を生成するのに使用するコレクションへの参照を取得/設定します。
+
+|
+|グループ ヘッダー
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~columnsgroupheader.html[ColumnsGroupHeader]
+|`FieldChooserGroup` の列のヘッダーとして使用するオブジェクトを取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~filtersgroupheader.html[FiltersGroupHeader]
+|`FieldChooserGroup` のフィルターのヘッダーとして使用するオブジェクトを取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~measuresgroupheader.html[MeasuresGroupHeader]
+|`FieldChooserGroup` のメジャーのヘッダーとして使用するオブジェクトを取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~rowsgroupheader.html[RowsGroupHeader]
+|`FieldChooserGroup` の行のヘッダーとして使用するオブジェクトを取得/設定します。
+
+|
+|カスタム タイプをフィールド選択項目に使用するのに必要なプロパティ
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~defaultitemtemplate.html[DefaultItemTemplate]
+|フィールド選択グループに追加した項目をレンダリングするのに使用する `DataTemplate` 取得/設定します。`DisplayMemberPath` と併用することはできません。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~displaymemberpath.html[DisplayMemberPath]
+|各フィールド選択項目の値が表示されるプロパティの名前を取得/設定します。これを使用するのは、フィールド選択グループの項目がカスタム タイプであり `DefaultItemTemplate` が設定されていない場合です。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~fieldordinalmemberpath.html[FieldOrdinalMemberPath]
+|ピボット グリッド エリア (列、行など) のひとつに追加すると、その値が階層/メジャーの位置を決定するプロパティの名前を取得/設定します。これを使用するのは、フィールド選択グループの項目がカスタム タイプの場合です。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~fielduniquenamememberpath.html[FieldUniqueNameMemberPath]
+|階層/メジャーを表す一意の名前の文字列を保持するプロパティの名前を取得/設定します。これを使用するのは、フィールド選択グループのカスタム タイプ項目が、ある項目が参照している階層/メジャーを決定する場合です。
+
+|
+|その他
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~isopen.html[IsOpen]
+|フィールド選択ドロップダウンを表示するかどうかを指定するブール値を取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~maxdropdownheight.html[MaxDropDownHeight]
+|フィールド選択ドロップダウンの最大の高さを取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~selecteditems.html[SelectedItems]
+|現在選択中である `FieldChooserItems` のコレクションを取得します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~staysopen.html[StaysOpen]
+|項目にチェックを入れるまたははずすことで、フィールド選択ドロップダウンを閉じたとき、どのように動作をするかを指定する値を取得/設定します。 
+
+true の場合、ドロップダウンを閉じると、項目がチェックのあり/なしに応じて、ターゲット エリアで追加または削除されます。
+
+|====
+
+[options="header", cols="a,a"]
+|====
+|イベント|説明
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~datasourceupdate_ev.html[DataSourceUpdate]
+|階層/メジャーがピボット グリッド エリアで追加または削除されるたびに発生します。これはフィールド選択の関連項目がチェックされている/いないの結果によるものです。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~isopenchanged_ev.html[IsOpenChanged]
+|`IsOpen` プロパティの値が変更したときに発生します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooser~selectionchanged_ev.html[SelectionChanged]
+|項目のチェックを入れる、またははずすたびに発生します。
+
+|====
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooseritem_members.html[FieldChooserItem] クラス
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooseritem~fieldordinal.html[FieldOrdinal]
+|項目をターゲット エリアのどこに挿入するかを決定する整数値を取得/設定します。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.fieldchooseritem~fielduniquename.html[FieldUniqueName]
+|項目が参照する階層/メジャーの一意の名前を取得/設定します。
+
+|====
+
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-field-chooser-overview.html[フィールド選択の概要]
+|このトピックでは、xamPivotGrid™ に含まれているフィールド選択コントロールの概要について説明しています。
+
+| link:xampivotgrid-field-chooser-implementing.html[フィールド選択の実装]
+|このトピックでは、xamPivotGrid™ でフィールド選択コントロールを使用する方法について、順を追って説明します。
+
+| link:xampivotgrid-us-assigning-hierarchies-and-measures.html[階層およびメジャーの指定]
+|データでキューブをロード後、計算するデータのスライスの基礎とする階層を選択する必要があります。
+
+| link:xampivotgrid-dataselector.html[DataSelector]
+|このトピックでは、xamPivotDataSelector™ コントロールの概要について説明しています。
+
+|====

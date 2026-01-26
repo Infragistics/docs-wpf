@@ -1,0 +1,64 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-specify-the-content-to-be-copied",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Selection"],
+    "guid": "21e7da15-c0b7-42e4-9c28-14a5a6aa4a72",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.2401791Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= コピーされるコンテンツを指定
+
+xamGrid コントロールでコピー操作が有効な時に、データのランダム選択をクリップボードにコピーして、その後、適切な形式でそれを Microsoft® Excel® ワークシートに貼り付けることができます。このデータ選択には、セルまたは行のコレクションが含まれます。
+
+コピーされたデータをより制御する必要がある場合、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.gridclipboardcopytype.html[GridClipboardCopyType] 列挙体の以下のオプションのいずれかの値を持つことができる link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardsettings.html[ClipboardSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardsettings~copytype.html[CopyType] プロパティを構成できます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.gridclipboardcopytype.html[SelectedCells] - 選択されたセルだけがコピーされます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.gridclipboardcopytype.html[SelectedRows] - 選択された行だけがコピーされます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.gridclipboardcopytype.html[Default] - SelectionSettings オブジェクトの CellClickAction プロパティの値は、セルまたは行コレクションがコピーされるかどうかを指定します。
+
+以下のコードは、xamGrid 行セレクターと組み合わせてコピー操作を使用する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="xamGrid" … >
+    <ig:XamGrid.RowSelectorSettings>
+        <ig:RowSelectorSettings Visibility="Visible" />
+    </ig:XamGrid.RowSelectorSettings>
+    <ig:XamGrid.ClipboardSettings>
+        <ig:ClipboardSettings AllowCopy="True" CopyType="SelectedRows"/>
+    </ig:XamGrid.ClipboardSettings>
+</ig:XamGrid>
+----
+
+コード ビハインドの場合:
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+'xamGrid コントロールで行セレクターを追加します
+igGrid.RowSelectorSettings.Visibility=System.Windows.Visibility.Visible
+'コピー操作の設定を行います
+xamGrid.ClipboardSettings.AllowCopy = True
+xamGrid.ClipboardSettings.CopyType = GridClipboardCopyType.SelectedRows
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+// xamGrid コントロールで行セレクターを追加します
+igGrid.RowSelectorSettings.Visibility=System.Windows.Visibility.Visible;
+// コピー操作の設定を行います
+igGrid.ClipboardSettings.AllowCopy = true;
+igGrid.ClipboardSettings.CopyType = GridClipboardCopyType.SelectedRows;
+----

@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards-using-xamdatacards",
+    "controlName": ["xamDataCards"],
+    "tags": [],
+    "guid": "{2317D6A5-577B-4031-A6A8-08DA14F62AD6}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6278787Z"
+}
+|metadata|
+////
+
+= xamDataCards の使用
+
+
+
+このセクションでは、xamDataCards™ コントロールの様々な特長や機能を効果的に使用するための、重要なタスク ベースの情報について説明します。
+
+* link:xamdatacards-accessing-data.html[データ アクセス]
+* link:xamdatacards-clipboard-operations.html[クリップボード操作]
+* link:xamdatacards-defining-layouts.html[レイアウトの定義]
+* link:xamdatacards-designing-the-look-and-feel.html[ルック アンド フィールのデザイン]
+* link:xamdatacards-editing-data.html[データの編集]
+* link:xamdatacards-exporting-to-excel.html[Excel へエクスポート]
+* link:xamdatacards-field-chooser.html[フィールドの選択]
+* link:xamdatacards-navigating-and-selecting.html[ナビゲーションと選択]
+* link:xamdatacards-optimizing-performance.html[パフォーマンスの最適化]
+* link:xamdatacards-printing.html[印刷]
+* link:xamdatacards-record-filtering.html[レコード フィルタリング]
+* link:xamdatacards-sorting.html[並べ替え]
+* link:xamdatacards-undo-operations.html[元に戻す操作]

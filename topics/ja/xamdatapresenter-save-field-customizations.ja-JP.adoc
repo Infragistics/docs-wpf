@@ -1,0 +1,59 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-save-field-customizations",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Presentation","Editing"],
+    "guid": "{9E935CAC-9D90-4EAD-8645-C4D488E92395}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3220175Z"
+}
+|metadata|
+////
+
+= フィールド カスタマイズの保存
+
+
+
+xamDataGrid™ コントロールまたは xamDataPresenter™ コントロールを使用して、エンドユーザーはランタイムにフィールドの移動、並べ替え、およびグループ化ができます。xamDataCarousel™ コントロールは、フィールドヘッダーを表示しないので、エンドユーザーにフィールドのグループ化だけを許可します。幸運にも、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] クラスは、エンドユーザーのフィールドカスタマイズを保存するために使用できるオーバーロードされた link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~savecustomizations.html[SaveCustomizations] メソッドを公開します。
+
+XML 文字列としてフィールド カスタマイズを取得するために、パラメーターなしで SaveCustomizations メソッドを呼び出すことができます。xamDataGrid のデフォルト フィールド レイアウトを復元する機能を実装したい場合、この機能は役立ちます。アプリケーションのデフォルト レイアウトを Stream オブジェクトに記述する代わりに、アプリケーションが起動時に文字列としてデフォルト フィールド レイアウトを保存することができます。エンドユーザーがデフォルト レイアウトを復元したい場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~loadcustomizations.html[LoadCustomizations] メソッドに XML 文字列を渡すことができます。
+
+SaveCustomizations メソッドを呼び出す場合、XML データにはフィールドについて以下の情報が含まれます。
+
+* グループ化設定
+* 並べ替えの方向
+* フィールドの位置
+* フィールドの幅
+
+以下のコード例は、フィールド カスタマイズを保存する方法を示します。コード例は xamDataGrid コントロールのインスタンスを使用しますが、xamDataPresenter コントロールまたは xamDataCarousel コントロールを使用できます。
+
+*Visual Basic の場合:*
+
+----
+Imports System.IO
+...
+Using fs As New FileStream("xamDataGridLayout1.xml", FileMode.Create, FileAccess.Write) 
+    Me.xamDataGrid1.SaveCustomizations(fs) 
+End Using
+...
+----
+
+*C# の場合:*
+
+----
+using System.IO;
+...
+using (FileStream fs = new FileStream("xamDataGridLayout1.xml", FileMode.Create, FileAccess.Write))
+{
+    this.xamDataGrid1.SaveCustomizations(fs);
+}
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+
+link:xamdatapresenter-load-field-customizations.html[フィールド カスタマイズのロード]

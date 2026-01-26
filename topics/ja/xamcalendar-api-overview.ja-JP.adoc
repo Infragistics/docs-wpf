@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcalendar-api-overview",
+    "controlName": ["xamCalendar"],
+    "tags": ["API"],
+    "guid": "6e080dd4-22a8-4409-818c-2b8592fbae36",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.6241259Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== xamCalendar 名前空間
+
+link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics.Controls.Editors]
+
+=== キー クラス
+
+link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors.xamcalendar.html[xamCalendar]

@@ -1,0 +1,106 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-selection-overview",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Selection"],
+    "guid": "{1882BC25-3586-4586-8DB5-D9DF38BE64DE}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5268585Z"
+}
+|metadata|
+////
+
+= 選択の概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] クラスから派生したすべての {ProductName} コントロールは、セル、レコード、およびフィールドの選択のサポートが組み込まれています。link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.selectiontype.html[SelectionType] 列挙体で使用可能な 3 つの異なる選択モードがあります:
+
+* 選択なし
+* 一度に 1 つのオブジェクトを選択
+* 一度に複数のオブジェクトを拡張選択 (プログラムを使用する、または選択時にユーザーが SHIFT または Ctrl キーを押しながらマウス ボタンをクリックすることによって)。
+
+image::images/WPF_Selection_Overview_01.png[xamDataGrid のさまざまの利用可能な選択]
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~selectiontypecell.html[SelectionTypeCell] プロパティを Single または Extended に設定することによって、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cell] の選択を有効にする、またはこのプロパティを None に設定することによって、Cell の選択を無効にすることができます。
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~selectiontyperecord.html[SelectionTypeRecord] プロパティを Single または Extended に設定することによって、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record.html[Record] の選択を有効にする、またはこのプロパティを None に設定することによって、Record の選択を無効にすることができます。
+
+[NOTE]
+====
+*注:* セルとレコードの選択モードは同時に有効にできますが、エンド ユーザーが選択可能なのは常にセルとレコードのいずれかです。異なるセルを選択すると、以前に選択したレコードはクリアされ、異なるレコードを選択すると以前に選択したセルはクリアされます。
+====
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~selectiontypefield.html[SelectionTypeField] プロパティを Single または Extended に設定することによって、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] の選択を有効にする、またはこのプロパティを None に設定することによって、Field の選択を無効にすることができます。link:xamdata-terms-fields-field-label.html[フィールド ラベル]をクリックするためのデフォルト動作は Field でのソートであるため、クリックすることによってユーザーがフィールドを選択できるようにするためには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~labelclickaction.html[LabelClickAction] を SelectField に設定する必要があります。
+
+以下の XAML は、xamDataGrid™ で複数の Field 選択を設定する方法を例示します。その他の選択可能なオブジェクトのタイプの手順は、DataPresenterBase クラスから派生したコントロールと似ています。Field 選択を有効にするためには LabelClickAction の変更のみが必要なことを覚えておいてください。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataGrid.FieldLayout>
+    <!-- ここに Fields を入れます。-->
+    <igDP:Field Name="Field1">
+        <igDP:Field.Settings>
+            <igDP:FieldSettings LabelClickAction="SelectField" />
+        </igDP:Field.Settings>
+    </igDP:Field>
+</igDP:XamDataGrid.FieldLayout>
+<igDP:XamDataGrid.FieldLayoutSettings>
+    <igDP:FieldLayoutSettings SelectionTypeField="Extended" />
+</igDP:XamDataGrid.FieldLayoutSettings>
+----
+
+フィールドを動的に作成するために link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[AutogenerateFields] が必要な場合には、プログラムによって link:xamdata-terms-fields.html[フィールド] の選択を有効にするほうがいいかもしれません。以下の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutinitialized_ev.html[FieldLayoutInitialized] イベント ハンドラを DataPresenterBase 派生のコントロールに関連付けて、このタスクを完了することができます。
+
+*Visual Basic の場合:*
+
+----
+Sub OnFieldLayoutInitialized( ByVal sender As Object, ByVal e As FieldLayoutInitializedEventArgs)
+        Dim lo As FieldLayout = e.FieldLayout
+        For Each f In lo.Fields
+                f.Settings.LabelClickAction = LabelClickAction.SelectField
+        Next
+        lo.Settings.SelectionTypeField = SelectionType.Extended
+End Sub
+----
+
+*C# の場合:*
+
+----
+void OnFieldLayoutInitialized(object sender, FieldLayoutInitializedEventArgs e)
+{
+        FieldLayout lo = e.FieldLayout;
+        foreach (Field f in e.FieldLayout.Fields)
+        {
+                f.Settings.LabelClickAction = LabelClickAction.SelectField;
+        }
+        lo.Settings.SelectionTypeField = SelectionType.Extended;
+}
+----
+
+あらゆる選択可能な項目は、 link:{RootAssembly}{ApiVersion}~infragistics.windows.selection.iselectableitem~isselectable.html[IsSelected] プロパティを持っています。{ProductName} で、選択した項目の表示を変える (たとえば、異なる背景ブラシを使用して描画) ために、Style Trigger の Condition としてこのプロパティを頻繁に使用します。これは選択に関してユーザーが期待する視覚的フィードバックをユーザーに提供します。
+
+image::images/WPF_Selection_Overview_02.png[datapresenterbase 選択 API]
+
+では、DataPresenterBase 派生のコントロールによって公開された選択機能を説明します。上記の図で指定したプロパティとイベントを参照できます。
+
+選択したひとつの項目または複数の項目は、コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteditems.html[SelectedItems] プロパティによってアプリケーションから常にアクセスできます。このプロパティは選択される Cells、Records、または Fields の厳密に型指定されたコレクション プロパティを公開します。
+
+アクティブ化された項目と選択した項目の間には、理解する必要がある区別があります。ユーザーがセルまたはレコードをクリックすると、その項目はアクティブ化されます。アクティブ化によって、複数のアクティブ化イベントを、レコードで発生させることになり、その後にセルが続きます (セルがアクティブ化された場合には)。選択が有効になっている場合には、アクティブな項目は選択イベントをキャンセルしない限り選択された項目でもあります (以下を参照)。
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~activerecord.html[ActiveRecord] プロパティを使用して、アクティブなレコードにアクセスすることができます。そのレコード内でセルがアクティブ化された場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~activecell.html[ActiveCell] プロパティを使用してアクセスすることができます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell~isactive.html[IsActive] プロパティに基づいた個別の Style Trigger、またはレコーダ セレクターのいずれかを通してアクティブなオブジェクトへの注意を呼び出すことが一般的です。レコード セレクターは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordselectorlocation.html[RecordSelectorLocation] プロパティを使用してコントロールまたは link:xamdata-terms-fields-field-layout.html[フィールド レイアウト] レベルに配置でき、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordselectorstyle.html[RecordSelectorStyle] プロパティを使用してスタイルできます。
+
+image::images/WPF_Selection_Overview_03.png[選択の主なエリア]
+
+上記のスクリーンショットは、拡張されたレコード選択のシナリオを示しており、xamDataGrid 上のアクティブなレコードまたはレコード セレクターを強調表示しています。
+
+より高度な選択処理のシナリオは、イベント ハンドラを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteditemschanging_ev.html[SelectedItemChanging] イベントと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteditemschanged_ev.html[SelectedItemChanged] イベントに関連付けることによって処理できます。選択が有効で選択されたひとつまたは複数の項目が変わった時にはすべての DataPresenterBase 派生のコントロールが発生する必要があります。
+
+たとえば、SelectedItemChanging イベントを処理して link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.selecteditemschangingeventargs~newselection.html[NewSelection] を検証することができます。アプリケーションの現在の状態でどの項目の選択が許可されるかを制限するビジネス ルールを評価した後で、 link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.events.cancelableroutedeventargs~cancel.html[Cancel] を True に設定することによって選択をキャンセルできます。
+
+DataPresenterBase 派生のコントロールの選択インフラストラクチャは、インターフェイスの背後で抽象化されており、最も高度な選択シナリオを処理するために使用できます。このトピックで学習したすべての選択可能な項目 (セル、レコード、およびフィールド) は、 link:{RootAssembly}{ApiVersion}~infragistics.windows.selection.iselectableitem.html[ISelectableItem] インターフェイスを実装しており、これによって、コントロールインフラストラクチャによって選択可能にすることができます。DataPresenterBase クラスは、ISelectionHost のプレゼンテーションの意味に基づいて、ドラッグ、きめの細かい ISelectableItem (セルなど) をきめの粗い ISelectableItemand (レコードなど)に変換する、一度の複数ページにわたる範囲選択の間の自動スクロールの速度を含む、選択のより繊細な側面の多くを担当する link:{RootAssembly}{ApiVersion}~infragistics.windows.selection.iselectionhost.html[ISelectionHost] インターフェイスを実装します。
+
+== xamDataGrid コントロールの選択レコードをクリア
+
+xamDataGrid の選択レコードをクリアするには、CTRL を押しながら選択レコードをクリックします。

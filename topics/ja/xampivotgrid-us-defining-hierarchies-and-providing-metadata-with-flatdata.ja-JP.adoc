@@ -1,0 +1,152 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-us-defining-hierarchies-and-providing-metadata-with-flatdata",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["How Do I"],
+    "guid": "b940b434-bfb0-44f8-bf53-3e8cf1895574",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.9613129Z"
+}
+|metadata|
+////
+
+= フラット データを OLAP データとして表示
+
+XMLA DataSource を使用する場合、データはすでにキューブに整理され、各ディメンションには定義された階層があります。ただし、FlatData にはこれは当てはまりません。FlatData では、一部のカスタム クラスである各プロパティにユーザー固有の階層を定義できます。XAML およびコード ビハインドの両方でこれを行うことができます。以下の段落ではその方法を示します。
+
+すべての階層は、DataSource のコレクションである HierarchyDescriptors で定義されます。
+
+*XAML の場合:*
+
+----
+     <igOlap:FlatDataSource.HierarchyDescriptors>
+         <igOlap:HierarchyDescriptor SourcePropertyName="Product">
+             <igOlap:HierarchyDescriptor.LevelDescriptors>
+                 <igOlap:HierarchyLevelDescriptor
+					LevelName="All products"/>
+                 <igOlap:HierarchyLevelDescriptor
+					LevelName="Product name"
+					LevelExpressionPath="Name"/>
+             </igOlap:HierarchyDescriptor.LevelDescriptors>
+         </igOlap:HierarchyDescriptor>
+         <igOlap:HierarchyDescriptor SourcePropertyName="City">
+             <igOlap:HierarchyDescriptor.LevelDescriptors>
+                 <igOlap:HierarchyLevelDescriptor
+					LevelName="All locations"/>
+                 <igOlap:HierarchyLevelDescriptor
+					LevelName="City"
+					LevelExpressionPath="Name"/>
+             </igOlap:HierarchyDescriptor.LevelDescriptors>
+         </igOlap:HierarchyDescriptor>
+     </igOlap:FlatDataSource.HierarchyDescriptors>
+----
+
+この例は、キューブのプロパティの 2 つに階層を定義する方法を示します。このキューブは、メイン データ ホルダーとしてデータ ソースに指定されているクラスです。必要な数だけ HierarchyLevelDescriptors を定義することができます。LevelExpressionPath は、データをグループ化するプロパティです。LevelName は、データ セレクターの階層でツリー表示されます。
+
+現在、自動生成された階層だけが DateTime タイプのディメンションとなります。
+
+コード ビハインドで上記と同じことを行う場合、コードは次のようになります。
+
+*C# の場合:*
+
+----
+     HierarchyDescriptor<Sale> productHierarchy =
+		new HierarchyDescriptor<Sale>(p => p.Product);
+     productHierarchy.AddLevel(p => "All products", "All products");
+     productHierarchy.AddLevel(p => p.Product.Name, "Product name");
+     flatDataSource.AddHierarchyDescriptor(productHierarchy);
+     HierarchyDescriptor<Sale> locationHierarchy =
+		new HierarchyDescriptor<Sale>(p => p.City);
+     locationHierarchy.AddLevel(p => "All locations", "All locations");
+     locationHierarchy.AddLevel(p => p.City, "City");
+     flatDataSource.AddHierarchyDescriptor(locationHierarchy);
+----
+
+*Visual Basic の場合:*
+
+----
+     Dim productHierarchy As _
+               New HierarchyDescriptor(Of Sale)(Function(p) p.Product)
+     productHierarchy.AddLevel(Function(p) "All products", "All products")
+     productHierarchy.AddLevel(Function(p) p.Product.Name, "Product name")
+     flatDataSource.AddHierarchyDescriptor(productHierarchy)
+     Dim locationHierarchy As _
+               New HierarchyDescriptor(Of Sale)(Function(p) p.City)
+     locationHierarchy.AddLevel(Function(p) "All locations", "All locations")
+     locationHierarchy.AddLevel(Function(p) p.City, "City")
+     flatDataSource.AddHierarchyDescriptor(locationHierarchy)
+----
+
+== FlatData をメタデータに提供
+
+カスタム階層の作成に加えて、各階層またはメジャーに関連付けられたメタデータを変更したい場合があります。すべての設定を保持するコレクションは、CubesSettings と呼ばれます。以下の段落では、そこで情報を追加する方法を示します。
+
+各キューブに対して、DimensionMetadata を含む CubeMetadata を作成します。
+
+*XAML の場合:*
+
+----
+     <FlatData:FlatDataSource.CubesSettings>
+         <FlatData:CubeMetadata
+					DataTypeFullName="ClassNamespaceName.Sale"
+                    DisplayName="Sales Data">
+             <FlatData:DimensionMetadata
+					SourcePropertyName="NumberOfUnits"
+                    DisplayName="Units sold"/>
+             <FlatData:DimensionMetadata
+					SourcePropertyName="AmountOfSale"
+                    DisplayName="Amount of sale"
+                    DisplayFormat="{}{0:C2}"/>
+         </FlatData:CubeMetadata>
+     </FlatData:FlatDataSource.CubesSettings>
+----
+
+DisplayName は、UI の階層/メジャーの名前を変更するために使用され、DisplayFormat はメジャーに使用されます。Raw 値はセルの Value プロパティに進み、フォーマットされた値は FormattedValue プロパティに進みます。文字列のフォーマットは、ドル (または、システム カルチャに基づく他の通貨) で数値を表示します。
+
+同じことを、以下のコードでコード ビハインドから行うことができます。
+
+*C# の場合:*
+
+----
+     CubeMetadata cubeMetadata = new CubeMetadata();
+     cubeMetadata.DisplayName = "Sales Data";
+     cubeMetadata.DataTypeFullName = typeof(Sale).FullName;
+     cubeMetadata.DimensionSettings.Add(new DimensionMetadata()
+     {
+         SourcePropertyName = "AmountOfSale",
+         DisplayName = "Amount of sale",
+         DisplayFormat = "{0:C2}"
+     });
+     cubeMetadata.DimensionSettings.Add(new DimensionMetadata()
+     {
+         SourcePropertyName = "NumberOfUnits",
+         DisplayName = "Units sold"
+     });
+     flatDataSource.CubesSettings.Add(cubeMetadata);
+----
+
+*Visual Basic の場合:*
+
+----
+     Dim cubeMetadata As New CubeMetadata()
+     cubeMetadata.DisplayName = "Sales Data"
+     cubeMetadata.DataTypeFullName = GetType(Sale).FullName
+     Dim d As New DimensionMetaData()
+     d.SourcePropertyName = "AmountOfSale" 
+     d.DisplayName = "Amount of sale"
+     d.DisplayFormat = "{0:C2}"
+     cubeMetadata.DimensionSettings.Add(d)
+     Dim d2 As New DimensionMetaData()
+     d2.SourcePropertyName = "NumberOfUnits"
+     d2.DisplayName = "Units sold"
+     cubeMetadata.DimensionSettings.Add(d2)
+     flatDataSource.CubesSettings.Add(cubeMetadata)
+----
+
+=== 関連トピック
+
+link:xampivotgrid-us-assigning-hierarchies-and-measures.html[階層およびメジャーの指定]
+
+link:xampivotgrid-us-expanding-hierarchies-in-runtime-from-code.html[フィルタリング]

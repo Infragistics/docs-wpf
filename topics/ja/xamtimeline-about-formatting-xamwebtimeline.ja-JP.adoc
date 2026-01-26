@@ -1,0 +1,55 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-about-formatting-xamwebtimeline",
+    "controlName": ["xamTimeline"],
+    "tags": ["Data Presentation"],
+    "guid": "{66EB0682-13DB-4769-8B04-95E2BC0844D0}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.0364001Z"
+}
+|metadata|
+////
+
+= xamTimeline の書式設定について
+
+xamTimeline コントロールは、表示する日付や数値をフォーマットするために標準 .NET フォーマット文字列を受け付けます。これによって、ユーザーの要件を満たすカスタム表示を得ることができます。link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[NumericTimeSeries] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeseries.html[DateTimeSeries] オブジェクトの EventTitle および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeaxis.html[NumericTimeAxis] または link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis.html[DateTimeAxis] オブジェクトの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel.html[AxisLabel] プロパティは、フォーマットが適用される主要な候補です。
+
+image::images/SL_DV_xamWebTimeline_About_Formatting_xamWebTimeline_01.png[]
+
+image::images/SL_DV_xamWebTimeline_About_Formatting_xamWebTimeline_02.png[]
+
+image::images/SL_DV_xamWebTimeline_About_Formatting_xamWebTimeline_03.png[]
+
+xamTimeline のフォーマットは、Styles の使用を通して行われ、Axis ラベルとイベント タイトルの両方に対して link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineaxis.html[Axis] を通して設定されます。これはユーザーの時刻シリーズのイベント タイトルが Axis ラベルに設定するフォーマットを取ることを意味します。
+
+以下のリストは、EventTitle および AxisLabel プロパティの DateTime 値をフォーマットするために設定するプロパティを示します。
+
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~yearsunitstringformat.html[YearsUnitStringFormat]
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~monthsunitstringformat.html[MonthsUnitStringFormat]
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~weeksunitstringformat.html[WeeksUnitStringFormat]
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~daysunitstringformat.html[DaysUnitStringFormat]
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~hoursunitstringformat.html[HoursUnitStringFormat]
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~minutesunitstringformat.html[MinutesUnitStringFormat]
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~secondsunitstringformat.html[SecondsUnitStringFormat]
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~millisecondsunitstringformat.html[MillisecondsUnitStringFormat]
+
+xamTimeline コントロールは、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis.html[DateTimeAxis] オブジェクトの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis~unittype.html[UnitType] に基づいて、上記のフォーマットのいずれかを使用します。たとえば、UnitType が Months の場合、コントロールは値をフォーマットするために MonthsUnitStringFormat を使用します。これによってユーザーが表示したい単位に基づいて使用できる複数のフォーマット オプションを設定することが可能になります。DateTime 値のフォーマットについての詳細は、 link:xamtimeline-format-datetime-values.html[日時値の書式設定]を参照してください。
+
+NumericTimeSeries オブジェクトは、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~stringformat.html[StringFormat] というフォーマットを処理するひとつのプロパティを持ちます。このプロパティは、Double 値の文字列フォーマットを取ります。数値のフォーマットについての詳細は、 link:xamtimeline-format-numeric-time-values.html[数値時刻値の書式設定]を参照してください。
+
+値の表示に関してターゲットとするためのプロパティがさらに 2 つあります:
+
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventcontrol~pointstringformat.html[PointStringFormat]
+* link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventcontrol~spanstringformat.html[SpanStringFormat]
+
+SpanStringFormat がスパン値と同じである時に、PointStringFormat プロパティによってそれぞれの点の値の表示をカスタマイズすることが可能となります。これらのプロパティの使用についての詳細は、 link:xamtimeline-format-point-and-span-values.html[点およびスパン値の書式設定]を参照してください。
+
+== 関連トピック
+
+link:xamtimeline-format-datetime-values.html[日付/時刻の値の書式設定]
+
+link:xamtimeline-format-numeric-time-values.html[数値時間値の書式設定]
+
+link:xamtimeline-format-point-and-span-values.html[点およびスパン値の書式設定]

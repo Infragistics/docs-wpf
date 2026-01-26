@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-tilescontrol-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "7ac45ff6-82c4-46c8-85a7-e2689cc7c2e2",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:54:35.6720873Z"
+}
+|metadata|
+////
+
+= TilesControl リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列の名前を示しています。
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|CloseButtonToolTip
+|閉じる
+
+|CollapseButtonToolTip
+|縮小
+
+|ExpandButtonToolTip
+|展開
+
+|MaximizeButtonToolTip
+|最大化
+
+|MinimizeButtonToolTip
+|最小化
+
+|====

@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel",
+    "controlName": ["xamCarouselPanel"],
+    "tags": [],
+    "guid": "{0C71AEB5-1D6C-4BFF-BA3B-78D7C17D5839}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0627657Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel
+
+
+
+xamCarouselPanel™ コントロールに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このセクションをご覧ください。このセクションは、コントロールについての概要からアプリケーションで使用する理由、コントロールを使用して共通タスクを達成するための方法の手順などの xamCarouselPanel についての有益な情報を含んでいます。
+
+以下のリンクをクリックして、xamCarouselPanel コントロールについての重要な情報にアクセスします。
+
+== link:xamcarouselpanel-understanding-xamcarouselpanel.html[xamCarouselPanel について]
+
+このセクションでは、xamCarouselPanel コントロールの機能をより良く理解するために助けとなるあらゆる情報や、アプリケーション構築の一環としてこのコントロールの機能を使いたくなる理由が説明されています。
+
+== link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]
+
+xamCarouselPanel コントロールでできる限り素早く起動して実行するために、コントロールを使用して開始する方法 (たとえば、フォームに xamCarouselPanel を追加) についての情報を提供します。
+
+== link:xamcarouselpanel-using-xamcarouselpanel.html[xamCarouselPanel の使用]
+
+このセクションには、xamCarouselPanel コントロールで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamcarouselpanel-api-overview.html[API の概要]
+
+このトピックは、xamCarouselPanel コントロールを使用して開発する際の名前空間とクラスについて説明します。このトピックにリストされる名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]に便宜上リンクします。

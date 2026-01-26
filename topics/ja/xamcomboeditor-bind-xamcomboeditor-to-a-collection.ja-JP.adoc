@@ -1,0 +1,46 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-bind-xamcomboeditor-to-a-collection",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{58C79DF9-473C-4DC4-9E64-1A927E83DD65}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0819781Z"
+}
+|metadata|
+////
+
+= xamComboEditor をコレクションにバインド
+
+IEnumerable インターフェイスを実装するコレクションを含む複数の異なるデータ ソースに xamComboEditor をバインドできます。ObjectDataProvider を使用して、アプリケーションのプレゼンテーション層にコレクションを公開できます。ObjectDataProvider を未だ作成していない場合、このトピックの残りに進む前に link:creating-an-objectdataprovider.html[ObjectDataProvider の作成]の手順を読んで、それに従ってください。
+
+xamComboEditor コントロールはデータ ソースに直接バインドしません。代わりに、データをバインドするために xamComboEditor は link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider.html[ComboBoxItemsProvider] オブジェクトのインスタンスを使用します。Microsoft® Windows® Presentation Foundation ItemsControl のために使用する同じパターンを使用して、ComboBoxItemsProvider オブジェクトをデータバインドできます。ドロップダウンリストに移植するためにオブジェクトのコレクションを参照するバインディング式に link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider~itemssource.html[ItemsSource] プロパティを設定できます。
+
+ItemsControl のデフォルトの動作は、基となるオブジェクトの ToString メソッドの結果を表示することです。各項目の視覚ツリーを決定する DataTemplate を作成する、または ComboBoxItemsProvider オブジェクトが便宜上提供する link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider~displaymemberpath.html[DisplayMemberPath] プロパティと link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider~valuepath.html[ValuePath] プロパティを設定することによって、このデフォルトの動作をオーバーライドできます。エンド ユーザーに表示したいビジネス オブジェクトでプロパティの名前に DisplayMemberPath プロパティを設定できます。xamComboEditor の基となる値として保存したいビジネス オブジェクトでプロパティの名前に ValuePath プロパティを設定できます。xamComboEditor が編集しているデータ タイプは、xamComboEditor の link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuetype.html[ValueType] プロパティとして指定するプロパティのデータタイプと一致しなければなりません。たとえば、ComboBoxItemsProvider オブジェクトの ValuePath プロパティを整数を返すプロパティに設定する場合、xamComboEditor の ValueType を整数データタイプに設定する必要もあります。
+
+以下のコード例は、xamComboEditor を ObjectDataProvider にバインドする方法を示します。
+
+*XAML の場合:*
+
+----
+...
+<!--ValuePath プロパティに指定されたプロパティと同じデータ タイプに ValueType プロパティが設定されていることに注意してください。
+この sys: プレフィックスは XML 名前空間 'clr-namespace:System;assembly=mscorlib' にマップされます。-->
+<igEditors:XamComboEditor ValueType="{x:Type sys:Double}" VerticalAlignment="Top">
+<igEditors:XamComboEditor.ItemsProvider>
+                <igEditors:ComboBoxItemsProvider ItemsSource="{Binding Source={StaticResource CarData}}" 
+DisplayMemberPath="Make" ValuePath="BasePrice" />
+        </igEditors:XamComboEditor.ItemsProvider>
+</igEditors:XamComboEditor>
+...
+----
+
+== 関連トピック
+
+link:wpf-xamcomboeditor-about-xamcomboeditor.html[xamComboEditor について]
+
+link:xamcomboeditor-bind-xamcomboeditor-to-a-dataset.html[xamComboEditor を DataSet にバインド]
+
+link:xamcomboeditor-bind-xamcomboeditor-to-an-xmldataprovider.html[xamComboEditor を XmlDataProvider にバインド]

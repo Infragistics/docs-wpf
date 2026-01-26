@@ -1,0 +1,125 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-calculating-explicitly-a-project",
+    "controlName": ["xamGantt"],
+    "tags": ["Calculations","How Do I","Scheduling"],
+    "guid": "e6eb8825-adcf-4ec4-84d3-547e4e761fbd",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.3071261Z"
+}
+|metadata|
+////
+
+= プロジェクトの明示的計算
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   コントロールを使用してプロジェクトを明示的に計算する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-binding-arbitrary-tasks-collection-listbackedproject.html[ListBackedProject によるタスク コレクションとのバインディング]
+|このトピックでは、ListBackedProject で _xamGantt_ コントロールを任意のタスク コレクションにバインドする方法を説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref334822139, プロジェクトの明示的計算 >>
+* <<_Ref334818619, 関連コンテンツ >>
+
+[[_Ref334822139]]
+== プロジェクトの明示的計算
+
+=== 概要
+
+デフォルトで、編集のたびに  _xamGantt_   コントロールで自動プロジェクト計算が発生します。
+
+これらの動作は構成可能で、必要に応じてプロジェクトを明示的に計算することができます。
+
+=== プロパティ設定
+
+以下の表は、タスクの計算の構成をプロパティ設定に明示的にマップしたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用する項目|次に設定:
+
+|自動プロジェクト計算を無効にする
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectsettings~shouldcalculateaftereachedit.html[ShouldCalculateAfterEachEdit]
+|`False`
+
+|プロジェクトの明示的計算
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~calculate.html[Calculate] メソッド
+|-
+
+|====
+
+=== 例
+
+以下の例はプロジェクトを明示的に計算する方法を示します。これは [計算] ボタンをクリックすることで起動します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ListBackedProject x:Name="dataProvider" 
+                      TaskItemsSource="{Binding Tasks}"                                 
+    <ig:ListBackedProject.Settings>
+        <ig:ProjectSettings ShouldCalculateAfterEachEdit=" />
+    </ig:ListBackedProject.Settings>
+</ig:ListBackedProject>
+<ig:XamGantt x:Name="gantt" 
+             Project="{Binding ElementName=dataProvider}"/>
+…
+<Button x:Name="Btn_Calculate" Content="Calculate" 
+        Click="Btn_Calculate_Click" />
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void Btn_Calculate_Click(object sender, RoutedEventArgs e)
+{
+    this.dataProvider.Calculate();
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub Btn_Calculate_Click(sender As Object, e As RoutedEventArgs)
+    Me.dataProvider.Calculate()
+End Sub
+----
+
+[[_Ref334818619]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-project-configuration-overview.html[プロジェクトの構成の概要]
+|このトピックでは、 _xamGantt_ Project クラスとその構成可能な項目の概要を提供します。
+
+| link:xamgantt-scheduling-project-from-start-or-finish-date.html[開始日または終了日からプロジェクトをスケジュール]
+|このトピックでは、 _xamGantt_ コントロールのプロジェクトの開始日と終了日に基づいてプロジェクトとタスクの日付を計算する方法を説明します。
+
+|====

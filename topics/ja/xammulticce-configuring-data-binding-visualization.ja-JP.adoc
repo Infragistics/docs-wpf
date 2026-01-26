@@ -1,0 +1,233 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticce-configuring-data-binding-visualization",
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "controlName": ["xamMultiColumnComboEditor"],
+    "guid": "e96c4ab8-c0ac-4b04-a09d-226ec953aa75",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.5892543Z"
+}
+|metadata|
+////
+
+= データのバインディングと視覚エフェクトの構成 (xamMultiColumnComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamMultiColumnComboEditor_™ コントロールをデータとバインドして、コントロールのドロップダウン リストで項目レイアウトを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticce-adding.html[xamMultiColumnComboEditor をページに追加]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールをアプリケーションに追加し、いくつかのプロパティを使用する方法について説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref382568526,データのバインディングと視覚エフェクトの構成の概要>>
+* <<_Ref382561097,データ ソースへのバインディング>>
+* <<_Ref382568577,列の自動生成の構成>>
+* <<_Ref382570209,表示される列の構成>>
+* <<_Ref382577195,関連コンテンツ>>
+
+[[_Ref382568526]]
+== データのバインディングと視覚エフェクトの構成の概要
+
+=== データのバインディングと視覚エフェクトの構成の概要表
+
+以下の表では、 _xamMultiColumnComboEditor_   コントロールの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref382561097,データ ソースへのバインディング>>
+|_xamMultiColumnComboEditor_ にデータを追加するには、`xamMultiColumnComboEditor` プロパティをデータ ソースに設定します。 
+
+データ オブジェクトの任意の`IEnumerable` コレクションを使用します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemssource.html[ItemsSource]
+
+|<<_Ref382568577,列の自動生成の構成>>
+|列の自動生成を有効または無効にするには、 _xamMultiColumnComboEditor_ `AutoGenerateColumns` プロパティを使用します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~autogeneratecolumns.html[AutoGenerateColumns]
+
+|<<_Ref382570209,表示される列の構成>>
+|_xamMultiColumnComboEditor_ ドロップダウン リストの特定の列のみを表示するには、`Columns` コレクションのプロパティを使用します。
+|link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~columns.html[Columns]
+
+|====
+
+[[_Ref382561097]]
+== データ ソースへのバインディング
+
+[[_Hlk368069110]]
+
+=== 概要
+
+_xamMultiColumnComboEditor_   コントロールにデータを追加するには、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemssource.html[ItemsSource] プロパティをデータ ソースに設定します。データ オブジェクトの任意の`IEnumerable` コレクションを使用します。
+
+注:
+
+[NOTE]
+====
+_xamMultiColumnComboEditor_   が項目の直接追加をサポートしない場合は、項目をバインドする`IEnumerable` データ ソースが必要です。
+====
+
+注:
+
+[NOTE]
+====
+_xamMultiColumnComboEditor_   コントロールは、プリミティブ型のコレクションにバインドできません。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|_xamMultiColumnComboEditor_ データ ソースの設定
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemssource.html[ItemsSource]
+|`IEnumerable`
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamMultiColumnComboEditor_   の外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemssource.html[ItemsSource]
+| _{Binding Path=Products}_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~autogeneratecolumns.html[AutoGenerateColumns]
+| _False_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath]
+| _製品名_ 
+
+|====
+
+image::images/Configuring_Data_Population_and_Visualization_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor x:Name="ComboEditorProducts" 
+                              Height="30" Width="300" 
+                              ItemsSource="{Binding Path=Products}"
+                              AutoGenerateColumns="False"
+                              DisplayMemberPath="ProductName">
+    <ig:XamMultiColumnComboEditor.Columns>
+        <ig:TextComboColumn Key="ProductName"/>
+        <ig:TextComboColumn Key="ProductID"/>
+        <ig:TextComboColumn Key="UnitsInStock"/>
+    </ig:XamMultiColumnComboEditor.Columns>
+</ig:XamMultiColumnComboEditor>
+----
+
+[[_Ref382568577]]
+== 列の自動生成の構成
+
+=== 概要
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~autogeneratecolumns.html[AutoGenerateColumns] プロパティを使用して、 _xamMultiColumnComboEditor_   列の自動生成を有効または無効にします。
+
+デフォルトでは列の自動生成は有効に設定されています。列は、ソース `IEnumerable` に含まれるデータ オブジェクトのすべてのパブリック プロパティに対し生成されます。
+
+`AutoGenerateColumns` プロパティが`False` に設定されている場合は、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~columns.html[Columns] コレクションのプロパティを使用して、表示する必要がある列を指定します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|列の自動生成の構成
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~autogeneratecolumns.html[AutoGenerateColumns]
+|`bool`
+
+|====
+
+[[_Ref382570209]]
+== 表示する列の構成
+
+=== 概要
+
+`Columns` プロパティを使用して、 _xamMultiColumnComboEditor_   ドロップダウン リストで表示する列を指定します。
+
+以下の使用可能な列タイプを使用します。
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.checkboxcombocolumn_members.html[CheckboxComboColumn] - ブール値を含む列の場合
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.datecombocolumn_members.html[DateComboColumn] - `DateTime` 値を含む列の場合
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.imagecombocolumn_members.html[ImageComboColumn] - 画像列の場合
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.textcombocolumn_members.html[TextComboColumn] - `文字列`値を含む列の場合
+
+注:
+
+[NOTE]
+====
+Uri を含むプロパティにキーをバインドする、またはタイプ `BitmapImage` のプロパティにバインドすると、画像を読み込むことができます。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|表示する列のコレクションの指定
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~columns.html[Columns]
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.combocolumncollection_members.html[ComboColumnCollection]
+
+|====
+
+[[_Ref382577195]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xam-multicee-configuring-the-behavior-on-user-input.html[ユーザー入力の動作の構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールのテキストフィールドに入力し Enter キーを押した場合に、実行される動作を構成する方法について説明します。
+
+| link:xammulticee-configuring-the-drop-down.html[ドロップダウンの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ ドロップダウンのレイアウトおよび動作を構成する方法を説明します。
+
+| link:xammulticee-configuring-item-filtering.html[項目のフィルタリングの構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールで項目のフィルタリングを構成する方法を説明します。
+
+| link:xammulticee-selection.html[選択]
+|このグループのトピックでは、 _xamMultiColumnComboEditor_ コントロールの選択機能とその使用方法について説明します。
+
+|====

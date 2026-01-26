@@ -1,0 +1,138 @@
+﻿////
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-import-export-rtf",
+    "tags": ["Data Binding"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "dfb28832-0be7-4ec9-b33b-12329d447711",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4823444Z"
+}
+|metadata|
+////
+
+= RTF のインポート / エクスポート (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールを使用して、RTF データをインポートおよびエクスポートする方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-serialization-providers.html[シリアル化プロバイダーの概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールのシリアル化プロバイダーについて説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362608235,リッチ テキスト形式をインポート / エクスポートする構成の概要>>
+* <<_Ref362603137,リッチ テキスト形式のコンテンツのインポート>>
+* <<_Ref362603145,リッチ テキスト形式のコンテンツのエクスポート>>
+* <<_Ref359594803,関連トピック>>
+
+[[_Ref362608235]]
+== リッチ テキスト形式をインポート / エクスポートする構成の概要
+
+=== プレーン テキストをインポート / エクスポートする構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、各プロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|メソッド
+
+|<<_Ref362603137,リッチ テキストファイル形式のコンテンツのインポート>>
+|リッチ テキスト形式のコンテンツをストリームからインポートします。
+| link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}~infragistics.documents.richtext.rtfserializationproviderextensions~loadfromrtf.html[LoadFromRtf]
+
+|<<_Ref362603145,リッチ テキストファイル形式のコンテンツのエクスポート>>
+|リッチ テキスト形式のコンテンツをストリームからエクスポートします。
+| link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}~infragistics.documents.richtext.rtfserializationproviderextensions~savetortf.html[SaveToRtf]
+
+|====
+
+注:
+
+[NOTE]
+====
+最初に、以下の RTF シリアル化プロバイダー NuGet パッケージへの参照をプロジェクトに追加する必要があります:
+
+*Infragistics.WPF.RichTextDocument.Rtf*
+
+====
+
+[[_Ref362603137]]
+== リッチ テキスト形式のコンテンツのインポート
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] の `LoadFromRtf` 拡張メソッドを使用して、 _xamRichTextEditor_   コントロール内のリッチ テキスト形式のコンテンツをストリームからインポートします。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|次の引数を提供:
+
+|リッチ テキスト形式のコンテンツのインポート
+|`LoadFromRtf`
+|
+* リッチ テキスト形式のコンテンツを含むストリーム オブジェクト 
+
+* link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}~infragistics.documents.richtext.rtf.rtfloadoptions_members.html[RtfLoadOptions] タイプのオプション オブジェクトを読み込むコンテンツ。必須ではない。 
+
+|====
+
+[[_Ref362603145]]
+== リッチ テキスト形式のコンテンツのエクスポート
+
+=== 概要
+
+`RichTextDocument` の `SaveToRtf` 拡張メソッドを使用して、 _xamRichTextEditor_   のリッチ テキスト形式のコンテンツをストリームにエクスポートします。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|次の引数を提供:
+
+|リッチ テキスト形式のコンテンツのエクスポート
+|`SaveToRtf`
+|
+* リッチ テキスト形式のコンテンツをエクスポートするストリーム オブジェクト 
+
+* link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}~infragistics.documents.richtext.rtf.rtfsaveoptions_members.html[RtfSaveOptions] タイプのオプション オブジェクトを保存するコンテンツ。必須ではない。 
+
+|====
+
+[[_Ref359594803]]
+== 関連トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-import-export-text.html[プレーン テキストのインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、プレーン テキストのデータをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-managing-import-export-docx.html[DOCX のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して DOCX 形式のデータをインポートおよびエクスポートする方法を説明します。
+
+|====

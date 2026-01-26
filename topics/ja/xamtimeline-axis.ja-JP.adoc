@@ -1,0 +1,92 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-axis",
+    "controlName": ["xamTimeline"],
+    "tags": ["API","Data Presentation","How Do I"],
+    "guid": "{DCC9B029-EB27-4C99-A71F-FF6C2C08F5DE}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.9253965Z"
+}
+|metadata|
+////
+
+= 軸
+
+このセクションは、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineaxis.html[Axis] での作業に関するタスクベースの手順についての役立つ情報を提供します。
+
+* link:xamtimeline-style-the-axis.html[軸のスタイル]
+
+image::images/SL_DV_xamWebTimeline_Axis.png[]
+
+== 軸をカスタマイズ
+
+軸は多くの要素がそれを中心として回転する XamTimeline の主要部分です。目盛り、ラベル、グリッド線、つまみを含んでおり、すべてがコントロールの機能で主要な役割を果たします。link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeaxis.html[NumericTimeAxis] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis.html[DateTimeAxis] の 2 つのタイプのシリーズがあります。それぞれはそのタイプに一意の属性を持つそれぞれのシリーズ タイプに対応します。
+
+Axis は xamTimeline で動作設定とスタイル設定の多くに責任を持ちます。Axis を通してカスタマイズできるオブジェクトには以下が含まれます:
+
+* 主目盛および副目盛
+* 主グリッド線および副グリッド線
+* 軸つまみ
+* 時刻シリーズの最小値および最大値
+* 時間値の増分の単位
+* 軸ペイン
+* 軸ラベル
+* 選択した時間
+* xamZoomBar の設定
+
+以下のコードは、NumericTimeAxis オブジェクトの設定して、NumericTimeAxis オブジェクト固有の範囲、増分の単位、および選択した時間を定義する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline x:Name="timeline1">
+   <!-- 数値軸の設定 -->
+   <ig:XamTimeline.Axis>
+      <ig:NumericTimeAxis 
+         Minimum="1885" 
+         Maximum="1900" 
+         SelectedTime="1889"
+         AutoRange=" 
+         Unit="1" />
+   </ig:XamTimeline.Axis>
+   <ig:XamTimeline.Series>
+      <ig:NumericTimeSeries Title="19th Century in Film">
+         <!-- TODO: 時刻エントリの追加 -->
+      </ig:NumericTimeSeries>
+   </ig:XamTimeline.Series>
+</ig:XamTimeline>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim axis = New NumericTimeAxis()
+axis.Minimum = 1885
+axis.Maximum = 1900
+axis.SelectedTime = 1889
+axis.AutoRange = False
+axis.Unit = 1
+timeline1.Axis = axis
+----
+
+*C# の場合:*
+
+----
+var axis = new NumericTimeAxis()
+{
+   Minimum = 1885,
+   Maximum = 1900,
+   SelectedTime = 1889,
+   AutoRange = false,
+   Unit = 1
+};
+timeline1.Axis = axis;
+----
+
+image::images/SL_DV_XamTimeline_Customize_Axis_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-style-the-axis.html[軸のスタイル]

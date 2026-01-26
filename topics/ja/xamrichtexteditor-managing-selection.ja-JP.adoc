@@ -1,0 +1,264 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-selection",
+    "tags": ["How Do I","Selection"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "9c040e11-a825-4194-90b9-87fbac354cc6",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.5383077Z"
+}
+|metadata|
+////
+
+= 選択の管理 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールの選択機能を、開発者の観点から説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加する]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref359594750,はじめに>>
+* <<_Ref362272630,プログラムで単一選択の取得>>
+* <<_Ref362272638,プログラムで単一選択を設定>>
+* <<_Ref359594792,プログラムで複数選択を取得>>
+* <<_Ref365461606,プログラムで複数選択を設定>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref359594750]]
+== はじめに
+
+=== 選択概要
+
+_xamRichTextEditor_   コントロールの選択機能を使用すると、ドキュメントからコンテンツを選択することができます。コンテンツから 1 つの領域を選択したり、複数の領域 (「範囲」と呼ばれます) を選択することができます。範囲は、ドキュメントのコンテンツの一部を表すオブジェクトで、その開始位置と終了位置で定義します。実際の開始位置および終了位置は、ドキュメントのコンテンツの始点からのオフセットです。リッチ コンテンツの各タイプ (文字、単語、パラグラフの終り、リスト項目インジケータ、画像、テーブルなど) がドキュメントのオフセットのほとんどを占めます
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~range.html[Selection.Range] プロパティを使用し単一選択にアクセスできます。または link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~ranges.html[Selection.Ranges] コレクションを使用し、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~ismultiselectenabled.html[IsMultiSelectEnabled] プロパティで複数の選択を有効にして、複数の選択範囲を取得できます。
+
+注:
+
+[NOTE]
+====
+単一選択を使用している場合、`Selection.Range` プロパティは選択範囲を示します。複数選択モードを使用している場合、このプロパティが示す最後の選択は`Selection.Ranges` コレクションの最後のエントリでもあります。
+====
+
+[[_Ref359594778]]
+[[_Ref362272630]]
+== プログラムで単一選択の取得
+
+=== 概要
+
+以下に、単一選択の範囲を取得する方法を説明します。`Selection.Range` プロパティを使用して、選択の範囲または複数選択の最初に選択された範囲にアクセスすることもできます。選択のプレーンテキスト コンテンツを取得するには、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~text.html[Selection.Text] プロパティを使用してください。
+
+=== プロパティ設定
+
+以下の表は、任意の動作と各プロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|取得:
+
+|選択の開始の取得
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~start.html[Start]
+|選択範囲の開始のオフセット
+
+|選択の終りの取得
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~end.html[End]
+|選択範囲の終りのオフセット
+
+|選択のコンテンツの取得
+|`Text`
+|コンテンツの文字列
+
+|====
+
+=== コード スニペット
+
+*C# の場合:*
+
+[source,csharp]
+----
+// 選択の開始と終了の取得
+int startIndex = this.xamRichTextEditor1.ActiveDocumentView.Selection.Start;
+int endOffset = this.xamRichTextEditor1.ActiveDocumentView.Selection.End;
+string text = this.xamRichTextEditor1.ActiveDocumentView.Selection.Text;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' 選択の開始と終了の取得
+Dim startIndex As Integer = Me.xamRichTextEditor1.ActiveDocumentView.Selection.Start
+Dim endOffset As Integer = Me.xamRichTextEditor1.ActiveDocumentView.Selection.[End]
+Dim text As String = Me.xamRichTextEditor1.ActiveDocumentView.Selection.Text
+----
+
+[[_Ref362272638]]
+== プログラムで単一選択を設定
+
+=== 概要
+
+以下に、単一選択の範囲を設定する方法を説明します。選択された既存のコンテンツを置き換える `Selection.Text` プロパティを使用し、選択のコンテンツを設定することもできます。
+
+=== プロパティ設定
+
+以下の表では、任意の動作と各プロパティのマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|選択の開始の設定
+|`Start`
+|選択範囲の開始のオフセット
+
+|選択の終りの設定
+|`End`
+|選択範囲の終りのオフセット
+
+|選択の新しいコンテンツの設定
+|`Text`
+|文字列型の新しい値
+
+|====
+
+注:
+
+[NOTE]
+====
+選択は、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~setrange.html[Selection.SetRange] メソッドを使用して変更することもできます。link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection_members.html[Selection] オブジェクトには多数のヘルパーメソッドもあります。メソッドはドキュメントの文字、単語、その他の部分の選択に使用できます。各メソッドの特定のヘルプは、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection_members.html[API ヘルプ]をご覧ください。
+====
+
+注:
+
+[NOTE]
+====
+選択を解除するには、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~collapse.html[Selection.Collapse] メソッドを使用し、範囲のどの部分 (開始または終り) を折りたたむか指定します。範囲を折りたたんだ後、選択の始点と終点は等しくなります。
+====
+
+=== コード スニペット
+
+*C# の場合:*
+
+[source,csharp]
+----
+// 選択の開始と終了を設定
+this.xamRichTextEditor1.ActiveDocumentView.Selection.Start = startOffset;
+this.xamRichTextEditor1.ActiveDocumentView.Selection.End = endOffset;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' 選択の開始と終了を設定
+Me.xamRichTextEditor1.ActiveDocumentView.Selection.Start = startOffset
+Me.xamRichTextEditor1.ActiveDocumentView.Selection.End = endOffset
+----
+
+[[_Ref359594792]]
+== プログラムで複数選択を取得
+
+=== 概要
+
+以下は、複数選択の範囲を取得する方法を説明します。最後に選択した範囲も、`Selection.Range` プロパティで利用することができます。
+
+=== プロパティ設定
+
+以下の表では、任意の動作と各プロパティのマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|複数の選択範囲の取得
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~ranges.html[Ranges]
+|範囲型のコレクションの要素にアクセスします。
+
+|====
+
+=== コード スニペット
+
+*C# の場合:*
+
+[source,csharp]
+----
+foreach (Range selRange in
+    this.xamRichTextEditor1.ActiveDocumentView.Selection.Ranges)
+{
+   int rangeStart = selRange.Start;
+   int rangeEnd = selRange.End;
+   string rangeText = selRange.Text;
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+For Each selRange As Range In Me.xamRichTextEditor1.ActiveDocumentView.Selection.Ranges
+        Dim rangeStart As Integer = selRange.Start
+        Dim rangeEnd As Integer = selRange.[End]
+        Dim rangeText As String = selRange.Text
+Next
+----
+
+[[_Ref365461606]]
+[[_Ref359594803]]
+== プログラムで複数選択を設定
+
+=== 概要
+
+以下は、複数選択の範囲を設定する方法を説明します。新しい選択の範囲を選択に追加することができ、また必要に応じて、現在の選択の範囲を維持することもできます。
+
+=== プロパティ設定
+
+以下の表では、任意の動作とメソッドのマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|操作:
+
+|複数の選択範囲の追加 / 置き換え
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.selection~updateselectionwithspans.html[UpdateSelectionWithSpans]
+|新しい選択の範囲を、ドキュメント スパンとして指定します。また、`replaceEntireSelection` のブール演算の引数を使用して、古い選択の範囲の保持について指定をします。
+
+|====
+
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-selection.html[選択の構成]
+|このトピックは、 _xamRichTextEditor_ コントロールの複数選択機能をオンにする方法を説明します。
+
+|====

@@ -1,0 +1,122 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-the-xamgantt-project-calendar",
+    "controlName": ["xamGantt"],
+    "tags": ["Formatting","Getting Started","Grids","How Do I","Scheduling"],
+    "guid": "beb8c873-25a6-479d-b0db-9d01f1522deb",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.486174Z"
+}
+|metadata|
+////
+
+= xamGantt プロジェクト カレンダーの構成
+
+== トピックの概要
+
+=== 目的
+
+このトピックは稼働時間情報を指定するためにプロジェクト カレンダーを使用する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-adding-xamgantt-to-a-page.html[xamGantt をページに追加]
+|このトピックでは、 _xamGantt_ コントロールをページに追加する方法を説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Preject_Calendar_Introduction, プロジェクト カレンダーの概要 >>
+
+** <<_Introduction,概要>>
+
+** <<_Days_of_Week,曜日>>
+
+* <<_Code_Examples_Overview, コード例の概要 >>
+
+* <<_Related_Content, 関連コンテンツ >>
+
+[[_Preject_Calendar_Introduction]]
+== プロジェクト カレンダーの概要
+
+[[_Introduction]]
+
+=== 概要
+
+link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendar_members.html[ProjectCalendar] クラスは link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] で稼働時間情報を表すために使用されます。
+
+以下の表は、プロジェクト カレンダーの主なプロパティについてまとめています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendar~daysofweek.html[DaysOfWeek]
+|このプロパティを使用して曜日の稼働時間情報を指定できます。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendar~displayname.html[DisplayName]
+|カレンダーの名前を指定できます。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendar~exceptions.html[Exceptions]
+|指定した定期的なパターンに基づいて稼働時間のカスタム調整を表すオブジェクトのコレクションを取得できます。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendar~uniqueid.html[UniqueId]
+|カレンダーを一意に識別する文字列を指定できます。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendar~workweeks.html[WorkWeeks]
+|指定された日付範囲で曜日に稼働時間を提供する link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendarworkweek_members.html[ProjectCalendarWorkWeek] オブジェクトのコレクションを取得します。
+
+|====
+
+[[_Days_of_Week]]
+
+=== 曜日
+
+`DaysOfWeek` プロパティ link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledaysofweek_members.html[ScheduleDaysOfWeek] クラスを返します。`ScheduleDaysOfWeek` は週の 7 日それぞれに link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledayofweek_members.html[ScheduleDayOfWeek] プロパティを公開します。`ScheduleDayOfWeek` の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.daysettings_members.html[DaySettings] プロパティを設定することによって各日の設定を指定できます。
+
+[[_Code_Examples_Overview]]
+== コード例の概要
+
+=== 概要
+
+以下の表には、このトピックのコード例が示されています。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|link:xamgantt-code-example-changing-the-working-time.html[コード例: 稼働時間の変更]
+|週の曜日ごとに稼働時間を指定して、曜日が稼働日かどうかを指定できます。
+
+| link:xamgantt-code-example-create-calendar-exceptions.html[コード例: カレンダー例外の作成]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendarworkweek_members.html[WorkWeeks] を使用して稼働時間に特定の反復するカスタムの調整を作成できます。
+
+|====
+
+[[_Related_Content]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックもあわせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-the-xamgantt-calendars.html[xamGantt カレンダーの構成]
+|このグループのトピックには、 _xamGantt_ カレンダーの情報が含まれています。
+
+| link:xamgantt-calendars-configuration-overview.html[カレンダー構成の概要]
+|このトピックは、 _xamGantt_ カレンダーの主要な機能の概要を提供します。xamGantt はカレンダーを使用して時間計算を行います。
+
+|====

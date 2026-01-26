@@ -1,0 +1,42 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-getting-started-with-wpf",
+    "controlName": [],
+    "tags": ["Getting Started"],
+    "guid": "{59EE0C3F-A1CF-4DAD-8EC7-D1C56C00390C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.5696671Z"
+}
+|metadata|
+////
+
+= Infragistics for WPF を使用した作業の開始
+
+{PlatformName} ヘルプ ドキュメントは、Microsoft® {PlatformName} の主要概念をすでに熟知していることを前提としています。製品の機能を十分に活用するために、{PlatformName} の基本的な概念を理解することを推奨します。
+
+{PlatformName} の主要な概念と機能についての詳細は、link:https://msdn.microsoft.com/ja-jp/library/ms754130.aspx[こちらの MSDN ライブラリのトピック]を参照してください。
+
+WPF に精通したら、アプリケーションで使用したいコントロールに対応する Infragistics for WPF の NuGet パッケージをインストールする必要があります。NuGet パッケージの使用に関する詳細は、link:https://learn.microsoft.com/ja-jp/nuget/what-is-nuget[Microsoft サイト]を参照してください。
+
+== NuGet を使用した Infragistics for WPF のインストール
+
+コントロールを利用するには、アプリケーションに追加したい機能に対応する Infragistics for WPF NuGet パッケージ をインストールしてください。
+
+- NuGet パッケージのインストール方法についてはlink:https://learn.microsoft.com/ja-jp/nuget/consume-packages/install-use-packages-visual-studio[こちら]を参照してください。
+- パッケージの詳細は link:nuget-packages.html[NuGet パッケージ]をご覧ください。
+- トライアル パッケージは link:https://nuget.org[Nuget.org] からダウンロードできます。
+- ライセンス ユーザー向けには link:nuget-feeds.html[NuGet フィード]を参照してください。
+
+適切な NuGet パッケージをアプリケーションに追加したら、対応する link:default-xml-namespace-mappings.html[XAML 名前空間定義]を追加する必要があります。完了したら、Infragistics for WPF コントロールを使用する準備が整います。特定のコントロールおよびコンポーネントに関するドキュメントについては、link:controls-components-and-frameworks.html[このトピック]を参照してください。
+
+これで、Infragistics WPF コントロールを使ってアプリケーションを構築する準備が整います。
+
+== サンプル
+
+すぐに利用を開始できるよう、GitHub にサンプル アプリケーション集を公開しています:
+
+- link:https://github.com/Infragistics/wpf-samples/tree/master[サンプル ブラウザーのダウンロード]
+
+サンプルはデフォルトで、link:https://nuget.org[Nuget.org] にあるトライアル NuGet パッケージを使用しています。

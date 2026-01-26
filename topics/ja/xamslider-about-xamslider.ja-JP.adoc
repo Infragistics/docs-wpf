@@ -1,0 +1,36 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamslider-about-xamslider",
+    "controlName": ["xamSlider"],
+    "tags": ["Getting Started"],
+    "guid": "{D22E2274-1215-41F8-9684-993F0219822F}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0093343Z"
+}
+|metadata|
+////
+
+= xamSlider について
+
+xamSlider コントロール ファミリによって、エンドユーザーは xamSlider コントロールでつまみをスライドすることによって値または値の範囲を指定することができます。xamSlider コントロール ファミリーは、データ型や機能に基づいて分類できる 4 種類のスライダーで構成されます。アプリケーションで使用するスライダーは、実装したい機能によって異なります。
+
+* xamNumericSlider - double 値を選択するためにひとつのつまみを表示できるスライダー。
+* xamDateTimeSlider - DateTime 値を選択するためにひとつのつまみを表示できるスライダー。
+* xamNumericRangeSlider - 複数の double 値または double 値の範囲を選択するために複数のつまみを表示できるスライダー。
+* xamDateTimeRangeSlider - 複数の DateTime 値または DateTime 値の範囲を選択するために複数のつまみを表示できるスライダー。
+
+ifdef::sl,wpf[]
+image::images/xamSlider_About_xamSlider_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-phone[]
+image::images/xamSlider_Displaying_Thumb_Values_02.png[]
+endif::win-phone[]
+
+== 関連トピック
+
+link:xamslider-getting-started-with-xamslider.html[xamSlider を使用した作業の開始]
+
+link:xamslider-using-xamslider.html[xamSlider の使用]

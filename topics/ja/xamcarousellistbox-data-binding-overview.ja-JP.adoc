@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousellistbox-data-binding-overview",
+    "controlName": ["xamCarouselListBox"],
+    "tags": ["Data Binding","Data Presentation"],
+    "guid": "{878A653E-432C-4FA0-BE68-2B0FADFE3CD8}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0287589Z"
+}
+|metadata|
+////
+
+= データ バインディング概要
+
+
+
+xamCarouselListBox™ は、xamDataGrid™、xamDataCarousel™、および xamDataPresenter™ がサポートするのと同じようにデータ バインディングをサポートしますが、機能する方法は、データ コントロールとは異なります。データ コントロールは、データソースを実際に問い合わせ、それに基づいて必要なフィールドとレイアウトを生成します。xamCarouselListBox はデータ ソースに問い合わせを行わずにレイアウトを生成します。従うべき xamCarouselListBox にデータ ソースを提供する必要があります。詳細は、 link:xamcarousellistbox-working-with-the-itemtemplate.html[ItemTemplate での作業]を参照してください。
+
+== 関連トピック
+
+link:creating-a-flat-dataset.html[フラットな DataSet の作成]
+
+link:creating-an-objectdataprovider.html[ObjectDataProvider の作成]
+
+link:creating-an-xmldataprovider.html[XmlDataProvider の作成]
+
+link:using-the-data-context-for-data-binding.html[データ バインドでデータ コンテキストを使用]

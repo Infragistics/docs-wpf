@@ -1,0 +1,151 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-spe-optimize-non-terminal-symbol-definitions",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": [],
+    "guid": "8dbc9208-d6b5-43e3-931e-657212ed8bdb",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.1741027Z"
+}
+|metadata|
+////
+
+= 非終端記号の定義の最適化 (Syntax Parsing Engine)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、生成コードを最小限にするために非終端記号の定義を最適化する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-overview.html[Syntax Parsing Engine の概要]
+|このトピックは、Syntax Parsing Engine の概要を示します。
+
+| link:ig-spe-non-terminal-symbols.html[非終端記号]
+|このトピックは、文章校正の非終端記号について説明します。
+
+| link:ig-spe-defining-productions.html[生成コードの定義]
+|このトピックでは、非終端記号を作成するコードについて説明します。
+
+|====
+
+== 非終端記号の定義の最適化
+
+=== 概要
+
+非終端記号を定義する場合に、Syntax Parsing Engine のパフォーマンスの低下の原因となる、コードを大量に生成する結果になるルールが作成される可能性があります。
+
+=== 例
+
+これは、Transact-SQL 言語の EBNF 定義で使用される例定義です。
+
+----
+SetLocalVariableStatement =
+        SetKeyword,
+        (VariableToken, [DotToken, _oneOrMoreDotSeparatedIdentifierTokens],
+            EqualsToken, (_expression | _oneOrMoreDotSeparatedIdentifierTokens)
+        | VariableToken,
+            (PlusEqualsToken
+                | MinusEqualsToken
+                | AsteriskEqualsToken
+                | SlashEqualsToken
+                | PercentEqualsToken
+                | AmpersandEqualsToken
+                | CaretEqualsToken
+                | BarEqualsToken),
+            _expression
+        | _cursorVariable, EqualsToken,
+            (_cursorVariable
+            | _cursorName
+            | (CursorKeyword,
+                [ForwardOnlyKeyword | ScrollKeyword],
+                [StaticKeyword | KeysetKeyword | DynamicKeyword | FastForwardKeyword],
+                [ReadUnderscoreOnlyKeyword | ScrollLocksKeyword | OptimisticKeyword],
+                [TypeWarningKeyword],
+                ForKeyword, SelectStatement,
+                    [ForKeyword, ((ReadKeyword, OnlyKeyword) | UpdateKeyword),
+                        [OfKeyword, ColumnNameList]]
+              )
+            )
+    ), [SemicolonToken];
+----
+
+この定義は、1,228 コードを含む非終端記号を生成します。所有ルールの結合がオルタナティブ数と乗算されるため、ルールの数が指数的に増加されます。たとえば、ルール ツリーの以下の部分を確認してください。
+
+----
+[StaticKeyword | KeysetKeyword | DynamicKeyword | FastForwardKeyword],
+----
+
+この部分は 5 つの選択があります。(nothing)、STATIC、KEYSET、DYNAMIC、または FAST_FORWARD を使用できます。所有するルールのコードが 5 で乗算されます。
+
+=== ソリューション
+
+生成コードを減らすには、「乗算ルール」を複雑ルールから自身の非終端記号ルールに移動します。
+
+例:
+
+----
+_AlternationRule =
+    [StaticKeyword | KeysetKeyword | DynamicKeyword | FastForwardKeyword];
+SetLocalVariableStatement =
+    SetKeyword,
+    (VariableToken, [DotToken, _oneOrMoreDotSeparatedIdentifierTokens],
+        EqualsToken, (_expression | _oneOrMoreDotSeparatedIdentifierTokens)
+    | VariableToken,
+        (PlusEqualsToken
+            | MinusEqualsToken
+            | AsteriskEqualsToken
+            | SlashEqualsToken
+            | PercentEqualsToken
+            | AmpersandEqualsToken
+            | CaretEqualsToken
+            | BarEqualsToken),
+        _expression
+    | _cursorVariable, EqualsToken,
+        (_cursorVariable
+        | _cursorName
+        | (CursorKeyword,
+            [ForwardOnlyKeyword | ScrollKeyword],
+            _AlternationRule,
+            [ReadUnderscoreOnlyKeyword | ScrollLocksKeyword | OptimisticKeyword],
+            [TypeWarningKeyword],
+            ForKeyword, SelectStatement,
+                [ForKeyword, ((ReadKeyword, OnlyKeyword) | UpdateKeyword),
+                    [OfKeyword, ColumnNameList]]
+          )
+        )
+    ), [SemicolonToken];
+----
+
+SetLocalVariableStatement の生成したコードを 268 に減らしますが、_AlternationRule 記号に 5 つの新しいコードを追加します。合計 273 コードになります。コードが 1,228 から大幅に減少しました。生成コード数を減らすために、複数のオプションを含むサブシーケンスにこの方法を適用します。
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-improve-ebnf-files-readability.html[EBNF ファイルの読みやすさの向上]
+|このトピックは、EBNF ファイルの読みやすさを向上する方法を説明します。
+
+| link:ig-spe-writing-operator-precedence-rules.html[演算子の優先順位ルールの定義]
+|このトピックでは、演算子の優先順位ルールの作成方法について説明します。
+
+| link:ig-spe-use-symbolnames-constants-instead-of-strings.html[String の代わりに SymbolName 定数を使用]
+|このトピックは、SymbolName 定数の使用の利点について説明します。
+
+|====

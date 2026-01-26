@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "generalconcepts-customizing-resource-strings-for-wpf-only-control",
+    "controlName": [],
+    "tags": [],
+    "guid": "ca48624b-4fe9-42d0-8c7a-00b26180553c",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-01-30T20:15:59.3307775Z"
+}
+|metadata|
+////
+
+= WPF 固有コントロールのアセンブリ リソース文字列のカスタマイズ
+
+このトピックでは、WPF 専用コントロールのリソース文字列をカスタマイズする方法を説明します。クロス プラットフォーム コントロールについては、 link:developers-guide-customizing-resource-strings.html[リソース文字列のカスタマイズ]のトピックを参照してください。
+
+{ProductName} コントロールがエンドユーザーに表示する文字列値をカスタマイズできます。カスタマイズ可能な文字列には、ダイアログボックスキャプション、ダイアログボックスのテキスト、警告メッセージ、注意などの項目が含まれます。リソース文字列をカスタマイズする主な目的は、ローカライズです。
+
+アセンブリ リソース文字列をカスタマイズするには、アセンブリの Resources クラスの Customizer プロパティを使用できます。このプロパティは、カスタマイズするアセンブリに固有の ResourceCustomizer クラスのインスタンスを返します。リソース名のディクショナリおよびそれに対応する文字列値として ResourceCustomizer を考えることができます。固有のリソース名に関連する値を変更することで、アセンブリのコントロール/コンポーネントで表示されるメッセージをカスタマイズできます。
+
+ResourceCustomizer クラスは、リソース文字列値をカスタマイズするために使用できる以下のメソッドを提供します。
+
+* SetCustomizedString - 名前が付けられたリソースの値を設定します。
+* GetCustomizedString - 名前が付けられたリソースに設定されたカスタマイズされたテキストを返すか、名前が付けられたリソースのカスタマイズがなければ null を返します。
+* ResetCustomizedString - 名前が付けられたリソースのカスタマイズされた文字列をデフォルト (組み込み) テキストにリセットします。
+* ResetAllCustomizedStrings - すべてのリソース文字列をデフォルト (組み込み) テキストにリセットします。
+
+リソース文字列のカスタマイズは、コントロールの特定のインスタンスにローカルではないランタイム機能です。リソース文字列に行う変更は、特定のアセンブリのすべてのコントロールに影響します。たとえば、各ウィンドウに xamDataGrid コントロールを持つアプリケーションに 2 つのウィンドウがあり、Infragistics.Wpf.DataPresenter アセンブリのリソース文字列を変更する場合です。xamDataGrid の両方のインスタンスは、カスタマイズされたリソース文字列を表示します。
+
+リソース文字列をカスタマイズするためにコードを書く場合、できればエンド ユーザーにインターフェイスを表示する前に、アプリケーションを実行する毎に実行されるプロシージャーにそのコードを配置する必要があります。
+
+以下のコード例は、リソース文字列をカスタマイズする方法を示します。コード例を簡素にするために、2 つのリソース文字列だけが変更されます。ただし、他の {ProductName} アセンブリのリソース文字列を変更するために同様の方法でコードを適用することができます。
+
+*Visual Basic の場合:*
+
+----
+...
+Infragistics.Windows.DataPresenter.Resources.Customizer.SetCustomizedString("GroupByArea_Prompt1", " Customized Group By Area Prompt ")
+Infragistics.Windows.DockManager.Resources.Customizer.SetCustomizedString("PaneNavigatorActiveFilesLabel", "Customized Active Files")
+...
+----
+
+*C# の場合:*
+
+----
+...
+Infragistics.Windows.DataPresenter.Resources.Customizer.SetCustomizedString("GroupByArea_Prompt1", "Customized Group By Area Prompt");
+Infragistics.Windows.DockManager.Resources.Customizer.SetCustomizedString("PaneNavigatorActiveFilesLabel", "Customized Active Files");
+...
+----
+
+== 関連トピック
+
+link:resource-strings-wpf-resource-strings.html[WPF リソース文字列]
+
+link:resource-strings-comboeditor-resource-strings.html[ComboEditor リソース文字列]
+
+link:resource-strings-datapresenter-resource-strings.html[DataPresenter リソース文字列]
+
+link:resource-strings-dockmanager-resource-strings.html[DockManager リソース文字列]
+
+link:resource-strings-editors-resource-strings.html[エディタ リソース文字列]
+
+link:resource-strings-outlookbar-resource-strings.html[OutlookBar リソース文字列]
+
+link:resource-strings-reporting-resource-strings.html[レポーティング リソース文字列]
+
+link:resource-strings-ribbon-resource-strings.html[リボン リソース文字列]
+
+link:resource-strings-schedule-resource-strings.html[リボン リソース文字列]
+
+link:resource-strings-tilescontrol-resource-strings.html[TilesControl リソース文字列]

@@ -1,0 +1,211 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-configuring-view-zoom-level",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "6e9e395c-7a13-4715-bcae-91aed0a998a2",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.422341Z"
+}
+|metadata|
+////
+
+= ビューのズーム レベルの構成(xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールでビューのズーム レベルを設定する方法および取得する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362446410,ズーム レベル構成の概要>>
+* <<_Ref362446354,エディターのズーム レベルの設定>>
+* <<_Ref362446360,エディターのズーム レベルの取得>>
+* <<_Ref362446365,エディターのズーム レベルのパーセント値による取得>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref362446410]]
+== ズーム レベル構成の概要
+
+=== ズーム レベル構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、特定のプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|タイプ|プロパティ
+
+|<<_Ref362446354,エディターのズーム レベルの設定>>
+|type double を使用してエディターのズーム レベルを設定します。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~zoomlevel.html[ZoomLevel]
+
+|<<_Ref362446360,エディターのズーム レベル取得>>
+|type double の値でエディターのズーム レベルを取得します。
+|`ZoomLevel`
+
+|<<_Ref362446365,エディターのズーム レベルのパーセント値による取得>>
+|パーセント値でエディターのズーム レベルを取得します。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~zoomlevelaspercentage.html[ZoomLevelAsPercentage]
+
+|====
+
+[[_Ref362446354]]
+== エディターのズーム レベルの設定
+
+=== 概要
+
+0.2～4.0 間の type double を使用して、エディターのズーム レベルを設定します (ここで、1.0 は 100% を表します)。
+
+=== プロパティ設定
+
+以下の表では、任意の構成と特定のプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|エディターのズーム レベルの設定
+|`ZoomLevel`
+|type double の 0.2～4.0 の間の値
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコード スニペットは、ビューのズーム レベルを 200% に調整する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor.ZoomLevel = 2.0;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor.ZoomLevel = 2.0
+----
+
+[[_Ref362446360]]
+== エディターのズーム レベルの取得
+
+=== 概要
+
+type double の値でエディターのズーム レベルを取得します。
+
+=== プロパティ設定
+
+以下の表では、任意の構成と特定のプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|エディターのズーム レベルを取得する
+|`ZoomLevel`
+|値を取得
+
+|====
+
+=== 例
+
+以下のコード スニペットは、ビューのズーム レベルを取得する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+double zoom = this.xamRichTextEditor.ZoomLevel;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim zoom As Double = Me.xamRichTextEditor1.ZoomLevel
+----
+
+[[_Ref362446365]]
+== エディターのズーム レベルのパーセント値による取得
+
+=== 概要
+
+エディターのズーム レベルをパーセント値で取得します。
+
+=== プロパティ設定
+
+以下の表では、任意の構成と特定のプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|エディターのズーム レベルをパーセント値で取得する
+|`ZoomLevel`
+|値を取得
+
+|====
+
+=== 例
+
+以下のコード スニペットは、ビューのズーム レベルをパーセント値で取得する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+int zoomInPercents = this.xamRichTextEditor.ZoomLevelAsPercentage;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim zoomInPercents As Integer = Me.xamRichTextEditor1.ZoomLevelAsPercentage
+----
+
+[[_Ref359594803]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-overview.html[xamRichTextEditor の概要の構成]
+|このトピックでは、 _xamRichTextEditor_ コントロールで複数の有用なコンテンツ編集機能を構成する方法を説明します。
+
+| link:xamrichtexteditor-configuring-caret-color.html[カレット カラーの構成]
+|このトピックは、 _xamRichTextEditor_ コントロールのカレット カラーを変更する方法を説明します。
+
+|====

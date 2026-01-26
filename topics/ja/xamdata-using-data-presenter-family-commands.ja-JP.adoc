@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-using-data-presenter-family-commands",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Events"],
+    "guid": "{AB82031B-4B92-4DA6-B111-8AB9B8990893}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5808693Z"
+}
+|metadata|
+////
+
+= Data Presenter Family コマンドの使用
+
+
+
+xamDataCarousel、xamDataGrid、および xamDataPresenter コントロールは、コントロールで特定のアクションを実行するために使用することができる固有のコマンド バインディング セットを提供します。バインディングに使用可能なこれらすべてのコントロールは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands_members.html[DataPresenterCommands] クラスに存在します。
+
+使用可能なコマンドのいくつかは以下のとおりです。
+
+* CellAbove
+* CellRight
+* DeleteSelectedDataRecords
+* ExpandRecord
+* RecordAbove
+* StartEditMode
+* その他多数...
+
+これらのコマンドが動作するのを確認するには、xamDataGrid カテゴリーの下の xamFeatureBrowser にある、「xamDataGrid Commands」というサンプルを表示します。

@@ -1,0 +1,36 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-supported-geo-imagery",
+    "controlName": ["xamMap"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "{2DCCBB79-A8CC-498A-B56C-67CDFB968358}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1572303Z"
+}
+|metadata|
+////
+
+= サポートされる地図画像
+
+xamMap コントロールは、地図画像の描画をサポートします。コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~maptilesource.html[MapTileSource] プロパティは、地図画像がロードされるソースを構成するために使用されます。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] コントロールを使用すれば、異なるレイヤー タイプの地図画像も表示できます。詳細は、 link:xamwebmap-display-different-layer-types.html[異なるレイヤー タイプの表示]このセクションを参照してください。現在、地図画像は、以下の外部の地図画像ソースからサポートされます。
+
+== Bing Maps
+
+Bing Maps は Microsoft® からライセンスされている Web 地図サービスで、xamMap コントロールで使用を開始する前にユーザー自身の認証情報を取得する必要があります。Web サイト (link:http://www.bing.com/maps[www.bing.com/maps]) で、このサービスに直接アクセスできます。xamMap コントロールと BingMaps 地図画像の統合についての詳細は、 link:xamwebmap-add-bing-maps-as-geo-imagery-data-source.html[「Bing Maps へバインド」]を参照してください。
+
+image::images/xamMap_Supported_Geo_Imagery_01.png[]
+
+== Open Street Maps
+
+OpenStreetMap は、世界中の人々が協力して作成する無料の Web 地図サービスです。Web サイト (link:http://www.openstreetmap.org[www.openstreetmap.org]) で、このサービスに直接アクセスできます。xamMap コントロールと OpenStreetMap 地図画像の統合についての詳細は、 link:xamwebmap-add-open-street-maps-as-geo-imagery-data-source.html[「Open Street Maps へバインド」]を参照してください。
+
+image::images/xamMap_Supported_Geo_Imagery_03.png[]
+
+== 関連トピック:
+
+* link:xamwebmap-add-bing-maps-as-geo-imagery-data-source.html[Bing Maps へバインド]
+* link:xamwebmap-add-open-street-maps-as-geo-imagery-data-source.html[Open Street Maps へバインド]
+* link:xamwebmap-display-different-layer-types.html[異なるレイヤー タイプを表示]
+* link:xamwebmap-geo-imagery-integration.html[地理画像の統合]

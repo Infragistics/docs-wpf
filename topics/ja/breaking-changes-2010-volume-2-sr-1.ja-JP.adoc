@@ -1,0 +1,52 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-2010-volume-2-sr-1",
+    "controlName": [],
+    "tags": ["Known Issues"],
+    "guid": "a1049796-b13b-4b78-97ec-236ce6e9d38d",  
+    "buildFlags": [],
+    "createdOn": "2012-01-31T21:16:05.5637973Z"
+}
+|metadata|
+////
+
+= 2010 Volume 2 8 月サービス リリース
+
+== 移動されたクラス
+
+[options="header", cols="a,a"]
+|====
+|以前の名前空間|新しい名前空間
+
+|Infragistics.Controls.Maps.DataMapping 
+
+({ApiPlatform}Controls.Maps.XamMap.v10.2.dll)
+|Infragistics.DataMapping 
+
+({ApiPlatform}DataVisualization.v10.2.dll)
+
+|Infragistics.Controls.Maps.DataMappingPair 
+
+({ApiPlatform}Controls.Maps.XamMap.v10.2.dll)
+|Infragistics.DataMappingPair 
+
+({ApiPlatform}DataVisualization.v10.2.dll)
+
+|====
+
+== 名前が変更されたクラス
+
+[options="header", cols="a,a"]
+|====
+|以前のクラス名|新しいクラス名
+
+|Infragistics.Controls.Charts.Animation 
+
+({ApiPlatform}Controls.Charts.XamGauge.v10.2.dll)
+|Infragistics.Controls.Charts.GaugeAnimation 
+
+({ApiPlatform}Controls.Charts.XamGauge.v10.2.dll)
+
+|====

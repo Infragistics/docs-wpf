@@ -1,0 +1,172 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-user-interactions",
+    "tags": ["Getting Started"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "db5e17f8-9089-48bd-8a84-741e9b369806",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:24:24.1397531Z"
+}
+|metadata|
+////
+
+= ユーザー インタラクションと操作性 (xamPropertyGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、ユーザーが実行できる操作を紹介します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref394326168, ユーザー インタラクションと操作性 >>
+* <<_Ref394326176, 関連コンテンツ >>
+
+[[_Ref394326168]]
+== ユーザー インタラクションと操作性
+
+=== ユーザー インタラクションの概要表
+
+以下の表では、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[ _xamPropertyGrid_  ] コントロールのユーザー インタラクション機能を簡単に説明します。
+
+[options="header", cols="a,a,a,a"]
+|====
+|目的|方法|詳細|構成方法
+
+|[[_Hlk377147553]] 
+
+プロパティ リストをカテゴリ別にグループ化する
+|カテゴリ別にグループ化されたプロパティ リストのボタンをクリックします。
+|なし
+|image::images/Yes.png[] 
+
+link:xampropertygrid-conf-visuals.html[表示外観の構成 (xamPropertyGrid)]
+
+|[[_Hlk377147649]] 
+
+プロパティ リストをアルファベット順に並べ替える
+|アルファベット順に並べられたプロパティ リストのボタンをクリックします。
+|なし
+|image::images/Yes.png[] 
+
+link:xampropertygrid-conf-visuals.html[表示外観の構成 (xamPropertyGrid)]
+
+|アルファベット順に並べられたプロパティ リストとカテゴリ別にグループ化されたプロパティ リストを切り替える
+|`Ctrl + S` を押します。
+|なし
+|image::images/Yes.png[] 
+
+link:xampropertygrid-conf-visuals.html[表示外観の構成 (xamPropertyGrid)]
+
+|フォーカスをフィルター領域とプロパティ領域の間で切り替える
+|`Ctrl + F` を押します。
+|なし
+|image::images/No.png[]
+
+|フィルター テキストを追加する
+|フィルター テキスト ボックスにテキストを入力します。
+|名前にフィルター テキストを含むプロパティのみが表示されます。「Or」演算子を使用して判定される複数のフィルター条件を入力するには、各条件をパイプ記号 (「\|」) で区切ります。
+|image::images/Yes.png[] 
+
+link:xampropertygrid-conf-properties-filtering.html[プロパティ リストのフィルタリング (xamPropertyGrid)]
+
+|フィルター テキストをクリアする
+|`Shift + Ctrl + F` を押します。
+|プロパティ リストに、すべてのオブジェクトのプロパティが表示されます。
+|image::images/Yes.png[] 
+
+link:xampropertygrid-conf-properties-filtering.html[プロパティ リストのフィルタリング (xamPropertyGrid)]
+
+|プロパティ リストをスクロールする
+|
+* 上矢印キーおよび下矢印キー 
+
+* 右側のスクロールバー 
+
+* マウス ホイール 
+
+|矢印キーとマウス ホイールを機能させるには、プロパティ リストにフォーカスを設定する必要があります。
+|image::images/No.png[]
+
+|プロパティ値の編集モードに入る
+|
+* プロパティ値エディターとの対話を開始する 
+
+* `F2` を押します。 
+
+|読み取り専用の値 (ReadOnly プロパティが True に設定されている) は編集できません。
+|image::images/Yes.png[] 
+
+link:xampropertygrid-conf-editors.html[エディター定義の構成 (xamPropertyGrid)]
+
+|プロパティ値の編集モードを終了する
+|
+* `Enter` を押します。 
+
+* `Esc` を押します。 
+
+* UI の他の部分と対話する 
+
+|なし
+|image::images/No.png[]
+
+|選択したプロパティを展開する
+|
+* プロパティ名の左側にある展開グリフをクリックする 
+
+* `+` を押します。 
+
+* 右矢印キーを押します。 
+
+|キーボード ショートカットを機能させるためには、プロパティを選択する必要があります。
+|image::images/No.png[]
+
+|選択したプロパティを折りたたむ
+|
+* プロパティ名の左側にある折りたたみグリフをクリックする 
+
+* `-` を押します。 
+
+* 左矢印キーを押します。 
+
+|キーボード ショートカットを機能させるためには、プロパティを選択する必要があります。
+|image::images/No.png[]
+
+|====
+
+[[_Ref394326176]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-list-of-attributes.html[サポートされる属性のリスト (xamPropertyGrid)]
+|このトピックでは、オブジェクトからプロパティのリストを取得する場合に、コントロールで使用される属性の一覧を示します。
+
+|====

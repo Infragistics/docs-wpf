@@ -1,0 +1,51 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtabcontrol-using-xamtabcontrol",
+    "controlName": ["xamTabControl"],
+    "tags": [],
+    "guid": "{FD95B990-FFA6-477D-8525-916C99A69624}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.4722475Z"
+}
+|metadata|
+////
+
+= xamTabControl の使用
+
+
+
+このセクションでは、xamTabControl™ が提供する様々な特長および機能を効果的に使用するためのタスク ベースの重要な情報を提供します。
+
+link:xamtabcontrol-about-styling-xamtabcontrol.html[xamTabControl のスタイル設定について]
+
+このトピックでは、xamTabControl の外観をカスタマイズする際に役立つ、いくつかのスタイル設定の要点を説明します。
+
+link:xamtabcontrol-add-a-tab-to-xamtabcontrol.html[タブを xamTabControl に追加]
+
+このトピックでは、タブを xamTabControl に追加して、TabItem および TabItemEx オブジェクトを使用して作業する方法を説明します。
+
+link:xamtabcontrol-add-content-to-a-tab.html[コンテンツをタブ追加]
+
+このトピックでは、xamTabControl でコンテンツをタブに追加する方法を説明します。
+
+link:xamtabcontrol-close-a-tab.html[タブを閉じる]
+
+このトピックでは、xamTabControl でタブを閉じる方法を説明します。
+
+link:xamtabcontrol-enable-multiple-tab-rows.html[複数タブの行を有効にする]
+
+このトピックでは、タブのレイアウトを変更して、複数の行を作成する方法を説明します。
+
+link:xamtabcontrol-removing-a-closed-tab.html[閉じたタブを削除]
+
+このトピックでは、TabItemEx オブジェクトの Closed イベントを処理し、TabItemEx オブジェクトを xamTabControl's 項目コレクションから削除する方法について説明します。
+
+link:xamtabcontrol-select-a-tab.html[タブの選択]
+
+このトピックでは、XAML およびコード ビハインドでタブを選択する方法を説明します。
+
+link:xamtabcontrol-tabs-dragging-and-reordering.html[タブのドラッグおよび順序変更 (xamTabControl)]
+
+このトピックは、タブの順序を変更するためにタブのドラッグ機能を構成する方法を紹介します。

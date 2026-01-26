@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid",
+    "tags": [],
+    "controlName": ["xamTreeGrid"],
+    "guid": "888598dd-dbe5-41d7-a48a-87dcc5f8428f",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:11:28.8876608Z"
+}
+|metadata|
+////
+
+= xamTreeGrid
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションには、WPF の  _xamTreeGrid_™ コントロールについてのトピックが含まれています。
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[xamTreeGrid] は、Data Presenter Family のコントロールで、データをツリー グリッド レイアウトに配置します。このコントロールは基本的に、動的な切り替えができない単一のビュー (link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treeview.html[TreeView]) を実装する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatapresenter.html[xamDataPresenter] です。
+
+以下のスクリーンショットは、"Name" 列にあるツリーを持つ  _xamTreeGrid_   コントロールを示します。
+
+image::images/xamTreeGrid_01.png[]
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-overview.html[概要 (xamTreeGrid)]
+|このグループのトピックでは、コントロールの概要を説明します。
+
+| link:xamtreegrid-adding.html[xamTreeGrid をページに追加]
+|このトピックでは、コントロールを短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+| link:xamtreegrid-binding-to-data.html[xamTreeGrid をデータにバインド]
+|このトピックでは、コントロールをデータにバインドする方法およびそのフィールド レイアウトを定義する方法を説明します。
+
+| link:xamtreegrid-configuring.html[xamTreeGrid の構成]
+|このセクションのトピックでは、コントロールの構成についての情報を提供します。
+
+| link:xamtreegrid-styling.html[xamTreeGrid のスタイル設定]
+|このグループのトピックでは、コントロールのいくつかの主要要素をスタイル設定する方法を説明します。
+
+| link:xamtreegrid-api-reference.html[API リファレンス (xamTreeGrid)]
+|このトピックでは、コントロールに関連した名前空間およびクラスに関する参考情報を提供します。
+
+|====

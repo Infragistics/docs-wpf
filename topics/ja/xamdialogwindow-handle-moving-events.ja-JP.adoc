@@ -1,0 +1,106 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-handle-moving-events",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["Events","How Do I"],
+    "guid": "{51E431B5-753D-475F-99A1-DCE86D5B4D1F}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.981146Z"
+}
+|metadata|
+////
+
+= 移動イベントの処理
+
+ダイアログ ウィンドウの移動に関連付けられたイベントは 2 つあります。これらのイベントは発生する順序を反映して接尾辞 "ing" または "ed" が追加されます。移動イベントによって、ダイアログ ウィンドウが移動される前または後でカスタム ロジックを実行することができます。
+
+link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~moving_ev.html[Moving] - ダイアログ ウィンドウが移動される直前に Moving イベントが発生します。特定の条件に合わない場合このイベントをキャンセルできます。
+
+link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~moved_ev.html[Moved] - ダイアログ ウィンドウが移動された後でこのイベントが発生します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamDialogWindow Content="Dialog Window" 
+      x:Name="DialogWindow" Width="200" Height="200" 
+      Moved="DialogWindow_Moved" Moving="DialogWindow_Moving"/>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Interactions
+…
+AddHandler DialogWindow.Moved, AddressOf DialogWindow_Moved
+AddHandler DialogWindow.Moving, AddressOf DialogWindow_Moving
+…
+Private Sub DialogWindow_Moving(ByVal sender As System.Object, ByVal e As MovingEventArgs)
+   'ダイアログ ウィンドウを 200 ピクセル以上移動することを許可しないでください 
+   If (e.Left > 200) Then
+      e.Cancel = True
+      System.Diagnostics.Debug.WriteLine("Moving Cancelled")
+      Return
+   End If
+   System.Diagnostics.Debug.WriteLine("Dialog Window Moving Successfully")
+End Sub
+Private Sub DialogWindow_Moved(ByVal sender As System.Object, ByVal e As MovedEventArgs)
+   System.Diagnostics.Debug.WriteLine("Dialog Window has moved successfully. 
+                             New left coordinate is " + e.Left.ToString() + 
+                             ", new top coordinate is " + e.Top.ToString())
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Interactions;
+…
+DialogWindow.Moved += new EventHandler<MovedEventArgs>(DialogWindow_Moved);
+DialogWindow.Moving += new EventHandler<MovingEventArgs>(DialogWindow_Moving);
+…
+void DialogWindow_Moving(object sender, MovingEventArgs e)
+{
+    //ダイアログ ウィンドウを 200 ピクセル以上移動することを許可しないでください 
+   if (e.Left > 200)
+   {
+      e.Cancel = true;
+      System.Diagnostics.Debug.WriteLine("Moving Cancelled");
+      return;
+   }
+   System.Diagnostics.Debug.WriteLine("Dialog Window Moving Successfully");
+}
+void DialogWindow_Moved(object sender, MovedEventArgs e)
+{
+   System.Diagnostics.Debug.WriteLine("Dialog Window has moved successfully. 
+                          New Left coordinate is "+e.Left+
+                          ", new top coordinate is "+e.Top);
+}
+----
+
+== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

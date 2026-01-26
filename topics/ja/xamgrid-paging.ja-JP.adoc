@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-paging",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Paging"],
+    "guid": "{1120DC02-3413-4112-8B6B-B627B0C1CF1C}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7041883Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= ページング
+
+xamGrid コントロールのページング機能は、データを複数ページに分割します。ページ数は、ページ サイズとデータ ソースからのレコード合計数によって決定されます。xamGrid コントロールは、エンド ユーザーがページ間を行き来するときに各ページの新しいデータを取得します。
+
+デフォルトで xamGrid ではページングは有効ではありません。ページングを有効にするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.pagersettings.html[PagerSettings] オブジェクトで以下のプロパティを設定できます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.pagersettings~allowpaging.html[AllowPaging] - このプロパティを設定するとページングが有効になり、ページャーがグリッドに関連して表示する場所も設定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.pagersettings~currentpageindex.html[CurrentPageIndex] - このプロパティはナビゲートしたいページャーの現在のページを設定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.pagersettings~pagesize.html[PageSize] - このプロパティはページごとに表示する行数を設定します。
+
+以下のコードはページングを有効にする方法を示します。グリッドの上と下の両方にページャーが表示し、ページあたり 5 行表示されます。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamGrid x:Name="MyGrid" AutoGenerateColumns="False">
+      <ig:XamGrid.PagerSettings>
+         <ig:PagerSettings AllowPaging="Both" PageSize="5"/>
+      </ig:XamGrid.PagerSettings>
+      ...       
+   </ig:XamGrid>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Me.MyGrid.PagerSettings.AllowPaging = PagingLocation.Both
+Me.MyGrid.PagerSettings.PageSize = 5
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.MyGrid.PagerSettings.AllowPaging = PagingLocation.Both;
+this.MyGrid.PagerSettings.PageSize = 5;
+----
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Paging_01.png[Paging]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Paging_01.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-customize-the-pager.html[ページャーをカスタマイズ]
+
+link:xamgrid-paging-events.html[ページング イベント]

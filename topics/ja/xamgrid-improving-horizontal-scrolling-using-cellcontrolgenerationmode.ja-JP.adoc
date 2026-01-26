@@ -1,0 +1,99 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-improving-horizontal-scrolling-using-cellcontrolgenerationmode",
+    "tags": ["How Do I","Virtualization"],
+    "controlName": ["xamGrid"],
+    "guid": "79fe2df6-f18d-4b54-8abe-787525be6b41",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.6222093Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= CellControlGenerationMode プロパティを使用した水平スクロール機能の向上
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGrid™_   コントロールに多数の列が表示されている場合に改善できる水平のスクロールについて説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります:
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-virtualization.html[仮想化]
+|このトピックは、 _xamGrid_ コントロールの仮想化について説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref386041089,スムーズ水平スクロールの構成>>
+* <<_Ref386041093,関連コンテンツ>>
+
+[[_Ref386041089]]
+== スムーズ水平スクロールの構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+仮想化の過程では視覚要素が  _xamGrid_   コントロールに表示されている場合にのみ作成されることが重要です。
+
+デフォルトではセルが表示されると link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.cellcontrol_members.html[CellControl] インスタンスが作成されます。このインスタンスはこのセルにのみ使用され、またリサイクルされることはありません。同じ動作は `CellControlGenerationMode` が `Virtualize` に設定すると起こります。
+
+`CellControlGenerationMode` を `Recycle` に設定すると `CellControl` インスタンスが水平スクロール時、同一の行のセルにリサイクルされ再利用されます。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|同一行のセルによるスクロール時の `CellControl` インスタンスのリサイクルおよび再利用。
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~cellcontrolgenerationmode.html[CellControlGenerationMode]
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.cellcontrolgenerationmode.html[Recycle]
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid x:Name="dataGrid" ItemsSource="{Binding Path=Customers}" CellControlGenerationMode="Recycle" />
+----
+
+[[_Ref386041093]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgrid-control-the-virtualization-process.html[仮想化の制御]
+|このトピックでは、xamGrid コントロールにおける仮想化の制御について説明します。
+
+|====

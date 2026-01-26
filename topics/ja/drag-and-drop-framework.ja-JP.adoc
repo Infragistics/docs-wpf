@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "drag-and-drop-framework",
+    "controlName": ["IG Drag and Drop Framework"],
+    "tags": ["Getting Started"],
+    "guid": "{887B3EBA-FDAB-4B42-888C-F2BBAB87C6D4}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.7070374Z"
+}
+|metadata|
+////
+
+= Infragistics Drag and Drop Framework
+
+このセクションでは、Infragistics Drag and Drop Framework の使用に関する概要を提供します。このセクションには、コントロールが何を実行するのか、またアプリケーションでなぜコントロールを使用したくなるのかから、フレームワークを使用して一般的なタスクを完了する方法に関するステップバイステップの手順まで、Infragistics Drag and Drop Framework に関する貴重な情報が含まれています。以下のリンクをクリックして Infragistics Drag and Drop Framework に関する重要情報にアクセスします。
+
+== link:drag-and-drop-framework-about-ig-drag-and-drop-framework.html[Infragistics Drag and Drop Framework について]
+
+このセクションでは、Infragistics Drag and Drop Framework の機能をより良く理解するために助けとなるあらゆる情報や、アプリケーション構築の一環としてこのコントロールの機能を使いたくなる理由が説明されています。
+
+== link:drag-and-drop-framework-getting-started-with-ig-drag-and-drop-framework.html[Infragistics Drag and Drop Framework を使用した作業の開始]
+
+Infragistics Drag and Drop Framework を使用してできる限り素早く起動して実行するために、作業を開始する方法についての情報を提供します。
+
+== link:drag-and-drop-framework-using-ig-drag-and-drop-framework.html[Infragistics Drag and Drop Framework の使用]
+
+このセクションには、Infragistics Drag and Drop Framework で提供される主要な特徴および機能についての情報が含まれています。
+
+== link:drag-and-drop-framework-api-overview.html[API の概要]
+
+このトピックは、Infragistics Drag and Drop Framework でプログラミング中に作業する名前空間とクラスをリストします。このトピックに挙げられている名前空間とクラスは、{ProductName} ヘルプの「API リファレンス ガイド」セクションにリンクされています。

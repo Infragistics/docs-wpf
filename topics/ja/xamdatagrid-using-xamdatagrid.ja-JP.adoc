@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-using-xamdatagrid",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{BDB1F7C0-3B03-450C-87D1-0854650E60BB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0289589Z"
+}
+|metadata|
+////
+
+= xamDataGrid での作業
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamDataGrid_™ コントロールの使用方法を説明し、コードで管理する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-clipboard-operations.html[クリップボード操作]
+|このトピックのグループは、 _xamDataGrid_ コントロールでクリップボード操作を構成し、コードで実行する方法を説明します。
+
+| link:xamdatagrid-data-operations.html[データ操作]
+|このトピックのグループは、 _xamDataGrid_ のデータの印刷およびエクスポート、およびデータの外部処理を説明します。
+
+| link:xamdatagrid-field-operations.html[フィールド操作]
+|このトピックのグループは、 _xamDataGrid_ のフィールドのコンテンツ編集、列集計の構成、フィールド レイアウト、およびフィールド表示状態などのフィールドに関連する操作を説明します。
+
+| link:xamdatagrid-navigating-and-selecting.html[ナビゲーションと選択]
+|このトピックのグループは、 _xamDataGrid_ コントロールでのナビゲーション (マウスおよびキーボード) および選択を説明します。
+
+| link:xamdatagrid-record-operations.html[レコード操作]
+|このトピックのグループは、 _xamDataGrid_ で並べ替え、フィルタリング、グループ化、行番号、行および列の固定などのレコード操作を説明します。
+
+| link:xamdatagrid-undo-operations.html[元に戻す/やり直し操作]
+|このトピックのグループは、元に戻す/やり直し操作およびその機能のカスタマイズ化について説明します。
+
+|====

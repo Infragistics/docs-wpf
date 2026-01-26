@@ -1,0 +1,228 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-custom-filtering",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Filtering","Getting Started","How Do I"],
+    "guid": "{921BF9DE-7AA8-4C3B-A5A6-5B1A5633D4AD}",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7241333Z"
+}
+|metadata|
+////
+
+= 項目フィルターの構成 (xamComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 _xamComboEditor_   コントロールに項目フィルターを設定する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-adding-xamcomboeditor-to-your-page.html[xamComboEditor をページに追加]
+|このトピックでは、 _xamComboEditor_ コントロールを使用して作業を開始する方法と、プロシージャー コードを使用してそれをページに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref380247491,フィルタリングの構成概要>>
+* <<_Ref379990516,フィルタリングの有効 / 無効>>
+* <<_Ref380075017,カスタム フィルターの構成>>
+* <<_Ref380247512,関連コンテンツ>>
+
+[[_Ref380247491]]
+== フィルタリングの構成概要
+
+=== フィルタリングの構成概要表
+
+以下の表は、 _xamComboEditor_   のフィルタリング機能で構成できる要素を簡単に説明し、構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref379990516,フィルタリングの有効 / 無効>>
+|フィルタリングが有効 / 無効かどうかを構成します
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~allowfiltering.html[AllowFiltering]
+
+|<<_Ref380075017,カスタム フィルターの構成>>
+|_xamComboEditor_ データ項目をフィルターするときに適用されるカスタム フィルターのコレクションを構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemFilters]
+
+|====
+
+[[_Ref379990516]]
+== フィルタリングの有効 / 無効
+
+[[_Hlk368069110]]
+
+=== 概要
+
+_xamComboEditor_   は、ユーザーがテキスト フィールドに入力を開始するときに、コントロールのドロップダウンの項目をフィルターします。データ項目は  _xamComboEditor_   に指定したフィルターに基づいてフィルターされます。
+
+この機能はデフォルトで有効です。フィルタリングは  _xamComboEditor_   の link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath] プロパティによって実行し、比較演算子は  pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisonoperator.html[StartsWith]"]  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisonoperator.html[StartsWith]"]  です。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|_xamComboEditor_ でフィルタリングを有効/無効にします
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~allowfiltering.html[AllowFiltering]
+|`bool`
+
+|フィルターするためのデータ モデル プロパティを指定します
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath]
+|`string`
+
+|====
+
+[[_Ref380075017]]
+== カスタム フィルターの構成
+
+=== 概要
+
+_xamComboEditor_   コントロールは、項目フィルタリングをカスタマイズする機能を提供します。
+
+これは  _xamComboEditor_   の link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemFilters] プロパティを使用して行います。カスタム項目フィルタリングを提供するには、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter_members.html[ComboItemFilter] オブジェクトの `ObservableCollection` をこのプロパティに設定します。
+
+
+注:
+
+[NOTE]
+====
+カスタムの `ComboItemFilter` を作成する場合、`ComboItemFilter` link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~fieldname.html[FieldName] のプロパティをフィルターされるデータ プロパティの名前に設定する必要があります。`FieldName` のプロパティが設定されていないと例外がスローされます。
+====
+
+注:
+
+[NOTE]
+====
+フィルター値を設定するためにコードで  pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition_members.html[ComparisonCondition]"]  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisoncondition_members.html[ComparisonCondition]"]  の  pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition~filtervalue.html[FilterValue]"]  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisoncondition~filtervalue.html[FilterValue]"]  プロパティを使用できません。_xamComboEditor_   は内部に `FilterValue` プロパティを使用します。コントロールの入力フィールドに入力されたテキストに設定されます。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|カスタム フィルターのコレクションを作成します
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemfilters.html[ItemFilters]
+|`ObservableCollection<ComboItemFilter>`
+
+|フィルターするためのデータ モデル プロパティを指定します
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter_members.html[ComboItemFilter] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~fieldname.html[FieldName]
+|`string`
+
+|すべてのフィルター条件を結合する論議演算子を指定します
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter_members.html[ComboItemFilter] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~logicaloperator.html[LogicalOperator]
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~logicaloperator.html[LogicalOperator]
+
+|適用する条件のコレクションを指定します
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter_members.html[ComboItemFilter] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~conditions.html[Conditions]
+| pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.conditioncollection_members.html[ConditionCollection]"] pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.conditioncollection_members.html[ConditionCollection]"] 
+
+|比較条件の演算子を指定します
+|pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition.html[ComparisonCondition]"] pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisoncondition_members.html[ComparisonCondition]"] pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition~operator.html[Operator]"] pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisoncondition~operator.html[Operator]"]
+| pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisonoperator.html[ComparisonOperator]"] pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.comparisonoperator.html[ComparisonOperator]"] 
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、次のコードにより、 _xamComboEditor_   のフィルターリングを紹介します。
+
+[start=1]
+. _xamComboEditor_ のテキスト入力フィールドに「s」を入力します:
+
+image::images/CustomFiltering_1.png[]
+
+[start=2]
+. _xamComboEditor_ のテキスト入力フィールドに「100」を入力します:
+
+image::images/CustomFiltering_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor"
+                   ItemsSource="{Binding Path=Products}" 
+                   Height="30" Width="250"
+                   AutoComplete="False">
+    <ig:XamComboEditor.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding ProductName}" Grid.Column="1" Margin="5" />
+                <TextBlock Text="{Binding UnitsInStock}" Margin="5" />
+            </Grid>
+        </DataTemplate>
+    </ig:XamComboEditor.ItemTemplate>
+    <!-- カスタム フィルターを追加します --> 
+    <ig:XamComboEditor.ItemFilters>
+        <!-- データ モデルの ProductName プロパティのフィルターを作成します -->
+        <ig:ComboItemFilter FieldName="ProductName" LogicalOperator="And">
+            <ig:ComboItemFilter.Conditions>
+                <ig:ComparisonCondition Operator="Contains" />
+                <ig:ComparisonCondition Operator="StartsWith"/>
+            </ig:ComboItemFilter.Conditions>
+        </ig:ComboItemFilter>
+        <!-- データ モデルの UnitsInStock プロパティのフィルターを作成します -->
+        <ig:ComboItemFilter FieldName="UnitsInStock">
+            <ig:ComboItemFilter.Conditions>
+                <ig:ComparisonCondition Operator="GreaterThan"/>
+            </ig:ComboItemFilter.Conditions>
+        </ig:ComboItemFilter>
+    </ig:XamComboEditor.ItemFilters>
+</ig:XamComboEditor>
+----
+
+[[_Ref380247512]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-autocomplete.html[オートコンプリートの構成]
+|このトピックは、 _xamComboEditor_ の編集モードで利用可能なオート コンプリート機能を説明します。
+
+| link:xamcomboeditor-using-customvalueenteredaction.html[ユーザー入力で動作の構成]
+|このトピックは、コントロールのテキスト ボックスに入力するときに _xamComboEditor_ の動作を指定する方法を説明します。
+
+| link:xamcomboeditor-dropdown-resizing.html[ドロップダウンのサイズ構成]
+|このトピックは、 _xamComboEditor_ のドロップダウンのサイズ変更を有効/無効にする方法を説明し、ドロップダウンの最小幅、最大幅、および最大高さをコードで設定する方法を説明します。
+
+| link:xamcomboeditor-working-with-itemtemplate.html[項目テンプレートの構成]
+|このトピックは、項目の視覚化をカスタマイズするために _xamComboEditor_ の ItemTemplate プロパティを使用する方法を説明します。
+
+| link:xamcomboeditor-selection-overview.html[選択]
+|このトピックは _xamComboEditor_ コントロールの選択を説明します。
+
+|====

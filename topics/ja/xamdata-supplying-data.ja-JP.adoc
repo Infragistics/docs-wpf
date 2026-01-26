@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-supplying-data",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding"],
+    "guid": "{F8E80ED6-5CD5-40B0-87DB-E876AD835C1E}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5338599Z"
+}
+|metadata|
+////
+
+= データの提供
+
+
+
+以下のいずれかによって、xamDataGrid™、xamTreeGrid™、xamDataCards™、xamDataCarousel™、または xamDataPresenter™ コントロールにデータを提供することができます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~datasource.html[DataSource] プロパティへの設定またはバインディング、または
+* 以下に示すようにコードまたは XAML によって link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~dataitems.html[DataItems] コレクションに直接項目を追加
+
+DataSource プロパティは、以下の XAML で示すように、`System.Collections.IEnumerable` インターフェイスを実装する任意のオブジェクトに設定できます。
+
+----
+<igDP:XamDataGrid DataSource="{Binding Source={StaticResource MyData}}" />
+----
+
+`DataItems` コレクションは、*"Content"* プロパティとしてマークされるため、XAML で明示的に指定する必要はありません。囲まれたオブジェクトは、以下の XAML に示すように、このコレクションに自動的に追加されます。
+
+----
+<igDP:XamDataGrid> 
+        <MYCustomer ... /> 
+        <MYCustomer ... /> 
+        <MYCustomer ... /> 
+        <MYCustomer ... /> 
+</igDP:XamDataGrid>
+----
+
+[NOTE]
+====
+*注:* `DataSource` プロパティの設定、および同じコントロールの `DataItems` コレクションへの項目の追加はサポートされていないため、例外がスローされることになります。
+====

@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousellistbox-accessing-data",
+    "controlName": ["xamCarouselListBox"],
+    "tags": ["Data Presentation"],
+    "guid": "{F78B9162-CE5A-47A6-BDEB-CA51D4B3356F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0247581Z"
+}
+|metadata|
+////
+
+= データ アクセス
+
+
+
+データ バインドされたアプリケーションは至る所にあります。データがなければ、エンドユーザーは設定を保存、顧客の発注にアクセスするまたは電子メールをチェックすることさえできなくなります。アプリケーションの基本データに素早くまた効率的にアクセスできることは、すべての開発者にとって優先順位の高いことです。
+
+Microsoft® Access™ データベース、SQL Server、独自のカスタム オブジェクト、XML サイト マップのいずれを使用するとしても、データ バインドされたアプリケーションにつきものの頭痛やフラストレーションを感じることなく、xamCarouselListBox™ コントロールにそれぞれを接続する方法を紹介します。このセクションは、xamCarouselListBox を任意のデータ ソースにバインドするために必要なすべての知識を提供します。
+
+以下のリンクをクリックして、xamCarouselListBox コントロールを使用してデータにアクセスする支援を特に行うために記述されたトピックを表示します。
+
+* link:xamcarousellistbox-data-binding-overview.html[データ バインディング概要]

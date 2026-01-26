@@ -1,0 +1,64 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-customize-animation-of-column-moving",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Layouts","Styling"],
+    "guid": "{996C76AF-4EC4-4D32-8783-EA73156D623F}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0392051Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列移動のアニメーションのカスタマイズ
+
+列移動機能を有効にして、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnmovingtype.html[ColumnMovingType] が link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnmovingtype.html[Immediate] に設定された時に使用されるアニメーションをカスタマイズできます。これを行うには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnmovingsettings.html[ColumnMovingSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnmovingsettings~animationduration.html[AnimationDuration] および link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnmovingsettings~easingfunction.html[EasingFunction] プロパティを設定します。
+
+EasingFunction プロパティを設定すると、列の速やかな移動をアニメートするためにどの EasingFunctionBase が使用されるかを指定します。EasingFunctionBase クラスから継承することによって、独自のカスタム Easing 機能を作成することもできます。詳細は link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.animation.easingfunctionbase(VS.100).aspx[EasingFunctionBase] を参照してください
+
+以下は、列移動のアニメーションをカスタマイズする方法を示します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamGrid x:Name="MyDataGrid" AutoGenerateColumns="False">
+      <ig:XamGrid.ColumnMovingSettings>
+         <ig:ColumnMovingSettings AllowColumnMoving="Immediate" AnimationDuration="20">
+            <ig:ColumnMovingSettings.EasingFunction>
+               <BounceEase />
+            </ig:ColumnMovingSettings.EasingFunction>
+         </ig:ColumnMovingSettings>
+      </ig:XamGrid.ColumnMovingSettings>
+      …
+  </ig:XamGrid>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyDataGrid.ColumnMovingSettings.AllowColumnMoving = Infragistics.Controls.Grids.ColumnMovingType.Immediate
+Me.MyDataGrid.ColumnMovingSettings.AnimationDuration = "20"
+Me.MyDataGrid.ColumnMovingSettings.EasingFunction = New BounceEase()
+----
+
+*C# の場合:*
+
+----
+this.MyDataGrid.ColumnMovingSettings.AllowColumnMoving = Infragistics.Controls.Grids.ColumnMovingType.Immediate;
+this.MyDataGrid.ColumnMovingSettings.AnimationDuration = 20;
+this.MyDataGrid.ColumnMovingSettings.EasingFunction = new BounceEase();
+----
+
+== 関連トピック
+
+link:xamgrid-column-moving.html[列移動]
+
+link:xamgrid-disable-moving-of-certain-columns.html[特定の列の移動を無効にする]
+
+link:xamgrid-column-moving-events.html[列移動イベント]

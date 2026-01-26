@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-about-fixed-non-scrolling-fields",
+    "controlName": ["xamDataGrid"],
+    "tags": ["How Do I"],
+    "guid": "{EFCB797F-5162-4C16-A093-9B19723586A0}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.9729477Z"
+}
+|metadata|
+////
+
+= 固定 (非スクロール) フィールドについて
+
+
+
+xamDataPresenter™ コントロールおよび xamDataGrid™ コントロールによって、エンド ユーザーは、フィールドがスクロールされて見えなくならないようにフィールドを固定することができます。
+
+固定フィールド機能は堅牢な機能で、レコードの方向やコントロールのフロー方向に基づいて、エンド ユーザーは xamDataPresenter または xamDataGrid のエッジにフィールドを固定することができます。固定されたフィールドの位置はレコードの方向とコントロールのフロー方向に基づいているため、上/下/左/右の代わりに「ニア」また「ファー」という用語が使用されます。たとえば、xamDataPresenter コントロールを垂直レコード方向で使用する場合、「ニア」というのはコントロールの左側を指し、「ファー」というのはコントロールの右側を指します。レコードの方向を水平に設定する場合には、「ニア」というのはコントロールの上端を指し、「ファー」というのはコントロールの下端を指します。最後に、コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatagrid.html[FlowDirection] プロパティを RightToLeft に設定する場合、前述の固定フィールドの位置は反対になります。
+
+固定フィールドで効果的に動作するために、以下のプロパティを理解する必要があります:
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowfixing.html[AllowFixing]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~fixedfielduitype.html[FixedFieldUIType]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~fixedlocation.html[FixedLocation]
+
+== 関連トピック
+
+link:xamdatagrid-enable-fixed-fields.html[固定フィールドを有効にする]
+
+link:xamdatagrid-fix-fields.html[フィールドの固定]

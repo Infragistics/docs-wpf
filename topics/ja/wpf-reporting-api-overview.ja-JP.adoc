@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-reporting-api-overview",
+    "controlName": ["IG WPF Reporting"],
+    "tags": ["Reporting"],
+    "guid": "{796A0B2D-5A21-4846-80F6-656DAECC2A25}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.9027337Z"
+}
+|metadata|
+////
+
+= API の概要
+
+
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== Reporting 名前空間:
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting_namespace.html[Infragistics.Windows.Reporting]
+
+=== 主要な API:
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report]
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection.html[EmbeddedVisualReportSection]
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.reportpagepresenter.html[ReportPagePresenter]
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.xamreportpreview.html[XamReportPreview]
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.reportprogresscontrol.html[ReportProgressControl]

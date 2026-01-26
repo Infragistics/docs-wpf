@@ -1,0 +1,24 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-exporting-to-word",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Exporting","How Do I"],
+    "guid": "1f33bc3e-dd92-4319-8f0e-3e751969dd26",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3790289Z"
+}
+|metadata|
+////
+
+= Word へのエクスポート
+
+
+
+Microsoft® Word® へのエクスポートについての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-exporting-data-to-word.html[xamDataPresenter を使用してデータを Word にエクスポート]
+* link:xamdatapresenter-applying-formats-when-exporting-data.html[データをエクスポートする時にフォーマットを適用]
+* link:xamdatapresenter-exclude-settings.html[Exclude...エクスポート時の DataPresenter の設定]
+* link:xamdatapresenter-exporting-to-word-events.html[エクスポート イベントを処理することでエクスポートを管理]

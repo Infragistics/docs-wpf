@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-the-xamgantt-timescale",
+    "controlName": ["xamGantt"],
+    "tags": ["Getting Started","Grids","How Do I","Scheduling"],
+    "guid": "9bfebd7e-786d-44ec-9b1c-80fa6a3a6315",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.5041373Z"
+}
+|metadata|
+////
+
+= xamGantt タイムスケールの構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックには、 _xamGantt_™ タイムスケールの情報が含まれています。
+
+=== トピック
+
+このセクションは、 _xamGantt_  タイムスケールの使用と構成をカバーします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-timescale-configuration-overview.html[タイムスケール構成の概要]
+|このトピックでは、 __xamGantt__™タイムスケールの主要な機能の概要を提供します。
+
+| link:xamgantt-setting-the-xamgantt-timescale-bands.html[xamGantt タイムスケール バンドの設定]
+|このトピックでは、xamGantt タイムスケールのタイムスケール バンドの設定方法について説明します。
+
+| link:xamgantt-configuring-the-xamgantt-timescale-units.html[ _xamGantt_ タイムスケール単位と単位数の構成]
+|このトピックでは、タイムスケール単位を構成する方法を説明します。タイムスケール単位および単位数は、タイムスケール バンド コレクションからのタイムスケール バンドごとに単位と単位数を設定することによって構成されます。
+
+| link:xamgantt-configuring-the-xamgantt-timescale-display-formats.html[xamGantt タイムスケール表示形式の構成]
+|このトピックは、タイムスケール表示形式を構成する方法を説明します。タイムスケール表示形式は、タイムスケール バンド コレクションからのバンドごとに表示形式を設定することによって構成されます。
+
+|====

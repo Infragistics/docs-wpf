@@ -1,0 +1,61 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-modifying-the-assemblyinfo-file",
+    "controlName": [],
+    "tags": ["Styling"],
+    "guid": "{AE8144C7-5BE1-4E93-B38C-5449A6D0F507}",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-01-30T20:33:32.0620401Z"
+}
+|metadata|
+////
+
+= AssemblyInfo ファイルの修正
+
+このトピックは、複数部から構成される詳細なガイドの第 5 部で、 link:wpf-creating-the-assemblyresourcesetloader-class.html[「AssemblyResourceSetLoader クラスの作成」]の続きです。AssemblyInfo ファイルを修正する方法を学習します。これによってアセンブリはテーマパックが参照される時に常に呼び出すクラスを認識します。
+
+[start=1]
+. ソリューション エクスプローラで、Properties フォルダの下にある AssemblyInfoファイルを見つけます。ファイルをダブルクリックしてエディタで開きます。
+[start=2]
+. コードの記述を開始する前に AssemblyInfo ファイルの一番上に using/Imports のディレクティブを配置します。そうすれば、メンバは完全に記述された名前を常に入力する必要がなくなります。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Themes
+Imports MyThemePack.MyThemePack.ResourceSets.OrangePeel
+Imports System.Windows.Markup
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Themes;
+using MyThemePack.ResourceSets.OrangePeel;
+using System.Windows.Markup;
+----
+
+[start=3]
+. 以下の 3 行のコードをファイルに追加します。最初の行は、AssemblyResourceSetLoader に、どの派生クラスがアセンブリのためのリソース セットを登録およびロードするのかを指示します。2 番目の行は、XAML ファイルに要素を記述する時に XML 名前空間を関連付けるために推奨したプレフィックスを割り当てます。3 番目の行は XML 名前空間と CLR 名前空間の間のアセンブリでマッピングを指定します。
+
+*Visual Basic の場合:*
+
+----
+...
+<Assembly: AssemblyResourceSetLoader(GetType(ThemesOrangePeelAssemblyResourceSetLoader))>
+<Assembly: XmlnsPrefix("http://infragistics.com/Themes/OrangePeel", "igThemeOrangePeel")>
+<Assembly: XmlnsDefinition("http://infragistics.com/Themes/OrangePeel", "MyThemePack_VB.MyThemePack.ResourceSets.OrangePeel")>
+...
+----
+
+*C# の場合:*
+
+----
+...
+[assembly: AssemblyResourceSetLoader(typeof(ThemesOrangePeelAssemblyResourceSetLoader))]
+[assembly: XmlnsPrefix("http://infragistics.com/Themes/OrangePeel", "igThemeOrangePeel")]
+[assembly: XmlnsDefinition("http://infragistics.com/Themes/OrangePeel", "MyThemePack.ResourceSets.OrangePeel")] 
+...
+----

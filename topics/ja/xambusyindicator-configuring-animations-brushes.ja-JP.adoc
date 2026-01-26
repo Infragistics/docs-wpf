@@ -1,0 +1,590 @@
+﻿////
+|metadata|
+{
+    "name": "xambusyindicator-configuring-animations-brushes",
+    "tags": ["Getting Started","How Do I","Styling"],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "1b6d7184-7bf8-4190-81dc-128cebd327a5",
+    "buildFlags": [],
+    "createdOn": "2015-08-22T09:08:38.4703434Z"
+}
+|metadata|
+////
+
+= アニメーション ブラシの構成 (xamBusyIndicator)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamBusyIndicator_   コントロールのデフォルトのアニメーション ブラシをカスタマイズする方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-features-overview.html[機能の概要]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xambusyindicator-visual-elements.html[視覚要素]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+| link:xambusyindicator-animations.html[アニメーション]
+|このトピックでは、 _xamBusyIndicator_ コントロールで使用可能なビルド済みのアニメーションについて簡単に説明します。
+
+| link:xamcolorpicker-adding-xamcolorpicker-to-your-page.html[xamColorPicker をページに追加]
+|このトピックでは、XAML とプロシージャー コードを使用して、ページに _xamColorPicker_ コントロールを追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref428008502, アニメーション ブラシ構成の概要 >>
+* <<_Ref428195809, ランタイムでのアニメーション ブラシの変更 >>
+* <<_Ref428008512, 関連トピック >>
+
+[[_Ref428008502]]
+== アニメーション ブラシ構成の概要
+
+=== アニメーション ブラシ構成の概要表
+
+以下の表は、 _xamBusyIndicator_   コントロールのビルド済みアニメーション、カスタム可能なブラシ、使用できる確定モードおよび非確定モードを簡単に説明します。詳細は、概要表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|アニメーション|構成可能なブラシ|確定状態を使用可能
+
+|<<_Azure,Azure アニメーション ブラシの構成>>
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.azurebusyanimation~lowerelementsfill.html[LowerElementsFill] 
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.azurebusyanimation~upperelementsfill.html[UpperElementsFill]
+|image::images/No.png[]
+
+|<<_Ref428004594,Gears アニメーション ブラシの構成>>
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation~biggearfill.html[BigGearFill] 
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation~smallgearfill.html[SmallGearFill]
+|image::images/No.png[]
+
+|<<_Ref428005877,ProgressRing アニメーション ブラシの構成>>
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~ringbackground.html[RingBackground] 
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~background.html[Background] 
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~foreground.html[Foreground] 
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~ringfill.html[RingFill]
+|image::images/Yes.png[]
+
+|<<_Ref428006558,SpinnerBalls アニメーション ブラシの構成>>
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill]
+|image::images/No.png[]
+
+|<<_Ref428007454,SpinnerBars アニメーション ブラシの構成>>
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill]
+|image::images/No.png[]
+
+|<<_Ref428008116,SpinnerBarsWave アニメーション ブラシの構成>>
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill]
+|image::images/No.png[]
+
+|<<_Ref428199374,SpinnerSegmented アニメーション ブラシの構成>>
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill]
+|image::images/No.png[]
+
+|====
+
+[[_Azure]]
+== Azure アニメーション ブラシの構成
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.azurebusyanimation_members.html[AzureBusyAnimation]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.azurebusyanimation~lowerelementsfill.html[LowerElementsFill]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.azurebusyanimation~upperelementsfill.html[UpperElementsFill] の各プロパティを使用して、デフォルトの Azure アニメーション ブラシを変更します。
+
+注:
+
+[NOTE]
+====
+これらのプロパティは、初期化で使用され、バインディング依存プロパティではありません。
+====
+
+ランタイムにアニメーション ブラシを変更する場合は、<<_Ref428195809,ランタイムでのアニメーション ブラシの変更>>のセクションを参照してください。
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   の Azure アニメーションの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.azurebusyanimation~lowerelementsfill.html[LowerElementsFill]
+|_#FFB8D432_
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.azurebusyanimation~upperelementsfill.html[UpperElementsFill]
+|_#FF59B4D9_
+
+|====
+
+image::images/Configuring_Animations_Brushes_14.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Name="Azure" >
+    <ig:XamBusyIndicator.Animation>
+        <ig:AzureBusyAnimation LowerElementsFill="#FFB8D432" UpperElementsFill="#FF59B4D9"/>
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref428004594]]
+== Gears アニメーション ブラシの構成
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation_members.html[GearsBusyAnimation]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation~biggearfill.html[BigGearFill]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation~smallgearfill.html[SmallGearFill] の各プロパティを使用して、デフォルトの Gears アニメーション ブラシを変更します。
+
+注:
+
+[NOTE]
+====
+これらのプロパティは、初期化で使用され、バインディング依存プロパティではありません。
+====
+
+ランタイムにアニメーション ブラシを変更する場合は、<<_Ref428195809,ランタイムでのアニメーション ブラシの変更>>のセクションを参照してください。
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   の Gears アニメーションの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation~biggearfill.html[BigGearFill]
+|_#FF324047_
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation~smallgearfill.html[SmallGearFill]
+|_#FF43A898_
+
+|====
+
+image::images/Configuring_Animations_Brushes_7.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Name="Gears" >
+    <ig:XamBusyIndicator.Animation>
+        <ig:GearsBusyAnimation BigGearFill="#FF324047" SmallGearFill="#FF43A898"/>
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref428005877]]
+== ProgressRing アニメーション ブラシの構成
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation_members.html[ProgressRingBusyAnimation] link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~ringbackground.html[RingBackground]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~background.html[Background]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~foreground.html[Foreground]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~ringfill.html[RingFill] の各プロパティを使用して、デフォルトの ProgressRing アニメーション ブラシを変更します。
+
+注:
+
+[NOTE]
+====
+これらのプロパティは、初期化で使用され、バインディング依存プロパティではありません。
+====
+
+ランタイムにアニメーション ブラシを変更する場合は、<<_Ref428195809,ランタイムでのアニメーション ブラシの変更>>のセクションを参照してください。
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   の ProgressRing アニメーションの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~ringbackground.html[RingBackground]
+|_Red_
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~background.html[Background]
+|_Green_
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~foreground.html[Foreground]
+|_White_
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.progressringbusyanimation~ringfill.html[RingFill]
+|_Blue_
+
+|====
+
+image::images/Configuring_Animations_Brushes_8.png[]
+
+[start=1]
+. RingFill
+[start=2]
+. Background
+[start=3]
+. RingBackground
+[start=4]
+. Foreground
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" IsIndeterminate="False" Name="ProgressRingDeterminate" ProgressValue=".5" >
+    <ig:XamBusyIndicator.Animation>
+        <ig:ProgressRingBusyAnimation RingBackground="Red" Background="Green" Foreground="White" RingFill="Blue"  />
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref428006558]]
+== SpinnerBalls アニメーション ブラシの構成
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1_members.html[SingleBrushBusyAnimation] と link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill] のプロパティを使用して、デフォルトの SpinnerBalls アニメーション ブラシを変更します。
+
+注:
+
+[NOTE]
+====
+このプロパティは、初期化に使用され、バインディング依存プロパティではありません。
+====
+
+ランタイムにアニメーション ブラシを変更する場合は、<<_Ref428195809,ランタイムでのアニメーション ブラシの変更>>のセクションを参照してください。
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   の SpinnerBalls アニメーションの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill]
+|_#FF609BAE_
+
+|====
+
+image::images/Configuring_Animations_Brushes_9.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Name="SpinnerBalls">
+    <ig:XamBusyIndicator.Animation>
+        <ig:SpinnerBallsBusyAnimation AnimationFill="#FF609BAE" />
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref428007454]]
+== SpinnerBars アニメーション ブラシの構成
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1_members.html[SingleBrushBusyAnimation] と link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill] のプロパティを使用して、デフォルトの SpinnerBars アニメーション ブラシを変更します。
+
+注:
+
+[NOTE]
+====
+このプロパティは、初期化に使用され、バインディング依存プロパティではありません。
+====
+
+ランタイムにアニメーション ブラシを変更する場合は、<<_Ref428195809,ランタイムでのアニメーション ブラシの変更>>のセクションを参照してください。
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   の SpinnerBars アニメーションの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill]
+|_#FF3C7B82_
+
+|====
+
+image::images/Configuring_Animations_Brushes_10.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Name="SpinnerBars" >
+    <ig:XamBusyIndicator.Animation>
+        <ig:SpinnerBarsBusyAnimation AnimationFill="#FF3C7B82" />
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref428008116]]
+== SpinnerBarsWave アニメーション ブラシの構成
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1_members.html[SingleBrushBusyAnimation] と link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill] のプロパティを使用して、デフォルトの SpinnerBarsWave アニメーション ブラシを変更します。
+
+注:
+
+[NOTE]
+====
+このプロパティは、初期化に使用され、バインディング依存プロパティではありません。
+====
+
+ランタイムにアニメーション ブラシを変更する場合は、<<_Ref428195809,ランタイムでのアニメーション ブラシの変更>>のセクションを参照してください。
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   の SpinnerBarsWave アニメーションの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill]
+|_#FF3C7B82_
+
+|====
+
+image::images/Configuring_Animations_Brushes_11.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Name="SpinnerBarsWave" >
+    <ig:XamBusyIndicator.Animation>
+        <ig:SpinnerBarsWaveBusyAnimation AnimationFill="#FF3C7B82" />
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref428199374]]
+== SpinnerSegmented アニメーション ブラシの構成
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1_members.html[SingleBrushBusyAnimation] と link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill] のプロパティを使用して、デフォルトの SpinnerSegmented アニメーション ブラシを変更します
+
+注:
+
+[NOTE]
+====
+このプロパティは、初期化に使用され、バインディング依存プロパティではありません。
+====
+
+ランタイムにアニメーション ブラシを変更する場合は、<<_Ref428195809,ランタイムでのアニメーション ブラシの変更>>のセクションを参照してください。
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   の SpinnerSegmented アニメーションの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.singlebrushbusyanimation`1~animationfill.html[AnimationFill]
+|_#FF43A898_
+
+|====
+
+image::images/Configuring_Animations_Brushes_12.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" Name="SpinnerSegmented" >
+    <ig:XamBusyIndicator.Animation>
+        <ig:SpinnerSegmentedBusyAnimation AnimationFill="#FF43A898" />
+    </ig:XamBusyIndicator.Animation>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref428195809]]
+== ランタイムでのアニメーション ブラシの変更
+
+=== 概要
+
+以下の例は、ランタイムに  _xamColorPicker_   コントロールを使用して、 _xamBusyIndicator_   Gears アニメーション ブラシをバインドし、変更する方法を示します。
+
+アニメーションのカラーを動的に変更するために、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.primitives.gearsbusyanimationpresenter_members.html[GearsBusyAnimationPresenter] link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.primitives.gearsbusyanimationpresenter~biggearfill.html[BigGearFill] および link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.primitives.gearsbusyanimationpresenter~smallgearfill.html[SmallGearFill] プロパティを使用して、 _xamColorPicker_   の link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.controls.editors.xamcolorpicker~selectedcolorpreview.html[SelectedColorPreview] プロパティにバインドします。
+
+初期化のみに使用されバインドできない link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation_members.html[GearsBusyAnimation]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation~biggearfill.html[BigGearFill] および link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.gearsbusyanimation~smallgearfill.html[SmallGearFill] プロパティとは異なり、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.primitives.gearsbusyanimationpresenter_members.html[GearsBusyAnimationPresenter]、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.primitives.gearsbusyanimationpresenter~biggearfill.html[BigGearFill] および link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.primitives.gearsbusyanimationpresenter~smallgearfill.html[SmallGearFill] プロパティはバインディング依存プロパティです。
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/Configuring_Animations_Brushes_13.png[]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* 以下の NuGet パッケージ参照をプロジェクトに追加します。
+
+** Infragistics.WPF.ColorPicker
+** Infragistics.WPF
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+=== 手順
+
+以下のステップは、Gears アニメーション ブラシをランタイムで変更する方法を示します。
+
+1. xamBusyIndicator コントロールのページへの追加
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator Name="Gears" IsBusy="True" Animation="Gears" Width="200" />
+----
+
+[start=2]
+2. xamColorPicker コントロールをページに追加し、その SelectedColorPreview プロパティを xamBusyIndicator アニメーション ブラシにバインドします。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamColorPicker SelectedColor="#FF324047" Width="100" SelectedColorPreview="{Binding ElementName=Gears, Path=AnimationPresenter.BigGearFill, Mode=TwoWay, Converter={StaticResource ColorToSolidColorBrushValueConverter}}" />
+----
+
+[[_Ref382317785]]
+
+=== 完全なコード
+
+以下は、この手順の完全なコードです。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <Grid.Resources>
+        <local:ColorToSolidColorBrushValueConverter x:Key="ColorToSolidColorBrushValueConverter" />
+    </Grid.Resources>
+    <StackPanel>
+        <ig:XamBusyIndicator Name="Gears" IsBusy="True" Animation="Gears" Width="200" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="BigGearFill" Width="100" />
+            <ig:XamColorPicker SelectedColor="#FF324047" Width="100"
+            SelectedColorPreview="{Binding ElementName=Gears, Path=AnimationPresenter.BigGearFill, Mode=TwoWay, Converter={StaticResource ColorToSolidColorBrushValueConverter}}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="SmallGearFill" Width="100"/>
+            <ig:XamColorPicker SelectedColor="#FF43A898" Width="100"
+            SelectedColorPreview="{Binding ElementName=Gears, Path=AnimationPresenter.SmallGearFill, Mode=TwoWay, Converter={StaticResource ColorToSolidColorBrushValueConverter}}" />
+        </StackPanel>                  
+    </StackPanel>
+</Grid>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class ColorToSolidColorBrushValueConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        var result = new Color();
+        if (value is SolidColorBrush)
+            result = ((SolidColorBrush)value).Color;
+            return result;
+    }
+     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+     {
+         SolidColorBrush result = null;
+         if (value is Color)
+             result = new SolidColorBrush((Color)value);
+         return result;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class ColorToSolidColorBrushValueConverter
+      Implements IValueConverter
+      Public Function Convert(value As Object, targetType As Type, parameter As Object, culture As CultureInfo) As Object
+            Dim result = New Color()
+            If TypeOf value Is SolidColorBrush Then
+                  result = DirectCast(value, SolidColorBrush).Color
+            End If
+            Return result
+      End Function
+      Public Function ConvertBack(value As Object, targetType As Type, parameter As Object, culture As CultureInfo) As Object
+            Dim result As SolidColorBrush = Nothing
+            If TypeOf value Is Color Then
+                  result = New SolidColorBrush(DirectCast(value, Color))
+            End If
+            Return result
+      End Function
+End Class
+----
+
+[[_Ref428008512]]
+== 関連トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-configuring-busy-indicator-display.html[ビジー インジケータの表示の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する方法を説明します。
+
+| link:xambusyindicator-configuring-busy-content.html[ビジー コンテンツの構成]
+|このトピックでは、 _xamBusyIndicator_  ビジー コンテンツを構成する方法を説明します。
+
+| link:xambusyindicator-configuring-delayed-display.html[表示の遅延の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する前の遅延時間を構成する方法を説明します。
+
+| link:xambusyindicator-configuring-focus-target.html[フォーカス ターゲットの構成]
+|このトピックでは、 _xamBusyIndicator_ が非アクティブな場合に、`UIElement` がフォーカスを受け取るように明示的に構成する方法を説明します。
+
+| link:xambusyindicator-configuring-determinate-xambusyindicator.html[既定の xamBusyIndicator の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを構成して、既定の進行状況を表示する方法を説明します。
+
+| link:xambusyindicator-configuring-overlay-style.html[オーバーレイ スタイルの構成]
+|このトピックでは、 _xamBusyIndicator_ のオーバーレイ スタイルをカスタマイズする方法を説明します。
+
+|====

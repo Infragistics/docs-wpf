@@ -1,0 +1,370 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-ruler-margin",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Data Presentation","Editing","Navigation"],
+    "guid": "3033168b-ca7b-4ef0-9d3c-6d703360b963",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5093619Z"
+}
+|metadata|
+////
+
+= ルーラー マージン (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、ルーラー マージン機能を構成する方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-adding-to-your-page.html[ _xamSyntaxEditor_ をページに追加]
+|このトピックでは、 _xamSyntaxEditor_ を短時間で起動、実行するのに役立つ体系的な操作方法を紹介します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref345423480, はじめに >>
+* <<_Ref345423488, ルーラー マージンの構成方法 >>
+* <<_Ref345423495, 表示／非表示 >>
+* <<_Ref345423506, 背景ブラシを変更 >>
+* <<_Ref345423515, 境界線ブラシを変更 >>
+* <<_Ref345423521, メモリ ブラシを変更 >>
+* <<_Ref345423528, カレット強調表示ブラシを変更 >>
+* <<_Ref345423535, ナンバー ブラシを変更 >>
+* <<_Ref345423540, 関連コンテンツ >>
+
+[[_Ref345423480]]
+== はじめに
+
+=== ルーラー マージンの概要
+
+_xamSyntaxEditor™_   コントロールは、編集領域の幅に沿ってカレットの位置を識別するため赤点でルーラー マージンをサポートします。有効にすると、分割の有効無効に関係なく編集領域の一番上にルーラーが表示されます。ただし link:xamsyntaxeditor-splitting.html[splitting] が有効になっていると、それぞれの分割に対し 1 つで 2 つのルーラーが描画されます。
+
+以下のスクリーンショットは  _xamSyntaxEditor_   で、ルーラー マージンが有効であり、カレットは列 15 (1 ベース) に配置されています。
+
+image::images/xamSyntaxEditor_RulerMargin.png[]
+
+注:
+
+[NOTE]
+====
+現在の 1 ベースのカレット列は、カレットの読み取り専用 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.caret~characterdisplaycolumn.html[CharacterDisplayColumn] プロパティを使用して取得できます。
+====
+
+[[_Ref345423488]]
+== ルーラー マージンの構成方法
+
+=== ルーラー マージン構成の概要チャート
+
+以下の表は、 _xamSyntaxEditor_   ルーラー マージンの構成可能な要素を示しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref345423495,表示／非表示>>
+|ルーラー マージンを表示/非表示にします。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~isrulermarginvisible.html[IsRulerMarginVisible] 
+
+|<<_Ref345423506,背景ブラシを変更>>
+|ルーラー マージンの背景を変更します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~rulermarginbackground.html[RulerMarginBackground] 
+
+|<<_Ref345423515,境界線ブラシを変更>>
+|ルーラー マージンの境界線を変更します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~rulermarginborderbrush.html[RulerMarginBorderBrush] 
+
+|<<_Ref345423521,メモリ ブラシを変更>>
+|ルーラー マージンのメモリを変更します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~rulermargintickmarkbrush.html[RulerMarginTickMarksBrush] 
+
+|<<_Ref345423528,カレット強調表示ブラシを変更>>
+|ルーラー マージンのカレット位置の強調を変更します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~rulermargincaretpositionhighlightbrush.html[RulerMarginCaretPositionHighlightBrush] 
+
+|<<_Ref345423535,ナンバー ブラシを変更>>
+|ルーラー マージンの番号を変更します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~rulermargintextbrush.html[RulerMarginTextBrush] 
+
+|====
+
+[[_Ref345423495]]
+== 表示／非表示
+
+=== 概要
+
+ルーラー マージンを表示/非表示にします。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|ルーラー マージンを表示します。
+|`IsRulerMarginVisible`
+|`true`
+
+|ルーラー マージンを非表示にします。
+|`IsRulerMarginVisible`
+|`false`
+
+|====
+
+注:
+
+[NOTE]
+====
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.syntaxeditorcommandtype.html[ToggleRulerMarginVisibility] コマンドを起動することによりルーラー マージンを表示または非表示にすることもできます。
+====
+
+=== コード
+
+以下のコードスニペットは、ルーラー マージンを表示にする方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.IsRulerMarginVisible = true;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.IsRulerMarginVisible = True
+----
+
+[[_Ref345423506]]
+== 背景ブラシを変更
+
+=== 概要
+
+ルーラー マージン領域を塗りつぶすために使用するブラシを変更します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|背景ブラシを変更
+|`RulerMarginBackground`
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.brush.aspx[Brush] タイプのオブジェクト。
+
+|====
+
+=== コード
+
+以下のコード スニペットは、ルーラー マージンの背景を明るい灰色にする方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.RulerMarginBackground = new SolidColorBrush(Colors.LightGray);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.RulerMarginBackground = New SolidColorBrush(Colors.LightGray)
+----
+
+[[_Ref345423515]]
+== 境界線ブラシを変更
+
+=== 概要
+
+ルーラー マージン領域の周りに四角形を描画するために使用するブラシを変更します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|境界線ブラシを変更
+|`RulerMarginBorderBrush`
+|`Brush` タイプのオブジェクト。
+
+|====
+
+=== コード
+
+以下のコード スニペットは、ルーラー マージンの境界線を暗い灰色にする方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.RulerMarginBorderBrush = new SolidColorBrush(Colors.DarkGray);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.RulerMarginBorderBrush = New SolidColorBrush(Colors.DarkGray)
+----
+
+[[_Ref345423521]]
+== メモリ ブラシを変更
+
+=== 概要
+
+ルーラー マージンのメモリを描画するために使用するブラシを変更します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|メモリ ブラシを変更
+|`RulerMarginTickMarkBrush`
+|`Brush` タイプのオブジェクト。
+
+|====
+
+=== コード
+
+以下のコード スニペットは、ルーラー マージンの目盛を黒色にする方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.RulerMarginTickMarkBrush = new SolidColorBrush(Colors.Black);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.RulerMarginTickMarkBrush = New SolidColorBrush(Colors.Black)
+----
+
+[[_Ref345423528]]
+== カレット強調表示ブラシを変更
+
+=== 概要
+
+ルーラー マージンでカレット位置の強調表示を描画するために使用するブラシを変更します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|カレット強調表示ブラシを変更
+|`RulerMarginCaretPositionHighlightBrush`
+|`Brush` タイプのオブジェクト。
+
+|====
+
+=== コード
+
+以下のコードスニペットは、ルーラー マージンのカレット強調表示を赤色にする方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.RulerMarginCaretPositionHighlightBrush =
+    new SolidColorBrush(Colors.Red);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1. RulerMarginCaretPositionHighlightBrush = _
+    New SolidColorBrush(Colors.Black)
+----
+
+[[_Ref345423535]]
+== ナンバー ブラシを変更
+
+=== 概要
+
+ルーラー マージンの番号を描画するために使用するブラシを変更します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|ナンバー ブラシを変更
+|`RulerMarginTextBrush`
+|`Brush` タイプのオブジェクト。
+
+|====
+
+=== コード
+
+以下のコードスニペットは、ルーラー マージンのナンバーを黒色にする方法を示しています。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.RulerMarginTextBrush = new SolidColorBrush(Colors.Black);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.RulerMarginTextBrush = New SolidColorBrush(Colors.Black)
+----
+
+[[_Ref345423540]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-line-number-margin.html[行番号のマージン]
+|このトピックでは、 _xamSyntaxEditor_ コントロールの組み込み行番号マージンの使用方法と構成方法を解説します。
+
+| link:xamsyntaxeditor-custom-margins.html[カスタム マージン]
+|このトピックでは、カスタム マージンの作成方法を解説します。
+
+| link:xamsyntaxeditor-splitting.html[分割]
+|このトピックでは、 _xamSyntaxEditor_ のドキュメント分割機能を解説し、カスタマイズする方法について解説します。
+
+|====

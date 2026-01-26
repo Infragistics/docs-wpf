@@ -1,0 +1,182 @@
+﻿////
+|metadata|
+{
+    "name": "xamgrid-adding-xamgrid-to-your-page",
+    "controlName": ["xamGrid"],
+    "tags": ["Getting Started","Grids","How Do I","Paging"],
+    "guid": "{3CD945FA-5D96-4E28-9FC5-B174BFA20BDB}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6511833Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= xamGrid をページに追加
+
+== 始める前に
+
+このトピックでは、ユーザーができるだけ早く操作に慣れるために、プロシージャー コードおよび XAML を使用して xamGrid コントロールをページに追加するために必要な基本手順について説明します。
+
+_前提:_
+
+このトピックは、データ ソースが構成されていることが前提となっています。詳細は、 link:xamgrid-data-binding.html[データ バインディング]トピックを参照してください。
+
+== 達成すること
+
+固定列およびページング機能を使って、基本的な xamGrid コントロールを作成します。編集などの追加機能を xamGrid に追加したい場合、適切なトピックの手順に従い、コードをこの基本的な xamGrid に追加します。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName}™ プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をプロジェクトに追加します。
+
+** Infragistics.WPF.Controls.Grids.XamGrid
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. UserControl の Loaded イベントにイベント ハンドラを接続します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<UserControl Loaded="UserControl_Loaded" … >
+----
+
+[start=4]
+. 以下の using/Import ディレクティブ、または xamGrid の名前空間の宣言を開始 UserControl タグに追加します。これによってメンバーの絶対名を入力する必要がなくなります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Grids
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Grids;
+----
+
+[start=5]
+. xamGrid コントロールのインスタンスに MyGrid という名前を付けて、それを LayoutRoot という名前のデフォルトの Grid レイアウト パネルに追加します。プロシージャー コードでこれを行う場合、ユーザー コントロールの Loaded イベントを処理し、イベント ハンドラーにこのコードを配置することができます。  
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamGrid x:Name="MyGrid">
+      <!-- TO Do: xamGrid 機能を追加します-->
+   </ig:XamGrid>    
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim MyGrid As New XamGrid()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamGrid MyGrid = new XamGrid();
+----
+
+[start=6]
+. link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~itemssource.html[ItemSource] プロパティを設定することによって、xamGrid コントロールをデータにバインドします。詳細は、 link:xamgrid-data-binding.html[データ バインディング]トピックを参照してください。
+[start=7]
+. link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.pagersettings.html[PagerSettings] オブジェクトを xamGrid コントロールに追加してページングを有効にします。詳細は、 link:xamgrid-paging.html[「ページング」]トピックを参照してください。以下のプロパティを設定します。
+
+** link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.pagersettings~allowpaging.html[AllowPaging] - Both
+** link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.pagersettings~pagesize.html[PageSize] - 5
+
+*XAML の場合:*
+
+[source,xaml]
+----
+…
+<ig:XamGrid.PagerSettings>
+   <ig:PagerSettings AllowPaging="Top" PageSize="5"/>
+</ig:XamGrid.PagerSettings>
+…
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+MyGrid.PagerSettings.AllowPaging = PagingLocation.TopMyGrid.PagerSettings.PageSize = 5
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+MyGrid.PagerSettings.AllowPaging = PagingLocation.Top;
+MyGrid.PagerSettings.PageSize = 5;
+----
+
+[start=8]
+. link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumnsettings.html[FixedColumnSettings] オブジェクトを xamGrid コントロールに追加して固定列を有効にします。詳細は、 link:xamgrid-fixed-columns.html[「固定列」]トピックを参照してください。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumnsettings~allowfixedcolumns.html[AllowFixedColumns] プロパティを Both に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGrid.FixedColumnSettings>
+   <ig:FixedColumnSettings AllowFixedColumns="Both"/>
+</ig:XamGrid.FixedColumnSettings>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+MyGrid.FixedColumnSettings.AllowFixedColumns = FixedColumnType.Both
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+MyGrid.FixedColumnSettings.AllowFixedColumns = FixedColumnType.Both;
+----
+
+[start=9]
+. xamGrid のインスタンスを Grid パネルの Children コレクションに追加します。新しいページを初めて作成する時には、デフォルトでグリッド パネルが作成され、パネル名が LayoutRoot に指定されます。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.LayoutRoot.Children.Add(MyGrid)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.LayoutRoot.Children.Add(MyGrid);
+----
+
+[start=10]
+. アプリケーションを保存して実行します。ページングと固定列が有効になった xamGrid コントロールが必要です。

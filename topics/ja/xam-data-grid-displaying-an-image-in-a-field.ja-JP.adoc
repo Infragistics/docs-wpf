@@ -1,0 +1,114 @@
+﻿////
+
+|metadata|
+{
+    "name": "xam-data-grid-displaying-an-image-in-a-field",
+    "tags": ["How Do I","Tips and Tricks"],
+    "controlName": ["xamDataPresenter","xamDataGrid"],
+    "guid": "abd7f799-7823-404d-bc83-55c9a51bd51e",  
+    "buildFlags": [],
+    "createdOn": "2013-10-29T15:30:08.0672652Z"
+}
+|metadata|
+////
+
+= フィールドに画像を表示
+
+xamDataGrid™ の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] に画像を表示できます。これを実行するには、link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] のテンプレートをオーバーライドする必要があります。
+
+以下の手順を実行するには、xamDataGrid をページに追加する必要があります。詳細は、link:xamdatagrid-getting-started-with-xamdatagrid.html[xamDataGrid をページに追加]のトピックを参照してください。
+
+*次の手順に従ってフィールドに画像を表示します。*
+
+. アプリケーションで以下のlink:resources-products.html[コンテンツ]を含む *Products.xml* ファイルを作成します。読み込む画像を参照する "Logo" 属性を定義します。
++
+.注:
+[NOTE]
+====
+ご使用のシステムで画像を配置する場所を反映するには、ファイルのコンテンツを修正して、ロゴ画像のパスを変更します。
+====
+
+. データソースとして使用される XmlDataProvider をページのリソース セクションで作成します。
++
+*XAML の場合:*
++
+[source,xaml]
+----
+<XmlDataProvider x:Key="ProductsData" Source="/WpfApplication1;component/Data/Products.xml" XPath="/Products" />
+----
++
+.注:
+[NOTE]
+====
+上記の定義でアプリケーションの固有パスに基づいてリソース パスおよび `XPath` 値を変更します。
+====
+
+. ページのリソース セクションにある `CellValuePresenter` クラスをターゲットとするスタイルを作成します。またスタイルに「ProductImage」の Key を設定する必要があります。以下はスタイル設定のコード例です。
++
+*XAML の場合:*
++
+[source,xaml]
+----
+<Style TargetType="{x:Type igDP:CellValuePresenter}" x:Key="ProductImage">
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type igDP:CellValuePresenter}">
+                <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                    <Image Margin="{TemplateBinding Padding}" 
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}" />
+                </Grid>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+. 以下の XAML コードで XamDataGrid のインスタンスを作成してデータ ソースを設定します。
++
+*XAML の場合:*
++
+[source,xaml]
+----
+<igDP:XamDataGrid DataSource="{Binding Source={StaticResource ProductsData}, XPath=Product}">
+    ...
+</igDP:XamDataGrid>
+----
+
+. XamDataGrid タグ内に以下の XAML コードを追加します。これによってフィールドをレイアウトし、link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellvaluepresenterstyle.html[CellValuePresenterStyle] の "Logo" link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] を上記で作成したスタイルに設定します。
++
+*XAML の場合:*
++
+[source,xaml]
+----
+<igDP:XamDataPresenter.FieldLayoutSettings>
+    <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+</igDP:XamDataPresenter.FieldLayoutSettings>
+
+<igDP:XamDataPresenter.FieldLayouts>
+    <igDP:FieldLayout>
+        <igDP:FieldLayout.Fields>
+            <igDP:Field Name="ProductName" Label="Product Name">
+                <igDP:Field.Settings>
+                    <igDP:FieldSettings CellMinWidth="200" CellWidth="200" />
+                </igDP:Field.Settings>
+            </igDP:Field> 
+            <igDP:Field Name="Logo" Label="Product Logo">
+                <igDP:Field.Settings>
+                    <igDP:FieldSettings CellMinWidth="200" CellWidth="200" 
+                                        CellValuePresenterStyle="{StaticResource ProductImage}" />
+                </igDP:Field.Settings>
+            </igDP:Field>
+        </igDP:FieldLayout.Fields>
+    </igDP:FieldLayout>
+</igDP:XamDataPresenter.FieldLayouts>
+----
+
+. プロジェクトをビルドして実行すると以下の画像のようになります。
++
+image::images/xamDataGrid_Displaying_an_Image_in_a_Field_01.png[displaying an image in xamdatapresenter field]
+
+== 関連トピック
+
+link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]

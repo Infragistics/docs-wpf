@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammaskedinput-about",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "b37992c7-7854-41c9-a1da-f09621c751c8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.9312172Z"
+}
+|metadata|
+////
+
+{XamMaskedInputHeader}
+
+= xamMaskedInput について
+
+xamMaskedInput コントロールは、ユーザーのデータ入力を支援するためのマスクを使用する、シンプルなテキスト ボックス コントロールです。マスクを使って、ユーザーの入力を事前定義されたテキスト形式に従って制限することができます。xamMaskedInput コントロール を link:xammaskedinput-using.html[スタンドアロン エディターとして] pick:[sl,wpf,win-rt="または link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[xamGrid™ コントロールのセル内で]"] 使用できます。
+
+ifdef::sl,wpf[]
+image::images/xamInputs_xamMaskedInput_About.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/xamInputs_RT_xamMaskedInput_About.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xammaskedinput-using.html[xamMaskedInput の使用]
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+ifdef::sl,wpf,win-rt[]
+* link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[データ編集用の xamGrid セルにおける xamInput コントロールの使用]
+
+endif::sl,wpf,win-rt[]

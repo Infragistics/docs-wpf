@@ -1,0 +1,55 @@
+﻿////
+|metadata|
+{
+    "name": "breaking-changes-in-2022-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "",
+    "buildFlags": [],
+    "createdOn": ""
+}
+|metadata|
+////
+
+= 2022 Volume 1 の重大な変更
+
+== 重大な変更の概要
+
+以下では、{ProductName} 2022 Volume 1 の重大な変更の概要を示します。
+
+== チャート
+
+このリリースでは、`{CategoryChartName}`、`{FinancialChartName}`、および `{DataChartName}` のバッジのサイズ変更に加えて、デフォルトのフォントにいくつかの改善と変更が導入されています。
+
+=== 軸ラベル
+
+* デフォルトの `FontFamily` を「Verdana」から「Verdana、Arial、sans-serif」に変更しました。
+* デフォルトの `FontSize` を 11 から 13 に変更しました。
+* デフォルトのテキスト色を #FF4E4E4E から #FF666666 に変更しました。
+
+=== 軸タイトル
+
+* デフォルトの `FontFamily` を「Verdana」から「Verdana、Arial、sans-serif」に変更しました。
+* デフォルトの `FontSize` を 11 から 13 に変更しました。
+* デフォルトのテキスト色を #FF4E4E4E から #FF666666 に変更しました。
+
+=== チャートのタイトル / サブタイトル
+
+* タイトルとサブタイトルのデフォルトの `FontFamily` を「Verdana」から「Verdana、Arial、sans-serif」に変更しました。
+* タイトルとサブタイトルのデフォルトのテキスト色を #FF666666 から #FF4E4E4E に変更しました。
+
+=== 凡例項目
+
+* デフォルトの `FontFamily` を「Verdana」から「Verdana、Arial、sans-serif」に変更しました。
+* デフォルトの `FontSize` を 11 から 13 に変更しました。
+* デフォルトのテキスト色を #FF4E4E4E から #FF666666 に変更しました。
+
+=== 凡例項目のバッジ テンプレート
+
+* 凡例項目バッジのマーカーの高さと幅を 12px から 8px に変更しました。
+
+=== 凡例タイトル
+
+* デフォルトの `FontFamily` を「Verdana」から「Verdana、Arial、sans-serif」に変更しました。
+* デフォルトの `FontSize` を 11 から 20 に変更しました。
+* デフォルトのテキスト色を #FF4E4E4E から #FF666666 に変更しました。

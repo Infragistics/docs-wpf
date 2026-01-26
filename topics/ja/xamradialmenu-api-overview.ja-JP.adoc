@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamradialmenu-api-overview",
+    "tags": ["API"],
+    "controlName": ["xamRadialMenu"],
+    "guid": "faf6670e-6309-4659-9ab0-cee06bf72ad4",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.9293114Z"
+}
+|metadata|
+////
+
+= API の概要 (xamRadialMenu)
+
+このセクションではコントロールに関連する各名前空間を示します。また、このコントロールでプログラミングするときに使用する主なクラスを紹介します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== コントロールの名前空間:
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus_namespace.html[Infragistics.Controls.Menus]
+
+=== 主要な API:
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[XamRadialMenu]
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenuitembase.html[RadialMenuItemBase]
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenuitem.html[RadialMenuItem]
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenucoloritem.html[RadialMenuColorItem]
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenucolorwell.html[RadialMenuColorWell]
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenunumericitem.html[RadialMenuNumericItem]
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenunumericgauge.html[RadialMenuNumericGauge]
+
+link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.radialmenulist.html[RadialMenuList]

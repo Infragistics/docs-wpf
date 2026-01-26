@@ -1,0 +1,331 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-saving-and-loading-grid-customizations",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Grids","How Do I","Persistence"],
+    "guid": "4f8c17c2-ed78-4591-bdd8-c8bd46bb7075",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.2823314Z"
+}
+|metadata|
+////
+
+= ユーザー カスタマイズの保存と読み込み (xamPivotGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、データが  _xamPivotGrid_™ コントロールで提示される方法になされたユーザー カスタマイズを保存および読み込む方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データを xamPivotGrid にバインド]
+|このトピックでは、 _xamPivotGrid_ コントロールでサポートされるデータ ソースの概要について説明しています。
+
+| link:xampivotgrid-interaction-with-xampivotgrid.html[xamPivotGrid との相互作用]
+|このグループのトピックでは、UI またはコードを通じて実行可能な、 _xamPivotGrid_ コントロールとの主な相互作用について説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref347827418,データ ソース カスタマイズの保存およびロード - 概要>>
+
+** <<_Ref347827428,グリッド ビューのユーザー カスタマイズ可能な要素>>
+** <<_Ref347827436,データ ソース カスタマイズの保存およびロード の要点>>
+** <<_Ref347827457,要件>>
+** <<_Ref347827459,カスタマイズで保存されるプロパティ>>
+
+* <<_Ref347827476,データ ソース カスタマイズの保存 - コード例>>
+
+** <<_Ref347827481,説明>>
+** <<_Ref347765476,コード>>
+
+* <<_Ref347827509,データ ソース カスタマイズのロード - プロシージャ>>
+
+** <<_Ref347827521,はじめに>>
+** <<_Ref347827524,前提条件>>
+** <<_Ref347827527,概要>>
+** <<_Ref347827529,手順>>
+
+[[_Ref347827418]]
+== データ ソース カスタマイズの保存およびロード - 概要
+
+[[_Ref347827428]]
+
+=== グリッド ビューのユーザー カスタマイズ可能な要素
+
+xamPivotGrid では、ユーザーは以下の要素におけるデータ スライドを示すビューをカスタマイズできます。
+
+* 選択されたデータベース
+* 選択されたキューブ
+* 選択されたメジャー グループ
+* 行、列、フィルターで使用される現在の階層
+* 現在のメジャー
+* メジャー リスト表示モデルの位置 (該当する場合)
+* フィルター メンバーの拡張状態
+* フィルター メンバーの選択状態
+* メンバーの拡張状態 (行と列の場合)
+* 現在適用される並べ替え順序 (レベル内の値とメンバー名の両方の場合)
+* 適用された Excel®-スタイル フィルター (Advanced フィルター)
+* レイアウト更新状態の遅延
+
+これらのカスタマイズに関する情報は、 _xamPivotGrid_   コントロールによって使用されるデータ ソース コントロール ( _FlatDataSource_™ および  _XmlaDataSource_™) および  _xamDataChart_™ コントロールの  _OlapXAxis_™ コンポーネントに保存され、結果としてロードされます。
+
+[[_Ref347827436]]
+
+=== データ ソース カスタマイズの保存およびロード の要点
+
+[[_Saving_customizations]]
+[[_Ref347827438]]
+==== カスタマイズの保存
+
+_xamPivotGrid_   の現在のビューを保存するには、そのビューを定義するプロパティの現在の値を保存する必要があります。すべての関連情報は、 _xamPivotGrid_   の link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~datasource.html[DataSource] プロパティの値としてデータ ソース インスタンス セットで利用可能です。link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase_members.html[DataSourceBase] クラス (その他のすべての多次元 (OLAP) データ ソース継承)、データ ソースの現在の状態を保存およびロードするための拡張メソッドを公開します。カスタマイズは、文字列またはストリームに書き込むことができます。
+
+実際の保存は、 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebaseextension~savecustomizations.html[SaveCustomizations] メソッドによって行われます。このメソッドには 2 つのオーバーロードがあります。1 つは、保存されるカスタマイズを含む文字列を返し、もう 1 つはスカスタマイズが書き込まれるストリームを期待します。設定によりいずれかを起動します。
+
+[[_Ref347827441]]
+==== カスタマイズのロード
+
+link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebaseextension~loadcustomizations.html[LoadCustomizations] は以前に <<_Saving_customizations,>><<_Ref347827438,saved customizations>> をロードしています。保存されたカスタマイズは、文字列またはストリームからロードできます。これに加え両方の場合で、ロード完了時にアクションを実行するよう指定できます。したがって、`LoadCustomizations` メソッドには各パラメータの組み合わせに対して 1 つずつ、オーバーロードが 4 つあります。
+
+実際、ロードの実装は、通常、なんらかのロード後アクションの構成と共に行います。たとえば、カスタマイズのロード プロセスには時間がかかるため、終了時に一部のカスタム コードを実行する、またはその完了を知らせるようにします。そのためには、アクション パラメータを受け付ける `LoadCustomizations` オーバーロードの 1 つを呼び出します。ロード プロセスが終了すると、アクションが実行されます。そのアクションは、ロード プロセス中に発生したエラーの説明を含む文字列パラメータをエラーが発生した場合に受け付けます。
+
+[[_Ref347827457]]
+
+=== 要件
+
+以下は、カスタマイズを保存しロードするための一般要件です。
+
+* データ要件
+
+一連のカスタマイズをロードするには、ロード元とロード先のデータ ソースは同じデータベース (メタデータ) 構造である必要があります。そうでないと、ロード プロセスは失敗するか不完全になります。
+
+* 参照
+** `Infragistics.Olap` 名前空間における `DataSourceBase` クラスに対して link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebaseextension~savecustomizations.html[SaveCustomizations] と link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebaseextension~loadcustomizations.html[LoadCustomizations] を定義
+** `Infragistics.Olap` 名前空間に対する`using`/`Imports` ディレクティブ
+
+[[_Ref347827459]]
+
+=== カスタマイズで保存されるプロパティ
+
+以下の表は、 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebaseextension~savecustomizations.html[SaveCustomizations] メソッドによって保存される構成可能要素を、該当するそれぞれのプロパティおよびデータ ソース タイプにマッピングしたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|データ ソース プロパティ|該当先:
+
+|選択されたデータベース
+|`XmlaDataSource.Database`
+| _XmlaDataSource_ 
+
+|選択されたキューブ
+|`XmlaDataSource.Cube`
+| _XmlaDataSource_ 
+
+|選択されたメジャー グループ
+|`XmlaDataSource.MeasureGroup`
+| _XmlaDataSource_ 
+
+|行、列、フィルターに使用された階層
+|`DataSourceBase.Rows` 
+
+`DataSourceBase.Columns` 
+
+`DataSourceBase.Filters`
+|すべてのデータ ソース
+
+|使用されたメジャー
+|`DataSourceBase.Measures`
+|すべてのデータ ソース
+
+|メジャー リスト表示モデルの位置 (該当する場合)
+|`DataSourceBase.MeasureListLocation`
+|すべてのデータ ソース
+
+|フィルター メンバーの拡張状態
+|行、列およびフィルターで使用されたすべての `IFilterViewModels` におけるフィルター メンバーに対する `IFilterMember.IsExpanded`
+|すべてのデータ ソース
+
+|フィルター メンバーの選択状態
+|行、列およびフィルターで使用されたすべての `IFilterViewModels` におけるフィルター メンバーに対する `IFilterMember.IsSelected`
+|すべてのデータ ソース
+
+|メンバーの拡張状態 (行と列の場合)
+|行および列の組における各メンバーに対する `TupleResolver.IsMemberExpanded` の呼び出し結果
+|すべてのデータ ソース
+
+|適用される並べ替え順序 (レベル内の値とメンバー名の両方の場合)
+|`DataSourceBase.LevelSortDirections` 
+
+`DataSourceBase.SortDescriptors`
+|すべてのデータ ソース
+
+|適用された Excel スタイルのフィルター (Advanced フィルター)
+|`ISupportFilters.FilterExpressions`
+| _XmlaDataSource_ 
+
+|レイアウト更新状態の遅延
+|`DataSourceBase.DeferredLayoutUpdate`
+|すべてのデータ ソース
+
+|====
+
+[[_Ref347827476]]
+== データ ソース カスタマイズの保存 - コード例
+
+[[_Ref347827481]]
+
+=== 説明
+
+以下のプロシージャは、データ ソースのカスタマイズを保存するプロセスを示します。ユーザー カスタマイズを保存するには、 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebaseextension~savecustomizations.html[SaveCustomizations] メンバーのいずれかが呼び出されます。例 <<_Ref347765476,Code>> は、`dataSource` という名前の link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase_members.html[DataSourceBase] タイプの変数 (またはそこから継承したクラス) がデータ ソース オブジェクトへの参照を保持するとみなします。
+
+[[_Ref347765476]]
+
+=== コード
+
+[[_Ref347827490]]
+==== 文字列へのカスタマイズを保存
+
+*C# の場合:*
+
+[source,csharp]
+----
+String customizations = dataSource.SaveCustomizations();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim customizations = dataSource.SaveCustomizations()
+----
+
+[[_Ref347827492]]
+==== ストリームへのカスタマイズを保存
+
+*C# の場合:*
+
+[source,csharp]
+----
+using (Stream stream = [initialize the stream here])
+{
+    dataSource.SaveCustomizations(stream);
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Using stream As [initialize the stream here]
+   dataSource.SaveCustomizations(stream)
+End Using
+----
+
+[[_Ref347827509]]
+== データ ソース カスタマイズのロード - プロシージャ
+
+[[_Ref347827521]]
+
+=== はじめに
+
+以下のプロシージャは、多次元 (OLAP) データ ソースの以前に保存されたカスタマイズをロードします。
+
+プロシージャには、ロード後のアクションを構成する任意のステップ、この場合はメッセージ ボックスにロード エラーを表示すること、が含まれます。そのためにサンプル メソッド (`LoadCompletedAction`) が定義されます。
+
+[[_Ref347827524]]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* `dataSource` という名前の link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase_members.html[DataSourceBase] タイプの変数 (またはそこから継承したクラス) がデータ ソース オブジェクトへの参照を保持
+
+[[_Ref347827527]]
+
+=== 概要
+
+以下はプロセスの概念的概要です。
+
+1. _(任意)_ *ロード後のアクションを定義*
+
+2. *`LoadCustomizations` メソッドの呼び出し*
+
+[[_Ref347827529]]
+
+=== 手順
+
+以下の手順では、カスタマイズのロード方法を紹介します。
+
+[start=1]
+. (任意) ロード後のアクションを定義します。
+
+以下のコードス ニペットは、メッセージ ボックスにロード エラーを表示するサンプル メソッドを定義します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public void LoadCompletedAction(string loadErrors)
+{
+   if(!string.IsNullOrWhiteSpace(loadErrors))
+   {
+     MessageBox.Show(loadErrors);
+   }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Sub LoadCompletedAction(loadErrors As String)
+      If Not String.IsNullOrWhiteSpace(loadErrors) Then
+            MessageBox.Show(loadErrors)
+      End If
+End Sub
+----
+
+[start=2]
+. LoadCustomizations メソッドを呼び出します。
+
+以前に文字列またはストリームに保存されていたカスタマイズをロードするには、`String` または `Stream` 引数を渡す `LoadCustomization` メソッドのいずれかを呼び出します。
+
+以下のコード スニペットは、アクション引数を渡す際に文字列からカスタマイズをロードする方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+dataSource.LoadCustomizations(customizations, LoadCompletedAction);
+// または
+using(Stream customizations = [initialize stream here])
+{
+   dataSource.LoadCustomizations(customizations, LoadCompletedAction);
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+dataSource.LoadCustomizations(customizations, LoadCompletedAction)
+‘ or
+Using stream As [initialize the stream here]
+   dataSource.LoadCustomizations(customizations, LoadCompletedAction)
+End Using
+----
+
+アクション パラメータ (`LoadCompletedAction`) を指定しない場合は、1 つの引数のみを受け付ける `LoadCustomizations` メソッドのオーバーロードを使用します。

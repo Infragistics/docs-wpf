@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-features",
+    "controlName": ["xamTreemap"],
+    "tags": ["Charting"],
+    "guid": "fb9e94c8-b126-4356-bc45-2adb0ba1090f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.822419Z"
+}
+|metadata|
+////
+
+= 機能
+
+このセクションは、xamTreemap コントロールの機能の概要を提供します。
+
+link:xamtreemap-events.html[イベント]
+
+このトピックでは、xamTreemap コントロールによって発生するイベントを処理する方法を学習します。
+
+link:xamtreemap-layouts.html[レイアウト]
+
+このトピックでは、xamTreemap コントロールのさまざまなレイアウト タイプと方向を紹介します。
+
+link:xamtreemap-showing-depth.html[表示深さ]
+
+このトピックは xamTreemap コントロールの表示深さ機能を使用する方法を説明する方法を説明します。
+
+link:xamtreemap-item-minimum-size.html[項目の最小サイズ]
+
+このトピックは、xamTreemap コントロールの項目の最小サイズ機能を紹介します。
+
+link:xamtreemap-dataminimum-and-datamaximum.html[DataMinimum と DataMaximum]
+
+このトピックでは、範囲マッパーの DataMinimum および DataMaximum プロパティを使用する方法を学習します。

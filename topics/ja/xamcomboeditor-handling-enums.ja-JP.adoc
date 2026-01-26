@@ -1,0 +1,264 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-handling-enums",
+    "tags": ["Data Binding","How Do I"],
+    "controlName": ["xamComboEditor"],
+    "guid": "7058afdf-9f00-4260-8848-245f11129d21",  
+    "buildFlags": [],
+    "createdOn": "2015-06-16T11:33:27.2775059Z"
+}
+|metadata|
+////
+
+= 列挙型データの処理 (xamComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、列挙型データにバインドされたコントロールの動作を説明します。
+
+=== 前提条件
+
+このトピックをより理解するためには、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:wpf-xamcomboeditor-about-xamcomboeditor.html[xamComboEditor について]
+|このトピックは、コントロールの機能をより深く理解するうえで役立ちます。
+
+|====
+
+== 列挙型の処理
+
+=== 概要
+
+_xamComboEditor_   コントロールの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamcomboeditor~itemssource.html[ItemsSource] プロパティと link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamcomboeditor~itemsprovider.html[ItemsProvider] プロパティが未設定の状態で、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuetype.html[ValueType] プロパティが列挙型 (または null 許容の列挙型) である場合は、内部の項目プロバイダーが作成され、ドロップダウンに列挙型の値を生成します。
+
+列挙型の値は、以下の方法で抽出されます。
+
+* `TypeDescriptor.GetConverter(valueType)` の呼出しでタイプ コンバーターを取得します。
+* 次に、ドロップダウンの値の順序を決定するコンバーターの `GetStandardValues()` コレクションを列挙します。
+
+null 許容の列挙型の null 値は以下の方法で処理されます。コンバーターが null 値を実際の文字列として変換する場合は、表示値として使用されます。それ以外の場合は、`Nullable_Enum_NullValue_Literal` (英語の場合「[null]」)のキーを持つローカライズされた文字列が使用されます。このリソースはエディターのアセンブリにあります。
+
+ドロップダウンから特定のプロパティを除外し、それらの表示値を変更、またはドロップダウンで表示される順序を変更する方法があります。これらの機能のすべてを、以下の表で説明します。
+
+=== 構成タスク
+
+以下の表は、 _xamComboEditor_   コントロールの列挙型を処理する機能の構成可能な要素を示します。
+
+[options="header", cols="a,a,a"]
+|====
+|タスク|サンプル|属性
+
+|コントロールのドロップダウンを列挙体の値とデータを生成します。
+|以下の例は、列挙型を `ValueType` プロパティに設定する方法を紹介します。コントロールのドロップダウンを列挙体の値とデータを生成します。 
+
+*Visual Basic の場合:*
+
+[source,vb]
+---- 
+Public Enum Foods
+  Fruits
+  Vegetables
+  Meat
+  Dairy
+  Bread
+  Eggs
+End Enum 
+---- 
+
+*C# の場合:*
+
+[source,csharp]
+---- 
+public enum Foods 
+{
+  Fruits,
+  Vegetables,
+  Meat,
+  Dairy,
+  Bread,
+  Eggs 
+}
+---- 
+
+*XAML の場合:*
+
+---- 
+... 
+<igEditors:XamComboEditor ValueType="{x:Type Foods}"> 
+</igEditors:XamComboEditor> 
+...
+---- 
+
+|`ValueType`
+
+|[[_Hlk356484826]] 
+
+コントロールのドロップダウンからの列挙型の値の除外
+|以下の例は、Browsable 属性が false に設定されているため、ドロップダウン リストに含まれない列挙型の値 "AnEnumValue" の定義を示します。 
+
+*Visual Basic の場合:*
+
+[source,vb]
+---- 
+Public Enum AnEnum
+  <Browsable(False)> _
+  AnEnumValue
+End Enum 
+---- 
+
+*C# の場合:*
+
+[source,csharp]
+---- 
+public enum AnEnum 
+{
+  [Browsable(false)]
+  AnEnumValue } 
+---- 
+
+注: 
+
+[NOTE] 
+==== 
+_xamComboEditor_ の link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~iseditable.html[IsEditable] プロパティが true の場合は、除外された値を設定できます。 
+====
+
+|`Browsable`
+
+|列挙型の値のカスタム説明の提供
+|以下の例では、名前のかわりに Description 属性を使用したカスタム説明 (ドロップダウンに表示) の定義を示します。 
+
+*Visual Basic の場合:*
+
+[source,vb]
+---- 
+Public Enum DrinksEnum
+  <Description("Apple Juice")> _
+  JuiceApple 
+End Enum 
+---- 
+
+*C# の場合:*
+
+[source,csharp]
+---- 
+public enum DrinksEnum 
+{
+  [Description("Apple Juice")]
+  JuiceApple 
+} 
+---- 
+
+|`Description`
+
+|列挙型の値の順序のカスタム化
+|以下の例は、複数の値とカスタムな型コンバーターを持つ列挙型の定義を示します。 
+
+*Visual Basic の場合:*
+
+[source,vb]
+---- 
+<TypeConverter(GetType(MyTypeConverter))> _
+Public Enum Foods
+  Fruits
+  Vegetables
+  Meat
+  Dairy
+  Bread
+  Eggs 
+End Enum 
+---- 
+
+*C# の場合:*
+
+[source,csharp]
+---- 
+[TypeConverter(typeof(MyTypeConverter))] public enum Foods 
+{
+  Fruits,
+  Vegetables,
+  Meat,
+  Dairy,
+  Bread,
+  Eggs 
+} 
+---- 
+
+以下の例は、ドロップダウンの生成に使用されるカスタム リストの順序付けを提供する型コンバーターの定義を示します。 
+
+*Visual Basic の場合:*
+
+[source,vb]
+---- 
+Public Class MyTypeConverter
+  Inherits TypeConverter
+  Public Overrides Function GetStandardValues(context As ITypeDescriptorContext) _
+	As TypeConverter.StandardValuesCollection
+	Dim f As New List(Of Foods)()
+	f.Add(Foods.Eggs)
+	f.Add(Foods.Meat)
+	f.Add(Foods.Vegetables)
+	Return New TypeConverter.StandardValuesCollection(f)
+  End Function
+End Class
+---- 
+
+*C# の場合:*
+
+[source,csharp]
+---- 
+public class MyTypeConverter : TypeConverter 
+{
+  public override TypeConverter.StandardValuesCollection GetStandardValues  (ITypeDescriptorContext context)  
+  {
+	List<Foods> f = new List<Foods>();
+	f.Add(Foods.Eggs);
+	f.Add(Foods.Meat);
+	f.Add(Foods.Vegetables);
+	return new TypeConverter.StandardValuesCollection(f);
+  }
+} 
+---- 
+
+注: 
+
+[NOTE] 
+==== 
+任意の文字列のコレクションを返すことにより、同様の結果を達成することもできます。型コンバーターの `ConvertTo`/`ConvertFrom`/`CanConvert` メソッドをオーバーライドし、列挙型の値と文字列間の変換を実行します。 
+====
+
+|`TypeConverter`
+
+|====
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-bind-xamcomboeditor-to-a-collection.html[xamComboEditor の Collection へのバインド]
+|このトピックでは、コントロールを Collection にバインドする方法を説明します。
+
+| link:xamcomboeditor-bind-xamcomboeditor-to-a-dataset.html[xamComboEditor の DataSet へのバインド]
+|このトピックでは、コントロールを DataSet にバインドする方法を説明します。
+
+| link:xamcomboeditor-bind-xamcomboeditor-to-an-xmldataprovider.html[xamComboEditor の XmlDataProvider へのバインド]
+|このトピックでは、コントロールを XmlDataProvider にバインドする方法を説明します。
+
+| link:xamcomboeditor-manually-add-items-to-xamcomboeditor.html[xamComboEditor への手動による項目の追加]
+|このトピックでは、XAML の宣言により、コントロールの項目を追加する方法を説明します。
+
+|====

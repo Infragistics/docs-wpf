@@ -1,0 +1,154 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-configuring-determinate-xambusyindicator",
+    "tags": ["Getting Started","How Do I"],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "c4a8e024-a5e0-479b-af63-fd2cb9303366",  
+    "buildFlags": [],
+    "createdOn": "2015-08-04T11:30:29.9464131Z"
+}
+|metadata|
+////
+
+= 既定のプログレス バーの構成 (xamBusyIndicator)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamBusyIndicator_   コントロールを構成して、既定の進行状況を表示する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-features-overview.html[機能の概要]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xambusyindicator-visual-elements.html[視覚要素]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+| link:xambusyindicator-adding-to-your-page.html[xamBusyIndicator をページに追加]
+|このトピックでは、 _xamBusyIndicator_ コントロールを短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref426475884, 既定のプログレス バーの構成 >>
+* <<_Ref426475890, 関連コンテンツ >>
+
+** <<_Ref426475894,トピック>>
+
+[[_Ref426362477]]
+[[_Ref426475884]]
+== 既定のプログレス バーの構成
+
+[[_Ref426391669]]
+
+=== 概要
+
+_xamBusyIndicator_   コントロールは、確定と非確定の 2 つのモードを持つプログレス バーを提供します。
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~animation.html[Animation] プロパティを使用して、ビルド済みの `ProgressBar` タイプにアニメーションを設定します。
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isindeterminate.html[IsIndeterminate] プロパティを使用し、プログレス バーを `False` に設定すると、アニメーションを確定モードに切り替えることができます。
+
+link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~progressvalue.html[ProgressValue] プロパティを使用して、プログレス値を設定します。
+
+注:
+
+[NOTE]
+====
+`ProgressValue` プロパティは、0 ～ 1 の範囲の値を取ります。
+====
+
+[[_Ref426391673]]
+
+=== プロパティ設定
+
+以下の表は、任意の動作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|プログレス バー アニメーションの設定
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~animation.html[Animation]
+|`ProgressBar`
+
+|既定のアニメーション モードの設定
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isindeterminate.html[IsIndeterminate]
+|`False`
+
+|プログレス値の設定
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~progressvalue.html[ProgressValue]
+|`double?`
+
+|====
+
+[[_Ref426391677]]
+
+=== 例
+
+以下のスクリーンショットは、以下に示すサンプルのプレビューです。
+
+image::images/Configuring_Determine_Progress_Indicator_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator Name="ProgressBar" 
+                     IsBusy="True"
+                     IsIndeterminate=" Animation="ProgressBar"
+                     ProgressValue="0.5"
+                     BusyContent="{Binding RelativeSource={RelativeSource Self}, Path=ProgressValue}">                                    
+</ig:XamBusyIndicator>
+----
+
+[[_Ref426475890]]
+== 関連コンテンツ
+
+[[_Ref426475894]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-animations.html[アニメーション]
+|このトピックでは、 _xamBusyIndicator_ コントロールで使用できるビルド済みのアニメーションとその構成可能な項目について簡単に説明します。
+
+| link:xambusyindicator-configuring-busy-indicator-display.html[ビジー インジケータの表示の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する方法を説明します。
+
+| link:xambusyindicator-configuring-busy-content.html[ビジー コンテンツの構成]
+|このトピックでは、 _xamBusyIndicator_  ビジー コンテンツを構成する方法を説明します。
+
+| link:xambusyindicator-configuring-delayed-display.html[表示の遅延の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する前の遅延時間を構成する方法を説明します。
+
+| link:xambusyindicator-configuring-focus-target.html[フォーカス ターゲットの構成]
+|このトピックでは、 _xamBusyIndicator_ が非アクティブな場合に、`UIElement` がフォーカスを受け取るように明示的に構成する方法を説明します。
+
+| link:xambusyindicator-configuring-overlay-style.html[オーバーレイ スタイルの構成]
+|このトピックでは、 _xamBusyIndicator_ のオーバーレイ スタイルをカスタマイズする方法を説明します。
+
+| link:xambusyindicator-configuring-animations-brushes.html[アニメーション ブラシの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールのデフォルトのアニメーション ブラシをカスタマイズする方法を説明します。
+
+|====

@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousellistbox-designing-the-look-and-feel",
+    "controlName": ["xamCarouselListBox"],
+    "tags": ["Data Presentation","Styling"],
+    "guid": "{191CDFF4-767C-40A8-8AD7-5E81DE175FF4}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0337599Z"
+}
+|metadata|
+////
+
+= ルック アンド フィールのデザイン
+
+
+
+コントロールのルック アンド フィールは単にスタイルではありません。属性です。「ルック」はコントロールが視覚的にどのように現れるのかを意味しますが、「フィール」はコントロールがどのように動作するのかを意味します。したがって、特定の機能と一体になった魅力的な視覚的スタイルを受け取ることになります。
+
+xamCarouselListBox™ のルック アンド フィールは、特定のオペレーティング システムのカラー スキームで構成されるか、場合によっては人気のあるワープロ アプリケーションの機能で構成される場合があります。このセクションは、これらのルック アンド フィールのオン/オフに切り替えて、アプリケーションの個人の動作に合わせて操作する支援を行います。
+
+xamCarouselListBox コントロールのルック アンド フィールをデザインするのに特化したヘルプのトピックをご覧頂く場合は以下のリンクをクリックしてください。
+
+* link:xamcarousel-overview-of-path-effects.html[パス エフェクトの概要]
+* link:xamcarousel-changing-the-location-of-carousel-navigator-element.html[カルーセル ナビゲーション 要素の位置を変更]
+* link:xamcarousel-creating-a-named-path-on-the-artboard.html[アートボードで名前を指定したパスを作成]
+* link:xamcarousel-disabling-reflection-for-an-item-along-a-path.html[パスに沿って項目のリフレクションを無効にする]
+* link:xamcarousellistbox-editing-the-carousellistboxitem-template.html[CarouselListBoxItem テンプレートを編集]
+* link:xamcarousellistbox-modifying-the-opacity-effect-of-items-on-xamcarousellistboxs-path.html[xamCarouselListBox のパスで項目の不透明効果を変更]
+* link:xamcarousellistbox-modifying-the-scale-of-elements-on-xamcarouselistboxs-path.html[xamCarouselListBox のパスで要素のスケールを変更]
+* link:xamcarousellistbox-modifying-the-skew-effect-of-items-on-xamcarousellistboxs-path.html[xamCarouselListBox のパスで項目の傾斜効果を変更]
+* link:xamcarousellistbox-setting-a-path-for-xamcarousellistbox-to-use.html[xamCarouselListBox のパスを使用するように設定]

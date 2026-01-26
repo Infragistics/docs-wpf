@@ -1,0 +1,70 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-requireemptyconstructor-exception",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids","How Do I","Performance","Tips and Tricks"],
+    "guid": "{5F545919-1D8B-4005-AF6C-F89735050BEF}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.1292102Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= RequireEmptyConstructor 例外
+
+エンドユーザーが xamGrid コントロールに新しい行の追加を試みると、グリッドはグリッドにバインドされるデータ オブジェクト タイプの新しいインスタンスの作成をまず試みます。
+
+たとえば、グリッドが顧客オブジェクトのリストにバインドされている場合、エンドユーザーが新しい行の追加を試みると、グリッドは新しい Customer オブジェクトを作成します。
+
+このトピックは、新しい行を追加するシナリオを説明します。
+
+これを成功させるには、オブジェクトにデフォルト コンストラクターを含める必要があります。これによりグリッドはデフォルト コンストラクターを使用して新しいオブジェクト インスタンスを作成することができます。ただし、特定の状況では、デフォルト コンストラクターを含まないオブジェクトのコレクションにバインドしなければならない場合があります。デフォルト コンストラクターがない場合、エンドユーザーが新しい行をコントロールに追加しようと試みると、xamGrid コントロールは RequireEmptyConstructor 例外をスローします。
+
+この問題を解決するために、オブジェクトにデフォルト コンストラクターがあることを確認します。
+
+*C# の場合:*
+
+----
+public class Person
+{
+   public Person()
+   {
+   }
+   public Person(string firstName, string lastName, int age, double height,   DateTime born, string address)
+   {
+      this.FirstName = firstName;
+      this.LastName = lastName;
+      this.Age = age;
+      this.Height = height;
+      this.Born = born;
+      this.Address = address;
+   }
+   public string FirstName { get; set; }
+   public string LastName { get; set; }
+   public int Age { get; set; }
+   public double Height { get; set; }
+   public DateTime Born { get; set; }
+   public string Address { get; set; }
+}
+----
+
+オブジェクトを自分で修正することは常に可能ではないため、xamGrid コントロールの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~dataobjectrequested_ev.html[DataObjectRequested] イベントを処理して、新しいオブジェクトの要求を遮断することができます。このイベントは、DataManager は新しい基本データ オブジェクトの作成を試みようとすると発生します。このイベントのパラメーターでは、メンバーは e. link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.dataobjectcreationeventargs~newobject.html[NewObject] と呼ばれます。このオブジェクトをデータ オブジェクトの新しいインスタンスに設定しますが、新しいオブジェクトの作成を試みる代わりにこれがグリッドによって使用されます。
+
+*C# の場合:*
+
+----
+ig.DataObjectRequested += new EventHandler<DataObjectCreationEventArgs>(ig_DataObjectRequsted);
+void ig_DataObjectRequsted(object sender, DataObjectCreationEventArgs e)
+{
+   if (e.ObjectType == typeof(Person)) 
+     e.NewObject = new Person(null, null, 0, 0, DateTime.Today, null);
+}
+----
+
+== 関連トピック
+
+link:xamgrid-add-new-row.html[新規行の追加]

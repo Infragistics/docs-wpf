@@ -1,0 +1,136 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-search-nodes",
+    "controlName": ["xamOrgChart"],
+    "tags": ["Navigation"],
+    "guid": "7e48587c-5765-4892-80b2-1be196df8907",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.7572641Z"
+}
+|metadata|
+////
+
+= ノードでの検索
+
+このトピックは、組織図で検索を実装する方法を示します。
+
+トピックは以下のとおりです。
+
+* <<introduction,概要>>
+* <<implementing,ノードでの検索の実装>>
+
+** <<implementing_delegate,Method Delegate を使用してノードで検索を実装>>
+** <<implementing_lambda,ラムダ式を使用してノードで検索を実装>>
+
+[[introduction]]
+== 概要
+
+基盤となるデータが特定の条件を満たす場合、xamOrgChart コントロールのノードは検索結果に含まれます。条件は、method delegate またはラムダ式を使用して指定されます。検索結果は、 link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.orgchartnode.html[OrgChartNode] オブジェクトのコレクションとして表されます。
+
+ノードに検索を実装するための方法は 2 通りあります。
+
+* method delegate の使用
+* ラムダ式の使用
+
+後半はこれらを詳細に説明します。
+
+[[implementing]]
+== ノードでの検索の実装
+
+[[implementing_delegate]]
+== Method Delegate を使用してノードで検索を実装
+
+method delegate を使用する時、最初にデリゲートを定義し、次にそれを使用して検索を実行します。
+
+[start=1]
+. link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart+conditionmethod.html[ConditionMethod] デリゲートに一致する検索条件を定義します。
+
+*C# の場合:*
+
+----
+bool SearchEmployee(object data)
+{
+    if(data is Employee)
+    {
+        Employee employee = (Employee)data;
+        if(employee.FirstName == "John")
+        {
+            return true;
+        }
+    }
+    return false;
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Function SearchEmployee(data As Object) As Boolean
+    If TypeOf data Is Employee Then
+        Dim employee As Employee = DirectCast(data, Employee)
+        If employee.FirstName = "John" Then
+            Return True
+        End If
+    End If
+    Return False
+End Function
+----
+
+[start=2]
+. 検索を実行します。
+
+*C# の場合:*
+
+----
+IEnumerable<OrgChartNode> searchResults = orgChartInstance.Search(SearchEmployee);
+----
+
+*Visual Basic の場合:*
+
+----
+Dim searchResults As IEnumerable(Of OrgChartNode) = orgChartInstance.Search(AddressOf SearchEmployee)
+----
+
+[[implementing_lambda]]
+== ラムダ式を使用してノードで検索を実装
+
+ラムダ式を使用する時、検索条件は link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart~search.html[Search] メソッドで直接定義されます。
+
+*C# の場合:*
+
+----
+IEnumerable<OrgChartNode> searchResults = orgChartInstance.Search(data =>
+{
+    if (data is Employee)
+    {
+        Employee employee = (Employee)data;
+        if (employee.FirstName == "John")
+        {
+            return true;
+        }
+    }
+    return false;
+});
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim searchResults As IEnumerable(Of OrgChartNode) = orgChartInstance.Search(Function(data)
+    If TypeOf data Is Employee Then
+        Dim employee As Employee = DirectCast(data, Employee)
+        If employee.FirstName = "John" Then
+            Return True
+        End If
+    End If
+    Return False
+    End Function)
+----
+
+== *関連トピック*
+
+link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]

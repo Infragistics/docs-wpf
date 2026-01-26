@@ -1,0 +1,235 @@
+﻿////
+|metadata|
+{
+    "name": "wpf-whats-new-in-2009-volume-2",
+    "controlName": [],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{8F0E4A6B-3F11-44F9-BE43-1E8D795F95F2}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.6976927Z"
+}
+|metadata|
+////
+
+= 2009 Volume 2 の新機能
+
+{ProductName} 2009.2 リリースには、WPF コントロールをこれまで以上に活用することを可能にする多数の強力な新しい機能を含んでいます。
+
+以下は {ProductName} 2009.2 リリースに追加した機能のリストです。リンクをクリックして提供されている機能のリストを確認してください。
+
+* <<DataPresenter,DataPresenter ファミリー 2009.2>>
+
+** <<Clipboard,クリップボード操作>>
+** <<DataValueChanged,DataValueChanged イベント>>
+** <<ExcelExport,Excel エクスポータ>>
+** <<FieldChooser,フィールドの選択>>
+** <<FieldSizing,フィールドのサイズ>>
+** <<FixedRecords,固定されたレコード>>
+** <<Grouping,フィールド レイアウトでグループ化>>
+** <<IDataErrorInfo,IDataErrorInfo サポート>>
+** <<Performance,ネストされたレコードのパフォーマンスの強化>>
+** <<Undo,元に戻す操作>>
+
+* <<ExcelEngine,Infragistics Excel Engine>>
+
+[[DataPresenter]]
+
+== DataPresenter ファミリー 2009.2
+
+[[Clipboard]]
+
+== クリップボード操作
+
+DataPresenter コントロールによってセル、データ レコードまたはフィールドを選択する時にエンドユーザーはセルのコンテンツの切り取り、コピー、貼り付けおよびクリア操作を実行できます。エンドユーザーは DataPresenter コントロールから Microsoft® Excel® スプレッドシートにデータをコピー アンド ペーストする、または Microsoft® Excel® スプレッドシートから DataPresenter コントロールにデータをコピー アンド ペーストできます。DataPresenter コントロール間、または DataPresenter コントロールの単一のインスタンス内でデータをコピーすることも可能です。事実、エンドユーザーがデータを新規追加レコードに貼り付ける場合、DataPresenter コントロールはそれらのための新しいレコードを自動的に作成します。
+
+== 関連トピック
+link:xamdatapresenter-clipboard-operations.html[クリップボード操作]
+
+[[DataValueChanged]]
+
+== DataValueChanged イベント
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangednotificationsactive.html[DataValueChangedNotificationsActive] プロパティを True に設定することによって、セル値に行われた変更を追跡できます。フィールドでこの機能を有効にすると、DataPresenter コントロールはそのフィールド内のセルに対して link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~datavaluechanged_ev.html[DataValueChanged] イベントと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~initializecellvaluepresenter_ev.html[InitializeCellValuePresenter] イベントを発生させます。
+
+== DataValueChanged イベント
+
+DataPresenter コントロールは以下の環境下で DataValueChanged イベントを発生させます:
+
+[start=1]
+. FieldSettings オブジェクトの DataValueChangedNotificationsActive プロパティを True に設定することによって、Field オブジェクトでデータ値の変更を追跡している。
+[start=2]
+. データ値の変更を追跡しているフィールドにおいてセルの値が変わる。
+[start=3]
+. DataPresenter コントロールが、値が変わったセルの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] オブジェクトを指定していた。DataRecord オブジェクトを指定していなくても、DataPresenter コントロールに DataValueChanged イベントを発生させるようにしたい場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordloadmode.html[RecordLoadMode] プロパティを PreloadRecords に設定し、FieldSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangedscope.html[DataValueChangedScope] プロパティを AllAllocatedRecords に設定する必要があります。
+
+DataPresenter コントロールは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs.html[DataValueChangedEventArgs] オブジェクトを DataValueChanged イベント ハンドラに渡します。DataValueChangedEventArgs オブジェクトによって公開されたプロパティを使用して、値が変わるとセルを強調表示することができます。DataValueChangedEventArgs オブジェクトは以下のプロパティを公開します。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs~cellvaluepresenter.html[CellValuePresenter] - このプロパティはセルの値を表示するために使用される CellValuePresenter オブジェクトへの参照を提供します。セルが表示されず、セルの DataRecord オブジェクトが指定されていない場合にこのプロパティは NULL を返す場合があります。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs~valuehistory.html[ValueHistory] - このプロパティは最新の変更が 0 番目のインデックスに保存されるデータ値変更のリストです。デフォルトで、データ値の変更の数は 1 に設定されます。ただし、FieldSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangedhistorylimit.html[DataValueChangedHistoryLimit] プロパティを設定することによって、セルのデータ値の履歴に保存されている変更の数を修正できます。DataValueChangedHistoryLimit プロパティを 0 に設定すると、ValueHistory プロパティは NULL になります。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs~field.html[Field] - セルが属する Field オブジェクト。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.datavaluechangedeventargs~record.html[Record] - セルが属する DataRecord オブジェクト。
+
+== InitializeCellValuePresenter イベント
+
+フィールドのデータ値変更追跡を有効にすると、CellValuePresenter オブジェクトをそのフィールド内のセルに接続する時に DataPresenter コントロールは InitializeCellValuePresenter イベントを発生させます。CellValuePresenter が CellValuePresenter オブジェクトの新しいインスタンスなのか、それともリサイクルのインスタンスであるかを判断するために、InitializeCellValuePresenterEventArgs オブジェクトの IsNew プロパティを使用できます。
+
+== パフォーマンスの関係
+
+データの値変更の追跡は追跡を必要とするフィールドに限定する必要があります。DataPresenter コントロールのすべてのフィールドでこの機能を有効にして、セルのデータ値の履歴に保存する変更が多すぎる場合には、アプリケーションのパフォーマンスに悪影響を与える場合があります。
+
+== 関連トピック
+
+link:xamdatapresenter-enable-data-value-change-tracking.html[データ値の変更追跡を有効にする]
+
+link:xamdatapresenter-reset-a-cells-value-history.html[セルの値の履歴をリセット]
+
+[[ExcelExport]]
+
+== Excel エクスポータ
+
+DataPresenter コントロールは、 link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter.html[DataPresenterExcelExporter] クラスを使用して Microsoft® Excel® フォーマットでデータをエクスポートします。DataPresenterExcelExporter クラスは、ワークブックの作成、DataPresenter 行/セルの繰り返し、およびワークシート セル値の設定というすべての作業をカプセル化します。
+
+== 関連トピック
+link:xamdatapresenter-exporting-to-excel.html[Excel へエクスポート]
+
+[[FieldChooser]]
+
+== フィールドの選択
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldchooser.html[FieldChooser] コントロールによってエンドユーザーは xamDataPresenter™、xamDataGrid™ または xamDataCarousel™ コントロールでフィールドの表示/非表示をランタイムに変更することができます。FieldChooser コントロールはチェックボックスとともにフィールドヘッダーのリストを表示します。エンドユーザーはフィールドヘッダーの横にあるチェックボックスを切り替える、または FieldChooser コントロールでまたは FieldChooser コントロールからフィールドヘッダーをドラッグしてフィールドの表示/非表示を切り替えることができます。さらに、DataPresenter コントロールを階層的なデータソースにバインドしている場合、FieldChooser コントロールによってエンドユーザーはドロップダウンリストからフィールドレイアウトを選択することができます。
+
+image::images/xamDataPresenter_About_the_Field_Chooser_01.png[]
+
+DataPresenter コントロールはフィールドの選択を表示するために 3 つの異なるオプションを提供します。
+
+* DataPresenter コントロールの外側に FieldChooser コントロールを表示します。
+* フィールドの選択を表示するためにエンドユーザーが選択できるヘッダー プレフィックスにフィールドの選択ボタンを表示します。
+* ShowFieldChooser メソッド/コマンドを起動/実行します。
+
+== 関連トピック
+link:xamdatapresenter-field-chooser.html[フィールドの選択]
+
+[[FieldSizing]]
+
+== フィールドのサイズ
+
+DataPresenter コントロールはフィールドのリサイズ インジケーターをダブルクリックすることによってフィールドを自動的にリサイズする機能をエンドユーザーに提供します。この動作は Microsoft® Excel® にある列サイズ設定機能を複製します。さらに、Excel とまったく同じように、複数のフィールドを選択しドラッグするかリサイズ インジケーターをダブルクリックすることによって、エンドユーザーはフィールドのサイズ設定を同期できます。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~labelclickaction.html[LabelClickAction] プロパティを SelectField に設定することによってフィールド選択を有効にする場合、エンドユーザーはフィールドのヘッダーをクリックしてフィールドをソートすることができなくなります。
+
+エンドユーザーによるフィールドの自動サイズ設定に加えて、DataPresenter コントロールはコントロールの境界内に収めるためにフィールド レイアウト内ですべてのフィールドを自動的にリサイズできます。この機能を完全にするために、DataPresenter コントロールは Grid パネルにある同一の star size 構文を使用して、フィールドの幅をパーセントで設定できます。
+
+== 関連トピック
+link:xamdatapresenter-field-sizing.html[フィールドのサイズ設定]
+
+[[FixedRecords]]
+
+== 固定されたレコード
+
+固定されたレコード機能によってエンドユーザーは、xamDataPresenter™ または xamDataGrid™ コントロールのレコードリストの上側または下側にルートレベルのレコードを固定できます。エンドユーザーが新しいレコードを表示する時に、固定されたレコードはスクロールされて表示されなくなることはありません。
+
+image::images/xamDataPresenter_About_Fixed_Non_Scrolling_Records_01.png[]
+
+xamDataCarousel™ コントロールは固定されたレコードをサポートしません。ただし、xamDataCarousel コントロールでレコードをプログラムによって固定する場合、レコードはレコード リストの先頭に移動し、xamDataCarousel はレコードをスクロールして表示します。レコードの固定を解除すると、レコード リストの元の位置に戻り、xamDataCarousel はレコード リストの先頭にスクロールします。
+
+DataPresenter コントロールにネストされたレコード、つまり階層データやグループ化されたレコードが含まれる場合、固定されたレコードは異なる動作を示します。
+
+[NOTE]
+====
+*注:* ネストされたパネルを有効にする場合、固定できるのはルート レベルのレコードのみです。
+====
+
+[start=1]
+. エンドユーザーが複数のレコードを上側に固定し、固定されたレコードのいずれかを展開する場合、それ以降の固定されたレコード (スクロール可能な領域に最も近い) はスクロール可能になります。エンドユーザーが展開されたレコードを縮小する場合、それ以降の固定されたレコードは再度固定されます。
+[start=2]
+. エンドユーザーが複数のレコードを下側に固定し、固定されたレコードのいずれかを展開する場合、固定されたレコードとその前の固定されたレコード (スクロール可能な領域に最も近い) はスクロール可能になります。エンドユーザーが展開されたレコードを縮小する場合、それ以降の固定されたレコードは再度固定されます。
+[start=3]
+. DataPresenter コントロールは固定されたレコードを固定されたレコード リストの一番下 (一番上に固定されたレコード) または固定されたレコードリストの一番上 (一番下に固定されたレコード) に追加するので、固定されたレコードを展開後にエンドユーザーが固定するレコードはスクロール可能です (前述のルールを参照)。
+[start=4]
+. エンドユーザーは、それぞれのレコード アイランドの上側にあるグループ化レコード内に子レコードまたはデータ レコードしか固定することができません。
+[start=5]
+. 固定された子レコードが固定されるのは兄弟に相対した場合に限定されます。たとえば、エンドユーザーが 5 つの兄弟がある子レコードを固定する場合、エンドユーザーが最後の兄弟レコードをスクロールしても表示されなくならない限り固定された子レコードはこれまで同様に表示されます。エンドユーザーが最後の兄弟のレコードがスクロールして表示されなくなったら、固定された子レコードはスクロール可能になります。これは、エンドユーザーがレコード アイランドにすべての子レコードを固定する場合、それらすべてがスクロール可能になるということも意味します。
+
+== 関連トピック
+link:xamdatapresenter-fixing-records.html[レコードの固定]
+
+[[Grouping]]
+
+== フィールド レイアウトでグループ化
+
+エンドユーザーはフィールド ヘッダーを group-by 領域にドラッグすることによって、複数のフィールド レイアウトからのレコードをグループ化できます。
+
+image::images/xamDataPresenter_About_Grouping_01.png[]
+
+== 関連トピック
+
+link:xamdatapresenter-sorting.html[並べ替えとグループ化]
+
+link:xamdatapresenter-grouping.html[グループ化]
+
+[[IDataErrorInfo]]
+
+== IDataErrorInfo サポート
+
+データ項目が .NET Framework にある IDataErrorInfo インターフェイスを実装する場合、エンドユーザーがセルに無効なデータを入力するとコントロールの DataPresenter ファミリーはエラー メッセージを表示できます。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~supportdataerrorinfo.html[SupportDataErrorInfo] プロパティを SupportDataErrorInfo 列挙値に設定することにより、IDataErrorInfo インターフェイスのサポートを有効にする必要があります。データ エラーのサポートを有効にすることに加えて、SupportDataErrorInfo プロパティは DataPresenter コントロールがセル、レコード セレクターまたは両方のいずれにデータ エラーを表示するかを決定します。最終的に、SupportDataErrorInfo プロパティは DataPresenter コントロールがデータ エラー メッセージのソースとして使用する IDataErrorInfo インターフェイスのプロパティを決定します。セル レベルのデータ エラーを有効にする場合、コントロールは IDataErrorInfo インターフェイスの文字列インデクサーを使用し、レコード レベルのデータ エラーを有効にする場合、コントロールは IDataErrorInfo インターフェイスの Error プロパティを使用します。
+
+FieldLayoutSettings オブジェクトで IDataErrorInfo インターフェイスのサポートを有効にする場合、影響を受けたフィールド レイアウトのフィールドはデータ エラーを自動的にレポートします。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~settings.html[FieldSettings] プロパティによって公開されている link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~supportdataerrorinfo.html[SupportDataErrorInfo] プロパティを False に設定することによってフィールドでこの機能を選択的に無効にできます。
+
+FieldLayoutSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~dataerrordisplaymode.html[DataErrorDisplayMode] プロパティを DataErrorDisplayMode 列挙値に設定することによって、DataPresenter コントロールがデータ エラーをレポートする方法を修正することも可能です。DataErrorDisplayMode プロパティを設定すると、データエラーがエラーアイコン、強調表示または両方のいずれで示されるかを決定します。
+
+image::images/xamDataPresenter_About_Data_Validation_01.png[]
+
+== xamEditor 値の制約
+
+IDataErrorInfo インターフェイスのサポートを有効にして、組み込まれた xamEditor コントロールの ValueEditor.ValueConstraint プロパティを設定する場合には、値の制約エラーが原因となってエラー アイコンと強調表示の両方またはいずれかが表示することにもなります。値の制約はエンドユーザーにエラーを修正することを強制し、修正後でなければフォーカスを新しいセルに移動できません。FieldSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~invalidvaluebehavior.html[InvalidValueBehavior] プロパティを RevertValue に設定する場合、セルの値は自動的に元の値に戻ります。これによってエンドユーザーはフォーカスを新しいセルに移動できます。ただし、値は値の制約を常に渡すので、DataPresenter コントロールはエラーアイコン/強調表示を決して表示しなくなります。一方、値の制約を使用しない場合、DataPresenter コントロールはデータ項目のエラー メッセージを適切なセルに表示し、エンドユーザーはフォーカスを新しいセルに移動できます。
+
+== 関連トピック
+link:xamdatapresenter-validating-data.html[データの検証]
+
+[[Performance]]
+
+== ネストされたレコードのパフォーマンスの強化
+
+GridView オブジェクトのデフォルト パネルは、ネストされたレコード (階層データおよび group-by レコード) のパフォーマンスを向上するために拡張されています。レコードを配列するために複数のネストされたパネルを使用する代わりに、GridView オブジェクトは単一のルートレベルのパネルを使用し、レコードを適切にインデントします。
+
+== 関連トピック
+
+link:wpf-2009-volume-2.html[2009 Volume 2 の重大な変更]
+
+link:xamdatapresenter-hierarchical-records-and-performance.html[階層的なレコードとパフォーマンス]
+
+[[Undo]]
+
+== 元に戻す操作
+
+DataPresenter コントロールの IsUndoEnabled プロパティを True に設定することによって、元に戻す/やり直す操作を有効にすることができます。これによってエンドユーザーは DataPresenter コントロールのユーザーインターフェイスによってエンドユーザーが実行する変更を元に戻すまたはやり直すことができます。元に戻す/やり直す機能は編集またはクリップボード機能に制限されません。事実、エンドユーザーはソート、グループ化、展開などの変更を元に戻すことができます。たとえば、エンドユーザーがフィールドヘッダーをクリックしてフィールドをソートする場合に、元に戻すことができます。ただし、プロシージャコードを使用してフィールドをソートする場合には、エンドユーザーは元に戻すことができなくなります。
+
+== 関連トピック
+link:xamdatapresenter-undo-operations.html[元に戻す操作]
+
+[[ExcelEngine]]
+
+== Infragistics Excel Engine
+
+Infragistics Excel Engine によって、 link:{ApiPlatform}documents.excel{ApiVersion}~infragistics.documents.excel.workbook.html[Workbooks]、 link:{ApiPlatform}documents.excel{ApiVersion}~infragistics.documents.excel.worksheet.html[Worksheets]、 link:{ApiPlatform}documents.excel{ApiVersion}~infragistics.documents.excel.worksheetcell.html[Cells]、 link:{ApiPlatform}documents.excel{ApiVersion}~infragistics.documents.excel.formula.html[Formulas] などの人気の Microsoft® Excel® スプレッドシートオブジェクトを使用してスプレッドシートデータで作業をすることができます。Infragistics Excel Library によって Excel スプレッドシートでアプリケーションのデータを表すことだけでなく、Excel からアプリケーションにデータを転送することも簡単になります。
+
+== サポートされるバージョンの Microsoft Excel
+
+以下は Excel のサポートされるバージョンのリストです。
+
+* Microsoft Excel 97
+* Microsoft Excel 2000
+* Microsoft Excel 2002
+* Microsoft Excel 2003
+* Microsoft Excel 2007
+
+== 機能
+
+以下は Infragistics Excel Engine の主要な機能のリストです:
+
+* *Excel に依存しない* - Infragistics Excel Engine は Microsoft Excel に依存せずに完全に実行するクラス ライブラリであるため、インストールする必要はありません。
+* *Workbook オブジェクト モデル* - これは Workbook、Worksheet、Cell、Formula など、ユーザーが使用可能なすべての Excel オブジェクトを表します。
+
+== 関連トピック
+
+link:excelengine-creating-a-workbook.html[ワークブックを作成]
+
+link:excelengine-using-the-infragistics-excel-engine.html[Infragistics Excel Engine の使用]

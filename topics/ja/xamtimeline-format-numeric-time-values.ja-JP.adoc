@@ -1,0 +1,76 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-format-numeric-time-values",
+    "controlName": ["xamTimeline"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "{715A6233-68BB-4E17-BC8A-F8E4C2013722}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.0504124Z"
+}
+|metadata|
+////
+
+= 数値時間値の書式設定
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[StringFormat] プロパティを使用して link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel.html[NumericTimeSeries] オブジェクトの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventtitle.html[AxisLabel] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axislabel~stringformat.html[EventTitle] 表示値をフォーマットできます。このプロパティは、Double タイプの値に対して標準の .NET フォーマット文字列を受け付けます。
+
+この例は、Infragistics link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールのためにプロジェクトを設定する方法をユーザーが理解していることを前提としています。以下の xaml コードは、表示値に対してカスタム フォーマットを提供するために AxisLabel および EventTitle をスタイルする方法を示します。
+
+*XAML の場合:*
+
+----
+    <UserControl.Resources>
+        <!-- 軸ラベル -->
+        <Style x:Key="rscAxisFormatStyle" TargetType="igtl:AxisLabel">
+            <!-- 表示するための数値時刻軸ラベルを書式設定します:
+            <!-- 負のタイムライン数には BC -->
+            <!-- 正のタイムライン数には AD -->
+            <Setter Property="StringFormat" Value="{}{0:## AD;## BC;0}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" >
+        <igtl:XamTimeline x:Name="xamTimeline" 
+                             Width="1000" Height="500" Margin="15">
+            <!-- 軸のラベル スタイルを設定します -->
+            <igtl:XamTimeline.Axis>
+                <igtl:NumericTimeAxis  Minimum="-2800" Maximum="2200"
+                                       LabelStyle="{StaticResource rscAxisFormatStyle}"
+                                   AutoRange=" Unit="400"/>
+            </igtl:XamTimeline.Axis>
+            <igtl:XamTimeline.Series>
+                <!-- 歴史上の出来事 -->
+                <igtl:NumericTimeSeries Title="Historic Events" Fill="Red" 
+                                        Position="TopOrLeft">
+                    <!-- TODO: 数値時間エントリを追加 -->
+                    <igtl:NumericTimeSeries.Entries>
+                        <igtl:NumericTimeEntry Time="-2575" Title="Pyramid"/>
+                        <igtl:NumericTimeEntry Time="-600" Title="Hanging Gardens"  />
+                        <igtl:NumericTimeEntry Time="70" Title="Colosseum "  />
+                        <igtl:NumericTimeEntry Time="-432" Title="Statue of Zeus"  />
+                        <igtl:NumericTimeEntry Time="-550" Title="Temple of Artemis"  />
+                        <igtl:NumericTimeEntry Time="-350" Title="Mausoleum of Mausolus"  />
+                        <igtl:NumericTimeEntry Time="-280" Title="Colossus of Rhodes"  />
+                        <igtl:NumericTimeEntry Time="-247" Title="Lighthouse of Alexandria"  />
+                        <igtl:NumericTimeEntry Time="-206" Title="Great Wall of China"  />
+                        <igtl:NumericTimeEntry Time="1520" Title="Hagia Sophia"  />
+                        <igtl:NumericTimeEntry Time="1653" Title="Taj Mahal"  />
+                        <igtl:NumericTimeEntry Time="600" Title="Chichen Itza"/>
+                        <igtl:NumericTimeEntry Time="1450" Title="Machu Picchu"  />
+                    </igtl:NumericTimeSeries.Entries>
+                </igtl:NumericTimeSeries>
+            </igtl:XamTimeline.Series>
+        </igtl:XamTimeline>
+    </Grid>
+----
+
+image::images/XamTimeline_Format_Numeric_Time_Values_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-about-formatting-xamwebtimeline.html[xamTimeline の書式設定について]
+
+link:xamtimeline-format-datetime-values.html[日付/時刻の値の書式設定]
+
+link:xamtimeline-format-point-and-span-values.html[点およびスパン値の書式設定]

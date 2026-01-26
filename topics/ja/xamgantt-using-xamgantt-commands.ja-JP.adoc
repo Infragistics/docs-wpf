@@ -1,0 +1,195 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-using-xamgantt-commands",
+    "controlName": ["xamGantt"],
+    "tags": ["Commands","Getting Started","How Do I"],
+    "guid": "bc277e9a-c7ff-4343-b4c3-df5b68e218b8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2451609Z"
+}
+|metadata|
+////
+
+= xamGantt コマンドの使用
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt_™ コントロールでよく使用できる主なコマンドと､その使用方法を説明します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-adding-xamgantt-to-a-page.html[xamGantt をページに追加]
+|このトピックでは、 _xamGantt_ コントロールをページに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref333763466,  _xamGantt_  コマンド リファレンス >>
+* <<_Ref333763503, コード例:  _xamGantt_  におけるコマンドによるタスクの挿入/削除 >>
+* <<_Ref333763543, 関連コンテンツ >>
+
+[[_Ref333763466]]
+== _xamGantt_  コマンド リファレンス
+
+[[_Ref333763478]]
+
+=== はじめに
+
+_xamGantt_   コントロールは、タスクの挿入/削除、スクロール、インデント/アウトデントなど一般的なユーザー操作を実行できるコマンド セットを備えています。
+
+以下の表は、 _xamGantt_   のコマンドの代表的なコマンドです。詳細については、API ドキュメント (link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[GanttCommandId 列挙]) を参照してください。
+
+[[_Ref333763484]]
+
+=== コマンド リファレンス チャート
+
+以下の表は、 _xamGantt_   コントロールで使用する主なコマンドの目的と機能をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|コマンド|対応するユーザー アクション
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[AddSubtask]
+|選択したタスクに新しい子タスクを追加します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[AddTask]
+|選択したタスクの下に新しい兄弟タスクを追加します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[CalculateProject]
+|プロジェクトを明示的に計算します (例、 _xamGantt の_ 自動プロジェクト計算コントロールを無効にする)。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ChangeTaskToActive]
+|選択したタスクを起動します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ChangeTaskToAutomatic]
+|タスク モードを自動スケジュールに変更します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ChangeTaskToInactive]
+|選択したタスクを停止します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ChangeTaskToManual]
+|タスク モードを手動スケジュールに変更します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ClearSort]
+|並べ替えた列を最初の順序にリセットします。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[DeleteTask]
+|選択したタスクを削除します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[HideSubtasks]
+|選択したサマリー タスクを折り畳みます。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[IndentTask]
+|選択したタスクをインデントします。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[InsertTask]
+|選択したタスクの上に新しいタスクを追加します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[OutdentTask]
+|選択したタスクをアウトデントします。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[RespectLinks]
+|タスクの依存関係ごとに、タスクのスケジューリングを明示的に決定します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ScrollToProjectFinish]
+|タイムスケールをスクロールしてプロジェクトの終了日を表示します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ScrollToProjectStart]
+|タイムスケールをスクロールしてプロジェクトの開始日を表示します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ScrollToTaskFinish]
+|タイムスケールをスクロールしてタスクの終了日を表示します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ScrollToTaskStart]
+|タイムスケールをスクロールしてタスクの開始日を表示します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ShowSubtasks]
+|選択したサマリー タスクを展開します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.ganttcommandid.html[ToggleTaskActive]
+|選択したタスクの状態をアクティブと非アクティブの間で切り替えます。
+
+|====
+
+[[_Ref333763503]]
+== コード例:  _xamGantt_   におけるコマンドによるタスクの挿入/削除
+
+[[_Ref333763526]]
+
+=== 解説
+
+以下のコードは、 _xamGantt_   コマンドによるタスクの挿入方法と削除方法を示します。
+
+[[_Ref333763533]]
+
+=== コード
+
+ページに以下の名前空間を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:igPrim="http://schemas.infragistics.com/xaml/primitives"
+----
+
+以下のコードは、コマンドでタスクの挿入と削除を実行できるように、 _xamGantt_   と 2 つのボタンをページに追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="22" />
+    </Grid.RowDefinitions>
+    <ig:XamGantt x:Name="gantt" Project="{Binding}" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="Btn_InsertTask" Content="Insert Task">
+                <ig:Commanding.Command>
+                    <igPrim:GanttCommandSource
+                        TargetName="gantt"
+                        CommandType="InsertTask" 
+                        EventName="Click"/>
+                </ig:Commanding.Command>
+            </Button>
+            <Button x:Name="Btn_DeleteTask" Content="Delete Task">
+                <ig:Commanding.Command>
+                    <igPrim:GanttCommandSource
+                        TargetName="gantt"
+                        CommandType="DeleteTask" 
+                        EventName="Click"/>
+                </ig:Commanding.Command>
+            </Button>
+        </StackPanel>
+</Grid>
+----
+
+[[_Ref333763543]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-xamgantt.html[xamGantt の構成]
+|このグループのトピックは、 _xamGantt_ コントロールの構成可能な機能を説明します。
+
+|====

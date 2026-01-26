@@ -1,0 +1,63 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtagcloud-setting-minimum-and-maximum-scale-values",
+    "controlName": ["xamTagCloud"],
+    "tags": ["Getting Started","How Do I","Layouts"],
+    "guid": "{6E840221-85B7-4C40-85D2-60A20FD20CEB}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5864025Z"
+}
+|metadata|
+////
+
+= 最小スケール値と最大スケール値の設定
+
+xamTagCloud コントロールのスケールを使用して、それらのウェイトに基づいてタグのサイズを決定します。link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~minscale.html[MinScale] および link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~maxscale.html[MaxScale] プロパティの設定によって、スケール値の範囲が決定されます。
+
+たとえば、ウェイト範囲が 1-N の項目の範囲がある場合、最小スケール値はウェイトが 1 の項目に適用され、最大スケール値はウェイトが N の項目に適用されます。ウェイト値がその中間のすべての他の項目は、最小値と最大値に相対してスケールされます。
+
+以下のコードは、最小値 1 、最大値 10 でスケールを設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamTagCloud MaxScale="10" MinScale="1" Name="tagCloud">
+   …
+   </ig:XamTagCloud>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+…
+tagCloud.MaxScale = 10
+tagCloud.MinScale = 1
+…
+----
+
+*C# の場合:*
+
+----
+…
+tagCloud.MaxScale = 10;
+tagCloud.MinScale = 1;
+…
+----
+
+== 関連トピック
+
+link:xamtagcloud-add-cloud-items-to-xamtagcloud.html[クラウド項目を xamTagCloud に追加]
+
+link:xamtagcloud-add-navigation-uris-to-cloud-items2.html[ナビゲーション URI をクラウド項目に追加]
+
+link:xamtagcloud-add-spaces-between-cloud-items.html[クラウド項目の間にスペースを追加]
+
+link:xamtagcloud-xamtagcloud-events.html[xamTagCloud イベント]
+
+link:xamtagcloud-smooth-scaling.html[スムーズ スケーリング]
+
+link:xamtagcloud-working-with-scalebreaks-collection.html[ScaleBreaks コレクションでの作業]

@@ -1,0 +1,83 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-enable-data-value-change-tracking",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Events","How Do I"],
+    "guid": "{A602B734-5D2B-474E-8448-76313FF859A5}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1749881Z"
+}
+|metadata|
+////
+
+= データ値の変更追跡を有効にする
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangednotificationsactive.html[DataValueChangedNotificationsActive] プロパティを True に設定することによって、データ値の変更追跡を有効にできます。ただし、特にデータ値の変更の長期間の履歴を追跡する必要がある場合、追跡が必要なフィールドでのみこの機能を有効にすべきです。
+
+デフォルトで、DataPresenter コントロールは、表示されているセルの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~datavaluechanged_ev.html[DataValueChanged] イベントのみを発生させます。ただし、セルが表示されていなくても DataPresenter コントロールにイベントを発生させたい場合は、その link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordloadmode.html[RecordLoadMode] プロパティを PreloadRecords に設定し、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangedscope.html[DataValueChangedScope] を AllAllocatedRecords に設定する必要があります。このオプションを使用すると、レコード数に応じてアプリケーションのパフォーマンスおよびデータ ソースのパフォーマンスに影響を与える場合があります。
+
+最後に、FieldSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~datavaluechangedhistorylimit.html[DataValueChangedHistoryLimit] プロパティを設定することによって、セルが値の履歴リストに格納するエントリの数を変更できます。DataValueChangedHistoryLimit プロパティのデフォルト値は 1 です。この値を 0 に設定する場合、DataValueChanged イベント ハンドラーの ValueHistory プロパティは NULL になります。
+
+以下のコード例は、データ値の変更追跡を有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter
+    Name="xamDataPresenter1"
+    BindToSampleData="True"
+    DataValueChanged="OnDataValueChanged">
+    <igDP:XamDataPresenter.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:FieldLayout.Fields>
+                <igDP:Field Name="salary">
+                    <igDP:Field.Settings>
+                        <igDP:FieldSettings
+                            DataValueChangedNotificationsActive="True" />
+                    </igDP:Field.Settings>
+                </igDP:Field>
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+    </igDP:XamDataPresenter.FieldLayouts>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter.Events
+Imports System.Windows.Media
+...
+Private Sub OnDataValueChanged(ByVal sender As Object, ByVal e As DataValueChangedEventArgs)
+    If e.CellValuePresenter IsNot Nothing Then 
+        'TODO: 変更に対する視覚的なフィードバックをエンド ユーザーに提供するコードを追加します。
+        e.CellValuePresenter.Foreground = Brushes.Red
+    End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter.Events;
+using System.Windows.Media;
+...
+private void OnDataValueChanged(object sender, DataValueChangedEventArgs e)
+{
+    if(e.CellValuePresenter != null)
+    {
+        //TODO: 変更に対する視覚的なフィードバックをエンド ユーザーに提供するコードを追加します。
+        e.CellValuePresenter.Foreground = Brushes.Red;
+    }
+}
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-the-datavaluechanged-event.html[DataValueChanged イベントについて]
+
+link:xamdatapresenter-reset-a-cells-value-history.html[セルの値の履歴をリセット]

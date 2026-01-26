@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticolumncomboeditor",
+    "controlName": ["xamMultiColumnComboEditor"],
+    "tags": ["Getting Started"],
+    "guid": "e0dfd655-2cdc-4fc0-b8c8-97af554625b5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.5372503Z"
+}
+|metadata|
+////
+
+= xamMultiColumnComboEditor
+
+このセクションには、コントロールが行うことや、アプリケーションでのコントロールの使用手順など、xamMultiColumnComboEditor™ コントロールに関する情報が含まれています。
+
+以下のリンクをクリックすると、xamMultiColumnComboEditor に関する重要な情報にアクセスできます。
+
+== link:xammulticce-about.html[xamMultiColumnComboEditor について]
+
+このセクションでは、xamMultiColumnComboEditor の機能の理解を深める手助けとなる情報を提供します。
+
+== link:xammulticce-adding.html[xamMultiColumnComboEditor をページに追加]
+
+xamMultiColumnComboEditor にできる限り素早く慣れるために、コントロールを使用して作業を開始する方法についての情報を提供します。
+
+== link:xammulticce-configuring-xammulticolumncomboeditor.html[xamMultiColumnComboEditor の使用]
+
+このセクションには、xamMultiColumnComboEditor が提供する主な特長および機能に関する情報が含まれています。
+
+== link:xammulticce-api-overview.html[API の概要]
+
+このトピックには、xamMultiColumnComboEditor を使用したプログラミング中に扱う名前空間とクラスがリストされています。このトピックにリストされている名前空間とクラスは、{PlatformName} ヘルプの link:api-reference-guide.html[「API 参照ガイド」]のセクションに便宜的にリンクされています。

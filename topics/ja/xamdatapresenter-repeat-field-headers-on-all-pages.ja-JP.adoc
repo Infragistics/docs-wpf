@@ -1,0 +1,96 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatapresenter-repeat-field-headers-on-all-pages",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Layouts","Tips and Tricks"],
+    "guid": "{342900FF-D55C-495E-83E1-F049BFE2BC98}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3080147Z"
+}
+|metadata|
+////
+
+= すべてのページでフィールド ヘッダーを繰り返す
+
+
+
+WPF レポーティング エンジンは初出のフィールド ヘッダーを自動的に印刷します。多くのレコードを持つフラットなデータソースに DataPresenter コントロールをバインドする場合、WPF レポーティング エンジンは最初のページの上部にあるフィールド ヘッダーのみを印刷します。ただし、 link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.reportsettings.html[ReportSettings] オブジェクトの RepeatType プロパティを設定することによりこの動作を修正できます。
+
+[NOTE]
+====
+**注:** link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~labellocation.html[LabelLocation] プロパティは、ReportSettings オブジェクトの RepeatType プロパティをオーバーライドします。LabelLocation プロパティを InCells または Hidden に設定した場合、RepeatType プロパティはプリントアウトに影響しません。
+====
+
+== 設定
+
+RepeatType プロパティを以下の link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.repeattype.html[RepeatType 列挙]値に設定できます。
+
+* *FirstOccurrence* - 初出のフィールド ヘッダーを印刷するデフォルト設定。
+* *PageBreak* - WPF レポーティング エンジンは、特定のページにある最初のレコードのページの上部にあるフィールド ヘッダーを印刷します。階層データがある場合、そのページの子レコードの初出のフィールド ヘッダーも印刷します。
+* *LevelBreak* - この設定は次の親レベル レコードだけでなく展開される子レコードのすべてのセットのフィールド ヘッダーを印刷します。たとえば、印刷の前に 2 番目のレコードを展開する場合、最初のルート レベル レコード、2 番目のレコードの子レコード、そして展開された子レコードに続く 3 番目のルート レベル レコードのフィールド ヘッダーが印刷されます。階層データを持たない場合、この設定は PageBreak と同じです。
+
+[options="header", cols="a,a"]
+|====
+|フラットなデータ|階層データ
+
+|*FirstOccurrence*
+|*FirstOccurrence*
+
+|image::images/xamData_Repeat_Field_Headers_on_All_Pages_01.png[]
+
+|image::images/xamData_Repeat_Field_Headers_on_All_Pages_02.png[]
+
+|*PageBreak*
+|*PageBreak*
+
+|image::images/xamData_Repeat_Field_Headers_on_All_Pages_03.png[]
+|image::images/xamData_Repeat_Field_Headers_on_All_Pages_04.png[]
+
+|*LevelBreak*
+|*LevelBreak*
+
+|image::images/xamData_Repeat_Field_Headers_on_All_Pages_05.png[]
+|image::images/xamData_Repeat_Field_Headers_on_All_Pages_06.png[]
+
+|====
+
+例のコードはすべてのページでフィールド ヘッダーを繰り返す方法を示します。例のコードは、report1 という名前の link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトをすでに持っていることを前提とします。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Reporting
+...
+report1.ReportSettings.RepeatType = RepeatType.PageBreak
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Reporting;
+...
+report1.ReportSettings.RepeatType = RepeatType.PageBreak;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-exclude-datapresenter-settings-when-printing.html[印刷時に DataPresenter 設定を除外]
+
+link:xamdatapresenter-fit-all-fields-on-a-single-page.html[単一ページにすべてのフィールドを収める]
+
+link:xamdatapresenter-handling-events-to-customize-print-operations.html[印刷操作をカスタマイズするためにイベントを処理]
+
+link:xamdatapresenter-print-all-records-in-a-hierarchy.html[階層のすべてのレコードを印刷]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]

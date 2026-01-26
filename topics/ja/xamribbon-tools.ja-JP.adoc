@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-tools",
+    "controlName": ["xamRibbon"],
+    "tags": ["Events","Getting Started","How Do I","Navigation"],
+    "guid": "{A5AECD96-2545-4658-B77C-2D2577E03530}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.2231977Z"
+}
+|metadata|
+////
+
+= ツール
+
+
+
+リボン link:xamribbon-ribbon-tabs.html[タブ]および link:xamribbon-ribbon-groups.html[グループ]は、ユーザーインターフェイスの整理を支援します。グループのヘッダーにある link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~dialogboxlaunchertool.html[DialogBoxLauncher] ボタンの場合と同じようにタブはクリック可能です。ただし、エンド ユーザーが行うすべてがナビゲートで実行でない場合、遠くに行くことはありません。ツールは xamRibbon にアクションを付与します -- リボン グループ内にツールを配置すると、エンドユーザーはそのツールにリンクしたいアクションであればどれでも実行できます。リボン グループはツールを配置できる唯一の領域ではありません。link:xamribbon-application-menu.html[アプリケーション メニュー]や link:xamribbon-quick-access-toolbar.html[Quick Access Toolbar (QAT)] にツールを配置することもできます。
+
+ツールは標準 link:xamribbon-button.html[ボタン]から印象的なギャラリー ツールまですべての形状、サイズで提供されています。ほとんどのツールは WPF 親から派生するので、標準 Button、ToggleButton、または RadioButton コントロールが提供するすべての基本機能を入手できます。ただし、{ProductName} ツールは、IRibbonTool インターフェイスを実装することで開発者に追加機能を提供します。ツールが IRibbonTool インターフェイスを実装すると、QAT で配置および管理することを可能にする特定の xamRibbon 機能が得られます。このインターフェイスは非常に重要で、特に*自分自身のカスタム xamRibbon ツールを作成* するという強い願望がある場合です。
+
+興味がある場合、xamRibbon のツールについての詳細は、以下のトピックを参照してください。
+
+* link:xamribbon-about-ribbon-tool-commands.html[リボン ツール コマンドについて]
+* link:xamribbon-access-a-tool-by-its-id.html[ID でツールにアクセス]
+* link:xamribbon-add-tools-to-a-ribbon-group.html[リボン グループにツールを追加]
+* link:xamribbon-button.html[ボタン]
+* link:xamribbon-check-box.html[チェックボックス]
+* link:xamribbon-combo-editor.html[コンボ エディター]
+* link:xamribbon-gallery.html[ギャラリー]
+* link:xamribbon-label.html[ラベル]
+* link:xamribbon-masked-editor.html[マスク エディター]
+* link:xamribbon-menu.html[メニュー]
+* link:xamribbon-radio-button.html[ラジオ ボタン]
+* link:xamribbon-resize-a-tool.html[ツールのサイズ変更]
+* link:xamribbon-ribbon-tool-events.html[リボン ツール イベント]
+* link:xamribbon-separator.html[セパレーター]
+* link:xamribbon-text-editor.html[テキスト エディター]
+* link:xamribbon-toggle-button.html[トグル ボタン]

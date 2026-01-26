@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-reset-a-cells-value-history",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Tips and Tricks"],
+    "guid": "{8B06C7BC-D57E-460F-833A-4BAE4A4CC6FE}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3100151Z"
+}
+|metadata|
+////
+
+= セルの値の履歴をリセット
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~resetdatavaluehistory.html[ResetDataValueHistory] メソッドを呼び出すことで、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cell] オブジェクトの値の履歴をリセットできます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager.html[RecordManager] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager~resetdatavaluehistory.html[ResetDataValueHistory] メソッドを呼び出して、DataPresenter コントロール内の複数セルの値の履歴をリセットすることもできます。DataPresenter コントロール内のセルの値の履歴をリセットすることに加え、DataRecord オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~getdatavaluehistory.html[GetDataValueHistory] メソッドを呼び出すことで、セルの値の履歴を取得することもできます。
+
+以下のコード例は、DataPresenter コントロールにあるすべてのセルの値の履歴をリセットする方法を示します。このコードは、xamDataPresenter1 という名前の DataPresenter コントロールがあることを想定しています。
+
+*Visual Basic の場合:*
+
+----
+Me.xamDataPresenter1.RecordManager.ResetDataValueHistory(True)
+' dataRecord1 という名前の DataRecord オブジェクトへの参照があり、単一セルの値の履歴をリセットしたい場合、コメント化したコードを使用して、「salary」を 自分の DataPresenter コントロールにあるフィールド名で置き換えます。
+'dataRecord1.ResetDataValueHistory("salary")
+----
+
+*C# の場合:*
+
+----
+this.xamDataPresenter1.RecordManager.ResetDataValueHistory(true);
+// dataRecord1 という名前の DataRecord オブジェクトへの参照があり、単一セルの値の履歴をリセットしたい場合、コメント化したコードを使用して、「salary」を 自分の DataPresenter コントロールにあるフィールド名で置き換えます。
+//dataRecord1.ResetDataValueHistory("salary");
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-the-datavaluechanged-event.html[DataValueChanged イベントについて]
+
+link:xamdatapresenter-enable-data-value-change-tracking.html[データ値の変更追跡を有効にする]

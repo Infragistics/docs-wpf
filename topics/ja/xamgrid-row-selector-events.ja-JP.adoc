@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-row-selector-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I","Selection"],
+    "guid": "{56AD78CF-F298-4BF6-BC76-1D363FED4EF7}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7451908Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 行セレクター イベント
+
+xamGrid には、行セレクターに関連付けられたイベントが 1 つあります。このイベントによって、行セレクターがクリックされた後でいくつかのカスタム ビジネス ロジックを実行することができます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~rowselectorclicked_ev.html[RowSelectorClicked] -- 行セレクターがクリックされた後でイベントが発生します。
+
+このイベントを使用して、どの行セレクターがクリックされたのかを判断することができます。
+
+== 関連トピック
+
+link:xamgrid-row-selectors.html[行セレクターを有効にする]
+
+link:xamgrid-disable-row-numbering.html[行の番号付けを無効にする]

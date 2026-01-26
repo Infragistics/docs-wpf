@@ -1,0 +1,102 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticee-user-selection-interactions-and-usability",
+    "tags": [],
+    "controlName": ["xamMultiColumnComboEditor"],
+    "guid": "2798627f-0846-4025-8355-c0fa62e69546",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6202958Z"
+}
+|metadata|
+////
+
+= ユーザー選択インタラクションと操作性 (xamMultiColumnComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamMultiColumnComboEditor_™ コントロールのユーザー選択インタラクションについて説明します。
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref382215363, ユーザー インタラクションと操作性 >>
+* <<_Ref382215368, 関連コンテンツ >>
+
+** <<_Ref382215389,トピック>>
+
+[[_Ref382215363]]
+== ユーザー インタラクションと操作性
+
+=== ユーザー インタラクションの概要表
+
+以下の表で、 _xamMultiColumnComboEditor_   コントロールのユーザー選択インタラクション機能を簡単に説明します。
+
+[options="header", cols="a,a,a,a"]
+|====
+|目的|方法|詳細|構成方法
+
+|1 つの項目の選択
+|マウス
+|_xamMultiColumnComboEditor_ トグル ボタンをクリックして項目のドロップダウン リストを開き、項目を 1 つ選択します。
+|image::images/No.png[]
+
+|1 つの項目の選択
+|キーボード
+|`下`矢印キーを使用して項目のドロップダウン リストを開き、`上`矢印キーと`下`矢印キーでリストを移動して項目を 1 つ選択します。
+|image::images/No.png[]
+
+|1 つの項目の選択
+|項目のチェック ボックス
+|_xamMultiColumnComboEditor_ トグル ボタンをクリックして項目のドロップダウン リストを開き、項目のチェックボックスで項目を 1 つ選択します。
+|image::images/Yes.png[] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor.html[XamMultiColumnComboEditor] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility] プロパティは `Visible` に設定する必要があります。
+
+|複数項目の選択
+|マウス
+|_xamMultiColumnComboEditor_ トグル ボタンをクリックして項目のドロップダウン リストを開き、`CTRL` キーを押しながら左マウス ボタンで複数の項目を選択します。
+|image::images/Yes.png[] 
+
+link:xammulticee-configuring-multiple-selection.html[複数選択の構成]
+
+|複数項目の選択
+|キーボード
+|`下`矢印キーを押して項目のドロップダウン リストを開き、`上`矢印キーと`下`矢印キーでリストを移動し、`Enter` キーで選択します。
+|image::images/Yes.png[] 
+
+link:xammulticee-configuring-multiple-selection.html[複数選択の構成]
+
+|複数項目の選択
+|項目のチェック ボックス
+|_xamMultiColumnComboEditor_ トグル ボタンをクリックして項目のドロップダウン リストを開き、項目のチェックボックスで複数項目を選択します。
+|image::images/Yes.png[] 
+
+link:xammulticee-configuring-multiple-selection.html[複数選択の構成]
+
+|====
+
+[[_Ref382215368]]
+== 関連コンテンツ
+
+[[_Ref382215389]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticee-performing-selection-programmatically.html[プログラムによる選択の実行]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールの選択をプログラムで実行する方法を説明します。
+
+| link:xammulticee-configuring-multiple-selection.html[複数選択の構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールで複数選択を構成する方法を説明します。
+
+|====

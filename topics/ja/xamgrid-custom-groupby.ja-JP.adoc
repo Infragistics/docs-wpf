@@ -1,0 +1,194 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-custom-groupby",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Grouping","Styling"],
+    "guid": "{6A9B4850-33E1-437C-B121-0E56184B3E82}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9812016Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= カスタム GroupBy
+
+xamGrid コントロールの GroupBy 機能は、デフォルトでは同じ値のデータをグループに配置します。汎用 IEqualityComparer インターフェイスを実装することによってグループ項目に対する条件をカスタマイズし、列の基本データ タイプに一致するタイプを提供することができます。xamGrid の列は、カスタムの比較子に設定できる GroupByComparer プロパティを公開します。
+
+以下のコードは、0-25、25-50、50-75、および 75 を超える範囲で値をグループ化するように列を設定する方法を示します。この例は、整数のための IEqualityComparer インターフェイスを実装するカスタム比較子を使用します。それは各 GroupBy 行にカスタム値を表示するために IValueConverter インターフェイスを実装する GroupedValuesConverter クラスも使用します。この例では、各 GroupBy 行は内部でグループ化された項目に値の範囲をラベル表示します。GroupedValuesConverter クラスは元の GroupBy 行値を評価し、値が属する範囲にラベルを付ける文字列を返します。link:resources-datautil.html[DataUtil クラス]が開発者に提供されます。
+
+ifdef::sl,wpf[]
+image::images/sl_xamGrid_Custom_Groupby_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Custom_Groupby_01.png[]
+endif::win-rt[]
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+    <local:DataUtil x:Key="DataUtil" />
+    <helper:GroupByCustomComparer x:Key="GroupByCustomComparer" />
+    <helper:GroupedValuesConverter x:Key="GroupedValuesConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+    <ig:XamGrid x:Name="xamGrid1" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=Products}">
+    <ig:XamGrid.GroupBySettings>
+    <ig:GroupBySettings AllowGroupByArea="Top" />
+    </ig:XamGrid.GroupBySettings>
+    <ig:XamGrid.Columns>
+    <!-- カスタム比較子を設定します -->
+    <ig:TextColumn Key="UnitsInStock" GroupByComparer="{StaticResource GroupByCustomComparer}">
+    <!-- 値コンバーターで各 Groupby 行のカスタム キャプションを設定するためにデータ テンプレートを使用します -->
+    <ig:TextColumn.GroupByItemTemplate>
+    <DataTemplate>
+    <StackPanel Orientation="Horizontal">
+    <TextBlock Text="{Binding Value, Converter={StaticResource GroupedValuesConverter}}" />
+    </StackPanel>
+    </DataTemplate>
+    </ig:TextColumn.GroupByItemTemplate>
+    </ig:TextColumn>
+    </ig:XamGrid.Columns>
+    </ig:XamGrid>
+    </Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Public Class GroupByCustomComparer
+    Implements IEqualityComparer(Of Integer)
+    Public Function Equals1(ByVal x As Integer, ByVal y As Integer) As Boolean Implements System.Collections.Generic.IEqualityComparer(Of Integer).Equals
+    ' GetHashCode で作成された各グループの値を比較します
+    ' 追加的な条件は不要なので、True を返すだけです
+    Return True
+    End Function
+    Public Function GetHashCode1(ByVal obj As Integer) As Integer Implements System.Collections.Generic.IEqualityComparer(Of Integer).GetHashCode
+    ' 値を比較し、グループごとに同じハッシュコードを返します
+    If obj >= 0 AndAlso obj < 25 Then
+    Return "0".GetHashCode()
+    End If
+    If obj >= 25 AndAlso obj < 50 Then
+    Return "25".GetHashCode()
+    End If
+    If obj >= 50 AndAlso obj < 75 Then
+    Return "50".GetHashCode()
+    End If
+    If obj >= 75 Then
+    Return "75".GetHashCode()
+    Else
+    Return obj.GetHashCode()
+    End If
+    End Function
+    End Class
+----
+
+ifdef::wpf[]
+
+*Visual Basic の場合:*
+
+----
+Public Class GroupedValuesConverter
+    Implements IValueConverter
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+    ' 変換する値を取得します
+    Dim val As Integer = CInt(value)
+    ' 値を比較し、各 Groupby 行に表示される値の範囲の説明を返します
+    If val >= 0 AndAlso val < 25 Then
+    Return "Under 25 Units in Stock"
+    ElseIf val >= 25 AndAlso val < 50 Then
+    Return "Between 25 and 50 Units in Stock"
+    ElseIf val >= 50 AndAlso val < 75 Then
+    Return "Between 50 and 75 Units in Stock"
+    ElseIf val >= 75 Then
+    Return "75 or Greater Units in Stock"
+    Else
+    Return val.ToString()
+    End If
+    End Function
+    Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+    Throw New NotImplementedException()
+    End Function
+    End Class
+----
+
+endif::wpf[]
+
+*C# の場合:*
+
+----
+public class GroupByCustomComparer : IEqualityComparer<int>
+    {
+    #region IEqualityComparer<int> Members
+    public bool Equals(int x, int y)
+    {
+    // GetHashCode で作成された各グループの値を比較します
+    // 追加的な条件は不要なので、True を返すだけです
+    return true;
+    }
+    public int GetHashCode(int obj)
+    {
+    // 値を比較し、グループごとに同じハッシュコードを返します
+    if (obj >= 0 && obj < 25)
+    return "0".GetHashCode();
+    if (obj >= 25 && obj < 50)
+    return "25".GetHashCode();
+    if (obj >= 50 && obj < 75)
+    return "50".GetHashCode();
+    if (obj >= 75)
+    return "75".GetHashCode();
+    else
+    return obj.GetHashCode();
+    }
+    #endregion
+    }
+----
+
+ifdef::wpf[]
+
+*C# の場合:*
+
+----
+public class GroupedValuesConverter : IValueConverter
+    {
+    #region IValueConverter Members
+    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+    // 変換する値を取得します
+    int val = (int)value;
+    // 値を比較し、各 Groupby 行に表示される値の範囲の説明を返します
+    if (val >= 0 && val < 25)
+    return "Under 25 Units in Stock";
+    else if (val >= 25 && val < 50)
+    return "Between 25 and 50 Units in Stock";
+    else if (val >= 50 && val < 75)
+    return "Between 50 and 75 Units in Stock";
+    else if (val >= 75)
+    return "75 or Greater Units in Stock";
+    else
+    return val.ToString();
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+    throw new NotImplementedException();
+    }
+    #endregion
+    }
+----
+
+endif::wpf[]
+
+== 関連トピック
+
+link:xamgrid-groupby.html[GroupBy]
+
+link:xamgrid-custom-groupby-row-display.html[カスタム GroupBy 行の表示]
+
+link:xamgrid-customize-groupby-deferred-scrolling-template.html[GroupBy の遅延スクロール テンプレートのカスタマイズ]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

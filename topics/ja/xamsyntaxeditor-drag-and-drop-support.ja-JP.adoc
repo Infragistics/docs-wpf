@@ -1,0 +1,187 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-drag-and-drop-support",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","How Do I"],
+    "guid": "d0e3d719-01ab-429a-a8cd-e8d80f9646f2",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4013934Z"
+}
+|metadata|
+////
+
+= ドラッグ アンド ドロップのサポート (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   の内外でテキストを移動するドラッグ アンド ドロップの操作方法を解説します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能を取り上げます。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref331751691, 概要 >>
+** <<_Ref331751697,解説>>
+** <<_Ref331751708,ドラッグ選択>>
+** <<_Ref331751715,ドロップ選択>>
+
+* <<_Ref331751723, ドラッグ アンド ドロップの構成要旨 >>
+* <<_Ref331751730, イベント要旨 >>
+* <<_Ref331751736, 関連コンテンツ >>
+
+[[_Ref331751691]]
+== 概要
+
+[[_Ref331751697]]
+
+=== 解説
+
+_xamSyntaxEditor_   では、内部 (文書内) と外部 (アプリケーション間) で選択テキストをドラッグ アンド ドロップできます。
+
+注:
+
+[NOTE]
+====
+Silverlight の制約により、 _xamSyntaxEditor_   はコントロール外部のドロップ対象へドラッグしたり、外部ソースからドロップすることはできません。
+====
+
+[[_Ref331751708]]
+
+=== ドラッグ選択
+
+マウスを選択テキストに移動すると、その選択テキストがドラッグをサポートしているかどうかがマウス カーソルに表示されます。マウス ポインターが矢印で表示される場合、選択テキストはドラッグをサポートしていますが、マウス ポインターが I ビームで表示される場合、選択テキストはドラッグをサポートしていないことを表します。
+
+以下の表は、マウス カーソルとその解説をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|マウス カーソル|解説
+
+|image::images/xamSyntaxEditor_DND_1.png[]
+|選択テキストはドラッグできません。
+
+|image::images/xamSyntaxEditor_DND_0.png[]
+|選択テキストはドラッグできます。
+
+|====
+
+[[_Ref331751715]]
+
+=== ドロップ選択
+
+選択テキストをドラッグすると、現在のマウス位置の選択テキストをドロップできるかどうかがマウス ポインターに表示されます。デフォルトのドラッグ操作では、選択テキストは新しい場所に移動しますが、CTRL キーを押すと、“+” 記号がマウス カーソルの位置に表示され、ドラッグ操作では選択テキストがコピーされるだけで、現在の選択テキストはその位置に残ります。
+
+以下の表は、マウス カーソルとその解説をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|マウス カーソル|解説
+
+|image::images/xamSyntaxEditor_DND_2.png[]
+|選択テキストはドロップできません。
+
+|image::images/xamSyntaxEditor_DND_3.png[]
+|選択テキストはここに移動できます。
+
+|image::images/xamSyntaxEditor_DND_4.png[]
+|選択テキストをここにコピーできます。
+
+|====
+
+[[_Ref331751723]]
+== ドラッグ アンド ドロップの構成要旨
+
+=== ドラッグ アンド ドロップの構成要旨表
+
+以下の表は、ドラッグ操作やドロップ操作を制御するためのプロパティをまとめたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な要素|解説|プロパティ
+
+|ドラッグの可否
+|ドラッグで選択したテキストのオン、オフを切り替えます。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~allowdrag.html[AllowDrag] 
+
+|ドロップの可否
+|ドロップで選択したテキストのオン、オフを切り替えます。
+|
+* link:http://msdn.microsoft.com/ja-jp/library/system.windows.uielement.allowdrop.aspx[AllowDrop] 
+
+|====
+
+[[_Ref331751730]]
+== イベント要旨
+
+=== イベントの要旨表
+
+以下の表は、ドラッグ アンド ドロップ操作時に  _xamSyntaxEditor_   が発生させるイベントをまとめたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|イベント|イベント ハンドラー引数とプロパティ|解説
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~selectiondragging_ev.html[SelectionDragging]
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.selectiondraggingeventargs_members.html[SelectionDraggingEventArgs] 
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.selectiondraggingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.selectiondraggingeventargs~dataobject.html[DataObject] 
+
+|このイベントは、ドラッグ操作の開始時に発生します。このイベント ハンドラー引数で開示するプロパティは以下のとおりです。 
+
+* ドラッグ操作をキャンセルする `Cancel` プロパティ。 
+
+* `DataObject` プロパティ。ドラッグするデータを変更するメソッドを開示します。 
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~selectiondropping_ev.html[SelectionDropping]
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.selectiondroppingeventargs_members.html[SelectionDroppingEventArgs] 
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.selectiondroppingeventargs~cancel.html[Cancel] 
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.selectiondroppingeventargs~dataobject.html[DataObject] 
+
+|このイベントは、ユーザーが有効なドロップ位置でマウス ボタンを離すと発生します。このイベント ハンドラー引数で開示するプロパティは以下のとおりです。 
+
+* ドロップ操作をキャンセルする `Cancel` プロパティ。 
+
+* `DataObject` プロパティ。ドロップするデータを変更するメソッドを開示します。 
+
+|====
+
+[[_Ref331751736]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-events-and-commands.html[イベントとコマンド]
+|このトピックでは、 _xamSyntaxEditor_ アプリケーションの構築とともにユーザーが利用できるイベントとサポート対象コマンドを紹介します。
+
+|====

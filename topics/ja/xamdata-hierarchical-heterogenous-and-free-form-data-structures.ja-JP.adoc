@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-hierarchical-heterogenous-and-free-form-data-structures",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "{88EE3350-CE09-4BE2-A083-4DC8E76CECE6}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5178567Z"
+}
+|metadata|
+////
+
+= 階層、異種、およびフリーフォームのデータ構造
+
+
+
+DataPresenter アーキテクチャは、階層データ、異種データ、フリーフォームのデータ構造 (ツリー) の使用と表示をサポートします。異種データは異なるタイプのレコードを含むデータ ソースのことです。これは異なる link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] を各 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] に割り当てる xamDataPresenter™ の能力に基づいてサポートされます。
+
+[NOTE]
+====
+*注:* コントロールでの複数の `FieldLayout` サポートに関しては現在制限があります。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyarea.html[GroupByArea] は単一の `FieldLayout` からフィールドしか表示できません: これは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~defaultfieldlayout.html[DefaultFieldLayout] です。したがって、グループ化は `DefaultFieldLayout` のみに対してサポートされます。
+====
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~isnesteddatadisplayenabled.html[IsNestedDataDisplayEnabled] プロパティが *False* に設定されない限り、階層データは自動的にサポートされます。デフォルトで、`System.Collections.IEnumerable` インターフェイスを実装する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~datatype.html[DataType] を持つ文字列以外のフィールドは「展開可能」としてマークされます。`Field` の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~isexpandable.html[IsExpandable] プロパティを設定することによってこれを明示的に変更できます。
+
+Field が展開可能としてマークされると、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenters] は、UI 内のフィールドを表すために作成されません。代わりに、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.expandablefieldrecord.html[ExpandableFieldRecord] が作成され、各 `DataRecord` の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~childrecords.html[ChildRecords] コレクションに追加されます。`DataRecord` のように `ExpandableFieldRecord` は UIElement™ ではなく、軽量なオブジェクトです。対応する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.expandablefieldrecordpresenter.html[ExpandableFieldRecordPresenter] によって UI で表されます (詳細は、 link:xamdata-performance-optimizations-overview.html[パフォーマンス最適化の概要]を参照してください)。
+
+関連付けられた `Field` の `DataType` が `IEnumerable` インターフェイスを実装する場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.expandablefieldrecord~childrecordmanager.html[ChildRecordManager] は子 DataRecords を作成および管理するために初期化されます。この場合、`ExpandableFieldRecord` が展開されると、`ExpandableFieldRecordPresenter` の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordpresenter~nestedcontent.html[NestedContent] には、子 `DataRecordPresenters` を含む link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordlistcontrol.html[RecordListControl] が含まれます。そうでない場合には、`NestedContent` には実際のセル値を持つ link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.expandedcellpresenter.html[ExpandedCellPresenter] が含まれます。
+
+[NOTE]
+====
+*注:* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldsettings.html[FieldSettings] オブジェクトは、`ExpandableFieldRecordPresenters` の動作を決定する、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~expandablefieldrecordexpansionmode.html[ExpandableFieldRecordExpansionMode] と link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~expandablefieldrecordheaderdisplaymode.html[ExpandableFieldRecordHeaderDisplayMode] という 2 つの追加プロパティを公開します。これらの 2 つのプロパティは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.gridview.html[グリッド ビュー]のみに適用できます。
+====
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatapresenter~view.html[Views] ごとにサポートする階層データは異なります。したがって、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordpresenter.html[RecordPresenter] 派生のクラス (link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecordpresenter.html[DataRecordPresenter]、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyrecordpresenter.html[GroupByRecordPresenter]、および ExpandableFieldRecordPresenter) は、ビューに基づいて視覚的なツリーを変えるために、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordpresenter~templategridview.html[TemplateGridView] プロパティと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordpresenter~templatecardview.html[TemplateCardView] プロパティを公開します。
+
+さまざまなビューによる階層データを処理する方法:
+
+* *グリッド ビュー*は、link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record~isexpanded.html[IsExpanded] 状態を切り替えるために使用される展開インジケーターを RecordPresenter の UI で表示します。この展開インジケーターをクリックすると、レコード コンテンツの下にネストされる子レコードを表示します。
+
+* *ツリー ビュー*が特別なツリー フィールドと階層データを表示します。これは、コントロールにバインドされた階層データのツリー表現を含むフィールドです。ツリー フィールドに描画される指定された展開インジケーターを使用してネストされたレコードを展開および縮小し、そのレベル全体をブラウズできます。
+
+* *カルーセル ビュー*で兄弟レコードのみを表示します。ただし、ドリルダウン パスを視覚化し、ナビゲートするためのブレッドクラムで階層データがサポートされます。
+
+* *カード ビュー*は兄弟レコードのみを表示し、階層データをサポートしません。

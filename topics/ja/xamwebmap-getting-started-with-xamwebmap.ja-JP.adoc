@@ -1,0 +1,34 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-getting-started-with-xamwebmap",
+    "controlName": ["xamMap"],
+    "tags": ["Getting Started"],
+    "guid": "{D3B4710D-5A25-4745-93D9-99F387A82F28}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.0602649Z"
+}
+|metadata|
+////
+
+= xamMap を使用した作業の開始
+
+以下のリンクをクリックすると、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] コントロールをすばやく起動して実行する方法についての説明が表示されます。
+
+* link:xamwebmap-display-map-using-shapefiles.html[シェープファイルをバインド]
+* link:xamwebmap-add-bing-maps-as-geo-imagery-data-source.html[Bing Maps へバインド]
+* link:xamwebmap-add-open-street-maps-as-geo-imagery-data-source.html[Open Street Maps へバインド]
+* link:xamwebmap-change-map-coordinate-system.html[マップ座標システムを変更]
+* link:xamwebmap-creating-and-editing-custom-shapefiles.html[カスタム Shapefiles の作成および編集]
+* link:xamwebmap-obtaining-shapefiles.html[シェープファイルの取得]
+
+image::images/SL_DV_XamMap_Displaying_XamMap_Using_Shapefiles_02.png[]
+
+image::images/XamMap_Display_Different_Layer_Types_01.png[]
+
+image::images/XamMap_Display_Different_Layer_Types_02.png[]
+
+image::images/XamMap_Display_Different_Layer_Types_04.png[]
+
+image::images/XamMap_Display_Different_Layer_Types_05.png[]

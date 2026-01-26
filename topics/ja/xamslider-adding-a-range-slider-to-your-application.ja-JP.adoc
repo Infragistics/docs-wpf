@@ -1,0 +1,200 @@
+﻿////
+|metadata|
+{
+    "name": "xamslider-adding-a-range-slider-to-your-application",
+    "controlName": ["xamSlider"],
+    "tags": ["Getting Started"],
+    "guid": "{A545A4D5-141D-4A98-91B2-E0E927414504}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0353751Z"
+}
+|metadata|
+////
+
+= 範囲スライダーをアプリケーションに追加
+
+== 始める前に
+
+Microsoft® {PlatformName} にあるコントロールと同じパターンを使用して、範囲スライダー (link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericrangeslider.html[xamNumericRangeSlider] または link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimerangeslider.html[xamDateTimeRangeSlider]) をアプリケーションに追加できます。このパターンは、レイアウトコンテナーの使用およびレイアウト コンテナーの Children コレクションにコントロールを追加することに関わります。
+
+== 達成すること
+
+xamDateTimeRangeSlider コントロールをアプリケーションに追加します。アプリケーションを実行すると、ブラウザーに以下のスクリーンショットにのような xamDateTimeRangeSlider コントロールが表示されます。
+
+image::images/xamSlider_Adding_a_Range_Slider_to_Your_Application_01_XAML.png[]
+
+== 次の手順を実行します
+
+[start=1]
+. {PlatformName} プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をプロジェクトに追加します。
+
+** Infragistics.WPF.Slider
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. コード ビハインドに using/Imports のディレクティブを配置するか、あるいは xamSlider コントロールの XML 名前空間定義を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+[start=4]
+. xamDateTimeRangeSlider コントロールのインスタンスを "LayoutRoot" という名前のデフォルトのグリッド レイアウト パネルに追加します。プロシージャ コードでこれを行う場合、UserControl の Loaded イベントを処理し、イベント ハンドラーにこのコードを配置することができます。
+
+** Name プロパティを xamDateTimeRangeSlider1 に設定します。
+** XAML で link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimerangeslider~minvalue.html[MinValue] プロパティを 1/1/2009 に設定するか、コードでそれに相当する DateTime 構造に設定します。
+** link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimerangeslider~maxvalue.html[MaxValue] プロパティを 12/31/2009 に設定するか、コードでそれに相当する DateTime 構造に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDateTimeRangeSlider 
+    Name="xamDateTimeRangeSlider1" 
+    MinValue="1/1/2009" 
+    MaxValue="12/31/2009">
+    <!--TODO: DateTimeSliderTickMark オブジェクトを TickMarks コレクションに追加します-->
+    <!--TODO: xamSliderDateTimeThumb オブジェクトを Thumbs コレクションに追加します-->
+</ig:XamDateTimeRangeSlider>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim xamDateTimeRangeSlider1 As XamDateTimeRangeSlider
+Private Sub UserControl_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    xamDateTimeRangeSlider1 = New xamDateTimeRangeSlider With {.MinValue = New DateTime(2009, 1, 1), .MaxValue = New DateTime(2009, 12, 31)}
+    Me.LayoutRoot.Children.Add(xamDateTimeRangeSlider1)
+    'TODO: DateTimeSliderTickMark オブジェクトを TickMarks コレクションに追加します-->
+    'TODO: xamSliderDateTimeThumb オブジェクトを Thumbs コレクションに追加します-->
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamDateTimeRangeSlider xamDateTimeRangeSlider1;
+private void UserControl_Loaded(object sender, RoutedEventArgs e)
+{
+    xamDateTimeRangeSlider1 = new XamDateTimeRangeSlider
+    {
+        MinValue = new DateTime(2009, 1, 1),
+        MaxValue = new DateTime(2009, 12, 31)
+    };
+    this.LayoutRoot.Children.Add(xamDateTimeRangeSlider1);
+    //TODO: DateTimeSliderTickMark オブジェクトを TickMarks コレクションに追加します-->
+    //TODO: xamSliderDateTimeThumb オブジェクトを Thumbs コレクションに追加します-->
+}
+----
+
+[start=5]
+. xamDateTimeRangeSlider コントロールの link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericrangeslider~tickmarks.html[TickMarks] コレクションに link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.datetimeslidertickmarks.html[DateTimeSliderTickMarks] オブジェクトを追加します。数値スライダー コントロール、すなわち xamNumericSlider または xamNumericRangeSlider については、DateTimeSliderTickMarks オブジェクトの代わりに TickMarks コレクションに link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarks.html[SliderTickMarks] オブジェクトを追加する必要があります。
+
+** link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarksbase~numberoftickmarks.html[NumberOfTickMarks] プロパティを 10 に設定します。
+** link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarksbase~usefrequency.html[UseFrequency] プロパティを False に設定します。UseFrequency プロパティを False に設定しない場合、xamSlider コントロールは NumberOfTickMarks プロパティを無視します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDateTimeRangeSlider.TickMarks>
+    <ig:DateTimeSliderTickMarks NumberOfTickMarks="10" UseFrequency="/>
+</ig:XamDateTimeRangeSlider.TickMarks>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim majorTickMarks As New DateTimeSliderTickMarks With {.NumberOfTickMarks = 10, .UseFrequency = False}
+Me.xamDateTimeRangeSlider1.TickMarks.Add(majorTickMarks)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+DateTimeSliderTickMarks majorTickMarks = new DateTimeSliderTickMarks
+{
+    NumberOfTickMarks = 10,
+    UseFrequency = false
+};
+this.xamDateTimeRangeSlider1.TickMarks.Add(majorTickMarks);
+----
+
+[start=6]
+. xamDateTimeRangeSlider コントロールの link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamrangeslider`1~thumbs.html[Thumbs] コレクションに 3 つの link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderdatetimethumb.html[xamSliderDateTimeThumb] オブジェクトを追加します。XAML で Thumbs コレクションのタグを宣言する必要はありません。xamNumericRangeSlider コントロールでは、xamSliderDateTimeThumb オブジェクトの代わりに、 link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamslidernumericthumb.html[xamSliderNumericThumb] オブジェクトを Thumbs コレクションに追加する必要があります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSliderDateTimeThumb Value="4/1/2009" />
+<ig:XamSliderDateTimeThumb Value="8/1/2009" />
+<ig:XamSliderDateTimeThumb Value="12/1/2009" />
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim thumb1 As New XamSliderDateTimeThumb With {.Value = New DateTime(2009, 4, 1)}
+Dim thumb2 As New XamSliderDateTimeThumb With {.Value = New DateTime(2009, 8, 1)}
+Dim thumb3 As New XamSliderDateTimeThumb With {.Value = New Datetime(2009, 12, 1)}
+Me.xamDateTimeRangeSlider1.Thumbs.Add(thumb1)
+Me.xamDateTimeRangeSlider1.Thumbs.Add(thumb2)
+Me.xamDateTimeRangeSlider1.Thumbs.Add(thumb3)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+xamSliderDateTimeThumb thumb1 = new XamSliderDateTimeThumb
+{
+    Value = new DateTime(2009, 4, 1)
+};
+xamSliderDateTimeThumb thumb2 = new XamSliderDateTimeThumb 
+{
+    Value = new DateTime(2009, 8, 1)
+};
+xamSliderDateTimeThumb thumb3 = new XamSliderDateTimeThumb
+{
+    Value = new DateTime(2009, 12, 1)
+};
+this.xamDateTimeRangeSlider1.Thumbs.Add(thumb1);
+this.xamDateTimeRangeSlider1.Thumbs.Add(thumb2);
+this.xamDateTimeRangeSlider1.Thumbs.Add(thumb3);
+----
+
+[start=7]
+. プロジェクトを実行します。
+
+== 関連トピック
+
+link:xamslider-adding-a-single-value-slider-to-your-application.html[単一値スライダーをアプリケーションに追加]
+
+link:xamslider-using-xamslider.html[xamSlider の使用]

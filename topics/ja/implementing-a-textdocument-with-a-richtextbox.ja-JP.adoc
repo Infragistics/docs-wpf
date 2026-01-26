@@ -1,0 +1,279 @@
+﻿////
+|metadata|
+{
+    "name": "implementing-a-textdocument-with-a-richtextbox",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": ["Application Scenarios","Editing"],
+    "guid": "39358cd0-71a1-47d7-bb8d-038cd094ca27",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.9420829Z"
+}
+|metadata|
+////
+
+= RichTextBox を含む TextDocument を実装 (Syntax Parsing Engine)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、TextDocument クラスを使用して RichTextBox コントロールを含む構文を解析する方法に関して概念的概要をコードとともに提供します。
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref324841248,概要>>
+** <<_Ref327859845,RichTextBox を含む TextDocument を実装の概要>>
+
+* <<_Ref327861013,ステップ 1: Grammar オブジェクトの作成 – コード例>>
+** <<_Ref326147531,説明>>
+** <<_Ref326147537,コード>>
+
+* <<_Ref335122245,ステップ 2: カスタム言語クラスの生成 – コード例>>
+** <<_Ref335122253,説明>>
+** <<_Ref335122256,コード>>
+
+* <<_Ref335122264,ステップ 3: ドキュメントを TextDocument で解析 – コード例>>
+** <<_Ref335122271,説明>>
+** <<_Ref335122276,コード>>
+
+* <<_Ref335122283,ステップ 4: 解析したテキストを RichTextBox に表示 – コード例>>
+** <<_Ref335122290,説明>>
+** <<_Ref335122296,画像>>
+** <<_Ref335122301,コード>>
+
+* <<_Ref335122305,関連コンテンツ>>
+** <<_Ref335122311,トピック>>
+
+[[_Introduction]]
+[[_Ref324841248]]
+== 概要
+
+[[_Implementing_TextDocument_with]]
+
+=== RichTextBox を含む TextDocument を実装の概要
+
+裏側で使用される `TextDocument` クラスはカスタム定義の言語の文法に基づいてテキストを RichTextBox コントロールで強調表示できます。これによってテキストできっちりと強調表示されるキーワードでドキュメントの構造を表示することができます。以下のセクションではこの機能を実装するために必要とされる基本的なステップを概略します。
+
+.注:
+[NOTE]
+====
+`TextDocument` を使用するには、プロジェクトに以下の Infragistics NuGet パッケージへのパッケージ参照が必要です。
+
+*Infragistics.WPF.TextDocument*
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+====
+
+[[_Ref327861013]]
+== ステップ 1: Grammar オブジェクトの作成 – コード例
+
+[[_Description_3]]
+
+=== 説明
+
+`FromEbnf()` メソッドを呼び出して Extended Backus–Naur Form (EBNF) スクリプトの文字列コンテンツと `EbnfParser` の新しいインスタンスを渡すことによって、カスタム言語のための新しい Grammar オブジェクトを作成します。このステップは EBNF スクリプトを必要とします。文法、レクサー状態、終端記号およびカスタム言語のその他の属性です。
+
+このステップは、EBNF から Grammar オブジェクトを作成します。それ以降のステップで使用される Grammar オブジェクトは `TextDocument` によって使用される C# クラスを生成します。
+
+以下のコード例では、XML のための文法を定義する EBNF スクリプトへの参照とともにこのステップを示します。
+
+[[_Code_3]]
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+//  リソース “EBNF.XML.ebnf” から EBNF スクリプトを取得して文字列に割り当てる
+string ebnf = GetEbnf("EBNF.XML.ebnf");
+//  EbnfParser を使用して、EBNF スクリプトから Grammar インスタンスを作成する
+Grammar grammar = new Grammar();
+EbnfParser ebnfParser = new EbnfParser();
+//  Grammar を作成して、問題なく完了したことを確認するために 
+//  操作の結果をキャプチャする 
+EbnfParseResult result = grammar.FromEbnf(ebnf, ebnfParser);
+----
+
+[[_Step_2:_Generate]]
+[[_Ref335122245]]
+== ステップ 2: カスタム言語クラスの生成 – コード例
+
+[[_Description]]
+
+=== 説明
+
+静的な `LanguageGenerator` クラスの `GenerateClass()` メソッドを呼び出してカスタムの言語クラスを作成し、ステップ 1 で以前入力作成した Grammar オブジェクトを渡します。
+
+以下のコード例では、 _XMLLanguage.cs_   コード ファイルを作成して、“XML 言語” と呼ばれる言語の API を提供します。新たに作成されたファイル、 _XMLLanguage.cs_   は、強調表示されたトークンで XML ドキュメントを表示することができる RichTextBoxes を含むアプリケーションでコンパイルできます (以下のそれ以降のステップを参照してください)。
+
+[[_Code]]
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+//  LanguageBase 派生クラスのコードを文法から生成する
+//  これは内部レクサーとパーサーに必要とされるデータを作成する
+LanguageGenerationParams args = new LanguageGenerationParams(grammar, "XMLLanguage", "XMLLanguage.cs", true);
+LanguageGenerator.GenerateClass(args);
+----
+
+[[_Step_3:_Parse]]
+[[_Ref335122264]]
+== ステップ 3: ドキュメントを TextDocument で解析 – コード例
+
+[[_Description_1]]
+
+=== 説明
+
+`TextDocument` オブジェクトを使用してメモリでドキュメントを解析します。
+
+以下のコード例では、上記のステップ 2 で作成されたカスタムの言語クラス ( _XMLLanguage.cs_ ) を使用して TextBox コントロールから XML テキストを解析するインスタンス化される `TextDocument` を示します。この時点で、メモリの `TextDocumentSnapshot` オブジェクトは解析されたドキュメントを保管します。ただし、UI はまだそれを表示しません。
+
+[[_Code_1]]
+
+=== コード
+
+*C# の場合:*
+
+[source,csharp]
+----
+//  LanguageGenerator によって以前に生成された XMLLanguage のインスタンスで 
+// TextDocument を作成する
+private TextDocument _textDocument;
+_textDocument = new TextDocument();
+_textDocument.Language = XMLLanguage.Instance;
+// 現在の TextDocumentSnapshot にあるかもしれないテキストを削除する
+//  フォームで TextBox からテキストを追加する
+//  XMLLanguage 言語のインスタンスで文法規則にしたがってテキストを解析する
+_textDocument.Delete();
+_textDocument.Append(textBox.Text);
+_textDocument.Parse();
+----
+
+[[_Step_4:_Display]]
+[[_Ref335122283]]
+== ステップ 4: 解析したテキストを RichTextBox に表示 – コード例
+
+[[_Description_2]]
+
+=== 説明
+
+カスタム言語にしたがって強調表示されたさまざまなトークンで RichTextBox に解析されたテキストを表示できます。RichTextBox は次の図のようになります。
+
+[[_Image]]
+
+=== 画像
+
+image::images/Implementing_TextDocument_with_RichTextBox_1.png[]
+
+[[_Code_2]]
+
+=== コード
+
+ifdef::sl[]
+
+*C# の場合:*
+
+[source,csharp]
+----
+// ツリーが作成されたスナップショットを取得する
+TextDocumentSnapshot snapshot = td.SyntaxTree.Snapshot;
+// すべてのトークンを含むトークン列挙子を取得する
+IEnumerable<Token> tokens = snapshot.GetTokens();
+// Rich Text Box のためにフロー ドキュメントを作成する
+Paragraph paragraph = new Paragraph();
+Run run;
+// 解析中に生成されたトークンで繰り返す
+// 終端記号に基づいて色を割り当てる
+// Rich Text Box でトークンを追加する
+foreach (Token token in tokens)
+{
+    if (token.Text.Length != 0)
+    {
+        run = new Run();
+        run.Text = token.Text;
+        // 言語で定義したものに基づいてトークンの色を設定する
+        Color c = XMLLanguage.GetColor(token.TerminalSymbol);
+        run.Foreground = new SolidColorBrush(c);
+        paragraph.Inlines.Add(run);
+    }
+    else
+    {
+        continue;
+    }
+}
+this.aRichTextBox.Blocks.Clear();
+this.aRichTextBox.Blocks.Add(paragraph);
+----
+
+endif::sl[]
+
+ifdef::wpf[]
+
+*C# の場合:*
+
+[source,csharp]
+----
+// ツリーが作成されたスナップショットを取得する
+TextDocumentSnapshot snapshot = td.SyntaxTree.Snapshot;
+// すべてのトークンを含むトークン列挙子を取得する
+IEnumerable<Token> tokens = snapshot.GetTokens();
+// Rich Text Box のためにフロー ドキュメントを作成する
+FlowDocument doc = new FlowDocument();
+Paragraph paragraph = new Paragraph();
+doc.Blocks.Add(paragraph);
+Run run;
+// 解析中に生成されたトークンで繰り返す
+// 終端記号に基づいて色を割り当てる
+// Rich Text Box でトークンを追加する
+foreach (Token token in tokens)
+{
+    if (token.Text.Length != 0)
+    {
+        run = new Run();
+        run.Text = token.Text;
+        // 言語で定義したものに基づいてトークンの色を設定する
+        Color c = XMLLanguage.GetColor(token.TerminalSymbol);
+        run.Foreground = new SolidColorBrush(c);
+        paragraph.Inlines.Add(run);
+    }
+    else
+    {
+        continue;
+    }
+}
+this.aRichTextBox.Document = doc;
+----
+
+endif::wpf[]
+
+[[_Related_Content]]
+[[_Ref335122305]]
+== 関連コンテンツ
+
+[[_Topics]]
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:methods-for-modifying-text-in-a-textdocument.html[TextDocument でテキストを変更するメソッド]
+|このトピックでは、コードスニペットを使用してテキストを編集する `TextDocument` クラス メソッドについて説明します。
+
+| link:events-for-interacting-with-a-textdocument.html[TextDocument を操作するイベント]
+|このトピックでは、コードスニペットを使用して `TextDocument` クラス イベントについて説明します。
+
+| link:properties-for-configuring-a-textdocument.html[TextDocument を構成するプロパティ]
+|このトピックでは、コード スニペットを使用して `TextDocument` クラス プロパティについて説明します。
+
+|====

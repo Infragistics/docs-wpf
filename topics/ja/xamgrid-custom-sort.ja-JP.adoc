@@ -1,0 +1,149 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-custom-sort",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Sorting"],
+    "guid": "{C0A67F8D-0598-4DEC-8260-DF500C25FD52}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6981861Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= カスタム並べ替え
+
+== 始める前に
+
+ある状況では、デフォルトの並べ替えアルゴリズムの使用が適さない場合があります。xamGrid コントロールを使用すると、簡単に並べ替えできるカスタマイズ ロジックを実装できます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column.html[Column] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~sortcomparer.html[SortComparer] プロパティを使用してカスタム IComparer テンプレート オブジェクトを取得または設定できます。
+
+このトピックでは、独自のカスタム IComparer を作成、実装し、それを列に配置する方法を示します。
+
+_前提:_
+
+_このトピックは、ページ上のデータにバインドされた xamGrid コントロールがすでにあることが前提となっています。詳細は、*xamGrid をデータにバインド* のトピックを参照してください。_
+
+== 達成すること
+
+このガイドでは、IComparer インターフェイスを実装することによって、カスタムなを作成する方法を学びます。このガイドでは、一般的な並び替えの最初の文字ではなく、最後の文字で並べ替えを行うように設計された、MyCustomSort という名前のクラスを作成します。
+
+== 次の手順を実行します
+
+[start=1]
+. エンド ユーザーがカスタム 並べ替えの使用を選択できるように、Microsoft Checkbox コントロールをページに追加します。以下のプロパティを設定します。
+
+** x:Name = myCheckBox
+** Content = Custom Sort
+** Checked = myCheckBox_Checked
+** Unchecked = myCheckBox_Unchecked
+
+*XAML の場合:*
+
+----
+<CheckBox x:Name="myCheckBox" Content="Custom Sort"   
+   Checked="myCheckBox_Checked" Unchecked="myCheckBox_Unchecked">           
+</CheckBox>
+----
+
+[start=2]
+. IComparer インターフェイスを実装する MyCustomSort という名前のクラスを作成します。このクラスには、IComparer インターフェイスのメンバーである Compare メソッドを実装するコードが含まれます。
+
+*Visual Basic の場合:*
+
+----
+Public Class MyCustomSort
+    Implements IComparer(Of String)
+   Public Function Compare(ByVal x As String, ByVal y As String) As Integer _
+    Implements IComparer(Of String).Compare
+      Dim x1, y1 As String
+      ' 並べ替える文字列の最後の文字を取得します
+      x1 = x.Substring((x.Length - 1))
+      y1 = y.Substring((y.Length - 1))
+      Return x1.CompareTo(y1)
+   End Function
+End Class
+----
+
+*C# の場合:*
+
+----
+public class MyCustomSort : IComparer<string>
+{
+   public int Compare(string x, string y)
+   {
+      string x1, y1;
+      // 並べ替える文字列の最後の文字を取得します
+      x1 = x.Substring(x.Length - 1);
+      y1 = y.Substring(y.Length - 1);
+      return x1.CompareTo(y1);
+   }
+}
+----
+
+[start=3]
+. myCheckBox_Checked イベント内で、ProductName 列の Compare プロパティを MyCustomSort オブジェクトに設定します。
+
+*Visual Basic の場合:*
+
+----
+Dim customSortColumn As Column = Me.dataGrid.Columns.DataColumns("ProductName")
+customSortColumn.Comparer = New MyCustomSort()
+----
+
+*C# の場合:*
+
+----
+private void myCheckBox_Checked(object sender, RoutedEventArgs e)
+{
+   Column customSortColumn = this.MyGrid.Columns.DataColumns["ProductName"];
+   customSortColumn.Comparer = new MyCustomSort();
+}
+----
+
+[start=4]
+. myCheckBox_Unchecked イベント内で Comparer プロパティを消去します。
+
+*Visual Basic の場合:*
+
+----
+Dim clearCustomSortColumn As Column = Me.MyGrid.Columns.DataColumns("ProductName")
+clearCustomSortColumn.Comparer = Nothing
+----
+
+*C# の場合:*
+
+----
+private void myCheckBox_Unchecked(object sender, RoutedEventArgs e)
+{
+   Column clearCustomSortColumn = this.MyGrid.Columns.DataColumns["ProductName"];
+   clearCustomSortColumn.Comparer = null;
+}
+----
+
+[start=5]
+. プロジェクトを保存して実行します。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Custom_Sort_01.png[Custom Sort]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Custom_Sort_01.png[Custom Sort]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-sorting.html[並べ替え]
+
+link:xamgrid-multi-column-sorting.html[複数列の並べ替え]
+
+link:xamgrid-remove-sort-indicator.html[並べ替えインジケーターの削除]
+
+link:xamgrid-disable-sorting-on-certain-columns.html[特定の列の並べ替えを無効にする]
+
+link:xamgrid-sorting-events.html[並べ替えイベント]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

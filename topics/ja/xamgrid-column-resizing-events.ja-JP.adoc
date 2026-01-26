@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-column-resizing-events",
+    "controlName": ["xamGrid"],
+    "tags": ["Events","Grids","How Do I","Layouts"],
+    "guid": "{A0F8091D-75EC-4D07-ABED-6998031D3957}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8291643Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列のサイズ変更イベント
+
+xamGrid には、列のサイズ変更に関連付けられたイベントが 2 つあります。これらのイベントは発生する順序を反映して接尾辞 "ing" または "ed" が追加されます。列のサイズ変更イベントによって、エンド ユーザーが列のサイズを変更する前または後にカスタム ビジネス ロジックを実行できます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columnresizing_ev.html[ColumnResizing] - 列がリサイズされる直前に、ColumnResizing イベントが発生します。アプリケーションの状態が特定の条件を満たさない場合、このイベントをキャンセルできます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~columnresized_ev.html[ColumnResized] - 列がリサイズされた後にこのイベントが発生します。 
+
+これらのイベントによって、ColumnResizing イベントをキャンセルすることによってエンド ユーザーがサイズ変更できる列を制限できます。ColumnResized イベントを使用して、ユーザーがサイズを変更した列を判断することもできます。
+
+== 関連トピック
+
+link:xamgrid-column-resizing.html[列サイズの変更]
+
+link:xamgrid-multi-column-resizing.html[複数列のリサイズ]
+
+link:xamgrid-resize-in-the-cell-area.html[セル領域でセルのリサイズ]
+
+link:xamgrid-auto-size-columns-using-mouse-clicks.html[マウス クリックを使用して列を自動的にサイズ設定]
+
+link:xamgrid-set-columns-maximum-and-minimum-widths.html[列の最大幅と最小幅を設定]
+
+link:xamgrid-disable-resizing-of-certain-columns.html[特定の列のサイズ変更を無効にする]

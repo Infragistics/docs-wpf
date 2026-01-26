@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-spe-use-symbolnames-constants-instead-of-strings",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": [],
+    "guid": "e0ea6046-1957-441c-9b5a-ae8a6f6890c8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.1851035Z"
+}
+|metadata|
+////
+
+= String の代わりに SymbolNames を使用 (Syntax Parsing Engine)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、SymbolName 定数を使用する利点を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-overview.html[Syntax Parsing Engine の概要]
+|このトピックは、Syntax Parsing Engine の概要を示します。
+
+| link:ig-spe-non-terminal-symbols.html[非終端記号]
+|このトピックは、文章校正の非終端記号について説明します。
+
+| link:ig-spe-defining-productions.html[生成コードの定義]
+|このトピックでは、非終端記号を作成するコードについて説明します。
+
+|====
+
+== はじめに
+
+=== 概要
+
+link:xamsyntaxeditor-supported-languages.html[サポートされる言語]の内部文法構造および作成した構文ツリーの構造は、変更される場合があります。また、構文ツリーを検索またはトラバースするコードを記述する場合、各ノードの記号名 (文字列リテラルとしての記号名ではなく) を識別するために各言語定義においてネスト化された `SymbolNames` クラス定数を使用します。これらの記号名が将来的に変更されるとコンパイル エラーとして強調表示されるようになります。
+
+また、特定のノードの子ノードの数とタイプについて Debug.Assert メソッドを使用してテストするロジックを書くことを推薦します。ノードの子構造の変更を検出し、処理するためです。
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-improve-ebnf-files-readability.html[EBNF ファイルの読みやすさの向上]
+|このトピックは、EBNF ファイルの読みやすさを向上する方法を説明します。
+
+| link:ig-spe-optimize-non-terminal-symbol-definitions.html[非終端記号の定義の最適化]
+|このトピックは、生成コードを最小限にするために非終端記号の定義を最適化する方法を説明します。
+
+| link:ig-spe-writing-operator-precedence-rules.html[演算子の優先順位ルールの定義]
+|このトピックでは、演算子の優先順位ルールの作成方法について説明します。
+
+| link:ig-spe-generate-grammar-from-ebnf.html[EBNF ファイルからの文章校正の生成]
+|このトピックでは、EBNF コンテンツから文章校正を作成するプロセスを説明します。
+
+|====

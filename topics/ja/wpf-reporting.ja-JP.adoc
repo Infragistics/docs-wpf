@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-reporting",
+    "controlName": ["IG WPF Reporting"],
+    "tags": [],
+    "guid": "{DA79954E-5EC6-4FBB-BD19-7CB624ADFFAC}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.8977327Z"
+}
+|metadata|
+////
+
+= Infragistics Reporting Engine
+
+
+
+このセクションは、エンジンの機能とアプリケーションでのエンジンの使用についてのステップバイステップの手順に至るまで WPF レポーティング エンジンを説明します。
+
+以下のリンクをクリックして、WPF レポーティング エンジンについての情報にアクセスします。
+
+== link:wpf-reporting-understanding-wpf-reporting.html[WPF レポーティング について]
+
+このセクションでは、WPF レポーティング エンジンの機能の理解を深める支援となる情報を提供します。
+
+== link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+WPF レポーティング エンジンを可能な限りすぐに起動および実行するために、WPF レポーティング エンジンを使用して開始する方法についての情報を提供しています (たとえばレポートの作成)。
+
+== link:wpf-reporting-using-wpf-reporting.html[WPF レポーティング の使用]
+
+このセクションには、WPF レポーティング エンジンで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:wpf-reporting-api-overview.html[API の概要]
+
+このトピックは、WPF レポーティング エンジンでプログラミング中に作業する名前空間とクラスをリストします。このトピックに示されている名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API Reference Guide] にリンクしており、便利です。
+
+[[seealsobookmark]]

@@ -1,0 +1,80 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-add-tools-to-a-ribbon-group",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","Grouping","How Do I","Navigation","Selection"],
+    "guid": "{F651AD7C-2FEA-49B1-A42A-B450316B50BB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1321795Z"
+}
+|metadata|
+////
+
+= リボン グループにツールを追加
+
+
+
+
+
+リボンは、エンド ユーザーがアプリケーション作業を達成するために使用できるツールがなければ意味がありません。このため、RibbonGroup オブジェクトは、リボンにツールを追加するために使用できる Items コレクションを公開します。Microsoft® Windows® Presentation Foundation の ItemsControl クラスから派生するコントロールと同じように、明示的に Items コレクションを宣言する必要なくリボン グループにツールを直接追加できます。
+
+以下のコード例は、ButtonTool および CheckBoxTool を RibbonGroup に追加する方法を示します。
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:RibbonGroup Caption="Font">
+        <igRibbon:ButtonTool Caption="Bold" Id="btnBold" />
+        <igRibbon:CheckBoxTool Caption="Save Changes Automatically" Id="chkBoxAutosave" />
+</igRibbon:RibbonGroup>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+...
+Dim group As New RibbonGroup()
+group.Caption = "Font"
+group.Id = "grpFont"
+Dim btnTool As New ButtonTool()
+btnTool.Caption = "Bold"
+btnTool.Id = "btnBold"
+Dim chkTool As New CheckBoxTool()
+chkTool.Caption = "Save Changes Automatically"
+chkTool.Id = "chkBoxAutosave"
+group.Items.Add(btnTool)
+group.Items.Add(chkTool)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+...
+RibbonGroup group = new RibbonGroup();
+group.Caption = "Font";
+group.Id = "grpFont";
+ButtonTool btnTool = new ButtonTool();
+btnTool.Caption = "Bold";
+btnTool.Id = "btnBold";
+CheckBoxTool chkTool = new CheckBoxTool();
+chkTool.Caption = "Save Changes Automatically";
+chkTool.Id = "chkBoxAutosave";
+group.Items.Add(btnTool);
+group.Items.Add(chkTool);
+...
+----
+
+== 関連トピック
+
+link:xamribbon-adding-xamribbon-to-your-application-.html[xamRibbon をアプリケーションに追加]
+
+link:xamribbon-add-a-tab-to-xamribbon.html[タブを xamRibbon に追加]
+
+link:xamribbon-add-a-ribbon-group-to-a-ribbon-tab.html[リボン タブにリボン グループを追加]

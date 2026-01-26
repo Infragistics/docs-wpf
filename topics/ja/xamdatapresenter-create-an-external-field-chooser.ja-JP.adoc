@@ -1,0 +1,75 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-create-an-external-field-chooser",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Extending","Layouts","Tips and Tricks"],
+    "guid": "{71CC5633-94BF-4F69-A018-5C630842E46C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1179767Z"
+}
+|metadata|
+////
+
+= 外部のフィールドの選択の作成
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldchooser.html[FieldChooser] コントロールのインスタンスをウィンドウに追加して、常にエンド ユーザーに表示されるフィールドの選択領域を作成できます。単純に、他のコントロールと同様に FieldChooser コントロールをウィンドウに追加し、その DataPresenter プロパティを DataPresenter コントロールのインスタンスに設定します。
+
+image::images/xamDataPresenter_Create_an_External_Field_Chooser_01.png[]
+
+以下のコード例は、外部のフィールドの選択領域を作成する方法を示します。
+
+*XAML の場合:*
+
+----
+<Grid Name="layoutRoot">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <igDP:FieldChooser 
+        Name="fieldChooser1" 
+        DataPresenter="{Binding ElementName=xamDataPresenter1}" />
+    <igDP:XamDataPresenter 
+        Name="xamDataPresenter1" 
+        Grid.Column="1" 
+        BindToSampleData="True">
+    </igDP:XamDataPresenter>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Dim fieldChooser1 As New FieldChooser With {.DataPresenter = Me.xamDataPresenter1}
+Me.layoutRoot.Children.Add(fieldChooser1)
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+FieldChooser fieldChooser1 = new FieldChooser
+{
+    DataPresenter = this.xamDataPresenter1
+};
+this.layoutRoot.Children.Add(fieldChooser1);
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-the-field-chooser.html[フィールドの選択について]
+
+link:xamdatapresenter-display-the-field-chooser.html[フィールドの選択の表示]
+
+link:xamdatapresenter-about-field-chooser-settings.html[フィールドの選択の設定について]
+
+link:xamdatapresenter-prevent-fields-from-being-hidden.html[フィールドが非表示にされることを防止する]
+
+link:xamdatapresenter-change-the-display-order-of-fields-in-the-field-chooser.html[フィールドの選択でフィールドの表示順序を変更]

@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-specific-controls-landing-page",
+    "controlName": [],
+    "tags": ["Getting Started"],
+    "guid": "8fb909ba-1671-4316-8410-a97938553543",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:46:20.6049227Z"
+}
+|metadata|
+////
+
+= WPF 固有
+
+ほとんどの {ProductName} コントロールはクロスプラットフォームです。つまり、WPF 版と Silverlight 版の各コントロールのオブジェクト モデルと API は互換性があります。コントロールを作成および操作するためのコード (C#/VB.NET コード ビハインドまたは XAML) は、WPF 版のアプリケーションと Silverlight 版のアプリケーションで共有できます。プロジェクトの参照をプラットフォーム固有のバージョンのコントロール アセンブリを参照するように変更するだけです。
+
+ただし、{ProductName} 専用のコントロールがいくつかあります。以下にこれらのコントロールの一覧を示します。
+
+* link:wpfspecific-charts.html[チャート]
+* link:wpf-the-data-presenter-family.html[データ プレゼンター ファミリ]
+* link:editors.html[エディター]
+* link:wpfspecific-frameworks.html[フレームワーク]
+* link:wpfspecific-grids.html[グリッド]
+* link:wpfspecific-interactions.html[操作]
+* link:wpfspecific-layouts.html[レイアウト]
+* link:wpfspecific-menus.html[メニュー]
+* link:wpfspecific-schedules.html[スケジュール]

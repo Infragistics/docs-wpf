@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-sorting",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started","Grouping","Sorting"],
+    "guid": "{2C7672F3-EAF4-4698-8B23-84EDD59EDE83}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3370205Z"
+}
+|metadata|
+////
+
+= レコードの並べ替え (xamDataPresenter)
+
+
+
+ほとんどの人は、プログラミングを勉強中にバブル ソート アルゴリズムを作成したことを覚えています。バブル ソートのコード作成が第二の天性であろうとなかろうと、並べ替えは最も重要です。並べ替えはアルファベット順または数値によってなど、必要なデータを見つけ出す方法をエンド ユーザーに提供します。
+
+並べ替えの機能の理解が十分でない場合、これらの機能をどのようにいつ使用するのかを知る必要があります。
+
+xamDataPresenter コントロールを使用してデータを並べ替えることに特化したトピックをご覧になるには、以下のリンクをクリックしてください。
+
+* link:xamdatapresenter-about-sorting.html[並べ替えについて]
+* link:xamdatapresenter-disable-sorting.html[並べ替えを無効にする]
+* link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[フィールドのプログラムによる並べ替えおよびグループ化]

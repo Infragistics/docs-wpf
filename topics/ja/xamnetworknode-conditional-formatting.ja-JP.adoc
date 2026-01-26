@@ -1,0 +1,565 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-conditional-formatting",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["Formatting","How Do I"],
+    "guid": "d21e3d1c-9433-440c-bd5e-9db92d3560db",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.435251Z"
+}
+|metadata|
+////
+
+= 条件付き書式
+
+このトピックは、link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode]™ コントロールに条件付き書式を適用する方法を示します。トピックの最後で、完全なコード例を提供します。
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>> 
+* <<ConditionalFormatting,条件付き書式をノードに適用>>
+** <<Preview,プレビュー>>
+** <<Requirements,要件>>
+** <<Steps,手順>>
+* <<CompleteCodeSample,全コード例>>
+** <<View,ビュー>>
+** <<CodeBehind,コード ビハインド>>
+** <<NodeModel,NodeModel.cs>>
+** <<ConnectionModel,ConnectionModel.cs>>
+** <<SimpleGraphData,SimpleGraphData.cs>>
+* <<RelatedTopics,関連トピック>>
+
+[[Introduction]]
+== 概要
+
+Network Node コントロールは、link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~nodecontrolattachedevent_ev.html[NodeControlAttachedEvent] を介した条件付き書式をサポートします。この詳細説明は、整数ラベルが 3 で割り切れる場合、各ノードにカスタム バックグラウンドを適用する方法を示します。
+
+[[ConditionalFormatting]]
+== 条件付き書式をノードに適用
+
+[[Preview]]
+=== プレビュー
+
+以下は最終結果のプレビューです。
+
+image::images/xamNetworkNode_ConditionalFormatting_01.png[]
+
+図 1: サンプル コードで描画された条件付き書式の実装
+
+[[Requirements]]
+=== 要件
+
+この記事は、link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]の記事を既に読んでいることを前提とし、開始点として詳細説明でこのコードを使用します。
+
+[[Steps]]
+=== 手順
+
+[start=1]
+1. **カスタム スタイルを追加します。**
+
+以下に示すように、スタイルをレイアウトのルートの Resources セクションに追加します:
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<Grid.Resources>
+    ...
+    <Style x:Key="BlueStyle" TargetType="ig:NetworkNodeNodeControl">
+        <Setter Property="Background" Value="LightBlue" />
+    </Style>
+</Grid.Resources>
+----
+
+[start=2]
+2. **link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~nodecontrolattachedevent_ev.html[NodeControlAttachedEvent] を処理します。** 
+
+スタイルが定義された状態で、xnn_NodeControlAttachedEvent と呼ばれるメソッドで NodeControlAttachedEvent を処理するように Network Node コントロールを構成します:
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<ig:XamNetworkNode x:Name="xnn"
+                   ItemsSource="{Binding Nodes, Source={StaticResource GraphData}}"
+                   NodeControlAttachedEvent="xnn_NodeControlAttachedEvent">
+    ...
+</ig:XamNetworkNode>
+----
+
+このイベントは、NodeControl がレンダリング サーフェイスに添付されると常に発生します。ハンドラー メソッド ロジックでは、ノードの整数ラベルを 3 で割り切れるかどうかをチェックします。割り切れる場合、それに応じて NodeControl に link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style] を設定します:
+
+**C# の場合:**
+
+[source,csharp]
+----
+private void xnn_NodeControlAttachedEvent(object sender, Infragistics.Controls.Maps.NetworkNodeEventArgs e)
+{
+    NodeModel n = e.NodeControl.DataContext as NodeModel;
+    int x = Convert.ToInt32(n.Label);
+    if (x > 0 && x % 3 == 0)
+    {
+        e.NodeControl.Style = this.LayoutRoot.Resources["BlueStyle"] as Style;
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Private Sub xnn_NodeControlAttachedEvent(sender As Object, e As Infragistics.Controls.Maps.NetworkNodeEventArgs)
+    Dim n As NodeModel = TryCast(e.NodeControl.DataContext, NodeModel)
+    Dim x As Integer = Convert.ToInt32(n.Label)
+    If x > 0 AndAlso x Mod 3 = 0 Then
+        e.NodeControl.Style = TryCast(Me.LayoutRoot.Resources("BlueStyle"), Style)
+    End If
+End Sub
+----
+
+[start=3]
+3. **プロジェクトを保存します。**
+
+[start=4]
+4. **(オプション) 結果を確認します。**
+
+アプリケーションを実行します。3 で割り切れる整数ラベルのあるノードは、青のバックグラウンドで描画されます。必要に応じて、他の要件を満たすためにスタイルおよびハンドラー ロジックを変更できます。
+
+[[CompleteCodeSample]]
+== 全コード例
+
+以下は、コンテキストで実装される完全なコードです。
+
+[[View]]
+== ビュー
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<UserControl x:Class="xamNetworkNode_ConditionalFormatting.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ig="http://schemas.infragistics.com/xaml"
+    xmlns:data="clr-namespace:xamNetworkNode_ConditionalFormatting.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+ 
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.Resources>
+            <data:SimpleGraphData x:Key="GraphData" />
+            <Style x:Key="BlueStyle" TargetType="ig:NetworkNodeNodeControl">
+                <Setter Property="Background" Value="LightBlue" />
+            </Style>
+        </Grid.Resources>
+        <ig:XamNetworkNode x:Name="xnn"
+                           ItemsSource="{Binding Nodes, Source={StaticResource GraphData}}"
+                           NodeControlAttachedEvent="xnn_NodeControlAttachedEvent">
+            <ig:XamNetworkNode.GlobalNodeLayouts>
+                <ig:NetworkNodeNodeLayout
+                    TargetTypeName = "NodeModel"
+                    DisplayMemberPath = "Label"
+                    ConnectionsMemberPath = "Connections"
+                    ConnectionTargetMemberPath = "Target"
+                    />
+            </ig:XamNetworkNode.GlobalNodeLayouts>
+        </ig:XamNetworkNode>
+    </Grid>
+</UserControl>
+----
+
+[[CodeBehind]]
+== コード ビハインド
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using xamNetworkNode_ConditionalFormatting.Models;
+ 
+namespace xamNetworkNode_ConditionalFormatting
+{
+    public partial class MainPage : UserControl
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+ 
+        private void xnn_NodeControlAttachedEvent(object sender, Infragistics.Controls.Maps.NetworkNodeEventArgs e)
+        {
+            NodeModel n = e.NodeControl.DataContext as NodeModel;
+            int x = Convert.ToInt32(n.Label);
+            if (x > 0 && x % 3 == 0)
+            {
+                e.NodeControl.Style = this.LayoutRoot.Resources["BlueStyle"] as Style;
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System
+Imports System.Windows
+Imports System.Windows.Controls
+Imports xamNetworkNode_ConditionalFormatting.Models
+
+Namespace xamNetworkNode_ConditionalFormatting
+    Public Partial Class MainPage
+        Inherits UserControl
+        Public Sub New()
+            InitializeComponent()
+        End Sub
+
+        Private Sub xnn_NodeControlAttachedEvent(sender As Object, e As Infragistics.Controls.Maps.NetworkNodeEventArgs)
+            Dim n As NodeModel = TryCast(e.NodeControl.DataContext, NodeModel)
+            Dim x As Integer = Convert.ToInt32(n.Label)
+            If x > 0 AndAlso x Mod 3 = 0 Then
+                e.NodeControl.Style = TryCast(Me.LayoutRoot.Resources("BlueStyle"), Style)
+            End If
+        End Sub
+    End Class
+End Namespace
+----
+
+[[NodeModel]]
+== NodeModel.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+ 
+namespace xamNetworkNode_ConditionalFormatting.Models
+{
+    public class NodeModel : INotifyPropertyChanged
+    {
+        private string _label;
+        public string Label
+        {
+            get { return _label; }
+            set
+            {
+                if (value != _label)
+                {
+                    _label = value;
+                    NotifyPropertyUpdated("Label");
+                }
+            }
+        }
+ 
+        private string _toolTip;
+        public string ToolTip
+        {
+            get { return _toolTip; }
+            set
+            {
+                if (value != _toolTip)
+                {
+                    _toolTip = value;
+                    NotifyPropertyUpdated("ToolTip");
+                }
+            }
+        }
+ 
+        private ObservableCollection<ConnectionModel> _connections;
+        public ObservableCollection<ConnectionModel> Connections
+        {
+            get { return _connections; }
+            set
+            {
+                if (value != _connections)
+                {
+                    _connections = value;
+                    NotifyPropertyUpdated("Connections");
+                }
+            }
+        }
+ 
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
+        protected virtual void NotifyPropertyUpdated(string propertyName)
+        {
+            var handler = PropertyChanged;
+ 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Collections.ObjectModel
+Imports System.ComponentModel
+
+Namespace xamNetworkNode_ConditionalFormatting.Models
+    Public Class NodeModel
+        Implements INotifyPropertyChanged
+        Private _label As String
+        Public Property Label() As String
+            Get
+                Return _label
+            End Get
+            Set
+                If value <> _label Then
+                    _label = value
+                    NotifyPropertyUpdated("Label")
+                End If
+            End Set
+        End Property
+
+        Private _toolTip As String
+        Public Property ToolTip() As String
+            Get
+                Return _toolTip
+            End Get
+            Set
+                If value <> _toolTip Then
+                    _toolTip = value
+                    NotifyPropertyUpdated("ToolTip")
+                End If
+            End Set
+        End Property
+
+        Private _connections As ObservableCollection(Of ConnectionModel)
+        Public Property Connections() As ObservableCollection(Of ConnectionModel)
+            Get
+                Return _connections
+            End Get
+            Set
+                If value <> _connections Then
+                    _connections = value
+                    NotifyPropertyUpdated("Connections")
+                End If
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler
+
+        Protected Overridable Sub NotifyPropertyUpdated(propertyName As String)
+            Dim handler = PropertyChanged
+
+            RaiseEvent handler(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+
+    End Class
+End Namespace
+----
+
+[[ConnectionModel]]
+== ConnectionModel.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.ComponentModel;
+ 
+namespace xamNetworkNode_ConditionalFormatting.Models
+{
+    public class ConnectionModel : INotifyPropertyChanged
+    {
+        private NodeModel _target;
+        public NodeModel Target
+        {
+            get { return _target; }
+            set
+            {
+                if (value != _target)
+                {
+                    _target = value;
+                    NotifyPropertyUpdated("Target");
+                }
+            }
+        }
+ 
+        #region Implementation of INotifyPropertyChanged
+ 
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
+        protected virtual void NotifyPropertyUpdated(string propertyName)
+        {
+            var handler = PropertyChanged;
+ 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.ComponentModel
+
+Namespace xamNetworkNode_ConditionalFormatting.Models
+    Public Class ConnectionModel
+        Implements INotifyPropertyChanged
+        Private _target As NodeModel
+        Public Property Target() As NodeModel
+            Get
+                Return _target
+            End Get
+            Set
+                If value IsNot _target Then
+                    _target = value
+                    NotifyPropertyUpdated("Target")
+                End If
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler
+
+        Protected Overridable Sub NotifyPropertyUpdated(propertyName As String)
+            Dim handler = PropertyChanged
+
+            RaiseEvent handler(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+    End Class
+End Namespace
+----
+
+[[SimpleGraphData]]
+== SimpleGraphData.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Collections.ObjectModel;
+using xamNetworkNode_Intro.Models;
+ 
+namespace xamNetworkNode_ConditionalFormatting.Data
+{
+    public class SimpleGraphData
+    {
+        public ObservableCollection<NodeModel> Nodes { get; set; }
+        private const int K = 7; // ノード当たりの接続数 (最大) 
+        private const int NUM_NODES = 98; // グラフのノード数
+ 
+        public SimpleGraphData()
+        {
+            Nodes = new ObservableCollection<NodeModel>();
+ 
+            // NUM_NODES ノード オブジェクトをコレクションに追加します
+            for (int i = 0; i < NUM_NODES; i++)
+            {
+                NodeModel node = new NodeModel();
+                node.Label = i.ToString();
+                node.ToolTip = "ToolTip for " + node.Label;
+                Nodes.Add(node);
+            }
+ 
+            // ノード 0 から開始し、ルートとしてそのノードを設定します
+            // 最大 K 接続までルート ノードに追加します
+            // 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+            int root = 0;
+            int first = 1;
+            int last = K;
+            while (first < Nodes.Count)
+            {
+                Nodes[root].Connections = new ObservableCollection<ConnectionModel>();
+                for (int i = first; i <= last; i++)
+                {
+                    if (i >= Nodes.Count)
+                    {
+                        break;
+                    }
+                    Nodes[root].Connections.Add(new ConnectionModel { Target = Nodes[i] });
+                }
+                root++;
+                first = last + 1;
+                last += K;
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Collections.ObjectModel
+Imports xamNetworkNode_Intro.Models
+
+Namespace xamNetworkNode_ConditionalFormatting.Data
+    Public Class SimpleGraphData
+        Public Property Nodes() As ObservableCollection(Of NodeModel)
+            Get
+                Return m_Nodes
+            End Get
+            Set
+                m_Nodes = Value
+            End Set
+        End Property
+        Private m_Nodes As ObservableCollection(Of NodeModel)
+        Private Const K As Integer = 7
+        ' ノード当たりの接続数 (最大) 
+        Private Const NUM_NODES As Integer = 98
+        ' グラフのノード数
+        Public Sub New()
+            Nodes = New ObservableCollection(Of NodeModel)()
+
+            ' NUM_NODES ノード オブジェクトをコレクションに追加します
+            For i As Integer = 0 To NUM_NODES - 1
+                Dim node As New NodeModel()
+                node.Label = i.ToString()
+                node.ToolTip = "ToolTip for " & node.Label
+                Nodes.Add(node)
+            Next
+
+            ' ノード 0 から開始し、ルートとしてそのノードを設定します
+            ' 最大 K 接続までルート ノードに追加します
+            ' 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+            Dim root As Integer = 0
+            Dim first As Integer = 1
+            Dim last As Integer = K
+            While first < Nodes.Count
+                Nodes(root).Connections = New ObservableCollection(Of ConnectionModel)()
+                For i As Integer = first To last
+                    If i >= Nodes.Count Then
+                        Exit For
+                    End If
+                    Nodes(root).Connections.Add(New ConnectionModel() With { _
+                        Key .Target = Nodes(i) _
+                    })
+                Next
+                root += 1
+                first = last + 1
+                last += K
+            End While
+        End Sub
+    End Class
+End Namespace
+----
+
+[[RelatedTopics]]
+== 関連トピック
+
+* link:xamnetworknode.html[xamNetworkNode]
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]

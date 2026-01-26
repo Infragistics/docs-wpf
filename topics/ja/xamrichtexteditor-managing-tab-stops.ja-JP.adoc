@@ -1,0 +1,138 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-tab-stops",
+    "tags": ["Editing","How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "eeb6a957-34f9-4635-ba7e-25ec2c9a7e29",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.563309Z"
+}
+|metadata|
+////
+
+= タブ位置の管理 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ のタブ位置を管理する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref368490243,はじめに>>
+* <<_Ref368490549,タブ位置の定義>>
+* <<_Ref368490553,関連コンテンツ>>
+
+[[_Ref368490243]]
+== はじめに
+
+=== コンテキスト メニューの概要
+
+_xamRichTextEditor_   コントロールは、各段落でタブ位置をサポートします。ユーザーが Tab キーを押した後にカレットが配置される位置を指定します。単一の段落または複数の段落でコンテンツの配置を実装できます。
+
+各 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode~settings.html[ParagraphNode.Settings] の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphsettings~tabstops.html[TabStops] コレクションの link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tabstopcollection~addtab.html[AddTab] メソッドを起動すると、タブ位置を定義できます。このコレクションにもタブ位置の削除および取得のメソッドがあります。
+
+[[_Ref368490549]]
+== タブ位置の定義
+
+=== 概要
+
+タブ位置は 3 つのパラメーターによって定義されます。
+
+* タブ位置の行の開始からのオフセット
+* タブ位置のオフセットに相対するコンテンツの配置
+* タブ位置のオフセットの前の先行スペースを示す文字
+
+タブ位置のコンテンツ配置およびコンテンツの先行スペースを示す文字をカスタマイズできます。以下の表で説明されます。
+
+=== プロパティ設定
+
+以下の表は、構成を `AddTab` メソッドの引数にマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用する引数:|操作:
+
+|タブ位置のオフセットを構成する
+|`position`
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.extent_members.html[Extent] の型の値に設定する
+
+|コンテンツの配置を構成する
+|`alignment`
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tabstopalignment.html[TabStopAlignment] の型の値に設定する
+
+|コンテンツの先行文字を構成する
+|`leader`
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tabstopleader.html[TabStopLeader] の型の値に設定する
+
+|====
+
+=== コード例
+
+以下のコード スニペットは、200 ピクセルのオフセット、開始タブ位置の配置、およびドットの先行文字を持つタブ位置を設定する方法を紹介します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ParagraphSettings ps = paragraphNode.Settings;
+ps.TabStops.AddTab(
+    new Extent(200, ExtentUnitType.LogicalPixels),
+    TabStopAlignment.Start,
+    TabStopLeader.Dot);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim ps As ParagraphSettings = paragraphNode.Settings
+ps.TabStops.AddTab( _
+    New Extent(200, ExtentUnitType.LogicalPixels), _
+    TabStopAlignment.Start, _
+    TabStopLeader.Dot)
+----
+
+以下の画像は、最初の段落で定義される 200 ピクセルのタブ位置を持つ  _xamRichTextEditor_   を表示します。タブ位置の行間文字は DOT で、テキストの前の 200 ピクセルに表示されます。
+
+image::images/xamRichTextEditor_TabStops01.png[]
+
+[[_Ref368490553]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-overview.html[xamRichTextEditor の概要の構成]
+|このトピックでは、 _xamRichTextEditor_ コントロールで複数の有用なコンテンツ編集機能を構成する方法を説明します。
+
+|====

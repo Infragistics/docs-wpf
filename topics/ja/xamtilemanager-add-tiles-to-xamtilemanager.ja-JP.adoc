@@ -1,0 +1,124 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-add-tiles-to-xamtilemanager",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I"],
+    "guid": "3b9cebad-aacf-44d4-99ca-ace7e118df7f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6753715Z"
+}
+|metadata|
+////
+
+= タイルを xamTileManager に追加
+
+xamTileManager は link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトを使用してコンテンツを表示します。各 XamTile オブジェクトは、コンテンツの一部分を表示できるコンテンツ コントロールです。多くのケースでは、グリッド パネルなどのレイアウト コンテナーをルート要素として使用します (レイアウト コンテナーに補足要素を追加する)。
+
+コンテンツを表示できるようにする前に、xamTileManager の link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~items.html[Items] コレクションに項目を追加する必要があります。xamTileManager が制約するのは、XamTile オブジェクトの追加だけではありません。UIElements、DependencyObjects、およびデータ項目を Items コレクションに直接追加することもできます。UIElements または DependencyObjects を Items コレクションに直接追加する場合、xamTileManager によって公開されている添付プロパティを設定して、結果のタイル レイアウトを変更できます。
+
+非 XamTile オブジェクトを xamTileManager の Items コレクションに追加する場合、タイルのヘッダーを直接設定することはできません。その代わりに、xamTileManager の link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~headerpath.html[HeaderPath] プロパティを、項目によって公開されているプロパティの名前に設定する必要があります。xamTileManager が項目のタイルを作成する場合、ヘッダー パスとして指定されるプロパティの値を使用します。
+
+image::images/xamTilesControl_Add_Tiles_to_xamTilesControl_01.png[]
+
+以下のコード例は、xamTileManager にタイルを追加する方法を示します。コード例で使用されている制限についての詳細は、 link:xamtilemanager-restrict-a-tiles-size.html[XamTile's Size の制限] を参照してください。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1" HeaderPath="Tag">    
+    <ig:XamTile Header="Tile 1" Content="Content Area" />
+    <ig:XamTile Header="Tile 2" Content="Content Area" />
+    <!-- HeaderPath が「Tag」に設定されているため、コレクションの任意の UIElements の Tag プロパティを設定して、結果のタイルにヘッダーを表示することができます。-->
+    <TextBlock Text="Content Area" Tag="Tile Using a TextBlock">
+        <ig:XamTileManager.Constraints>
+            <ig:TileConstraints MinHeight="100" MinWidth="100" />
+        </ig:XamTileManager.Constraints>
+    </TextBlock>
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+...
+Dim tile1 As New XamTile With _
+    {.Header = "Tile 1", .Content = "Content Area"}
+Dim tile2 As New XamTile With _
+    {.Header = "Tile 2", .Content = "Content Area"}
+' HeaderPath が「Tag」に設定されているため、
+' コレクションの任意の UIElements の Tag プロパティを設定して、
+' 結果のタイルにヘッダーを表示することができます
+Dim textBlock1 As New TextBlock With _
+    {.Text = "Content Area", .Tag = "Tile Using a TextBlock"}
+Dim constraints1 As New TileConstraints With _
+    {.MinHeight = 100, .MinWidth = 100}
+XamTileManager.SetConstraints(textBlock1, constraints1)
+Me.xamTileManager1.Items.Add(tile1)
+Me.xamTileManager1.Items.Add(tile2)
+Me.xamTileManager1.Items.Add(textBlock1)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+...
+XamTile tile1 = new XamTile
+{
+    Header = "Tile 1",
+    Content = "Content Area"
+};
+XamTile tile2 = new XamTile
+{
+    Header = "Tile 2",
+    Content = "Content Area"
+};
+// HeaderPath が「Tag」に設定されているため、
+// コレクションの任意の UIElements の Tag プロパティを設定して、
+// 結果のタイルにヘッダーを表示することができます
+TextBlock textBlock1 = new TextBlock
+{
+    Text = "Content Area",
+    Tag = "Tile Using a TextBlock"
+};
+TileConstraints constraints1 = new TileConstraints
+{
+    MinHeight = 100,
+    MinWidth = 100
+};
+XamTileManager.SetConstraints(textBlock1, constraints1);
+this.xamTileManager1.Items.Add(tile1);
+this.xamTileManager1.Items.Add(tile2);
+this.xamTileManager1.Items.Add(textBlock1);
+...
+----
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

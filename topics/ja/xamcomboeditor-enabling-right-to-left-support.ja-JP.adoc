@@ -1,0 +1,15 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-enabling-right-to-left-support",
+    "tags": ["How Do I"],
+    "controlName": ["xamComboEditor"],
+    "guid": "a38d2081-5632-417f-941a-10cf0bae8c51",  
+    "buildFlags": [],
+    "createdOn": "2015-09-24T13:13:06.305845Z"
+}
+|metadata|
+////
+
+include::xameditors-enabling-right-to-left-support.ja-JP.adoc[]

@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-understanding-data-connector",
+    "controlName": ["xamSchedule"],
+    "tags": ["Scheduling"],
+    "guid": "a0b27919-035d-4e8c-bc58-08fb10fc6a36",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6123516Z"
+}
+|metadata|
+////
+
+= データ コネクターについて
+
+データ コネクターは、指定されたデータ ソースからの情報に基づいて link:xamschedule-understanding-data-manager.html[データ マネージャー]に xamSchedule エンティティ オブジェクト (たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[リソース]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendars] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[アクティビティ]) を提供する非視覚的な要素です。またデータ コネクターは、サポートされる機能や特徴について xamScheduleDataManager に情報を提供します。
+
+以下のデータ コネクターが提供されます。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector]
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector.html[WcfScheduleDataConnector]
+* link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector.html[ExchangeScheduleDataConnector]
+
+List クラスおよび WcfScheduleDataConnector クラスは、データ ソース オブジェクトおよび xamSchedule オブジェクト (Resources、Calendars、および Activities など) の間のプロパティのマッピングをサポートし、幅広いデータ ソースに対するバインドを可能にします。これは、 link:xamschedule-using-connector-mapping.html[「バックエンド データ ソースでフィールドをマップ」]で説明しています。
+
+さらに、カスタム データ コネクターは、 link:xamschedule-using-connector-custom-connectors.html[「カスタム コネクター」]で説明したように、特定のニーズを満たすために作成できます。
+
+データ コネクターは、 link:xamschedule-using-timezone-support.html[「xamSchedule での TimeZone のサポート」]で説明したように、タイム ゾーン情報の指定もサポートします。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-views.html[xamSchedule ビューについて]
+
+link:xamschedule-understanding-resources-calendars.html[リソースおよびカレンダーについて]
+
+link:xamschedule-understanding-activities.html[アクティビティについて]

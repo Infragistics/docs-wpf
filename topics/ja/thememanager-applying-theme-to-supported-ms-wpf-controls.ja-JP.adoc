@@ -1,0 +1,148 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager-applying-theme-to-supported-ms-wpf-controls",
+    "tags": ["Getting Started","How Do I","Theming"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "e4a6ebbd-49df-4cde-a84a-6799c003f514",  
+    "buildFlags": [],
+    "createdOn": "2014-09-03T11:38:47.4273381Z"
+}
+|metadata|
+////
+
+= サポートされる Microsoft の WPF コントロールへのテーマの適用 (ThemeManager)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、サポートされるマイクロソフトの WPF コントロールのテーマ設定を、 _Infragistics ThemeManager_™ を使用して有効または無効にする方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するためには、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-overview.html[機能の概要 (ThemeManager)]
+|このトピックでは、 _Infragistics ThemeManager_ およびその機能の概要を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref397277880,サポートされる Microsoft の WPF コントロール>>
+* <<_Ref397277885,サポートされる Microsoft の WPF コントロールのテーマ設定の構成>>
+* <<_Ref397277890,関連コンテンツ>>
+
+[[_Ref397277880]]
+== サポートされる Microsoft の WPF コントロール
+
+以下のリストは ThemeManager でサポートされる Microsoft WPF コントロールを示します。「link:ms-controls-implicit-themes.html[MS コントロールの暗黙のテーマ]」トピックで利用可能なテーマが説明されます。
+
+* Button
+* CheckBox
+* ComboBox および ComboBoxItem
+* Expander
+* GridSplitter
+* GroupBox
+* Label
+* ListBox および ListBoxItem
+* PasswordBox
+* ProgressBar
+* RadioButton
+* RepeatButton
+* ScrollBar
+* ScrollViewer
+* Slider
+* TextBox
+* ToggleButton
+
+[[_Ref397277885]]
+== サポートされる Microsoft の WPF コントロールのテーマ設定の構成
+
+=== 概要
+
+アプリケーション レベルまたはページ レベルで _ThemeManager_ を使用すると、表示されるすべてのコントロールのテーマが設定されます。この中には、サポートされる Microsoft の WPF コントロールも含まれます。
+
+これらのコントロールのテーマ設定を無効にするには、`StyleMicrosoftControls` プロパティを使用します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:
+|使用するプロパティ:
+|設定値:
+
+|サポートされる Microsoft の WPF コントロールに特定のテーマを適用する
+| link:{RootAssembly}{ApiVersion}~infragistics.themes.builtinthemebase~stylemicrosoftcontrols.html[StyleMicrosoftControls]
+|`True` (既定値)
+
+|サポートされる Microsoft の WPF コントロールをテーマ設定から除外する
+| link:{RootAssembly}{ApiVersion}~infragistics.themes.builtinthemebase~stylemicrosoftcontrols.html[StyleMicrosoftControls]
+|`False`
+
+|====
+
+=== 例
+
+以下のコードは、Office2013 テーマを Microsoft の WPF コントロール以外のすべてのアプリケーションに適用する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ThemeManager.Theme>
+    <ig:Office2013Theme StyleMicrosoftControls="False" />
+</ig:ThemeManager.Theme>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+var office2013Theme = new Office2013Theme {StyleMicrosoftControls = false};
+ThemeManager.SetTheme(LayoutRootGrid, office2013Theme);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim office2013Theme = New Office2013Theme() With { 
+      .StyleMicrosoftControls = False 
+}
+ThemeManager.SetTheme(LayoutRootGrid, office2013Theme)
+----
+
+[[_Ref397277890]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-applying-theme-to-control.html[FrameworkElement レベルのテーマの適用]
+|このトピックでは、_Infragistics ThemeManager_ を使用して FrameworkElement にテーマを適用する方法について説明します。
+
+| link:thememanager-applying-theme-to-application.html[アプリケーション レベルのテーマの適用]
+|このトピックでは、_Infragistics ThemeManager_ を使用してアプリケーションにテーマを適用する方法について説明します。
+
+| link:thememanager-creating-new-custom-theme.html[新規のカスタム テーマの作成]
+|このトピックでは、_Infragistics ThemeManager_ を使用して、新しいカスタム テーマを作成し適用する方法について説明します。
+
+| link:thememanager-extending-existing-control-theme.html[既存のコントロール テーマの拡張]
+|このトピックでは、_Infragistics ThemeManager_ を使用してコントロールの既存のテーマを拡張する方法を紹介します。
+
+|====

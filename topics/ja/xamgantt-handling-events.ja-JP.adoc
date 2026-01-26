@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-handling-events",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "a422c24e-f42d-4102-bbc5-aabd38df406f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2731251Z"
+}
+|metadata|
+////
+
+= イベントの処理
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのこのトピックでは、 _xamGantt™_   コントロールの主要なイベントと処理について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-setting-and-retrieving-the-active-element.html[アクティブな要素の設定および取得]
+|このトピックでは、 _xamGantt_ コントロール内の現在アクティブなセル、列または行の設定または取得に使用されるプロパティとイベントについて説明します。
+
+| link:xamgantt-retrieving-selected-elements.html[選択された要素の取得]
+|このトピックでは、 _xamGantt_ コントロール内の現在選択されているセル、列または行に関する情報の取得に使用されるイベントとその引数について説明します。
+
+| link:xamgantt-other-events-and-events-arguments.html[その他のイベントとイベント引数]
+|このトピックでは、 _xamGantt_ コントロールにおけ共通のユーザー インタラクションで起動して利用できるイベントについて解説します。
+
+|====

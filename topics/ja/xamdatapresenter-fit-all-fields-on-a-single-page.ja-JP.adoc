@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-fit-all-fields-on-a-single-page",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Presentation","Layouts"],
+    "guid": "{F3DFE46A-8166-44B8-B2A2-22186463B81F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2059943Z"
+}
+|metadata|
+////
+
+= 単一ページにすべてのフィールドを収める
+
+
+
+DataPresenter コントロールを印刷またはエクスポートする時に 1 ページに全フィールドを収めるために十分なスペースがない場合、WPF Reporting エンジンは別のページに余分なフィールドを自動的に配置します。ただし、WPF Reporting エンジンがスケールして 1 ページに全フィールドを収めるようにこの動作を変更できます。
+
+[NOTE]
+====
+*注:* WPF Reporting エンジンは、xamDataGrid™ と全く同じように、 xamDataCarousel™ と xamDataCards™ のコンテンツを表形式で印刷します。
+====
+
+以下のコード例は xamDataGrid コントロールを印刷またはエクスポートする時に 1 ページにすべてのフィールドを収める方法を示します。例のコードは xamDataGrid コントロールを使用してレポートを作成します。ただし、xamDataGrid コントロールを任意の DataPresenter コントロールで置き換えることができます。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Reporting
+...
+'最初の 3 本の線は xamDatagrid コントロールを使用してレポートを作成します
+Dim report1 As New Report()
+Dim section1 As New EmbeddedVisualReportSection(Me.xamDataGrid1)
+report1.Sections.Add(section1)
+report1.ReportSettings.HorizontalPaginationMode = HorizontalPaginationMode.Scale
+report1.Print()
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Reporting;
+...
+//最初の 3 本の線は xamDataGrid コントロールを使用してレポートを作成します
+Report report1 = new Report();
+EmbeddedVisualReportSection section1 = new EmbeddedVisualReportSection(this.xamDataGrid1);
+report1.Sections.Add(section1);
+report1.ReportSettings.HorizontalPaginationMode = HorizontalPaginationMode.Scale;
+report1.Print();
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-exclude-datapresenter-settings-when-printing.html[印刷時に DataPresenter 設定を除外]
+
+link:xamdatapresenter-handling-events-to-customize-print-operations.html[印刷操作をカスタマイズするためにイベントを処理]
+
+link:xamdatapresenter-print-all-records-in-a-hierarchy.html[階層のすべてのレコードを印刷]
+
+link:xamdatapresenter-repeat-field-headers-on-all-pages.html[すべてのページでフィールド ヘッダーを繰り返す]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]

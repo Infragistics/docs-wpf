@@ -1,0 +1,141 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-bind-xamcomboeditor-to-a-dataset",
+    "controlName": ["xamComboEditor"],
+    "tags": ["How Do I"],
+    "guid": "{CEE8AA60-7B8B-40EC-84C5-0E17E4D1939E}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0869781Z"
+}
+|metadata|
+////
+
+= xamComboEditor を DataSet にバインド
+
+== 始める前に
+
+DataSet を含め、複数の異なるデータ ソースに xamComboEditor™ をバインドできます。Extensible Application Markup Language (XAML) を使用して xamComboEditor を DataSet にバインドしたい場合、ビジネスオブジェクトのコレクションの代わりに DataSet を返す ObjectDataProvider を作成できます。この実装に必要とされる XAML 宣言は、 link:xamcomboeditor-bind-xamcomboeditor-to-a-collection.html[xamComboEditor をコレクションにバインド]するための XAML 宣言と非常に似ています。ただし、冗長な情報を削除するに、以下の手順は xamComboEditor を DataSet にバインドするためにプロシージャー コードを使用します。
+
+以下の手順で例に従いたい場合には、 link:creating-a-flat-dataset.html[フラットな DataSet を作成]することが必要となります。
+
+== 達成すること
+
+XAML を使用して、xamComboEditor コントロールと ComboBoxItemsProvider オブジェクトを宣言的に作成します。xamComboEditor を DataSet にバインドするためにプロシージャー コードを書きます。
+
+== 次の手順を実行します
+
+[start=1]
+. xamComboEditor を Window に追加して名前を付けます。
+
+*XAML の場合:*
+
+----
+...
+<igEditors:XamComboEditor Name="xamComboEditor1" VerticalAlignment="Top">
+</igEditors:XamComboEditor>
+...
+----
+
+[start=2]
+. ComboBoxItemsProvider を xamComboEditor に追加します。
+
+xamComboEditor は、ComboBoxItemsProvider オブジェクトのインスタンスを自動的に作成しません。XAML で ComboBoxItemsProvider を宣言する、またはコード ビハインドで xamComboEditor の ItemsProvider プロパティを ComboBoxItemsProvider のインスタンスに設定する必要があります。
+
+*XAML の場合:*
+
+----
+...
+<igEditors:XamComboEditor.ItemsProvider>
+        <igEditors:ComboBoxItemsProvider />
+</igEditors:XamComboEditor.ItemsProvider>
+...
+----
+
+[start=3]
+. Window の Loaded イベントのイベント ハンドラを接続します。
+
+*XAML の場合:*
+
+----
+<Window … Loaded="Window_Loaded" ...>
+----
+
+[start=4]
+. コード ビハインドで、'Window_Loaded' という名前のメソッドを作成して、Window の Load イベントを処理します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub Window_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs) 
+            'TODO: ここでコントロールのデータ ソースを設定します
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void Window_Loaded(object sender, RoutedEventArgs e)
+{
+            //TODO: ここでコントロールのデータ ソースを設定します
+}
+----
+
+[start=5]
+. フラットな DataSet で ItemsProvider オブジェクトの ItemsSource プロパティを最初の Table の DefaultView プロパティに設定します。
+
+ItemsProvider オブジェクトのプロパティを設定できます。XAML で xamComboEditor の ItemsProvider プロパティを ComboBoxItemsProvider の新しいインスタンスに設定するからです。このように設定していなかった場合には、ItemsProvider オブジェクトのプロパティを設定する前に、xamComboEditor の ItemsProvider プロパティを ComboBoxItemsProvider のインスタンスに設定することが必要となります。
+
+*Visual Basic の場合:*
+
+----
+...
+Me.xamComboEditor1.ItemsProvider.ItemsSource = Me.exampleDataSet.Tables(0).DefaultView
+...
+----
+
+*C# の場合:*
+
+----
+...
+this.xamComboEditor1.ItemsProvider.ItemsSource = this.exampleDataSet.Tables[0].DefaultView;
+...
+----
+
+[start=6]
+. ComboBoxItemsProvider オブジェクトの DisplayMemberPath プロパティを文字列 ContactName に設定します。
+
+DisplayMemberPath プロパティは、xamComboEditor の Text プロパティに保存される値だけでなく表示値を決定します。
+
+*Visual Basic の場合:*
+
+----
+itemsProvider1.DisplayMemberPath = "ContactName"
+----
+
+*C# の場合:*
+
+----
+itemsProvider1.DisplayMemberPath = "ContactName";
+----
+
+[start=7]
+. ComboBoxItemsProvider オブジェクトの ValuePath プロパティを文字列 CustomerID に設定します。
+
+ValuePath プロパティは、xamComboEditor の Value プロパティに保存される値を決定します。ValuePath プロパティが文字列のデータ タイプを持つプロパティまたは DataColumn をポイントする場合、xamComboEditor の ValueType プロパティを明示的に設定する必要はありません。ValueType プロパティが設定されない場合には、文字列のデータ タイプにデフォルトで設定します。
+
+*Visual Basic の場合:*
+
+----
+itemsProvider1.ValuePath = "CustomerID"
+----
+
+*C# の場合:*
+
+----
+itemsProvider1.ValuePath = "CustomerID";
+----
+
+[start=8]
+. プロジェクトを実行して、xamComboEditor コントロールをクリックし、Northwind データベースから顧客のドロップダウン リストを表示します。

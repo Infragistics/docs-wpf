@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-understanding-activities",
+    "controlName": ["xamSchedule"],
+    "tags": ["Getting Started","How Do I","Scheduling"],
+    "guid": "d1f9e572-e286-47ae-8401-4b0340d9a379",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6373216Z"
+}
+|metadata|
+////
+
+= アクティビティについて
+
+アクティビティ エンティティは、スケジュール アプリケーションの核となる概念です。さまざまなタイプのアクティビティがあり、すべて link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[ActivityBase] クラスから派生しています。したがって、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~subject.html[Subject]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~start.html[Start]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~end.html[End]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningcalendarid.html[OwningCalendarId] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningresourceid.html[OwningResourceId] などの共通プロパティがあります。Start および End は UTC 値として定義され、固定時間またはフローティング時間となります。
+
+ActivityBase には、繰り返し、アラーム、およびタイム ゾーン、さらにアクティビティが表示されるかどうか (IsVisible) やアクティビティが変更可能かどうか (IsLocked) を制御するためのプロパティに関連する設定もあります。
+
+XamSchedule は 3 種類のアクティビティをサポートします。
+
+[start=1]
+. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment] - これは最も一般的に使用されるエンティティで、会合やイベントなどのカレンダーで予定された時間を表します。XamSchedule には、Appointment を作成または変更するためのダイアログを表示するためのサポートが組み込まれています。
+[start=2]
+. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task.html[Task] エンティティ - link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task~percentcomplete.html[PercentComplete] 設定で実行されるタスクまたはすべきことを表します。
+[start=3]
+. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.journal.html[Journal] エンティティ - 履歴のエントリーまたはメモを表します。 
+
+image::images/xamScheduleActivities.png[]
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-views.html[xamSchedule ビューについて]
+
+link:xamschedule-understanding-resources-calendars.html[リソースおよびカレンダーについて]

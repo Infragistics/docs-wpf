@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnumericeditor",
+    "controlName": ["xamNumericEditor"],
+    "tags": [],
+    "guid": "{05236760-8A94-47B5-B34E-C5A0E47A21A0}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2229781Z"
+}
+|metadata|
+////
+
+= xamNumericEditor
+
+xamNumericEditor™ コントロールに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このセクションをご覧ください。このセクションは、コントロールについての概要からアプリケーションで使用する理由、コントロールを使用して共通タスクを達成するための方法の手順などの xamNumericEditor についての有益な情報を含んでいます。
+
+以下のリンクをクリックして、xamNumericEditor コントロールについての情報にアクセスします。
+
+* link:xamnumericeditor-about-xamnumericeditor.html[xamNumericEditor について]
+* link:xameditors-overview-of-the-valueeditor-class.html[ValueEditor クラスの概要]
+* link:xameditors-masks.html[マスク]
+* link:xamnumericeditor-using-xamnumericeditor-as-a-field-in-xamdatagrid.html[xamDataGrid でフィールドとして xamNumericEditor を使用]
+* link:xameditors-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xameditors-working-with-the-isalwaysineditmode-property-and-the-editors.html[IsAlwaysInEditMode プロパティとエディターによる作業]
+* link:xamnumericeditor-api-overview.html[API の概要]

@@ -1,0 +1,121 @@
+﻿////
+|metadata|
+{
+    "name": "xamtreemap-adding-xamtreemap-using-xaml",
+    "controlName": ["xamTreemap"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "f80bc6a6-9681-4cd1-9fff-8885df093d75",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7653827Z"
+}
+|metadata|
+////
+
+= XAML コードを使用して xamTreemap を追加
+
+== 始める前に
+
+このトピックでは、XAML を使用して xamTreemap コントロールを独自の pick:[sl="ページ"]  pick:[wpf,win-phone="アプリケーション"] へ追加する基本的な手順を説明します。コントロールでは、データ オブジェクト モデルを DataContext プロパティにマップする必要があります。トピックは簡易データオブジェクトモデルを提供しますが、カスタムモデルを作成することも可能です。
+
+== 達成すること
+
+アプリケーションへバインドしたサンプルデータのある xamTreemap コントロールのインスタンスを追加します。
+
+== 次の手順を実行します
+
+*注:* このサンプルは xamTreemap コントロールの DataContext プロパティのバインドにサンプル データ モデルを使用しています。サンプル データ モデルは link:resources-manufacturer-view-model.html[ManufacturerViewModel] からダウンロードできます。
+
+[start=1]
+. Microsoft® {PlatformName} アプリケーションを作成します。
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.Treemap
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. 以下の XML 名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:models="clr-namespace:DATA_MODEL_NAMESPACE"
+----
+
+[start=4]
+. ManufacturerViewModel へバインドされた DataContext  および Manufacturers プロパティへバインドされた ItemsSource と共に xamTreemap コントロールのインスタンスを追加します。 
+
+*XAML の場合:*
+
+----
+<ig:XamTreemap ItemsSource="{Binding Manufacturers}">
+    <ig:XamTreemap.DataContext>
+        <models:ManufacturerViewModel />
+    </ig:XamTreemap.DataContext>
+    <ig:XamTreemap.NodeBinders>
+        <!--ノード バインダーを追加します-->
+    </ig:XamTreemap.NodeBinders>
+    <ig:XamTreemap.ValueMappers>
+        <!--値マッパーを追加します-->
+    </ig:XamTreemap.ValueMappers>
+</ig:XamTreemap>
+----
+
+[start=5]
+. link:xamtreemap-node-binders.html[ノード バインダー] をコントロールの NodeBinders コレクションに追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamTreemap ItemsSource="{Binding Manufacturers}">
+    <ig:XamTreemap.DataContext>
+        <models:ManufacturerViewModel />
+    </ig:XamTreemap.DataContext>
+    <ig:XamTreemap.NodeBinders>
+        <ig:NodeBinder TargetTypeName="Manufacturer"
+                       ValuePath="Revenue"
+                       TextPath="Name" />
+    </ig:XamTreemap.NodeBinders>
+    <ig:XamTreemap.ValueMappers>
+        <!--値マッパーを追加します-->
+    </ig:XamTreemap.ValueMappers>
+</ig:XamTreemap>
+----
+
+image::images/xamTreemap_Adding_xamTreemap_Using_Xaml_Procedural_Code_01.png[]
+[start=6]
+. link:xamtreemap-value-mappers.html[値のマッパー] をコントロールの ValueMappers コレクションに追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamTreemap ItemsSource="{Binding Manufacturers}">
+    <ig:XamTreemap.DataContext>
+        <models:ManufacturerViewModel />
+    </ig:XamTreemap.DataContext>
+    <ig:XamTreemap.NodeBinders>
+        <ig:NodeBinder TargetTypeName="Manufacturer"
+                       ValuePath="Revenue"
+                       TextPath="Name" />
+    </ig:XamTreemap.NodeBinders>
+    <ig:XamTreemap.ValueMappers>
+        <ig:ColorMapper ValueTypeName="Manufacturer"
+                        TargetProperty="Fill"
+                        ValuePath="Revenue"
+                        From="#90FF0000"
+                        To="#90008000"/>
+    </ig:XamTreemap.ValueMappers>
+</ig:XamTreemap>
+----
+
+image::images/xamTreemap_Adding_xamTreemap_Using_Xaml_Procedural_Code_02.png[]
+[start=7]
+. アプリケーションを保存して実行します。
+
+== 関連トピック
+
+* link:xamtreemap-adding-xamtreemap-using-blend.html[Expression Blend を使用して xamTreemap を追加]
+* link:xamtreemap-adding-xamtreemap-using-procedural.html[プロシージャ コードを使用して xamTreemap を追加]

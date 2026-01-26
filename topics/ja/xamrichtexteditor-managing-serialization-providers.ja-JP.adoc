@@ -1,0 +1,270 @@
+﻿////
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-serialization-providers",
+    "tags": ["Data Binding"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "39e1f7a9-4be8-47a1-af6b-616bd83d05f3",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4703414Z"
+}
+|metadata|
+////
+
+= シリアル化プロバイダーの概要 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールのシリアル化プロバイダーについて説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加する]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362600929,はじめに>>
+* <<_Ref362600934,シリアル化プロバイダーの構成の概要>>
+* <<_Ref362533437,シリアル化プロバイダーの追加>>
+* <<_Ref362533449,ファイル形式の優先順位の設定>>
+* <<_Ref359594803,関連トピック>>
+
+[[_Ref362600929]]
+== はじめに
+
+=== シリアル化プロバイダーの概要
+
+_xamRichTextEditor_   コントロールは、シリアル化プロバイダーに基づいた柔軟なアーキテクチャをサポートします。シリアル化プロバイダーはさまざまなリッチ コンテンツ ファイル形式をインポートまたはエクスポートできます。新しいシリアル化プロバイダーを追加すると、 _xamRichTextEditor_   でその機能を使用できます。
+
+* リッチ コンテンツをインポートまたはエクスポートするには、特定のシリアル化プロバイダーを設定し、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] コントロールの link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~load.html[Load] または link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~save.html[Save] メソッドを使用します。また Infragistics が提供する外部のシリアル化プロバイダーも、`RichTextDocument` の拡張メソッドを定義して、各ドキュメントを特定のファイル形式で読み込んで保存できます。詳細は、後半の<<_Ref359594803,関連トピック>>を参照してください。
+* クリップボードのカットまたはコピー操作は、 _xamRichTextEditor_   でサポートされているすべての内部コンテンツ ファイル形式 (各種のプレーン テキスト形式)、および外部のシリアル化プロバイダーが提供する各ファイル形式で、コンテンツをクリップボードに追加します。
+* クリップボードの貼り付け操作では、外部のシリアル化プロバイダーを使用して、クリップボードのコンテンツの取得と逆シリアル化をします。このトピックの後半には、逆シリアル化の 1 つの選択肢として、ファイル形式の優先順位を定義する方法が説明されています。
+
+以下の表は、*Infragistics.WPF.RichTextDocument* NuGet パッケージの内部シリアル化プロバイダーと、データをクリップボードに読み書きするときに _xamRichTextEditor_ によって使用されるサポートされているコンテンツ形式の一覧です。
+
+[options="header", cols="a,a,a"]
+|====
+|シリアル化プロバイダー|ファイル形式|説明
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.plaintextserializationprovider.html[PlainTextSerializationProvider]
+|System.String
+|ANSI 形式のテキスト コンテンツ
+
+|
+|UnicodeText
+|Unicode 形式のテキスト コンテンツ
+
+|
+|Text
+|ANSI 形式のテキスト コンテンツ
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.imageserializationprovider.html[ImageSerializationProvider]
+|DIB
+|デバイスに依存しないビットマップ
+
+|====
+
+注:
+
+[NOTE]
+====
+`ImageSerializationProvider` は、クリップボードからの画像に対し、デバイスに依存しないビットマップ形式の読み込みのみサポートします。ドキュメントの読み込みや保存、コンテンツのクリップボードへの保存もできません。
+====
+
+以下の表は、追加の NuGet パッケージ内のシリアル化プロバイダーと、対応しているファイル形式の一覧です。
+
+[options="header", cols="a,a,a"]
+|====
+|NuGet パッケージ / シリアル化プロバイダー|フォーマット|説明
+
+|*Infragistics.WPF.RichTextDocument.Rtf* 
+
+link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}~infragistics.documents.richtext.rtf.rtfserializationprovider.html[RtfSerializationProvider]
+|リッチ テキスト形式
+|リッチ テキスト形式のリッチ コンテンツ
+
+|*Infragistics.WPF.RichTextDocument.Word* 
+
+link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.word.wordserializationprovider.html[WordSerializationProvider]
+|埋め込みソース
+|MS Word (docx) フォーマットのリッチ コンテンツ
+
+|====
+
+[[_Ref362600934]]
+== シリアル化プロバイダーの構成の概要
+
+=== シリアル化プロバイダーの構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、各プロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref362533437,シリアル化プロバイダーの追加>>
+|外部のシリアル化プロバイダーを _xamRichTextEditor_ に追加します。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~clipboardserializationproviders.html[ClipboardSerializationProviders]
+
+|<<_Ref362533449,ファイル形式の優先順位の設定>>
+|クリップボードからデータを取得する時に使用するファイル形式の優先順位を設定します。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~clipboardformats.html[ClipboardFormats]
+
+|====
+
+[[_Ref362533437]]
+== シリアル化プロバイダーの追加
+
+=== 概要
+
+_xamRichTextEditor_   がクリップボードのコンテンツの追加および取得で、追加のファイル形式をサポートできるように、xamRichTextEditor コントロールの `ClipboardSerializationProviders` プロパティに外部のシリアル化プロバイダーを追加できます。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|操作:
+
+|外部シリアル化プロバイダーの追加
+|`ClipboardSerializationProviders`
+|外部のシリアル化プロバイダーを追加します。
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコード スニペットは、RTF と Word の外部シリアル化プロバイダーを追加する方法を示しています。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamRichTextEditor>
+    <ig:XamRichTextEditor.ClipboardSerializationProviders>
+        <ig:PlainTextSerializationProvider />
+        <ig:ImageSerializationProvider />
+        <ig:RtfSerializationProvider />
+        <ig:WordSerializationProvider />
+    </ig:XamRichTextEditor.ClipboardSerializationProviders>
+</ig:XamRichTextEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.ClipboardSerializationProviders.Add(
+    PlainTextSerializationProvider.Instance);
+this.xamRichTextEditor1.ClipboardSerializationProviders.Add(
+    ImageSerializationProvider.Instance);
+this.xamRichTextEditor1.ClipboardSerializationProviders.Add(
+    RtfSerializationProvider.Instance);
+this.xamRichTextEditor1.ClipboardSerializationProviders.Add(
+    WordSerializationProvider.Instance);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.ClipboardSerializationProviders.Add(PlainTextSerializationProvider.Instance)
+Me.xamRichTextEditor1.ClipboardSerializationProviders.Add(ImageSerializationProvider.Instance)
+Me.xamRichTextEditor1.ClipboardSerializationProviders.Add(RtfSerializationProvider.Instance)
+Me.xamRichTextEditor1.ClipboardSerializationProviders.Add(WordSerializationProvider.Instance)
+----
+
+[[_Ref362533449]]
+== ファイル形式の優先順位の設定
+
+=== 概要
+
+クリップボードからのデータのインポートに使用するサポートされているファイル形式のリストから、各種形式の適用する順番を`ClipboardFormats` プロパティで設定します。各ファイル形式は、プロパティで指定された順番で使用されます。各シリアル化プロバイダーの link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.serializationproviderbase~supportedclipboardformats.html[SupportedClipboardFormats] プロパティを使用して、正確なフォーマットの名前を取得します。`ClipboardFormats` プロパティにリストされたファイル形式のみが、クリップボードのコンテンツの保存または読み込みに使用されます。デフォルトで、クリップボードには、内部および Infragistics が提供する外部のシリアル化プロバイダーによりサポートされる、すべてのファイル形式がデフォルトの選択順で含まれています。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|ファイル形式の優先順位の設定
+|`ClipboardFormats`
+|読み込み順にコンマで区切られたファイル形式のリスト
+
+|====
+
+=== 例
+
+以下のコード スニペットは、ファイル形式の優先順位を設定する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamRichTextEditor ClipboardFormats="Rich Text Format, Text">
+    <ig:XamRichTextEditor.ClipboardSerializationProviders>
+        <ig:RtfSerializationProvider />
+        <ig:WordSerializationProvider />
+    </ig:XamRichTextEditor.ClipboardSerializationProviders>
+</ig:XamRichTextEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.ClipboardSerializationProviders.ClipboardFormats =
+    "Rich Text Format, Text";
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.ClipboardSerializationProviders.ClipboardFormats = _
+    "Rich Text Format, Text"
+----
+
+[[_Ref359594803]]
+== 関連トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-import-export-text.html[プレーン テキストのインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、プレーン テキストのデータをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-managing-import-export-rtf.html[RTF のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、RTF データをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-managing-import-export-docx.html[DOCX のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して DOCX ファイル形式のデータをインポートおよびエクスポートする方法を説明します。
+
+|====

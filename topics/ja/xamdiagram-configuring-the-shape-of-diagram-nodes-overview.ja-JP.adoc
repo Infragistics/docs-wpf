@@ -1,0 +1,353 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-configuring-the-shape-of-diagram-nodes-overview",
+    "tags": ["Charting","How Do I","Styling","Templating"],
+    "controlName": ["xamDiagram"],
+    "guid": "8e9fa21b-6445-429c-8903-b4a99889ec0f",
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:31:03.9789864Z"
+}
+|metadata|
+////
+
+= ダイアグラム ノードの図形の構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、定義済みの図形を選択、またはカスタム図形を適用して、 _xamDiagram_   コントロールのダイアグラム ノードの図形を構成する方法を説明します。カスタム図形またはカスタム データ テンプレートを使用する場合は、 link:xamdiagram-styling-items-templates.html[ダイアグラム項目の内容の視覚化の構成]を参照してください。このトピックでは、ダイアグラムの項目の内容について DataTemplates を設定する方法、およびこれらの内容を編集するために DataTemplates を設定する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref386477912, 概要 >>
+
+** <<_Ref386477960,ダイアグラム ノードの図形の構成の概要>>
+** <<_DiagramNodesShapeConfigSummary,ダイアグラム ノードの図形の構成の概要表>>
+
+* <<_Ref386478000, 定義済みの図形の構成 >>
+
+** <<_Ref386478019,概要>>
+** <<_PropertySettings,プロパティ設定>>
+** <<_Ref386478040,例>>
+
+* <<_Ref386478056, カスタム図形の構成 >>
+
+** <<_Ref386478065,概要>>
+** <<_Ref386478080,プロパティ設定>>
+** <<_Ref386478085,例>>
+
+* <<_Ref386478097, 関連コンテンツ >>
+
+** <<_Ref386478106,トピック>>
+
+[[_Ref386477912]]
+== 概要
+
+[[_Ref386477960]]
+
+=== ダイアグラム ノードの図形の構成の概要
+
+_xamDiagram_   には、定義済みのノードの図形が複数あります。(詳細は、 link:xamdiagram-general-overview.html[概要]のトピックを参照してください。)定義済みの図形は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[ShapeType] プロパティを使用して選択します。このプロパティは、`ShapeType` 列挙体として使用できる各ノードの図形を値として受け取ります。定義済みの図形に目的の図形がない場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[Geometry] プロパティでカスタム図形を設定できます。
+
+`Geometry` プロパティが設定されると、`ShapeType` 設定は無視されます。`Geometry` プロパティおよび `ShapeType` プロパティが設定されているかどうかに関わらず、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] が適用されます。`ShapeType` が `None` に設定されている場合、または `Geometry` が空のジオメトリに設定されている場合は、図形は表示されません (コンテンツとテンプレートでの定義のみが表示されます)。
+
+[options="header", cols="a,a,a,a"]
+|====
+||設定|表示|メモ
+
+|`Geometry`
+|空のジオメトリ以外
+|指定されたジオメトリ
+|`ShapeType` を上書きします。
+
+|
+|空のジオメトリ
+|
+|
+
+|`ShapeType`
+|使用可能な `ShapeType` 列挙体
+|指定された列挙体
+|コレクションから定義済みの図形を選択します。
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate]
+|
+|
+|常に適用されます。
+
+|====
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[Geometry] 設定に依存しない link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[Content] プロパティと `DisplayTemplate` プロパティを使用すると、ダイアグラムのノードをさらに詳細にカスタマイズできます。ダイアグラムのノードのテンプレートを構成する方法の詳細は、 link:xamdiagram-styling-items-templates.html[ダイアグラム項目の内容の視覚化の構成]を参照してください。
+
+.注:
+[NOTE]
+====
+通常、テンプレートは図形自体を定義するために使用するのではなく、(定義済みの場合、または `Geometry` を介してカスタムで作成された場合のいずれも) ノードが図形の内部で表示される状態を管理するために使用しますが、テンプレートに図形自体を定義する機能がないわけではありません。
+====
+
+[[_DiagramNodesShapeConfigSummary]]
+
+=== ダイアグラム ノードの図形の構成の概要表
+
+以下の表は、目的のノード図形とそれを管理するプロパティ設定のマップを示します。緑で強調表示された項目は、表の後に詳細が記載されています。
+
+[options="header", cols="a,a,a,a"]
+|====
+|目的:||使用するプロパティ:|設定値:
+
+|[[_Hlk356484826]]定義済みの図形の構成
+|
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[ShapeType] 
+
+|目的の定義済みの図形に対応する列挙体
+
+|カスタム図形の構成
+|ジオメトリの使用
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[Geometry] 
+
+|カスタム ジオメトリとして定義された目的の図形
+
+|
+|データ テンプレートの使用
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~content.html[Content] 
+
+|目的のデータ オブジェクト
+
+|
+|
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] 
+
+|`Content` を表示するための目的の `DataTemplate`
+
+|====
+
+[[_Ref386478000]]
+== 定義済みの図形の構成
+
+[[_Ref386478019]]
+
+=== 概要
+
+ダイアグラム ノードの目的の図形を設定するには、対応する列挙値を link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[ShapeType] プロパティの値として指定します。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|ノードの図形を設定する目的:|使用するプロパティ:|設定値:
+
+|シェブロン
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[ShapeType]
+| _Chevron_ 
+
+|円
+|`ShapeType`
+| _Circle_ 
+
+|太い十字線
+|`ShapeType`
+| _Cross_ 
+
+|細い十字線
+|`ShapeType`
+| _ThinCross_ 
+
+|楕円
+|`ShapeType`
+| _Ellipse_ 
+
+|七角形
+|`ShapeType`
+| _Heptagon_ 
+
+|六角形
+|`ShapeType`
+| _Hexagon_ 
+
+|八角形
+|`ShapeType`
+| _Octagon_ 
+
+|五角形
+|`ShapeType`
+| _Pentagon_ 
+
+|長方形
+|`ShapeType`
+|_“_ _Rectangle_ _”_
+
+|長方形、角丸
+|`ShapeType`
+| _RoundedRectangle_ 
+
+|菱形
+|`ShapeType`
+| _Rhombus_ 
+
+|四角
+|`ShapeType`
+| _Square_ 
+
+|三角形
+|`ShapeType`
+|_“_ _Triangle_ ”
+
+|左下が直角の直角三角形
+|`ShapeType`
+| _RightTriangle_ 
+
+|右下が直角の直角三角形
+|`ShapeType`
+| _RightTriangleMirrored_ 
+
+|====
+
+[[_Ref386478040]]
+
+=== 例
+
+以下のスクリーンショットは、以下のコードを実行した結果、さまざまな link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[ShapeType] の設定を持つ複数のノードで構成された  _xamDiagram_   がどのように表示されるかを示しています。
+
+image::images/xamDiagram_Configuring_Diagram_Node_Geometry_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="Diagram" Background="Gray">
+    <ig:DiagramNode Position="0,0"     ShapeType="Chevron" Content="Chevron"/>
+    <ig:DiagramNode Position="140,0"   ShapeType="Circle" Content="Circle"/>
+    <ig:DiagramNode Position="280,0"   ShapeType="Cross" Content="Cross"/>
+    <ig:DiagramNode Position="0,100"   ShapeType="Ellipse" Content="Ellipse"/>
+    <ig:DiagramNode Position="140,100" ShapeType="Heptagon" Content="Heptagon"/>
+    <ig:DiagramNode Position="280,100" ShapeType="Hexagon" Content="Hexagon"/>
+    <ig:DiagramNode Position="0,200"   ShapeType="None" Content="None"/>
+    <ig:DiagramNode Position="140,200" ShapeType="Octagon" Content="Octagon"/>
+    <ig:DiagramNode Position="280,200" ShapeType="Pentagon" Content="Pentagon"/>
+    <ig:DiagramNode Position="0,300"   ShapeType="Rectangle" Content="Rectangle"/>
+    <ig:DiagramNode Position="140,300" ShapeType="Rhombus" Content="Rhombus"/>
+    <ig:DiagramNode Position="280,300" ShapeType="RightTriangle" Content="RightTriangle"/>
+    <ig:DiagramNode Position="0,400"   ShapeType="RightTriangleMirrored" Content="RightTriangleMirrored"/>
+    <ig:DiagramNode Position="140,400" ShapeType="RoundedRectangle" Content="RoundedRectangle"/>
+    <ig:DiagramNode Position="280,400" ShapeType="Square" Content="Square"/>
+    <ig:DiagramNode Position="0,500"   ShapeType="ThinCross" Content="ThinCross"/>
+    <ig:DiagramNode Position="140,500" ShapeType="Triangle" Content="Triangle"/>
+</ig:XamDiagram>
+----
+
+[[_Configuring_a_Custom]]
+[[_Ref386478056]]
+== カスタム図形の構成
+
+[[_Ref386478065]]
+
+=== 概要
+
+目的の図形に対してカスタム ジオメトリを指定することで、カスタム図形をダイアグラムのノードに適用できます。
+
+[[_Ref386478080]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|カスタム ジオメトリの適用
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[Geometry]
+|目的のジオメトリ
+
+|====
+
+[[_Ref386478085]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、ダイアグラムのノードがどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[Geometry]
+|*XAML の場合:* 
+
+[source,xaml]
+---- 
+<GeometryGroup>  <LineGeometry StartPoint="0,0" EndPoint="40,40"/>  <LineGeometry StartPoint="40,0" EndPoint="0,40"/> </GeometryGroup> 
+---- 
+
+|====
+
+image::images/xamDiagram_Configuring_Diagram_Node_Geometry_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="Diagram">
+    <ig:DiagramNode Name="node2" StrokeThickness="5">
+        <ig:DiagramNode.Geometry>
+            <GeometryGroup>
+                <LineGeometry StartPoint="0,0" EndPoint="40,40"/>
+                <LineGeometry StartPoint="40,0" EndPoint="0,40"/>
+            </GeometryGroup>
+        </ig:DiagramNode.Geometry>
+    </ig:DiagramNode>
+</ig:XamDiagram>
+----
+
+[[_Ref386478097]]
+== 関連コンテンツ
+
+[[_Ref386478106]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-styling-items-templates.html[ダイアグラム項目の内容の視覚化の構成 ( _xamDiagram_ )]
+|このトピックでは、テンプレートを使用して、 _xamDiagram_ コントロールでカスタムのダイアグラムのノードおよび接続を構成する方法について説明しています。
+
+| link:xamdiagram-binding-to-data.html[データへの _xamDiagram_ のバインド]
+|このトピックでは、 _xamDiagram_ コントロールをデータにバインドする方法を説明します。
+
+|====

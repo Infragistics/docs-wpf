@@ -1,0 +1,851 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-binding-to-nodes-and-connections-data-with-references",
+    "tags": ["Charting","Data Binding","Data Presentation","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "f312a948-ee67-4468-ae24-1828b7904ecd",
+    "buildFlags": [],
+    "createdOn": "2014-06-25T10:57:16.9850344Z"
+}
+|metadata|
+////
+
+= 参照を持つノードおよび接続データへのバインド (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+
+このトピックでは、入力データ オブジェクトがノードおよび接続を表し、各接続オブジェクトが開始ノードと終了ノードを表す 2 つのノード オブジェクトへの参照を持つデータに、 _xamDiagram_™ コントロールをバインドする方法の手順を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-binding-to-data.html[データへの _xamDiagram_ のバインド]
+|このトピックでは、 _xamDiagram_ コントロールがサポートするデータ バインディング シナリオの概要を説明します。
+
+|====
+
+=== このトピックの内容
+
+* <<_Ref391057685, 参照を持つノードおよび接続データへのバインド >>
+
+** <<_Ref391057687,概要>>
+** <<_Preview,プレビュー>>
+** <<_Prerequisites,前提条件>>
+** <<_Overview,概要>>
+** <<_Ref391057695,手順>>
+** <<_Ref382317785,全コード>>
+
+* <<_Ref391057700, 関連コンテンツ >>
+
+[[_Ref391057685]]
+== 参照を持つノードおよび接続データへのバインド
+
+[[_Ref391057687]]
+
+=== 概要
+
+以下の手順では、各接続オブジェクトが開始ノードと終了ノードを表す 2 つのノード オブジェクトへの参照を持つ、ノードおよび接続を表すデータ オブジェクトに  _xamDiagram_   をバインドする方法を説明します。
+
+[[_Preview]]
+
+=== プレビュー
+
+以下のスクリーンショットは結果のプレビューです。
+
+image::images/xamDiagram_Binding_to_Nodes_and_Connections_Data_with_References_1.png[]
+
+[[_Prerequisites]]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+* ページに追加される空の  _xamDiagram_   を持つ WPF アプリケーション
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~layout.html[ForceDirectedGraphDiagramLayout] のインスタンスに設定される  _xamDiagram_   の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.forcedirectedgraphdiagramlayout_members.html[Layout] プロパティ
+
+[[_Overview]]
+
+=== 概要
+
+以下はプロセスの概要です。
+
+. *ItemsSource* と *ConnectionSource* の設定
+
+.ノード定義の作成
+
+.接続定義の作成
+
+[[_Ref391057695]]
+
+=== 手順
+
+以下の手順では、参照を持つ階層ノード データに  _xamDiagram_   をバインドする方法を説明します。
+
+=== 1.ItemsSource と ConnectionSource の設定
+
+*サンプル ノードのデータ クラスを追加します。*
+
+以下の `WikipediaArticle` クラスをコード ビハインドに追加します。`WikipediaArticle` はノード オブジェクトを表し、`Title` という単一の文字列プロパティを持ちます。
+
+*C# の場合:*
+
+[source, CS]
+---- 
+public class WikipediaArticle : INotifyPropertyChanged
+{
+    public WikipediaArticle(string title)
+    {
+        Title = title;
+    }
+
+    private string _title;
+    public string Title
+    {
+        get { return _title; }
+        set
+        {
+            _title = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        if (PropertyChanged != null)
+        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+----
+
+*VB.NET の場合:*
+
+[source, VB]
+---- 
+Public Class WikipediaArticle Implements INotifyPropertyChanged
+    Public Sub New(title As String)
+        Title = title
+    End Sub
+
+    Private _title As String
+    Public Property Title() As String
+        Get
+            Return _title
+        End Get
+        Set(value As String)
+            _title = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+    Protected Sub OnPropertyChanged(Optional propertyName As String = "")
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    End Sub
+End Class
+----
+
+*2.サンプルの接続クラスを追加します。*
+
+以下の `WikipediaLink` クラスをコード ビハインドに追加します。`WikipediaLink` クラスは、2 つの `WikipediaArticle` インスタンスの間の指示された接続を表します。
+
+*C# の場合:*
+
+[source, CS]
+---- 
+public class WikipediaLink : INotifyPropertyChanged
+{
+    public WikipediaLink(WikipediaArticle fromArticle, WikipediaArticle toArticle)
+    {
+        FromArticle = fromArticle;
+        ToArticle = toArticle;
+    }
+
+    private WikipediaArticle _from;
+    public WikipediaArticle FromArticle
+    {
+        get { return _from; }
+        set
+        {
+            _from = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private WikipediaArticle _to;
+    public WikipediaArticle ToArticle
+    {
+        get { return _to; }
+        set
+        {
+            _to = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public override string ToString()
+    {
+        return string.Empty;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        if (PropertyChanged != null)
+        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+----
+
+ *VB.NET の場合:*
+
+[source, VB]
+---- 
+Public Class WikipediaLink
+    Implements INotifyPropertyChanged
+
+    Public Sub New(fromArticle As WikipediaArticle, toArticle As WikipediaArticle)
+        FromArticle = fromArticle
+        ToArticle = toArticle
+    End Sub
+
+    Private _from As WikipediaArticle
+    Public Property FromArticle() As WikipediaArticle
+        Get
+            Return _from
+        End Get
+        Set
+            _from = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Private _to As WikipediaArticle
+    Public Property ToArticle() As WikipediaArticle
+        Get
+            Return _to
+        End Get
+        Set
+            _to = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Public Overrides Function ToString() As String
+        Return String.Empty
+    End Function
+
+    Public Event PropertyChanged As PropertyChangedEventHandler
+    Protected Sub OnPropertyChanged( Optional propertyName As String = "")
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    End Sub
+End Class
+----
+
+*データ項目を追加します。*
+
+以下の `LinkChainViewModel` クラスを追加すると、ノードおよび接続のための 2 つの リスト プロパティが表示され、サンプル データが自動的に事前設定されます。
+
+*C# の場合:*
+
+[source,CS]
+---- 
+public class LinkChainViewModel : INotifyPropertyChanged
+{
+    public LinkChainViewModel()
+    {
+        var travolta = new WikipediaArticle("John Travolta");
+        var hubbard = new WikipediaArticle("L. Ron Hubbard");
+        var astoria = new WikipediaArticle("Astoria, Oregon");
+        var goonies = new WikipediaArticle("The Goonies");
+        var feldman = new WikipediaArticle("Corey Feldman");
+        var jackson = new WikipediaArticle("Michael Jackson");
+        var year2001 = new WikipediaArticle("2001");
+        var year2001music = new WikipediaArticle("2001 in music");
+
+        Articles = new ObservableCollection<WikipediaArticle>()
+        {
+            travolta,
+            hubbard,
+            astoria,
+            goonies,
+            feldman,
+            jackson,
+            year2001,
+            year2001music
+        };
+        Links = new ObservableCollection<WikipediaLink>()
+        {
+            new WikipediaLink(travolta, hubbard),
+            new WikipediaLink(hubbard, astoria),
+            new WikipediaLink(astoria, goonies),
+            new WikipediaLink(goonies, feldman),
+            new WikipediaLink(feldman, jackson),
+            new WikipediaLink(travolta, year2001),
+            new WikipediaLink(year2001, year2001music),
+            new WikipediaLink(year2001music, jackson)
+        };
+    }
+
+    private IList<WikipediaArticle> _articles;
+    public IList<WikipediaArticle> Articles
+    {
+        get { return _articles; }
+        set
+        {
+            _articles = value;
+            OnPropertyChanged();
+        }
+    }
+    private IList<WikipediaLink> _links;
+    public IList<WikipediaLink> Links
+    {
+        get { return _links; }
+        set
+        {
+            _links = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        if (PropertyChanged != null)
+        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+----
+
+*VB.NET の場合:*
+
+[source, VB]
+---- 
+Public Class LinkChainViewModel
+    Implements INotifyPropertyChanged
+
+    Public Sub New()
+        Dim travolta = New WikipediaArticle("John Travolta")
+        Dim hubbard = New WikipediaArticle("L. Ron Hubbard")
+        Dim astoria = New WikipediaArticle("Astoria, Oregon")
+        Dim goonies = New WikipediaArticle("The Goonies")
+        Dim feldman = New WikipediaArticle("Corey Feldman")
+        Dim jackson = New WikipediaArticle("Michael Jackson")
+        Dim year2001 = New WikipediaArticle("2001")
+        Dim year2001music = New WikipediaArticle("2001 in music")
+
+        Articles = New ObservableCollection(Of WikipediaArticle)() From { _
+            travolta, _
+            hubbard, _
+            astoria, _
+            goonies, _
+            feldman, _
+            jackson, _
+            year2001, _
+            year2001music _
+        }
+        Links = New ObservableCollection(Of WikipediaLink)() From { _
+            New WikipediaLink(travolta, hubbard), _
+            New WikipediaLink(hubbard, astoria), _
+            New WikipediaLink(astoria, goonies), _
+            New WikipediaLink(goonies, feldman), _
+            New WikipediaLink(feldman, jackson), _
+            New WikipediaLink(travolta, year2001), _
+            New WikipediaLink(year2001, year2001music), _
+            New WikipediaLink(year2001music, jackson) _
+        }
+    End Sub
+
+    Private _articles As IList(Of WikipediaArticle)
+    Public Property Articles() As IList(Of WikipediaArticle)
+        Get
+            Return _articles
+        End Get
+        Set(value As IList(Of WikipediaArticle))
+            _articles = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Private _links As IList(Of WikipediaLink)
+    Public Property Links() As IList(Of WikipediaLink)
+        Get
+            Return _links
+        End Get
+        Set(value As IList(Of WikipediaLink))
+            _links = value
+            OnPropertyChanged()
+        End Set
+    End Property
+
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+    Protected Sub OnPropertyChanged(Optional propertyName As String = "")
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    End Sub
+End Class
+----
+
+*XamDiagram の DataContext を設定します。*
+
+ダイアグラムの `DataContext` プロパティを `LinkChainViewModel` クラスのインスタンスに設定します。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+<ig:XamDiagram>
+    <ig:XamDiagram.DataContext>
+        <local:LinkChainViewModel/>
+    </ig:XamDiagram.DataContext>
+</ig:XamDiagram>
+----
+
+*ItemsSource プロパティを設定します。*
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~itemssource.html[ItemsSource] を `LinkChainViewModel` のデータ コンテキストの `Articles` プロパティにバインドします。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+ItemsSource="{Binding Articles}"
+----
+
+*ConnectionsSource プロパティを設定します。*
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectionssource.html[ConnectionsSource] を `LinkChainViewModel` のデータ コンテキストの `Links` プロパティにバインドします。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+ConnectionsSource="{Binding Links}"
+----
+
+=== 2.ノード定義の作成
+
+通常、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~itemssource.html[ItemsSource] および link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition_members.html[NodeDefinition] の各データ タイプが  _xamDiagram_   に追加されます。1 つ以上のタイプに継承関係がある場合、最初に、最も具体的なタイプを指定します。_xamDiagram_   は、各データ項目のタイプをノード定義の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] に一致させようとします。その link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] が `IsAssignableFrom` への呼び出しから true を返す、最初のノード定義が選択されます。これは、ノード定義の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] が完全に一致する場合、またはデータ項目のタイプの親タイプである場合に該当し、そうでない場合はノード定義が選択されます。
+
+. Manager クラスの NodeDefinition を作成します。
+
+. link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition_members.html[NodeDefinition] の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] を `WikipediaArticle` 型に設定します。
+
+. link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~displaymemberpath.html[DisplayMemberPath] を _Title_ に設定します。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~displaymemberpath.html[DisplayMemberPath] を定義しないで、link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~nodestyle.html[NodeStyle] を介してカスタム link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] を設定しないと `ToString` メソッドはノードのコンテンツとして表示されます。
+
+. (オプション) link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~nodestyle.html[NodeStyle] を設定します。
+pass:[<br/>]
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~nodestyle.html[NodeStyle] プロパティを使用して、ノード定義に一致するすべての `DiagramNode` オブジェクトのスタイルを設定します。これにより、特定のデータ タイプに対して作成されたノードのカスタマイズが容易になります。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+<ig:XamDiagram.NodeDefinitions>
+    <ig:NodeDefinition
+        TargetType="local:WikipediaArticle"
+        DisplayMemberPath="Title"/>
+</ig:XamDiagram.NodeDefinitions>
+----
+
+=== 3.接続定義の作成
+
+個別の接続データ オブジェクトを指定する場合は、ダイアグラムの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectiondefinitions.html[ConnectionDefinitions] の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionsourcedefinition_members.html[ConnectionSourceDefinition] のインスタンスを使用します。このタイプの接続定義では、定義の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] に一致する各データ項目に対して作成する接続を記述します。このような接続に link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnode.html[StartNode] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnode.html[EndNode] プロパティを正しく事前設定するには、接続定義の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionsourcedefinition~startnodememberpath.html[StartNodeMemberPath] プロパティおよび link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionsourcedefinition~endnodememberpath.html[EndNodeMemberPath] プロパティを、開始 / 終了ノードのデータ オブジェクトの参照を保持するプロパティ名に設定することが必要です。 
+
+. link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionsourcedefinition_members.html[ConnectionSourceDefinition] を作成して、link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectiondefinitions.html[ConnectionDefinitions] コレクションに追加します。
+
+. link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.nodedefinition~targettype.html[TargetType] を `WikipediaLink` 型に設定します。
+
+. link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionsourcedefinition~startnodememberpath.html[StartNodeMemberPath] を _"FromArticle」 _ に設定します。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionsourcedefinition~endnodememberpath.html[EndNodeMemberPath] を _"ToArticle"_ に設定します。
+
+. (オプション) link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectiondefinitionbase~connectionstyle.html[ConnectionStyle] を設定します。
+pass:[<br/>]
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection_members.html[DiagramConnection] を対象とするスタイルに link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectiondefinitionbase~connectionstyle.html[ConnectionStyle] プロパティを設定すると、特定のデータ タイプに対して作成される接続をカスタマイズできます。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~displaytemplate.html[DisplayTemplate] プロパティの設定を指定し、データ オブジェクトを `DataContext` として設定するテンプレートを適用できます。
+
+*XAML の場合:*
+
+[source,XAML]
+---- 
+<ig:XamDiagram.ConnectionDefinitions>
+    <ig:ConnectionSourceDefinition
+        TargetType="local:WikipediaLink"
+        StartNodeMemberPath="FromArticle"
+        EndNodeMemberPath="ToArticle"/>
+</ig:XamDiagram.ConnectionDefinitions>
+----
+
+[[_Ref382317785]]
+
+=== 全コード
+
+以下は、この手順の完全なコードです。
+
+*XAML の場合:*
+
+[source, XAML]
+---- 
+<UserControl x:Class="DiagramDocumentationSamples.NodesConnectionsReferencesData"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ig="http://schemas.infragistics.com/xaml"
+    xmlns:local="clr-namespace:DiagramDocumentationSamples"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="300">
+    <ig:XamDiagram
+        x:Name="FlatDataDiagram"
+        ItemsSource="{Binding Articles}"
+        ConnectionsSource="{Binding Links}">
+
+        <ig:XamDiagram.DataContext>
+            <local:LinkChainViewModel/>
+        </ig:XamDiagram.DataContext>
+
+        <ig:XamDiagram.NodeDefinitions>
+            <ig:NodeDefinition
+                TargetType="local:WikipediaArticle"
+                DisplayMemberPath="Title"/>
+        </ig:XamDiagram.NodeDefinitions>
+
+        <ig:XamDiagram.ConnectionDefinitions>
+            <ig:ConnectionSourceDefinition
+                TargetType="local:WikipediaLink"
+                StartNodeMemberPath="FromArticle"
+                EndNodeMemberPath="ToArticle"/>
+        </ig:XamDiagram.ConnectionDefinitions>
+
+        <ig:XamDiagram.Layout>
+            <ig:ForceDirectedGraphDiagramLayout/>
+        </ig:XamDiagram.Layout>
+    </ig:XamDiagram>
+</UserControl>
+----
+
+*C# の場合:*
+
+[source, CS]
+---- 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
+namespace DiagramDocumentationSamples
+{
+    public partial class NodesConnectionsReferencesData : UserControl
+    {
+        public NodesConnectionsReferencesData()
+        {
+            InitializeComponent();
+        }
+    }
+    public class WikipediaArticle : INotifyPropertyChanged
+    {
+        public WikipediaArticle(string title)
+        {
+            Title = title;
+        }
+
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+            _title = value;
+            OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+    public class WikipediaLink : INotifyPropertyChanged
+    {
+        public WikipediaLink(WikipediaArticle fromArticle, WikipediaArticle toArticle)
+        {
+            FromArticle = fromArticle;
+            ToArticle = toArticle;
+        }
+
+        private WikipediaArticle _from;
+        public WikipediaArticle FromArticle
+        {
+            get { return _from; }
+            set
+            {
+                _from = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private WikipediaArticle _to;
+        public WikipediaArticle ToArticle
+        {
+            get { return _to; }
+            set
+            {
+                _to = value;
+                OnPropertyChanged();
+            }
+        }
+        public override string ToString()
+        {
+            return string.Empty;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+    public class LinkChainViewModel : INotifyPropertyChanged
+    {
+        public LinkChainViewModel()
+        {
+            var travolta = new WikipediaArticle("John Travolta");
+            var hubbard = new WikipediaArticle("L. Ron Hubbard");
+            var astoria = new WikipediaArticle("Astoria, Oregon");
+            var goonies = new WikipediaArticle("The Goonies");
+            var feldman = new WikipediaArticle("Corey Feldman");
+            var jackson = new WikipediaArticle("Michael Jackson");
+            var year2001 = new WikipediaArticle("2001");
+            var year2001music = new WikipediaArticle("2001 in music");
+
+            Articles = new ObservableCollection<WikipediaArticle>()
+            {
+                travolta,
+                hubbard,
+                astoria,
+                goonies,
+                feldman,
+                jackson,
+                year2001,
+                year2001music
+            };
+            Links = new ObservableCollection<WikipediaLink>()
+            {
+                new WikipediaLink(travolta, hubbard),
+                new WikipediaLink(hubbard, astoria),
+                new WikipediaLink(astoria, goonies),
+                new WikipediaLink(goonies, feldman),
+                new WikipediaLink(feldman, jackson),
+                new WikipediaLink(travolta, year2001),
+                new WikipediaLink(year2001, year2001music),
+                new WikipediaLink(year2001music, jackson)
+            };
+        }
+        private IList<WikipediaArticle> _articles;
+        public IList<WikipediaArticle> Articles
+        {
+            get { return _articles; }
+            set
+            {
+                _articles = value;
+                OnPropertyChanged();
+            }
+        }
+        private IList<WikipediaLink> _links;
+        public IList<WikipediaLink> Links
+        {
+            get { return _links; }
+            set
+            {
+                _links = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+}
+----
+
+*VB の場合:*
+
+[source, VB]
+---- 
+Imports System.Collections.Generic
+Imports System.Collections.ObjectModel
+Imports System.ComponentModel
+Imports System.Runtime.CompilerServices
+Imports System.Windows.Controls
+
+Namespace DiagramDocumentationSamples
+
+    Public Partial Class NodesConnectionsReferencesData
+        Inherits UserControl
+
+        Public Sub New()
+            InitializeComponent()
+        End Sub
+    End Class
+
+    Public Class WikipediaArticle
+        Implements INotifyPropertyChanged
+        
+        Public Sub New(title As String)
+            Title = title
+        End Sub
+
+        Private _title As String
+        Public Property Title() As String
+            Get
+                Return _title
+            End Get
+            Set(value As String)
+                _title = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+        Protected Sub OnPropertyChanged(Optional propertyName As String = "")
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+    End Class
+
+    Public Class WikipediaLink
+        Implements INotifyPropertyChanged
+
+        Public Sub New(fromArticle As WikipediaArticle, toArticle As WikipediaArticle)
+            FromArticle = fromArticle
+            ToArticle = toArticle
+        End Sub
+
+        Private _from As WikipediaArticle
+        Public Property FromArticle() As WikipediaArticle
+            Get
+                Return _from
+            End Get
+            Set(value As WikipediaArticle)
+                _from = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Private _to As WikipediaArticle
+        Public Property ToArticle() As WikipediaArticle
+            Get
+                Return _to
+            End Get
+            Set(value As WikipediaArticle)
+                _to = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Public Overrides Function ToString() As String
+            Return String.Empty
+        End Function
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+        Protected Sub OnPropertyChanged(Optional propertyName As String = "")
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+    End Class
+
+    Public Class LinkChainViewModel
+        Implements INotifyPropertyChanged
+
+        Public Sub New()
+            Dim travolta = New WikipediaArticle("John Travolta")
+            Dim hubbard = New WikipediaArticle("L. Ron Hubbard")
+            Dim astoria = New WikipediaArticle("Astoria, Oregon")
+            Dim goonies = New WikipediaArticle("The Goonies")
+            Dim feldman = New WikipediaArticle("Corey Feldman")
+            Dim jackson = New WikipediaArticle("Michael Jackson")
+            Dim year2001 = New WikipediaArticle("2001")
+            Dim year2001music = New WikipediaArticle("2001 in music")
+
+            Articles = New ObservableCollection(Of WikipediaArticle)() From { _
+                travolta, _
+                hubbard, _
+                astoria, _
+                goonies, _
+                feldman, _
+                jackson, _
+                year2001, _
+                year2001music _
+            }
+            Links = New ObservableCollection(Of WikipediaLink)() From { _
+                New WikipediaLink(travolta, hubbard), _
+                New WikipediaLink(hubbard, astoria), _
+                New WikipediaLink(astoria, goonies), _
+                New WikipediaLink(goonies, feldman), _
+                New WikipediaLink(feldman, jackson), _
+                New WikipediaLink(travolta, year2001), _
+                New WikipediaLink(year2001, year2001music), _
+                New WikipediaLink(year2001music, jackson) _
+            }
+        End Sub
+
+        Private _articles As IList(Of WikipediaArticle)
+        Public Property Articles() As IList(Of WikipediaArticle)
+            Get
+                Return _articles
+            End Get
+            Set(value As IList(Of WikipediaArticle))
+                _articles = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Private _links As IList(Of WikipediaLink)
+        Public Property Links() As IList(Of WikipediaLink)
+            Get
+                Return _links
+            End Get
+            Set(value As IList(Of WikipediaLink))
+                _links = value
+                OnPropertyChanged()
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+        Protected Sub OnPropertyChanged(Optional propertyName As String = "")
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+    End Class
+End Namespace
+----
+
+[[_Ref391057700]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-binding-to-nodes-and-connections-data-with-keys.html[キーを持つノードおよび接続データへのバインド ( _xamDiagram_ )]
+|このトピックでは、入力データ オブジェクトがノードおよび接続を表すデータに _xamDiagram_ コントロールをバインドする方法の手順を説明します。ノード オブジェクトはそれぞれ一意の文字列識別子を持ち、接続オブジェクトはそれぞれ開始ノードと終了ノードを表す 2 つのノード オブジェクトの識別子を保持する 2 つのプロパティを持ちます。
+
+| link:xamdiagram-binding-to-hierarchical-node-data-with-references.html[参照を持つ階層ノード データへのバインド ( _xamDiagram_ )]
+|このトピックでは、xamDiagram コントロールを階層ノード データにバインドする方法を説明します。
+
+| link:xamdiagram-binding-to-hierarchical-node-data-with-keys.html[キーを持つ階層ノード データへのバインド ( _xamDiagram_ )]
+|このトピックでは、キーを持つ階層ノード データに _xamDiagram_ コントロールをバインドする方法を説明します。
+
+|====

@@ -1,0 +1,73 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-2009-volume-2",
+    "controlName": [],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{08947F2A-04DD-4987-9DCA-AEBBB1EB9D1D}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.6706873Z"
+}
+|metadata|
+////
+
+= 2009 Volume 2
+
+== 拡張されたグリッド ビュー
+
+拡張されたグリッド ビュー機能は、すべての RecordPresenter オブジェクトを整列するために複数のネストされたパネルの代わりに単一のルート レベルのパネルを使用します。以前のバージョンの {ProductName} からアプリケーションをアップブレードする場合、この変更がアプリケーションの xamDataGrid™ コントロールと xamDataPresenter™ コントロールに自動的に適用されます。その結果以下の問題が生じます。
+
+* ネストされた記録を処理する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordpresenter.html[RecordPresenter] オブジェクトのテンプレートのアニメーションまたはトリガーは無視されます。
+* ネストされた記録はクロームで囲まれません。
+* ネストされた要素構造を前提とするアプリケーション ロジックに障害が発生する場合があります。
+* ネストされた要素構造を前提とするバインディングに障害が発生する場合があります。
+* 情報にアクセスするために UIAutomation を使用するロジックに影響がある場合があります。自動化オブジェクトはネストされたツリーとしてこれまで通りに返されますが、このツリーがネストされた要素を使用する時に返されるツリーと同一になることは保証されません。
+
+変更がアプリケーションに影響する場合、2 つの方法でこの変更を回避することができます。 アプリケーション ロジック/バインディングを修正する、または link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.gridviewsettings.html[GridViewSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.gridviewsettings~usenestedpanels.html[UseNestedPanels] プロパティを True に設定することができます。 拡張されたグリッド ビューに関する詳細は、「階層的なレコードとパフォーマンスについて」を参照してください。
+
+== FieldLayout オブジェクトの Key プロパティ
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~key.html[Key] プロパティを設定せずに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] オブジェクトを作成した場合、DataPresenter コントロールはデフォルトのキーをフィールド レイアウトに自動的に指定します。DataPresenter コントロールが FieldLayout オブジェクトに指定するデフォルトのキーが変わりました。 以前のバージョンでキーを FieldLayout オブジェクトにすでに指定した場合には、この変更はアプリケーションに影響しません。
+
+以下の表はデータ ソースに基づいた変更をリストします。
+
+[options="header", cols="a,a,a"]
+|====
+|データ ソースのタイプ|9.2 以前のキー|新しいキー
+
+|DataTable
+|DataTable インスタンス
+|DataTable.TableName
+
+|ITypedList
+|ITypedList インスタンス
+|ITypedList.GetListName()
+
+|XmlNode
+|XmlNode インスタンス
+|XmlNode.Name
+
+|IEnumerable
+|CustomType
+|CustomType (Unchanged)
+
+|====
+
+変更がアプリケーションに影響する場合、新しいキーを使用するために FieldLayout オブジェクトの Key プロパティを明示的に設定する、またはアプリケーション ロジックを修正することができます。
+
+== GroupByArea モード
+
+DataPresenter コントロールには新しいデフォルトの group-by 領域 (GroupByAreaMulti) があり、これによってエンドユーザーはレコード領域と group-by 領域間でフィールドのヘッダーを直接ドラッグすることができます。 さらに、新しい group-by 領域は link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter.html[LabelPresenter] オブジェクトのインスタンスを表示します。 したがって、新しい group-by 領域の LabelPresenter オブジェクトのスタイリングと機能は DataPresenter コントロールの LabelPresenter オブジェクトと整合性があります。この変更は以下のようにアプリケーションに影響します:
+
+* 以前の group-by 領域または group-by 領域のフィールド レベルを修正するアプリケーション ロジックまたはスタイルは無視されます。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyareamode.html[GroupByAreaMode] プロパティが DefaultFieldLayoutOnly に設定されない限り、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyarea.html[GroupByArea] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyareafieldlabelstyle.html[GroupByAreaFieldLabelStyle] プロパティは無視されます。
+* DataPresenter コントロールのビューがフィールド ヘッダー (LabelPresenter オブジェクト) を表示しない場合、エンドユーザーは新しい group-by 領域を使用できません。これは xamDataCarousel™ コントロールの場合に限り問題になります。デフォルトでフィールド ヘッダーを表示しないからです。
+* RecordPresenter オブジェクトまたは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.headerlabelarea.html[HeaderLabelArea] オブジェクト内にあることを前提とする LabelPresenter オブジェクトのスタイル内のバインディングに障害が発生します。
+
+変更がアプリケーションに影響する場合、アプリケーション ロジックを修正して、DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyareamulti.html[GroupByAreaMulti] プロパティを使用する、または DataPresenter コントロールの GroupByAreaMode を DefaultFieldLayoutOnly に設定することによって以前の group-by 領域に戻すことができます。 さらに、スタイルは新しい link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti.html[GroupByAreaMulti] コントロールをターゲットとすべきで、LabelPresenter オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter~isingroupbyarea.html[IsInGroupByArea] プロパティと link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter~isinfieldchooser.html[IsInFieldChooser] プロパティをトリガーで使用できます。
+
+[NOTE]
+====
+*注:* xamDataCarousel または xamDataPresenter をカルーセル ビューで使用している場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~labellocation.html[LabelLocation] を InCells に設定できます。これによってエンドユーザーはフィールド ヘッダーを新しい group-by 領域にドラッグできます。
+====

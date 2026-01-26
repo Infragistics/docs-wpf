@@ -1,0 +1,99 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcheckeditor-using-xamcheckeditor-as-a-field-in-xamdatagrid",
+    "controlName": ["xamCheckEditor"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{B5D11E18-6334-4FA2-9A02-737ABB9107D2}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0589781Z"
+}
+|metadata|
+////
+
+= xamDataGrid でフィールドとして xamCheckEditor を使用
+
+xamCheckEditor コントロールの重要な機能は、xamDataGrid の フィールドに組み込むことができることです。この機能によって、セルの値を修正する間にエンド ユーザーはエディターの機能を十分に活用することができます。xamCheckEditor コントロールも True または False という言葉だけを使用するよりも視覚的により魅力的です。
+
+XamDataGrid はブール値タイプのフィールドのデフォルト エディターとして自動的に xamCheckEditor を使用します。ただし、その他のタイプのフィールドでは、以下の手順に従って、xamDataGrid の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] に xamCheckEditor を表示します。
+
+[start=1]
+. Microsoft® Windows® Presentation Foundation Window または Page プロジェクトを作成します。
+[start=2]
+. 以下の名前空間宣言を開始の Page タグまたは Window タグに配置します。これらの宣言によって、 xamDataGrid、xamCheckEditor を参照してタイプを定義することができます (つまり Int32、Boolean)。
+
+*XAML の場合:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+xmlns:igEditors="http://infragistics.com/Editors"
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
+----
+
+[start=3]
+. XmlDataProvider を定義するリソース セクションを作成します。XmlDataProvider は link:resources-employees.html[Employees] XML ファイルを参照します。グリッド パネル内に以下の XAML を配置します。
+
+*XAML の場合:*
+
+----
+<Grid.Resources>
+        <XmlDataProvider Source="../Data/Employees.xml" 
+          x:Key="EmployeeData" XPath="/employees" />
+</Grid.Resources>
+----
+
+[start=4]
+. XamDataGrid のインスタンスを作成して名前を指定し、前述の手順で作成された XmlDataProvider に DataSource プロパティを設定します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataGrid x:Name="XamDataGrid1" 
+  DataSource="{Binding Source={StaticResource EmployeeData}, XPath=employee}">
+        ...
+</igDP:XamDataGrid>
+----
+
+[start=5]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[AutoGenerateFields] プロパティを False に設定します。前述の手順で作成されたタグの間に以下の XAML を配置します。
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataGrid.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+</igDP:XamDataGrid.FieldLayoutSettings>
+...
+----
+
+[start=6]
+. Field ごとに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~label.html[Label] を設定します。Label を提供しない場合、フィールドの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~name.html[Name] が使用されます。3 つのフィールドを作成します。最初のフィールドでは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings]、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editastype.html[EditAsType] および link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editortype.html[EditorType] プロパティを設定します。EditAsType プロパティは、Field のタイプを定義します。このケースでは、Field にブール値を表示させたいとします。EditorType プロパティは、使用する link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor] のタイプを設定します。このケースでは、XamCheckEditor を使用しています。このコードを前述の手順のコードの下に配置します。
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataGrid.FieldLayouts>
+        <igDP:FieldLayout>
+                <igDP:FieldLayout.Fields>
+                        <igDP:Field Name="active" Label="Active Status" >
+                                <igDP:Field.Settings>
+                                        <igDP:FieldSettings 
+                                          EditAsType="{x:Type sys:Boolean}" 
+                                          EditorType="{x:Type igEditors:XamCheckEditor}"/>
+                                </igDP:Field.Settings>
+                        </igDP:Field>
+                        <igDP:Field Name="name" Label="Employee's Name"/>
+                        <igDP:Field Name="department" Label="Department"/>
+                </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+</igDP:XamDataGrid.FieldLayouts>
+...
+----
+
+[start=7]
+. プロジェクトをビルドして実行します。以下の画像のように、xamDataGrid の最初のフィールドに xamCheckEditor が表示されます。
+
+image::images/xamCheckEditor_Using_xamCheckEditor_as_a_Field_in_xamDataGrid_01.png[xamdatagrid フィールドでの xamcheckeditor の使用]

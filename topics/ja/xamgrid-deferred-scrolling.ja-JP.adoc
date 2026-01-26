@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-deferred-scrolling",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Performance","Selection"],
+    "guid": "{8517AE36-237E-4250-BBDA-AA0D21352401}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8111633Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 遅延スクロール
+
+遅延スクロールは xamGrid コントロールの UI 機能で、これによってエンド ユーザーは高速かつ効率的に大量のデータを検索できます。
+
+遅延スクロールが有効である場合、データをスクロールすると、現在のつまみの位置に対応する行についての情報を含むカスタマイズ可能なプレビューがエンドユーザーに表示されます。エンドユーザーがスクロールを停止すると、その位置のデータが表示されます。xamGrid のスクロールバーは、データセット全体を表します。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Deferred_Scrolling_01.png[遅延スクロール]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Deferred_Scrolling_01.png[遅延スクロール]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-customize-deferred-scrolling-template.html[遅延スクロール テンプレートのカスタマイズ]
+
+link:xamdialogwindow-enable-deferred-scrolling.html[遅延スクロールを有効にする]
+
+link:xamgrid-customize-groupby-deferred-scrolling-template.html[GroupBy の遅延スクロール テンプレートのカスタマイズ]

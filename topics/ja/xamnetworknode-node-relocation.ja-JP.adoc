@@ -1,0 +1,818 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-node-relocation",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["Editing","How Do I"],
+    "guid": "cfdf698f-3d8e-4a45-9fb0-52c93d69d9f0",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.4412517Z"
+}
+|metadata|
+////
+
+= ノードの移動
+
+このトピックは、動的なノードの移動を可能にするように link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode]™ コントロールを構成する方法を示します。トピックの最後で、完全なコード例を提供します。
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>> 
+* <<Preview,プレビュー>>
+* <<Requirements,要件>>
+* <<Overview,概要>>
+* <<Steps,手順>>
+* <<Complete,全コード例>>
+** <<View,ビュー>>
+** <<CodeBehind,コード ビハインド>>
+** <<NodeModel,NodeModel.cs>>
+** <<ConnectionModel,ConnectionModel.cs>>
+** <<SimpleGraphData,SimpleGraphData.cs>>
+* <<RelatedTopics,関連トピック>>
+
+[[Introduction]]
+== 概要
+
+各 NetworkNode link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenodecontrol~node.html[Node] オブジェクトには、動的なレイアウトの変更を許可する link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodenode~location.html[Location] プロパティがあります。このトピックは、マウス カーソルでドラッグした時にノード要素を移動する方法を示します。
+
+[[Preview]]
+== プレビュー
+
+以下は最終結果のプレビューです。
+
+image::images/xamNetworkNode_NodeRelocation_01.png[]
+
+図 1: サンプル コードで描画された xamNetworkNode コントロールでのノード移動
+
+[[Requirements]]
+== 要件
+
+この記事は、link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]の記事を既に読んでいることを前提とし、開始点として詳細説明でこのコードを使用します。
+
+[[Overview]]
+=== 概要
+
+1. 変数の定義
+2. イベント ハンドラーの登録
+3. プロジェクトの保存
+4. (オプション) 結果の検証
+
+[[Steps]]
+== 手順
+
+[start=1]
+1. **変数の定義**
+
+これらの変数は、移動効果がアクティブであるかどうか、そして移動中のノードについての情報を追跡します。
+
+**C# の場合:**
+
+[source,csharp]
+----
+private bool _isMoveInEffect; // 移動が有効か
+private NetworkNodeNodeControl _currentElement; // 移動中の要素
+private Point _currentPosition; // その要素の現在の位置
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Private _isMoveInEffect As Boolean
+' 移動が有効か
+Private _currentElement As NetworkNodeNodeControl
+' 移動中の要素
+Private _currentPosition As Point
+' その要素の現在の位置
+----
+
+[start=2]
+2. **イベント ハンドラーを実装します。**
+
+Element_MouseLeftButtonDown は、変数を初期化し、移動効果の開始を通知します:
+
+**C# の場合:**
+
+[source,csharp]
+----
+private void Element_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+{
+    var element = (NetworkNodeNodeControl)sender;
+    _currentElement = element; // これがどのノードかを追跡します
+    element.CaptureMouse();
+    _isMoveInEffect = true; // 移動効果を開始します
+    _currentPosition = e.GetPosition(element.Parent as UIElement); // 場所を追跡します
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Private Sub Element_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs)
+    Dim element = DirectCast(sender, NetworkNodeNodeControl)
+    _currentElement = element
+    ' これがどのノードかを追跡します
+    element.CaptureMouse()
+    _isMoveInEffect = True
+    ' 移動効果を開始します
+    _currentPosition = e.GetPosition(TryCast(element.Parent, UIElement))
+    ' 場所を追跡します
+End Sub
+----
+
+ドラッグされた UI 要素からカーソルがエスケープしないようにするので、CaptureMouse() は重要です。
+
+Element_MouseMove は移動効果がアクティブかどうかをチェックします。アクティブであれば、ノード要素の場所を調節します:
+
+**C# の場合:**
+
+[source,csharp]
+----
+private void Element_MouseMove(object sender, MouseEventArgs e)
+{
+    var element = (NetworkNodeNodeControl)sender;
+    if (_currentElement == null || element != _currentElement)
+    {
+        // ノードがビュー領域外に解放されるとこれが発生します
+        // 移動効果を終了します
+        _isMoveInEffect = false; 
+    }
+    else if (_isMoveInEffect) // 移動効果はアクティブですか
+    {
+        if (e.GetPosition(xnn).X > xnn.ActualWidth || e.GetPosition(xnn).Y > xnn.ActualHeight || e.GetPosition(xnn).Y < 0.0)
+        {
+            // ドラッグは許可されている領域外なので、要素を解放します
+            element.ReleaseMouseCapture(); 
+            _isMoveInEffect = false;
+        }
+        else
+        {
+            // ドラッグは許可されている領域内なので、要素の場所を更新します
+            var currentPosition = e.GetPosition(element.Parent as UIElement);
+ 
+            element.Node.Location = new Point(
+                element.Node.Location.X + (currentPosition.X - this._currentPosition.X) / xnn.ZoomLevel,
+                element.Node.Location.Y + (currentPosition.Y - this._currentPosition.Y) / xnn.ZoomLevel);
+ 
+            _currentPosition = currentPosition;
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Private Sub Element_MouseMove(sender As Object, e As MouseEventArgs)
+    Dim element = DirectCast(sender, NetworkNodeNodeControl)
+    If _currentElement Is Nothing OrElse element <> _currentElement Then
+        ' ノードがビュー領域外に解放されるとこれが発生します
+        ' 移動効果を終了します
+        _isMoveInEffect = False
+    ElseIf _isMoveInEffect Then
+        ' 移動効果はアクティブですか
+        If e.GetPosition(xnn).X > xnn.ActualWidth OrElse e.GetPosition(xnn).Y > xnn.ActualHeight OrElse e.GetPosition(xnn).Y < 0.0 Then
+            ' ドラッグは許可されている領域外なので、要素を解放します
+            element.ReleaseMouseCapture()
+            _isMoveInEffect = False
+        Else
+            ' ドラッグは許可されている領域内なので、要素の場所を更新します
+            Dim currentPosition = e.GetPosition(TryCast(element.Parent, UIElement))
+
+            element.Node.Location = New Point(element.Node.Location.X + (currentPosition.X - Me._currentPosition.X) / xnn.ZoomLevel, element.Node.Location.Y + (currentPosition.Y - Me._currentPosition.Y) / xnn.ZoomLevel)
+
+            _currentPosition = currentPosition
+        End If
+    End If
+End Sub
+----
+
+Element_MouseLeftButtonUp は移動効果を終了します:
+
+**C# の場合:**
+
+[source,csharp]
+----
+private void Element_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+{
+    var element = (NetworkNodeNodeControl)sender;
+    element.ReleaseMouseCapture();
+    _isMoveInEffect = false; // 移動効果を終了します
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Private Sub Element_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs)
+    Dim element = DirectCast(sender, NetworkNodeNodeControl)
+    element.ReleaseMouseCapture()
+    _isMoveInEffect = False
+    ' 移動効果を終了します
+End Sub
+----
+
+[start=3]
+3. **イベント ハンドラーを登録します。**
+
+アプリケーション コンストラクターで、添付時に NetworkNode NodeControl ごとに登録される以前に定義されたイベント ハンドラーを整理します:
+
+**C# の場合:**
+
+[source,csharp]
+----
+public MainPage()
+{
+    InitializeComponent();
+ 
+    xnn.NodeControlAttachedEvent += (sender, e) =>
+    {
+        e.NodeControl.MouseLeftButtonDown += Element_MouseLeftButtonDown;
+        e.NodeControl.MouseMove += Element_MouseMove;
+        e.NodeControl.MouseLeftButtonUp += Element_MouseLeftButtonUp;
+    };
+ 
+    xnn.NodeControlDetachedEvent += (sender, e) =>
+    {
+        e.NodeControl.MouseLeftButtonDown -= Element_MouseLeftButtonDown;
+        e.NodeControl.MouseMove -= Element_MouseMove;
+        e.NodeControl.MouseLeftButtonUp -= Element_MouseLeftButtonUp;
+    };
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Public Sub New()
+    InitializeComponent()
+
+    xnn.NodeControlAttachedEvent += Function(sender, e) 
+    AddHandler e.NodeControl.MouseLeftButtonDown, AddressOf Element_MouseLeftButtonDown
+    AddHandler e.NodeControl.MouseMove, AddressOf Element_MouseMove
+    AddHandler e.NodeControl.MouseLeftButtonUp, AddressOf Element_MouseLeftButtonUp
+
+    End Function
+
+    xnn.NodeControlDetachedEvent += Function(sender, e) 
+    RemoveHandler e.NodeControl.MouseLeftButtonDown, AddressOf Element_MouseLeftButtonDown
+    RemoveHandler e.NodeControl.MouseMove, AddressOf Element_MouseMove
+    RemoveHandler e.NodeControl.MouseLeftButtonUp, AddressOf Element_MouseLeftButtonUp
+
+    End Function
+End Sub
+----
+
+[start=4]
+4. **プロジェクトを保存します。**
+
+[start=5]
+5. **(オプション) 結果を確認します。**
+
+[start=6]
+6. **アプリケーションを実行します。**
+
+ノードは、図 1 に示すようにマウスでドラッグすると移動します。
+
+[[Complete]]
+== 全コード例
+
+以下は、コンテキストで実装される完全なコードです。
+
+[[View]]
+== ビュー
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<UserControl x:Class="xamNetworkNode_NodeRelocation.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ig="http://schemas.infragistics.com/xaml"
+    xmlns:data="clr-namespace:xamNetworkNode_NodeRelocation.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+ 
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.Resources>
+            <data:SimpleGraphData x:Key="GraphData" />
+        </Grid.Resources>
+        <ig:XamNetworkNode x:Name="xnn"
+                           ItemsSource="{Binding Nodes, Source={StaticResource GraphData}}">
+            <ig:XamNetworkNode.GlobalNodeLayouts>
+                <ig:NetworkNodeNodeLayout
+                    TargetTypeName = "NodeModel"
+                    DisplayMemberPath = "Label"
+                    ConnectionsMemberPath = "Connections"
+                    ConnectionTargetMemberPath = "Target"
+                    />
+            </ig:XamNetworkNode.GlobalNodeLayouts>
+        </ig:XamNetworkNode>
+    </Grid>
+</UserControl>
+----
+
+[[CodeBehind]]
+== コード ビハインド
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using Infragistics.Controls.Maps;
+ 
+namespace xamNetworkNode_NodeRelocation
+{
+    public partial class MainPage : UserControl
+    {
+        private bool _isMoveInEffect; // 移動が有効か
+        private NetworkNodeNodeControl _currentElement; // 移動中の要素
+        private Point _currentPosition; // その要素の現在の位置
+ 
+        public MainPage()
+        {
+            InitializeComponent();
+ 
+            xnn.NodeControlAttachedEvent += (sender, e) =>
+            {
+                e.NodeControl.MouseLeftButtonDown += Element_MouseLeftButtonDown;
+                e.NodeControl.MouseMove += Element_MouseMove;
+                e.NodeControl.MouseLeftButtonUp += Element_MouseLeftButtonUp;
+            };
+ 
+            xnn.NodeControlDetachedEvent += (sender, e) =>
+            {
+                e.NodeControl.MouseLeftButtonDown -= Element_MouseLeftButtonDown;
+                e.NodeControl.MouseMove -= Element_MouseMove;
+                e.NodeControl.MouseLeftButtonUp -= Element_MouseLeftButtonUp;
+            };
+        }
+        
+        private void Element_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var element = (NetworkNodeNodeControl)sender;
+            _currentElement = element; // これがどのノードかを追跡します
+            element.CaptureMouse();
+            _isMoveInEffect = true; // 移動効果を開始します
+            _currentPosition = e.GetPosition(element.Parent as UIElement); // 場所を追跡します
+        }
+ 
+        private void Element_MouseMove(object sender, MouseEventArgs e)
+        {
+            var element = (NetworkNodeNodeControl)sender;
+            if (_currentElement == null || element != _currentElement)
+            {
+                // ノードがビュー領域外に解放されるとこれが発生します
+                // 移動効果を終了します
+                _isMoveInEffect = false; 
+            }
+            else if (_isMoveInEffect) // 移動効果はアクティブですか
+            {
+                if (e.GetPosition(xnn).X > xnn.ActualWidth || e.GetPosition(xnn).Y > xnn.ActualHeight || e.GetPosition(xnn).Y < 0.0)
+                {
+                    // ドラッグは許可されている領域外なので、要素を解放します
+                    element.ReleaseMouseCapture();
+                    _isMoveInEffect = false;
+                }
+                else
+                {
+                    // ドラッグは許可されている領域内なので、要素の場所を更新します
+                    var currentPosition = e.GetPosition(element.Parent as UIElement);
+ 
+                    element.Node.Location = new Point(
+                        element.Node.Location.X + (currentPosition.X - this._currentPosition.X) / xnn.ZoomLevel,
+                        element.Node.Location.Y + (currentPosition.Y - this._currentPosition.Y) / xnn.ZoomLevel);
+ 
+                    _currentPosition = currentPosition;
+                }
+            }
+        }
+ 
+        private void Element_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var element = (NetworkNodeNodeControl)sender;
+            element.ReleaseMouseCapture();
+            _isMoveInEffect = false; // 移動効果を終了します
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Windows
+Imports System.Windows.Controls
+Imports System.Windows.Input
+Imports Infragistics.Controls.Maps
+
+Namespace xamNetworkNode_NodeRelocation
+    Public Partial Class MainPage
+        Inherits UserControl
+        Private _isMoveInEffect As Boolean
+        ' 移動が有効か
+        Private _currentElement As NetworkNodeNodeControl
+        ' 移動中の要素
+        Private _currentPosition As Point
+        ' その要素の現在の位置
+        Public Sub New()
+            InitializeComponent()
+
+            xnn.NodeControlAttachedEvent += Function(sender, e) 
+            AddHandler e.NodeControl.MouseLeftButtonDown, AddressOf Element_MouseLeftButtonDown
+            AddHandler e.NodeControl.MouseMove, AddressOf Element_MouseMove
+            AddHandler e.NodeControl.MouseLeftButtonUp, AddressOf Element_MouseLeftButtonUp
+
+End Function
+
+            xnn.NodeControlDetachedEvent += Function(sender, e) 
+            RemoveHandler e.NodeControl.MouseLeftButtonDown, AddressOf Element_MouseLeftButtonDown
+            RemoveHandler e.NodeControl.MouseMove, AddressOf Element_MouseMove
+            RemoveHandler e.NodeControl.MouseLeftButtonUp, AddressOf Element_MouseLeftButtonUp
+
+End Function
+        End Sub
+
+        Private Sub Element_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs)
+            Dim element = DirectCast(sender, NetworkNodeNodeControl)
+            _currentElement = element
+            ' これがどのノードかを追跡します
+            element.CaptureMouse()
+            _isMoveInEffect = True
+            ' 移動効果を開始します
+            _currentPosition = e.GetPosition(TryCast(element.Parent, UIElement))
+            ' 場所を追跡します
+        End Sub
+
+        Private Sub Element_MouseMove(sender As Object, e As MouseEventArgs)
+            Dim element = DirectCast(sender, NetworkNodeNodeControl)
+            If _currentElement Is Nothing OrElse element <> _currentElement Then
+                ' ノードがビュー領域外に解放されるとこれが発生します
+                ' 移動効果を終了します
+                _isMoveInEffect = False
+            ElseIf _isMoveInEffect Then
+                ' 移動効果はアクティブですか
+                If e.GetPosition(xnn).X > xnn.ActualWidth OrElse e.GetPosition(xnn).Y > xnn.ActualHeight OrElse e.GetPosition(xnn).Y < 0.0 Then
+                    ' ドラッグは許可されている領域外なので、要素を解放します
+                    element.ReleaseMouseCapture()
+                    _isMoveInEffect = False
+                Else
+                    ' ドラッグは許可されている領域内なので、要素の場所を更新します
+                    Dim currentPosition = e.GetPosition(TryCast(element.Parent, UIElement))
+
+                    element.Node.Location = New Point(element.Node.Location.X + (currentPosition.X - Me._currentPosition.X) / xnn.ZoomLevel, element.Node.Location.Y + (currentPosition.Y - Me._currentPosition.Y) / xnn.ZoomLevel)
+
+                    _currentPosition = currentPosition
+                End If
+            End If
+        End Sub
+
+        Private Sub Element_MouseLeftButtonUp(sender As Object, e As MouseButtonEventArgs)
+            Dim element = DirectCast(sender, NetworkNodeNodeControl)
+            element.ReleaseMouseCapture()
+            _isMoveInEffect = False
+            ' 移動効果を終了します
+        End Sub
+    End Class
+End Namespace
+----
+
+[[NodeModel]]
+== NodeModel.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+ 
+namespace xamNetworkNode_NodeRelocation.Models
+{
+    public class NodeModel : INotifyPropertyChanged
+    {
+        private string _label;
+        public string Label
+        {
+            get { return _label; }
+            set
+            {
+                if (value != _label)
+                {
+                    _label = value;
+                    NotifyPropertyUpdated("Label");
+                }
+            }
+        }
+ 
+        private string _toolTip;
+        public string ToolTip
+        {
+            get { return _toolTip; }
+            set
+            {
+                if (value != _toolTip)
+                {
+                    _toolTip = value;
+                    NotifyPropertyUpdated("ToolTip");
+                }
+            }
+        }
+ 
+        private ObservableCollection<ConnectionModel> _connections;
+        public ObservableCollection<ConnectionModel> Connections
+        {
+            get { return _connections; }
+            set
+            {
+                if (value != _connections)
+                {
+                    _connections = value;
+                    NotifyPropertyUpdated("Connections");
+                }
+            }
+        }
+ 
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
+        protected virtual void NotifyPropertyUpdated(string propertyName)
+        {
+            var handler = PropertyChanged;
+ 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Collections.ObjectModel
+Imports System.ComponentModel
+
+Namespace xamNetworkNode_NodeRelocation.Models
+    Public Class NodeModel
+        Implements INotifyPropertyChanged
+        Private _label As String
+        Public Property Label() As String
+            Get
+                Return _label
+            End Get
+            Set
+                If value <> _label Then
+                    _label = value
+                    NotifyPropertyUpdated("Label")
+                End If
+            End Set
+        End Property
+
+        Private _toolTip As String
+        Public Property ToolTip() As String
+            Get
+                Return _toolTip
+            End Get
+            Set
+                If value <> _toolTip Then
+                    _toolTip = value
+                    NotifyPropertyUpdated("ToolTip")
+                End If
+            End Set
+        End Property
+
+        Private _connections As ObservableCollection(Of ConnectionModel)
+        Public Property Connections() As ObservableCollection(Of ConnectionModel)
+            Get
+                Return _connections
+            End Get
+            Set
+                If value <> _connections Then
+                    _connections = value
+                    NotifyPropertyUpdated("Connections")
+                End If
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler
+
+        Protected Overridable Sub NotifyPropertyUpdated(propertyName As String)
+            Dim handler = PropertyChanged
+
+            RaiseEvent handler(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+        
+    End Class
+End Namespace
+----
+
+[[ConnectionModel]]
+== ConnectionModel.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.ComponentModel;
+ 
+namespace xamNetworkNode_NodeRelocation.Models
+{
+    public class ConnectionModel : INotifyPropertyChanged
+    {
+        private NodeModel _target;
+        public NodeModel Target
+        {
+            get { return _target; }
+            set
+            {
+                if (value != _target)
+                {
+                    _target = value;
+                    NotifyPropertyUpdated("Target");
+                }
+            }
+        }
+ 
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
+        protected virtual void NotifyPropertyUpdated(string propertyName)
+        {
+            var handler = PropertyChanged;
+ 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.ComponentModel
+
+Namespace xamNetworkNode_NodeRelocation.Models
+    Public Class ConnectionModel
+        Implements INotifyPropertyChanged
+        Private _target As NodeModel
+        Public Property Target() As NodeModel
+            Get
+                Return _target
+            End Get
+            Set
+                If value IsNot _target Then
+                    _target = value
+                    NotifyPropertyUpdated("Target")
+                End If
+            End Set
+        End Property
+
+        Public Event PropertyChanged As PropertyChangedEventHandler
+
+        Protected Overridable Sub NotifyPropertyUpdated(propertyName As String)
+            Dim handler = PropertyChanged
+
+            RaiseEvent handler(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+    End Class
+End Namespace
+----
+
+[[SimpleGraphData]]
+== SimpleGraphData.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Collections.ObjectModel;
+using xamNetworkNode_Intro.Models;
+ 
+namespace xamNetworkNode_NodeRelocation.Data
+{
+    public class SimpleGraphData
+    {
+        public ObservableCollection<NodeModel> Nodes { get; set; }
+        private const int K = 7; // ノード当たりの接続数 (最大) 
+        private const int NUM_NODES = 98; // グラフのノード数
+ 
+        public SimpleGraphData()
+        {
+            Nodes = new ObservableCollection<NodeModel>();
+ 
+            // NUM_NODES ノード オブジェクトをコレクションに追加します
+            for (int i = 0; i < NUM_NODES; i++)
+            {
+                NodeModel node = new NodeModel();
+                node.Label = i.ToString();
+                node.ToolTip = "ToolTip for " + node.Label;
+                Nodes.Add(node);
+            }
+ 
+            // ノード 0 から開始し、ルートとしてそのノードを設定します
+            // 最大 K 接続までルート ノードに追加します
+            // 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+            int root = 0;
+            int first = 1;
+            int last = K;
+            while (first < Nodes.Count)
+            {
+                Nodes[root].Connections = new ObservableCollection<ConnectionModel>();
+                for (int i = first; i <= last; i++)
+                {
+                    if (i >= Nodes.Count)
+                    {
+                        break;
+                    }
+                    Nodes[root].Connections.Add(new ConnectionModel { Target = Nodes[i] });
+                }
+                root++;
+                first = last + 1;
+                last += K;
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Collections.ObjectModel
+Imports xamNetworkNode_Intro.Models
+
+Namespace xamNetworkNode_NodeRelocation.Data
+    Public Class SimpleGraphData
+        Public Property Nodes() As ObservableCollection(Of NodeModel)
+            Get
+                Return m_Nodes
+            End Get
+            Set
+                m_Nodes = Value
+            End Set
+        End Property
+        Private m_Nodes As ObservableCollection(Of NodeModel)
+        Private Const K As Integer = 7
+        ' ノード当たりの接続数 (最大) 
+        Private Const NUM_NODES As Integer = 98
+        ' グラフのノード数
+        Public Sub New()
+            Nodes = New ObservableCollection(Of NodeModel)()
+
+            ' NUM_NODES ノード オブジェクトをコレクションに追加します
+            For i As Integer = 0 To NUM_NODES - 1
+                Dim node As New NodeModel()
+                node.Label = i.ToString()
+                node.ToolTip = "ToolTip for " & node.Label
+                Nodes.Add(node)
+            Next
+
+            ' ノード 0 から開始し、ルートとしてそのノードを設定します
+            ' 最大 K 接続までルート ノードに追加します
+            ' 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+            Dim root As Integer = 0
+            Dim first As Integer = 1
+            Dim last As Integer = K
+            While first < Nodes.Count
+                Nodes(root).Connections = New ObservableCollection(Of ConnectionModel)()
+                For i As Integer = first To last
+                    If i >= Nodes.Count Then
+                        Exit For
+                    End If
+                    Nodes(root).Connections.Add(New ConnectionModel() With { _
+                        Key .Target = Nodes(i) _
+                    })
+                Next
+                root += 1
+                first = last + 1
+                last += K
+            End While
+        End Sub
+    End Class
+End Namespace
+----
+
+[[RelatedTopics]]
+== 関連トピック
+
+* link:xamnetworknode.html[xamNetworkNode]
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]

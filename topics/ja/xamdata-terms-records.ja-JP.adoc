@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-terms-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","Getting Started"],
+    "guid": "{AF7D310A-38B1-41CF-92B7-14D2EB1BBE09}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5588649Z"
+}
+|metadata|
+////
+
+= レコード
+
+DataPresenterBase クラスから派生したすべての {ProductName} コントロール (これには xamDataCarousel™、xamDataGrid™、xamTreeGrid™、xamDataCards™、および xamDataPresenter™ が含まれる) はレコード内にあるデータを表します。
+
+最もシンプルな意味のレコードは、フィールドのセットとして考えることができ、それぞれが固有の値を持ちます。これらの値は、レコードのセルに表示します。レコードの一般的なプレゼンテーションは、通常行に隣り合って現れるセル値を示します。ただし、xamDataCarousel、xamDataGrid、xamTreeGrid、および xamDataPresenter によって、 link:xamdata-terms-presenters.html[Presenter] の使用を通してレコードを提示する方法により大きな柔軟性を提供することができます。リレーショナル データベースで行に対してレコード データをバインドすることも一般的です。ただし、{ProductName} で異なる種類のデータに対してバインドする場合はより自由に行うことができます。
+
+image::images/Terms_Records_01.png[レコード クラスの概念化されたクラス ダイアグラム]
+
+上記の概念化されたクラス図は、DataPresenterBase から派生したコントロールがどのように分類されるのか、また使用することができる原則のプロパティのいくつかを強調表示しています。抽象的な Record 基本クラスから派生したすべてのクラスは固有の ChildRecords コレクション プロパティを持っています。これによって、Record オブジェクトはその他の Record オブジェクトを含むことができます (特別なルールが拡張可能なフィールド レコードと GroupBy レコードに適用できます)。
+
+以下は、具体的なレコード タイプのリストです。
+
+* link:xamdata-terms-records-data-record.html[データ レコード] -- 時間どおり (または遅延して) データ ソースからアクセスされるデータ項目ごとに DataRecord オブジェクトが作成されます。
+* link:xamdata-terms-records-expandablefieldrecord.html[ExpandableField レコード] *--*  ExpandableFieldRecord オブジェクトは、特定の Field によって親レコードに関連付けられた子レコード コレクションを含むために作成されます。
+* link:xamdata-terms-records-groupbyrecord.html[GroupBy レコード] *--*  GroupByRecord オブジェクトは、GroupByField 上に一致する Values を持つレコードをグループ化するために作成されます。

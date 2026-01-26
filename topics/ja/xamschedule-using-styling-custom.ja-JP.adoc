@@ -1,0 +1,197 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-styling-custom",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling","Styling"],
+    "guid": "3b3717f8-5682-4003-8375-2e7843a07a96",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.8363643Z"
+}
+|metadata|
+////
+
+= カスタムの配色
+
+== 概要
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~datamanager.html[DataManager] プロパティによってビュー コントロールと関連付けられていますが、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~colorscheme.html[ColorScheme] という名前のプロパティを公開しています。これを link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme.html[CalendarColorScheme] から派生したクラスのインスタンスに設定できます。このクラスは個々の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendars] にそれぞれ指定されるベース カラーのセットを公開します。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.primitives.calendarbrushid.html[AppointmentBackground]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.primitives.calendarbrushid.html[WeekHeaderBorder] などの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.primitives.calendarbrushid.html[CalendarBrushId] 列挙体によって識別される、特定の使用のために特定のベース カラーのブラシを返すための仮想的なメソッドもあります。
+
+完全にカスタムな配色を供給したい場合には、CalendarColorScheme からクラスを作成して CalendarBrushId 値ごとにブラシを供給するロジックを提供することができます。ただし、供給されるクラスのひとつ (たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.office2010colorscheme.html[Office2010ColorScheme]) から作成し、いくつかの CalendarBrushIds だけにカスタム ブラシを提供することも可能です。
+
+== CalendarColorScheme プロパティ
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~basecolors.html[BaseColors] - これは、スキームがサポートする色の読み取り専用のコレクションを返します。これは最低 1 色を返す必要があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~defaultbasecolor.html[DefaultBaseColor] - これは、ResourceCalendar コンテキストを持たない要素でブラシに使用するためのベース カラーを返します。基本的な実装は、BaseColors コレクションの最初の色を返します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~dialogresources.html[DialogResources] - これは各ダイアログのリソースに挿入される ResourceDictionary を返します。これによって、作成されたクラスは、ダイアログによって取得されるカスタム リソースを提供することが可能となります。注: 通常このプロパティはオーバーライドされません。その代わりに、仮想の CreateDialogResources メソッドと VerifyDialogResources メソッドがオーバーライドされます (以下を参照してください)。
+* ScrollBarStyle - これはスクロールバーのスタイルを返します。デフォルトの実装は null を返します。
+
+== CalendarColorScheme メソッド
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~createbrush.html[CreateBrush] - これは CalendarBrushId とベース カラーを渡されます。ブラシを返さなければなりません。WPF での効率性を高めるために、ブラシはフリーズすべきです。注: このメソッドに渡されるベース カラーを BaseColors コレクションに含まないことができます。ResourceCalendar の BaseColor プロパティがコレクションにない色に設定される場合にこれが生じます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~createdialogresources.html[CreateDialogResources] - これは、初めて DialogResources プロパティにアクセスした時、ダイアログに必要とされるリソースを遅延作成するためにオーバーライドされます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~onsystemcolorschanged.html[OnSystemColorsChanged] - システム カラーが変わった時を検出するためにオーバーライドできます。これが呼び出されるのは WPF だけであることに注意してください。Silverlight では、カラー システムが変わる時に通知されません。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~verifydialogresources.html[VerifyDialogResources] - ダイアログが表示される前など、DialogResources プロパティにアクセスするたびにこのメソッドは呼び出されます。これにより、各ダイアログが表示される前にリソースを更新するかどうかを選択できるようになります。
+
+== 要素は配色 ブラシにどのようにアクセスするか?
+
+配色 ブラシへのアクセスは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.primitives.calendarbrushprovider.html[CalendarBrushProvider] クラスによって実行されます。このクラスはベース カラーを表して、CalendarBrushId を取得するインデクサーを公開します。インデクサーはキャッシュされたブラシをチェックし、ID が見つからない場合には CalendarColorScheme の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~createbrush.html[CreateBrush] メソッドを呼び出して、返す前に値をキャッシュします。
+
+*注:* CalendarColorScheme の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~invalidatebrushcache.html[InvalidateBrushCache] メソッドを呼び出して、すべてのベース カラーに関連付けられた CalendarBrushProviders のキャッシュされたブラシをクリアします。
+
+例：
+
+*Visual Basic の場合:*
+
+----
+Me.dayView1.DataManager.ColorSchemeResolved.InvalidateBrushCache()
+----
+
+*C# の場合:*
+
+----
+this.dayView1.DataManager.ColorSchemeResolved.InvalidateBrushCache();
+----
+
+要素は以下のいずれかの方法で適切な CalendarBrushProvider を指定します。
+
+[start=1]
+. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendar] コンテキストを持つ要素では、ResourceCalendar の読み取り専用の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~brushprovider.html[BrushProvider] プロパティにアクセスし、次に特定のブラシにアクセスするためにインデクサｰを使用できます。ResourceCalendar の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~basecolor.html[BaseColor] プロパティが null でない場合、どの CalendarBrushProvider が BrushProvider プロパティによって返されるのかを判断します。そうでない場合、可能であれば各 ResourceCalendar のベース カラーが異なるようにブラシ プロバイダーが指定されます。ここにあるベース カラーよりも多くの表示可能な ResourceCalendars がある場合、ベース カラーの再利用を最小限に抑えようとしてプロバイダーが割り当てられます。
+[start=2]
+. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase.html[ScheduleControlBase] コンテキストを持つ特定の ResourceCalendar に関係しない要素では、コントロールの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~datamanager.html[DataManager]. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~colorschemeresolved.html[ColorSchemeResolved]. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.calendarcolorscheme~defaultbrushprovider.html[DefaultBrushProvider] プロパティをバインドすることによってデフォルトのブラシ プロバイダーにアクセスできます。
+[start=3]
+. 任意の要素で設定できる link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.primitives.calendarbrushprovider.html[CalendarBrushProvider] には添付 BrushProvider プロパティもあります。
+
+*注:* 要素の多くは (たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.primitives.activitypresenter.html[ActivityPresenter]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.primitives.calendarheader.html[CalendarHeader]) はコードで CalendarBrushProvider にアクセスして、次にテンプレートの要素によってバインドするために使用される読み取り専用の "Computed..." プロパティを公開します。
+
+== 例:
+
+以下の例はベース カラーの新しいセットを返すだけです。
+
+*Visual Basic の場合:*
+
+----
+Public Class NewColorScheme1
+    Inherits Office2010ColorScheme
+    Public Overrides ReadOnly Property BaseColors() As 
+        ReadOnlyCollection(Of Color)
+        Get
+            Return New ReadOnlyCollection(Of Color)(_
+                New Color() {Colors.Red, Colors.Yellow, Colors.Blue})
+        End Get
+    End Property
+End Class
+----
+
+*C# の場合:*
+
+----
+public class NewColorScheme1 : Office2010ColorScheme
+{
+    public override ReadOnlyCollection<Color> BaseColors
+    {
+        get
+        {
+            return new ReadOnlyCollection<Color>(
+                new Color[] { Colors.Red, Colors.Yellow, Colors.Blue }
+            );
+        }
+    }
+}
+----
+
+次の例は単一の ID のブラシを返すだけです。
+
+*Visual Basic の場合:*
+
+----
+Public Class NewColorScheme2
+    Inherits Office2010ColorScheme
+    Protected Overrides Function CreateBrush(id As 
+        CalendarBrushId, baseColor As Color) As Brush
+        Dim color__1 As Color
+        Select Case id
+            Case CalendarBrushId.AppointmentBackground
+                If Me.IsHighContrast Then
+                    ' OS にハイコントラストのテーマがある場合、
+                    ' SystemColors のひとつを使用するのが最善です。
+                    ' 注: OS テーマが変更されると、
+                    ' このメソッドを再度呼び出すことができるように、
+                    ' キャッシュは自動的にクリアされます。
+                    color__1 = SystemColors.WindowColor
+                Else
+                    ' ハードコード化された色をここで指定すると、
+                    ' ベース カラーに関係なく、あらゆるプロバイダーは
+                    ' 同じブラシを取得します。
+                    ' もうひとつのオプションは、たとえば、明度と彩度の両方またはいずれか
+                    ' 一方を操作する、またはその他のアルゴリズムによって
+                    ' 渡されたベース カラーに基づいて
+                    ' 色を返すコードを記述することです。
+                    color__1 = Color.FromArgb(255, 123, 122, 57)
+                End If
+                Exit Select
+            Case Else
+                Return MyBase.CreateBrush(id, baseColor)
+        End Select
+        Dim br As Brush = New SolidColorBrush(color__1)
+        #If Not SILVERLIGHT Then
+        br.Freeze()
+        #End If
+        Return br
+    End Function
+End Class
+----
+
+*C# の場合:*
+
+----
+public class NewColorScheme2 : Office2010ColorScheme
+{
+    protected override Brush CreateBrush(CalendarBrushId id,
+        Color baseColor)
+    {
+        Color color;
+        switch (id)
+        {
+            case CalendarBrushId.AppointmentBackground:
+            if (this.IsHighContrast)
+            {
+                // OS にハイコントラストのテーマがある場合、
+                    // SystemColors のひとつを使用するのが最適です。
+                // 注: OS テーマが変更されると、
+                    // このメソッドを再度呼び出すことができるように、
+                    // キャッシュは自動的にクリアされます。
+                color = SystemColors.WindowColor;
+            }
+            else
+            {
+                // ハードコード化された色をここで指定すると、
+                    // ベース カラーに関係なく、あらゆるプロバイダーは
+                    // 同じブラシを取得します。
+                // もうひとつのオプションは、たとえば、明度と彩度の両方またはいずれか
+                    // 一方を操作する、またはその他のアルゴリズムによって
+                    // 渡されたベース カラーに基づいて
+                    // 色を返すコードを記述することです。
+                color = Color.FromArgb(255, 123, 122, 57);
+            }
+            break;
+            default:
+            return base.CreateBrush(id, baseColor);
+        }
+        Brush br = new SolidColorBrush(color);
+        #if !SILVERLIGHT
+        br.Freeze();
+        #endif
+        return br;
+    }
+}
+----
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-using-control.html[コントロール]
+
+link:xamschedule-using-styling-washingcolorschemes.html[配色のウォッシュ (xamSchedule)]

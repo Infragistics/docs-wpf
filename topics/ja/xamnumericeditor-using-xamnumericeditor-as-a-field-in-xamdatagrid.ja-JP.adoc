@@ -1,0 +1,112 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnumericeditor-using-xamnumericeditor-as-a-field-in-xamdatagrid",
+    "controlName": ["xamNumericEditor"],
+    "tags": ["Grids","How Do I"],
+    "guid": "{FF5CCA56-D3B3-4D8C-811D-77D0C69DB576}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2369781Z"
+}
+|metadata|
+////
+
+= xamDataGrid でフィールドとして xamNumericEditor を使用
+
+xamNumericEditor コントロールの重要な機能は、xamDataGrid link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] に組み込むことができることです。この機能によって、セルの値を修正する間にエンドユーザーはエディターの機能を十分に活用することができます。xamCurrencyEditor はまた、マスクを使って値をフォーマットし、マスクが通貨に設定されている場合は通貨記号を追加できるため、視覚的により目立ちます。11.2 リリースより、両方のコントロールは link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor~trimfractionalzeros.html[TrimFractionalZeros] プロパティをサポートするため、これらのコントロールの動作およびデータの視覚的表現をより制御することができます。
+
+これらの手順に従って、xamDataGrid の Field に xamNumericEditor を表示します。
+
+[start=1]
+. Microsoft® Windows® Presentation Foundation Window または Page プロジェクトを作成します。
+[start=2]
+. 以下の名前空間宣言を開始の Page タグまたは Window タグに配置します。これらの宣言によって、xamDataGrid、xamNumericEditor を参照してタイプを定義することができます (つまり Int32、Boolean)。
+
+*XAML の場合:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+xmlns:igEditors="http://infragistics.com/Editors"
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
+----
+
+[start=3]
+. XmlDataProvider を定義するリソース セクションを作成します。XmlDataProvider は link:resources-orders.html[Orders] XML ファイルを参照します。Grid パネル内に以下の XAML を配置します。
+
+*XAML の場合:*
+
+----
+<Grid.Resources>
+        <XmlDataProvider Source="../Data/Orders.xml" 
+          x:Key="OrderData" XPath="/Orders" />
+</Grid.Resources>
+----
+
+[start=4]
+. XamDataGrid のインスタンスを作成して名前を指定し、前述の手順で作成された XmlDataProvider に DataSource プロパティを設定します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataGrid x:Name="XamDataGrid1" 
+  DataSource="{Binding Source={StaticResource OrderData}, XPath=Order}">
+        ...      
+</igDP:XamDataGrid>
+----
+
+[start=5]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[AutoGenerateFields] プロパティを False に設定します。前述の手順で作成されたタグの間に以下の XAML を配置します。
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataGrid.FieldLayoutSettings>
+  <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+</igDP:XamDataGrid.FieldLayoutSettings>
+...
+----
+
+[start=6]
+. Field のカスタム エディターを定義する時に、そのエディターのスタイルを指定するように link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editorstyle.html[EditorStyle] プロパティを設定しなければならない場合があります。これによって、マスクなどのエディターにプロパティを設定することも可能です。以下の XAML は xamNumericEditor のインスタンスをターゲットとする Style を設定し、このスタイルを EditorStyle に設定します。エディターの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor~mask.html[Mask] プロパティを設定するために setter を使用します。このコードを前述の手順のコードの下に配置します。
+
+マスクを 'double' から 'currency' に変更して、通貨記号を表示し、基本のカルチャーの通貨フォーマットでデータをフォーマットします。このコードを前述の手順のコードの下に配置します。
+
+[NOTE]
+====
+*注:* Mask を指定する時には、{} で {...} をエスケープする必要があります。
+====
+
+*XAML の場合:*
+
+----
+...
+<igDP:XamDataGrid.FieldLayouts>
+ <igDP:FieldLayout>
+    <igDP:FieldLayout.Fields> 
+      <igDP:Field Name="ProductName" />
+            <igDP:Field Name="CostPerUnit" >
+                <igDP:Field.Settings>
+                        <igDP:FieldSettings 
+                          EditAsType="{x:Type sys:Double}">
+                                <igDP:FieldSettings.EditorStyle>
+                                 <Style 
+                                        TargetType="{x:Type igEditors:XamNumericEditor}" >
+                                          <Setter 
+                                                Property="Mask" Value="{}{double:7.2:c}" />
+                                  </Style>
+                                </igDP:FieldSettings.EditorStyle>
+                        </igDP:FieldSettings>                
+                  </igDP:Field.Settings>
+                </igDP:Field>
+          </igDP:FieldLayout.Fields>
+  </igDP:FieldLayout>
+</igDP:XamDataGrid.FieldLayouts>
+...
+----
+
+[start=7]
+. プロジェクトをビルドして実行します。以下の画像のように CostPerUnit 列がフォーマットされて表示されるはずです。
+
+image::images/xamNumericEditor_Using_xamNumericEditor_as_a_Field_in_xamDataGrid_01.png[xamdatagrid フィールドでの xamnumericeditor の使用]

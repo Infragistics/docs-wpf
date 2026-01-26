@@ -1,0 +1,84 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtagcloud-xamtagcloud-events",
+    "controlName": ["xamTagCloud"],
+    "tags": ["Events","Getting Started","How Do I"],
+    "guid": "{A0D7372F-9979-4246-A734-CEFA1AB6FD18}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5543697Z"
+}
+|metadata|
+////
+
+= xamTagCloud イベント
+
+xamTagCloud コントロールは、2 つの項目に関連するイベントを公開します。これらのイベントを処理して、特定のアクションが発生後にカスタム ロジックを実行できます。
+
+* link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~xamtagclouditemclicked_ev.html[XamTagCloudItemClicked] イベント - このイベントは、クラウド項目がクリックされた直後に発生します。
+* link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~xamtagcloudclipped_ev.html[xamTagCloudClipped] イベント - xamTagCloud コントロールがすべてのクラウド項目を表示するには小さすぎる場合、このイベントが発生します。
+
+次のコードは xamTagCloudItemClicked イベントと xamTagCloudClipped イベントの処理方法を説明します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamTagCloud MaxScale="2" MinScale="1" Name="myTagCloud" XamTagCloudClipped="xamTagCloud_xamTagCloudClipped" XamTagCloudItemClicked="xamTagCloud_xamTagCloudItemClicked">
+...
+   </ig:XamTagCloud>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Menus
+Imports Infragistics
+...
+AddHandler Me.xamTagCloud.xamTagCloudClipped, AddressOf xamTagCloud_xamTagCloudClipped
+AddHandler Me.xamTagCloud.xamTagCloudItemClicked, AddressOf xamTagCloud_xamTagCloudItemClicked
+...
+Private Sub xamTagCloud_xamTagCloudItemClicked(ByVal sender As System.Object, ByVal e As xamTagCloudItemEventArgs)
+   System.Diagnostics.Debug.WriteLine("Cloud Item Clicked: Content =" + e.xamTagCloudItem.Content + "Weight " + e.xamTagCloudItem.Weight)
+End Sub
+
+Private Sub xamTagCloud_xamTagCloudClipped(ByVal sender As System.Object, ByVal e As xamTagCloudClippedEventArgs)
+   System.Diagnostics.Debug.WriteLine("xamTagCloudClipped Event Fired")
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Menus;
+using Infragistics;
+...
+
+this.xamTagCloud.xamTagCloudClipped += new EventHandler<xamTagCloudClippedEventArgs>(XamTagCloud_xamTagCloudClipped);
+this.xamTagCloud.xamTagCloudItemClicked += new EventHandler<xamTagCloudItemEventArgs>(XamTagCloud_xamTagCloudItemClicked);
+...
+void XamTagCloud_xamTagCloudItemClicked(object sender, xamTagCloudItemEventArgs e)
+{
+   System.Diagnostics.Debug.WriteLine("Cloud Item Clicked: Content =" + e.xamTagCloudItem.Content + "Weight " + e.xamTagCloudItem.Weight);
+}
+void XamTagCloud_xamTagCloudClipped(object sender, xamTagCloudClippedEventArgs e)
+{
+   System.Diagnostics.Debug.WriteLine("xamTagCloudClipped Event Fired");
+}
+----
+
+== 関連トピック
+
+link:xamtagcloud-add-cloud-items-to-xamtagcloud.html[クラウド項目を xamTagCloud に追加]
+
+link:xamtagcloud-add-navigation-uris-to-cloud-items2.html[ナビゲーション URI をクラウド項目に追加]
+
+link:xamtagcloud-add-spaces-between-cloud-items.html[クラウド項目の間にスペースを追加]
+
+link:xamtagcloud-setting-minimum-and-maximum-scale-values.html[最小スケール値と最大スケール値の設定]
+
+link:xamtagcloud-smooth-scaling.html[スムーズ スケーリング]
+
+link:xamtagcloud-working-with-scalebreaks-collection.html[ScaleBreaks コレクションでの作業]

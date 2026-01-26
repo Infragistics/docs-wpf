@@ -1,0 +1,59 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-enable-undo-operations",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","How Do I"],
+    "guid": "{CC2A87D1-D7E1-48AD-8DC1-AF86E82D43C7}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1859903Z"
+}
+|metadata|
+////
+
+= 元に戻す操作を有効にする
+
+
+
+DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~isundoenabled.html[IsUndoEnabled] プロパティを True に設定することによって、元に戻す/やり直し操作を有効にできます。これにより、エンド ユーザーは、DataPresenter コントロールのユーザー インターフェイスを介して実行した変更を元に戻したり、やり直すことができます。元に戻す/やり直しの機能は編集またはクリップボード機能に制限されません。実際、エンドユーザーは、並べ替え、グループ化、展開などの変更を元に戻すことができます。たとえば、エンド ユーザーがフィールド ヘッダーをクリックしてフィールドを並べ替える場合、それを元に戻すことができます。ただし、フィールドをプロシージャ コードを使用して並べ替える場合、エンド ユーザーは元に戻すことができません。
+
+DataPresenter コントロールの状態に対するプログラムによる変更は、元に戻す/やり直し操作を変更する場合があります。たとえば、DataPresenter コントロールに 2 つのフィールド FieldA と FieldB が含まれているとします。エンド ユーザーは、ヘッダーを (Ctrl キーを押さずに) クリックして FieldA を並べ替えてから、プログラムによって FieldB を並べ替えます。この時点で、DataPresenter コントロールには、2 つの並べ替えられたフィールドが含まれています。エンド ユーザーが元に戻す操作を実行すると、FieldA は並べ替えが解除されますが、FieldB は並べ替えたままになります。次に、エンド ユーザーがやり直し操作を実行すると、FieldA は並べ替えられますが、FieldB は並べ替えられません。このようになる理由は、やり直し操作はエンド ユーザーの FieldA に対する最初の並べ替えを繰り返すからです。エンドユーザーは、FieldA を並べ替えるときに Ctrl キーは押していなかったので、DataPresenter コントロールは単一のフィールドのみを並べ替えており、既存の並べ替え済みのフィールドは除外されています。
+
+データ ソース変更する、元に戻す操作を無効にする、または、レイアウトを消去する/読み込むと、DataPresenter コントロールは元に戻す履歴を消去します。また、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~clearundohistory.html[ClearUndoHistory] メソッドを呼び出して、DataPresenter コントロールの元に戻す履歴を消去することもできます。
+
+以下のコード例は、元に戻す操作を有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter 
+    Name="xamDataPresenter1" 
+    BindToSampleData="True" 
+    IsUndoEnabled="True">
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+...
+Me.xamDataPresenter1.IsUndoEnabled = True
+...
+----
+
+*C# の場合:*
+
+----
+...
+this.xamDataPresenter1.IsUndoEnabled = true;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-limit-the-undo-history.html[元に戻す履歴を制限する]
+
+link:xamdatapresenter-perform-an-undo-operation.html[元に戻す操作を実行する]
+
+link:xamdatapresenter-about-restoring-deleted-records.html[削除したレコードのリストアについて]

@@ -1,0 +1,395 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-dropdown-resizing",
+    "tags": ["Getting Started","How Do I"],
+    "controlName": ["xamComboEditor"],
+    "guid": "92b880e3-55bc-4e60-8bfe-73fb01a92131",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7471039Z"
+}
+|metadata|
+////
+
+= ドロップダウン サイズの構成 (xamComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 _xamComboEditor_™ のドロップダウンのサイズ変更を有効/無効にする方法を説明し、ドロップダウンの最小/最大の幅および高さをコードで設定する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-adding-xamcomboeditor-to-your-page.html[xamComboEditor をページに追加]
+|このトピックでは、 _xamComboEditor_ コントロールを開始する方法、およびプロシージャ コードを使用してページに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref378177714,ドロップダウン サイズ変更の構成の概要>>
+* <<_Ref378174923,ユーザーによるドロップダウン サイズ変更の有効化/無効化>>
+* <<_Ref378177126,ドロップダウンの最小幅の構成>>
+* <<_Ref378177235,ドロップダウンの最大幅の構成>>
+* <<_Ref408577946,ドロップダウンの最小の高さの構成>>
+* <<_Ref378177842,ドロップダウンの最大の高さの構成>>
+* <<_Ref378177847,関連コンテンツ>>
+
+[[_Ref378177714]]
+== ドロップダウン サイズ変更の構成の概要
+
+=== ドロップダウン サイズ変更の構成の概要表
+
+以下の表は、  _xamComboEditor_   ドロップダウン サイズ変更機能の構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref379990395,ユーザーによるドロップダウン サイズ変更の有効化/無効化>>
+|ドロップダウンがサイズ変更ハンドルでサイズ変更できるかどうかを構成します。
+|
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowdropdownresizing.html[AllowDropDownResizing] 
+
+|<<_Ref378177126,ドロップダウンの最小幅の構成>>
+|ドロップダウンの最小幅の構成
+|
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~mindropdownwidth.html[MinDropDownWidth] 
+
+|<<_Ref378177235,ドロップダウンの最大幅の構成>>
+|ドロップダウンの最大幅の構成
+|
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownwidth.html[MaxDropDownWidth] 
+
+|<<_Ref408577946,ドロップダウンの最小の高さの構成>>
+|ドロップダウンの最小の高さを構成します。
+|
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~mindropdownheight.html[MinDropDownHeight] 
+
+|<<_Ref378177842,ドロップダウンの最大の高さの構成>>
+|ドロップダウンの最大の高さの構成
+|
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownheight.html[MaxDropDownHeight] 
+
+|====
+
+[[_Ref378174923]]
+[[_Ref379990395]]
+== ユーザーによるドロップダウン サイズ変更の有効化/無効化
+
+[[_Hlk368069110]]
+
+=== 概要
+
+_xamComboEditor_   ドロップダウンは、サイズ変更ハンドルを使用して、すべての項目情報が使用できるようにドロップダウンをサイズ変更できます。
+
+_xamComboEditor_   ドロップダウンのサイズ変更機能は、デフォルトで有効に設定されています。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|_xamComboEditor_ ドロップダウンのサイズ変更機能の有効化/無効化
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowdropdownresizing.html[AllowDropDownResizing]
+|`bool`
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   の外観がどのようになるか示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowdropdownresizing.html[AllowDropDownResizing]
+| _true_ 
+
+|====
+
+image::images/Manipulating_the_drop-down_size_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor" 
+                   DisplayMemberPath="ContactName"
+                   AllowDropDownResizing="True" />
+----
+
+[[_Ref378177126]]
+== ドロップダウンの最小幅の構成
+
+=== 概要
+
+_xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~mindropdownwidth.html[MinDropDownWidth] プロパティを使用して、ドロップダウンの最小幅を指定します。
+
+プロパティのデフォルト設定は、`double.NaN` です。
+
+`MinDropDownWidth` プロパティの値が設定されていない場合、ドロップダウンの最小幅は  _xamComboEditor_   コントロールのテキスト入力フィールドの幅に制限されます。
+
+`MinDropDownWidth` 値が `MaxDropDownWidth` 値より大きい場合、ドロップダウンは水平方向にサイズ変更できなくなり、幅は `MinDropDownWidth` 値に設定されます。
+
+注:
+
+[NOTE]
+====
+`MinDropDownWidth` プロパティに負の値が設定されている場合は、`System.ArgumentException` が発生します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|サイズ変更中のドロップダウンの最小幅を制限する
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~mindropdownwidth.html[MinDropDownWidth]
+|`double`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   ドロップダウンがどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~mindropdownwidth.html[MinDropDownWidth]
+| _150_ 
+
+|====
+
+image::images/Manipulating_the_drop-down_size_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor" 
+                   DisplayMemberPath="ContactName" MinDropDownWidth="150" />
+----
+
+[[_Ref378177235]]
+== ドロップダウンの最大幅の構成
+
+=== 概要
+
+_xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownwidth.html[MaxDropDownWidth] プロパティを使用して、ドロップダウンの最大幅を指定します。
+
+プロパティのデフォルト設定は、`double.PositiveInfinity` です。
+
+注:
+
+[NOTE]
+====
+`MaxDropDownWidth` プロパティに負の値が設定されている場合は、`System.ArgumentException` が発生します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|サイズ変更中のドロップダウンの最大幅を制限する
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownwidth.html[MaxDropDownWidth]
+|`double`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   ドロップダウンがどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownwidth.html[MaxDropDownWidth]
+| _350_ 
+
+|====
+
+image::images/Manipulating_the_drop-down_size_3.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor" 
+                   DisplayMemberPath="ContactName" MaxDropDownWidth="350" />
+----
+
+[[_Ref408577946]]
+== ドロップダウンの最小の高さの構成
+
+=== 概要
+
+_xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~mindropdownheight.html[MinDropDownHeight] プロパティを使用して、ドロップダウンの最小の高さを指定します。
+
+プロパティのデフォルト設定は、0.0 です。
+
+`MinDropDownHeight` プロパティの値が設定されない場合、ドロップダウンの最小の高さは 20 px に設定されます。
+
+`MinDropDownHeight` 値が `MaxDropDownHeight` 値より大きい場合、ドロップダウンは垂直方向にサイズ変更できなく、高さは `MinDropDownHeight` 値に設定されます。
+
+注:
+
+[NOTE]
+====
+`MinDropDownHeight` プロパティに負の値が設定されている場合は、`System.ArgumentException` が発生します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|サイズ変更およびフィルター操作でドロップダウンの最小の高さを制限する
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~mindropdownheight.html[MinDropDownHeight]
+|`double`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   ドロップダウンがどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~mindropdownheight.html[MinDropDownHeight]
+|_70_
+
+|====
+
+image::images/Manipulating_the_drop-down_size_5.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor" DisplayMemberPath="ContactName"
+MinDropDownHeight="70" />
+----
+
+[[_Ref378177842]]
+== ドロップダウンの最大の高さの構成
+
+=== 概要
+
+_xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownheight.html[MaxDropDownHeight] プロパティを使用して、ドロップダウンの最大の高さを指定します。
+
+プロパティのデフォルト設定は、`double.PositiveInfinity` です。
+
+このプロパティが正しく設定できない場合、コントロールの概算によって、上下にスペースができます。ドロップダウン リストは、アプリケーションの使用可能な高さの範囲で制限されます。
+
+注:
+
+[NOTE]
+====
+`MaxDropDownHeight` プロパティに負の値が設定されている場合は、`System.ArgumentException` が発生します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|サイズ変更およびフィルター操作でドロップダウンの最大の高さを制限する
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownheight.html[MaxDropDownHeight]
+|`double`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamComboEditor_   ドロップダウンがどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownheight.html[MaxDropDownHeight]
+| _200_ 
+
+|====
+
+image::images/Manipulating_the_drop-down_size_4.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor x:Name="ComboEditor" 
+                   DisplayMemberPath="ContactName"
+                   MaxDropDownHeight="200" />
+----
+
+[[_Ref378177847]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-autocomplete.html[オートコンプリートの構成]
+|このトピックでは、 _xamComboEditor_ コントロールの編集可能モードで有効になるオートコンプリート機能について説明します。
+
+| link:xamcomboeditor-using-customvalueenteredaction.html[ユーザー入力の動作の構成]
+|このトピックでは、 _xamComboEditor_ コントロールのテキスト ボックスを指定する方法を説明します。
+
+| link:xamcomboeditor-custom-filtering.html[項目のフィルタリングの構成]
+|このトピックでは、 _xamComboEditor_ コントロールの項目のフィルタリングを構成する方法を説明します。
+
+| link:xamcomboeditor-working-with-itemtemplate.html[項目テンプレートの構成]
+|このトピックでは、 _xamComboEditor_ ItemTemplate プロパティを使用して、項目の視覚エフェクトをカスタマイズする方法を説明します。
+
+| link:xamcomboeditor-selection.html[選択]
+|このトピックでは、 _xamComboEditor_ コントロールでの選択について説明します。
+
+|====

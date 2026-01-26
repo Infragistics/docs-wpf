@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart",
+    "controlName": ["xamOrgChart"],
+    "tags": ["Getting Started","Summaries"],
+    "guid": "661728ef-1c3c-49f4-ab83-b1c84982df29",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.7872654Z"
+}
+|metadata|
+////
+
+= xamOrgChart
+
+link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart.html[xamOrgChart]は組織図を描画するためにデータ バインドされたコントロールです。(図 1)
+
+image::images/xamOrgChart_Adding_xamOrgChart_01.png[]
+
+図 1: xamOrgChart コントロールで作成されたサンプルの組織図
+
+このコントロールは、ノードの展開と縮小、パンとズーム、キーボード ナビゲーション、カスタム スタイルおよびテンプレート、複数ノードの選択をはじめとするさまざまな選択タイプをサポートします。
+
+== はじめに
+
+xamOrgChart で作業を開始する前に、 link:xamorgchart-adding-xamorgchart-to-your-application.html[「xamOrgChart をアプリケーションに追加」]を参照してください。
+
+== link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]
+
+xamOrgChart コントロールおよび要素と主要な機能の使用方法については、以下のトピックを参照してください。
+
+* link:xamorgchart-node-layouts-and-data.html[ノード レイアウトおよびデータへのバインド]
+* link:xamorgchart-node-selection-behaviors.html[ノード選択動作]
+* link:xamorgchart-node-tooltips.html[ノードのツールチップ]
+* link:xamorgchart-search-nodes.html[ノードでの検索]
+* link:xamorgchart-customizing-individual-nodes.html[個々のノードのカスタマイズ]
+* link:xamorgchart-using-custom-node-item-templates.html[カスタム ノード項目テンプレートの使用]
+* link:xamorgchart-expansion-indicators-visibility.html[展開インジケーターの表示状態を構成]
+* link:xamorgchart-maximum-node-depth.html[ノードの最大の深さ]
+* link:xamorgchart-node-arrangement-settings.html[ノード配置の設定]
+* link:xamorgchart-line-connector-settings.html[線コネクターの設定]
+* link:xamorgchart-configuring-panning-and-zooming.html[パンとズームの構成]
+* link:xamorgchart-events-overview.html[イベントの概要]
+* link:xamorgchart-highlight-methods.html[強調表示メソッド]
+* link:xamorgchart-working-with-drag-and-drop-framework.html[Drag and Drop Framework での作業]
+* link:xamorgchart-styling.html[スタイル設定]
+
+== *関連トピック*
+
+link:xamorgchart-understanding-xamorgchart.html[xamOrgChart の理解]
+
+link:xamorgchart-api-overview.html[API の概要]

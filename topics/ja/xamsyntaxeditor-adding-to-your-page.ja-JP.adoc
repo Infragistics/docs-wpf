@@ -1,0 +1,177 @@
+﻿////
+|metadata|
+{
+    "name": "xamsyntaxeditor-adding-to-your-page",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "6f0676f6-c8ce-4a4f-9d55-d03bb436fbe5",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3213599Z"
+}
+|metadata|
+////
+
+= xamSyntaxEditor をページに追加
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   を短時間で起動、実行するのに役立つ体系的な操作方法を紹介します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref331770884,  _xamSyntaxEditor_   をページに追加 >>
+** <<_Ref331770890,概要>>
+** <<_Ref331770895,プレビュー>>
+** <<_Ref331770901,手順>>
+
+* <<_Ref331770905, 関連コンテンツ >>
+
+[[_Ref331770884]]
+== _xamSyntaxEditor_   をページに追加
+
+[[_Ref331770890]]
+
+=== はじめに
+
+この手順では、 _xamSyntaxEditor_   をページに追加する方法を体系的に解説します。
+
+[[_Ref331770895]]
+
+=== プレビュー
+
+以下のスクリーンショットは  _xamSyntaxEditor_   にテキスト “Hello, World!” を追加する様子です。これは、 _xamSyntaxEditor_   による結果のプレビューの典型的な方法です。
+
+image::images/xamSyntaxEditor_Adding.png[]
+
+[[_Ref331770901]]
+
+=== 手順
+
+以下の手順は、 _xamSyntaxEditor_   をページに追加する方法を示します。
+
+=== 1. NuGet パッケージの参照
+
+以下の NuGet パッケージ参照をプロジェクトに追加します。
+
+** Infragistics.WPF.SyntaxEditor
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+=== 2.名前空間
+
+以下の名前空間を追加します:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+using Infragistics.Documents;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+Imports Infragistics.Documents
+----
+
+=== 3.xamSyntaxEditor の作成
+
+_xamSyntaxEditor_   を作成してページに追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSyntaxEditor x:Name="xamSyntaxEditor1">
+</ig:XamSyntaxEditor>
+----
+
+=== 4.TextDocument を作成
+
+`TextDocument` を作成し、 _xamSyntaxEditor_   の “Document” プロパティに設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSyntaxEditor.Document>
+  <ig:TextDocument />
+</ig:XamSyntaxEditor.Document>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+TextDocument td = new TextDocument();
+this.xamSyntaxEditor1.Document = td;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim td As New TextDocument()
+Me.xamSyntaxEditor1.Document = td
+----
+
+=== 5.テキストを追加
+
+link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~initializetext.html[InitializeText] メソッドで `TextDocument` にテキストを追加します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+td.InitializeText("Hello, World!");
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+td.InitializeText("Hello, World!")
+----
+
+[[_Ref331770905]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-configuring.html[ _xamSyntaxEditor_ の構成]
+|このセクションは、 _xamSyntaxEditor_ クロス プラットフォーム コントロールのさまざまな機能を使用する上で役立つ、主要概念やタスク ベースの情報の入口です。
+
+|====

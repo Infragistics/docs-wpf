@@ -1,0 +1,203 @@
+﻿////
+|metadata|
+{
+    "name": "xamcomboeditor-support-for-primitives",
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "controlName": ["xamComboEditor"],
+    "guid": "caf8caf5-e1f2-453d-983c-758e3ae37091",
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7691046Z"
+}
+|metadata|
+////
+
+= プリミティブ型のコレクションへのバインド
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 _xamComboEditor_   コントロールがプリミティブ型データのコレクションにバインドされる場合の詳細を説明します。
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref411706789,サポートされるタイプ>>
+* <<_Ref411709393,xamComboEditor をプリミティブ型のコレクションへバインド>>
+* <<_Ref411709401,関連コンテンツ>>
+
+[[_Ref411706789]]
+== サポートされるタイプ
+
+=== サポートされるタイプの概要表
+
+_xamComboEditor_   コントロールによってプリミティブ型タイプ データとして以下のタイプを参照します。
+
+[options="header", cols="a,a,a"]
+|====
+|データ型|詳細|タイプ
+
+|プリミティブ
+|`Type` `IsPrimitive` プロパティは、この特定のタイプに `true` を返します。例 `typeof(int).IsPrimitive`
+|
+* Boolean 
+
+* Char 
+
+* Byte, SByte, Int16, UInt16, Int32, UInt32, Int64, UInt64, IntPtr, UIntPtr 
+
+* Double および Single 
+
+|DateTime 構造
+|時間内にインスタンスを表します。
+|DateTime
+
+|Enumeration
+|列挙子リストを呼び出す一連の名前付きコンスタントで構成されます。
+|enum
+
+|string
+|0 のシーケンスまたは Unicode 文字を表します。
+|string
+
+|====
+
+[[_Ref411709393]]
+== _xamComboEditor_   をプリミティブ型のコレクションへバインド
+
+=== サポートされる主な機能の概要表
+
+以下の表は、 _xamComboEditor_   コントロールの主要機能の概要です。コントロールがプリミティブ型データのコレクションにバインドされるときにサポートされます。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|機能|データ型|サポート
+
+|<<_Ref411714865,オートコンプリート>>
+|プリミティブ
+|はい
+
+|
+|DateTime 構造
+|はい
+
+|
+|列挙体
+|はい
+
+|
+|文字列
+|はい
+
+|<<_Ref411714901,カスタム値入力アクション>>
+|プリミティブ
+|はい
+
+|
+|DateTime 構造
+|はい
+
+|
+|列挙体
+|はい
+
+|
+|文字列
+|はい
+
+|<<_Ref411715029,選択>>
+|プリミティブ
+|はい
+
+|
+|DateTime 構造
+|はい
+
+|
+|列挙体
+|はい
+
+|
+|文字列
+|はい
+
+|<<_Ref411844272,カスタム フィルタリング>>
+|プリミティブ
+|以下を参照
+
+|
+|DateTime 構造
+|はい
+
+|
+|列挙体
+|以下を参照
+
+|
+|文字列
+|はい
+
+|====
+
+== 全般
+
+_xamComboEditor_ をプリミティブ型データのコレクションにバインドする場合、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath] プロパティは設定しないでください。設定した場合、`ArgumentException` がスローされます。
+
+[[_Ref411714865]]
+
+== オートコンプリート
+
+オート コンプリート機能は、 _xamComboEditor_   コントロールをプリミティブ型データのコレクションにバインドした際にサポートされます。
+
+[[_Ref411714901]]
+== カスタム値入力アクション
+
+カスタム値入力操作のさまざまなオプション -  _xamComboEditor_   をプリミティブ型データのコレクションにバインド時に追加、許可、無視がサポートされます。
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~customvalueenteredaction.html[CustomValueEnteredAction] を link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.customvalueenteredactions.html[Add] に設定した場合、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dataobjectrequested_ev.html[DataObjectRequested] イベントは発生されません。
+
+[[_Ref411715029]]
+
+== 選択
+
+Selection は、 _xamComboEditor_   がプリミティブ型データのコレクションにバインドされる場合にサポートされます。
+
+注:
+
+[NOTE]
+====
+複合データ型プロパティが期待される link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvaluepath.html[SelectedValuePath] プロパティに基づいているため、 _xamComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalue.html[SelectedValue] と link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedvalues.html[SelectedValues] プロパティは常に `null` を返します。プリミティブ型データのコレクションの場合、`SelectedValuePath` プロパティは設定しません。
+====
+
+[[_Ref411844272]]
+== カスタム フィルタリング
+
+カスタム フィルタリングは、_xamComboEditor_ コントロールがプリミティブ型データのコレクションにバインドされているときにサポートされる機能です。link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter_members.html[ComboItemFilter] link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboitemfilter~fieldname.html[FieldName] は設定解除したままになります。
+
+注:
+
+[NOTE]
+====
+`bool` または `enum` のコレクションでは、link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition_members.html[ComparisonCondition] の link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisoncondition~operator.html[演算子]は link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisonoperator.html[Equals] および link:{ApiPlatform}datamanager{ApiVersion}~infragistics.comparisonoperator.html[NotEquals] です。
+====
+
+[[_Ref411709401]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-about-xamcomboeditor.html[xamComboEditor について]
+|トピックは、 _xamComboEditor_ コントロールの主要機能を説明します。
+
+| link:xamcomboeditor-adding-xamcomboeditor-to-your-page.html[xamComboEditor をページに追加]
+|このトピックでは、 _xamComboEditor_ コントロールを開始する方法、およびプロシージャ コードを使用してページに追加する方法を説明します。
+
+| link:xamcomboeditor-using-xamcomboeditor.html[xamComboEditor の構成]
+|このグループのトピックは、 _xamComboEditor_ コントロールの主な機能、使用、構成を説明します。
+
+|====

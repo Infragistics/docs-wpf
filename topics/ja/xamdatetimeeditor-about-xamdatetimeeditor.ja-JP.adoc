@@ -1,0 +1,19 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatetimeeditor-about-xamdatetimeeditor",
+    "controlName": ["xamDateTimeEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{0A350874-93D1-4735-AF7B-D07F48E85A2F}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1439781Z"
+}
+|metadata|
+////
+
+= xamDateTimeEditor について
+
+xamDateTimeEditor™ コントロールはシンプルなテキスト ボックス コントロールで、エンド ユーザーが正しいフォーマットで日付/時刻の値を入力する支援をするためにマスクを使用します。このマスクを使用して、事前に決定した有効な日付と時刻のフォーマットにエンドユーザーの入力を制限することができます。スタンドアロン エディターとして、または xamDataGrid™ コントロールの Field で xamDateTimeEditor コントロールを使用します。xamDataGrid のフィールドとして、xamDateTimeEditor は特定のグリッド列の適切なフォーマットを維持すると同時に、エンド ユーザーのデータ入力を支援します。
+
+xamDateTimeEditor の link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor~mask.html[Mask] プロパティは、日付だけ、時刻だけ、または日付と時刻の両方をエディターによって表示および編集するかどうかを指定するために使用できます。

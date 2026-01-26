@@ -1,0 +1,161 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-property-item-generators",
+    "tags": ["How Do I"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "97cf9fc5-4ae5-4633-b11f-d3552f02ea03",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:55:08.3786453Z"
+}
+|metadata|
+////
+
+= プロパティ項目ジェネレーター (xamPropertyGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールが選択されたオブジェクトのプロパティを検出する方法、プロパティ項目のリストを作成する方法、およびプロセスを構成しカスタマイズする方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref395713897, プロパティ生成の概要 >>
+* <<_Ref395713903, プロパティ ジェネレーター フィルターの構成 >>
+* <<_Ref395713913, プロパティ ジェネレーター オプションの構成 >>
+* <<_Ref395713921, 関連コンテンツ >>
+
+[[_Ref395713897]]
+== プロパティ生成の概要
+
+=== プロパティ生成の要約
+
+link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[_xamPropertyGrid_] コントロールには、特定のオブジェクトについてのプロパティを検出するための拡張可能なアーキテクチャがあります。このアーキテクチャは、プロパティ ジェネレーターの概念に基づいています。このコントロールに提供されるビルトイン プロパティ ジェネレーターは、次のとおりです。
+
+* link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.typedescriptorpropertygenerator_members.html[TypeDescriptorPropertyGenerator] は link:http://msdn.microsoft.com/ja-jp/library/ms171819.aspx[TypeDescriptor] を使用して、特定のオブジェクトによって公開されたプロパティを検出します。Attached プロパティおよび link:http://msdn.microsoft.com/ja-jp/library/system.componentmodel.customtypedescriptor(v=vs.110).aspx[CustomTypeDescriptor] 実装によって提供されるカスタム プロパティは、検出可能で、プロパティ項目の生成されたリストに含まれるため、`TypeDescriptor` によるアプローチでは、特定のオブジェクトについての複数のプロパティを検出します。
+* link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.reflectionpropertygenerator_members.html[ReflectionPropertyGenerator] は、 link:http://msdn.microsoft.com/ja-jp/library/f7ykdhsy(v=vs.110).aspx[Reflection] を使用して、特定のオブジェクトのプロパティを検出します。ただし、検出できるのは、特定のオブジェクトの型について明示的に定義されたプロパティのみです。
+
+注:
+
+[NOTE]
+====
+必要なプロパティ ジェネレーターは、コントロールの link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~propertygenerator.html[PropertyGenerator] プロパティを設定することで指定します。このプロパティが設定されていない場合、既定では `TypeDescriptor` プロパティ ジェネレータ－が使用されます。
+====
+
+=== プロパティ生成の構成
+
+プロパティ ジェネレーターは、添付プロパティおよび読み取り専用プロパティを含めることができる link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~propertygenerationoptions.html[PropertyGenerationOptions] プロパティを使用して構成できます。
+
+プロパティ ジェネレーターで検出するプロパティは、以下のコード例に示す link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygeneratorbase~generatedpropertyfilter.html[GeneratedPropertyFilter] プロパティを使用して、フィルターによってカスタマイズすることもできます。
+
+=== カスタム プロパティ ジェネレーター
+
+既定のジェネレータ－の出力を「微調整」するカスタムなプロパティ生成が必要な場合は、ビルトイン プロパティ ジェネレーターの 1 つからユーザー独自のクラスを派生させ、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygeneratorbase~generateproperties.html[GenerateProperties] メソッドをオーバーライドして、ビルトイン ジェネレーターから戻されるプロパティ リストを変更することができます。
+
+カスタムなプロパティ検出ロジックを実装するために、プロパティ ジェネレーターのプロセスを完全に引き継ぐ必要がある場合は、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygeneratorbase_members.html[PropertyGeneratorBase] クラスから拡張する独自のプロパティ ジェネレーターを作成し、`GenerateProperties` メソッドをオーバーライドすることができます。
+
+[[_Ref395713903]]
+== プロパティ ジェネレーター フィルターの構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+以下のコード例は、リフレクション プロパティ ジェネレーターを設定し、名前に「ブラシ」と「色」を含むプロパティのみを表示するようにフィルターを設定する方法を示します。
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPropertyGrid … >
+  …
+  <ig:XamPropertyGrid.PropertyGenerator>
+    <ig:ReflectionPropertyGenerator>
+      <ig:ReflectionPropertyGenerator.GeneratedPropertyFilter>
+        <ig:PropertyGridConditionGroup LogicalOperator="Or">
+          <ig:PropertyGridComparisonCondition Operator="Contains" Value="Brush" />
+          <ig:PropertyGridComparisonCondition Operator="Contains" Value="Color" />
+        </ig:PropertyGridConditionGroup>
+      </ig:ReflectionPropertyGenerator.GeneratedPropertyFilter>
+    </ig:ReflectionPropertyGenerator>
+  </ig:XamPropertyGrid.PropertyGenerator>
+  …
+</ig:XamPropertyGrid>
+----
+
+[[_Ref395713913]]
+== プロパティ ジェネレーター オプションの構成
+
+=== 概要
+
+以下のコード例は、型記述子プロパティ ジェネレーターを設定する方法と、添付プロパティではなく読み取り専用プロパティを含めるようにするために、オプションを構成する方法を示します。
+
+=== 例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPropertyGrid … >
+  …
+  <ig:XamPropertyGrid.PropertyGenerator>
+    <ig:TypeDescriptorPropertyGenerator />
+  </ig:XamPropertyGrid.PropertyGenerator>
+  <ig:XamPropertyGrid.PropertyGenerationOptions>
+    <ig:PropertyGenerationOptions
+      IncludeAttachedProperties="False"
+      IncludeReadOnlyProperties="True" />
+  </ig:XamPropertyGrid.PropertyGenerationOptions>
+  …
+</ig:XamPropertyGrid>
+----
+
+[[_Ref395713921]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-work-expandable-properties.html[展開可能なプロパティのサポート (xamPropertyGrid)]
+|このトピックでは、コントロールが展開可能なプロパティを識別し表示する方法を説明します。
+
+| link:xampropertygrid-resetting-property-value.html[プロパティ値のリセット (xamPropertyGrid)]
+|このトピックでは、プロパティの既定値を定義する方法と、オプション メニューをカスタマイズする方法を説明します。
+
+| link:xampropertygrid-commands.html[コマンドの操作 (xamPropertyGrid)]
+|このトピックでは、コマンドによりコントロールを使用してさまざまな操作を実行する方法を説明します。
+
+|====

@@ -1,0 +1,200 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-in-2016-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "4154edca-399a-4378-9c27-fb0e373f2ff2",  
+    "buildFlags": [],
+    "createdOn": "2016-01-19T14:30:08.0946339Z"
+}
+|metadata|
+////
+
+= 2016 Volume 1 の重大な変更点
+
+== 重大な変更の概要
+
+以下の表は、{ProductName} 2016 Volume 1 リリースの重大な変更点の概要を示します。問題の詳細な説明は、概要表の後に記載されています。
+
+==== 凡例:
+
+image:images/Yes.png[] - 回避策
+
+image:images/No.png[] - 既知の回避策なし
+
+image:images/Fix.png[] - 既知の回避策はありません。修正予定です
+
+==== <<_Ref421542580,TriangulationSource>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref421542581,TriangulationSource クラスのアセンブリの場所を変更>>
+|TriangulationSource クラスのアセンブリの場所が XamGeographicMap から DataVisualization へ変更されました。
+|image::images/Yes.png[]
+
+|====
+
+==== <<_Ref421542576,xamDataPresenter>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref421542577,デフォルトのプロパティ値の変更>>
+|`AllowFieldMoving` プロパティのデフォルト値は、`Yes` から `WithinLogicalRow` に変更されました。
+|image::images/Yes.png[]
+
+|<<_Ref421542578,Fields コレクションの項目にアクセスできない>>
+|フィールド レイアウトの Fields コレクションでフィールド レイアウトが初期化される前にフィールが生成されません。
+|image::images/Yes.png[]
+
+|====
+
+==== <<_Ref421542582,xamGeographicMap>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref421542583,"ShoulKeepResourcesOnUnload" パブリック プロパティ名が変更されました。>>
+|_xamGeographicMap_ の "ShoulKeepResourcesOnUnload" の名前が link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.xamgeographicmap~shouldkeepresourcesonunload.html[ShouldKeepResourcesOnUnload] に変更されました。
+|image::images/Yes.png[]
+
+|====
+
+==== <<_Ref421542578,xamSchedule>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref421542579,繰り返しラベルのデフォルト表示の変更>>
+|xamSchedule の定期的な予定ダイアログの説明ラベルがドイツ語およびフランス語でもデフォルトで提供されます。
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref421542580]]
+== TriangulationSource
+
+[[_Ref421542581]]
+
+=== TriangulationSource クラスが共有アセンブリに移動されました。
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.charts.triangulationsource.html[TriangulationSource] クラスの場所が xamGeographicMap アセンブリから削除され、共有 DataVisualization アセンブリに移動されました。
+
+[options="header", cols="a,a"]
+|====
+|古いアセンブリ|新しいアセンブリ
+
+|InfragisticsWPF4.Controls.Maps.XamGeographicMap
+|InfragisticsWPF4.DataVisualization
+
+|====
+
+[NOTE]
+====
+DataVisualization アセンブリが既に xamGeographicMap に必要であったため、TriangulationSource クラスの名前空間は変更されませんでした。実装前に必要なその他の作業はありません。
+====
+
+[[_Ref421542576]]
+== xamDataPresenter
+
+[[_Ref421542577]]
+
+=== デフォルトのプロパティ値の変更
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowfieldmoving.html[AllowFieldMoving] プロパティのデフォルト値は、`Yes` から `WithinLogicalRow` に変更されました。
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ|以前の表示|新しい表示
+
+|`AllowFieldMoving`
+|`はい`
+|`WithinLogicalRow`
+
+|====
+
+*回避方法*
+
+以前の動作を保持する場合は、`AllowFieldMoving` プロパティを `Yes` に設定します。
+
+==== 関連トピック:
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowfieldmoving.html[AllowFieldMoving]
+
+=== Fields コレクションの項目にアクセスできない
+
+特定のフィールド レイアウトの初期化前に `FieldLayout` の `Fields` コレクションに XAML で定義されるフィールドにアクセスできない場合があります。たとえば、これは xamDataGrid の `Loaded` イベントにアクセスできない場合などです。
+
+*回避策:*
+
+. `FieldLayout` が初期化される前に、フィールド定義を含む `FieldLayout` の `FieldItems` コレクションを使用できます。`FieldItems` コレクションが `FieldItem` 型を使用するため、`Field` 固有のプロパティにアクセスするには、`Field` 型にキャストする必要が可能です。
+
+. xamDataGrid の `FieldLayoutInitialized` イベントを使用すると、特定の `FieldLayout` が初期化されたときに通知します。つまり、そのときに `Fields` および `FieldItems` コレクションが生成され、同期化されます。
+
+[[_Ref421542582]]
+== xamGeographicMap
+
+[[_Ref421542583]]
+
+=== ShoulKeepResourcesOnUnload パブリック プロパティ名が変更されました。
+
+_xamGeographicMap_   の link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}~infragistics.controls.maps.xamgeographicmap~shouldkeepresourcesonunload.html[ShouldKeepResourcesOnUnload] プロパティの名前が変更されました。
+
+[options="header", cols="a,a"]
+|====
+|以前の値|新しい値
+
+|ShoulKeepResourcesOnUnload
+|ShouldKeepResourcesOnUnload
+
+|====
+
+[[_Ref421542578]]
+== xamSchedule
+
+[[_Ref421542579]]
+
+=== 繰り返しラベルのデフォルト表示の変更
+
+xamSchedule の定期的な予定ダイアログの説明ラベルがドイツ語およびフランス語でもデフォルトで提供されます。
+
+[options="header", cols="a,a,a"]
+|====
+|言語|以前の表示|新しい表示
+
+|英語
+|Visible
+|Visible
+
+|ドイツ語
+|Hidden
+|Visible
+
+|フランス語
+|Hidden
+|Visible
+
+|スペイン語
+|Hidden
+|Hidden
+
+|日本語
+|Hidden
+|Hidden
+
+|====
+
+*回避方法*
+
+以前の動作を保持する場合は、表示を構成する文字列リソースをリソース ファイル (.resx) に追加し、このリソースファイルを xamSchedule の任意のビューに以下の関連トピックに記載された手順に従って登録します。
+
+==== 関連トピック:
+
+link:xamschedule-using-activitydialogs.html[アクティビティ ダイアログ]

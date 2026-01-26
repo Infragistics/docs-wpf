@@ -1,0 +1,90 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-modify-the-group-by-area",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Grouping","How Do I","Layouts","Tips and Tricks"],
+    "guid": "{415942D5-5B51-4F3B-8B7B-CC39E93C32F9}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2560043Z"
+}
+|metadata|
+////
+
+= Group-By 領域の修正
+
+
+
+複数のフィールド レイアウトをまたいでグループ化を有効にすると、group-by 領域でフィールド ヘッダーのレイアウトおよびフィールド レイアウトの説明を変更できます。group-by 領域を変更するために、フィールド ヘッダーのレイアウトおよびフィールド レイアウトの説明に影響を及ぼす link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti.html[GroupByAreaMulti] コントロールによって公開されているプロパティを設定できます。たとえば、GroupByAreaMulti コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti~fieldoffsetx.html[FieldOffsetX] プロパティを設定して、フィールド ヘッダーの中央と group-by 領域の次のフィールド ヘッダーの先頭の間の間隔を決定できます。
+
+DataPresenter コントロールは、ロードされるまでそれらの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~groupbyareamulti.html[GroupByAreaMulti] プロパティを初期化しません。したがって、GroupByAreaMulti プロパティを GroupByAreaMulti コントロールのインスタンスに最初に設定しない限り、DataPresenter コントロールの Loaded イベントの前に GroupByAreaMulti プロパティでプロパティを直接設定できません。
+
+GroupByAreaMulti コントロールは、group-by 領域を変更するために設定できる以下のプロパティを公開します。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti~connectorlinepen.html[ConnectorLinePen]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti~fieldlayoutdescriptiontemplate.html[FieldLayoutDescriptionTemplate]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti~fieldlayoutoffsetx.html[FieldLayoutOffsetX]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti~fieldlayoutoffsety.html[FieldLayoutOffsetY]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti~fieldoffsetx.html[FieldOffsetX]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareamulti~fieldoffsety.html[FieldOffsetY]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareabase~isexpanded.html[IsExpanded]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareabase~prompt1.html[Prompt1]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareabase~prompt1template.html[Prompt1Template]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareabase~prompt2.html[Prompt2]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyareabase~prompt2template.html[Prompt2Template]
+
+image::images/xamDataPresenter_Modify_the_Group_By_Area_01.png[]
+
+以下の例のコードは、group-by 領域を変更する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.GroupByAreaMulti>
+        <igDP:GroupByAreaMulti FieldOffsetX="25" FieldLayoutOffsetY="15" />
+    </igDP:XamDataPresenter.GroupByAreaMulti>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+If Me.xamDataPresenter1.GroupByAreaMulti Is Nothing Then
+    Me.xamDataPresenter1.GroupByAreaMulti = New GroupByAreaMulti()
+End If
+Me.xamDataPresenter1.GroupByAreaMulti.FieldOffsetX = 25
+Me.xamDataPresenter1.GroupByAreaMulti.FieldLayoutOffsetY = 15
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+if(this.xamDataPresenter1.GroupByAreaMulti == null)
+{
+    this.xamDataPresenter1.GroupByAreaMulti = new GroupByAreaMulti();
+}
+this.xamDataPresenter1.GroupByAreaMulti.FieldOffsetX = 25;
+this.xamDataPresenter1.GroupByAreaMulti.FieldLayoutOffsetY = 15;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-sorting.html[並べ替えについて]
+
+link:xamdatapresenter-about-grouping.html[グループ化情報]
+
+link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[フィールドのプログラムによる並べ替えおよびグループ化]
+
+link:xamdatapresenter-create-an-external-group-by-area.html[外部の Group-By 領域の作成]
+
+link:xamdatapresenter-disable-groupby.html[グループ化を無効にする]
+
+link:xamdatapresenter-change-the-location-of-the-groupbyarea.html[GroupByArea の位置の変更]

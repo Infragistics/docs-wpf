@@ -1,0 +1,91 @@
+﻿////
+
+|metadata|
+{
+    "name": "drag-and-drop-framework-about-ig-drag-and-drop-framework",
+    "controlName": ["IG Drag and Drop Framework"],
+    "tags": ["Editing","Getting Started","How Do I","Selection"],
+    "guid": "{9B4DAB96-E620-4D01-8683-82059ED80C3A}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.7010367Z"
+}
+|metadata|
+////
+
+= Infragistics Drag and Drop Framework について
+
+link:{ApiPlatform}dragdrop{ApiVersion}.html[Infragistics Drag and Drop Framework] ライブラリはドラッグ アンドドロップ機能のアプリケーションへの追加を可能な限り簡単にするために必要なピースを提供します。これによって要素のリアルタイムの移動とよりユーザー フレンドリーな操作が可能になります。
+
+ドラッグされた項目を有効にするには、 link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource.html[DragSource] のオブジェクトの link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~isdraggable.html[IsDraggable] プロパティを True に設定します。
+
+*XAML の場合:*
+
+----
+<StackPanel Background="White" Orientation="Horizontal">        
+   <Border>
+      <Image Source="/Images/select.png" Stretch="Fill">
+         <ig:DragDropManager.DragSource>
+            <ig:DragSource IsDraggable="True" DragChannels="ChannelA" 
+                            Drop="DragSource_Drop">
+            </ig:DragSource>
+         </ig:DragDropManager.DragSource>
+      </Image>
+   </Border>
+   <!-- さらに要素を追加します -->
+</StackPanel>
+----
+
+ドロップ ターゲットを設定するには、 link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget.html[DropTarget] オブジェクトの link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget~isdroptarget.html[IsDropTarget] プロパティを True に設定します。
+
+*XAML の場合:*
+
+----
+<StackPanel x:Name="TargetPanel" Background="White" Orientation="Vertical">
+   <ig:DragDropManager.DropTarget>
+      <ig:DropTarget IsDropTarget="True"
+                  DropChannels="ChannelA">
+      </ig:DropTarget>
+   </ig:DragDropManager.DropTarget>
+</StackPanel>
+----
+
+項目をドロップ ターゲットにドラッグするには、ソースとターゲットの両方が同じドラッグ アンド ドロップ チャネルに属している必要があります。詳細は、 link:drag-and-drop-framework-set-drag-and-drop-channels.html[「ドラッグ アンド ドロップ チャネルを設定」]を参照してください。link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragchannels.html[DragChannels] プロパティと link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget~dropchannels.html[DropChannels] プロパティが設定されていない場合、デフォルトチャネルが使用されます。
+
+[NOTE]
+====
+*注:* フレームワーク内でマウス イベントを処理するためには、ドラッグ ソース要素とドロップ ターゲット要素の Background プロパティを設定する必要があります。Null 値を持つことはできません。
+====
+
+ドラッグ操作が起動された時と同じように、ドラッグされる要素のスナップショット画像がキャプチャされて、 link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragobject.html[DragObject] の内部に作成されたインスタンスに格納されます。これは内部で管理される ContentControl の DataContext として設定されます。
+
+また ContentControl.ContentControlTemplate が DragSource オブジェクトの link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragtemplate.html[DragTemplate] プロパティに設定されます。
+
+DragObject オブジェクトは以下の 2 つのプロパティを公開します:
+
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragobject~data.html[Data] - このプロパティは、ドラッグされるデータを表すオブジェクトのインスタンスを取得します。このオブジェクトは DragSource.DataObject によって設定されるか、設定されている場合には DragSource.DataObjectBinding の結果です。
+* link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragobject~dragimage.html[DragImage] - このプロパティはドラッグ アンド ドロップ操作を起動した UIElement のスナップショットを表す画像を取得します。
+
+以下のコードはデータ テンプレートを DragSource オブジェクトの DragTemplate プロパティに指定する方法を示します。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="itemsTemplate">
+   <StackPanel Background="#FFC1C1C1" Orientation="Horizontal">
+      <TextBlock Text="{Binding Data.Description}" />
+      <ContentControl Content="{Binding Path=DragImage}"/>
+   </StackPanel>
+</DataTemplate>
+----
+
+上記の例で、DragObject.Data プロパティに指定されたオブジェクトはプロパティ Description を持っていることを前提とします。
+
+項目がドラッグされる間、適切なドロップ ターゲットに対して基本のビジュアル ツリーが調べられます。ドロップ ターゲットが見つかると、フレームワークはドロップ ターゲット上に半透明の図形を描画することによって視覚的に示します。DropTarget オブジェクトの link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget~droptargetmarkerbrush.html[DropTargetMarkerBrush] プロパティを設定することによってこの図形の色を設定できます。デフォルトの色は透明です。
+
+ドロップ ターゲットでプロパティ自身に直接インラインが設定されている場合、 link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget~droptargetstyle.html[DropTargetStyle] で設定するプロパティはドロップターゲットに影響しません。インラインを設定する代わりに DropTarget に設定されているプロパティ設定を DropTargetStyle のプロパティ設定がオーバーライドするようにしたい場合には、DropTarget でスタイルを使用します。
+
+== 関連トピック
+
+link:drag-and-drop-framework-getting-started-with-ig-drag-and-drop-framework.html[Infragistics Drag and Drop Framework を使用した作業の開始]
+
+link:drag-and-drop-framework-using-ig-drag-and-drop-framework.html[Infragistics Drag and Drop Framework の使用]

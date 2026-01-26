@@ -1,0 +1,73 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-color-map-elements-individually",
+    "controlName": ["xamMap"],
+    "tags": ["Data Presentation","How Do I","Styling"],
+    "guid": "{1F4652C5-9352-45B4-BF19-BA6BB72B0FC5}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2062725Z"
+}
+|metadata|
+////
+
+= 各マップ要素に色を付ける
+
+塗りつぶしモードの使用の外に、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement.html[MapElement] オブジェクトに色を付けるもうひとつの方法は、エレメントに直接色を付ける方法です。これを実行するには、エレメントの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement~fill.html[Fill] プロパティを使用したいブラシに設定します。
+
+以下のコードは、マップ 要素を条件的に色付けする方法を示します。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer.html[MapLayer] オブジェクトの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~imported_ev.html[Imported] イベントでは、各要素のプロパティ値がチェックされ、要素は要素の Fill プロパティを設定して色付けされます。
+
+*Visual Basic の場合:*
+
+----
+' 女性と男性の比率に応じてマップ エレメントに色を付けます 
+Private Sub statesLayer_Imported(ByVal sender As Object, ByVal e As MapLayerImportEventArgs)
+        Dim layer As MapLayer = TryCast(sender, MapLayer)
+        ' ブラシを宣言します 
+        Dim b1 As New SolidColorBrush(Colors.Orange)
+        Dim b2 As New SolidColorBrush(Color.FromArgb(255, 30, 144, 255))
+        For Each element As MapElement In layer.Elements
+                Dim males As Double = CDbl(element.GetProperty("MALES"))
+                Dim females As Double = CDbl(element.GetProperty("FEMALES"))
+                Dim ratio As Double = Math.Round(females / males, 2)
+                element.ToolTip = String.Format("{0:F2}", females / males)
+                element.Caption = DirectCast(element.GetProperty("STATE_ABBR"), String)
+                ' 比率をチェックして色を設定します 
+                If ratio > 1 Then
+                        element.Fill = b1
+                Else
+                        element.Fill = b2
+                End If
+        Next
+End Sub
+----
+
+*C# の場合:*
+
+----
+// 女性と男性の比率に応じてマップ エレメントに色を付けます
+void statesLayer_Imported(object sender, MapLayerImportEventArgs e)
+{
+   MapLayer layer = sender as MapLayer;
+   // ブラシを宣言します
+   SolidColorBrush b1 = new SolidColorBrush(Colors.Orange);
+   SolidColorBrush b2 = new SolidColorBrush(Color.FromArgb(255, 30, 144, 255));
+   // 各マップ エレメントをチェックします
+   foreach (MapElement element in layer.Elements)
+   {
+      double males = (double)element.GetProperty("MALES");
+      double females = (double)element.GetProperty("FEMALES");
+      double ratio = Math.Round(females / males, 2);
+      element.ToolTip = string.Format("{0:F2}", females / males);
+      element.Caption = (string)element.GetProperty("STATE_ABBR");
+          // 比率をチェックして色を設定します
+      if (ratio > 1)
+         element.Fill = b1;
+      else
+         element.Fill = b2;
+   }
+}
+----
+
+image::images/XamMap_Color_Individual_Map_Elements_01.png[]

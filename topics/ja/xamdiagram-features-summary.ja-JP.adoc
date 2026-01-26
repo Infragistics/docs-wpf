@@ -1,0 +1,15 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram features summary",
+    "controlName": [],
+    "tags": [],
+    "guid": "4d43c095-005c-4046-bac6-a370e3c5c456",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-27T06:23:11.4214437Z"
+}
+|metadata|
+////
+
+_xamDiagram_  は、ダイアグラム作成ツールに必要なさまざまな機能を提供します。MVVM に対応するデータ バインドやコマンドをサポートし、複数のナビゲーション モードも利用できます。ユーザーは、ダイアグラム項目とそのビジュアル要素の選択、移動、サイズ変更、および編集ができます。_Infragistics® Undo Redo Framework_  の最上部にビルドされた元に戻す / やり直し機能を使用できます。また、ナビゲーション ペインとツールボックス コントロールも提供されています。

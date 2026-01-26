@@ -1,0 +1,68 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtagcloud-add-spaces-between-cloud-items",
+    "controlName": ["xamTagCloud"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{B537D27B-A814-4FCC-B510-F9784115EAED}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5794015Z"
+}
+|metadata|
+////
+
+= クラウド項目の間にスペースを追加
+
+xamTagCloud™ コントロールのクラウド項目間にスペースを追加して、視覚的な分割の程度を大きくすることができます。これによってエンドユーザーはクラウド項目を明確かつ正確に見ることができます。
+
+link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud.html[xamTagCloud] コントロールの link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~itemspacing.html[ItemsSpacing] プロパティを設定することによってクラウド項目間のスペースを構成できます。このプロパティでは Thickness 構造を使用できます。この構造の Left、Top、Right、および Bottom 値を設定すると、各クラウド項目間のスペースが決定されます。
+
+次のコードは、これを実現する方法を示しています。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamTagCloud MaxScale="5" MinScale="1" Name="myTagCloud" 
+                              ItemSpacing="50,50,50,50">
+   …
+   </ig:XamTagCloud>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim myThickness As New Thickness()
+myThickness.Bottom = 50
+myThickness.Left = 50
+myThickness.Right = 50
+myThickness.Top = 50
+tagCloud.ItemSpacing = myThickness
+----
+
+*C# の場合:*
+
+----
+Thickness myThickness = new Thickness();
+myThickness.Bottom = 50;
+myThickness.Left = 50;
+myThickness.Right = 50;
+myThickness.Top = 50;
+tagCloud.ItemSpacing = myThickness;
+----
+
+== 関連トピック
+
+link:xamtagcloud-add-cloud-items-to-xamtagcloud.html[クラウド項目を xamTagCloud に追加]
+
+link:xamtagcloud-add-navigation-uris-to-cloud-items2.html[ナビゲーション URI をクラウド項目に追加]
+
+link:xamtagcloud-xamtagcloud-events.html[xamTagCloud イベント]
+
+link:xamtagcloud-setting-minimum-and-maximum-scale-values.html[最小スケール値と最大スケール値の設定]
+
+link:xamtagcloud-smooth-scaling.html[スムーズ スケーリング]
+
+link:xamtagcloud-working-with-scalebreaks-collection.html[ScaleBreaks コレクションでの作業]

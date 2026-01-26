@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamoutlookbar",
+    "controlName": ["xamOutlookBar"],
+    "tags": [],
+    "guid": "{D2ECEDBC-F529-4CC0-B626-F5AC37886299}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.0251581Z"
+}
+|metadata|
+////
+
+= xamOutlookBar
+
+
+
+このセクションは、xamOutlookBar についてコントロールの機能とアプリケーションでのコントロールの使用についての手順をステップバイステップで説明します。
+
+以下のリンクをクリックして、xamOutlookBar コントロールの重要な情報にアクセスします。
+
+== link:xamoutlookbar-about-xamoutlookbar.html[xamOutlookBar について]
+
+このセクションでは、xamOutlookBar コントロールの機能の理解を深めるのに役立つ情報を提供します。
+
+== link:xamoutlookbar-adding-xamoutlookbar-to-your-page.html[xamOutlookBar をアプリケーションに追加]
+
+xamOutlookBar コントロールをできる限り素早く起動して実行するために、コントロールを使用した開始方法の情報を提供します。
+
+== link:xamoutlookbar-using-xamoutlookbar.html[xamOutlookBar の使用]
+
+このセクションでは、xamOutlookBar コントロールで提供される主要な特徴および機能についての情報を説明しています。
+
+== link:xamoutlookbar-api-overview.html[API の概要]
+
+このトピックは、xamOutlookBar コントロールでプログラミング中に作業する名前空間とクラスをリストします。このトピックにリストされる名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[「API リファレンス ガイド」]に便宜上リンクします。
+
+[[seealsobookmark]]

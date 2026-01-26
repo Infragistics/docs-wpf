@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-the-xamgantt-calendars",
+    "controlName": ["xamGantt"],
+    "tags": ["Getting Started","Grids","How Do I","Scheduling"],
+    "guid": "1f048ccd-4124-4d32-bada-bd472cc395b7",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.469144Z"
+}
+|metadata|
+////
+
+= xamGantt カレンダーの構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックには、 _xamGantt™_  カレンダーの情報が含まれています。
+
+=== トピック
+
+このセクションは、 _xamGantt_  カレンダーの使用と構成をカバーします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-calendars-configuration-overview.html[ _xamGantt_ カレンダー構成の概要]
+|このトピックは、 _xamGantt_ カレンダーの主要な機能の概要です。_xamGantt_ はカレンダーを使用して時間を計算します。
+
+| link:xamgantt-configuring-the-xamgantt-project-calendar.html[プロジェクト カレンダーの構成]
+|このトピックでは稼働時間情報を指定するためにプロジェクト カレンダーを使用する方法を説明します。
+
+| link:xamgantt-configuring-custom-calendars-for-xamgantt.html[xamGantt のカスタム カレンダーの構成]
+|このトピックでは、カスタム カレンダー クラスを作成して xamGantt と使用する方法を紹介します。
+
+|====

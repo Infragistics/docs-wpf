@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-api-overview",
+    "controlName": ["xamGrid"],
+    "tags": ["API"],
+    "guid": "cc5bcfce-cdf3-4000-abbd-e22b4852281c",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.6102007Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= API の概要
+
+このセクションは、 link:xamgrid.html[xamGrid]™ コントロールに関連する各名前空間をリストします。このコントロールでプログラムする間に使用するいくつかのキー クラスもあります。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[options="header", cols="a,a"]
+|====
+|名前空間：|キー クラス:
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics_namespace.html[Infragistics] 
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers] 
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids_namespace.html[Infragistics.Controls.Grids] 
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.primitives_namespace.html[Infragistics.Controls.Grids.Primitives]
+|
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid.html[xamGrid] 
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.cell.html[Cell] 
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column.html[Column] 
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.row.html[Row] 
+
+|====

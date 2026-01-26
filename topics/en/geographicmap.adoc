@@ -1,0 +1,14 @@
+﻿////
+|metadata|
+{
+    "name": "xamgeographicmap",
+    "controlName": ["xamGeographicMap"],
+    "tags": ["Data Binding","Getting Started","How Do I","Navigation"],
+    "guid": "33ab6baa-2f57-4b27-b4a5-6b04a90b8423",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.6302095Z"
+}
+|metadata|
+////
+
+= xamGeographicMap

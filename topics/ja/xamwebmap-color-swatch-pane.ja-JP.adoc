@@ -1,0 +1,158 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-color-swatch-pane",
+    "controlName": ["xamMap"],
+    "tags": [],
+    "guid": "{79F9F8D5-759F-4352-A3C6-D76E14E4256F}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2122732Z"
+}
+|metadata|
+////
+
+= 色見本ペインの表示
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapcolorswatchpane.html[MapColorSwatchPane] は各 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement.html[MapElement] オブジェクトに対応する値に関係してマップの色に関する情報を表示する特別な種類の凡例です。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale.html[ValueScale] オブジェクトは関係を表示するために色見本ペインに定義する必要があります。これは値を色の範囲に割り当てる Choropleth モードで役立ち、色見本ペインの表示は、その値と対応する色を示します。色見本ペインには、サンプル、見本、範囲の 3 つの表示モードがあります:
+
+*サンプル*
+
+サンプル モードは各見本の上にサンプル値の色の見本を表示し、表示された値でマップ エレメントがどのように表示されるのかを示します。
+
+image::images/SL_DV_XamMap_About_Color_Swatch_Pane_02.png[]
+
+*見本*
+
+見本モードは色の範囲全体を表示してこの範囲でマップ 要素の値を表示します。
+
+image::images/SL_DV_XamMap_About_Color_Swatch_Pane_03.png[]
+
+サンプルの見本は、ラベルされた値の間の値の色だけでなく、特定の値の色がどのようになるのかを示します。
+
+*範囲*
+
+範囲色見本ペインは、値が色の端の値として表示される点を除き、サンプルの色見本ペインと非常に似ています。このように値の特定の範囲の色を決定できます。
+
+image::images/SL_DV_XamMap_About_Color_Swatch_Pane_01.png[]
+
+サンプルの色見本は値 0 から 50 は青、値 51 から 100 は明るい青というように示します。
+
+== 色見本ペインの表示
+
+xamMap コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapcolorswatchpane.html[MapColorSwatchPane] オブジェクトは、マップ要素の値と色の関係を表示します。レイヤーの色情報を表示するために LayerName プロパティを設定します。
+
+image::images/XamMap_Display_Color_Swatch_Pane_01.png[]
+
+以下のコードは、Choropleth 塗りつぶしモードで XamMap コントロールの 3 つの色見本ペインを表示する方法を示します。
+
+[NOTE]
+====
+注: xamMap で任意のペインを使用する時に、コントロールの側面にドッキングしたい場合があります。xamMap コントロールはコントロールをレイアウトするためにデフォルトで xamDock パネルを使用します。xamDock の添付プロパティを設定する必要がある場合、Infragistics.Controls. 名前空間が含まれていることを確認してください。
+====
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:igMap="http://schemas.infragistics.com/xaml"
+<!-- ...-->
+<igMap:XamMap x:Name="xamMap" >
+    <!-- シェープファイルで Map Layer を追加します -->
+    <igMap:XamMap.Layers>
+        <igMap:MapLayer x:Name="mapLayer" LayerName="statesLayer" FillMode="Choropleth" >
+            <!-- シェープファイルのリーダー -->
+            <igMap:MapLayer.Reader>
+                <igMap:ShapeFileReader Uri="/../../Shapefiles/usa/usa_st" 
+                         DataMapping="Caption=STATE_ABBR; Value=POP90_SQMI" 
+            </igMap:MapLayer.Reader>
+            <!-- シェープファイルに色を付けるブラシ コレクション -->
+            <igMap:MapLayer.Brushes>
+                <ig:BrushCollection>
+                    <SolidColorBrush Color="DodgerBlue" 
+                    <SolidColorBrush Color="Orange" 
+                    <SolidColorBrush Color="Red" 
+                    <SolidColorBrush Color="DarkRed" 
+                </ig:BrushCollection>
+            </igMap:MapLayer.Brushes>
+            <!-- 値スケール -->
+            <igMap:MapLayer.ValueScale>
+                <igMap:LinearScale IsAutoRange=" 
+                                           MinimumValue="0" 
+                                           MaximumValue="500" 
+            </igMap:MapLayer.ValueScale>
+        </igMap:MapLayer>
+    </igMap:XamMap.Layers>
+    <!--TODO: 色見本ペインの追加 -->
+    <igMap:MapColorSwatchPane igCtrl:XamDock.Edge="InsideTop" Width="250" Height="60" 
+                                     LayerName="statesLayer" DisplayMode="Range" Margin="2" 
+    <igMap:MapColorSwatchPane igCtrl:XamDock.Edge="InsideTop" Width="250" Height="60" 
+                                     LayerName="statesLayer" DisplayMode="Sample" Margin="2" 
+    <igMap:MapColorSwatchPane igCtrl:XamDock.Edge="InsideTop" Width="250" Height="60" 
+                                     LayerName="statesLayer" DisplayMode="Swatch" Margin="2" 
+</igMap:XamMap>
+----
+
+endif::wpf[]
+
+*Visual Basic の場合:*
+
+----
+' 範囲表示モードの色見本ペイン 
+Dim pane1 As New MapColorSwatchPane()
+pane1.Width = 250
+pane1.Height = 60
+pane1.LayerName = "statesLayer"
+pane1.DisplayMode = ColorSwatchPaneDisplayMode.Range
+pane1.SetValue(XamDock.EdgeProperty, DockEdge.InsideTop)
+' サンプル表示モードの色見本ペイン 
+Dim pane2 As New MapColorSwatchPane()
+pane2.Width = 250
+pane2.Height = 60
+pane2.LayerName = "statesLayer"
+pane2.DisplayMode = ColorSwatchPaneDisplayMode.Sample
+pane2.SetValue(XamDock.EdgeProperty, DockEdge.InsideTop)
+' 見本表示モードの色見本ペイン 
+Dim pane3 As New MapColorSwatchPane()
+pane3.Width = 250
+pane3.Height = 60
+pane3.LayerName = "statesLayer"
+pane3.DisplayMode = ColorSwatchPaneDisplayMode.Swatch
+pane3.SetValue(XamDock.EdgeProperty, DockEdge.InsideTop)
+xamMap.LogicalChildren.Add(pane1)
+xamMap.LogicalChildren.Add(pane2)
+xamMap.LogicalChildren.Add(pane3)
+----
+
+*C# の場合:*
+
+----
+//範囲表示モードの色見本ペイン 
+MapColorSwatchPane pane1 = new MapColorSwatchPane();
+pane1.Width = 250;
+pane1.Height = 60;
+pane1.LayerName = "statesLayer";
+pane1.DisplayMode = ColorSwatchPaneDisplayMode.Range;
+pane1.SetValue(XamDock.EdgeProperty, DockEdge.InsideTop);
+//サンプル表示モードの色見本ペイン 
+MapColorSwatchPane pane2 = new MapColorSwatchPane();
+pane2.Width = 250;
+pane2.Height = 60;
+pane2.LayerName = "statesLayer";
+pane2.DisplayMode = ColorSwatchPaneDisplayMode.Sample;
+pane2.SetValue(XamDock.EdgeProperty, DockEdge.InsideTop);
+//見本表示モードの色見本ペイン 
+MapColorSwatchPane pane3 = new MapColorSwatchPane();
+pane3.Width = 250;
+pane3.Height = 60;
+pane3.LayerName = "statesLayer";
+pane3.DisplayMode = ColorSwatchPaneDisplayMode.Swatch;
+pane3.SetValue(XamDock.EdgeProperty, DockEdge.InsideTop);
+xamMap.LogicalChildren.Add(pane1);
+xamMap.LogicalChildren.Add(pane2);
+xamMap.LogicalChildren.Add(pane3);
+----
+
+image::images/XamMap_Display_Color_Swatch_Pane_01.png[]

@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcontextmenu-using-xamcontextmenu",
+    "controlName": ["xamContextMenu"],
+    "tags": ["Getting Started"],
+    "guid": "{8381511A-0090-4D80-9AB8-E7CAFD5C69CE}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.7940975Z"
+}
+|metadata|
+////
+
+= xamContextMenu の使用
+
+このセクションは、xamContextMenu™ コントロールの重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+link:xamcontextmenu-opening-and-showing-xamcontextmenu.html[xamContextMenu の表示]
+
+このトピックでは、xamContextMenu コントロールの開閉動作を設定する方法について説明します。
+
+link:xamcontextmenu-set-xamcontextmenus-location.html[xamContextMenu の位置の設定]
+
+このトピックでは、Placement、PlacementTarget、PlacementRectangle、HorizontalOffset、および VerticalOffset の各プロパティを使用して xamContextMenu コントロールの配置を構成する方法について説明します。
+
+link:xammenu-binding-to-data.html[データへバインド]
+
+このトピックでは、xamMenu や xamContextMenu を階層データにバインドする方法について説明します。
+
+link:xammenu-adding-and-removing-items.html[項目の追加と削除]
+
+このトピックでは、xamMenuItem を追加/削除する方法について説明します。
+
+link:xammenu-adding-separators-between-xammenuitems.html[XamMenuItems 間にセパレータを追加]
+
+このトピックでは、xamMenu 項目間の仕切りとして区切り線を追加する方法について説明します。
+
+link:xammenu-adding-icons-to-xammenuitems.html[XamMenuItems アイコンを追加]
+
+このトピックでは、xamMenu コントロールの表示項目にアイコンを追加する方法について説明します。
+
+link:xammenu-adding-check-boxes-to-xammenuitems.html[XamMenuItems にチェックボックスを追加]
+
+このトピックでは、xamMenu の各項目にチェックボックスを表示する方法について説明します。

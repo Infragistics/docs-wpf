@@ -1,0 +1,90 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-add-symbol-element",
+    "controlName": ["xamMap"],
+    "tags": ["Application Scenarios","Data Presentation","How Do I"],
+    "guid": "{DCA1A944-C5B0-49A0-A438-8B5C2694F098}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1882676Z"
+}
+|metadata|
+////
+
+= 記号要素の追加
+
+xamMap で対象の点にマーカーを追加する必要がある場合、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.symbolelement.html[SymbolElement] オブジェクトを使用できます。この派生した link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement.html[MapElement] タイプによって事前に定義した図形をコントロールに追加することができます。記号の配置を定義するためにデカルト座標または測地座標を使用できます。
+
+以下のコードは、測地座標を使用して赤道に菱形の記号要素を追加する方法を示しています。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<igMap:XamMap x:Name="xamMap">
+   <igMap:XamMap.Layers>
+      <igMap:MapLayer x:Name="worldLayer" Imported="worldLayer_Imported">
+         <igMap:MapLayer.Reader>
+            <igMap:ShapeFileReader Uri="/../../Shapefiles/world" DataMapping="Name=CNTRY_NAME; Caption=CNTRY_NAME" />
+         </igMap:MapLayer.Reader>
+      </igMap:MapLayer>
+   </igMap:XamMap.Layers>
+</igMap:XamMap>
+----
+
+endif::wpf[]
+
+*Visual Basic の場合:*
+
+----
+Private Sub worldLayer_Imported(ByVal sender As System.Object, ByVal e As Infragistics.Controls.Maps.MapLayerImportEventArgs)
+        If e.Action = MapLayerImportAction.End Then
+            ' 赤道の点座標 
+            Dim latitude As Double = 0
+            Dim longitude As Double = 0
+            ' 測地座標からデカルト座標への投影を使用して Point データを取得します 
+            Dim origin As Point = xamMap.MapProjection.ProjectToMap(New Point(longitude, latitude))
+            Dim element As New SymbolElement()
+            element.SymbolOrigin = origin
+            element.Caption = "Marker"
+            element.SymbolType = MapSymbolType.Diamond
+            element.SymbolSize = 10
+            xamMap.Layers(0).Elements.Add(element)
+        End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void worldLayer_Imported(object sender, MapLayerImportEventArgs e)
+{
+   if (e.Action == MapLayerImportAction.End)
+   {
+       // 赤道の点座標 
+       double latitude = 0;
+       double longitude = 0;
+       // 測地座標からデカルト座標への投影を使用して Point データを取得します
+       Point origin = xamMap.MapProjection.ProjectToMap(new Point(longitude, latitude));
+       SymbolElement element = new SymbolElement() 
+       { SymbolOrigin = origin, Caption = "Marker", SymbolType = MapSymbolType.Diamond, SymbolSize = 10 };
+       xamMap.Layers[0].Elements.Add(element);
+    }
+ }
+----
+
+image::images/xamMap_Add_Symbol_Element_01.png[]
+
+== 関連トピック
+
+link:xamwebmap-add-image-using-map-elements.html[マップ要素を使用した画像の追加]
+
+link:xamwebmap-add-path-element.html[パス要素の追加]
+
+link:xamwebmap-add-surface-element.html[表面要素の追加]
+
+link:xamwebmap-map-elements-color-map-elements.html[マップ要素に色を付ける]
+
+link:xamwebmap-set-custom-format-string.html[カスタムのフォーマット文字列を設定]

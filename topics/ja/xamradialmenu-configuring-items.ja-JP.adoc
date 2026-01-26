@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamradialmenu-configuring-items",
+    "tags": ["How Do I","Layouts"],
+    "controlName": ["xamRadialMenu"],
+    "guid": "00ad40c6-aa18-4f02-96aa-6c5e39d27267",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.8813106Z"
+}
+|metadata|
+////
+
+= 項目の構成 (xamRadialMenu)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックは、 link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[ _xamRadialMenu_  ]™ でサポートされるメニュー項目タイプの違いについて説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-items-sub-items-configuration-overview.html[項目/サブ項目構成の概要]
+|このトピックでは、メニュー項目およびその構成プロパティの概要について説明します。
+
+| link:xamradialmenu-configuring-button-items.html[ボタン項目の構成]
+|このトピックでは、 _xamRadialMenu_ のボタン項目について説明します。
+
+| link:xamradialmenu-configuring-numeric-items.html[数値項目の構成]
+|このトピックでは、 _xamRadialMenu_ の数値項目について説明します。
+
+| link:xamradialmenu-configuring-color-items.html[カラー項目の構成]
+|このトピックでは、 _xamRadialMenu_ のカラー項目について説明します。
+
+| link:xamradialmenu-configuring-list-items.html[リスト項目の構成]
+|このトピックでは、 _xamRadialMenu_ のリスト項目について説明します。
+
+|====

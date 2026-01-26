@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-check-box",
+    "controlName": ["xamRibbon"],
+    "tags": ["Data Presentation","Getting Started","How Do I","Layouts"],
+    "guid": "{743F1523-B3B5-4229-A109-58BD9D815D04}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.1501831Z"
+}
+|metadata|
+////
+
+= チェックボックス
+
+
+
+
+
+エンド ユーザーにバイナリ オプションを提示する必要がある場合、CheckBox ツールが適切なツールです。エンド ユーザーがアプリケーションのプレファレンスを指定するための簡単な方法が必要となる場合、CheckBox ツールの機能が役立ちます。CheckBox ツールは、Microsoft® Windows® Presentation Foundation の System.Windows.Controls.Primitives.ToggleButton クラスから派生します。したがって、基本 ToggleButton クラスが提供するのと同じ機能が得られます。
+
+CheckBox ツールは IRibbonTool インターフェイスも実装します。これは、高度な xamRibbon™ 機能を容易にするためのクローンおよびバインド機能を追加します。ユーザー独自のカスタム xamRibbon ツールを作成していなければ、IRibbonTool インターフェイスについての心配は不要です。
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.checkboxtool.html[CheckBoxTool] クラスは、xamRibbon でチェックボックスを容易に管理する上で役立つ複数の追加プロパティを公開します。CheckBoxTool は、プロパティが設定された場合、またはチェックボックスが特定の状態にある場合に確認を手助けするために複数の 'Has' および 'Is' プロパティを公開します。xamRibbon で CheckBox ツールを設定する際に役立つ標準プロパティには以下が含まれます。
+
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~caption.html[Caption] - このテキストは、解決された SizingMode プロパティに関係なく CheckBox ツールの隣りに常に表示されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~id.html[Id] - 異なる複数の場所 (つまり、リボン グループとクイック アクセス ツールバーに同時に) に配置された時にツールを関連付けるために xamRibbon が使用する識別文字列。Id は不要ですが、ランタイムに link:xamribbon-access-a-tool-by-its-id.html[ツールにアクセス]する手助けとなります。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~keytip.html[KeyTip] - 各ツールには、それに関連付けられた link:xamribbon-key-tips.html[キーチップ]があります (メイン メニュー ニーモニックに似ている)。明示的にキーチップを提供しなければ、ユーザーに代わって xamRibbon が内部的に選択します。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~largeimage.html[LargeImage] - 通常は 32 x 32 ピクセルの画像です。ツールの SizingMode が ImageAndTextLarge に設定される場合にこの画像が表示されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~sizingmode.html[SizingMode] - このプロパティは読み取り専用で、ツールが関連付けられたリボン グループで現在どのようにサイズ設定されているかを返します。link:xamribbon-resize-a-tool.html[ツールのサイズを設定]したい場合、RibbonGroup の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~minimumsizeproperty.html[MinimumSize] および/または link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~maximumsizeproperty.html[MaximumSize] 添付プロパティを設定できます。また、 link:xamribbon-add-tools-to-a-buttongroup.html[ボタン グループにツールを配置]する場合、ツールは自動的に ImageOnly にサイズ設定されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~smallimage.html[SmallImage] - 通常は 16 x 16 ピクセルの画像です。ツールの SizingMode が ImageAndTextNormal に設定される場合にこの画像が表示されます。
+
+xamRibbon ツールすべては同じオブジェクトから派生および実装するので、ツールの各機能は非常に似ています。以下のトピックはすべての xamRibbon ツールに適用されます。
+
+== 関連トピック
+
+link:xamribbon-access-a-tool-by-its-id.html[ID でツールにアクセス]
+
+link:xamribbon-add-tools-to-a-buttongroup.html[ツールを ButtonGroup に追加]
+
+link:xamribbon-add-tools-to-a-ribbon-group.html[リボン グループにツールを追加]
+
+link:xamribbon-resize-a-tool.html[ツールのサイズ変更]

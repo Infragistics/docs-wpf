@@ -1,0 +1,478 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector-wcf",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "cfbb214d-af6e-424e-830f-ec2892a2608d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6753551Z"
+}
+|metadata|
+////
+
+= WCFScheduleConnector
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector.html[WcfListScheduleDataConnector] は、スケジュール データを link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] に提供するために WCF サービスを使用する非視覚的要素です。これは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] に基づき、スケジュール データ マネージャーに提供されるビュー モデル オブジェクト (link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[リソース]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[カレンダー]および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[アクティビティ]) を作成します。
+
+*XAML の場合:*
+[source,xaml]
+----
+<ig:WcfListScheduleDataConnector
+    Name="WcfDataConnector"
+    EndpointConfigurationName="MyEndpointConfiguration"
+    PollingInterval="00:00:05"
+    PollingMode="Detailed"/>
+----
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Dim dataConnector = New WcfListScheduleDataConnector()
+dataConnector.EndpointConfigurationName = "MyEndpointConfiguration"
+dataConnector.PollingInterval = TimeSpan.FromSeconds(5)
+dataConnector.PollingMode = WcfSchedulePollingMode.Detailed
+----
+
+*C# の場合:*
+[source,csharp]
+----
+var dataConnector = new WcfListScheduleDataConnector();
+dataConnector.EndpointConfigurationName = "MyEndpointConfiguration";                
+dataConnector.PollingInterval = TimeSpan.FromSeconds(5);
+dataConnector.PollingMode = WcfSchedulePollingMode.Detailed;
+----
+
+上記のコード例では、指定された link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector~endpointconfigurationname.html[EndpointConfigurationName] は、<endpoint> 要素として pick:[wpf="プロジェクトの app.config file"]  または  pick:[sl="the ServiceReferences.ClientConfig file"]  で定義されます。
+
+スケジュール ユーザー インターフェイスがオンデマンドでデータに簡単にアクセスできない時に、WCF リスト コネクターを使用します。データベースのすべてのスケジュール データをサーバーからクライアントに送信するのは実用的ではありません。WCF リスト コネクターは、サーバー上の IEnumerable コレクションを受け付けるサービスと通信し、クライアントによって要求されるスケジュール データだけを返信します。
+
+== クライアント側
+
+ユーザー インターフェイスを含むアプリケーションは、WCF コミュニケーションのクライアント側になります。クライアントで WCF リスト コネクターを使用することは、XamScheduleDataManager. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~dataconnector.html[DataConnector] プロパティを WcfListScheduleDataConnector のインスタンスに設定して、リモート WCF サービスの場所をそのコネクターに指示するとの同じくらいシンプルです。
+
+*XAML の場合:*
+[source,xaml]
+----
+<ig:XamScheduleDataManager CurrentUserId="jsmith">
+    <ig:XamScheduleDataManager.DataConnector>
+        <ig:WcfListScheduleDataConnector 
+            EndpointConfigurationName="MyEndpointConfiguration" />
+    </ig:XamScheduleDataManager.DataConnector>
+</ig:XamScheduleDataManager>
+----
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Dim dataConnector = New WcfListScheduleDataConnector()
+dataConnector.EndpointConfigurationName = "MyEndpointConfiguration"
+Dim dataManager = New XamScheduleDataManager()
+dataManager.DataConnector = dataConnector
+----
+
+*C# の場合:*
+[source,csharp]
+----
+var dataConnector = new WcfListScheduleDataConnector();
+dataConnector.EndpointConfigurationName = "MyEndpointConfiguration";
+var dataManager = new XamScheduleDataManager();
+dataManager.DataConnector = dataConnector;
+----
+
+== リモート WCF サービスの指定
+
+リモート WCF サービスは、2 つの異なる方法で指定できます。サービスのエンド ポイントは、構成ファイルまたはリモート アドレスで定義でき、バインドはコネクターで直接指定できます。
+
+== 構成ファイルでエンド ポイントを使用
+
+恐らく、リモート WCF サービスの場所を定義し、それをアプリケーションの複数のクライアントで使用する最もシンプルな方法は、構成ファイルでエンド ポイントを定義することです。エンド ポイントには、リモート WCF サービスに接続するために必要なすべての情報が含まれます。クライアントとサービス間で通信するために使用されるリモート アドレスとバインディングです。以下は、WCF リスト コネクターを使用している WPF プロジェクトからのサンプル app.config ファイルです。
+
+*XAML の場合:*
+[source,xaml]
+----
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <system.serviceModel>
+    <bindings>
+      <customBinding>
+        <binding name="MyCustomBinding">
+          <binaryMessageEncoding />
+          <httpTransport maxReceivedMessageSize="2147483647"/>
+        </binding>
+      </customBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://localhost:39959/MyScheduleDataService.svc"
+          binding="customBinding" bindingConfiguration="MyCustomBinding"
+          contract="WcfListConnectorServiceWpf.IWcfListConnectorService"
+          name="MyEndpointConfiguration" />
+    </client>
+  </system.serviceModel>
+</configuration>
+----
+
+以上の例のアドレスは localhost に設定されることに注意してください。この構成ファイルは、クライアントとサービスの両方をデバッグ中に使用されます。サービスが発行されてクライアントがリリースされると、アドレスはフル ドメイン名を含むので、クライアントは異なるマシンからサービスに接続できます。
+
+また、構成ファイルの <endpoint> 要素では、コントラクト属性を指定する必要があることに注意してください。これは、リモート サービスによって実装される WCF コントラクトを指定します。
+
+pick:[wpf="クライアントで WPF を使用する場合、このコントラクト指定は以下のようになります。"]
+
+ifdef::wpf[]
+WcfListConnectorServiceWpf.IWcfListConnectorService
+endif::wpf[]
+
+ifdef::sl[]
+そして、クライアントで Silverlight を使用する場合、このコントラクト指定は以下のようになります。
+endif::sl[]
+
+ifdef::sl[]
+WcfListConnectorServiceSL.IWcfListConnectorService
+endif::sl[]
+
+ifdef::sl[]
+*注:* Silverlight を使用している場合、特定のバインディング型は許可されません。そこで、構成ファイルを共有するか、Silverlight クライアントで使用する場合に限って、カスタム バインディングまたは基本的な http バインディングだけを使用してください。また、バインディングがリモート サービスで指定されていることを確認してください。
+endif::sl[]
+
+WCF リスト コネクターでエンド ポイントを使用するには、WcfListScheduleDataConnector インスタンスの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector~endpointconfigurationname.html[EndpointConfigurationName] プロパティでエンド ポイント構成名を設定するだけです。
+
+エンド ポイントが構成ファイルから使用される場合、リモート サービス アドレスも WCF リスト コネクターで指定できます。リモート アドレスを指定すると、コネクターは <endpoint> 要素のアドレス属性を無視します。事実、リモート アドレスが指定されると、エンド ポイントのアドレスは空の文字列に設定できます。WcfListScheduleDataConnector インスタンスの RemoteAddress プロパティを設定して、リモート アドレスを指定できます。このプロパティは、文字列のインスタンス、System.Uri、または System.ServiceModel.EndpointAddress に設定できます。
+
+== リモート アドレスの設定およびバインディング
+
+リモート WCF サービスを指定するもうひとつの方法は、WcfListScheduleDataConnector インスタンスでリモート アドレスを指定し、直接バインドすることです。これらは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector~remoteaddress.html[RemoteAddress] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector~remotebinding.html[RemoteBinding] プロパティをそれぞれ使用して設定できます。
+
+*XAML の場合:*
+[source,xaml]
+----
+xmlns:ig=http://schemas.infragistics.com/xaml
+xmlns:channels=
+    "clr-namespace:System.ServiceModel.Channels;assembly=System.ServiceModel"
+<ig:WcfListScheduleDataConnector
+    RemoteAddress="http://localhost:39959/MyScheduleDataService.svc">
+    <ig:WcfListScheduleDataConnector.RemoteBinding>
+        <channels:CustomBinding>
+            <channels:CustomBinding.Elements>
+                <channels:BinaryMessageEncodingBindingElement />
+                <channels:HttpTransportBindingElement 
+                    MaxReceivedMessageSize="2147483647" />
+            </channels:CustomBinding.Elements>
+        </channels:CustomBinding>
+    </ig:WcfListScheduleDataConnector.RemoteBinding>
+</ig:WcfListScheduleDataConnector>
+----
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Dim dataConnector = New WcfListScheduleDataConnector()
+dataConnector.RemoteAddress = _
+    "http://localhost:39959/MyScheduleDataService.svc"
+Dim customBinding = New CustomBinding()
+customBinding.Elements.Add(New BinaryMessageEncodingBindingElement())
+Dim httpTransportBindingElement = New HttpTransportBindingElement()
+httpTransportBindingElement.MaxReceivedMessageSize = 2147483647
+customBinding.Elements.Add(httpTransportBindingElement)
+dataConnector.RemoteBinding = customBinding
+----
+
+*C# の場合:*
+[source,csharp]
+----
+var dataConnector = new WcfListScheduleDataConnector();
+dataConnector.RemoteAddress =
+    "http://localhost:39959/MyScheduleDataService.svc";
+var customBinding = new CustomBinding();
+customBinding.Elements.Add(new BinaryMessageEncodingBindingElement());
+var httpTransportBindingElement = new HttpTransportBindingElement();
+httpTransportBindingElement.MaxReceivedMessageSize = 2147483647;
+customBinding.Elements.Add(httpTransportBindingElement);
+dataConnector.RemoteBinding = customBinding;
+----
+
+== 変更のためのポーリング
+
+WCF リスト コネクターは、サーバーでの変更をポーリングし、それに応じてクライアントを更新できます。これは、別のクライアントまたはサーバー自体によってデータが変更された時に必要となります。ポーリングが正しく動作するためには、サーバーで指定されたデータ項目は INotifyPropertyChanged インターフェイスを実装する必要があります。サーバーにプロパティが変更された項目がある場合、WCF サービスは、変更が行われたことを確認し、次回に変更がポーリングされる時にその変更をクライアントに送信します。ただし、データ項目を含むコレクションが INotifyCollectionChanged または IBindingList を実装する場合には、ポーリングをより効率的にすることも可能です。これらのインターフェイスのひとつが実装されると、サービスは詳細レベルの変更のリストと表示される順序を保持できます。クライアントが変更をポーリングすると、最後のポーリング以降に行われた変更の正確なリストを取得できます。実行できるポーリングには 3 種類あり、WcfListScheduleDataConnector の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector~pollingmode.html[PollingMode] プロパティを設定することによって制御できます。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcfschedulepollingmode.html[None] - ポーリングは行われません。クライアントはサーバーでの変更が通知されず、サーバーのデータと同期が取られていないデータを表示する可能性があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcfschedulepollingmode.html[RequeryOnAnyChange] - サーバーで検出された変更によって、クライアントは、現在の表示可能な日についてのすべてのデータを再度サーバーに問い合わせます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcfschedulepollingmode.html[Detailed] - これがデフォルトの PollingMode 値です。適切なインターフェイスが実装されると、データ項目レベルの変更がリストのクライアントに送付されます。これによって、クライアントがすべてのデータを再度問い合わせることを防止します。ただし、サーバーでの変更が多すぎる場合、クライアントの最後のポーリングと返されたリストが大きすぎるので、クライアントはその一度のポーリングで RequeryOnAnyChange モードに戻ります。また、WCF サービスで指定されたコレクションが INotifyCollectionChanged または IBindingList を実装していない場合、クライアントは常に RequeryOnAnyChange ポーリングを使用します。INotifyPropertyChanged インターフェイスもデータ項目で指定されていない場合、ポーリングが行われますがサーバーは変更を報告しません。
+
+モードの制御に加えて、WCF リスト コネクターは、クライアントが変更のサービスをどれぐらいの頻度でポーリングするかも制御できます。デフォルトの間隔は 30 秒ですが、これは WcfListScheduleDataConnector インスタンスの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector~pollinginterval.html[PollingInterval] プロパティを有効な TimeSpan に設定することで簡単に変更できます。
+
+== サーバー側
+
+WCF サービスは WCF コミュニケーションのサーバー側になります。これはスケジュール データへの参照を持ち、オンデマンドでクライアントにそのデータのサブセットを提供します。WCF サービスは、2 つのデフォルトの WCF スケジュール データ サービスのいずれかを使用して設定できます。それらは link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservicesingle.html[WcfListConnectorServiceSingle] および link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservicemulti.html[WcfListConnectorServiceMulti] です。
+
+== WcfListConnectorServiceSingle
+
+WcfListConnectorServiceSingle は、一度だけ作成されるサービス インスタンスで、クライアントからのすべてのリモート コールはサーバーの同じスレッドで処理されます。これによって、サービスで一度だけ実行されるように設定でき、パフォーマンスの低下を防止できます。ただし、一度にサービスに接続しようとするクライアントが多すぎる場合には、ボトルネックが発生して接続しようとするすべてのクライアントの速度が低下する可能性があります。このため、WcfListConnectorServiceSingle は、少数のクライアントだけが一度にサービスに接続することが分かっている場合に使用する必要があります。
+
+WcfListConnectorServiceSingle は項目ソースおよび ListScheduleDataConnector で管理される各コレクション タイプのプロパティ マッピングを定義します。以下の派生クラスは、これらの項目ソースをいくつか設定するので、クライアントは予定を変更できます。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Imports System.ComponentModel
+Imports Infragistics.Services.Schedules
+Imports Infragistics.Controls.Schedules.Services
+Public Class MyScheduleDataService
+    Inherits WcfListConnectorServiceSingle
+    Private appointments As BindingList(Of Appointment)
+    Private resources As BindingList(Of Resource)
+    Private resourceCalendars As BindingList(Of ResourceCalendar)
+    Public Sub New()
+        Me.resources = New BindingList(Of Resource)()
+        Dim resource As New Resource()
+        resource.Id = "jsmith"
+        resource.PrimaryCalendarId = "Cal1"
+        Me.resources.Add(resource)
+        Me.resourceCalendars = _
+            New BindingList(Of ResourceCalendar)()
+        Dim resourceCalendar As New ResourceCalendar()
+        resourceCalendar.OwningResourceId = "jsmith"
+        resourceCalendar.Id = "Cal1"
+        resourceCalendar.Name = "Primary Calendar"
+        Me.resourceCalendars.Add(resourceCalendar)
+        Me.appointments = New BindingList(Of Appointment)()
+        Me.ResourceItemsSource = Me.resources
+        Me.ResourcePropertyMappings = _
+            New ResourcePropertyMappingCollection()
+        Me.ResourcePropertyMappings.UseDefaultMappings = True
+        Me.ResourceCalendarItemsSource = Me.resourceCalendars
+        Me.ResourceCalendarPropertyMappings = _
+            New ResourceCalendarPropertyMappingCollection()
+        Me.ResourceCalendarPropertyMappings.UseDefaultMappings = True
+        Me.AppointmentItemsSource = Me.appointments
+        Me.AppointmentPropertyMappings = _
+            New AppointmentPropertyMappingCollection()
+        Me.AppointmentPropertyMappings.UseDefaultMappings = True
+    End Sub
+End Class
+----
+
+*C# の場合:*
+[source,csharp]
+----
+using System.ComponentModel;
+using Infragistics.Services.Schedules;
+using Infragistics.Controls.Schedules.Services;
+public class MyScheduleDataService : WcfListConnectorServiceSingle
+{
+    private BindingList<Appointment> appointments;
+    private BindingList<Resource> resources;
+    private BindingList<ResourceCalendar> resourceCalendars; 
+    public MyScheduleDataService()
+    {
+        this.resources = new BindingList<Resource>();
+        Resource resource = new Resource();
+        resource.Id = "jsmith";
+        resource.PrimaryCalendarId = "Cal1";
+        this.resources.Add(resource);
+        this.resourceCalendars = new BindingList<ResourceCalendar>();
+        ResourceCalendar resourceCalendar = new ResourceCalendar();
+        resourceCalendar.OwningResourceId = "jsmith";
+        resourceCalendar.Id = "Cal1";
+        resourceCalendar.Name = "Primary Calendar";
+        this.resourceCalendars.Add(resourceCalendar);
+        this.appointments = new BindingList<Appointment>();
+        this.ResourceItemsSource = this.resources;
+        this.ResourcePropertyMappings = 
+                new ResourcePropertyMappingCollection();
+        this.ResourcePropertyMappings.UseDefaultMappings = true;
+        this.ResourceCalendarItemsSource = this.resourceCalendars;
+        this.ResourceCalendarPropertyMappings = 
+                new ResourceCalendarPropertyMappingCollection();
+        this.ResourceCalendarPropertyMappings.UseDefaultMappings = true;
+        this.AppointmentItemsSource = this.appointments;
+        this.AppointmentPropertyMappings = 
+                new AppointmentPropertyMappingCollection();
+        this.AppointmentPropertyMappings.UseDefaultMappings = true;
+    }
+}
+----
+
+== WcfListConnectorServiceMulti
+
+使用可能な他のサービス タイプは、WcfListConnectorServiceMulti です。これは抽象クラスなので、派生インスタンスを作成する必要があります。WcfListConnectorServiceMulti 派生サービスの新しいインスタンスは、クライアントから受け取る各リモート コールに対して作成され、そのリモート コールは異なるスレッドで処理されます。これによって、クライアントが多すぎる状況で WcfListConnectorServiceSingle を使用してもボトルネックの発生を防止できます。ただし、このサービス タイプの新しいインスタンスは各リモート コールで作成する必要があるので、初期の設定と提供される項目ソースに接続するオーバーヘッドが各リモート コールで生じます。そこで、少数のクライアントだけがいつでも接続することが分かっている場合には、WcfListConnectorServiceSingle を代わりに使用する必要があります。
+
+各リモート コールでオーバーヘッドの量を削減するために、WcfListConnectorServiceMulti は、すべての項目ソースとプロパティ マッピングを各サービス インスタンスで初期化することを要求しません。代わりに、項目ソースおよびプロパティ マッピングはオンデマンドで要求されます。そのため WcfListConnectorServiceMulti が GetItemSource と InitializePropertyMappings の 2 つの抽象メソッドを定義します。以下の派生クラスはこれらのメソッドを実装するので、クライアントは予定を変更できます。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Imports Infragistics.Services.Schedules
+Imports Infragistics.Controls.Schedules.Services
+Public Class MySQLScheduleDataService
+  Inherits WcfListConnectorServiceMulti
+  Private dataContext As ScheduleSQLDataContext
+  Protected Overrides Function GetItemSource(listManagerType As _
+    ItemSourceType) As IEnumerable
+    Select Case listManagerType
+      Case ItemSourceType.Appointment
+        Return Me.dataContext.AppointmentDBs
+      Case ItemSourceType.Resource
+        Return Me.dataContext.ResourceDBs
+      Case ItemSourceType.ResourceCalendar
+        Return Me.dataContext.ResourceCalendarDBs
+    End Select
+    Return Nothing
+  End Function
+  Protected Overrides Sub InitializePropertyMappings(listManagerType _
+    As ItemSourceType, mappings As Object)
+    Select Case listManagerType
+      Case ItemSourceType.Appointment
+        Dim appointmentMappings As AppointmentPropertyMappingCollection = _
+          DirectCast(mappings, AppointmentPropertyMappingCollection)
+        appointmentMappings.UseDefaultMappings = True
+        Exit Select
+      Case ItemSourceType.Resource
+        Dim resourceMappings As ResourcePropertyMappingCollection = _
+          DirectCast(mappings, ResourcePropertyMappingCollection)
+        resourceMappings.UseDefaultMappings = True
+        Exit Select
+      Case ItemSourceType.ResourceCalendar
+        Dim resourceCalendarMappings As ResourceCalendarPropertyMappingCollection = _
+          DirectCast(mappings, ResourceCalendarPropertyMappingCollection)
+        resourceCalendarMappings.UseDefaultMappings = True
+        Exit Select
+    End Select
+  End Sub
+  Protected Overrides Sub OnRemoteCallReceived(context As CallContext)
+    Me.dataContext = New ScheduleSQLDataContext()
+    MyBase.OnRemoteCallReceived(context)
+  End Sub
+  Protected Overrides Sub OnRemoteCallProcessed(result As CallResult)
+    MyBase.OnRemoteCallProcessed(result)
+    Me.dataContext.Dispose()
+    Me.dataContext = Nothing
+  End Sub
+End Class
+----
+
+*C# の場合:*
+[source,csharp]
+----
+using Infragistics.Services.Schedules;
+using Infragistics.Controls.Schedules.Services;
+public class MySQLScheduleDataService : WcfListConnectorServiceMulti
+{
+    private ScheduleSQLDataContext dataContext;
+    protected override IEnumerable GetItemSource(
+        ItemSourceType listManagerType)
+    {
+        switch (listManagerType)
+        {
+        case ItemSourceType.Appointment:
+            return this.dataContext.AppointmentDBs;
+        case ItemSourceType.Resource:
+            return this.dataContext.ResourceDBs;
+        case ItemSourceType.ResourceCalendar:
+            return this.dataContext.ResourceCalendarDBs;
+        }
+        return null;
+    }
+    protected override void InitializePropertyMappings(
+            ItemSourceType listManagerType, object mappings)
+    {
+        switch (listManagerType)
+        {
+        case ItemSourceType.Appointment:
+            AppointmentPropertyMappingCollection appointmentMappings = 
+                (AppointmentPropertyMappingCollection)mappings;
+            appointmentMappings.UseDefaultMappings = true;
+            break;
+        case ItemSourceType.Resource:
+            ResourcePropertyMappingCollection resourceMappings = 
+                (ResourcePropertyMappingCollection)mappings;
+            resourceMappings.UseDefaultMappings = true;
+            break;
+        case ItemSourceType.ResourceCalendar:
+            ResourceCalendarPropertyMappingCollection resourceCalendarMappings =
+                (ResourceCalendarPropertyMappingCollection)mappings;
+            resourceCalendarMappings.UseDefaultMappings = true;
+            break;
+        }
+    }
+    protected override void OnRemoteCallReceived(CallContext context)
+    {
+        this.dataContext = new ScheduleSQLDataContext();
+        base.OnRemoteCallReceived(context);
+    }
+    protected override void OnRemoteCallProcessed(CallResult result)
+    {
+        base.OnRemoteCallProcessed(result);
+        this.dataContext.Dispose();
+        this.dataContext = null;
+    }
+}
+----
+
+この例では、派生クラスは、リモート コールが処理中にエラーが発生した場合でも、サービスによって受け取るすべてのリモート コールで呼び出される link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservice~onremotecallreceived.html[OnRemoteCallReceived] と、リモート コールが実行されるクライアントに結果が返される直前に呼び出される link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservice~onremotecallprocessed.html[OnRemoteCallProcessed] もオーバーライドします。これらのメソッドを使用して、SQL データベースへの接続を設定および解除します。“LINQ to SQL Classes” 項目がサービス プロジェクトに追加された場合、この例で使用される ScheduleSQLDataContext クラスは Visual Studio で自動生成されました。
+
+== WCF サービスの公開
+
+サービス クラスが適切に定義されると、クライアントが接続できるように、WCF サービスを公開する必要があります。これはサービス アセンブリの構成ファイルで実行できます。以下の構成ファイルは、上記の WcfListConnectorServiceSingle セクションで定義された MyScheduleDataService クラスを公開します。
+
+*XAML の場合:*
+[source,xaml]
+----
+<?xml version="1.0"?>
+<configuration>
+  <system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="">
+          <serviceMetadata httpGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults=" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment multipleSiteBindingsEnabled="true" />
+    <bindings>
+      <customBinding>
+        <binding name="MyServerCustomBinding">
+          <binaryMessageEncoding>
+            <readerQuotas maxStringContentLength="2147483647" />
+          </binaryMessageEncoding>
+          <httpTransport authenticationScheme="Anonymous" />
+        </binding>
+      </customBinding>
+    </bindings>
+    <services>
+      <service name="MyScheduleDataService">
+        <endpoint
+            address=""
+            binding="customBinding"
+            bindingConfiguration="MyServerCustomBinding"
+  contract="Infragistics.Services.Schedules.IWcfListConnectorService" />
+        <endpoint
+            address="mex"
+            binding="mexHttpBinding"
+            contract="IMetadataExchange" />
+      </service>
+    </services>
+  </system.serviceModel>
+</configuration>
+----
+
+この構成ファイルは、クライアントで要求されたファイルと類似しています。ただし、この構成ファイルはサービス動作およびサービスを定義します。要素の名前属性は、公開されるサービスのフル タイプ名にする必要があります。この構成ファイルは、クライアントの構成ファイルが実行したように、カスタム バインディングも定義します。クライアントとサーバーのバインディングが一致することが重要です。また、最初のエンド ポイントのコントラクト属性が設定されることも重要です。
+
+Infragistics.Services.Schedules.IWcfListConnectorService
+
+== クライアント側セキュリティ
+
+WcfListScheduleDataConnector には、任意のオブジェクトに設定できる link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector~securitytoken.html[SecurityToken] プロパティがあります。これは複雑なオブジェクトにユーザー パスワードのハッシュを含む文字列が可能です。リモート コールがクライアントによって実行されると、SecurityToken で指定されたオブジェクトは、そこで ToString() メソッドを呼び出し、その値は検証のためにサーバーに送信されます。したがって、複数の情報をクライアントで検証する必要がある場合、SecurityToken で指定されたオブジェクトは、ToString() 実装のカスタム XML データを提供できます。サービスはデータを解析して、リモート コールをクライアントが実行できることを保証します。SecurityToken が指定されていない場合、null 文字列が検証のためにサービスに送信されます。
+
+== サービス側セキュリティ
+
+サービス側でセキュリティ トークンを検証するには、サービスのクリエーターは link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservice~validatesecuritytoken_ev.html[ValidateSecurityToken] イベントを処理するか、 link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservice~onvalidatesecuritytoken.html[OnValidateSecurityToken] メソッドをオーバーライドする必要があります。イベント引数は、クライアントからのセキュリティ トークンの文字列表現を含みます。セキュリティ トークンが無効である場合、例外がイベント ハンドラーまたはメソッド オーバーライドでスローされる必要があります。リモート コールは処理されず、例外情報がクライアントに返送されます。セキュリティ トークンが指定されていない場合でも、ValidateSecurityToken イベントが発生し、OnValidateSecurityToken メソッドが呼び出されることに注意してください。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-using-connector-list.html[ListScheduleConnector]
+
+link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]

@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-us-connecting-to-an-adomd-net-datasource",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Data Binding","Data Presentation","How Do I"],
+    "guid": "6b773e2e-b89a-4413-961d-64d0d780b0bd",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.0902822Z"
+}
+|metadata|
+////
+
+= ADOMD.NET DataSource への接続
+
+Adomd.net データ ソースの使用は、xamPivotGrid コントロールで他のデータ ソースを使用することと若干異なります。実際、他のデータ ソースと異なってしなければならないことは、AdomdDataSource への適切な文字列を AdomdConnectionSettings オブジェクトに提供することだけです。
+
+以下のコードは、Xmla データ ソースで Analysis サーバーに接続することと Adomd データ ソースで Analysis サーバーに接続することの相違を示します。
+
+== Xmla データで接続
+
+*XAML の場合:*
+
+----
+<igOlap:XmlaDataSource x:Key="DataSource" 
+    ServerUri="http://server/olap/msmdpump.dll" 
+    Database="Adventure Works DW Standard Edition"
+    Cube="Adventure Works"
+    Filters="[Sales Territory].[Sales Territory Country]"
+    Columns="[Date].[Calendar]"
+    Rows="[Geography].[City]"
+    Measures="Reseller Sales Amount" >
+</igOlap:XmlaDataSource>
+----
+
+== Adomd.net で接続
+
+*XAML の場合:*
+
+----
+<igOlap:AdomdDataSource x:Key="DataSource"  
+    Database="Adventure Works DW Standard Edition"
+    Cube="Adventure Works"
+    Filters="[Sales Territory].[Sales Territory Country]"
+    Columns="[Date].[Calendar]"
+    Rows="[Geography].[City]"
+    Measures="Reseller Sales Amount" >
+    <igOlap:AdomdDataSource.ConnectionSettings>
+        <igOlap:AdomdConnectionSettings
+            ConnectionString="Provider=MSOLAP.4;
+				Persist Security Info=True;
+				Data Source=http://srv/olap/msmdpump.dll;
+				MDX Compatibility=1;
+                Safety Options=2;
+				MDX Missing Member Mode=Error" />
+    </igOlap:AdomdDataSource.ConnectionSettings>
+</igOlap:AdomdDataSource>
+----
+
+.注:
+[NOTE]
+====
+この接続文字列は、データに接続するために MS Adomd.net API で使用するものであることに注意してください。
+====
+
+=== 関連トピック
+
+link:xampivotgrid-us-excel-spreadsheet-as-a-datasource.html[データ ソースとしての Excel スプレッドシート]
+
+link:xampivotgrid-us-filtering.html[コードからランタイムに階層を展開]

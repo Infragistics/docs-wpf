@@ -1,0 +1,103 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-editors-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "ffd7753c-8ca5-44c1-906c-3ab257490a61",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:52:38.7233936Z"
+}
+|metadata|
+////
+
+= エディター リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列の名前を示しています。
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|IllegalOperationMessageAtLastCharacter
+|既に最終文字列に位置しています - これ以上移動する文字はありません。
+
+|IllegalOperationMessageCannotDelete
+|選択範囲を削除できません。
+
+|IllegalOperationMessageCannotMoveToPrevCharacter
+|前の文字に移動できません。
+
+|IllegalOperationMessageGeneral
+|無効な操作
+
+|IllegalOperationMessageNoMaskSpecified
+|マスクまたはテキストが指定されていません。
+
+|IllegalOperationMessageNoNextEditSection
+|編集セクションがこれ以上ありません。
+
+|IllegalOperationMessageNoPrevCharacter
+|これ以前の文字はありません。
+
+|IllegalOperationMessageNoPrevEditableCharacter
+|これ以前の編集可能な文字はありません。
+
+|IllegalOperationMessageNoPrevEditSection
+|戻れる編集セクションがありません。
+
+|LMSG_ValueConstraint_CannotConvert
+|値を {0} に変換することができませんでした。
+
+|LMSG_ValueConstraint_Enumeration
+|値は可能な選択のリストで見つけることができませんでした。
+
+|LMSG_ValueConstraint_FixedValue
+|値が '{0}' と一致しません。
+
+|LMSG_ValueConstraint_InvalidValue
+|不正な値
+
+|LMSG_ValueConstraint_MaxExclusive
+|値は {0} 未満でなければなりません。
+
+|LMSG_ValueConstraint_MaxInclusive
+|値は {0} 以下でなければなりません。
+
+|LMSG_ValueConstraint_MaxLength
+|値は {0} 文字以上を含んではいけません。
+
+|LMSG_ValueConstraint_MinExclusive
+|値は {0} よりも大きくなければなりません。
+
+|LMSG_ValueConstraint_MinInclusive
+|値は {0} 以上でなければなりません。
+
+|LMSG_ValueConstraint_MinLength
+|値は {0} 文字以上を含まなければなりません。
+
+|LMSG_ValueConstraint_Nullable
+|値を Null にすることはできません。
+
+|LMSG_ValueConstraint_OutOfRange
+|値は {0} から {1} の範囲になければなりません。
+
+|LMSG_ValueConstraint_RegexPattern
+|値は必要なパターンに一致しません。
+
+|MaskValidationErrorInputDoesNotMatchMask
+|入力値がマスクと一致しません。
+
+|MaskValidationErrorInvalidDate
+|無効な日付が入力されました。
+
+|MaskValidationErrorInvalidDayOfMonth
+|指定された年月に対して無効な日にちです。
+
+|TodayButtonCaption
+|今日: {0:d}
+
+|====

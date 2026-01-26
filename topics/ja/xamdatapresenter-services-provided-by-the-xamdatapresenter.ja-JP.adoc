@@ -1,0 +1,36 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-services-provided-by-the-xamdatapresenter",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started"],
+    "guid": "{70076446-8612-4820-AC51-BE9B8DE3279A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3250181Z"
+}
+|metadata|
+////
+
+= XamDataPresenter によって提供されるサービス
+
+
+
+カスタム ビューを可能にするために、xamDataPresenter™ は以下を実行します。
+
+* 広範なデータ ソースへのバインディングのサポートを提供します。
+* データの構造を分析して、一意の構造を持ったあらゆる見つかったレコード内のあらゆる見つかった列に対する一連の Field 定義を生成します。
+* xamDataPresenter コード、ユーザー コード、またはカスタム ビュー コードによってこれらのレコードがアクセスされると、基本のデータソースにある各レコードの周囲に薄いラッパー オブジェクト (つまり DataRecord オブジェクト) を遅延作成します。各レコードの状態 (たとえば Visibility) を格納し、DataRecords の格納の最適化を支援するための情報を格納するためにこれらのラッパーが使用されます。
+* データ セット サイズにかかわらず、すべてのネストする (つまり階層) レベルにあるすべてのレコードで効率的で統合されたスクロール機能をサポートするためにすべての DataRecords を格納するための最適化されたデータ構造を作成します。
+* 基本的なデータソースにおける階層的なデータ関係を識別し、最適化されたデータ構造で DataRecords を保管および作成するときにこれらの関係を保持します。
+* ビューによってサポートされる UI の基本を指定するカスタム ビューによって提供された情報に基づいてヘッダー、レコード、およびセルを表す UIElements™ を自動的に生成します。
+* グループ化 (GroupByArea によって) およびソート (クリック可能なラベル、つまり列ヘッダーによって) のための UI を提供します。これらの UI によってユーザーが実行する (またはコードによって開発者が実行する) グループ化またはソートは、最適化されたデータ構造に格納されているデータ レコードに自動的に反映されます。
+* レコードおよびセルの選択のためのインフラストラクチャを提供します。カスタム ビューのレイアウト パネルに IViewPanel インタフェースを実装することによって、選択のインフラストラクチャはカスタム ビューでレコードの位置設定やレイアウトの詳細を知らなくても適切に機能することが可能となります。
+
+== 関連トピック
+
+link:xamdatapresenter-how-to-create-a-basic-custom-view.html[基本のカスタム ビューの作成方法]
+
+link:xamdatapresenter-creating-the-custom-view-class-and-layout-panel.html[カスタム ビュー クラスとレイアウト パネルを作成]
+
+link:xamdatapresenter-how-to-use-your-custom-view-with-xamdatapresenter.html[xamDataPresenter とカスタム ビューを使用する方法]

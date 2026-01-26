@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-manually-add-items-to-xamcomboeditor",
+    "controlName": ["xamComboEditor"],
+    "tags": ["How Do I"],
+    "guid": "{E8C2674E-7797-4394-A8E9-9D1ED6F22333}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1009781Z"
+}
+|metadata|
+////
+
+= 項目を xamComboEditor に手動で追加
+
+データ バインディングは、xamComboEditor™ を含む、あらゆるデータ表示コントロールにおいて極めて重要な役割を果たします。ただし、コントロールをデータにバインドすることなく、項目をコントロールに手動で追加したい場合もあります。高、中、低などの 3 つの選択肢を提供するシンプルなドロップダウンリストは、この特定のシナリオのための優れた候補となります。このタイプの要件を満たすために、xamComboEditor の ItemsProvider プロパティを link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider.html[ComboBoxItemsProvider] オブジェクトのインスタンスに設定できます。これで、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxdataitem.html[ComboBoxDataItem] オブジェクトを xamComboEditor の link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamcomboeditor~itemsprovider.html[ItemsProvider] プロパティに直接追加できます。Microsoft® Windows® Presentation Foundation の ItemsControl と全く同じように、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider~itemssource.html[ItemsSource] プロパティを設定することと項目を Items コレクションに直接追加することのいずれかを選択する必要があります。両方を行うことはできません。
+
+ComboBoxDataItems を Items コレクションに追加すると、ComboBoxDataItem オブジェクトの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxdataitem~displaytext.html[DisplayText] プロパティと link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxdataitem~value.html[Value] プロパティを設定する必要があります。これらの 2 つのプロパティはエンド ユーザーに表示される値と内部で保存される値を決定します。デフォルトで、xamComboEditor は ComboBoxDataItem オブジェクトの値を文字列として保存します。異なるデータ タイプとして値を保存したい場合、保存したいデータタイプに XamComboEditor の link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuetype.html[ValueType] プロパティを設定することが必要となります。
+
+以下の例のコードは、ComboBoxDataItems を xamComboEditor にバインドする方法を示しています。
+
+*XAML の場合:*
+
+----
+...
+<igEditors:XamComboEditor.ItemsProvider>
+        <igEditors:ComboBoxItemsProvider>
+                <igEditors:ComboBoxItemsProvider.Items>
+                        <igEditors:ComboBoxDataItem DisplayText="Item 1" Value="Item 1" />
+                        <igEditors:ComboBoxDataItem DisplayText="Item 2" Value="Item 2" />
+                        <igEditors:ComboBoxDataItem DisplayText="Item 3" Value="Item 3"/>
+                </igEditors:ComboBoxItemsProvider.Items>
+        </igEditors:ComboBoxItemsProvider>
+</igEditors:XamComboEditor.ItemsProvider>
+...
+----
+
+== 関連トピック
+
+link:xamcomboeditor-bind-xamcomboeditor-to-a-collection.html[xamComboEditor をコレクションにバインド]
+
+link:xamcomboeditor-bind-xamcomboeditor-to-a-dataset.html[xamComboEditor を DataSet にバインド]
+
+link:xamcomboeditor-bind-xamcomboeditor-to-an-xmldataprovider.html[xamComboEditor を XmlDataProvider にバインド]

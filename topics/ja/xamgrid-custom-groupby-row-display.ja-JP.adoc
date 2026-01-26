@@ -1,0 +1,116 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-custom-groupby-row-display",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","Grouping","Styling"],
+    "guid": "{384CEDC0-8EA2-41AD-BF90-2E6B91BA7611}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9871646Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= カスタム GroupBy 行の表示
+
+xamGrid の GroupBy 機能は、データを link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.primitives.groupbyrow.html[GroupByRow] オブジェクトにグループ化します。これらのオブジェクトは、デフォルトでグループ化された行の共通値を表示するヘッダーを持ちます。カスタム情報を表示するためにキャプションを変更できます。
+
+xamGrid の列は、データ テンプレートを設定して GroupByRow オブジェクトのカスタム コンテンツを表示するために使用できる link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~groupbyitemtemplate.html[GroupByItemTemplate] プロパティを提供します。データ テンプレートのデータ コンテキストは  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.groupbydatacontext.html[GroupByDataContext]"]  pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.groupbydatacontext.html[]"]  タイプであり、3 つのプロパティを利用できます。
+
+* link:{ApiPlatform}datamanager{ApiVersion}~infragistics.groupbydatacontext~value.html[]  - 行の値。
+* link:{ApiPlatform}datamanager{ApiVersion}~infragistics.groupbydatacontext~records.html[]  - GroupBy 行に属するデータ オブジェクトのコレクション。
+* link:{ApiPlatform}datamanager{ApiVersion}~infragistics.groupbydatacontext~count.html[]  - GroupBy 行に属する項目の数。
+
+注:
+
+[NOTE]
+====
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.row~childbands.html[ChildBands] プロパティは `GroupByRow` オブジェクトでサポートされません。この場合、コレクション プロパティは `null` を返します。
+====
+
+以下のコードは、通貨としてフォーマットされた値、および xamGrid で各 GroupByRow オブジェクトに対してグループ化された行数を表示する方法を示します。この例では、GroupBy Row が表示するテキストをフォーマットするための値コンバーターを使用します。
+
+ifdef::sl,wpf[]
+image::images/sl_xamGrid_Custom_Groupby_Row_Display_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Custom_Groupby_Row_Display_01.png[]
+endif::win-rt[]
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+    <local:DataUtil x:Key="DataUtil" />
+    <helper:GroupByValueConverter x:Key="GroupByValueConverter" />
+</UserControl.Resources>
+<Grid x:Name="LayoutRoot" Background="White">
+    <ig:XamGrid x:Name="xamGrid1" ItemsSource="{Binding Source={StaticResource DataUtil}, Path=Products}">
+        <ig:XamGrid.GroupBySettings>
+            <ig:GroupBySettings AllowGroupByArea="Top" />
+        </ig:XamGrid.GroupBySettings>
+        <ig:XamGrid.Columns>
+            <ig:TextColumn Key="UnitPrice">
+                <!-- データ テンプレートを使用してカスタム テキストを設定します -->
+                <ig:TextColumn.GroupByItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- 通貨として Value をフォーマットするために値コンバーターを使用します -->
+                            <TextBlock Text="{Binding Value, Converter={StaticResource GroupByValueConverter}}"></TextBlock>
+                            <TextBlock Text=" (" />
+                            <TextBlock Text="{Binding Count}"></TextBlock>
+                            <TextBlock Text=")" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ig:TextColumn.GroupByItemTemplate>
+            </ig:TextColumn>
+        </ig:XamGrid.Columns>
+    </ig:XamGrid>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Public Class GroupByValueConverter
+    Implements IValueConverter
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        Return String.Format("{0:C}", value)
+    End Function
+    Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        Throw New NotImplementedException()
+    End Function
+End Class
+----
+
+*C# の場合:*
+
+----
+public class GroupByValueConverter : IValueConverter
+{
+    #region IValueConverter Members
+    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        return string.Format("{0:C}", value);
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+    #endregion
+}
+----
+
+== 関連トピック
+
+link:xamgrid-groupby.html[GroupBy]
+
+link:xamgrid-custom-groupby.html[カスタム GroupBy]
+
+link:xamgrid-customize-groupby-deferred-scrolling-template.html[GroupBy の遅延スクロール テンプレートのカスタマイズ]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

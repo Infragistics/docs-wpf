@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-in-2015-volume-2",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "22b72f82-d8d6-4740-ba5f-a27fbc3ea89c",  
+    "buildFlags": [],
+    "createdOn": "2015-08-27T07:40:22.2783713Z"
+}
+|metadata|
+////
+
+= 2015 Volume 2 の重大な変更点
+
+== 重大な変更の概要
+
+=== 重大な変更の概要表
+
+以下の表は、{ProductName} 2015 Volume 2 リリースの重大な変更点の概要を示します。問題の詳細な説明は、概要表の後に記載されています。
+
+==== 凡例:
+
+image:images/Yes.png[] - 回避策
+
+image:images/No.png[] - 既知の回避策なし
+
+image:images/Fix.png[] - 既知の回避策はありません。修正予定です
+
+==== <<_Ref421542578,xamInputs>>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref421542587,InvalidValueBehavior プロパティの既定値の変更>>
+|_xamInputs_ の `InvalidValueBehavior` プロパティの既定値が変更されました。
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref367305754]]
+
+[[_Ref421542578]]
+== xamInputs
+
+[[_Ref421542587]]
+
+=== InvalidValueBehavior プロパティの既定値の変更
+
+_xamInputs_   の link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior] プロパティの既定値が変更されました。
+
+[options="header", cols="a,a"]
+|====
+|以前の値|新しい値
+
+|DisplayErrorMessage
+|DisplayErrorMessageAndRevertValue
+
+|====
+
+回避方法
+
+[NOTE]
+====
+古い動作のセットを維持するには、アプリケーションの `InvalidValueBehavior` プロパティを `DisplayErrorMessage` に設定します。
+====
+
+==== 関連トピック:
+
+link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+[[_Ref367305775]]

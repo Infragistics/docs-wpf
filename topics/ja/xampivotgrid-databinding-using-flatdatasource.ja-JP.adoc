@@ -1,0 +1,236 @@
+﻿////
+|metadata|
+{
+    "name": "xampivotgrid-databinding-using-flatdatasource",
+    "controlName": ["xamPivotGrid"],
+    "tags": [],
+    "guid": "d14db6d8-4857-4698-8357-4d2871549968","buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.0592805Z"
+}
+|metadata|
+////
+
+= xamPivotGrid を FlatDataSource にバインド
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource_members.html[FlatDataSource] クラスを使用して `IEnumerable` データを xamPivotGrid™ で表示する方法について説明します。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-understanding-xampivotgrid.html[xamPivotGrid の概要]
+|このセクションは xamPivotGrid コントロールの主要機能について説明します。ここに記載されているトピックでは、アプリケーションで xamPivotGrid コントロールを効果的に使用する方法が説明されています。
+
+| link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+|このトピックでは、xamPivotGrid コントロールを使用して作業を開始する方法について説明するため、このコントロールを {PlatformName} アプリケーションに追加するための手順を順を追って説明しています。
+
+| link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データを xamPivotGrid にバインド]
+|このトピックでは、xamPivotGrid コントロールでサポートされるデータ ソースの概要について説明しています。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref319499861,FlatDataSource の使用>>
+
+** <<_Ref319499862,概要>>
+** <<_Ref319499871,クラス ダイアグラム>>
+** <<_Ref319499876,プレビュー>>
+** <<_Ref319499880,要件>>
+** <<_Ref319499882,概要>>
+** <<_Ref319499885,手順>>
+
+* <<_Ref319499893,コード例: FlatDataSource と xamPivotGrid の使用>>
+
+** <<_Ref319499897,説明>>
+** <<_Ref319499900,コード>>
+
+* <<_Ref319499909, 関連トピック >>
+
+[[_Ref319499861]]
+== FlatDataSource の使用
+
+[[_Ref319499862]]
+
+=== 概要
+
+link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource_members.html[FlatDataSource] を使用して、Online Transaction Processing (OLTP) モデルを使用しているデータに接続します。このケースでは、リレーショナル データベース、Microsoft® Excel ファイル、または任意の二次元データ コレクションをソースとして使用できます。`FlatDataSource` の link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource~itemssource.html[ItemsSource] は、`IEnumerable` インターフェイスを実装するオブジェクトとなることができます (`List`、`Collection`、`Queue`、`Stack` など)。上記条件を満たすオブジェクトの例として SalesDataSample があり、これは link:salesdatasample.html[SalesDataSample リソース]からダウンロードしてプロジェクトに使用することができます。
+
+.注:
+[NOTE]
+====
+`FlatDataSource` は Online Analytical Processing (OLAP) キューブに適していないことに注意してください。この場合、 link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource_members.html[XmlaDataSource] またはそこから派生するデータ ソースを使用します。
+====
+
+[[_Ref319499871]]
+
+=== クラス ダイアグラム
+
+以下に、xamPivotGrid でフラット データを使用する方法を単純化したダイアグラムを示します。
+
+image::images/xamPivotGrid_DataBinding_Using_FlatDataSource_1.png[]
+
+[[_Ref319499876]]
+
+=== プレビュー
+
+以下のスクリーンショットは最終結果のプレビューです。
+
+image::images/xamPivotGrid_DataBinding_Using_FlatDataSource_2.png[]
+
+[[_Ref319499880]]
+
+=== 要件
+
+手順を完了するには、以下が必要です:
+
+* {PlatformName} アプリケーション
+* アプリケーションに追加された SalesDataSample クラス
+* 以下の NuGet パッケージ参照をアプリケーションに追加します。
+
+** Infragistics.WPF.Controls.Grids.XamPivotGrid
+** Infragistics.WPF.Olap.FlatData
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[[_Ref319499882]]
+
+=== 概要
+
+このトピックでは、フラット データ ソースを使用できるように xamPivotGrid を構成する方法について、順を追って説明します。以下はプロセスの概念的概要です。
+
+1. FlatDataSource オブジェクトを作成します。
+
+2. FlatDataSource の ItemsSource プロパティを IEnumerable コレクションに設定します。
+
+3. xamPivotGrid および xamPivotDataSelector コントロールをページに追加します。
+
+4. グリッドの DataSource プロパティおよびデータ選択ウィザードを FlatDataSource に設定します。
+
+[[_Ref319499885]]
+
+=== 手順
+
+以下の手順では、xamPivotGrid 用にフラット データ ソースを設定する方法の概念について説明します。完全なコードは、後述するコード例にあります。
+
+[start=1]
+. FlatDataSource を作成します。
+
+`FlatDataSource` クラスのインスタンスを作成します。
+
+[start=2]
+. FlatDataSource の ItemsSource プロパティを IEnumerable コレクションに設定します。
+
+`SalesDataSample` クラスのインスタンスを作成し、それを `FlatDataSource` の `ItemsSource` として設定します。`SalesDataSample` は、基本的に Sale オブジェクトの監視可能なコレクションです。
+
+[start=3]
+. xamPivotGrid および xamPivotDataSelector コントロールをページに追加します。
+
+データを xamPivotGrid で表示するには、列と行の階層を選択し、1 つ以上のメジャーを選択する必要があります。そのための最も簡単な方法は、xamPivotDataSelector コントロールをページに追加することです。
+
+[start=4]
+. グリッドの DataSource プロパティおよびデータ選択ウィザードを FlatDataSource に設定します。
+
+最後の手順は、作成した `FlatDataSource` を、xamPivotGrid と xamPivotDataSelector の `DataSource` として設定することです。
+
+[[_Ref319499893]]
+== コード例: FlatDataSource と xamPivotGrid の使用
+
+[[_Ref319499897]]
+
+=== 説明
+
+以下のコードは、`ObservableCollection` (SalesDataSample) を xamPivotGrid のデータ ソースとして使用する方法を示しています。
+
+[[_Ref319499900]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:olap="http://schemas.infragistics.com/olap"
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:models="clr-namespace:Infragistics.Samples.Data.Models"
+...
+<models:SalesDataSample x:Key="DataSample"/>
+<olap:FlatDataSource x:Key="DataSource" ItemsSource="{StaticResource DataSample}" />
+<!-- または -->
+<olap:FlatDataSource>
+    <olap:FlatDataSource.ConnectionSettings>
+        <olap:FlatDataConnectionSettings ItemsSource="{StaticResource DataSample}" />
+    </olap:FlatDataSource.ConnectionSettings>
+</olap:FlatDataSource>
+...
+<ig:XamPivotGrid x:Name="PivotGrid" DataSource="{StaticResource DataSource}" />
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Grids;       // xamPivotGrid コントロール
+using Infragistics.Olap.FlatData;        // FlatDataSource
+using Infragistics.Samples.Data.Models;  // SalesDataSample
+...
+FlatDataSource DataSource = new FlatDataSource();
+DataSource.ItemsSource = DataSample;
+// または
+SalesDataSample DataSample = new SalesDataSample();
+FlatDataSource DataSource = new FlatDataSource();
+FlatDataConnectionSettings DataConnectionSettings = new FlatDataConnectionSettings();
+DataConnectionSettings.ItemsSource = DataSample;
+DataSource.ConnectionSettings = DataConnectionSettings;
+this.PivotGrid.DataSource = DataSource;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Grids       ' xamPivotGrid コントロール
+Imports Infragistics.Olap.FlatData        ' FlatDataSource 
+Imports Infragistics.Samples.Data.Models  ' SalesDataSample
+...
+Dim DataSource As New FlatDataSource()
+DataSource.ItemsSource = DataSample
+'または
+Dim DataSample As New SalesDataSample()
+Dim DataSource As New FlatDataSource()
+Dim DataConnectionSettings As New FlatDataConnectionSettings()
+DataConnectionSettings.ItemsSource = DataSample
+DataSource.ConnectionSettings = DataConnectionSettings
+Me.PivotGrid.DataSource = DataSource
+----
+
+[[_Ref319499909]]
+== 関連トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-binding-data-to-the-xampivotgrid.html[データを xamPivotGrid にバインド]
+|このトピックでは、xamPivotGrid™ コントロールでサポートされるデータ ソースの概要について説明しています。
+
+| link:xampivotgrid-us-excel-spreadsheet-as-a-datasource.html[データ ソースとしての Excel スプレッドシート]
+|このトピックでは、Excel ファイルを xamPivotGrid のデータ ソースとして使用する方法について説明しています。
+
+| link:xampivotgrid-databinding-using-xmladatasource.html[XmlaDataSource の使用]
+|このトピックでは、 link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource_members.html[XmlaDataSource] クラスを使用して Microsoft Analysis Services から取得した OLAP データを xamPivotGrid™ で表示する方法について説明しています。
+
+|====

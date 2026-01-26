@@ -1,0 +1,190 @@
+﻿////
+|metadata|
+{
+    "name": "xamwebmap-add-open-street-maps-as-geo-imagery-data-source",
+    "controlName": ["xamMap"],
+    "tags": ["Application Scenarios","How Do I"],
+    "guid": "{48759674-CD48-4BFC-8BF6-B27E2BB99A45}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.0782636Z"
+}
+|metadata|
+////
+
+= Open Street Maps へバインド
+
+== 始める前に
+
+xamMap コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~maptilesource.html[MapTileSource] プロパティは、地理的画像がロードされるソースを構成するために使用されます。サポートされる地理的画像のソースの完全なリストについては、 link:xamwebmap-supported-geo-imagery.html[「サポートされる地理的画像」]セクションを参照してください。ただし、このセクションは、地理的画像のソースとして OpenStreetMap だけに焦点を当てます。Open Street Maps Web マッピング サービスはライセンスされていないため、xamMap で作業するためのライセンス キーを提供しません。
+
+== 達成すること
+
+Open Street Maps を地理的画像ソースとして xamMap コントロールに追加し、世界地図座標を設定します。
+
+image::images/xamMap_Binding_Open_Street_Maps_01.png[]
+
+== 以下の手順を実行します。
+
+以下の一連の指示は、xamMap コントロールのために {PlatformName} プロジェクトをすでに設定済みであることを前提とします。
+
+[start=1]
+. Microsoft® {PlatformName}® プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をプロジェクトに追加します。
+
+** Infragistics.WPF.Controls.Maps.XamMap
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. 以下の xamMap コントロールの名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:igMap="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Maps
+Imports Infragistics
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Maps;
+using Infragistics;
+----
+
+[start=4]
+. link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap] コントロールを適切な投影タイプで追加します。
+
+*XAML の場合:*
+
+----
+<igMap:XamMap x:Name="xamMap" >
+        <!-- TODO: 地理的画像データ ソースとして Open Street Maps を追加 -->
+</igMap:XamMap>
+----
+
+[start=5]
+. MapTileSource プロパティを link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.maps.openstreetmaptilesource.html[OpenStreetMapTileSource] に設定します。
+
+*XAML の場合:*
+
+----
+<igMap:XamMap.MapTileSource >
+      <igMap:OpenStreetMapTileSource/>
+</igMap:XamMap.MapTileSource>
+----
+
+[start=6]
+. コード ビハインドで、User Control オブジェクトの Loaded イベントのイベント ハンドラーを追加します。
+
+*Visual Basic の場合:*
+
+----
+Public Sub New()
+        InitializeComponent()
+        AddHandler Me.Loaded, AddressOf UserControl_Loaded
+End Sub
+----
+
+*C# の場合:*
+
+----
+public MainPage()
+{
+      InitializeComponent();
+      this.Loaded += new RoutedEventHandler(UserControl_Loaded);
+}
+----
+
+[start=7]
+. UserControl の Loaded イベントのイベント ハンドラーを実装します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub UserControl_Loaded(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+        InitMapCoordinates()
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void UserControl_Loaded(object sender, RoutedEventArgs e)
+{
+        InitMapCoordinates();
+}
+----
+
+[start=8]
+. xamMap コントロールの世界地図座標を初期化するために以下のメソッドを追加します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub InitMapCoordinates()
+        ' 世界のサイズを変換します
+        Dim worldTopLeft As Point = New Point(-180, 90)
+        Dim worldBottomRight As Point = New Point(180, -90)
+        ' 測地座標をデカルト座標に変換します
+        Dim winTopLeft As Point = Me.xamMap.MapProjection.ProjectToMap(worldTopLeft)
+        Dim winBottomRight As Point = Me.xamMap.MapProjection.ProjectToMap(worldBottomRight)
+        ' Rect 構造、地図コントロールの WindowRect および WorldRect を作成します
+        Dim winRect As New Rect()
+        winRect.X = Math.Min(winTopLeft.X, winBottomRight.X)
+        winRect.Y = Math.Min(winTopLeft.Y, winBottomRight.Y)
+        winRect.Width = Math.Abs(winTopLeft.X - winBottomRight.X)
+        winRect.Height = Math.Abs(winTopLeft.Y - winBottomRight.Y)
+        Me.xamMap.IsAutoWorldRect = False
+        Me.xamMap.WindowZoomMaximum = 80
+       ' 地図コントロールの WindowRect および WorldRect を変更します
+        Me.xamMap.WorldRect = winRect
+        Me.xamMap.WindowRect = winRect
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void InitMapCoordinates()
+{
+            // 世界のサイズを定義します 
+            Point worldTopLeft = new Point(-180, 90);
+            Point worldBottomRight = new Point(180, -90);
+            // 測地座標をデカルト座標に変換します
+            Point winTopLeft = this.xamMap.MapProjection.ProjectToMap(worldTopLeft);
+            Point winBottomRight = this.xamMap.MapProjection.ProjectToMap(worldBottomRight);
+            // Rect 構造、地図コントロールの WindowRect および WorldRect を作成します
+            Rect winRect = new Rect()
+            {
+                X = Math.Min(winTopLeft.X, winBottomRight.X),
+                Y = Math.Min(winTopLeft.Y, winBottomRight.Y),
+                Width = Math.Abs(winTopLeft.X - winBottomRight.X),
+                Height = Math.Abs(winTopLeft.Y - winBottomRight.Y)
+            };
+            this.xamMap.IsAutoWorldRect = false;
+            this.xamMap.WindowZoomMaximum = 80;
+            // 地図コントロールの WindowRect および WorldRect を変更します
+            this.xamMap.WindowRect = this.xamMap.WorldRect = winRect;
+}
+----
+
+[start=9]
+. アプリケーションを実行します。xamMap コントロールは、Open Street Maps ソースから地図画像データをロードし表示します。以下のスクリーンショットはその結果を示します。
+
+image::images/xamMap_Binding_Open_Street_Maps_01.png[]
+
+== 関連トピック
+
+* link:xamwebmap-display-different-layer-types.html[異なるレイヤー タイプを表示]
+* link:xamwebmap-geo-imagery-integration.html[地理画像の統合]
+* link:xamwebmap-merge-bing-maps-with-shapefile.html[Bing Maps をシェープファイルと結合]
+* link:xamwebmap-merge-open-street-maps-with-shapefile.html[OpenStreetMap をシェープファイルと結合]

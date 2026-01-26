@@ -1,0 +1,97 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-reporting-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "56cb66e3-0915-42c3-9fec-470366028570",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:53:20.0045213Z"
+}
+|metadata|
+////
+
+= レポーティング リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列の名前を示しています。
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|LE_EmbeddedVisualReportSection_GetPage_LessThanZero
+|EmbeddedVisualReportSection.GetPage の呼び出しで PageNumber は 0 未満に設定することはできません。
+
+|LE_EmbeddedVisualReportSection_NullPaginator
+|作成されたビジュアル ページネーターは Null です。
+
+|LE_Export_NotSupportedXBAP
+|エクスポートは FullTrust 許可を要求します
+
+|LE_MustCallCreatePageWithinPagination
+|CreatePage は、OnBeginPagination または OnEndPagination の呼び出し内だけで呼び出すことができます。
+
+|LE_Report_FolderDontExist
+|ディレクトリ {0} は存在しません。
+
+|LE_Report_InvalidFileName
+|エクスポートの無効なファイル名
+
+|LE_Report_NoDefaultPrinter
+|このマシンでインストールされるデフォルト プリンターはありません。
+
+|LE_ReportPaginator_OutOfRangeException
+|このページ番号はセクションのページ合計数より大きいです。
+
+|PageContentAreaTooSmall
+|ページのコンテンツ領域が小さすぎるため、このレポート セクションを印刷できませんでした。ページ サイズ (幅、高さ)は ({0})。余白設定 (左 {3}、上 {4}、右 {5}、下 {6})。ヘッダーとフッターを追加すると、内容領域サイズは ({1}) になります。必要な内容領域の最小値は ({2}) です。
+
+|ProgressCancelButton
+|キャンセル
+
+|ProgressCanceledDescription
+|ユーザーが印刷をキャンセルしました
+
+|ProgressCompletedDescription
+|{0} ページ印刷しました。
+
+|ProgressInitialDescription
+|進行状況の情報
+
+|ProgressPrintingDescription
+|ページ {0} を印刷
+
+|ReportProgressControlTitle
+|印刷の進行状況
+
+|XamReportPreviewActualSizeToolTip
+|100% (Ctrl+1)
+
+|XamReportPreviewContextMenuZoomIn
+|ズームの拡大
+
+|XamReportPreviewContextMenuZoomOut
+|ズームの縮小
+
+|XamReportPreviewPageWidthToolTip
+|ページ幅 (Ctrl+2)
+
+|XamReportPreviewPrintToolTip
+|印刷 (Ctrl+P)
+
+|XamReportPreviewTwoPagesToolTip
+|2 つのページ (Ctrl+4)
+
+|XamReportPreviewWholePageToolTip
+|全体ページ (Ctrl+3)
+
+|XamReportPreviewZoomInToolTip
+|コンテンツ サイズを増やす (Ctrl+=)
+
+|XamReportPreviewZoomOutToolTip
+|コンテンツ サイズを減らす (Ctrl+-)
+
+|====

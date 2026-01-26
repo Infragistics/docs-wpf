@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistence-api-overview",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["API","Persistence"],
+    "guid": "{FCFB276D-CAC8-42EF-A4B9-472F103180EC}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.5890442Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションは link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence_namespace.html[Infragistics Persistence Framework]™ ライブラリに関連した各名前空間をリストします。このコントロールでプログラムする間に使用するいくつかのキー クラスもあります。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[options="header", cols="a,a"]
+|====
+|名前空間：|キー クラス:
+
+| link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence_namespace.html[Infragistics.Persistence]
+|
+* link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencemanager.html[PersistenceManager] 
+
+* link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings.html[PersistenceSettings] 
+
+* link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencegroup.html[PersistenceGroup] 
+
+* link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceevents.html[PersistenceEvents] 
+
+|====

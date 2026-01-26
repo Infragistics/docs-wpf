@@ -1,0 +1,42 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram nodes configuration summary chart",
+    "controlName": [],
+    "tags": [],
+    "guid": "bbe99239-e514-4313-bf0e-e4ffd5665299",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-27T07:14:37.5300237Z"
+}
+|metadata|
+////
+
+以下の表は、ダイアグラム ノードの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+| link:xamdiagram-configuration-overview.html#_Ref391538016[位置とサイズ]
+|ダイアグラム ノードの位置とサイズ
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~position.html[DiagramNode.Position] 
+
+* link:http://msdn.microsoft.com/library/system.windows.frameworkelement.width.aspx[DiagramNode.Width] 
+
+* link:http://msdn.microsoft.com/library/system.windows.frameworkelement.height.aspx[DiagramNode.Height] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~maintainaspectratio.html[DiagramNode.MaintainAspectRatio] 
+
+| link:xamdiagram-configuration-overview.html#_Ref391538021[図形]
+|ダイアグラム ノードの図形
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[DiagramNode.Geometry] 
+
+| link:xamdiagram-configuration-overview.html#_Ref391538026[接続ポイント]
+|ノードに関連付けられた接続が開始および終了する接続ポイント
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~connectionpoints.html[DiagramNode.ConnectionPoints] 
+
+|====

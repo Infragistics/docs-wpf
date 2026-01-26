@@ -1,0 +1,106 @@
+﻿////
+|metadata|
+{
+    "name": "xamDashboardTile",
+    "controlName": ["xamDashboardTile"],
+    "tags": [],
+    "guid": "","buildFlags": [],
+    "createdOn": ""
+}
+|metadata|
+////
+
+= XamDashboardTile [ベータ版]
+
+XamDashboardTile [ベータ版]
+`XamDashboardTile` コンポーネントは、データのスキーマに基づいて {ProductName} ツールセットからデータ視覚化コントロールを生成することにより、ItemsSource コレクションまたは単一のデータ ポイントを視覚化するコンテナー コントロールです。また、`XamToolbar` を使用して、これらのデータ視覚化コントロールをさらに操作およびカスタマイズできます。
+
+image:images/xamdashboardtile.png[]
+
+== 要件
+
+`XamDashboardTile` をページに追加するための要件は次のとおりです。
+
+* 以下の NuGet パッケージを WPF アプリケーションに追加します。
+** Infragistics.WPF.Dashboards
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+* NuGet パッケージを追加した後、以下の機能要素を登録する必要があります。これにより、`XamDashboardTile` が使用するさまざまな視覚化を初期化して利用できるようになります。これを実現するには、WPF ページのコンストラクターで InitializeComponent() 呼び出しの前に次のコードを配置します。
+
+**C# の場合:**
+[source,csharp]
+----
+using Infragistics.Controls.Dashboards;
+
+public MainWindow()
+{
+    DataChartDashboardTileFeature.Register();
+    GeographicMapDashboardTileFeature.Register();
+    LinearGaugeDashboardTileFeature.Register();
+    RadialGaugeDashboardTileFeature.Register();
+    PieChartDashboardTileFeature.Register();
+
+    InitializeComponent();
+}
+----
+
+== XamDashboardTile の追加
+
+上記の要件が完了したら、ページに `XamDashboardTile` を追加できます。これを行うには、まず次の XAML 名前空間を定義します。
+
+**XAML の場合:**
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+名前空間を定義したら、コントロールをページに追加し、ItemsSource プロパティをビュー モデルの値にバインドできます。このプロパティは、値のコレクションまたは単一の値にすることができます。
+
+**XAML の場合:**
+[source, xaml]
+----
+<ig:XamDashboardTile ItemsSource="{Binding Data}" />
+----
+
+=== 使用方法
+
+コントロールはバインドしたデータを評価し、{ProductName} ツールセットから表示する視覚エフェクトを選択するため、`XamDashboardTile` ItemsSource プロパティを何にバインドするかによって、デフォルトで表示される視覚エフェクトが決まります。`XamDashboardTile` に表示されるデータ視覚化コントロールは次のとおりです。
+
+* link:categorychart-overview.html[XamCategoryChart]
+* link:datachart-datachart.html[XamDataChart]
+* link:data-pie-chart.html[XamDataPieChart]
+* link:geographicmap.html[XamGeographicMap]
+* link:lineargauge.html[XamLinearGauge]
+* link:radialgauge.html[XamRadialGauge]
+
+デフォルトで選択されるデータ視覚化は、主にスキーマとバインドした ItemsSource の数によって決まります。たとえば、単一の数値をバインドすると `XamRadialGauge` が取得されますが、互いにあまり近くない値とラベルのペアのコレクションをバインドすると `XamDataPieChart` が取得されます。より多くの値パスを持つ ItemsSource をバインドすると、バインドされたコレクションの数に応じて、複数の列シリーズまたは線シリーズを持つ `XamCategoryChart` または `XamDataChart` を受け取ります。`ShapeDataSource` にバインドして `XamGeographicMap` を受け取ることもできます。
+
+ItemsSource をバインドするときに単一の視覚化にロックされることはなく、`VisualizationType` プロパティを設定することで、特定の視覚化を表示することをコントロールに指示できます。たとえば、特に折れ線チャートを表示したい場合は、次のように `XamDashboardTile` を定義できます。
+
+**XAML の場合:**
+[source,xaml]
+----
+<ig:XamDashboardTile x:Name="dashboardTile" ItemsSource="{Binding Data}" VisualizationType="LineChart" />
+----
+
+**C# の場合:**
+[source,csharp]
+----
+dashboardTile.VisualizationType = DashboardTileVisualizationType.LineChart;
+----
+
+視覚化または視覚化のプロパティも、コントロールの上部にある `XamToolbar` を使用して構成できます。この `XamToolbar` には、現在の視覚化の既定のツールに加えて、以下で強調表示されている 4 つの `XamDashboardTile` 固有のツールが含まれています。
+
+image:images/xamdashboardtiletoolbar.png[]
+
+左から右へ:
+
+- 最初のツールは、コントロールに提供された ItemsSource を含むデータ グリッドを表示します。これは切り替えツールなので、グリッドを表示した後にもう一度クリックすると、視覚化に戻ります。
+- 2 番目のツールを使用すると、現在のデータ視覚化のプロパティを構成できます。
+- 3 番目のツールを使用すると、現在の視覚化を完全に変更できます。これは、前述の `VisualizationType` プロパティを設定することによってコントロール上で設定できます。
+- 最後のツールを使用すると、基になるデータ項目のどのプロパティをコントロールに含めるかを構成できます。これを構成するには、コントロールに `IncludedProperties` または `ExcludedProperties` コレクションを設定します。
+
+== 関連トピック
+
+* link:xamtoolbar.html[XamToolbar]

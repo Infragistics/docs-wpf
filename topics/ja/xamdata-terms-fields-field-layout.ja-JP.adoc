@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-terms-fields-field-layout",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","Data Presentation","Layouts"],
+    "guid": "{7EBC33CE-AD1E-428A-86E4-86166EAC0094}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5448621Z"
+}
+|metadata|
+////
+
+= フィールド レイアウト
+
+データ ソースの設定後に、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] クラスから派生した {ProductName} コントロール (xamDataCarousel™、xamDataCards™、xamDataGrid™、xamTreeGrid™、および xamDataPresenter™) は、ロードする Data Items の各 link:xamdata-terms-records-data-record.html[データ レコード]を作成する時に、Field Layout オブジェクトを探します。フィールド レイアウトは名前を持ちませんが、その代わりに Data Item で識別できる「属性」に対して含む一連の Field オブジェクトと一致します。詳細は、 link:xamdata-terms-fields.html[フィールド]を参照してください。
+
+image::images/Terms_Fields_Field_Layout_01.png[フィールド レイアウトの説明の図]
+
+コントロールは、Data Item の Type に対応するフィールド レイアウトを見つけるため、コントロールが作成するデータ レコードのフィールドおよびセルをレイアウトする方法を使用します。一致するフィールド レイアウトがまだ存在しない場合には新しいフィールド レイアウトが初期化されます。コントロール上の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[AutoGenerateFields] プロジェクトが True に設定されると、フィールド レイアウトは自動的に生成され、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~fields.html[Fields] のコレクションに追加されます。レコードが提示されるときに将来使用するために、コントロールは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayouts.html[FieldLayouts] への参照をデータレコードに割り当てます (link:xamdata-assigning-a-fieldlayout.html[FieldLayout の割り当て]参照)。
+
+image::images/Terms_Fields_Field_Layout_02.png[フィールド レイアウトの説明の図]
+
+フィールド ラベルの個別のヘッダー (サポートされる場合) と、データ レコード内のセルを表示する時になると、 link:xamdata-arranging-cells-within-the-record.html[レコード内にセルを配置]で説明したように、 link:xamdata-terms-presenters.html[プレゼンター]は自動配列機能を参照します。自動配列機能が有効な場合には、フィールドとセルのレイアウトで事前に定義したパターンに従います (左から右など)。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~settings.html[Settings] クラスで link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autoarrangecells.html[AutoArrangeCells] プロパティを Never に設定すると、配置プロパティを使用して Fields がレイアウトされる方法を正確に制御できます (説明は、link:xamdata-terms-fields.html[フィールド]を参照してください)。
+
+フィールド レイアウトはフィールドおよびセルのレイアウトを link:xamdata-terms-presentation-formats-grid-view-format.html[グリッドビュー]に表示されるデータ レコードのタイプと合わせる方法を理解する上で重要な概念です。これによって、希望するレイアウトに対して効果を持つようにプロパティを調整可能な場所が分かります。

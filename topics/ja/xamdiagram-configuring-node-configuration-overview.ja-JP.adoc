@@ -1,0 +1,85 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-node-configuration-overview",
+    "tags": ["Charting","Getting Started","How Do I","Summaries"],
+    "controlName": ["xamDiagram"],
+    "guid": "30270853-67ac-4418-9405-3a036a42d863",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:28:43.9848499Z"
+}
+|metadata|
+////
+
+= ノードの構成の概要 (xamDiagram)
+
+[[_Ref391537902]]
+== _xamDiagram_   ノードの構成の概要
+
+=== 目的
+
+このトピックでは、  _xamDiagram_™ コントロールの各ノードの構成可能な要素の概要を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります:
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+|====
+
+[[_Ref391538003]]
+== ノードの構成の概要
+
+[[_Ref391538008]]
+
+=== XamDiagram ノードの構成の概要表
+
+include::xamdiagram-nodes-configuration-summary-chart.ja-JP.adoc[]
+
+[[_Ref391538016]]
+
+=== 位置とサイズ
+
+_xamDiagram_   ノードは、ダイアグラムの領域の任意の位置に個別に配置、またはレイアウト アルゴリズム (link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~layout.html[Layout] プロパティを介して使用可能な設定) を適用して配置します。(レイアウト アルゴリズムの詳細は、 link:xamdiagram-configuring-the-layout.html[レイアウトの構成]のトピックを参照してください。)
+
+デフォルトでは、明示的なオーバーライドが適用されていない場合、座標系の原点 (0、0) に新たに作成されたノードが表示されます。
+
+ダイアグラムのノードのサイズは、幅と高さを設定すると明示的に制御できます。デフォルトのサイズはノードの図形に依存します。(デフォルト サイズの参照については、 link:xamdiagram-visual-elements-overview.html#_Ref389665128[ノードのデフォルト サイズ]を参照してください。)
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-position-and-size-of-diagram-nodes.html[ダイアグラム ノードの位置およびサイズの構成 ( _xamDiagram_ )]
+
+[[_Ref391538021]]
+
+=== 図形
+
+_xamDiagram_   には、定義済みのノードの図形が複数あります。(詳細は、 link:xamdiagram-general-overview.html[概要]のトピックを参照してください。)定義済みの図形は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[ShapeType] プロパティを使用して選択します。このプロパティは、`ShapeType` 列挙体として使用できる各ノードの図形を値として受け取ります。定義済みの図形に目的の図形がない場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~geometry.html[Geometry] プロパティでカスタム図形を設定できます。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-shape-of-diagram-nodes-overview.html[ダイアグラム ノードの図形の構成 ( _xamDiagram_ )]
+
+[[_Ref391538026]]
+
+=== 接続ポイント
+
+接続ポイントとは、ダイアグラム接続を開始 / 終了できるノードのポイントです。ノードの接続ポイントは、名前と座標により指定されます。
+
+*  *名前*  - 接続の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodeconnectionpointname.html[DiagramConnection.StartNodeConnectionPointName] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodeconnectionpointname.html[DiagramConnection.EndNodeConnectionPointName] プロパティを介して接続の接続ポイントを明示的に指定する場合に使用されます。このため、ノードの接続ポイントの名前は、すべて一意であることが必要です。
+*  *座標*  - ノードの長方形に対応しています。座標の範囲は 0,0 (左上) から 1,1 (右下) までです。
+
+各接続ポイントは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint~name.html[Name] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint~position.html[Position] プロパティを公開する link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint_members.html[DiagramConnectionPoint] オブジェクトによって表されます。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[DiagramNode.ShapeType] プロパティにより設定された定義済みの図形タイプを使用する場合、ノードの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~connectionpoints.html[ConnectionPoints] コレクションで、ノード タイプに応じていくつかのポイントが事前設定されます。カスタム ノードの図形では、デフォルトで接続ポイントが追加されません。
+
+==== 関連トピック:
+
+* link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )]

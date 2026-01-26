@@ -1,0 +1,253 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-acessing-data-carousel-view",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "{FC664D85-9727-4364-8E48-7B5CF2DB83AB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0809693Z"
+}
+|metadata|
+////
+
+= カルーセル ビュー
+
+
+
+xamDataCarousel™ コントロールは、同じイベントを公開するため、xamDataGrid™ と全く同じようにデータを更新および削除します。これらのイベントを使用して、エンドユーザーがレコードを削除または更新する時期を判断します。使用可能なイベントは以下のとおりです。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordsdeleting_ev.html[RecordsDeleting]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordsdeleted_ev.html[RecordsDeleted]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordupdated_ev.html[RecordUpdated]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordupdating_ev.html[RecordUpdating]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordupdatecanceled_ev.html[RecordUpdateCanceled]
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordupdatecanceling_ev.html[RecordUpdateCanceling]
+
+xamDataCarousel と xamDataGrid の大きな違いは、xamDataCarousel はデータ入力のための組み込みのユーザー インターフェイスを持っていないことです。しかし、xamDataCarousel を更新させるデータソースにエンドユーザーがレコードを追加できるように固有のユーザーインターフェイスを書くことができます。
+
+以下の手順に従って、Add Row UI (行の追加 UI) を xamDataCarousel に実装します。これによってエンドユーザーは新しいレコードを xamDataCarousel に追加できます。また link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~cellclickaction.html[CellClickAction] プロパティを EnterEditModeIfAllowed に設定します。これによってエンド ユーザーはレコードを編集できます。
+
+[start=1]
+. Page の開始タグに以下の名前空間を配置して、Loaded イベントを Samp_Loaded メソッドに設定します。
+
+*XAML の場合:*
+
+----
+...
+xmlns:igDP="http://infragistics.com/DataPresenter"
+xmlns:igEditors="http://infragistics.com/Editors"
+Loaded="Samp_Loaded"
+...
+----
+
+[start=2]
+. Grid パネルで 1 列と 3 行を作成します。Page の Grid パネル内に以下の XAML を配置します。
+
+*XAML の場合:*
+
+----
+<Grid>
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+...
+----
+
+[start=3]
+. xamDataCarousel コントロールをページに追加します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] の CellClickAction を指定して、エンド ユーザーが既存のレコードでセル データを編集できるようにします。以下の例の XAML はこの構文を示します。
+
+*XAML の場合:*
+
+----
+...
+        <igDP:XamDataCarousel x:Name="XamDataCarousel1" Grid.Row="0">
+                <igDP:XamDataCarousel.FieldSettings>
+                        <igDP:FieldSettings 
+                          CellClickAction="EnterEditModeIfAllowed" />
+                </igDP:XamDataCarousel.FieldSettings>
+        </igDP:XamDataCarousel>
+...
+----
+
+[start=4]
+. Button を作成して、Click イベントを Button1_Click メソッドに割り当てることによって、Add Row ユーザー インターフェイスのビルドを開始します。このボタンを使用して、Add Row ユーザー インターフェイスを含むパネルを非表示および表示します。以下の XAML はボタンの構文を定義します。
+
+*XAML の場合:*
+
+----
+...
+        <Button x:Name="Button1"  Content="Show Data Entry" Width="125" 
+          Height="30" HorizontalAlignment="Left" Grid.Row="1" 
+          Margin="0,25,0,25" Click="Button1_Click"/>
+...
+----
+
+[start=5]
+. 非表示の StackPanel には Add Row ユーザー インターフェイスが含まれています。StackPanel には 2 つの xamTextEditor とひとつの Button が含まれています。Button の Click イベントを Button2_Click に割り当てます。以下の XAML は StackPanel です。
+
+*XAML の場合:*
+
+----
+...
+        <StackPanel x:Name="DataEntryPanel" Visibility="Hidden" Grid.Row="2">
+                <igEditors:XamTextEditor x:Name="Title" Text="Enter Movie Title"/>
+                <igEditors:XamTextEditor x:Name="MPAARating" Text="Enter MPAA Rating"/>
+                <Button x:Name="Button2" Click="Button2_Click">Add Data</Button>
+        </StackPanel>
+</Grid>
+----
+
+[start=6]
+. プロジェクトをコンパイルします。イベントがまだ作成されていないため、いくつかの例外があります。この手順は、コード ビハインドで XAML 要素にアクセスするために必要です。
+[start=7]
+. プロシージャ コードの記述を開始する前にコード ビハインドに using/Imports のディレクティブを配置します。そうすれば、メンバーは完全に記述された名前を常にタイプする必要がなくなります。
+
+*Visual Basic の場合:*
+
+----
+Imports System.Data
+----
+
+*C# の場合:*
+
+----
+using System.Data;
+----
+
+[start=8]
+. イベントに割り当てたメソッドを定義して、Loaded イベントから開始します。Loaded イベントはサンプル データを生成し、xamDataCarousel の DataSource プロパティを新しいデータに割り当てます。
+
+*Visual Basic の場合:*
+
+----
+Private ds As DataSet
+Sub Samp_Loaded(ByVal o As Object, ByVal e As RoutedEventArgs)
+        ' この 2 行をデータを取得するロジックと交換する必要があります
+        ds = New DataSet()
+        GenerateData()
+        ' xamDataCarousel の DataSource プロパティを、データ セットのデフォルト ビューに設定します
+        Me.XamDataCarousel1.DataSource = ds.Tables(0).DefaultView
+End Sub
+----
+
+*C# の場合:*
+
+----
+private DataSet ds;
+void Samp_Loaded(object o, RoutedEventArgs e)
+{
+        /* この 2 行をデータを取得するロジックと交換する必要があります* /
+        ds = new DataSet();
+        GenerateData();
+        // xamDataCarousel の DataSource プロパティを、データ セットの//デフォルト ビューに設定します
+        this.XamDataCarousel1.DataSource = ds.Tables[0].DefaultView;
+}
+----
+
+[start=9]
+. 前述の手順で使用された GenerateData メソッドを作成します。
+
+*Visual Basic の場合:*
+
+----
+Sub GenerateData()
+        Dim dt As DataTable = ds.Tables.Add("TopMovies")
+        dt.Columns.Add("Title", GetType([String]))
+        dt.Columns.Add("MPAA Rating", GetType(String))
+        dt.Rows.Add(New Object() {"Ghost Rider", "PG-13"})
+        dt.Rows.Add(New Object() {"The Astronaut Farmer", "PG"})
+        dt.Rows.Add(New Object() {"The Illusionist", "PG-13"})
+        dt.Rows.Add(New Object() {"Number 23", "R"})
+        dt.Rows.Add(New Object() {"Wild Hogs", "PG-13"})
+        dt.Rows.Add(New Object() {"Norbit", "PG-13"})
+End Sub
+----
+
+*C# の場合:*
+
+----
+void GenerateData()
+{
+        DataTable dt = ds.Tables.Add("TopMovies");
+        dt.Columns.Add("Title", typeof(String));
+        dt.Columns.Add("MPAA Rating", typeof(string));
+        dt.Rows.Add(new object[] { "Ghost Rider", "PG-13" });
+        dt.Rows.Add(new object[] { "The Astronaut Farmer", "PG"});
+        dt.Rows.Add(new object[] { "The Illusionist", "PG-13" });
+        dt.Rows.Add(new object[] { "Number 23", "R" });
+        dt.Rows.Add(new object[] { "Wild Hogs", "PG-13" });
+        dt.Rows.Add(new object[] { "Norbit", "PG-13" });
+}
+----
+
+[start=10]
+. Button1_Click イベントで、StackPanel の Visibility プロパティを Visible に設定します。StackPanel にアクセスするには、XAML で割り当てた名前を使用します。
+
+*Visual Basic の場合:*
+
+----
+Sub Button1_Click(ByVal sender As Object, _
+  ByVal e As RoutedEventArgs)
+        Me.DataEntryPanel.Visibility = Visibility.Visible
+End Sub
+----
+
+*C# の場合:*
+
+----
+void Button1_Click(object sender, RoutedEventArgs e)
+{
+        this.DataEntryPanel.Visibility = Visibility.Visible;
+}
+----
+
+[start=11]
+. Button2_Click イベントで、xamTextEditors のデータを新しい DataRow に割り当て、DataSet に追加します。
+
+*Visual Basic の場合:*
+
+----
+Sub Button2_Click(ByVal sender As Object, _
+  ByVal e As RoutedEventArgs)
+        ' 新しい DataRow を作成します。
+        Dim myRow As DataRow = ds.Tables(0).NewRow()
+        ' xamTextEditors から DataRow に値を割り当てます。
+        myRow(0) = Me.Title.Text.ToString()
+        myRow(1) = Me.MPAARating.Text.ToString()
+        ' 新しい DataRow をテーブルの Rows コレクションに追加します。
+        ds.Tables("TopMovies").Rows.Add(myRow)
+        ' xamTextEditors からテキストをクリアします。
+        Me.Title.Text = ""
+        Me.MPAARating.Text = ""
+End Sub
+----
+
+*C# の場合:*
+
+----
+void Button2_Click(object sender, RoutedEventArgs e)
+{
+        // 新しい DataRow を作成します。
+        DataRow myRow = ds.Tables[0].NewRow();
+        // xamTextEditors から DataRow に値を割り当てます。
+        myRow[0] = this.Title.Text.ToString();
+        myRow[1] = this.MPAARating.Text.ToString();
+        // 新しい DataRow をテーブルの Rows コレクションに追加します。
+        ds.Tables["TopMovies"].Rows.Add(myRow);
+        // xamTextEditors からテキストをクリアします。
+        this.Title.Text = "";
+        this.MPAARating.Text = "";
+}
+----
+
+[start=12]
+. プロジェクトをビルドして実行します。[Show Data Entry] ボタンをクリックします。行の追加のユーザー インターフェイスは可視になります。いくつかのデータを xamTextEditors に入力して、データの追加ボタンをクリックします。新規レコードが DataSet に追加され、変更は xamDataCarousel に反映されます。
+
+image::images/xamDataCarousel_Adding_Updating_and_Deleting_Records_in_the_xamDataCarousel_01.png[xamDataCarousel でレコードの追加、更新、削除の説明]

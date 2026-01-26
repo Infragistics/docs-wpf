@@ -1,0 +1,27 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatagrid-accessing-data",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{86DCEAF3-A2FB-4B74-822D-8F10D97409FE}","buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.9759483Z"
+}
+|metadata|
+////
+
+= xamDataGrid をデータにバインド
+
+以下のリンクをクリックして、xamDataGrid™ コントロールを使用してデータにアクセスする支援を特に行うために記述されたトピックを表示します。
+
+* link:xamdatapresenter-bind-a-datapresenter-control-to-an-xmldataprovider.html[DataPresenter コントロールを XmlDataProvider にバインド]
+* link:xamdatapresenter-bind-a-datapresenter-control-to-a-collection.html[DataPresenter コントロールをコレクションにバインド]
+* link:xamdatapresenter-binding-a-datapresenter-control-to-a-dataset.html[DataPresenter コントロールを DataSet にバインド]
+* link:xamdatagrid-binding-field-fieldlayout-to-mvvm.html[Field、FieldSettings、FieldLayout および FieldLayoutSettings の MVVM プロパティへのバインド]
+* link:xamdatagrid-binding-cell-settings-data-item-properties.html[セル設定のデータ項目プロパティへのバインド]
+* link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]
+* link:xamdatapresenter-add-items-manually-to-a-datapresenter-control.html[項目を手動で DataPresenter コントロールに追加]
+* link:xamdata-displaying-hierarchical-data.html[階層データを表示]
+* link:xamdatapresenter-displaying-an-image-in-a-field.html[フィールドに画像を表示]
+* link:xamdatapresenter-iterate-through-the-records-collection.html[レコード コレクションで繰り返し]
+* link:xamdatagrid-asynchronouspagingdatasource.html[非同期ページングのデータ ソース (xamDataGrid)]

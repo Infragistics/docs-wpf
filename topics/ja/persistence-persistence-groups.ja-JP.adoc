@@ -1,0 +1,224 @@
+﻿////
+|metadata|
+{
+    "name": "persistence-persistence-groups",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["How Do I","Persistence"],
+    "guid": "{4CE20224-75F5-4B72-98D1-60342A52FAF4}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.5740342Z"
+}
+|metadata|
+////
+
+= 保持グループ
+
+== 始める前に
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence_namespace.html[Infragistics Persistence Framework]™ はひとつまたは複数のグループで複数のコントロールの設定を統合できます。この方法で、1 つのデータ ストアにアプリケーションの状態を保存する、または複数のコントロールの設定をグループ内で結合することが可能です。
+
+[NOTE]
+====
+*注:* 1 つの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencegroup_members.html[Persistence Group] を保存し、同じ数と同じ順序のコントロール タイプである別の PersistenceGroup へ読み込むことができます。さらに、複数のコントロールの設定をひとつのグループに保存し、それらの設定を別のコントロールのグループに適用することができます。
+====
+
+== 達成すること
+
+このトピックは、PersistenceGroup オブジェクトを作成および使用して、ひとつのグループで 2 つの TextBox コンポーネント設定を結合する方法を示します。
+
+== 次の手順を実行します
+
+[start=1]
+. {PlatformName} アプリケーション プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+* Infragistics.WPF.Persistence
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. UserControl タグの中に以下の名前空間を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+[start=4]
+. ページで UserControl リソース コレクションを作成して PersistenceGroup を定義します。
+
+** x:Key 属性を保持グループの名前を付けて追加します。この名前はリソース ディクショナリでリソースとしてグループを一意に識別します。
+** アプリケーションが必要な数だけグループを追加できます。唯一必要なのは、一意の x:Key 属性を保たせなければならないことです。
+** この例で、コントロール設定を結合するために保持グループをひとつだけ追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<UserControl.Resources>
+    <ig:PersistenceGroup x:Key="CPF_Group" />
+</UserControl.Resources>
+----
+
+[start=5]
+. Grid コンテナーを作成します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid x:Name="LayoutRoot">
+   <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+   </Grid.RowDefinitions>
+   <!-- さらに要素を追加します -->
+----
+
+[start=6]
+. ページで 2 つの TextBox コントロールを追加し、PersistenceGroup 添付プロパティを使用して、UserControl リソース ディクショナリで静的なリソースとして定義されたひとつの保持グループにこれらのコントロールが属していることを指定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<StackPanel Grid.Row="0">
+    <TextBox x:Name="txtFirstName" igPersistence:PersistenceManager.PersistenceGroup="{StaticResource CPF_Group}" />
+    <TextBox x:Name="txtLastName" igPersistence:PersistenceManager.PersistenceGroup="{StaticResource CPF_Group}" />
+</StackPanel>
+----
+
+[start=7]
+. 保存とロードのために 2 つのボタンを追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<StackPanel Orientation="Horizontal" Grid.Row="1">
+    <Button Content="Save" x:Name="BtnSave" Click="BtnSave_Click" Height="22" Width="100" />
+    <Button Content="Load" x:Name="BtnLoad" Click="BtnLoad_Click" Height="22" Width="100" />
+</StackPanel>
+----
+
+[start=8]
+. 以下の using/Import のディレクティブを追加します。これでメンバーの完全に記述された名前を入力する必要がなくなります。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Persistence
+Imports System.IO
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Persistence;
+using System.IO;
+----
+
+[start=9]
+. いくつかのプライベート メンバーを定義します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' XAML UserControl Resources で定義された PersistenceGroup の名前
+Private Const pGroup As String = "CPF_Group"
+Private memoryStream As New MemoryStream()
+
+' 同時に保存およびロードされるコントロールの設定をグループ化する PersistenceGroup オブジェクトを作成します
+Private persistenceGroup As New PersistenceGroup()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+// XAML UserControl Resources で定義された PersistenceGroup の名前。
+private const string pGroup = "CPF_Group";
+private MemoryStream memoryStream = new MemoryStream();
+
+// 同時に保存およびロードされるコントロールの設定をグループ化する PersistenceGroup オブジェクトを作成します
+private PersistenceGroup persistenceGroup = new PersistenceGroup();
+----
+
+[start=10]
+. InitializeComponent() メソッドの後でページ コンストラクターに以下を追加します
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' ResourceDictionary からリソースとして XAML PersistenceGroup ですでに定義されています
+persistenceGroup = TryCast(Me.Resources(pGroup), PersistenceGroup)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+// ResourceDictionary からリソースとして XAML PersistenceGroup ですでに定義されています
+persistenceGroup = this.Resources[pGroup] as PersistenceGroup;
+----
+
+[start=11]
+. ボタンの Click イベントを処理して保持グループを保存およびロードします。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+    ' MemoryStream オブジェクトに PersistenceGroup を保存します
+    memoryStream = PersistenceManager.Save(persistenceGroup) 
+End Sub
+Private Sub BtnLoad_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+   memoryStream.Position = 0
+   ' MemoryStream オブジェクトから PersistenceGroup をロードします
+   PersistenceManager.Load(persistenceGroup, memoryStream) 
+End Subs
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void BtnSave_Click(object sender, RoutedEventArgs e)
+{
+   // MemoryStream オブジェクトに PersistenceGroup を保存します
+   memoryStream = PersistenceManager.Save(persistenceGroup);
+}
+
+private void BtnLoad_Click(object sender, RoutedEventArgs e)
+{
+   memoryStream.Position = 0;
+   // MemoryStream オブジェクトから PersistenceGroup をロードします
+   PersistenceManager.Load(persistenceGroup, memoryStream); 
+}
+----
+
+[start=12]
+. アプリケーションを保存して実行します。画面上に 2 つの TextBox コントロールがあります。同じ値をタイプし、それらの構成を保存してからそれらに新しい値をタイプします。次に [ロード] ボタンをクリックします。保存された変更が復元されます。
+
+== 関連トピック
+
+link:persistence-persistence-settings.html[保持の設定]
+
+link:persistence-exclude-specific-control-properties.html[特定のコントロールのプロパティを除外]
+
+link:persistence-persisting-specific-control-properties.html[特定のコントロールのプロパティを保持]
+
+link:persistence-using-typeconverte.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+
+link:persistence-handle-persistencesaved-and-persistenceloaded-events.html[PersistenceSaved イベントと PersistenceLoaded イベントの処理]
+
+link:persistence-handle-savepropertypersistence-and-loadpropertypersistence-events.html[SavePropertyPersistence イベントと LoadPropertyPersistence イベントの処理]

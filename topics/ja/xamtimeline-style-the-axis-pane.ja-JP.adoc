@@ -1,0 +1,55 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-style-the-axis-pane",
+    "controlName": ["xamTimeline"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{D98F2F9B-4E91-4BD1-B68F-485F6EE507C7}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.0983935Z"
+}
+|metadata|
+////
+
+= 軸ペインのスタイル
+Axis ペインは、時刻シリーズのイベント ポイントを通過する主線です。スタイルを使用してこの線をカスタマイズできます。以下の xaml コードは、Axis ペインの色と太さを変更する方法を示します。
+
+*XAML の場合:*
+
+----
+    <UserControl.Resources>
+        <!-- 軸のスタイル -->
+        <Style x:Key="rscAxisPaneStyle" TargetType="igtl:Mark">
+            <Setter Property="Height" Value="4"/>
+            <Setter Property="Stroke" Value="Red"/>
+            <Setter Property="Fill" Value="Red"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White" >
+        <igtl:XamTimeline x:Name="xamTimeline"  
+                             Width="1000" Height="480" Margin="25">
+            <!-- Axis プロパティを設定 -->
+            <igtl:XamTimeline.Axis>
+                <igtl:NumericTimeAxis Minimum="-3200" Maximum="2600" 
+                                      AutoRange=" Unit="400" 
+                                      PaneStyle="{StaticResource rscAxisPaneStyle}"/>
+            </igtl:XamTimeline.Axis>
+            <!-- TODO: 数値/日時シリーズを追加します...-->
+        </igtl:XamTimeline>
+    </Grid>
+----
+
+image::images/XamTimeline_Style_Axis_Pane_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-style-the-axis.html[軸のスタイル]
+
+link:xamtimeline-style-the-axis-label.html[軸ラベルのスタイル]
+
+link:xamtimeline-style-axis-thumb.html[軸のつまみのスタイル]
+
+link:xamtimeline-style-major-and-minor-grid-lines.html[主グリッド線および副グリッド線のスタイル]
+
+link:xamtimeline-style-major-and-minor-tick-marks.html[主目盛および副目盛のスタイル]

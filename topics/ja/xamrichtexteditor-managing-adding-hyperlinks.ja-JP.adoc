@@ -1,0 +1,331 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-adding-hyperlinks",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "8bf872a6-12fc-4514-b1c1-7d71b8c72cdb",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.502306Z"
+}
+|metadata|
+////
+
+= ハイパーリンクの追加 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ を使用してハイパーリンクを作成する方法を、開発者の観点から説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加する]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref364347146,はじめに>>
+* <<_Ref364347151,ハイパーリンクの追加の概要>>
+** <<_Ref364346966,InsertHyperlink メソッドの起動による方法>>
+** <<_Ref364694639,ドキュメントの範囲を指定する、MakeHyperlink メソッドの起動による方法>>
+** <<_Ref364347130,HyperlinkNode インスタンスの作成による方法>>
+
+* <<_Ref364347236,ハイパーリンク クリック イベントの取消し>>
+* <<_Ref364347167,関連コンテンツ>>
+
+[[_Ref364347146]]
+== はじめに
+
+=== ハイパーリンクの概要
+
+_xamRichTextEditor_   は、Web サイトの閲覧時に、ドキュメント内の内部ハイパーリンクをサポートします。ハイパーリンクは異なるスタイルで描画されるため、他のリッチ コンテンツの中でテキストと容易に区別できます。
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.hyperlinknode~trackhistory.html[TrackHistory] プロパティを使用し、一度閲覧したリンクを別の色で描画することができます。
+
+Ctrl キーを押しながらハイパーリンクをクリックすると、ハイパーリンクを開くことができます。それにより link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~hyperlinkexecuting_ev.html[HyperlinkExecuting] イベントが起動され、URI アドレスの確認と変更に使用できます。またハイパーリンクを開く動作を取り消すこともできます。
+
+[[_Ref364347151]]
+== ハイパーリンクの追加の概要
+
+=== ハイパーリンクの概要表の追加
+
+コードを使用した link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] へのハイパーリンクの追加は、3 つの方法があります。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a"]
+|====
+|ハイパーリンクの追加|詳細
+
+|<<_Ref364346966,InsertHyperlink メソッドの起動による方法>>
+|この方法は、新しいテキストをドキュメントのコンテンツに挿入してハイパーリンクを作成します。
+
+|<<_Ref364694639,MakeHyperlink メソッドの起動による方法>>
+|この方法は、既存ドキュメントのコンテンツを使用してハイパーリンクを作成します。
+
+|<<_Ref364347130,HyperlinkNode インスタンスの作成による方法>>
+|この方法は、ドキュメント本体のノードの階層でオブジェクトを作成します。
+
+|====
+
+[[_Ref364346966]]
+== InsertHyperlink メソッドの起動による方法
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~inserthyperlink.html[InsertHyperlink] メソッドを呼び出すと、ハイパーリンクをドキュメントの任意のオフセットで挿入できます。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a"]
+|====
+|ハイパーリンクの作成目的:|設定するプロパティ:
+
+|`InsertHyperlink` メソッドの呼び出し
+|
+* `documentOffset` 
+
+* `targetUri` 
+
+* `error` 
+
+* `displayText (オプション)` 
+
+* `tooltip (オプション)` 
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコード スニペットは、`InserHyperlink` メソッドを使用してハイパーリンクを作成する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+string error = null;
+this.xamRichTextEditor1.Document.InsertHyperlink(0,
+    "http://www.infragistics.com/", out error, "Infragistics",
+    "Link to the Infragistics website.");
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim [error] As String = Nothing
+Me.xamRichTextEditor1.Document.InsertHyperlink(0, _
+    "http://www.infragistics.com/", _
+        [error], _
+        "Infragistics", _
+        "Link to the Infragistics website.")
+----
+
+[[_Ref364694639]]
+[[_Ref364347130]]
+== MakeHyperlink メソッドの起動による方法
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~makehyperlink.html[MakeHyperlink] メソッドを呼び出すと、使用予定のドキュメント スパンに既存のドキュメント スパンを指定して、ハイパーリンクを挿入できます。この場合、ドキュメントのコンテンツを表示テキストとして使用し、ターゲットの URI と tooltip がメソッドに対して引数として指定されます。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a"]
+|====
+|ハイパーリンクの作成目的:|設定するプロパティ:
+
+|`MakeHyperlink` メソッドの呼び出し
+|
+* `document span` 
+
+* `targetUri` 
+
+* `error` 
+
+* `tooltip (オプション)` 
+
+|====
+
+=== 例
+
+以下のコード スニペットは、現在アクティブ状態のビュー選択をリンク コンテンツとして使用して `MakeHyperlink` メソッドを呼び出すことにより、ハイパーリンクを作成する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+string error = null;
+this.xamRichTextEditor1.Document.MaketHyperlink(
+    this.xamRichTextEditor1.ActiveDocumentView.Selection.DocumentSpan,
+    "http://www.example.com/", out error, "Example.com"
+);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim [error] As String = Nothing
+Me.xamRichTextEditor1.Document.MaketHyperlink( _
+    Me.xamRichTextEditor1.ActiveDocumentView.Selection.DocumentSpan, _
+    "http://www.example.com/", [error], "Example.com")
+----
+
+== HyperlinkNode インスタンスの作成による方法
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.hyperlinknode_members.html[HyperlinkNode] インスタンスを作成する方法で、ハイパーリンクを作成することもできます。
+
+=== 例
+
+以下のコード スニペットは、ハイパーリンクを作成し、ドキュメントのコンテンツの終りの新しいパラグラフに作成したハイパーリンクを追加する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+var hNode = new HyperlinkNode();
+hNode.Tooltip = "Link to the Infragistics website.";
+hNode.Uri = "http://www.infragistics.com/";
+hNode.SetText("Infragistics");
+hNode.TrackHistory = true;
+var pNode = new ParagraphNode();
+pNode.ChildNodes.Add(hNode);
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pNode);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim hNode = New HyperlinkNode()
+hNode.Tooltip = "Link to the Infragistics website."
+hNode.Uri = "http://www.infragistics.com/"
+hNode.SetText("Infragistics")
+hNode.TrackHistory = True
+Dim pNode = New ParagraphNode()
+pNode.ChildNodes.Add(hNode)
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pNode)
+----
+
+注:
+
+[NOTE]
+====
+また、リンク コンテンツを作成するために、`HyperlinkNode` の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.hyperlinknode~settext.html[SetText] メソッドを使用する場合も、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.runnode~styleid.html[StyleId] プロパティを "Hyperlink" の値に設定すると、デフォルトのハイパーリンク スタイルがハイパーリンクに適用されます。デフォルトではなく、別のスタイルを適用したい場合は、手動で`StyleId` プロパティにハイパーリンク スタイルを設定する必要があります。
+====
+
+注:
+
+[NOTE]
+====
+"Hyperlink" のスタイルは、最初から link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~styles.html[DocumentRootNode.Styles] コレクションで利用できるわけではありません。スタイルを使用したい場合は、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~availablestyles.html[RichTextDocument.AvailableStyles] コレクションから追加する必要があります。
+====
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor.Document.RootNode.Styles.Add(
+    this.xamRichTextEditor.Document.AvailableStyles["Hyperlink"].Clone()
+    as CharacterStyle);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor.Document.RootNode.Styles.Add(_
+    TryCast(Me.xamRichTextEditor.Document.AvailableStyles("Hyperlink").Clone(), _
+    CharacterStyle))
+----
+
+前述の方法を使用しない場合は、`InsertHyperlink` または `MakeHyperlink` メソッドを使用することができます。
+
+[[_Ref364347236]]
+== ハイパーリンク クリック イベントの取消し
+
+=== 概要
+
+Ctrl キーを押しながらリンクをクリックすると、`HyperlinkExecuting` イベントが起動します。このイベントを取り消して、ハイパーリンクが開かないようにすることができます。
+
+=== 例
+
+以下のコード スニペットは、`HyperlinkExecuting` イベントを取り消す方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+// イベント ハンドラーを HyperlinkExecuting イベントにアタッチ
+this.xamRichTextEditor1.HyperlinkExecuting += xamRichTextEditor1_HyperlinkExecuting;
+// その他のコード
+// イベント ハンドラー
+void xamRichTextEditor1_HyperlinkExecuting(object sender, HyperlinkExecutingEventArgs e)
+{
+    // このイベントを取り消す
+    e.Cancel = true;
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' イベント ハンドラーを HyperlinkExecuting イベントにアタッチ
+Me.xamRichTextEditor1.HyperlinkExecuting += xamRichTextEditor1_HyperlinkExecuting
+' その他のコード
+' イベント ハンドラー
+Private Sub xamRichTextEditor1_HyperlinkExecuting(sender As Object, e As HyperlinkExecutingEventArgs)
+    ' このイベントを取り消す
+    e.Cancel = True
+End Sub
+----
+
+[[_Ref364347167]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-adding-text.html[テキストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテキストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-lists.html[リストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してリストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-images.html[画像の追加]
+|このトピックは、 _xamRichTextEditor_ を使用して画像を作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-tables.html[テーブルの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテーブルを作成する方法を、開発者の観点から説明します。
+
+|====

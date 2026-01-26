@@ -1,0 +1,434 @@
+﻿////
+|metadata|
+{
+    "name": "xamtimeline-style-event-titles",
+    "controlName": ["xamTimeline"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{70BE5502-E1C9-4AD6-9891-A6068FE8C15A}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1504065Z"
+}
+|metadata|
+////
+
+= イベント タイトルのスタイル
+
+== 始める前に
+
+xamTimeline コントロールの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline~eventtitletopstyle.html[EventTitleTopStyle] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline~eventtitlebottomstyle.html[EventTitleBottomStyle] プロパティを使用して、タイムラインの上下にあるすべてのイベント タイトルをそれぞれスタイルできます。さらに、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[NumericTimeSeries] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeseries.html[DateTimeSeries] オブジェクトの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineseries~eventtitlestyle.html[EventTitleStyle] プロパティまたは link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeentry.html[NumericTimeEntry] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeentry.html[DateTimeEntry] オブジェクトの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.evententry~titlestyle.html[TitleStyle] プロパティを使用して、シリーズ毎または入力毎にイベント タイトル スタイルを変更できます。
+
+== 達成すること
+
+EventTitleTopStyle、EventTitleBottomStyle および EventTitleStyle プロパティを使用して、数値タイムラインの上下にあるすべてのイベント タイトルをスタイルするユーザー コントロールを作成し、TitleStyle プロパティを使用して特定のイベント タイトルをスタイルします。完成したプロジェクトを実行すると、以下のスクリーンショットに似た xamTimeline コントロールのすべてのイベント タイトルのカスタム スタイルが表示されます。
+
+image::images/XamTimeline_Style_Event_Titles_01.png[]
+
+== 以下の手順を実行します。
+
+[start=1]
+. 以下の NuGet パッケージ参照をアプリケーションに追加します。
+
+** Infragistics.WPF.Timeline
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=2]
+. メイン ページで、以下の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+[start=3]
+. コントロール リソースのイベント タイトルのために以下のスタイルを追加します。
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+    <!--TODO: イベント タイトルのデフォルト スタイルを追加します -->
+    <!--TODO: 1 つ目のイベント タイトルの最初のカスタム スタイルを追加します -->
+    <!--TODO: 2 つ目のイベント タイトルの最初のカスタム スタイルを追加します -->
+    <!--TODO: 3 つ目のイベント タイトルの最初のカスタム スタイルを追加します -->
+    <!--TODO: すべての一番上のイベント タイトルにスタイルを追加します -->
+    <!--TODO: すべての一番下のイベント タイトルにスタイルを追加します -->
+</UserControl.Resources>
+----
+
+[start=4]
+. イベント タイトルのデフォルト スタイルを追加します。
+
+*XAML の場合:*
+
+----
+<Style x:Key="rscDefaultTitleStyle" TargetType="ig:EventTitle">
+    <Setter Property="MaxWidth" Value="180" />
+    <Setter Property="IsTabStop" Value="/>
+    <Setter Property="Background" Value="White" />
+    <Setter Property="Foreground" Value="#FF333333"/>
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderBrush" Value="Black" />
+    <Setter Property="PointStringFormat" Value="{}[{0}]" />
+    <Setter Property="SpanStringFormat" Value="{}[{0}-{1}]" />
+    <Setter Property="LineStyle">
+        <Setter.Value>
+            <Style TargetType="Line">
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Stroke" Value="Black" />
+                <Setter Property="Canvas.ZIndex" Value="-1" />
+            </Style>
+        </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ig:EventTitle">
+                <Border HorizontalAlignment="Left" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{TemplateBinding FormattedText}" 
+                                   TextWrapping="Wrap" />
+                        <TextBlock Text="{TemplateBinding Title}" 
+                                   TextWrapping="Wrap" Grid.Row="1"/>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+[start=5]
+. 最初のカスタム スタイルを追加します。
+
+*XAML の場合:*
+
+----
+<Style x:Key="rscCustomTitleStyle1" TargetType="ig:EventTitle">
+    <Setter Property="Width" Value="160" />
+    <Setter Property="Height" Value="100" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ig:EventTitle">
+                <Border BorderBrush="Blue" BorderThickness="1">
+                    <Border.Background >
+                        <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
+                            <GradientStop Color="White" Offset="1"/>
+                            <GradientStop Color="DodgerBlue"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" 
+                               FontSize="9" Foreground="Black" TextWrapping="Wrap"
+                               Text="Custom Title Style 1: 
+                                     Alignment=TopLeft
+                                     Foreground=Black
+                                     Background=White/Blue
+                                     Border=Blue
+                                     TextBinding=None"/>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+[start=6]
+. 第二のカスタム スタイルを追加します。
+
+*XAML の場合:*
+
+----
+<Style x:Key="rscCustomTitleStyle2" TargetType="ig:EventTitle">
+    <Setter Property="Width" Value="160" />
+    <Setter Property="Height" Value="100" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="0,0,0,0" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ig:EventTitle">
+                <Border BorderBrush="Transparent"  BorderThickness="1">
+                    <Border.Background >
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="White" Offset="1"/>
+                            <GradientStop Color="Yellow" Offset="0.5"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontSize="9" Foreground="Black" TextWrapping="Wrap"
+                               Text="Custom Title Style 2: 
+                                     Alignment=Center
+                                     Foreground=Black
+                                     Background=White/Yellow
+                                     Border=Transparent
+                                     TextBinding=None"/>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+[start=7]
+. 第三のカスタム スタイルを追加します。
+
+*XAML の場合:*
+
+----
+<Style x:Key="rscCustomTitleStyle3" TargetType="ig:EventTitle">
+    <Setter Property="Width" Value="160" />
+    <Setter Property="Height" Value="100" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="0,0,0,0" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ig:EventTitle">
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <Border.Background >
+                        <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
+                            <GradientStop Color="Red" Offset="1"/>
+                            <GradientStop Color="White" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                               FontSize="9" Foreground="Black" TextWrapping="Wrap"
+                               Text="Custom Title Style 3: 
+                                     Alignment=BottomRight
+                                     Foreground=Black
+                                     Background=Red/White 
+                                     Border=Red
+                                     TextBinding=None"/>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+[start=8]
+. すべての一番上のイベント タイトルのスタイル リソースを追加します。
+
+*XAML の場合:*
+
+----
+<Style x:Key="rscTopTitleStyle" TargetType="ig:EventTitle">
+    <Setter Property="Width" Value="100" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="0,0,0,0" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ig:EventTitle">
+                <Border BorderBrush="Orange" BorderThickness="1">
+                    <Border.Background >
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Orange" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" 
+                               FontSize="9" Foreground="Black" TextWrapping="Wrap"
+                               Text="{TemplateBinding Title}"  />
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+[start=9]
+. すべての一番下のイベント タイトルのスタイル リソースを追加します。
+
+*XAML の場合:*
+
+----
+<Style x:Key="rscBottomTitleStyle" TargetType="ig:EventTitle">
+    <Setter Property="Width" Value="100" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="0,0,0,0" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ig:EventTitle">
+                <Border BorderBrush="Lime" BorderThickness="1">
+                    <Border.Background >
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Lime" Offset="1"/>
+                            <GradientStop Color="White"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" 
+                               FontSize="9" Foreground="Black" TextWrapping="Wrap"
+                               Text="{TemplateBinding Title}"  />
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----
+
+[start=10]
+. 一番上と一番下のイベント タイトルのスタイルと共に xamTimeline コントロールを追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline x:Name="xamTimeline" Width="1000" Height="430" Margin="20" 
+                     EventTitleBottomStyle="{StaticResource Style_EventTitleBottom}"
+                     EventTitleTopStyle="{StaticResource Style_EventTitleTop}">
+    <!--TODO: イベント タイトル レイアウト設定を追加します -->
+    <!-- TODO: 軸を追加します -->
+    <!-- TODO: シリーズを追加します -->
+</ig:XamTimeline>
+----
+
+[start=11]
+. link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventtitlelayoutsettings.html[EventTitleLayoutSettings] オブジェクトを xamTimeline コントロールに追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline.EventTitleLayoutSettings>
+    <ig:EventTitleLayoutSettings HorizontalOffset="5" 
+                                   VerticalOffset="5" Enabled="True" />
+</ig:XamTimeline.EventTitleLayoutSettings>
+----
+
+[start=12]
+. link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeaxis.html[NumericTimeAxis] オブジェクトを xamTimeline コントロールに追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline.Axis>
+    <ig:NumericTimeAxis Minimum="-100" Maximum="2400" AutoRange=" Unit="100" 
+                          ShowLabels="True" ShowThumb="True" />
+</ig:XamTimeline.Axis>
+----
+
+[start=13]
+. 以下の 3 つの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.numerictimeseries.html[NumericTimeSeries] コレクションを xamWebTimeline コントロールの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline~series.html[Series] プロパティに追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline.Series>
+    <!--TODO: デフォルト イベント タイトル スタイルの Series を追加します -->
+    <!--TODO: 上イベント タイトル スタイルの Series を追加します -->
+    <!--TODO: 下イベント タイトル スタイルの Series を追加します -->
+    <!--TODO: カスタム イベント タイトル スタイルの Series を追加します -->
+</ig:XamTimeline.Series>
+----
+
+[start=14]
+. デフォルトのイベント タイトル スタイルと共に NumericTimeSeries コレクションを追加します。
+
+*XAML の場合:*
+
+----
+<ig:NumericTimeSeries Title="Default Title Styles" Fill="White" 
+                        Position="TopOrLeft" 
+                        EventTitleStyle="{StaticResource rscDefaultTitleStyle}" >
+    <ig:NumericTimeSeries.Entries>
+        <ig:NumericTimeEntry Time="200" Duration="50" 
+                               Title="Default Title Style" Details=""/>
+        <ig:NumericTimeEntry Time="1200" Duration="50" 
+                               Title="Default Title Style" Details=""/>
+        <ig:NumericTimeEntry Time="1800" Duration="50" 
+                               Title="Default Title Style" Details=""/>
+    </ig:NumericTimeSeries.Entries>
+</ig:NumericTimeSeries>
+----
+
+[start=15]
+. 一番上のイベント タイトル スタイルと共に NumericTimeSeries コレクションを追加します。
+
+*XAML の場合:*
+
+----
+<ig:NumericTimeSeries Title="Top Title Styles" Fill="White" >
+    <ig:NumericTimeSeries.Entries>
+        <ig:NumericTimeEntry Time="0" Duration="200" 
+                               Title="Top Title Style" Details="" />
+        <ig:NumericTimeEntry Time="250" Duration="200" 
+                               Title="Top Title Style" Details="" />
+        <ig:NumericTimeEntry Time="500" Duration="200" 
+                               Title="Top Title Style" Details="" />
+        <ig:NumericTimeEntry Time="750" Duration="200" 
+                               Title="Top Title Style" Details="" />
+        <ig:NumericTimeEntry Time="1000" Duration="200" 
+                               Title="Top Title Style" Details="" />
+        <ig:NumericTimeEntry Time="1250" Duration="200" 
+                               Title="Top Title Style" Details="" />
+        <ig:NumericTimeEntry Time="1500" Duration="200" 
+                               Title="Top Title Style" Details="" />
+        <ig:NumericTimeEntry Time="1750" Duration="200" 
+                               Title="Top Title Style" Details="" />
+        <ig:NumericTimeEntry Time="2000" Duration="200" 
+                               Title="Top Title Style" Details="" />
+    </ig:NumericTimeSeries.Entries>
+</ig:NumericTimeSeries>
+----
+
+[start=16]
+. 一番下のイベント タイトル スタイルと共に NumericTimeSeries コレクションを追加します。
+
+*XAML の場合:*
+
+----
+<ig:NumericTimeSeries Title="Bottom Title Styles" 
+Fill="White" Position="BottomOrRight">
+    <ig:NumericTimeSeries.Entries>
+        <ig:NumericTimeEntry Time="300" Duration="100"  
+                               Title="Bottom Title Style" Details=""/>
+        <ig:NumericTimeEntry Time="600" Duration="100" 
+                               Title="Bottom Title Style" Details=""/>
+        <ig:NumericTimeEntry Time="900" Duration="100" 
+                               Title="Bottom Title Style" Details=""/>
+        <ig:NumericTimeEntry Time="1200" Duration="100" 
+                               Title="Bottom Title Style" Details=""/>
+        <ig:NumericTimeEntry Time="2000" Duration="100" 
+                               Title="Bottom Title Style" Details=""/>
+    </ig:NumericTimeSeries.Entries>
+</ig:NumericTimeSeries>
+----
+
+[start=17]
+. カスタム タイトル スタイルと共に NumericTimeSeries コレクションを追加します。
+
+*XAML の場合:*
+
+----
+<ig:NumericTimeSeries Title="Custom Title Styles" 
+Fill="White" Position="BottomOrRight">
+    <ig:NumericTimeSeries.Entries>
+        <ig:NumericTimeEntry Time="0" Duration="50" 
+                               TitleStyle="{StaticResource rscCustomTitleStyle1}"   
+                               Title="Custom Title Style 1" Details=""/>
+        <ig:NumericTimeEntry Time="1100" Duration="50" 
+                               TitleStyle="{StaticResource rscCustomTitleStyle2}"
+                               Title="Custom Title Style 2" Details=""/>
+        <ig:NumericTimeEntry Time="1800" Duration="50" 
+                               TitleStyle="{StaticResource rscCustomTitleStyle3}"
+                               Title="Custom Title Style 3" Details=""/>
+    </ig:NumericTimeSeries.Entries>
+</ig:NumericTimeSeries>
+----
+
+[start=18]
+. アプリケーションを実行します。xamTimeline コントロールは、異なるスタイルですべてのイベント タイトルを表示します。
+
+== 関連トピック
+
+link:xamtimeline.html[xamTimeline]
+
+link:xamtimeline-style-xamwebtimeline.html[xamTimeline のスタイル設定]
+
+link:xamtimeline-change-event-title-layout-for-time-series.html[時刻シリーズのイベント タイトル レイアウトを変更]

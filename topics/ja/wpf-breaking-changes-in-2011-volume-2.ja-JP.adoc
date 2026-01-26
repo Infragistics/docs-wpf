@@ -1,0 +1,20 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-breaking-changes-in-2011-volume-2",
+    "controlName": [],
+    "tags": ["Known Issues"],
+    "guid": "127f1887-92a9-4066-81da-b7b657a84e33",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.7196971Z"
+}
+|metadata|
+////
+
+= 2011 Volume 2
+
+== xamGrid
+
+* アプリケーションで xamGrid を使用する場合、 {ApiPlatform}Controls.Grids.XamGrid.v11.2 アセンブリを参照するだけでなく、{ApiPlatform}Controls.Menus.XamMenu.v11.2 および {ApiPlatform}DataManager.v11.2 アセンブリを追加する必要もあります。
+* DateColumn を使用する場合、デフォルト エディタは DatePicker となり、日付から時刻部分を削除し、日付のみを維持します。時刻を保持する場合は、DateTimeColumn を使用してください。

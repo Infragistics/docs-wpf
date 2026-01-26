@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-overview",
+    "tags": ["Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "387c805b-bbaf-4888-86d7-646ae1dde62e",  
+    "buildFlags": [],
+    "createdOn": "2014-03-20T06:33:35.2916382Z"
+}
+|metadata|
+////
+
+= 概要
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamDiagram_™ コントロールおよびその機能の概要を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-features-overview.html[機能の概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールの主要な機能の詳細を説明します。
+
+| link:xamdiagram-visual-elements-overview.html[視覚要素の概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールの視覚要素の概要を説明します。
+
+| link:xamdiagram-commands-overview.html[コマンドの概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールで使用できるコマンドの動作ロジックを説明します。
+
+|====

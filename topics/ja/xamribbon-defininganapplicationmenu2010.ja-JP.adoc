@@ -1,0 +1,349 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-defininganapplicationmenu2010",
+    "controlName": ["xamRibbon"],
+    "tags": ["Application Scenarios","How Do I"],
+    "guid": "17831a2a-4027-4704-a918-96f0fe2f0fd2",  
+    "buildFlags": [],
+    "createdOn": "2013-03-04T07:13:41.6424069Z"
+}
+|metadata|
+////
+
+= アプリケーション メニュー 2010 (xamRibbon) の定義
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、アプリケーション メニュー 2010 を定義する方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamribbon-about-xamribbon.html[xamRibbon について]
+|_xamRibbon_ コントロールの概要
+
+| link:xamribbon-adding-xamribbon-to-your-application-.html[xamRibbon をアプリケーションに追加]
+|このトピックは、コントロールをアプリケーションに追加し、タブやグループを定義する方法を手順に従って示します。
+
+| link:xamribbon-applicationmenu2010-overview.html[アプリケーション メニュー 2010 の概要]
+|このトピックは、アプリケーション メニュー 2010 およびその動作の概要について説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref348598532, xamRibbon コントロールでアプリケーション メニュー 2010 を定義します。 >>
+* <<_Ref348537532, コード例 >>
+* <<_Ref348599040, 関連コンテンツ >>
+
+[[_Ref348598532]]
+== xamRibbon コントロールでアプリケーション メニュー 2010 を定義
+
+=== はじめに
+
+この手順は、 _xamRibbon_   コントロールをページに追加し、アプリケーション メニューを定義します。
+
+=== プレビュー
+
+以下のスクリーンショットは結果のプレビューです。
+
+image::images/xamRibbon_DefiningAM2010.png[]
+
+=== 前提条件
+
+この手順を実行するには、以下が必要です。
+
+*  _xamRibbon_   コントロールをページに追加する方法
+
+=== 概要
+
+以下はプロセスの概念的概要です。
+
+1. xamRibbon コントロールをページに追加します。
+
+2. xamRibbon コントロールにアプリケーション メニューを追加します。
+
+3. アプリケーション メニュー 2010 にボタンを追加します。
+
+4. アプリケーション メニュー 2010 にセパレーターを追加します。
+
+5. アプリケーション メニュー 2010 にタブを追加します。
+
+=== 手順
+
+以下の手順に従って、アプリケーション メニュー 2010 を定義します。
+
+=== 1.xamRibbon コントロールをページに追加します。
+
+_xamRibbon_   コントロールをページに追加し、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbon~applicationmenumode.html[ApplicationMenuMode] プロパティを link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenumode.html[Office2010] に追加します。Application Menu 2010で使用するアクセント ラーを変更するには、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbon~applicationaccentcolor.html[ApplicationAccentColor] プロパティを設定します。
+
+詳細については、<<_Ref348598962,コード例: xamRibbon を追加>>
+
+=== 2.アプリケーション メニュー 2010 を xamRibbon コントロールに追加します。
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenu2010.html[ApplicationMenu2010] クラスのインスタンスを作成し、それを  _xamRibbon_   コントロールの link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbon~applicationmenu2010.html[ApplicationMenu2010] プロパティとして設定します。`ApplicationMenu2010` クラスは、`ItemsControl` 派生クラスで、すべてのボタン、タブ、セパレーターを `Items` コレクションに追加します。
+
+詳細については、<<_Ref348598974,コード例: アプリケーション メニュー 2010 を追加>>
+
+注:
+
+[NOTE]
+====
+デフォルトでは、 _xamRibbon_   コトロールのタブの下から親ウィンドウの最後までにあるすべての利用可能なスペースを塗りつぶします。link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenu2010~setisconstrainingelement.html[IsConstrainingElement] プロパティを使用して Backstage サイズを制限するために、他の先祖ンテナー指定すと便利です。
+
+詳細については、<<_Ref348599007,コード例: 全コード>>を参照してください。
+====
+
+=== 3.アプリケーション メニュー 2010 にボタンを追加します。
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenu2010item.html[ApplicationMenu2010Item] クラスのインスタンスを作成し、前の手順で作成した link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenu2010item.html[ApplicationMenu2010Item] クラス インスタンスの `Items` コレクションを追加します。`HeaderedContentControl` クラスから派生している `ApplicationMenuItem` クラスは、`Header` および`Image` プロパティを設定してボタンをカスタマイズします。
+
+詳細については、<<_Ref348598984,コード例: ボタンを追加>> を参照しています。
+
+注:
+
+[NOTE]
+====
+`Content` プロパティに値を設定する場合、項目がタブ (ボタンではなく) として描画されます。
+====
+
+=== 4.アプリケーション メニュー 2010 にセパレーターを追加します。
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenu2010separator.html[ApplicationMenu2010Separator] クラスのインスタンスを作成 (`System.Windows.Controls.Separator` クラスから派生) し、それを `ApplicationMenu2010` クラスの `Items` コレクションに追加します。
+
+詳細については、<<_Ref348598991,コード例: セパレーターを追加>> をご参照ください。
+
+=== 5.アプリケーション メニュー 2010 にタブを追加します。
+
+`ApplicationMenu2010Item` クラスの 2 つのインスタンスを作成し、それらを `ApplicationMenu2010` クラスの `Items` コレクションに追加します。 `Header` プロパティを使用してタブに名前を設定します。両方のタブの `Content` プロパティを任意の値に設定します。コンテンツは Backstage の右側に描画されます。
+
+詳細については、<<_Ref348599001,コード例: タブを追加>> をご参照ください。
+
+注:
+
+[NOTE]
+====
+デフォルトでは Items コレクションに最初に追加されたタブのみが最初に選択されます。ただし、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.applicationmenu2010~initialselectedtabitem.html[InitialSelectedTabItem] プロパティを使用して任意に初期タブを指定できます。
+====
+
+[[_Ref348537532]]
+== コード例
+
+=== コード例の概要
+
+以下の表は、このトピックで使用したコード例をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|<<_Ref348598962,コード例: _xamRibbon_ を追加>>
+|_xamRibbon_ コントロールをページに追加する例。
+
+|<<_Ref348598974,コード例: アプリケーション メニュー 2010>>
+|_xamRibbon_ にアプリケーション メニュー 2010 を追加する例。
+
+|<<_Ref348598984,コード例: ボタンを追加>>
+|アプリケーション メニュー 2010 にボタンを追加する例。
+
+|<<_Ref348598991,コード例: セパレーターを追加>>
+|アプリケーション メニュー 2010 にセパレーターを追加する例。
+
+|<<_Ref348599001,コード例: タブを追加>>
+|アプリケーション メニュー 2010 にタブを追加する例。
+
+|<<_Ref348599007,コード例: 全コード>>
+|これは、アプリケーション メニュー 2010、ボタン、およびタブ 2 つを追加するの全コードの例です。
+
+|====
+
+[[_Ref348598962]]
+== コード例:  _xamRibbon_   を追加
+
+=== 説明
+
+_xamRibbon_   コントロールをページに追加する例。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igRibbon:XamRibbon
+    x:Name="myRibbon"
+    Theme="IGTheme"
+    ApplicationMenuMode="Office2010"
+    ApplicationAccentColor="Green">
+<!-- add Application Menu 2010 here -->
+</igRibbon:XamRibbon>
+----
+
+[[_Ref348598974]]
+== コード例: アプリケーション メニュー 2010
+
+=== 説明
+
+_xamRibbon_   にアプリケーション メニュー 2010 を追加する例。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igRibbon:XamRibbon.ApplicationMenu2010>
+    <igRibbon:ApplicationMenu2010 Caption="File">
+        <igRibbon:ApplicationMenu2010.Items>
+        <!-- add buttons, tabs and separators here -->
+        </igRibbon:ApplicationMenu2010.Items>
+    </igRibbon:ApplicationMenu2010>
+</igRibbon:XamRibbon.ApplicationMenu2010>
+----
+
+[[_Ref348598984]]
+== コード例: ボタンを追加
+
+=== 説明
+
+アプリケーション メニュー 2010 にボタンを追加する例。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igRibbon:ApplicationMenu2010Item
+    Image="/Ribbon.WPF;component/Images/Save_16x16.png">
+    <igRibbon:ApplicationMenu2010Item.Header>
+        <TextBlock Margin="5,0,0,0" Text="Just a button" />
+    </igRibbon:ApplicationMenu2010Item.Header>
+</igRibbon:ApplicationMenu2010Item>
+----
+
+[[_Ref348598991]]
+== コード例: セパレーターを追加
+
+=== 説明
+
+アプリケーション メニュー 2010 にセパレーターを追加する例。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igRibbon:ApplicationMenu2010Separator />
+----
+
+[[_Ref348599001]]
+== コード例: タブを追加
+
+=== 説明
+
+アプリケーション メニュー 2010 にタブを追加する例。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igRibbon:ApplicationMenu2010Item Header="Tab 1">
+    <igRibbon:ApplicationMenu2010Item.Content>
+        <TextBlock Text="Text in the first tab content" />
+    </igRibbon:ApplicationMenu2010Item.Content>
+</igRibbon:ApplicationMenu2010Item>
+----
+
+[[_Ref348599007]]
+== コード例: 全コード
+
+=== 説明
+
+これは、アプリケーション メニュー 2010、ボタン、およびタブ 2 つを追加するの全コードの例です。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Window x:Class="Ribbon.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:igRibbon="http://infragistics.com/Ribbon"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+            igRibbon:ApplicationMenu2010.IsConstrainingElement="True">
+            <igRibbon:XamRibbon x:Name="myRibbon" Theme="IGTheme"
+                ApplicationMenuMode="Office2010" ApplicationAccentColor="Green">
+                <igRibbon:XamRibbon.ApplicationMenu2010>
+                    <igRibbon:ApplicationMenu2010 Caption="File">
+                        <igRibbon:ApplicationMenu2010.Items>
+                            <igRibbon:ApplicationMenu2010Item
+                            Image="/Ribbon.WPF;component/Images/Save_16x16.png">
+                                <igRibbon:ApplicationMenu2010Item.Header>
+                                    <TextBlock Margin="5,0,0,0"
+                                        Text="Just a button" />
+                                </igRibbon:ApplicationMenu2010Item.Header>
+                            </igRibbon:ApplicationMenu2010Item>
+                            <igRibbon:ApplicationMenu2010Separator />
+                            <igRibbon:ApplicationMenu2010Item Header="Tab 1">
+                                <igRibbon:ApplicationMenu2010Item.Content>
+                                    <TextBlock
+                                    Text="Text in the first tab content" />
+                                </igRibbon:ApplicationMenu2010Item.Content>
+                            </igRibbon:ApplicationMenu2010Item>
+                            <igRibbon:ApplicationMenu2010Item Header="Tab 2">
+                                <igRibbon:ApplicationMenu2010Item.Content>
+                                    <TextBlock
+                                    Text="Text in the second tab content" />
+                                </igRibbon:ApplicationMenu2010Item.Content>
+                            </igRibbon:ApplicationMenu2010Item>
+                        </igRibbon:ApplicationMenu2010.Items>
+                   </igRibbon:ApplicationMenu2010>
+                </igRibbon:XamRibbon.ApplicationMenu2010>
+            </igRibbon:XamRibbon>
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBlock Text="Text under the xamRibbon container" />
+        </Grid>
+    </Grid>
+</Window>
+----
+
+[[_Ref348599040]]
+== 関連コンテンツ
+
+このトピックにの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamribbon-applicationmenu2010-overview.html[アプリケーション メニュー 2010 の概要]
+|このトピックは、アプリケーション メニュー 2010 およびその動作の概要について説明します。
+
+| link:xamribbon-applicationmenu2010keytips.html[アプリケーション メニュー 2010 の KeyTips]
+|このトピックは、アプリケーション メニュー 2010 の KeyTip 機能を説明します。
+
+|====

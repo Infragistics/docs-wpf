@@ -1,0 +1,104 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-min-max",
+    "controlName": ["xamDockManager"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "ae59b171-14d2-4331-9016-bdf2fb8c0f2f",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5460623Z"
+}
+|metadata|
+////
+
+= フローティング ペインの最大化/最小化
+
+
+
+ユーザーがフローティングの xamDockManager ペインを最大化および最小化することを可能にします。図 1 と図 2 は最大化/最小化を許可した場合と禁止した場合にペインがエンドユーザーにどのように表示されるのかを比較しています。
+
+[cols="a,a"]
+|====
+|image:images/xamDockManager_min_max_1.png[] 
+
+|image:images/xamDockManager_min_max_2.png[] 
+
+|図 1: 最大化/最小化が許可されているフローティング ペイン
+|図 2: 最大化/最小化が許可されていないフローティング ペイン
+
+|====
+
+link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager.html[xamDockManager] のフローティングペインの最大化/最小化の動作は、 link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~allowmaximizefloatingwindows.html[AllowMaximizeFloatingWindows] および link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~allowminimizefloatingwindows.html[AllowMinimizeFloatingWindows] プロパティで構成されます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDock:XamDockManager
+    x:Name="dockManager"
+    AllowMaximizeFloatingWindows="True"
+    AllowMinimizeFloatingWindows="True">
+...
+</igDock:XamDockManager>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.dockManager.AllowMaximizeFloatingWindows = True
+Me.dockManager.AllowMinimizeFloatingWindows = True
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.dockManager.AllowMaximizeFloatingWindows = true;
+this.dockManager.AllowMinimizeFloatingWindows = true;
+----
+
+これに加えて、フローティング ペインの親 link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.panetoolwindow.html[PaneToolWindow] の link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.toolwindow~allowmaximize.html[AllowMaximize] および link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.toolwindow~allowminimize.html[AllowMinimize] Boolean プロパティを設定することによって、各フローティングペインに最小化/最大化の許可を個々に構成できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDock:XamDockManager
+    AllowMaximizeFloatingWindows="True"
+    AllowMinimizeFloatingWindows="True">
+    <igDock:XamDockManager.Panes>
+       <igDock:SplitPane 
+           igDock:XamDockManager.InitialLocation="FloatingOnly"
+           igDock:XamDockManager.FloatingLocation="300,300">
+           <igDock:ContentPane x:Name="floatingOnly">
+               <locCtls:XdmSamplePaneContent Content="Some Content" />
+           </igDock:ContentPane>
+       </igDock:SplitPane>
+    </igDock:XamDockManager.Panes>
+</igDock:XamDockManager>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim tw As ToolWindow = ToolWindow.GetToolWindow(Me.floatingOnly)
+If tw IsNot Nothing Then
+        tw.AllowMinimize = False
+        tw.AllowMaximize = False
+End If
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+ToolWindow tw = ToolWindow.GetToolWindow(this.floatingOnly);
+if (tw != null)
+{
+    tw.AllowMinimize = false;
+    tw.AllowMaximize = false;
+}
+----

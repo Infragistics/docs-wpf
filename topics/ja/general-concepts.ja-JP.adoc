@@ -1,0 +1,34 @@
+﻿////
+
+|metadata|
+{
+    "name": "general-concepts",
+    "controlName": [],
+    "tags": [],
+    "guid": "d1375b92-00d0-4c63-bbe4-16c7429c3152",  
+    "buildFlags": [],
+    "createdOn": "2012-02-02T16:09:54.1848743Z"
+}
+|metadata|
+////
+
+= 全般的な概念
+
+このセクションでは、重要な概念と原則について説明します。以下のリンクをクリックすると、{ProductName} コントロールを使用するときに知っておく必要がある全般的な概念を確認することができます。
+
+* link:generalconcepts-about-ig-commanding.html[Infragistics コマンディングについて]
+* link:generalconcepts-assemblies.html[アセンブリ]
+* link:developers-guide-customizing-resource-strings.html[リソース文字列のカスタマイズ]
+* link:generalconcepts-customizing-resource-strings-for-wpf-only-control.html[WPF 固有コントロールのアセンブリ リソース文字列のカスタマイズ]
+* link:developers-guide-ui-automation-overview.html[UI オートメーションの概要]
+* link:developers-guide-ui-automation-support.html[UI オートメーションのサポート]
+* link:developers-guide-touch-support.html[タッチ ジェスチャのサポート]
+* link:developers-guide-deploying-your-application.html[アプリケーションの配備]
+
+ifdef::wpf[]
+* link:general-concepts-how-to.html[操作方法]
+
+endif::wpf[]
+
+* link:generalconcepts-general-programming-concepts.html[全般的なプログラミングの概念]
+* link:developers-guide-upgrading-your-project.html[プロジェクトのアップグレード]

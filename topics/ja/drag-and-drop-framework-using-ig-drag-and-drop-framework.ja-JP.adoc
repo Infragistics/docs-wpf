@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "drag-and-drop-framework-using-ig-drag-and-drop-framework",
+    "controlName": ["IG Drag and Drop Framework"],
+    "tags": ["Getting Started"],
+    "guid": "1ed501c0-530d-4b32-863f-4337d4764767",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6650343Z"
+}
+|metadata|
+////
+
+= Infragistics Drag and Drop Framework の使用
+
+このセクションは、 link:{ApiPlatform}dragdrop{ApiVersion}.html[Infragistics Drag and Drop Framework] ライブラリの重要な概念および機能を効果的に使用するためのタスクベースの情報について説明します。
+
+link:drag-and-drop-framework-ig-drag-and-drop-framework-events.html[Infragistics Drag and Drop Framework イベント]
+
+このトピックでは、Drag and Drop Framework イベントおよびイベント引数について、更にアプリケーションで使用する方法について説明します。
+
+link:drag-and-drop-framework-set-custom-cursors-for-different-drag-and-drop-situations.html[各種ドラッグ アンド ドロップにカスタム カーソルを設定]
+
+このトピックでは MoveCursorTemplate および DropNotAllowedCursorTemplate を設定して、ドラッグ要素が有効なドロップ ターゲットの上に移動されているかどうかを示す方法を説明します。
+
+link:drag-and-drop-framework-set-drag-and-drop-channels.html[ドラッグ アンド ドロップ チャネルの設定]
+
+このトピックでは、エンド ユーザーがドラッグ アンド ドロップ機能を実行できる領域 (チャネル) を指定する方法を説明します。

@@ -1,0 +1,342 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-find-replace",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","How Do I"],
+    "guid": "ce0007de-6495-4c38-8aee-6fa91587a1d5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3693904Z"
+}
+|metadata|
+////
+
+= 検索/置換 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument_members.html[TextDocument] の検索、置換、すべて置換操作について解説します。
+
+注:
+
+[NOTE]
+====
+置換なしの Find および FindAll 操作はスナップショットで実行されます。詳細については link:xamsyntaxeditor-working-with-snapshots.html[スナップショットの操作] トピックを参照してください。
+====
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+| link:xamsyntaxeditor-adding-to-your-page.html[ _xamSyntaxEditor_ をページに追加]
+|このトピックでは、 _xamSyntaxEditor_ を短時間で起動、実行するのに役立つ体系的な操作方法を紹介します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref329074256, はじめに >>
+* <<_Ref329074271, 検索と置換の要旨 >>
+* <<_Ref329074292, FindReplace (開始位置のみを指定) >>
+* <<_Ref329074302, FindReplace (テキストの範囲を指定) >>
+* <<_Ref329074312, FindReplaceAll >>
+* <<_Ref329074326, 関連コンテンツ >>
+
+[[_Ref329074256]]
+== はじめに
+
+=== 検索メソッドと置換メソッドとは
+
+_xamSyntaxEditor の_   `TextDocument` は、いくつかの強力なメソッドとそのオーバーロードにより、テキストの検索機能と置換機能をサポートしています。大文字と小文字の別、完全一致、検索方向、場合によっては正規表現などの検索基準を指定すると検索結果の絞り込みに便利です。link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textsearchcriteria_members.html[TextSearchCriteria] クラスでは、これらのパラメーターをすべてカプセル化し、検索メソッドや置換メソッドに引き数で渡します。
+
+以下に掲げたメソッドはいずれも、使用する検索基準を取得するための link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textsearchresultinfo_members.html[TextSearchResultInfo] オブジェクトと、実行した置換ごとに link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textsearchresult_members.html[TextSearchResult] オブジェクトのリストを返します。
+
+場合によっては、検索開始オフセット (文書の先頭からのオフセット) を指定する必要がありますが、これは、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~currentsnapshot.html[CurrentSnapshot] の link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot~offsetfromlocation.html[OffsetFromLocation] メソッドで  _xamSyntaxEditor_   link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~caret.html[Caret] の `TextLocation` プロパティを変換して取得できます。
+
+注:
+
+[NOTE]
+====
+`TextDocument` のスナップショットについては、 link:xamsyntaxeditor-working-with-snapshots.html[スナップショットの操作] トピックも参照してください。
+====
+
+[[_Find_and_Replace]]
+
+[[_Ref329074271]]
+== 検索と置換の要旨
+
+=== 検索と置換の要旨表
+
+以下の表は、`FindReplace` メソッドをまとめたものです。このメソッドについては、表の後の解説も参照してください。
+
+[options="header", cols="a,a"]
+|====
+|作業|詳細
+
+|<<_FindReplace_(by_specifying,FindReplace (開始位置のみを指定)>>
+|指定した開始オフセットから検索を開始して `TextSearchCriteria` との一致テキストを 1 つ置換します (ファイルの最後に達したあともオプションで、検索を継続できます)。
+
+|<<_FindReplace_(by_specifying_2,FindReplace (テキストの範囲を指定)>>
+|指定したテキストの範囲を検索して `TextSearchCriteria` と一致するテキストを 1 つ置換します (オプションでテキストの指定範囲の検索の終了後もそのまま検索を継続できます)。
+
+|<<_FindReplaceAll,FindReplaceAll>>
+|文書全体、あるいはオプションで、文書内の一定範囲の `TextSearchCriteria` との一致テキストを置換します。
+
+|====
+
+[[_Ref329074292]]
+== FindReplace (開始位置のみを指定)
+
+=== 概要
+
+`TextSearchCriteria` 引数で指定した基準に従って、`FindReplace` メソッドがテキストを検索します。検索は、`startOffset` 引数で指定した位置から開始し、一致テキストが見つかると、`newText` 引数で指定したテキストと置換します。文書の最後に達した後も検索を継続する場合は、`wrapIfNotFound` 引数を  _true_   に設定します。
+
+=== メソッドの使用方法
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|呼び出すメソッド:|設定する引数:
+
+|指定したテキストや正規表現との一致データを 1 つ検索して置換します。
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~findreplace.html[FindReplace]
+|
+* `newText` 
+
+* `criteria` 
+
+* `startOffset` 
+
+* `wrapIfNotFound` (オプション) 
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+TextSearchCriteria tsc = new TextSearchCriteria(
+    "text-to-find", // text to search for
+    false, // whole word only
+    false, // is case sensitive
+    false // search backwards
+);
+// obtain current caret location and get the offset from it
+TextLocation tl = this.xamSyntaxEditor1.Caret.TextLocation;
+int offset = this.xamSyntaxEditor1.Document.CurrentSnapshot.OffsetFromLocation(tl);
+// find and replace one occurrence
+TextSearchResultInfo tsri = this.xamSyntaxEditor1.Document.FindReplace(
+    "text-for-replace", // new text to replace with
+    tsc, // search criteria
+    offset, // start offset
+    false // wrap if not found
+);
+if (tsri.Results != null && tsri.Results.Count > 0)
+{
+    TextSearchResult tsr = tsri.Results[0];
+    TextLocation tl2 = tsr.SpanReplaced.Value.EndLocation;
+    // the end location of the "SpanReplaced" may be
+    // used for a start offset for the next search
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' text to search for
+' whole word only
+' is case sensitive
+' search backwards
+Dim tsc As New TextSearchCriteria("text-to-find", False, False, False)
+' obtain current caret location and get the offset from it
+Dim tl As TextLocation = _
+    Me.xamSyntaxEditor1.Caret.TextLocation
+Dim offset As Integer =  _
+    Me.xamSyntaxEditor1.Document.CurrentSnapshot.OffsetFromLocation(tl)
+' find and replace one occurrence
+' new text to replace with
+' search criteria
+' start offset
+' wrap if not found
+Dim tsri As TextSearchResultInfo = _
+    Me.xamSyntaxEditor1.Document.FindReplace("text-for-replace", tsc, offset, False)
+If tsri.Results IsNot Nothing AndAlso tsri.Results.Count > 0 Then
+    Dim tsr As TextSearchResult = tsri.Results(0)
+    Dim tl2 As TextLocation = tsr.SpanReplaced.Value.EndLocation
+    ' the end location of the "SpanReplaced" may be
+    ' used for a start offset for the next search
+End If
+----
+
+[[_Ref329074302]]
+== FindReplace (テキストの範囲を指定)
+
+=== 概要
+
+`TextSearchCriteria` 引数で指定した基準に従って、`FindReplace` メソッドがテキストを検索します。検索は、`startOffset` で指定した位置から開始し、`spanToSearch` 引数で定義したテキストの範囲の最後に達して、一致データが見つかると、`newText` 引数で指定したテキストと置換します。
+
+=== メソッドの使用方法
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|呼び出すメソッド:|設定する引数:
+
+|指定したテキストや正規表現との一致データを 1 つ検索して置換します。
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~findreplace.html[FindReplace]
+|
+* `newText` 
+
+* `criteria` 
+
+* `spanToSearch` 
+
+* `startOffset` 
+
+* `wrapIfNotFound` (オプション) 
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+TextSearchCriteria tsc = new TextSearchCriteria(
+    "text-to-find", // text to search for
+    false, // whole word only
+    false, // is case sensitive
+    false // search backwards
+);
+// obtain current caret location and get the offset from it
+TextLocation tl = this.xamSyntaxEditor1.Caret.TextLocation;
+int offset = this.xamSyntaxEditor1.Document.CurrentSnapshot.OffsetFromLocation(tl);
+// create a test span, which begins at the current
+// caret location and extends 200 characters beyond
+TextSpan ts = new TextSpan(offset, 200);
+// find and replace one occurence
+this.xamSyntaxEditor1.Document.FindReplace(
+    "text-for-replace", // new text to replace with
+    tsc, // search criteria
+    ts, // the text span where to search
+    offset, // start offset
+    false // wrap if not found
+);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' text to search for
+' whole word only
+' is case sensitive
+' search backwards
+Dim tsc As New TextSearchCriteria("text-to-find", False, False, False)
+' obtain current caret location and get the offset from it
+Dim tl As TextLocation = _
+    Me.xamSyntaxEditor1.Caret.TextLocation
+Dim offset As Integer =  _
+    Me.xamSyntaxEditor1.Document.CurrentSnapshot.OffsetFromLocation(tl)
+‘ create a test span, which begins at the current
+‘ caret location and extends 200 characters beyond
+Dim ts As New TextSpan(offset, 200)
+‘ find and replace one occurrence
+‘ new text to replace with
+‘ search criteria
+‘ the text span where to search
+‘ start offset
+‘ wrap if not found
+Me.xamSyntaxEditor1.Document.FindReplace("text-for-replace", tsc, ts, offset, False)
+----
+
+[[_FindReplaceAll]]
+[[_Ref329074312]]
+== FindReplaceAll
+
+=== 概要
+
+`TextSearchCriteria` 引数で指定した基準に従って、`FindReplaceAll` メソッドがテキストを検索します。検索は文書全体か、指定したテキストの範囲で行います。一致テキストが見つかると、`replacementText` 引数で指定したテキストと置換します。
+
+=== メソッドの使用方法
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|呼び出すメソッド:|設定する引数:
+
+|指定したテキストや正規表現の一致データをすべて検索して置換します。
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~findreplaceall.html[FindReplaceAll]
+|
+* `criteria` 
+
+* `replacementText` 
+
+* `spanToSearch` (オプション) 
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+Example
+TextSearchCriteria tsc = new TextSearchCriteria(
+    "text-to-find", // text to search for
+    false, // whole word only
+    false, // is case sensitive
+    false // search backwards
+);
+// find and replace one occurrence
+this.xamSyntaxEditor1.Document.FindReplaceAll(
+    tsc, // search criteria
+    "text-for-replace" // new text to replace with
+);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' text to search for
+' whole word only
+' is case sensitive
+' search backwards
+Dim tsc As New TextSearchCriteria("text-to-find", False, False, False)
+' find and replace one occurrence
+' search criteria
+' new text to replace with
+Me.xamSyntaxEditor1.Document.FindReplaceAll(tsc, "text-for-replace")
+----
+
+[[_Ref329074326]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-working-with-snapshots.html[スナップショットの操作]
+|このトピックでは、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshot_members.html[TextDocumentSnapshot] クラスと link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocumentsnapshotscanner_members.html[TextDocumentSnapshotScanner] クラスの機能を紹介します。
+
+|====

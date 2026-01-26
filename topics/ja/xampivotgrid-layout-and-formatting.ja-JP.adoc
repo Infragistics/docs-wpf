@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-layout-and-formatting",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Formatting","Grids","How Do I","Layouts"],
+    "guid": "336286a5-e0a0-466f-b90a-9a2f6baafa9e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.1362873Z"
+}
+|metadata|
+////
+
+= レイアウトとフォーマット
+
+=== 概要
+
+xamPivotGrid™ コントロールには、表示されるデータのレイアウトとフォーマットを指定するためのさまざまな方法があります。
+
+=== トピック
+
+xamPivotGrid™ のレイアウトとフォーマットに関する詳しい情報については、次のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-us-compact-layout.html[コンパクト レイアウト]
+|xamPivotGrid の CompactLayout 機能は、ヘッダーのツリー構造を効果的に切り取り、重要な情報が表示されるようにスペースを解放します。このトピックはこの機能の使用方法について説明します。
+
+| link:xampivotgrid-customizing-cells-with-templates.html[テンプレートを使用したセルのカスタマイズ]
+|xamPivotGrid コントロールでは、データ セルとヘッダー セルにカスタム DataTemplates を指定できます。セルの階層やレベルなどに基づいて、さまざまなセルにさまざまなテンプレートを指定できます。
+
+| link:xampivotgrid-us-conditional-formating.html[条件フォーマッティング]
+|xamPivotGrid コントロールでは、いくつかの特別な特性を持つ CellControlAttached イベントによって値に基づいた (条件) フォーマッティングを実行することができます。このトピックでは、この機能を活用する方法とコード例について説明しています。
+
+| link:xampivotgrid-us-column-resizing.html[列サイズの変更]
+|xamPivotGrid コントロールによって、ユーザーは列の幅を変更できます。このリサイズ動作は、多くのプロパティおよび一部のイベントで簡単にカスタマイズできます。
+
+|====

@@ -1,0 +1,113 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-iterate-through-the-records-collection",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "{9A0AF8B1-C486-43BD-8A16-3EA0A8919E51}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2339999Z"
+}
+|metadata|
+////
+
+= レコード コレクションで繰り返し
+
+
+
+コントロールの DataPresenter ファミリーは、ルート レベルの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] または link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyrecord.html[GroupByRecord] オブジェクトを含む link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~records.html[Records] コレクションを公開します。各 DataRecord オブジェクトおよび GroupByRecord オブジェクトは、その子レコードを含む link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~childrecords.html[ChildRecords] コレクションを公開します。再帰メソッドを使用してレコードのネストされた構造で反復できますが、遭遇する可能性があるさまざまなタイプのレコードを理解しておく必要があります。
+
+== GroupByRecord
+
+GroupByRecord オブジェクトは、レコードのグループ化を表します。
+
+各 GroupByRecord オブジェクトは、DataRecord objects または GroupByRecord オブジェクトのいずれかを含む (両方ではない) ことができる ChildRecords コレクションを公開します。
+
+== DataRecord
+
+DataRecord オブジェクトは、ユーザーのデータ ソースでデータ項目を表します。たとえば、Customer 項目のコレクションにバインドしている場合、各 DataRecord オブジェクトはユーザーのコレクションで単一の Customer 項目を表します。
+
+各 DataRecord オブジェクトは、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.expandablefieldrecord.html[ExpandableFieldRecord] オブジェクトを含む ChildRecords コレクションを公開します。
+
+== ExpandableFieldRecord
+
+ExpandableFieldRecord オブジェクトは、オブジェクトのネストされたコレクションを返すユーザーのデータ項目のプロパティを表します。たとえば、Orders コレクションを公開する顧客データ項目のコレクションにバインドしている場合、ExpandableFieldRecord オブジェクトは Orders コレクション プロパティを表します。
+
+各 ExpandableFieldRecord オブジェクトは、DataRecord オブジェクトを含む ChildRecords コレクションを公開します。
+
+以下のコード例は、レコード コレクションで反復する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+'以下のコード行を使用して IterateRecords メソッドを呼び出すことができます： 
+'IterateRecords(Me.xamDataPresenter1.Records)
+Public Sub IterateRecords(ByVal records As RecordCollectionBase) 
+    For Each rec As Record In records 
+        If rec.RecordType = RecordType.GroupByField OrElse rec.RecordType = RecordType.GroupByFieldLayout Then 
+            Dim groupRecord As GroupByRecord = DirectCast(rec, GroupByRecord) 
+            'TODO: レコードでグループを処理するためのロジックを追加します
+            If groupRecord.HasChildren Then 
+                IterateRecords(groupRecord.ChildRecords) 
+            End If          
+        ElseIf rec.RecordType = RecordType.DataRecord Then 
+            Dim dataRecord As DataRecord = DirectCast(rec, DataRecord) 
+            'TODO: データ レコードを処理するためのロジックを追加します
+            If dataRecord.HasChildren Then 
+                IterateRecords(dataRecord.ChildRecords) 
+            End If 
+        ElseIf rec.RecordType = RecordType.ExpandableFieldRecord Then 
+            Dim expandableRecord As ExpandableFieldRecord = DirectCast(rec, ExpandableFieldRecord) 
+            'TODO: 拡張可能なフィールド レコードを処理するためのロジックを追加します
+            If expandableRecord.HasChildren Then 
+                IterateRecords(expandableRecord.ChildRecords) 
+            End If 
+        End If 
+    Next
+End Sub
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+//以下のコード行を使用して IterateRecords メソッドを呼び出すことができます： 
+//IterateRecords(this.xamDataPresenter1.Records);
+public void IterateRecords(RecordCollectionBase records)
+{
+    foreach (Record rec in records)
+    {
+        if (rec.RecordType == RecordType.GroupByField || rec.RecordType == RecordType.GroupByFieldLayout)
+        {
+            GroupByRecord groupRecord = (GroupByRecord)rec;
+            //TODO: レコードでグループを処理するためのロジックを追加します
+            if (groupRecord.HasChildren)
+                IterateRecords(groupRecord.ChildRecords);
+        }
+        else if (rec.RecordType == RecordType.DataRecord)
+        {
+            DataRecord dataRecord = (DataRecord)rec;
+            //TODO: データ レコードを処理するためのロジックを追加します
+            if (dataRecord.HasChildren)
+                IterateRecords(dataRecord.ChildRecords);
+        }
+        else if (rec.RecordType == RecordType.ExpandableFieldRecord)
+        {
+            ExpandableFieldRecord expandableRecord = (ExpandableFieldRecord)rec;
+            //TODO: 拡張可能なフィールド レコードを処理するためのロジックを追加します
+            if (expandableRecord.HasChildren)
+                IterateRecords(expandableRecord.ChildRecords);
+        }
+    }
+}
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]
+
+link:xamdatapresenter-add-items-manually-to-a-datapresenter-control.html[項目を手動で DataPresenter コントロールに追加]

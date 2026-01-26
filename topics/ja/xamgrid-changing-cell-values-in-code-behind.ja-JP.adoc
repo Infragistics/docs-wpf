@@ -1,0 +1,49 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-changing-cell-values-in-code-behind",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids"],
+    "guid": "{85A0098B-D4B5-4805-911E-B5DEE0C0C458}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9301736Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= コード ビハインドでセル値を変更
+
+xamGrid コントロールによって、行の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.rowbase~data.html[Data] プロパティを使用して、そのセルの編集ができます。このプロパティは行がバインドされるデータ項目を返します。セルの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.cell~value.html[Value] プロパティを使用してセルを個々に編集しようとしないで下さい。これは読み取り専用です。xamGrid の行に反映される変更に対して、データ項目は INotifyPropertyChanged インターフェイスを実装する必要があります。さらに、データ項目をコレクションから追加および削除することを予定している場合、反映される変更に関して INotifyCollectionChanged インターフェイスを実装する必要があります。
+
+以下のコードは、xamGrid の行からデータにアクセスし、データ フィールドを変更する方法を示します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim row As Row = Me.xamGrid1.Rows(0)
+Dim product As Product = TryCast(row.Data, Product)
+product.ProductName = "Ice Cream"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+Row row = this.xamGrid1.Rows[0];
+Product product = row.Data as Product;
+product.ProductName = "Ice Cream";
+----
+
+== 関連トピック
+
+link:xamgrid-editing-data-in-a-template-column.html[テンプレート列でデータを編集]
+
+link:xamgrid-editing-data.html[データの編集]
+
+link:xamgrid-validating-data.html[データの検証]
+
+link:xamgrid-using-editing-events-to-create-a-custom-editor.html[編集イベントを使用してカスタム エディターを作成]

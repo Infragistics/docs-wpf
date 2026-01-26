@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-map-elements",
+    "controlName": ["xamMap"],
+    "tags": [],
+    "guid": "{44A395EB-B7C1-4DCC-AD77-2F65569D683F}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2422726Z"
+}
+|metadata|
+////
+
+= マップ要素の表示
+
+MapElement オブジェクトは、xamMap の Shapefile から各形状を表します。たとえば、アメリカ合衆国の形状を定義する Shapefile は、州を表す各 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement.html[MapElement] オブジェクトでマップを作成します。
+
+Shapefile から作成されたマップ エレメントに加えて、固有のマップ エレメントを定義して xamMap でレイヤーに追加することができます。これにより柔軟性と使いやすさが向上します。このように固有の図形や記号を追加することができるからです。
+
+MapElement に加えて、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.symbolelement.html[SymbolElement]、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.pathelement.html[PathElement]、および link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.surfaceelement.html[SurfaceElement] の 3 つの派生タイプを追加することができます。
+
+*パス 要素*
+
+パス要素は、xamMap で線を定義するために使用されます。記号要素と同様に、起点を提供する必要があります。違いは線の 2 つの終点を提供しなければならないところです。詳細については、 link:xamwebmap-add-path-element.html[パス 要素の追加]を参照してください。
+
+*表面要素*
+
+表面エレメントは xamMap でアウトラインを表します。これにより固有の図形を定義できることから高い柔軟性を提供することが可能です。2 次元空間で図形を表す点のコレクションを提供する必要があります。アウトラインまたはネストされたアウトラインのグループを持つことができます。詳細については、 link:xamwebmap-add-surface-element.html[表面要素の追加]を参照してください。
+
+*記号要素*
+
+記号要素は重要な点を表すために使用できます。記号要素には link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapsymboltype.html[MapSymbolType] 列挙型によって表される事前に定義された図形があります。link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.symbolelement~symboltype.html[SymbolType] プロパティをマップ記号のタイプのひとつに設定し、記号要素を表示するために起点の値を link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapelement~symbolorigin.html[SymbolOrigin] プロパティに提供します。詳細については、 link:xamwebmap-add-symbol-element.html[記号要素の追加]を参照してください。
+
+提供しなければならない起点はマップ空間で x 座標と y 座標を表す点の値です。詳細については、 link:xamwebmap-add-symbol-element.html[記号要素の追加]を参照してください。
+
+image::images/XamMap_About_Map_Elements_01.png[]
+
+このセクションは、Map 要素に関する重要な概念およびタスクベース情報を提供します。
+
+* link:xamwebmap-add-symbol-element.html[記号要素の追加]
+* link:xamwebmap-add-path-element.html[パス要素の追加]
+* link:xamwebmap-add-surface-element.html[表面要素の追加]
+* link:xamwebmap-add-image-using-map-elements.html[マップ要素を使用した画像の追加]
+* link:xamwebmap-set-custom-format-string.html[カスタムのフォーマット文字列を設定]

@@ -1,0 +1,99 @@
+﻿////
+|metadata|
+{
+    "name": "xampropertygrid-conf-brush-resources",
+    "tags": ["How Do I","Layouts"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "9b8c21eb-87b9-4526-9642-ce76d3dd40ff",
+    "buildFlags": [],
+    "createdOn": "2016-11-23T10:40:36.3648458Z"
+}
+|metadata|
+////
+
+= Configuring Brush Resources (xamPropertyGrid)
+
+=== Purpose
+
+This topic explains how to configure the brush resources panel of the brush editor.
+
+=== Required background
+
+The following topics are prerequisites to understanding this topic:
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xampropertygrid-features-overview.html[Features Overview (xamPropertyGrid)]
+|This topic explains the features supported by the control from developer perspective.
+
+| link:xampropertygrid-visual-elements.html[Visual Elements (xamPropertyGrid)]
+|This topic provides an overview of the visual elements of the control.
+
+|====
+
+=== In this topic
+
+This topic contains the following sections:
+
+* <<_RefLink01, Overview >>
+* <<_RefLink02, Customizing Brush Resources >>
+* <<_RefLink03, Get Notified When a Brush is Selected >>
+* <<_RefLink04, Related Content >>
+
+[[_RefLink01]]
+=== Overview
+
+When scrolling the properties list the property editors are constantly coming in and out of view. When a brush type property editor is coming into view the link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~brushresourcesloading_ev.html[BrushResourcesLoading] event is raised. You have the ability to customize the brush editor's user interface in the event's handler using the event arguments object of type link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.brushresourceseventargs.html[BrushResourcesEventArgs]. This arguments object also include a reference to the link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridpropertyitem.html[PropertyGridPropertyItem] associated with the brush property coming into view.
+
+[[_RefLink02]]
+=== Customizing Brush Resources
+
+image:images/xamPropertyGrid_Brush_Resources.png[] +
+
+As visible on the picture above the brush resources panel divides the brushes in two groups – "Local Brush Resources" and "System Brush Resources". You can customize the brush entries in these groups by either adding your own brush definitions and/or including the system brushes.
+
+To include the system brushes you need to set the link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.brushresourceseventargs~automaticallyincludesystembrushresources.html[AutomaticallyIncludeSystemBrushResources] boolean property to true and this will include all colors from the current Windows theme in the "System Brush Resources" group.
+
+To add your own brushes to one of these two groups use the link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.brushresourceseventargs~brushresources.html[BrushResources] property and add objects of type link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.primitives.propertygridbrushresourceitem.html[PropertyGridBrushResourceItem]. This type contains all information related to the brush resource entry – the brush itself, the brush name, the brush group and a Tag property of type object used to store arbitrary information.
+
+.Note
+[NOTE]
+====
+If you do not add brush resources items to the `BrushResources` property and you do not set the `AutomaticallyIncludeSystemBrushResources` property to true, the button for showing the brush resources panel will not be visible.
+====
+
+[[_RefLink03]]
+=== Get Notified When a Brush is Selected
+
+When the user selects a brush entry from the brush resources list a link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~BrushResourceSelected_EV.html[BrushResourceSelected] event is raised. The event arguments object of this event provides the following properties:
+
+* link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.BrushResourceEventArgs~PropertyItem.html[PropertyItem] – this property of type `PropertyGridPropertyItem` is associated with the brush property whose brush has changed.
+
+* link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.BrushResourceEventArgs~BrushResource.html[BrushResource] – this property of type `PropertyGridBrushResourceItem` comprises all information related to the selected brush entry.
+
+[[_RefLink04]]
+== Related Content
+
+=== Topics
+
+The following topics provide additional information related to this topic.
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xampropertygrid-conf-editors.html[Configuring Editors Definitions (xamPropertyGrid)]
+|This topic explains how to customize the editors used for editing the properties' values.
+
+| link:xampropertygrid-conf-properties-filtering.html[Properties List Filtering (xamPropertyGrid)]
+|This topic explains how to configure the filtering of the control's properties list.
+
+| link:xampropertygrid-conf-properties-sorting.html[Properties List Sorting (xamPropertyGrid)]
+|This topic explains how to provide logic for custom sorting of the properties list.
+
+| link:xampropertygrid-conf-templateselector.html[Configuring Template Selector for Editor Definitions (xamPropertyGrid)]
+|This topic explains how create custom logic for assigning editing template on an editor definition.
+
+|====

@@ -1,0 +1,141 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-styling-expansion-indicators",
+    "tags": ["Styling"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "8c7ef67e-fbe6-4456-842a-95d136246bcf",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:35:56.1048912Z"
+}
+|metadata|
+////
+
+= 展開インジケーターのスタイル設定 (xamTreeGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールの展開インジケーターをスタイル設定する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-features-overview.html[機能の概要 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref410649472, 展開インジケーターのスタイル設定 >>
+* <<_Ref410649479, 関連コンテンツ >>
+
+[[_Ref410649472]]
+== 展開インジケーターのスタイル設定
+
+=== 展開インジケーターのスタイル設定の概要
+
+_xamTreeGrid_   コントロールの展開インジケーターは、`ExpansionIndicator` 型をターゲットとするカスタム スタイルを作成することでスタイル設定できます。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|ターゲットの種類
+
+|[[_Hlk356484826]] 
+
+展開インジケーターのスタイル設定
+|展開インジケーターを変更するためのカスタム テンプレートを設定します
+| link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.expansionindicator.html[ExpansionIndicator]
+
+|====
+
+=== コード例
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Page
+  …
+  xmlns:igWindows="http://infragistics.com/Windows"
+  …>
+  <Page.Resources>
+    <ResourceDictionary>
+      <Style TargetType="{x:Type igWindows:ExpansionIndicator}">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type igWindows:ExpansionIndicator}">
+              <Grid>
+                <Path
+                  x:Name="ArrowPath"
+                  Width="10"
+                  Height="10"
+                  Stretch="Fill"
+                  Stroke="#FF00FF00"
+                  StrokeThickness="1"
+                  Fill="{Binding RelativeSource={RelativeSource Self}, Path=Stroke, Mode=OneWay}"
+                  Data="M8,5 L8,14 L14,9.5 z"
+                  Visibility="Visible" />
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                  <Trigger.Setters>
+                    <Setter TargetName="ArrowPath" Property="Stroke" Value="#FFFF0000" />
+                    <Setter TargetName="ArrowPath" Property="RenderTransform">
+                      <Setter.Value>
+                        <RotateTransform CenterX="5" CenterY="5" Angle="90" />
+                      </Setter.Value>
+                    </Setter>
+                  </Trigger.Setters>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.Setters>
+                    <Setter TargetName="ArrowPath" Property="Stroke" Value="#FFFFFF00"/>
+                    <Setter TargetName="ArrowPath" Property="Cursor" Value="Hand"/>
+                  </Trigger.Setters>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </ResourceDictionary>
+  </Page.Resources>
+  …
+</Page>
+----
+
+以下のスクリーンショットは、前述のコードの結果を示しています。
+
+image::images/xamTreeGrid_10.png[]
+
+[[_Ref410649479]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-styling-tree-connector-lines.html[ツリー コネクタ線のスタイル設定 (xamTreeGrid)]
+|このトピックでは、コントロールのツリー コネクタ線をスタイル設定する方法を説明します。
+
+|====

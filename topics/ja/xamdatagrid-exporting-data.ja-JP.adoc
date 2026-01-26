@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-exporting-data",
+    "tags": [],
+    "controlName": ["xamDataGrid"],
+    "guid": "03c6aad8-874f-4e46-be13-44dc86d6cad0",  
+    "buildFlags": [],
+    "createdOn": "2014-04-03T10:52:30.5858577Z"
+}
+|metadata|
+////
+
+= データのエクスポート (xamDataGrid)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックは、 _xamDataGrid_™ のデータを複数のファイル形式にエクスポートする方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-exporting-to-excel.html[Excel へエクスポート]
+|このトピックのグループは、 _xamDataGrid_ のデータを Microsoft® Excel® ファイル形式にエクスポートする方法を説明します。
+
+| link:xamdatapresenter-exporting-to-word.html[Word へのエクスポート]
+|このトピックのグループは、 _xamDataGrid_ のデータを Microsoft Word® ファイル形式にエクスポートする方法を説明します。
+
+|====

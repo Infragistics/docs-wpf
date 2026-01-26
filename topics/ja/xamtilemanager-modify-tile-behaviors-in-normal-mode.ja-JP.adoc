@@ -1,0 +1,113 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-modify-tile-behaviors-in-normal-mode",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I"],
+    "guid": "796a00c6-1509-48a1-b94c-322ce339be11",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6943724Z"
+}
+|metadata|
+////
+
+= 通常モードでタイル動作を変更
+
+xamTileManager は、通常の状態でタイルの動作とレイアウトを変更できる link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~normalmodesettings.html[NormalModeSettings] プロパティを公開しています。link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings.html[NormalModeSettings] オブジェクトは以下のプロパティを公開します。
+
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~allowtiledragging.html[AllowTileDragging]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~allowtilesizing.html[AllowTileSizing]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~explicitlayouttilesizebehavior.html[ExplicitLayoutTileSizeBehavior]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~horizontaltileareaalignment.html[HorizontalTileAreaAlignment]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~maxcolumns.html[MaxColumns]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~maxrows.html[MaxRows]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~mincolumns.html[MinColumns]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~minrows.html[MinRows]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~repositionanimation.html[RepositionAnimation]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~resizeanimation.html[ResizeAnimation]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~shouldanimate.html[ShouldAnimate]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~showalltiles.html[ShowAllTiles]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~tileconstraints.html[TileConstraints]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~tilelayoutorder.html[TileLayoutOrder]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings~verticaltileareaalignment.html[VerticalTileAreaAlignment]
+
+xamTileManager は NormalModeSettings プロパティを自動的に初期化しません。コードで NormalModeSettings プロパティによって公開されている任意のプロパティを設定したい場合、xamTileManager の NormalModeSettings プロパティを NormalModeSettings オブジェクトのインスタンスに設定する必要があります。
+
+以下のコード例は、通常モードでタイルの動作を変更する方法を示しています。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1">
+    <ig:XamTileManager.NormalModeSettings>
+        <ig:NormalModeSettings 
+            AllowTileDragging="Swap" 
+            AllowTileSizing="Individual" 
+            MaxColumns="2" 
+            MaxRows="2" />
+    </ig:XamTileManager.NormalModeSettings>
+    <!--ここに Tiles を追加します-->
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+...
+If Me.xamTileManager1.MaximizedModeSettings Is Nothing Then
+    Me.xamTileManager1.NormalModeSettings = New NormalModeSettings()
+End If
+Me.xamTileManager1.NormalModeSettings.AllowTileDragging = _
+    AllowTileDragging.Swap
+Me.xamTileManager1.NormalModeSettings.AllowTileSizing = _
+    AllowTileSizing.Individual
+Me.xamTileManager1.NormalModeSettings.MaxColumns = 2
+Me.xamTileManager1.NormalModeSettings.MaxRows = 2
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+...
+if (this.xamTileManager1.NormalModeSettings == null)
+{
+    this.xamTileManager1.NormalModeSettings = new NormalModeSettings();
+}
+this.xamTileManager1.NormalModeSettings.AllowTileDragging =
+    AllowTileDragging.Swap;
+this.xamTileManager1.NormalModeSettings.AllowTileSizing =
+    AllowTileSizing.Individual;
+this.xamTileManager1.NormalModeSettings.MaxColumns = 2;
+this.xamTileManager1.NormalModeSettings.MaxRows = 2;
+...
+----
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

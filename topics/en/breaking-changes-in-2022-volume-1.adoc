@@ -1,0 +1,55 @@
+﻿////
+|metadata|
+{
+    "name": "breaking-changes-in-2022-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "",
+    "buildFlags": [],
+    "createdOn": ""
+}
+|metadata|
+////
+
+= Breaking Changes in 2022 Volume 1
+
+== Breaking Changes Summary
+
+The following summarizes the breaking changes of the {ProductName} 2022 Volume 1 Release:
+
+== Charts
+
+This release introduced a few improvements and modifications to the default fonts as well as a change to the badge sizing for the `{CategoryChartName}`, `{FinancialChartName}`, and `{DataChartName}`.
+
+=== Axis Labels
+
+* Changed the default `FontFamily` to "Verdana, Arial, sans-serif" from "Verdana".
+* Changed the default `FontSize` to 13 from 11.
+* Changed the default text color to #FF4E4E4E from #FF666666.
+
+=== Axis Titles
+
+* Changed the default `FontFamily` to "Verdana, Arial, sans-serif" from "Verdana".
+* Changed the default `FontSize` to 13 from 11.
+* Changed the default text color to #FF4E4E4E from #FF666666.
+
+=== Chart Title and Subtitle
+
+* Changed the default `FontFamily` of the title and subtitle to "Verdana, Arial, sans-serif" from "Verdana".
+* Changed the default text color of the title and subtitle to #FF4E4E4E from #FF666666.
+
+=== Legend Items
+
+* Changed the default `FontFamily` to "Verdana, Arial, sans-serif" from "Verdana".
+* Changed the default `FontSize` to 13 from 11.
+* Changed the default text color to #FF4E4E4E from #FF666666.
+
+=== Legend Item Badge Templates
+
+* Changed the height and width of the markers in the legend item badge to 8px from 12px.
+
+=== Legend Titles
+
+* Changed the default `FontFamily` to "Verdana, Arial, sans-serif" from "Verdana".
+* Changed the default `FontSize` to 20 from 11.
+* Changed the default text color to #FF4E4E4E from #FF666666.

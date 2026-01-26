@@ -1,0 +1,239 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticee-configuring-multiple selection",
+    "tags": ["Getting Started","How Do I","Selection"],
+    "controlName": ["xamMultiColumnComboEditor"],
+    "guid": "a242b5db-c515-47c6-9ad9-b59d20c71689",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6322969Z"
+}
+|metadata|
+////
+
+= 複数選択の構成 (xamMultiColumnComboEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamMultiColumnComboEditor_™ コントロールの複数選択オプションを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticce-adding.html[xamMultiColumnComboEditor をページに追加]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールをアプリケーションに追加し、いくつかのプロパティの使用方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref381977598,複数選択構成の概要>>
+* <<_Enabling_Multiple_Items_selection,複数項目選択を有効にする>>
+* <<_Ref382690795,項目のチェックボックスの表示を有効にする>>
+* <<_Ref382690730,選択された値のデリミターの構成>>
+* <<_Ref382690806,関連コンテンツ>>
+
+** <<_Ref381977623,トピック>>
+
+[[_Ref381977598]]
+== 複数選択構成の概要
+
+=== 複数選択構成の概要表
+
+以下の表は、 _xamMultiColumnComboEditor_   コントロールの複数選択の構成可能な要素について簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Enabling_Multiple_Items_selection,複数項目選択を有効にする>>
+|複数選択を有効にして、複数の _xamMultiColumnComboEditor_ 項目を同時に選択できるようにします。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+
+|<<_Ref381977332,項目のチェックボックスを有効にする>>
+|_xamMultiColumnComboEditor_ 項目のチェックボックスの表示を有効にして、複数選択ができるようにします。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility]
+
+|<<_Ref382690730,選択された値のデリミターの構成>>
+|選択された値のデリミター記号をカスタマイズします。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~multiselectvaluedelimiter.html[MultiSelectValueDelimiter]
+
+|====
+
+[[_Enabling_Multiple_Items_selection]]
+== 複数項目選択を有効にする
+
+=== 概要
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection] プロパティで  _xamMultiColumnComboEditor_   の複数項目選択を有効にします。
+
+キーボードの `CTRL` キーを押しながらマウスの左ボタンをクリック、または項目のチェックボックスをチェックし、複数の  _xamMultiColumnComboEditor_   項目を選択します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|複数項目選択を有効にする
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+|`true`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamMultiColumnComboEditor_   がどのように動作するかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+| _true_ 
+
+|====
+
+image::images/MCC_Configuring_Multiple_Selection.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor x:Name="MultiColumnComboEditor"
+                              ItemsSource="{Binding Path=Products}" 
+                              Height="30" Width="300"
+                              AutoGenerateColumns="False"
+                              DisplayMemberPath="ProductName"
+                              AllowMultipleSelection="True">
+    <ig:XamMultiColumnComboEditor.Columns>
+        <ig:TextComboColumn Key="ProductName"/>
+        <ig:TextComboColumn Key="UnitsInStock"/>
+    </ig:XamMultiColumnComboEditor.Columns>
+</ig:XamMultiColumnComboEditor>
+----
+
+[[_Ref381977332]]
+[[_Ref382690795]]
+== 項目のチェックボックスの表示を有効にする
+
+=== 概要
+
+項目のチェックボックスをチェックし、 _xamMultiColumnComboEditor_   を複数選択します。そのためには、項目のチェックボックスが表示されている必要があります。
+
+_xamMultiColumnComboEditor_   link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility] プロパティで項目のチェックボックスの表示を設定します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|項目のチェックボックスで選択を有効にする
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility]
+|`Visible`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamMultiColumnComboEditor_   の外観がどのようになるか示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection]
+| _True_ 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility]
+| _Visible_ 
+
+|====
+
+image::images/MCC_Configuring_Multiple_Selection_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor x:Name="MultiColumnComboEditor"
+                              ItemsSource="{Binding Path=Products}" 
+                              Height="30" Width="300"
+                              AutoGenerateColumns="False"
+                              DisplayMemberPath="ProductName"
+                              AllowMultipleSelection="True"
+                              CheckBoxVisibility="Visible"
+                              MultiSelectValueDelimiter="\">
+    <ig:XamMultiColumnComboEditor.Columns>
+        <ig:TextComboColumn Key="ProductName"/>
+        <ig:TextComboColumn Key="UnitsInStock"/>
+    </ig:XamMultiColumnComboEditor.Columns>
+</ig:XamMultiColumnComboEditor>
+----
+
+[[_Ref381977616]]
+
+[[_Ref382690730]]
+== 選択された値のデリミターの構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+`MultiSelectValueDelimiter` プロパティで、選択された値のデリミターをカスタム シンボルに構成します。
+
+複数選択が有効な場合、選択された値はデフォルトでコンマ区切りの文字列として表示されます。
+
+=== プロパティ設定
+
+以下の表は、任意の動作とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|選択された値のデリミターのカスタマイズ
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~multiselectvaluedelimiter.html[MultiSelectValueDelimiter]
+|`char`
+
+|====
+
+[[_Ref382690806]]
+== 関連コンテンツ
+
+[[_Ref381977623]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticee-user-selection-interactions-and-usability.html[ユーザー選択インタラクションと操作性]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールのユーザー選択インタラクションについて説明します。
+
+| link:xammulticee-performing-selection-programmatically.html[プログラムによる選択の実行]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールの選択をプログラムで実行する方法を説明します。
+
+|====

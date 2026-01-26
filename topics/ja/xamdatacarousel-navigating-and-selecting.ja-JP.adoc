@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacarousel-navigating-and-selecting",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{27C444A0-3E33-46C8-B8EA-6C0BE35692DF}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6578847Z"
+}
+|metadata|
+////
+
+= ナビゲーションと選択
+
+
+
+xamDataCarousel™ コントロールを使用しアプリケーションでナビゲーションと選択を実装することに役立つトピックをご覧になるには、以下のリンクをクリックしてください。
+
+* link:xamdata-selection-overview.html[選択の概要]
+* link:xamdata-accessing-records-through-the-recordmanager.html[RecordManager によってレコードにアクセス]
+* link:xamdata-changing-field-record-cell-selection-behavior.html[フィールド、レコード、またはセル選択の動作を変更]
+* link:xamdatapresenter-keyboard-navigation-in-xamdatapresenter.html[xamDataPresenter でのキーボード ナビゲーション]
+* link:xamdata-using-data-presenter-family-commands.html[Data Presenter Family コマンドの使用]
+* link:xamdatapresenter-changing-the-location-of-the-carouselbreadcrumb.html[CarouselBreadcrumb の位置の変更]

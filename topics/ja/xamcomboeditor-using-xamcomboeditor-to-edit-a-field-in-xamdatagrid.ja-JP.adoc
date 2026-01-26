@@ -1,0 +1,173 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-using-xamcomboeditor-to-edit-a-field-in-xamdatagrid",
+    "controlName": ["xamComboEditor"],
+    "tags": ["How Do I"],
+    "guid": "{9CDFEAAE-442F-4193-A0D9-B28AC782FEC3}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1149781Z"
+}
+|metadata|
+////
+
+= xamDataGrid でフィールドを編集するために xamComboEditor を使用
+
+== 始める前に
+
+xamComboEditor を使用して、xamDataGrid の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] 内に項目のドロップダウン リストをエンド ユーザーに提示します。xamDataGrid 内で使用するために xamComboEditor を移植するための推奨されるアプローチは、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.comboboxitemsprovider.html[ComboBoxItemsProvider] オブジェクトをリソースとして作成し、マークアップ拡張を使用して参照することです。このパターンは、xamDataGrid の Field 内で ComboBoxItemsProvider オブジェクトの単一インスタンスを再利用することによりオーバーヘッドを最小限に抑えます。
+
+== 達成すること
+
+Cell 値を編集するために xamComboEditor を使用する xamDataGrid に 非バインド フィールドを追加します。
+
+== 次の手順を実行します
+
+[start=1]
+. 開始の Window タグ内で以下の XML 名前空間宣言を追加します。
+
+*XAML の場合:*
+[source,xaml]
+----
+xmlns:igEditors="http://infragistics.com/Editors" 
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
+----
+
+[start=2]
+. Resources セクションを Window で作成します。
+
+*XAML の場合:*
+[source,xaml]
+----
+<Window.Resources>
+        <!--TODO: ここで ComboBoxItemsProvider を追加します-->
+</Window.Resources>
+----
+
+[start=3]
+. ComboBoxItemsProvider を Resources セクションに追加し、後で参照できるようにキーを指定します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igEditors:ComboBoxItemsProvider x:Key="cbipRatings">
+        <!--TODO: ここで ComboBoxDataItems を追加します-->
+</igEditors:ComboBoxItemsProvider>
+...
+----
+
+[start=4]
+. 5 つの ComboBoxDataItem オブジェクトを ComboBoxItemsProvider オブジェクトの Items コレクションに追加します。
+
+各 ComboBoxDataItem オブジェクトの DisplayText プロパティと Value プロパティを設定することが必要になります。DisplayText プロパティはエンドユーザーに表示するテキストを決定し、Value プロパティは基となるデータ モデルだけでなく Cell の Value プロパティに保存される値を決定します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igEditors:ComboBoxItemsProvider.Items>
+        <igEditors:ComboBoxDataItem DisplayText="5 Stars" Value="5 Stars" />
+        <igEditors:ComboBoxDataItem DisplayText="4 Stars" Value="4 Stars" />
+        <igEditors:ComboBoxDataItem DisplayText="3 Stars" Value="3 Stars" />
+        <igEditors:ComboBoxDataItem DisplayText="2 Stars" Value="2 Stars" />
+        <igEditors:ComboBoxDataItem DisplayText="1 Star" Value="1 Star" />
+</igEditors:ComboBoxItemsProvider.Items>
+...
+----
+
+[start=5]
+. FieldLayout を xamDataGrid に追加します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igDP:XamDataGrid.FieldLayouts>
+        <igDP:FieldLayout>
+            <!--TODO: ここで Fields コレクションのタグを追加します-->
+        </igDP:FieldLayout>
+</igDP:XamDataGrid.FieldLayouts>
+...
+----
+
+[start=6]
+. FieldLayout オブジェクトの Fields コレクションのタグを追加します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igDP:FieldLayout.Fields>
+    <!--TODO: ここでフィールドと非バインド フィールドを追加します-->
+</igDP:FieldLayout.Fields>
+...
+----
+
+[start=7]
+. "unbound" バインディング タイプを持つフィールドを FieldLayout オブジェクトの Fields コレクションに追加します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igDP:Field Name="rating" Label="Rating" BindingType="Unbound">
+    <!--TODO: ここに FieldSettings オブジェクトを追加します-->
+</igDP:Field>
+...
+----
+
+[start=8]
+. FieldSettings オブジェクトを以前の手順で作成した非バインド フィールドに追加します。
+
+Field の EditorType プロパティは、その Field で Cell が編集モードに移る時に使用するエディターを決定します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igDP:Field.Settings>
+        <igDP:FieldSettings EditorType="{x:Type igEditors:XamComboEditor}">
+        <!--TODO: エディター プロパティを設定するには、ここで EditorStyle を追加します-->
+        </igDP:FieldSettings>
+</igDP:Field.Settings>
+...
+----
+
+[start=9]
+. xamComboEditor をターゲットとする Style に FieldSettings オブジェクトの EditorStyle プロパティを設定します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<igDP:FieldSettings.EditorStyle>
+        <Style TargetType="{x:Type igEditors:XamComboEditor}">
+        <!--TODO: エディター プロパティを設定するには、ここで Setters を追加します-->
+        </Style>
+</igDP:FieldSettings.EditorStyle> 
+...
+----
+
+[start=10]
+. xamComboEditor の ItemsProvider プロパティを設定する Setter を追加します。
+
+setter の Value プロパティはマークアップ拡張を使用して、手順 3 で作成した ComboBoxItemsProvider オブジェクトを参照します。
+
+*XAML の場合:*
+[source,xaml]
+----
+...
+<Setter Property="ItemsProvider" Value="{StaticResource cbipRatings}" />
+...
+----
+
+[start=11]
+. プロジェクトを実行して、Orders.xml ファイルにバインドされた Fields とともに、Rating というタイトルが付けられたバインドされていない Field が表示されます。Rating というタイトルが付けられたバインドされていない Field で Cell をクリックして、項目のドロップダウン リストを表示します。以下のスクリーンショットは、xamComboEditor によって提供されたレーティングのドロップダウン リストが付けられた xamDataGrid 内の Cell を示します。
+
+== 関連トピック
+
+link:xamdata-default-editor-types-for-different-data-types.html[異なるデータ タイプのデフォルトのエディター タイプ]
+
+link:xamdatapresenter-embedding-a-xameditor-in-a-field.html[フィールドに xamEditor を組み込む]

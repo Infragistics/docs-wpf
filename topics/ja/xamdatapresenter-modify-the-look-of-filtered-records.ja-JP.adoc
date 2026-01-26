@@ -1,0 +1,78 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-modify-the-look-of-filtered-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Filtering","How Do I"],
+    "guid": "{DCCF2A92-E0DC-4E8F-B828-D9A9D51EE7F6}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2610053Z"
+}
+|metadata|
+////
+
+= フィルターされたレコードの外観を修正
+
+
+
+DataPresenter コントロールは、フィルター条件に一致しないレコードを非表示にします。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filteraction.html[FilterAction] プロパティを Disable または None に設定することによりこの動作を変更できます。FilterAction プロパティを Disable に設定すると、エンドユーザーがフィルターして除外するレコードは無効になりますが表示された状態が続きます。一方、FilterAction プロパティを None に設定すると、レコードがフィルターして除外されたことが視覚的にまったく表れません。この動作によって、エンドユーザーがフィルターして除外するレコードの外観を変更するためにトリガーを使用して自分自身のスタイルを実装することができます。
+
+[NOTE]
+====
+*注:* xamDataCarousel™ コントロールではフィルター レコードとフィルター アイコンを使用できません。ただし、XAML またはプロシージャ コードでフィルター条件を xamDataCarousel に追加してデータをフィルターすることができます。
+====
+
+image::images/xamDataPresenter_Modify_the_Look_of_Filtered_Records.png[]
+
+以下のコード例は、フィルターされたレコードの外観を変更する方法を示します。例のコードが xamDataPresenter コントロールを使用しているとしても、xamDataGrid コントロールを代わりに使用できます。
+
+*XAML の場合:*
+
+----
+<!--スタイルをリソース ディクショナリに追加します-->
+<Style TargetType="{x:Type igDP:DataRecordCellArea}">
+    <Style.Triggers>
+        <Trigger Property="IsFilteredOut" Value="True">
+            <Setter Property="Opacity" Value=".7" />
+        </Trigger>
+    </Style.Triggers>
+</Style>
+...
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings FilterAction="None" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+    <igDP:XamDataPresenter.FieldSettings>
+        <igDP:FieldSettings AllowRecordFiltering="True" />
+    </igDP:XamDataPresenter.FieldSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldLayoutSettings.FilterAction = RecordFilterAction.None
+Me.xamDataPresenter1.FieldSettings.AllowRecordFiltering = True
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldLayoutSettings.FilterAction = RecordFilterAction.None;
+this.xamDataPresenter1.FieldSettings.AllowRecordFiltering = true;
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+
+link:xamdatapresenter-add-filter-conditions.html[フィルター条件の追加]
+
+link:xamdatapresenter-enable-record-filtering.html[レコード フィルタリングを有効にする]
+
+link:xamdatapresenter-modify-the-list-of-operators.html[演算子のリストの修正]

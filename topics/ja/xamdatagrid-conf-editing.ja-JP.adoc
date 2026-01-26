@@ -1,0 +1,86 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-conf-editing",
+    "tags": ["Editing"],
+    "controlName": ["xamDataGrid"],
+    "guid": "bc232cd5-62e6-441a-9a6f-ac35912a0813",  
+    "buildFlags": [],
+    "createdOn": "2015-11-19T10:53:44.4939568Z"
+}
+|metadata|
+////
+
+= 編集動作の構成 (xamDataGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールの編集動作をカスタマイズする方法を説明します。
+
+=== 前提条件
+
+本トピックの理解を深めるために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックのグループは、xamDataGrid コントロールの概要を提供します。
+
+|====
+
+== 編集の構成の概要
+
+=== 編集の構成の概要
+
+このコントロールのデータ プレゼンター群は、編集動作を構成できます。
+
+* ユーザーはセル値を編集できます
+* セルがアクティブなときにユーザーが入力し始めるとセルの編集モードに入ります
+
+=== 編集の構成の概要表
+
+以下の表は、 _xamDataPresenter_   の編集機能の構成可能な要素の概要について説明し、それらを構成するプロパティにマップします。これらのプロパティは、コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldsettings.html[FieldSettings] オブジェクトで使用できます。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な要素|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+セルの編集を有効/無効にする
+|デフォルトでは編集モードが有効ですが、このプロパティを false に設定して無効にできます。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+コントロールが編集をサポートしないデータソースにバインドされた場合、編集はできません。 
+
+====
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowedit.html[AllowEdit]
+
+|keypress でセル編集モードに入る
+|セルがアクティブ化されたときにユーザーがスペースキーまたは BackSpace キーを押下した際に自動的に編集モードに入ることができます。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~isautoeditmodeenabled.html[IsAutoEditModeEnabled]
+
+|====
+
+== 関連トピック
+
+このトピックに関連する追加情報については、以下のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-editing-data.html[Editing Data (xamDataGrid)]
+|このトピックのグループは、xamDataGrid でフィールド エディターを定義し、カスタマイズする方法を説明します。
+
+|====

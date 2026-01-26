@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-working",
+    "tags": [],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "83985005-38b9-4a0d-aa2c-f2f14ef37f71",  
+    "buildFlags": [],
+    "createdOn": "2015-07-30T16:11:37.7596699Z"
+}
+|metadata|
+////
+
+= xamBusyIndicator の作業
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションのトピックでは、コントロールをプログラムによって管理する詳しい方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-animations.html[アニメーション]
+|このトピックでは、 _xamBusyIndicator_ コントロールで使用可能なビルド済みのアニメーションについて簡単に説明します。
+
+| link:xambusyindicator-applying-custom-animation.html[カスタム アニメーションの適用]
+|このトピックでは、 _xamBusyIndicator_ コントロールにカスタム アニメーションを適用する方法について説明します。
+
+| link:xambusyindicator-handlingevents.html[イベント]
+|このトピックでは、 _xamBusyIndicator_ コントロールのイベントについて説明します。
+
+|====

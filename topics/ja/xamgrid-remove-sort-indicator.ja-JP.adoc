@@ -1,0 +1,65 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-remove-sort-indicator",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Sorting"],
+    "guid": "{4B83392A-D0D5-410B-BF55-E0EB7C7F5F61}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6811869Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 並べ替えインジケーターの削除
+
+xamGrid コントロールの並べ替えインジケーターは、特定の列の並べ替えの方向を示します。ほとんどの状況では、並べ替えインジケーターが上を指している場合は列が昇順で並べ替えることを示し、並べ替えインジケーターが下を指している場合は列が降順で並べ替えることを示します。ただし、並べ替えインジケーターをグリッドに表示させたくない状況もあります。これは xamGrid コントロールで簡単に設定できます。
+
+以下のコードは、並べ替えインジケーターを並べ替えた列から削除する方法を示しています。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid.SortingSettings>
+   <ig:SortingSettings ShowSortIndicator="/>
+</ig:XamGrid.SortingSettings>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.SortingSettings.ShowSortIndicator = False
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.SortingSettings.ShowSortIndicator = false;
+----
+
+以下の画像は並べ替えインジケーターなしで ProductName 列で並べ替える xamGrid を示します。
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Remove_Sort_Indicator_01.png[Sorting]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Remove_Sort_Indicator_01.png[Sorting]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-sorting.html[並べ替え]
+
+link:xamgrid-multi-column-sorting.html[複数列の並べ替え]
+
+link:xamgrid-disable-sorting-on-certain-columns.html[特定の列の並べ替えを無効にする]
+
+link:xamgrid-sorting-events.html[並べ替えイベント]
+
+link:xamgrid-custom-sort.html[カスタム並べ替え]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

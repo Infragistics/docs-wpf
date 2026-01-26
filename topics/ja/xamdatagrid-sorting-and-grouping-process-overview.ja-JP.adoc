@@ -1,0 +1,104 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-sorting-and-grouping-process-overview",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Getting Started","Grouping","Sorting"],
+    "guid": "9b51be52-3019-4305-8309-4933e800af25",  
+    "buildFlags": [],
+    "createdOn": "2013-02-26T13:58:19.5161465Z"
+}
+|metadata|
+////
+
+= 並べ替えとグループ化プロセスの概要 (xamDataGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、並べ替えやグループ化処理で link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatagrid.html[ _xamDataGrid™_  ]  __コントロール__  __   の内部比較演算子で実行されるアクションについて説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックは、 _xamDataGrid_ コントロールとコントロールが構成されるさまざまな要素を紹介します。
+
+| link:xamdatagrid-grouping-overview.html[グループ化の概要]
+|このトピックは、xamDataGrid™ のグループ化機能の概要を提供します。この機能は、ユーザーがデータをより読みやすくナビゲーションしやすくグループ化できます。
+
+| link:xamdatagrid-sorting-overview.html[並べ替え概要]
+|このトピックは、xamDataGrid の並べ替え機能の概要を提供します。xamDataGrid は、並べ替えを表示および処理します。ユーザーは、列ヘッダーをクリックすることによって列をソートでき、これによって希望の順序でグリッド データを表示できます。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションが含まれます。
+
+* <<_Ref340243334, 並べ替えおよびグループ化プロセスの概要 >>
+
+* <<_Ref335407927, 関連コンテンツ >>
+
+[[_Ref340243334]]
+== 並べ替えとグループ化プロセスの概要
+
+=== 並べ替えとグループ化プロセス
+
+デフォルトで、最適化された内部比較演算子はすべての  _xamDataGrid_   link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] を並べ替えます。このトピックの残りでは、13.1 で追加されたコントロールの最適化についての情報とプロセスの詳細を提供します。
+
+注:
+
+[NOTE]
+====
+以下のプロセスは、`FieldLayoutSettings` の `GroupByEvaluationMode` プロパティが `UseCollectionView,`、あるいは `SortEvaluationMode` プロパティが`Manual` または `UseCollectionView`に設定されている場合使用できません。
+====
+
+内部比較は以下を実行します。
+
+[start=1]
+. 個別フィールド比較演算子を作成し、コンストラクター内の他の関係する情報をキャッシュします。フィールド比較演算子は、以下の順序で配列内に並べられます。
+
+.. まず、`IGroupByEvaluator` link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~sortcomparer.html[SortComparer] オブジェクトを使用して link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~sortedfields.html[SortedFields] コレクションのグループ フィールドすべて。いずれかが `Null` の場合、フィールドは `SortComparer` またはデフォルト比較演算子を使用します。
+.. 次に、フィールドの `SortComparer` またはデフォルト比較演算子のどちらかを使用した `SortedFields` コレクションのグループ フィールド以外すべて。
+.. 最後に、最後に再び追加されているコレクションに 1 度のみ表示される (手順 b では追加されません) `SortedFields` コレクションのグループ化フィールド。今回は、`IGroupByEvaluator.SortComparer` を無視し、代わりにフィールドの `SortComparer` またはデフォルト比較演算子を使用します。
+.. 手順 b または手順 c のフィールド演算子のいずれかが必要ない場合 (`IGroupByEvaluator.SortComparer` が `Null` を返します)、これらの比較演算子は 2 度目は配列に追加されません。代わりに、コントロールは他の配列を除外して最適化し、並べ替え時の必要ないオーバーヘッドを防止します。
+
+[start=2]
+. Compare メソッドで、実装は最初に実行するフィールド比較演算子として高次フィールド比較演算子 (配列インデックス 0 ) を選択します。
+[start=3]
+. フィールド比較演算子の Compare メソッドを呼び出して 0 以外を返した場合、終了してその値を返します。
+[start=4]
+. そうでない場合、フィールド比較演算子は 2 つの `DataRecord` が等しいことを示す 0 を返します。配列インデックスを増加し、手順 3 と 4 を繰り返して次のフィールド比較演算子を確認します。
+[start=5]
+. 配列のフィールド比較演算子のすべてが 0 を返した場合、すべてが等しいことを意味します。コントロールは、最後の比較にデータソースの関連するデータ項目の関連性のあるインデックスを使用します。更に、データ項目インデックスをキャッシュして、比較処理時にデータ項目インデックスをクエリするためにデータソースで `IndexOf` 操作が繰り返し実行されるのを防止します。
+[start=6]
+. 並べ替え後にグループ化されたフィールドを含む適切な link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.groupbyrecord.html[GroupByRecord] を作成します。可能な場合、最適化されたロジックは、既存の `GroupByRecord` を再利用しようとします。
+[start=7]
+. 最後に、2 度目の並べ替えパスの一部として関連する `GroupByRecord` を使用してグループ フィールドに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~groupbycomparer.html[GroupByComparer] を指定します。
+
+[[_Ref335407927]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックにの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-user-interaction-sorting-records.html[レコードの並べ替えとグループ化時のユーザー操作]
+|このトピックは、 _xamDataGrid_ レコード グループ化時の並べ替えレコードのユーザー操作について説明します。
+
+| link:xamdatagrid-using-xamdatagrid.html[xamDataGrid の使用]
+|このトピックは、xamDataGrid コントロールの様々な特徴や機能を効果的に使用するための重要なタスク ベースの情報について説明します。
+
+|====

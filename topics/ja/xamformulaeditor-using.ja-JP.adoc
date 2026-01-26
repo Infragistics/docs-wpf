@@ -1,0 +1,366 @@
+﻿////
+|metadata|
+{
+    "name": "xamformulaeditor-using",
+    "controlName": ["xamFormulaEditor"],
+    "tags": ["Calculations","Editing","Getting Started","How Do I","Validation"],
+    "guid": "03c79400-2e05-40c1-9f94-235e4ec1ee22",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.089114Z"
+}
+|metadata|
+////
+
+= xamCalculationManager での xamFormulaEditor および FormulaEditorDialog の使用
+
+== トピックの概要
+
+== 目的
+
+このトピックでは、xamFormulaEditor および FormulaEditorDialog コントロールをアプリケーションで使用する方法を説明し、コード例を提供します。
+
+== 本トピックの内容
+
+このドキュメントには次のセクションが含まれています:
+
+* *xamCalculationManager の構成*
+* *xamFormulaEditor の構成*
+* *FormulaEditorDialog の構成*
+* *コード例*
+
+=== 前提条件
+
+まず以下のトピックを読む必要があります。
+
+* link:xamcalculationmanager.html[xamCalculationManager]
+* link:xamcalculationmanager-getting-started-with-xamcalculationmanager.html[xamCalculationManager を使用した作業の開始]
+* link:xamcalculationmanager-using-xamcalculationmanager.html[xamCalculationManager の使用]
+* link:xamformulaeditor-about.html[xamFormulaEditor について]
+
+== xamFormulaEditor および FormulaEditorDialog の構成
+
+== コントロールの構成チャート
+
+以下の表は、xamFormulaEditor および FormulaEditorDialog コントロールを使用するために必要ないくつかの構成を説明しています。
+
+[options="header", cols="a,a,a"]
+|====
+|設定|構成の詳細|構成プロパティ
+
+|*xamCalculationManager の構成*
+|設定を行うには、xamCalculationManager に、xamFormulaEditor および FormulaEditorDialog コントロールの Targets と Formulas を管理させる必要があります。
+|None
+
+|*xamFormulaEditor の構成*
+|手順では、xamFormulaEditor コントロールを構成する必要があります。
+|
+* link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions.formulaeditorbase~target.html[Target] 
+
+* link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions.formulaeditorbase~formula.html[Formula] 
+
+|*FormulaEditorDialog の構成*
+|手順では、FormulaEditorDialog コントロールを構成する必要があります。
+|
+* link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions.formulaeditorbase~target.html[Target] 
+
+* link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}~infragistics.controls.interactions.formulaeditorbase~formula.html[Formula] 
+
+|====
+
+== xamCalculationManager の構成
+
+xamFormulaEditor および FormulaEditorDialog コントロールが公開する機能を活用するには、まず link:xamformulaeditor-using.html#Listing1[リスト 1] に示されるように、xamCalculationManager コントロールをアプリケーションに追加する必要があります。xamCalculationManager コントロールの使用方法の詳細は、「 link:xamcalculationmanager-using-xamcalculationmanager.html[xamCalculationManager の使用]」セクションを参照してください。
+
+*xamFormulaEditor の構成*
+
+[start=1]
+. *xamFormulaEditor をアプリケーションに追加。*
+
+これを行うには、アプリケーションに以下の NuGet パッケージへの参照を追加する必要があります。
+
+** Infragistics.WPF.FormulaEditor
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+最後の 2 つは FormulaEditorDialog コントロールが必要とします。次に、 link:xamformulaeditor-using.html#Listing1[リスト 1] に示されているように、コード ビハインドまたは Infragistics xml namespace for XAML の必要な using/Imports ディレクティブを追加し、また xamFormulaEditor 自身を追加する必要があります。
+[start=2]
+. *xamFormulaEditor の構成*
+
+xamFormulaEditor コントロールを十分に機能させるには、その Target プロパティを設定する必要があります。xamFormulaEditor コントロールのターゲットは、xamCalculationManager コントロールに登録され、またその値が数式の文字列になり得る適切なプロパティを持つ、同じページの他の任意のコントロールになり得ます。UI コントロールを含む xamCalculationManager の使用方法の詳細は、「 link:xamcalculationmanager-getting-started-with-xamcalculationmanager.html[xamCalculationManager を使用した作業の開始]」トピックを参照してください。
+
+ターゲット コントロールの link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.controlcalculationsettings.html[ControlCalculationSettings] オブジェクトが XamCalculationManager.ControlSettings に添付のプロパティに設定されている場合、また ControlCalculationSettings オブジェクトの Formula プロパティが数式文字列に設定されている場合、この数式は xamFormulaEditor に自動的にロードされます。そうでない場合は、Formula プロパティを xamFormulaEditor に直接設定できます。link:xamformulaeditor-using.html#Listing2[リスト 2] は、xamFormulaEditor コントロールの構成方法の例です。
+
+*注:* Formula プロパティを設定しても、Target を設定していない場合、xamFormulaEditor はアクティブになりません。
+
+== FormulaEditorDialog の構成
+
+[start=1]
+. *FormulaEditorDialog をアプリケーションに追加。*
+
+FormulaEditorDialog に必要な NuGet パッケージの参照は、xamFormulaEditor のものと同様です。すなわち、以下の通りです。
+
+** Infragistics.WPF.FormulaEditor
+
+FormulaEditorDialog をアプリケーションに追加する方法については、 link:xamformulaeditor-using.html#Listing3[リスト 3] を参照してください。
+[start=2]
+. *FormulaEditorDialog の構成*
+
+FormulaEditorDialog および xamFormulaEditor コントロールは共に FomulaEditorBase クラスから継承されているため、ほとんどの機能を共有します。このため、FormulaEditorDialog の構成プロセスは基本的に xamFormulaEditor と同様です。link:xamformulaeditor-using.html#Listing3[リスト 3] は、FormulaEditorDialog の構成方法を示しています。
+
+== コード例
+
+== 例の概要
+
+以下の表は、以下に提供されたコード例を示しています。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|xamCalculationManager の構成
+|xamCalculationManager をインスタンス化し、そこに TextBox を登録するために使用されるコード。
+
+|xamFormulaEditor の構成
+|xamFormulaEditor をアプリケーションに追加し、その Target および Formula プロパティを設定するために使用されるコード。
+
+|FormulaEditorDialog の構成
+|FormulaEditorDialog をアプリケーションに追加し、その Target および Formula プロパティを設定するために使用されるコード。
+
+|====
+
+[[Listing1]]
+
+== リスト 1: xamCalculationManager の構成
+
+以下のコードは、xamCalculationManager コントロールをアプリケーションに追加する方法、およびそこにテキスト ボックスを登録する方法を示しています。
+
+*XAML の場合:*
+
+----
+<UserControl x:Class="FormulaEditorSample.MainPage"
+    …
+    xmlns:ig="http://schemas.infragistics.com/xaml">
+    <Grid x:Name="LayoutRoot">
+        <ig:XamCalculationManager x:Name="CalculationManager"/>
+        <TextBox Margin="30" x:Name="FormulaString" 
+       ig:XamCalculationManager.CalculationManager=
+       "{Binding ElementName=CalculationManager}"/>
+    </Grid>
+</UserControl>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports System.Windows.Controls
+Imports Infragistics.Calculations
+Class MainWindow
+    Public Sub New()
+        InitializeComponent()
+        Dim formulaString As New TextBox
+        Me.LayoutRoot.Children.Add(formulaString)
+        Dim CalculationManager As New XamCalculationManager
+        XamCalculationManager.SetCalculationManager(formulaString, CalculationManager)
+    End Sub
+End Class
+----
+
+*C# の場合:*
+
+----
+using System.Windows.Controls;
+using Infragistics.Calculations;
+namespace FormulaEditorSample
+{
+    public partial class MainPage : UserControl
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+            TextBox formulaString = new TextBox();
+            this.LayoutRoot.Children.Add(formulaString);
+            XamCalculationManager CalculationManager = new XamCalculationManager();
+            XamCalculationManager.SetCalculationManager(formulaString, CalculationManager);
+        }
+    }
+}
+----
+
+[[Listing2]]
+
+== リスト 2: xamFormulaEditor の構成
+
+以下のコードは、xamFormulaEditor コントロールをアプリケーションに追加する方法、およびその Target と Formula プロパティの設定方法を示しています。
+
+*XAML の場合:*
+
+----
+<UserControl x:Class="FormulaEditorSample.MainPage"
+…
+    xmlns:ig="http://schemas.infragistics.com/xaml">
+        <Grid x:Name="LayoutRoot">
+        <StackPanel>
+            <ig:XamCalculationManager x:Name="CalculationManager"/>
+            <TextBox Margin="30" x:Name="FormulaString" 
+ig:XamCalculationManager.CalculationManager="{Binding ElementName=CalculationManager}"/>
+            <ig:XamFormulaEditor x:Name="formulaEditor" MinLineCount="3"
+                                 Target="{Binding ElementName=FormulaString}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports System.Windows.Controls
+Imports Infragistics.Calculations
+Imports Infragistics.Controls.Interactions
+Class MainWindow
+    Public Sub New()
+        InitializeComponent()
+        Dim stackPanel As New StackPanel
+        Me.LayoutRoot.Children.Add(stackPanel)
+        Dim formulaString As New TextBox
+        stackPanel.Children.Add(formulaString)
+        Dim CalculationManager As New XamCalculationManager
+        XamCalculationManager.SetCalculationManager(formulaString, CalculationManager)
+        Dim formulaEditor As New XamFormulaEditor()
+        formulaEditor.Target = formulaString
+        formulaEditor.Formula = "ABS(-5)"
+        formulaEditor.MinLineCount = 3
+        stackPanel.Children.Add(formulaEditor)
+    End Sub
+End Class
+----
+
+*C# の場合:*
+
+----
+using System.Windows.Controls;
+using Infragistics.Calculations;
+using Infragistics.Controls.Interactions;
+namespace FormulaEditorSample
+{
+    public partial class MainPage : UserControl
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+            StackPanel stackPanel = new StackPanel();
+            this.LayoutRoot.Children.Add(stackPanel);            
+            TextBox formulaString = new TextBox();
+            stackPanel.Children.Add(formulaString);
+            XamCalculationManager CalculationManager = new XamCalculationManager();
+            XamCalculationManager.SetCalculationManager(formulaString, CalculationManager);
+            XamFormulaEditor formulaEditor = new XamFormulaEditor();
+            formulaEditor.Target = formulaString;
+            formulaEditor.Formula = "ABS(-5)";
+            stackPanel.Children.Add(formulaEditor);
+        }
+    }
+}
+----
+
+[[Listing3]]
+
+== リスト 3: FormulaEditorDialog の構成
+
+以下のコードは、FormulaEditorDialog コントロールをアプリケーションに追加する方法、およびその Target と Formula プロパティの設定方法を示しています。
+
+*XAML の場合:*
+
+----
+<UserControl x:Class="FormulaEditorSample.MainPage"
+    …
+    xmlns:ig="http://schemas.infragistics.com/xaml">
+        <Grid x:Name="LayoutRoot">
+        <StackPanel>
+            <ig:XamCalculationManager x:Name="CalculationManager"/>
+            <TextBox Margin="30" x:Name="FormulaString" 
+                     ig:XamCalculationManager.CalculationManager=
+                     "{Binding ElementName=CalculationManager}"/>
+            <ig:FormulaEditorDialog x:Name="formulaEditorDialog"
+                  Target="{Binding ElementName=FormulaString}"/>
+            <Button x:Name="commitButton" Click="commitButton_Click"/> 
+        </StackPanel>
+    </Grid>
+</UserControl>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports System.Windows.Controls
+Imports Infragistics.Calculations
+Imports Infragistics.Controls.Interactions
+Class MainWindow
+    Dim stackPanel As New StackPanel
+    Dim formulaString As New TextBox
+    Dim CalculationManager As New XamCalculationManager
+    Dim formulaEditorDialog As New FormulaEditorDialog()
+    Friend WithEvents commitButton As New Button
+    Public Sub New()
+        InitializeComponent()
+        Me.LayoutRoot.Children.Add(stackPanel)
+        stackPanel.Children.Add(formulaString)
+        XamCalculationManager.SetCalculationManager(formulaString, CalculationManager)
+        formulaEditorDialog.Target = formulaString
+        formulaEditorDialog.Formula = "ABS(-5)"
+        StackPanel.Children.Add(formulaEditorDialog)
+        stackPanel.Children.Add(commitButton)
+        commitButton.Content = "Commit"
+    End Sub
+    Private Sub commitButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles commitButton.Click
+        Me.formulaEditorDialog.CommitEdit()
+    End Sub
+End Class
+----
+
+*C# の場合:*
+
+----
+using System.Windows.Controls;
+using Infragistics.Calculations;
+using Infragistics.Controls.Interactions;
+namespace FormulaEditorSample
+{
+    public partial class MainPage : UserControl
+    {
+        StackPanel stackPanel = new StackPanel();
+        TextBox formulaString = new TextBox();
+        XamCalculationManager CalculationManager = new XamCalculationManager();
+        FormulaEditorDialog formulaEditorDialog = new FormulaEditorDialog();
+        Button commitButton = new Button();
+        public MainPage()
+        {
+            InitializeComponent();            
+            this.LayoutRoot.Children.Add(stackPanel);
+            stackPanel.Children.Add(formulaString);
+            XamCalculationManager.SetCalculationManager(formulaString, CalculationManager);
+            formulaEditorDialog.Target = formulaString;
+            formulaEditorDialog.Formula = "ABS(-5)";
+            stackPanel.Children.Add(formulaEditorDialog);
+            commitButton.Content = "Commit";
+            stackPanel.Children.Add(commitButton);
+            commitButton.Click += new System.Windows.RoutedEventHandler(commitButton_Click);
+        }
+        void commitButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.formulaEditorDialog.CommitEdit();
+        }
+    }
+}
+----
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+link:xamcalculationmanager.html[xamCalculationManager について]
+
+link:xamcalculationmanager-getting-started-with-xamcalculationmanager.html[xamCalculationManager を使用した作業の開始]
+
+link:xamformulaeditor-about.html[xamFormulaEditor について]
+
+link:xamformulaeditor-contextualhelp.html[コンテクストのヘルプ]

@@ -1,0 +1,82 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-retrieve-the-result-of-a-summary",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Summaries"],
+    "guid": "{04250E61-6E48-41B4-833E-24B00CFEF2B3}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0222044Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 集計結果を取得
+
+xamGrid の  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.summaryresult.html[SummaryRowSettings]"]   pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.summaryresult.html[]"] オブジェクトから  pick:[sl=" link:{RootAssembly}{ApiVersion}~infragistics.summaryresultcollection.html[SummaryResultCollection]"]   pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.summaryresultcollection.html[]"] にインデックスを付けることによって、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowsettings.html[SummaryResult] オブジェクトを取得できます。
+
+異なる SummaryResultCollection コレクションを使用できます。たとえば、列レイアウトまたは子バンド コレクションです。使用されるものは、SummaryRowSettings/SummaryRowSettingsOverride オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.summaryrowsettings~summaryscope.html[SummaryScope] プロパティの値によって異なります。
+
+列レイアウトの詳細は、 link:xamgrid-define-column-layout.html[列レイアウトの定義]トピックを参照してください。
+
+SummaryResult オブジェクトの link:{ApiPlatform}datamanager{ApiVersion}~infragistics.summaryresult~value.html[Value]"]  プロパティは、集計の結果を返します。アプリケーション ロジックでそれを使用する前に、正しいデータ型に Value プロパティをキャストする必要があります。
+
+組み込み集計計算式は、以下のデータ型を返します:
+
+[options="header", cols="a,a"]
+|====
+|*集計計算式*|* データ型*
+
+|合計
+|10 進
+
+|平均値
+|10 進
+
+|カウント
+|整数
+
+|最小
+|列のデータ型
+
+|最大
+|列のデータ型
+
+|====
+
+SummaryResult オブジェクトの  pick:[sl,win-rt=" link:{RootAssembly}{ApiVersion}~infragistics.summarydefinition.html[SummaryDefinition]"]   pick:[wpf=" link:{ApiPlatform}datamanager{ApiVersion}~infragistics.summarydefinition.html[SummaryDefinition]"] は、集計が実行される列と、その集計の SummaryOperand を返します。
+
+以下のコード例は、SummaryResult オブジェクトから値を取得する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Dim SumResult As Object = Me.MyDataGrid.SummaryRowSettings.SummaryResultCollection(0).Value
+Dim SumDefinition As SummaryDefinition = Me.MyDataGrid.SummaryRowSettings.SummaryResultCollection(0).SummaryDefinition
+Dim MySummary As SummaryOperandBase = SumDefinition.SummaryOperand
+Dim MyColumn As String = SumDefinition.ColumnKey
+----
+
+*C# の場合:*
+
+----
+object SumResult = this.MyDataGrid.SummaryRowSettings.SummaryResultCollection[0].Value;
+SummaryDefinition SumDefinition = this.MyDataGrid.SummaryRowSettings.SummaryResultCollection[0].SummaryDefinition;
+SummaryOperandBase MySummary = SumDefinition.SummaryOperand;
+String MyColumn = SumDefinition.ColumnKey;
+----
+
+== 関連トピック
+
+link:xamgrid-programmatically-add-summaries.html[プログラムで集計を追加]
+
+link:xamgrid-summaries.html[集計]
+
+link:xamgrid-create-a-custom-summary.html[カスタム サマリーの作成]
+
+link:xamgrid-formatting-row-summaries.html[行集計の書式設定]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

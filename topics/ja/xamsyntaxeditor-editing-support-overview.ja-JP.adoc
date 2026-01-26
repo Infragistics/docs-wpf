@@ -1,0 +1,346 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-editing-support-overview",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","Extending","FAQ","How Do I","Selection"],
+    "guid": "7bfc11f3-464c-486e-8dcd-584b246707e8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3503529Z"
+}
+|metadata|
+////
+
+= 編集サポートの概要 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、開発者とユーザー双方の視点から  _xamSyntaxEditor™_   コントロールのテキスト編集機能を取り上げます。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+| link:xamsyntaxeditor-adding-to-your-page.html[ _xamSyntaxEditor_ をページに追加]
+|このトピックでは、 _xamSyntaxEditor_ を短時間で起動、実行するのに役立つ体系的な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref329095863, 概要 >>
+** <<_Ref332377238, _xamSyntaxEditor_   編集サポートとは>>
+
+* <<_Ref332377258, キーボード ショートカット >>
+** <<_Ref332377289,概要>>
+** <<_Ref332377971,カレット ショートカット>>
+** <<_Ref332377990,テキスト編集>>
+** <<_Ref332378011,スクロール ショートカット>>
+** <<_Ref332378041,選択ショートカット>>
+** <<_Ref332378061,クリップボード ショートカット>>
+** <<_Ref332378091,元に戻す/やり直しショートカット>>
+
+* <<_Ref329095915, マウス ショートカット >>
+** <<_Ref332379959,概要>>
+** <<_Ref332379967,カレット ショートカット>>
+** <<_Ref332379985,スクロール ショートカット>>
+** <<_Ref332379994,選択ショートカット>>
+
+* <<_Ref329095925, 関連コンテンツ >>
+
+[[_Ref329095863]]
+== 概要
+
+[[_Ref332377238]]
+
+=== xamSyntaxEditor 編集サポートとは
+
+_xamSyntaxEditor_   は、Visual Studio のコード エディターに似た、高度なカスタマイズが可能なテキスト編集コントロールです。_xamSyntaxEditor_   は、開発者とユーザーの双方にとって、文書の編集に便利なさまざまな機能を備えています。中でも代表的な機能として、 link:xamsyntaxeditor-clipboard-support.html[クリップボードのサポート]、 link:xamsyntaxeditor-undo-redo.html[元に戻す/やり直し]、 link:xamsyntaxeditor-find-replace.html[検索と置換]、 link:xamsyntaxeditor-events-and-commands.html[イベントとコマンド]があります。
+
+_xamSyntaxEditor_   は、文書の挿入箇所を示すカレットを表示します。カレットは、入力した文字が表示される場所です。デフォルトで、 _xamSyntaxEditor_   の設定は link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~insert.html[挿入] モードになりす。すなわち、 link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.flowdirection.aspx[FlowDirection] プロパティの構成に応じてカレットのどちらかの側から入力した新しい文字は、テキストの間に挿入されます。このとき、入力した位置の文字は上書きしません。既存の文字は文書の後ろへ後退します。link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~textupdatemode.html[TextUpdateMode] プロパティを link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.editordocumentviewtextupdatemode.html[上書き] に設定すると、 _xamSyntaxEditor_   はカレットの位置から既存の文字を上書きし、現在の文字は 1 文字ずつ新しい文字に置き換わります。編集をすべて無効にするには、文書の link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~isreadonly.html[IsReadOnly] プロパティを  _True_   に設定します。
+
+デフォルトで、 _xamSyntaxEditor の_  カレットは、文字を入力するにつれて右に移動します。ただし、`FlowDirection` プロパティを link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.editorientation.html[RightToLeft] に設定すると移動方向を反転できます。
+
+_xamSyntaxEditor_   コントロールは、文書に対する 1 つまたは 2 つの _ビュー_  からなります。これらのビューに表示されるのは、いずれも文書で現在編集中の箇所です。文書が大きすぎて  _xamSyntaxEditor の_   ビューに収まらない場合はスクロールバーが表示され、文書のコンテンツ内で移動できます。
+
+注:
+
+[NOTE]
+====
+文書のコンテンツの表示可能部分は、スクロールバーで __ビュー__ 内を移動しますが、スクロールの間、カレットの位置は移動しません。
+====
+
+_xamSyntaxEditor_   ウィンドウを (左右方向または上下方向に) 2 つのビューに分けて、同じ文書の 2 箇所の部分で素早く移動して編集することができます。また、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~splitoptions.html[SplitOptions] プロパティでは分割方向を左右か上下のいずれかに限定することもできるほか、同じプロパティで分割機能そのものを無効にすることもできます。詳細については、 link:xamsyntaxeditor-splitting.html[分割]トピックを参照してください。
+
+_xamSyntaxEditor の_  カレットは、キーボードとマウスのどちらでも位置決めできます。また、以下に示すキーボードとマウスのさまざまな組み合わせにより、連続したテキスト領域を選択して、コピーや削除などさまざまな操作ができます。そのほか、テキスト領域を選択してすぐに文字を入力すれば、選択したテキストを新しく入力したテキストに置き換えることができます。オプションで、選択対象が変化したときに通知を受け取れるよう、ハンドラーを  _xamSyntaxEditor の_   link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~selectionchanged_ev.html[SelectionChanged] イベントにアタッチするか、 _xamSyntaxEditor_   ビューの link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.editordocumentview~selectionmanager.html[SelectionManager] で選択対象を操作すれば、通知機能を構成できます。
+
+link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument_members.html[TextDocument] には、コードからコンテンツを編集するための以下のような API メソッドがあります。それぞれ対応する操作は、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~append.html[Append]、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~insert.html[Insert]、または link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~delete.html[Delete] の各メソッドで実行します。また、 link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~newlinesequence.html[NewLineSequence] プロパティでは、文書の行を区切る文字も指定できます。
+
+[[_Ref329095881]]
+[[_Ref332377258]]
+== キーボード ショートカット
+
+[[_Ref332377289]]
+
+=== 概要
+
+以下の表は、文書のコンテンツ編集時はいつでも利用できるキーボード キーとキーの組み合わせをまとめたものです。
+
+[[_Ref332377971]]
+
+=== カレット ショートカット
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するキーボード キー:
+
+|上へ移動
+|上矢印
+
+|下へ移動
+|下矢印
+
+|左へ移動
+|左矢印
+
+|右へ移動
+|右矢印
+
+|行頭/テキストの先頭に移動
+|ホーム
+
+|行末に移動
+|終了
+
+|文書の先頭に移動
+|Ctrl + Home
+
+|文書の最後に移動
+|Ctrl + End
+
+|1 ページ上に移動 (カレットを表示領域に残したまま、必要に応じて文書をスクロールします)
+|ページ アップ
+
+|1 ページ下に移動 (カレットを表示領域に残したまま、必要に応じて文書をスクロールします)
+|ページ ダウン
+
+|====
+
+[[_Ref332377990]]
+
+=== テキスト編集
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するキーボード キー:
+
+|現在の文字を削除/ 
+
+選択したテキストを削除
+|Delete
+
+|前の文字を削除/
+|Backspace
+
+|挿入モードと上書きモードの間で切り替え
+|Insert
+
+|====
+
+[[_Ref332378011]]
+
+=== スクロール ショートカット
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するキーボード キー:
+
+|文書を上にスクロール (カレットの位置は固定)
+|Ctrl + 上矢印
+
+|文書を下にスクロール (カレットの位置は固定)
+|Ctrl + 下矢印
+
+|====
+
+[[_Ref332378041]]
+
+=== 選択ショートカット
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するキーボード キー:
+
+|左の 1 文字を選択
+|Shift + 左矢印
+
+|右の 1 文字を選択
+|Shift + 右矢印
+
+|左の 1 語を選択
+|Ctrl + Shift + 左矢印
+
+|右の 1 語を選択
+|Ctrl + Shift + 右矢印
+
+|上の 1 行を選択
+|Shift + 上矢印
+
+|下の 1 行を選択
+|Shift + 下矢印
+
+|行頭を選択
+|Shift + Home
+
+|行末を選択
+|Shift + End
+
+|上の 1 ページを選択
+|Shift + page up
+
+|下の 1 ページを選択
+|Shift + page down
+
+|文書の全コンテンツを選択
+|Ctrl+A
+
+|====
+
+[[_Ref332378061]]
+
+=== クリップボード ショートカット
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するキーボード キー:
+
+|切り取り
+|Ctrl + X 
+
+Shift + Delete
+
+|コピー
+|Ctrl + C 
+
+Ctrl + Insert
+
+|貼り付け
+|Ctrl + V 
+
+Shift + Insert
+
+|====
+
+[[_Ref332378091]]
+
+=== 元に戻す/やり直しショートカット
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するキーボード キー:
+
+|元に戻す
+|Ctrl+Z 
+
+Alt + Backspace
+
+|やり直し
+|Ctrl + Y 
+
+Ctrl + Shift + Z
+
+|====
+
+[[_Ref329095915]]
+== マウス ショートカット
+
+[[_Ref332379959]]
+
+=== 概要
+
+以下の表は、文書のコンテンツ編集に利用できるマウスの動作、ジェスチャー、操作の組み合わせをまとめたものです。
+
+[[_Ref332379967]]
+
+=== カレット ショートカット
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するマウス アクションまたはマウス動作:
+
+|カレットの位置決め
+|目的の位置にカレットを移動し、左マウス ボタンをクリックします。
+
+|====
+
+[[_Ref332379985]]
+
+=== スクロール ショートカット
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するマウス アクションまたはマウス動作:
+
+|文書を上にスクロール (カレットの位置は固定)
+|マウス ホイールを上に回転
+
+|文書を下にスクロール (カレットの位置は固定)
+|マウス ホイールを下に回転
+
+|====
+
+[[_Ref332379994]]
+
+=== 選択ショートカット
+
+[options="header", cols="a,a"]
+|====
+|選択対象:|使用するマウス アクションまたはマウス動作:
+
+|テキスト
+|左マウス ボタンをクリックし、目的の方向にドラッグを開始します。
+
+|単語
+|目的の単語をダブル クリックします。
+
+|====
+
+[[_Ref329095925]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-configuring-initial-content.html[初期コンテンツの構成]
+|このトピックでは、 _xamSyntaxEditor_ のオーバーロードした `TextDocument` メソッドの Load メソッドと Save メソッドでコンテンツを読み込み、保存する方法を解説します。
+
+| link:xamsyntaxeditor-syntax-highlighting.html[構文のハイライト表示]
+|このトピックでは、`TextDocument` の関連言語によるテキストのカラー化について解説します。
+
+| link:xamsyntaxeditor-customizing.html[ _xamSyntaxEditor_ のカスタマイズ]
+|このグループのトピックでは、 _xamSyntaxEditor_ のカスタマイズ方法を解説します。
+
+| link:xamsyntaxeditor-changing-font-and-styles.html[フォントとスタイル設定の変更]
+|このトピックでは、 _xamSyntaxEditor_ でドキュメントのコンテンツの表示を変更する方法について解説します。
+
+| link:xamsyntaxeditor-splitting.html[分割]
+|このトピックでは、 _xamSyntaxEditor_ のドキュメント分割機能を解説し、カスタマイズする方法について解説します。
+
+|====

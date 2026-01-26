@@ -1,0 +1,68 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-style-axis-thumb",
+    "controlName": ["xamTimeline"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{8691D130-9A1C-4D3E-A3BE-1A4C330D3810}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1134103Z"
+}
+|metadata|
+////
+
+= 軸のつまみのスタイル
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.axisthumb.html[Thumb] は link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.timelineaxis.html[Axis] のスライダー部分で、つまみが置かれたイベントの詳細情報を表示します。Thumb のカスタマイズは、Axis からのスタイル設定が必要です。
+
+以下の xaml コードは、Thumb の色とサイズを変更する方法を示します。
+
+*XAML の場合:*
+
+----
+    <UserControl.Resources>
+        <!-- 軸のスタイル -->
+        <Style x:Key="rscAxisThumbStyle" TargetType="igtl:AxisThumb">
+            <Setter Property="Width" Value="12" />
+            <Setter Property="Height" Value="22" />
+            <Setter Property="Canvas.ZIndex" Value="1" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="igtl:AxisThumb">
+                        <Border Background="Red" BorderBrush="Black" 
+                                BorderThickness="1" CornerRadius="5" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White" >
+        <igtl:XamTimeline x:Name="xamTimeline"  
+                             Width="1000" Height="480" Margin="25">
+            <!-- Axis プロパティを設定 -->
+            <igtl:XamTimeline.Axis>
+                <igtl:NumericTimeAxis Minimum="-3200" Maximum="2600" 
+                                      AutoRange=" Unit="400" 
+                                      ShowLabels="True" ShowThumb="True" 
+                                      ThumbStyle="{StaticResource rscAxisThumbStyle}"/>
+            </igtl:XamTimeline.Axis>
+            <!-- TODO: 数値/日時シリーズを追加します...-->
+        </igtl:XamTimeline>
+    </Grid>
+----
+
+image::images/XamTimeline_Style_Axis_Thumb_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-style-the-axis.html[軸のスタイル]
+
+link:xamtimeline-style-the-axis-pane.html[軸ペインのスタイル]
+
+link:xamtimeline-style-the-axis-label.html[軸ラベルのスタイル]
+
+link:xamtimeline-style-major-and-minor-grid-lines.html[主グリッド線および副グリッド線のスタイル]
+
+link:xamtimeline-style-major-and-minor-tick-marks.html[主目盛および副目盛のスタイル]

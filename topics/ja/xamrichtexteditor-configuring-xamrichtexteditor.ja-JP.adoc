@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-configuring-xamrichtexteditor",
+    "tags": [],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "7a38b283-6a8a-4df8-ae81-8105dfe23d42",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4043377Z"
+}
+|metadata|
+////
+
+= xamRichTextEditor の構成
+
+== このグループのトピックについて
+
+=== はじめに
+
+このセクションのトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ の構成について追加の情報を提供します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-overview.html[xamRichTextEditor の概要の構成]
+|このトピックでは、 _xamRichTextEditor_ コントロールで複数の有用なコンテンツ編集機能を構成する方法を説明します。
+
+| link:xamrichtexteditor-configuring-caret-color.html[カレット カラーの構成]
+|このトピックは、 _xamRichTextEditor_ コントロールのカレット カラーを変更する方法を説明します。
+
+| link:xamrichtexteditor-configuring-selection.html[選択の構成]
+|このトピックは、 _xamRichTextEditor_ コントロールの複数選択機能をオンにする方法を説明します。
+
+| link:xamrichtexteditor-configuring-undo-redo.html[元に戻す / やり直しの構成]
+|このトピックは、 _xamRichTextEditor_ コントロールの「元に戻す」のログ機能をオン / オフする方法を説明します。
+
+| link:xamrichtexteditor-configuring-view-split.html[ビュー分割の構成]
+|このトピックでは、ドキュメントの分割ビューを実行できるように _xamRichTextEditor_ を構成する方法を説明します。
+
+| link:xamrichtexteditor-configuring-view-zoom-level.html[ビューのズーム レベルの構成]
+|このトピックでは、 _xamRichTextEditor_ コントロールでビューのズーム レベルを設定する方法および取得する方法を説明します。
+
+|====

@@ -1,0 +1,160 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-binding-data-to-the-xampivotgrid",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Data Binding","Getting Started","Grids","How Do I"],
+    "guid": "0e9330de-493d-4643-8c56-a37bf7db5ac6",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.053281Z"
+}
+|metadata|
+////
+
+= xamPivotGrid をデータにバインド
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、xamPivotGrid™ コントロールでサポートされるデータ ソースの概要について説明しています。
+
+=== 前提条件
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-understanding-xampivotgrid.html[xamPivotGrid の概要]
+|このセクションは xamPivotGrid コントロールの主要機能について説明します。ここに記載されているトピックでは、アプリケーションで xamPivotGrid コントロールを効果的に使用する方法が説明されています。
+
+| link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+|このトピックでは、xamPivotGrid™ コントロールを使用して作業を開始する方法について説明するため、このコントロールを {PlatformName} アプリケーションに追加するための手順を順を追って説明しています。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref319429744, データ ソースにバインドする >>
+
+** <<_Ref319429756,サポートされるデータ ソースの要約>>
+** <<_Ref319429760,データ ソースの要約>>
+** <<_Ref320018793,バインディング クラス ダイアグラム>>
+** <<_Ref320018798,データ バインディングのコンポーネント>>
+
+* <<_Ref319429767, 関連コンテンツ >>
+
+[[_Ref319429744]]
+== データ ソースにバインドする
+
+[[_Ref319429756]]
+
+=== サポートされるデータ ソースの要約
+
+データ ソースは、データへのアクセスおよび操作を提供し、xamPivotGrid コントロールおよび xamPivotDataSelector™ コントロールに、解析するデータの使用方法を示します。
+
+xamPivotGrid コントロールは以下のデータ ソースをサポートしています。
+
+[options="header", cols="a,a,a"]
+|====
+|データ ソース|データ ソース ViewModel|バインディング
+
+|SQL Server Analysis Server
+| link:xampivotgrid-databinding-using-xmladatasource.html[XmlaDataSource]
+|XML for Analysis (XMLA) モデル プロバイダーを通して SQL Server Analysis Services (SSAS) に接続してクエリを実行するためのコントローラーを表します。
+
+ifdef::wpf[]
+|SQL Server Analysis Server
+| link:xampivotgrid-us-connecting-to-an-adomd-net-datasource.html[AdomdDataSource]
+|SQL Server Analysis Services に直接接続してクエリを実行するためのコントローラーを表します。
+endif::wpf[]
+
+|SAP NetWeaver Business Warehouse
+| link:xampivotgrid-databinding-using-sap-xmla-datasource.html[XmlaSapDataSource]
+|XMLA を通して SAS に接続しクエリを実行する方法を提供するコントローラーを表します。
+
+|Oracle Essbase
+| link:xampivotgrid-connecting-to-an-oracle-xmla-datasource.html[XmlaOracleDataSource]
+|XMLA を通して Essbase for Oracle に接続しクエリを実行する方法を提供するコントローラーを表します。
+
+|IEnumerable データ コレクション
+| link:xampivotgrid-databinding-using-flatdatasource.html[FlatDataSource]
+|`System.Collections.IEnumerable` をデータ ソースとして使用し、xamPivotGrid コントロール内のデータを表示する方法を提供するコントローラーを表します。
+
+|====
+
+[[_Ref319429760]]
+
+=== データ ソースの要約
+
+上記のすべてのデータ ソースは、 link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.iolapviewmodel_members.html[IOlapViewModel] インターフェイスを実装する link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.datasourcebase_members.html[DataSourceBase] クラスを継承しています。これらのクラスは、実際のデータ ソース (たとえば OLAP キューブが格納されているサーバー) と、xamPivotGrid との間のリンクとして機能します。既存のデータで xamPivotGrid コントロールを使用するには、これらの ViewModel のいずれかを使用する必要があります。ただし、これらのデータ ソースが十分でない場合、上級ユーザーは、`IOlapViewModel` インターフェイスを実装、または `DataSourceBase` クラスを継承することによりデータ プロバイダーでカスタム ビュー モデルを作成できます。
+
+[[_Ref320018793]]
+
+=== バインディング クラス ダイアグラム
+
+以下のクラス ダイアグラムは、xamPivotGrid コントロールのデータ バインディングの仕組みを単純化したモデルです。
+
+image::images/xamPivotGrid_Binding_Data_to_the_xamPivotGrid_1.png[]
+
+[[_Ref319429762]]
+
+=== データ バインディングのコンポーネント
+
+xamPivotGrid にデータをバインドするときに最も一般的に使用されるいくつかのコンポーネントがあります。詳細は、以下の表を参照してください。
+
+[options="header", cols="a,a,a"]
+|====
+|コンポーネント|必須かどうか|説明
+
+| link:xampivotgrid-understanding-xampivotgrid.html[xamPivotGrid]
+|はい
+|データを表示するコントロールです。
+
+| link:xampivotgrid-dataselector.html[xamPivotDataSelector]
+|いいえ
+|xamPivotGrid コントロール内に表示されるデータを選択および操作するための xamPivotDataSelector コントロールを表します。
+
+|DataSource
+|はい
+|`IOlapViewModel` インターフェイスを実装し xamPivotGrid コントロールの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~datasource.html[DataSource] プロパティと xamPivotDataSelector コントロールの link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector~datasource.html[DataSource] プロパティを通してデータをコントロールするビュー モデルを表します。
+
+|====
+
+.注:
+[NOTE]
+====
+前述のように、これは最も一般的な使用シナリオです。ただし、これ以外のケースもあります。たとえば、xamPivotGrid を使用せず、xamPivotDataSelector をデータ ソースとともに使用してデータを表示できます。
+====
+
+[[_Ref319429767]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-databinding-using-xmladatasource.html[XmlaDataSource の使用]
+|このトピックでは、xamPivotGrid で link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmladatasource_members.html[XmlaDataSource] を使用する方法について説明しています。
+
+| link:xampivotgrid-databinding-using-flatdatasource.html[FlatDataSource の使用]
+|このトピックでは、xamPivotGrid で link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource_members.html[FlatDataSource] を使用する方法について説明しています。
+
+| link:xampivotgrid-us-excel-spreadsheet-as-a-datasource.html[データ ソースとしての Excel スプレッドシート]
+|このトピックでは、xamPivotGrid で Excel スプレッドシートのデータを使用する方法について説明しています。
+
+| link:xampivotgrid-us-connecting-to-an-adomd-net-datasource.html[ADOMD.NET DataSource への接続]
+|このトピックでは、xamPivotGrid で link:{ApiPlatform}olap.adomd{ApiVersion}~infragistics.olap.adomd.adomddatasource_members.html[AdomdDataSource] を使用する方法について説明しています。
+
+| link:xampivotgrid-connecting-to-an-oracle-xmla-datasource.html[Oracle XMLA DataSource への接続]
+|このトピックでは、xamPivotGrid で link:{ApiPlatform}olap.xmla.oracle{ApiVersion}~infragistics.olap.xmla.oracle.xmlaoracledatasource_members.html[XmlaOracleDataSource] を使用する方法について説明しています。
+
+| link:xampivotgrid-databinding-using-sap-xmla-datasource.html[Sap Xmla Datasource の使用]
+|このトピックでは、xamPivotGrid で link:{ApiPlatform}olap.xmla.sap{ApiVersion}~infragistics.olap.xmla.sap.xmlasapdatasource_members.html[XmlaSapDataSource] を使用する方法について説明しています。
+
+|====

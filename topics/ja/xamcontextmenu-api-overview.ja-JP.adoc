@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcontextmenu-api-overview",
+    "controlName": ["xamContextMenu"],
+    "tags": ["API"],
+    "guid": "{DEDAFEB9-9ABD-4C6C-B13D-E7C2F03413D6}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8060982Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[cols="a,a"]
+|====
+|*xamContextMenu 名前空間*
+|*キー クラス*
+
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus_namespace.html[Infragistics] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus_namespace.html[Infragistics.Controls.Menus] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.primitives_namespace.html[Infragistics.Controls.Menus.Primitives]
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xamcontextmenu.html[XamContextMenu] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenuitem.html[XamMenuItem] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenuseparator.html[XamMenuSeparator] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.contextmenuservice.html[ContextMenuService] 
+
+link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.contextmenumanager.html[ContextMenuManager]
+
+|====

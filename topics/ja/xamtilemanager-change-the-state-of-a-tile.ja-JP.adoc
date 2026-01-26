@@ -1,0 +1,91 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-change-the-state-of-a-tile",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I"],
+    "guid": "d7a975f7-8cf1-4455-b86c-9e6cd47cb715",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6364092Z"
+}
+|metadata|
+////
+
+= タイルの状態を変更
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトは、いつでも Normal、Maximized、Minimized、または MinimizedExpanded という 4 つの状態のいずれかにすることができます。タイルの状態に基づいて、xamTileManager は 2 つの「モード」、最大化モードまたは通常モードのいずれかにすることができます。通常モードは通常のタイルしか含みませんが、最大化モードはコントロールの端に残りの最小化または展開されたタイルが配列された状態で 1 つ以上の最大化されたタイルを含みます。ほとんどの場合、エンド ユーザーは、タイルを操作してその状態を変更します。また、変更状態は読み取り専用のプロパティ link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~state.html[State] から入手できます。ただし、いくつかの XamTile オブジェクトのプロパティ -  link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~ismaximized.html[IsExpandedWhenMinimized]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~ismaximized.html[IsMaximized] を設定して、XAML またはコード ビハインドでもタイルの状態を変更することができます。コマンドからタイルの状態を変更する方法については、「タイル状態」サンプルを参照してください。
+
+XamTile の状態を変更する時は、以下の動作に注意してください。
+
+* 通常のタイルを最小化または展開の状態に変更できません。その代わりに、異なるタイルの状態を Maximized に設定する必要があります。これによって残りのタイルは最小化されます。
+* 最大化されたタイルの数を 1 に制限すると、最大化されたタイルを最小化または展開の状態に変更できません。その代わりに、最小化または最小化・展開されたタイルの状態を Maximized に設定する必要があります。ただし、2 つ以上の最大化されたタイルがある場合、これは適用されません。
+* 最小化または展開されたタイルを通常の状態に明示的に変更できません。代わりに、すべての最大化されたタイルの IsMaximized プロパティを *False* に設定するか、すべての最大化されたタイルに対して link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.tilecommandtype.html[ToggleMaximized] コマンドを実行してください。
+* IsExpandedWhenMinimized プロパティを使用して、または link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.tilecommandtype.html[ToggleMinimizedExpansion] コマンドを実行することによりタイルが最小化されている場合、最小化状態か最小化を展開した状態かを切り替えることができます。
+
+image::images/xamTilesControl_Change_the_State_of_a_Tile_01.png[]
+
+以下のコード例は、タイルの状態を変更する方法を示しています。
+
+*XAML の場合:*
+
+----
+<ig:XamTileManager Name="xamTileManager1">
+    <ig:XamTile Header="Tile 1" IsMaximized="True" />
+    <ig:XamTile Header="Tile 2" />
+    <ig:XamTile Header="Tile 3" />
+</ig:XamTileManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Layouts
+...
+Dim tileToMaximize = _
+    Me.xamTileManager1.TileFromItem(Me.xamTileManager1.Items(0))
+If tileToMaximize IsNot Nothing Then
+    tileToMaximize.IsMaximized = True
+End If
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Layouts;
+...
+XamTile tileToMaximize =
+    this.xamTileManager1.TileFromItem(this.xamTileManager1.Items[0]);
+if (tileToMaximize != null)
+{
+    tileToMaximize.IsMaximized = true;
+}
+...
+----
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

@@ -1,0 +1,77 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-modifying-the-scale-of-elements-on-xamcarouselpanels-path",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{7C4FBCDE-7B21-484C-A3E1-7188B8ABEC4D}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0837699Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel のパスで要素のスケールを変更
+
+
+
+xamCarouselPanel コントロールによって、パス上の位置に基づいてパーセントで項目をスケールすることができます。スケーリングはレコードに 3D 効果を提供します。ScalingEffect は、 link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.scalingeffectstopcollection.html[ScalingEffectsStops] を含む link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~scalingeffectstops.html[ScalingEffectStopCollection] (それぞれがオフセットとそのオフセットで適用する値を指定する) を定義する点で、その他のパスエフェクトに似ています。値は 0 から 10 に進むことができる小数のパーセントです。
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[CarouselViewSettings] オブジェクトの link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~usescaling.html[UseScaling] プロパティを True に設定することによってスケーリングを有効にします。この同じオブジェクトで、 link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~scalingeffectstopdirection.html[ScalingEffectStopDirection] プロパティを UseItemPath、Horizontal、または Vertical に設定します。
+
+[NOTE]
+====
+このトピックは、 link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]のタスクを完了していることが前提となります。
+====
+
+[start=1]
+. ViewSettings オブジェクトを定義します。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        ...        
+</igWindows:XamCarouselPanel.ViewSettings>
+----
+
+[start=2]
+. CarouselViewSettings オブジェクトを指定して、UseScaling プロパティを True に、ScalingEffectStopDirection プロパティを UseItemPath に設定します。
+
+*XAML の場合:*
+
+----
+<igWindows:CarouselViewSettings ScalingEffectStopDirection="UseItemPath" 
+  UseScaling="True">
+        ...
+</igWindows:CarouselViewSettings>
+----
+
+[start=3]
+. ScalingEffectStops オブジェクトを定義します。このオブジェクトには、ScalingEffectStopCollection と ScalingEffectStops が含まれます。3 つの ScalingEffectStops を作成します。
+
+*XAML の場合:*
+
+----
+<igWindows:CarouselViewSettings.ScalingEffectStops>
+        <igWindows:ScalingEffectStopCollection>
+                <igWindows:ScalingEffectStop Offset="0" Value="2" />
+                <igWindows:ScalingEffectStop Offset=".5" Value="1.1" />
+                <igWindows:ScalingEffectStop Offset="1" Value=".1" />
+        </igWindows:ScalingEffectStopCollection>
+</igWindows:CarouselViewSettings.ScalingEffectStops>
+----
+
+[start=4]
+. プロジェクトをビルドして実行します。以下の画像のように、パスを通過すると xamCarouselPanel 内の項目のサイズが大きくなります。
+
+image::images/xamCarouselPanel_Modifying_the_Scale_of_Elements_on_xamCarouseListBoxs_Path_01.png[xamCarouselPanel のパスで要素のスケールを変更]
+
+== 関連トピック
+
+link:xamcarousel-overview-of-path-effects.html[パス エフェクトの概要]
+
+link:xamcarouselpanel-modifying-the-opacity-effect-of-items-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで項目の不透明効果を変更]
+
+link:xamcarouselpanel-modifying-the-skew-effect-of-items-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで項目の傾斜効果を変更]

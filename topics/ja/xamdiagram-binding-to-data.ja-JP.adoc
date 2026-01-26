@@ -1,0 +1,114 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-binding-to-data",
+    "tags": ["Charting","Data Binding","Data Presentation"],
+    "controlName": ["xamDiagram"],
+    "guid": "10df0a4f-9d82-47ae-b25c-cda45073fc9f",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:16:19.0989802Z"
+}
+|metadata|
+////
+
+= データへの xamDiagram のバインド
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールがサポートするデータ バインディング シナリオの概要を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを {PlatformName} アプリケーションに追加する方法を説明します。
+
+|====
+
+== データ ソースにバインド
+
+=== サポートされるデータ ソースの概要
+
+_xamDiagram_   コントロールは以下のデータ ソースをサポートしています。
+
+[options="header", cols="a,a"]
+|====
+|データ ソース|バインディング
+
+|ノードおよび接続データ - 参照ベース
+|データ ソースには 2 つのオブジェクトのコレクションが含まれています。1 つはノードを表し、もう 1 つは接続を表します。 
+
+接続オブジェクトは、各開始オブジェクトと終了オブジェクトを参照します。 
+
+_xamDiagram_ では、データ ソース オブジェクトごとにノードまたは接続が作成されます。
+
+|ノードおよび接続データ - キー ベース
+|データ ソースには、2 つのオブジェクトのコレクションが含まれています。 
+
+* ノードを表すオブジェクト 
+
+** 一意の識別子を保持する単一のプロパティから構成されます。 
+
+* 接続を表すオブジェクト 
+
+** 接続の開始と終了を表すノード オブジェクトの識別子を保持する 2 つのプロパティから構成されます 
+
+データ ソース オブジェクトごとに、コントロールにより _xamDiagram_ で使用可能なノートまたは接続が作成されます。
+
+|階層ノード データ - 参照ベース
+|データ ソースには、ノードを表すオブジェクトのコレクションが含まれています。 
+
+これらの各オブジェクトは、論理的な子であるオブジェクトのコレクションを持つことができます。データ ソースのオブジェクトごと、または子コレクションの 1 つに対して、 _xamDiagram_ によりノードが作成されます。 
+
+親子関係ごとに、 _xamDiagram_ により接続が作成されます。
+
+|階層ノード データ - キー ベース
+|データ ソースには、ノードを表すオブジェクトのコレクションが含まれています。 
+
+各ノード オブジェクトは、一意の識別子を保持するプロパティを持ちます。これらの各オブジェクトは、論理的な子である識別子のコレクションを持つことができます。データ ソースのオブジェクトごとに、ノードが _xamDiagram_ で作成されます。 
+
+親子関係ごとに、 _xamDiagram_ により接続が作成されます。
+
+|複合
+|上記の任意の組み合わせ。例として、それぞれがその他のノード オブジェクトの子コレクションを持つ複数のノード オブジェクトをデータ ソースに含めることができます。また、データ ソースには複数の接続オブジェクトを含めることができます。結果として生成されたダイアグラムには、すべてのノードとその論理的な親子の接続、および接続オブジェクトごとの追加の接続が表示されます。
+
+|====
+
+=== データ ソースの要約
+
+_xamDiagram_   は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~itemssource.html[ItemsSource] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectionssource.html[ConnectionsSource] プロパティからデータを受け取ります。これらのプロパティは任意の `IEnumerable` を受け入れます。入力データを図のノードおよび接続にマップするために、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~nodedefinitions.html[NodeDefinitions]、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectiondefinitions.html[ConnectionDefinitions]、および link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectionpointdefinitions.html[ConnectionPointDefinitions] の別の 3 つのプロパティを使用できます。これらのプロパティはそれぞれ、データ オブジェクトが表す対象および相互接続の方法の手順を図に提供する、定義オブジェクトのコレクションです。
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-binding-to-nodes-and-connections-data-with-references.html[参照を持つノードおよび接続データへのバインド ( _xamDiagram_ )]
+|このトピックでは、入力データ オブジェクトがノードおよび接続を表し、各接続オブジェクトが開始ノードと終了ノードを表す 2 つのノード オブジェクトへの参照を持つデータに、 _xamDiagram_ コントロールをバインドする方法の手順を説明します。
+
+| link:xamdiagram-binding-to-nodes-and-connections-data-with-keys.html[キーを持つノードおよび接続データへのバインド ( _xamDiagram_ )]
+|このトピックでは、入力データ オブジェクトがノードおよび接続を表すデータに _xamDiagram_ コントロールをバインドする方法の手順を説明します。ノード オブジェクトはそれぞれ一意の文字列識別子を持ち、接続オブジェクトはそれぞれ開始ノードと終了ノードを表す 2 つのノード オブジェクトの識別子を保持する 2 つのプロパティを持ちます。
+
+| link:xamdiagram-binding-to-hierarchical-node-data-with-references.html[参照を持つ階層ノード データへのバインド ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールを階層ノード データにバインドする方法を説明します。
+
+| link:xamdiagram-binding-to-hierarchical-node-data-with-keys.html[キーを持つ階層ノード データへのバインド ( _xamDiagram_ )]
+|このトピックでは、キーを持つ階層ノード データに _xamDiagram_ コントロールをバインドする方法を説明します。
+
+|====

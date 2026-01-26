@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-styling-treeview",
+    "tags": [],
+    "controlName": ["xamDataPresenter"],
+    "guid": "f680b4f6-0d5b-4191-ab48-63de64c7ea54",  
+    "buildFlags": [],
+    "createdOn": "2015-02-19T14:09:07.9414071Z"
+}
+|metadata|
+////
+
+= ツリー ビューのスタイル設定 (xamDataPresenter)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、ツリービューのいくつかの主要要素をスタイル設定する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-styling-tree-connector-lines.html[ツリー コネクタ線のスタイル設定 (xamDataPresenter)]
+|このトピックでは、コントロールのツリー コネクタ線をスタイル設定する方法を説明します。
+
+| link:xamdatapresenter-styling-expansion-indicators.html[展開インジケーターのスタイル設定 (xamDataPresenter)]
+|このトピックでは、コントロールの展開インジケーターをスタイル設定する方法を説明します。
+
+|====

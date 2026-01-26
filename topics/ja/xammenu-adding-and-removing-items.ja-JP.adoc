@@ -1,0 +1,58 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammenu-adding-and-removing-items",
+    "controlName": ["xamMenu"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "ba2f0237-f069-4817-b425-7f79e26d7bdc",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.3782429Z"
+}
+|metadata|
+////
+
+= 項目の追加と削除
+
+xamMenu または xamContextMenu でメニュー項目を追加および削除できます。Items コレクションに項目を追加するには、メニューまたはメニュー項目の Item コレクションの Add メソッドを使用します。削除をする方法は 2 つあります。Remove および RemoveAt が Item コレクションに存在します。
+
+以下のコード例は、xamMenu で項目を追加および削除する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+' Edit メニュー項目を作成します
+Dim parentMenuItem As New XamMenuItem()
+parentMenuItem.Header = "Edit"
+menu1.Items.Add(parentMenuItem)
+' サブメニュー項目を削除します
+Dim item As XamMenuItem = TryCast(menu1.Items(0), XamMenuItem)
+item.Items.RemoveAt(0)
+----
+
+*C# の場合:*
+
+----
+// メニュー項目を作成します
+XamMenuItem parentMenuItem = new XamMenuItem();
+parentMenuItem.Header = "Edit";
+// メニュー項目を追加します
+menu1.Items.Add(parentMenuItem);
+// サブメニュー項目を削除します
+XamMenuItem item = menu1.Items[0] as XamMenuItem;
+item.Items.RemoveAt(0);
+----
+
+== 関連トピック
+
+link:xammenu-binding-to-data.html[データにバインドする]
+
+link:xammenu-layout-settings.html[レイアウト設定]
+
+link:xammenu-navigating-pages-using-xammenu.html[xamMenu を使用してページをナビゲート]
+
+link:xammenu-adding-separators-between-xammenuitems.html[セパレーターを XamMenuItems 間に追加]
+
+link:xammenu-adding-icons-to-xammenuitems.html[アイコンを XamMenuItems に追加]
+
+link:xammenu-adding-check-boxes-to-xammenuitems.html[チェックボックスを XamMenuItems に追加]

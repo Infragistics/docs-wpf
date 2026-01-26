@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-spe-best-practices",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": [],
+    "guid": "e28a49d8-727f-45c5-bf95-47081699b1d1",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.1631001Z"
+}
+|metadata|
+////
+
+= ベスト プラクティス (Syntax Parsing Engine)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、Syntax Parsing Engine のパフォーマンスを最適化する方法について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-improve-ebnf-files-readability.html[EBNF ファイルの読みやすさの向上]
+|このトピックは、EBNF ファイルの読みやすさを向上する方法を説明します。
+
+| link:ig-spe-optimize-non-terminal-symbol-definitions.html[非終端記号の定義の最適化]
+|このトピックは、生成コード数を最小限にするために非終端記号の定義を最適化する方法を説明します。
+
+| link:ig-spe-writing-operator-precedence-rules.html[演算子の優先順位ルールの定義]
+|このトピックでは、演算子の優先順位ルールの作成方法について説明します。
+
+| link:ig-spe-use-symbolnames-constants-instead-of-strings.html[String の代わりに SymbolName 定数を使用]
+|このトピックは、SymbolName 定数を使用する利点を説明します。
+
+|====

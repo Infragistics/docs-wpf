@@ -1,0 +1,131 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-indent-outdent-lines",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","How Do I"],
+    "guid": "21bfac85-1793-40d3-bed4-7d427f6b2faf",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3953958Z"
+}
+|metadata|
+////
+
+= 行のインデント / アウトデント (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、テキスト ブロックのインデント / アウトデント、およびテキストの書式設定についての情報を提供します。これは、言語によって定義されたルール、および Language で登録されたデフォルトの (またオプションでカスタムの) link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.iindentserviceprovider.html[IndentServiceProvider] に基づくものです。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref331763229, はじめに >>
+* <<_Ref331763238, キーボード ショートカットを使ったインデントとアウトデント >>
+* <<_Ref331763243, コードを使ったインデントとアウトデント >>
+* <<_Ref331763249, 自動インデントとアウトデント >>
+* <<_Ref331763261, 関連コンテンツ >>
+
+[[_Ref331763229]]
+== はじめに
+
+=== 概要
+
+_xamSyntaxEditor™_   は、テキスト ブロックのインデント / アウトデント、および Language が登録するデフォルトの (またオプションでカスタムの) `IndentServiceProvider` によって適用される自動インデント / アウトデントをサポートしています。
+
+[[_Ref331763238]]
+== キーボード ショートカットを使ったインデントとアウトデント
+
+=== ショートカットの要点チャート
+
+ユーザーは以下のキーの組み合わせを使って文書を編集しながら、選択したテキストをインデント / アウトデントすることができます。
+
+[options="header", cols="a,a"]
+|====
+|キー (組み合わせ)|作業
+
+|Tab
+|選択したテキストのインデント
+
+|Shift + Tab
+|選択したテキストのアウトデント
+
+|====
+
+image::images/xamSyntaxEditor_Indent1.png[]
+
+[[_Ref331763243]]
+== プログラムによるインデントとアウトデント
+
+=== メソッドの要点チャート
+
+以下の TextDocument メソッドを使って、指定した範囲の隣接する行をインデントおよびアウトデントできます。
+
+[options="header", cols="a,a,a"]
+|====
+|メソッド|引数|解説
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~indentlines.html[IndentLines]
+|
+* lineIndex 
+
+* lineCount 
+
+|このメソッドは、 _lineIndex_ (ゼロから始まるインデックス) で指定された行から開始して、指定した行数をインデントします。
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~outdentlines.html[OutdentLines]
+|
+* lineIndex 
+
+* lineCount 
+
+|このメソッドは、 _lineIndex_ (ゼロから始まるインデックス) で指定された行から開始して、指定した行数をアウトデントします。
+
+|====
+
+[[_Ref331763249]]
+== 自動インデントとアウトデント
+
+=== 解説
+
+自動インテンドとアウトデントは、言語で登録されたデフォルトの (またはオプションでカスタムの) IndentServiceProvider に基づいて行います。インデントは、テキストの編集中に自動的に発生します。
+
+以下のスクリーンショットは、ユーザーが開始波括弧の後に Enter キーを押したときに、キャレットが自動的にインデントされる様子を示しています。ここでは、言語が link:{ApiPlatform}documents.textdocument.csharp{ApiVersion}~infragistics.documents.parsing.csharplanguage.html[CSharpLanguage] に設定されています。
+
+image::images/xamSyntaxEditor_Indent2.png[]
+
+[[_Ref331763261]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-supported-languages.html[サポート対象言語]
+|このトピックでは、 _xamSyntaxEditor_ がサポートしている言語を紹介し、それぞれの使用方法を解説します。
+
+|====

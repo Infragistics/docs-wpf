@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-revision-history",
+    "controlName": [],
+    "tags": [],
+    "guid": "cd04ae0d-c339-4082-b8f3-cc913a564099",  
+    "buildFlags": [],
+    "createdOn": "2012-09-21T11:24:17.1155095Z"
+}
+|metadata|
+////
+
+= 改訂履歴
+
+このセクションでは、WPF コントロール各リリースのすべての新しい機能および拡張機能を確認できます。
+
+* link:breaking-changes-in-2021-volume-2.html[2021 Volume 2 の重大な変更点]
+* link:breaking-changes-in-2021-volume-1.html[2021 Volume 1 の重大な変更点]
+* link:breaking-changes-in-2018-volume-1.html[2018 Volume 1 の重大な変更点]
+* link:breaking-changes-in-2017-volume-2.html[2017 Volume 2 の重大な変更点]
+* link:breaking-changes-in-2017-volume-1.html[2017 Volume 1 の重大な変更点]
+* link:breaking-changes-in-2016-volume-2.html[2016 Volume 2 の重大な変更点]
+* link:breaking-changes-in-2016-volume-1.html[2016 Volume 1 の重大な変更点]
+* link:breaking-changes-in-2015-volume-2.html[2015 Volume 2 の重大な変更点]
+* link:breaking-changes-in-2015-volume-1.html[2015 Volume 1 の重大な変更点]
+* link:breaking-changes-in-2014-volume-2.html[2014 Volume 2 の重大な変更点]
+* link:breaking-changes-in-2014-volume-1.html[2014 Volume 1 の重大な変更点]
+* link:breaking-changes-in-2013-volume-2.html[2013 Volume 2 の重大な変更点]
+* link:wpf-breaking-changes-in-2013-volume-1.html[2013 Volume 1 の重大な変更点]
+* link:wpf-breaking-changes-in-2012-volume-2.html[2012 Volume 2 の重大な変更点]
+* link:wpf-breaking-changes-in-2012-volume-1.html[2012 Volume 1 の重大な変更点]
+* link:knownissues-netadvantage-for-wpf-data-visualization.html[{ProductName} Data Visualization]
+* link:knownissues-netadvantage-for-wpf-line-of-business.html[{ProductName} Line of Business]

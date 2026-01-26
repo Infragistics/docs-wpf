@@ -1,0 +1,275 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcalculationmanager-getting-started-with-xamcalculationmanager",
+    "controlName": ["xamCalculationManager"],
+    "tags": ["Calculations","How Do I"],
+    "guid": "88ec75fe-d17b-41f6-889d-38ad7cec2b5a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.5351226Z"
+}
+|metadata|
+////
+
+= xamCalculationManager を使用した作業の開始
+
+== トピックの概要
+
+== 目的
+
+このトピックは、xamCalculationManager™ コントロールを使用して数式を作成する方法を示します。
+
+このサンプルで 2 つの数字をかけ算する方法を示す間、それぞれの計算を完了するために必要なステップを説明します。ソースが正しく設定されている限り、xamCalculationManager では、コントロールの link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.controlcalculationsettings~formula.html[Formula] プロパティを数式に単純に設定することにより複雑な算術数式を作成できます。
+
+xamCalculationManager コントロールでは、異なるコントロール間で再利用できる複合式を作成できます。数式は、オブジェクトのパブリック プロパティとなることができるソースおよびターゲットからなります。数式は、集計関数を実行するためのソースとしてリストもサポートします。詳細については、 link:xamcalculationmanager-overview-of-list-calculator.html[「List Calculator の概要」]というトピックをご覧ください。
+
+Sum および Average などの計算を含む集計関数は、コントロールを通して利用可能であり、コントロールには、その他の多くの事前定義された関数も含まれます。多くの組み込む関数を利用できますが、「 link:xamcalculationmanager-create-xamcalculationmanager-custom-functions.html[xamCalculationManager カスタム関数の作成]」トピックで説明するようにカスタム関数を作成することもできます。
+
+== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<introduction,概要>>
+* <<preview,プレビュー>>
+* <<steps,手順>>
+* <<relatedtopics,関連トピック>>
+
+[[introduction]]
+== 概要
+
+この以下の例は、xamCalculationManager コントロールを使用して乗算数式を作成する方法を示します。
+
+この例の式は、2つの異なる方法で計算されます。
+
+[start=1]
+. テキストボックスの x: Name プロパティを使用して数式を計算します。
+
+デフォルトでは、コントロールの x:Name プロパティは、xamCalculationManager コントロールが link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.controlcalculationsettings~referenceid.html[ReferenceId]として使用します。x:Name プロパティが指定されないと、ReferenceId プロパティは link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.controlcalculationsettings.html[ControlCalculationSettings]オブジェクトに設定しなければなりません (以下のオプション 2)。
+[start=2]
+. ControlCalculationSettings オブジェクト上で ReferenceId を明示的に設定する
+
+ReferenceId は、コントロールの x:Name プロパティが設定されていない場合に設定しなければなりません。
+
+[[preview]]
+== プレビュー
+
+以下は、各テキストボックスからの値が乗算される最終結果のプレビューです。
+
+image::images/Getting_Started_with_xamCalculationManager_01.png[]
+
+== 概要
+
+以下はプロセスの概念的概要です。
+
+* テキストボックスの x: Name プロパティを使用して数式を作成します。
+* ControlCalculationSettings ReferenceId プロパティを使用して数式を作成します。
+
+[[steps]]
+== 手順
+
+[start=1]
+. テキストボックスの x: Name プロパティを使用して数式を作成します。
+
+.. StackPanel をページに追加します。
+.. xamCalculationManager コントロールを自分のページに追加します。
+.. テキストボックスを自分のページに追加し、xamCalculationManager に登録して、x: Name プロパティを txtQuantity と txtPrice にそれぞれ設定します。
+
+*XAML の場合:*
+
+----
+<StackPanel>
+<StackPanel.Resources>
+   <ig:XamCalculationManager x:Key="CalcManager"/>
+</StackPanel.Resources>
+   <TextBox x:Name="txtQuantity"
+	ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}"/>
+   <TextBox x:Name="txtPrice"
+	ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}"/>
+<!--TODO: 結果のテキストブロックの作成 -->
+</StackPanel>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim CalcManager As XamCalculationManager = New XamCalculationManager
+Dim stackPanel As StackPanel = New StackPanel
+Dim textbox1 As TextBox = New TextBox
+textbox1.Name = "txtQuantity"
+stackPanel.Children.Add(textbox1)
+Dim textbox2 As TextBox = New TextBox
+textbox2.Name = "txtPrice"
+stackPanel.Children.Add(textbox2)
+XamCalculationManager.SetCalculationManager(textbox1, CalcManager)
+XamCalculationManager.SetCalculationManager(textbox2, CalcManager)
+----
+
+*C# の場合:*
+
+----
+XamCalculationManager CalcManager = new XamCalculationManager();
+StackPanel stackPanel = new StackPanel();
+TextBox textbox1 = new TextBox();
+textbox1.Name = "txtQuantity";
+stackPanel.Children.Add(textbox1);
+TextBox textbox2 = new TextBox();
+textbox2.Name = "txtPrice";
+stackPanel.Children.Add(textbox2);
+XamCalculationManager.SetCalculationManager(textbox1, CalcManager);
+XamCalculationManager.SetCalculationManager(textbox2, CalcManager);
+----
+
+[start=2]
+. TextBlock を StackPanel に追加します。
+
+.. TextBlock は、結果が表示される場所です。xamCalculationManager コントロールの ControlCalculationSettings オブジェクトを追加して、数式のターゲットを設定します。
+.. x: Name プロパティを使用して 2 つの TextBox の値を乗算する Formula プロパティに数式セットを定義します。
+
+*XAML の場合:*
+
+----
+<TextBlock x:Name="mulResult"
+	ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}">
+   <ig:XamCalculationManager.ControlSettings>
+      <ig:ControlCalculationSettings ReferenceId="mulTotal"
+                       Formula="[txtQuantity] * [txtPrice]" />
+      </ig:XamCalculationManager.ControlSettings>
+</TextBlock>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim textblock1 As TextBlock = New TextBlock
+Dim calcSettings As ControlCalculationSettings = New ControlCalculationSettings
+calcSettings.Formula = "[txtQuantity]*[txtPrice]"
+XamCalculationManager.SetControlSettings(textblock1, calcSettings)
+XamCalculationManager.SetCalculationManager(textblock1, CalcManager)
+stackPanel.Children.Add(textblock1)
+----
+
+*C# の場合:*
+
+----
+TextBlock textblock1 = new TextBlock();
+ControlCalculationSettings calcSettings = new ControlCalculationSettings();
+calcSettings.Formula = "[txtQuantity]*[txtPrice]";
+XamCalculationManager.SetControlSettings(textblock1, calcSettings);
+XamCalculationManager.SetCalculationManager(textblock1, CalcManager);
+stackPanel.Children.Add(textblock1);
+----
+
+[start=3]
+. ControlCalculationSettings ReferenceId プロパティを使用して数式を作成します。
+
+.. StackPanel をページに追加します。
+.. xamCalculationManager コントロールを自分のページに追加します。
+.. 2 つのテキストボックスをページに追加し、xamCalculationManager コントロールに登録します。xamCalculationManager コントロールの ControlCalculationSettings オブジェクトを各テキストボックスに追加します。
+.. ReferenceIds を RefQuantity および RefPrice にそれぞれ設定します。
+
+*XAML の場合:*
+
+----
+<StackPanel Width="150" Orientation="Vertical">
+<StackPanel.Resources>
+   <ig:XamCalculationManager x:Key="CalcManager"/>
+</StackPanel.Resources>
+   <TextBox x:Name="txtQuantity" ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}">
+   <ig:XamCalculationManager.ControlSettings>
+      <ig:ControlCalculationSettings ReferenceId="RefQuantity"/>
+      </ig:XamCalculationManager.ControlSettings>
+   </TextBox>
+   <TextBox x:Name="txtPrice"  ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}">
+      <ig:XamCalculationManager.ControlSettings>
+         <ig:ControlCalculationSettings ReferenceId="RefPrice"/>
+      </ig:XamCalculationManager.ControlSettings>
+   </TextBox>
+   <!--TODO: 結果のテキストブロックの作成 -->
+</StackPanel>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim CalcManager As XamCalculationManager = New XamCalculationManagerDim stackPanel As StackPanel = New StackPanel
+Dim textbox1 As TextBox = New TextBox
+stackPanel.Children.Add(textbox1)
+Dim calcSettings1 As ControlCalculationSettings = New ControlCalculationSettings
+calcSettings1.ReferenceId = "RefQuantity"
+XamCalculationManager.SetControlSettings(textbox1, calcSettings1)
+Dim textbox2 As TextBox = New TextBox
+stackPanel.Children.Add(textbox2)
+Dim calcSettings2 As ControlCalculationSettings = New ControlCalculationSettings
+calcSettings2.ReferenceId = "RefPrice"
+XamCalculationManager.SetControlSettings(textbox2, calcSettings2)
+XamCalculationManager.SetCalculationManager(textbox2, CalcManager)
+XamCalculationManager.SetCalculationManager(textbox1, CalcManager)
+----
+
+*C# の場合:*
+
+----
+XamCalculationManager CalcManager = new XamCalculationManager();
+StackPanel stackPanel = new StackPanel();
+TextBox textbox1 = new TextBox();
+stackPanel.Children.Add(textbox1);
+ControlCalculationSettings calcSettings1 = new ControlCalculationSettings();
+calcSettings1.ReferenceId = "RefQuantity";
+XamCalculationManager.SetControlSettings(textbox1, calcSettings1);
+TextBox textbox2 = new TextBox();
+stackPanel.Children.Add(textbox2);
+ControlCalculationSettings calcSettings2 = new ControlCalculationSettings();
+calcSettings2.ReferenceId = "RefPrice";
+XamCalculationManager.SetControlSettings(textbox2, calcSettings2);
+XamCalculationManager.SetCalculationManager(textbox2, CalcManager);
+XamCalculationManager.SetCalculationManager(textbox1, CalcManager);
+----
+
+[start=4]
+. TextBlock を StackPanel に追加します。
+
+.. TextBlock は、結果が表示される場所です。xamCalculationManager コントロールの ControlCalculationSettings オを追加して、数式のターゲットを設定します。
+.. ReferenceId を使用して 2 つの TextBox の値を乗算する Formula プロパティに数式セットを定義します。
+
+*XAML の場合:*
+
+----
+<TextBlock x:Name="mulResult" Width="100"
+	ig:XamCalculationManager.CalculationManager="{StaticResource CalcManager}">
+   <ig:XamCalculationManager.ControlSettings>
+      <ig:ControlCalculationSettings ReferenceId="mulTotal"
+                       Formula="[RefQuantity] * [RefPrice]" />
+   </ig:XamCalculationManager.ControlSettings>
+</TextBlock>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim textblock1 As TextBlock = New TextBlock
+Dim calcSettings As ControlCalculationSettings = New ControlCalculationSettings
+calcSettings.Formula = "[RefQuantity]*[RefPrice]"
+XamCalculationManager.SetControlSettings(textblock1, calcSettings)
+XamCalculationManager.SetCalculationManager(textblock1, CalcManager)
+stackPanel.Children.Add(textblock1)
+----
+
+*C# の場合:*
+
+----
+TextBlock textblock1 = new TextBlock();
+ControlCalculationSettings calcSettings = new ControlCalculationSettings();
+calcSettings.Formula = "[RefQuantity]*[RefPrice]";
+XamCalculationManager.SetControlSettings(textblock1, calcSettings);
+XamCalculationManager.SetCalculationManager(textblock1, CalcManager);
+stackPanel.Children.Add(textblock1);
+----
+
+[[relatedtopics]]
+*関連トピック:*
+
+* link:xamcalculationmanager-overview-of-named-references.html[名前付き参照の概要]
+* link:xamcalculationmanager-overview-of-list-calculator.html[リスト計算式の概要]
+* link:xamcalculationmanager-overview-of-item-calculator.html[項目計算式の概要]
+* link:xamcalculationmanager-create-xamcalculationmanager-custom-functions.html[xamCalculationManager カスタム関数の作成]

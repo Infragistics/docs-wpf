@@ -1,0 +1,421 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-creating-a-custom-summary-calculator",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Summaries","Tips and Tricks"],
+    "guid": "{A1703FFE-F6D7-4544-8D66-3C33DD8872AD}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1229777Z"
+}
+|metadata|
+////
+
+= カスタム集計計算を作成
+
+
+== 始める前に
+
+xamDataPresenter™ コントロールは、集計値を計算するために一般的に使用される 5 つの集計関数を提供します。組み込み関数がユーザーのニーズに適さない場合、カスタム集計を作成および使用できます。
+
+== 達成すること
+
+標準偏差を計算するためにカスタム集計計算式を作成します。
+
+標準偏差の計算アルゴリズムの実装の詳細は本トピックの範囲外なので説明しません。アルゴリズムはサンプルとして提供されますが、すべてのアプリケーション シナリオで動作するわけではありません。
+
+== 次の手順を実行します
+
+[start=1]
+. プロジェクトに新しいクラスを追加して StandardDeviation という名前をつけます。
+[start=2]
+. コードの記述を開始する前にコード ビハインドに using/Imports のディレクティブを配置します。そうすれば、メンバーは完全に記述された名前を常にタイプする必要がなくなります。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+Imports Infragistics.Windows
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+using Infragistics.Windows;
+using System.Windows.Media;
+...
+----
+
+[start=3]
+. 抽象 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator.html[SummaryCalculator] クラスから継承します。
+
+*Visual Basic の場合:*
+
+----
+Public Class StandardDeviation
+    Inherits SummaryCalculator
+End Class
+----
+
+*C# の場合:*
+
+----
+public class StandardDeviation : SummaryCalculator
+{
+}
+----
+
+[start=4]
+. 中間計算の結果を保持したり、結果で必要となる合計を実行したりするクラス レベル変数を作成します。
+
+*Visual Basic の場合:*
+
+----
+...
+Dim _count As Integer
+Dim _sum As Double
+Dim _squaredSum as Double
+...
+----
+
+*C# の場合:*
+
+----
+...
+int _count;
+double _sum;
+double _squaredSum;
+...
+----
+
+[start=5]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~begincalculation.html[BeginCalculation] メソッドを実装します。
+
+xamDataPresenter コントロールは、計算の最初で一度だけ BeginCalculation メソッドを呼び出します。このメソッドを使用して、計算で必要な変数を初期化します。
+
+*Visual Basic の場合:*
+
+----
+...
+Public Overrides Sub BeginCalculation(ByVal summaryResult As Infragistics.Windows.DataPresenter.SummaryResult)
+    _count = 0
+    _sum = 0
+    _squaredSum = 0
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override void BeginCalculation(SummaryResult summaryResult)
+{
+    _count = 0;
+    _sum = 0;
+    _squaredSum = 0;
+}
+...
+----
+
+[start=6]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~canprocessdatatype.html[CanProcessDataType] メソッドを実装します。
+
+xamDataPresenter コントロールは、集計計算式を集計選択ダイアログ ボックスに追加するかどうかを決定するために CanProcessDataType メソッドを呼び出します。このメソッドに渡されるデータ タイプをテスト後、この計算を集計選択ダイアログ ボックスに表示するかどうかを示すためにブール値を返すことができます。
+
+*Visual Basic の場合:*
+
+----
+...
+Public Overrides Function CanProcessDataType(ByVal dataType As System.Type) As Boolean
+    Return Utilities.IsNumericType(dataType)
+End Function
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override bool CanProcessDataType(Type dataType)
+{
+    return Utilities.IsNumericType(dataType);
+}
+...
+----
+
+[start=7]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~aggregate.html[Aggregate] メソッドを実装します。
+
+xamDataPresenter コントロールは、行毎に計算されるフィールドで一度だけ Aggregate メソッドを呼び出します。このメソッドを使用して、最終結果で必要となる総合計または中間集計を計算します。
+
+*Visual Basic の場合:*
+
+----
+...
+Public Overrides Sub Aggregate(ByVal dataValue As Object, ByVal summaryResult As Infragistics.Windows.DataPresenter.SummaryResult, ByVal record As Infragistics.Windows.DataPresenter.Record)
+    Dim tempVal As Double = 0 
+    If Not Convert.IsDBNull(dataValue) Then 
+        tempVal = Convert.ToDouble(dataValue)
+    End If 
+    _count += 1 
+    _sum += tempVal 
+    _squaredSum += tempVal * tempVal 
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override void Aggregate(object dataValue, SummaryResult summaryResult, Record record)
+{
+    double tempVal = 0.0;
+    if(!Convert.IsDBNull(dataValue))
+        tempVal = Convert.ToDouble(dataValue);
+    _count++;
+    _sum += tempVal;
+    _squaredSum += tempVal  * tempVal;
+}
+...
+----
+
+[start=8]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~endcalculation.html[EndCalculation] メソッドを実装します。
+
+xamDataPresenter コントロールは、計算の最後で EndCalculation メソッドを呼び出します。このメソッドを使用して計算結果を返します。xamDataPresenter コントロールは、集計表示領域にこのメソッドの戻り値を表示します。
+
+*Visual Basic の場合:*
+
+----
+....
+Public Overrides Function EndCalculation(ByVal summaryResult As Infragistics.Windows.DataPresenter.SummaryResult) As Object
+    If _count < 2 OrElse _sum = 0 Then 
+        Return 0 
+    End If 
+    Dim theAverage As Double = _sum / _count 
+    Dim theDeviation As Double = (_squaredSum - _sum * theAverage) / (_count - 1) 
+    Return Math.Sqrt(theDeviation)
+End Function
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override object EndCalculation(SummaryResult summaryResult)
+{
+    if (_count < 2 || _sum == 0)
+        return 0;
+    double theAverage = _sum / _count;
+    double theDeviation = (_squaredSum - _sum * theAverage) / (_count - 1);
+    return Math.Sqrt(theDeviation);
+}
+...
+----
+
+[start=9]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~name.html[Name] プロパティをオーバーライドします。
+
+各 SummaryCalculator 派生クラスは一意の名前を持つ必要があります。Name プロパティは読み取り専用プロパティです。したがって、ランタイムに設定できません。このプロパティをオーバーライドし、カスタム集計計算式の名前を返す必要があります。名前を返さなければ、xamDataPresenter は例外をスローします。2 つの集計計算式が同じ名前である場合、最後に登録されたものだけが使用されます。
+
+*Visual Basic の場合:*
+
+----
+...
+Public Overrides ReadOnly Property Name() As String
+    Get
+        Return "Std. Dev."
+    End Get
+End Property
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override string Name
+{
+    get
+    {
+        return "Std. Dev.";
+    }
+}
+...
+----
+
+[start=10]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~description.html[Description] プロパティをオーバーライドします。
+
+Description プロパティを使用して xamDataPresenter が集計選択ダイアログ ボックスにツールチップとして表示される文字列を返します。以前のメソッドやプロパティと異なり、Description プロパティはカスタム集計計算式を作成する必要はありません。
+
+*Visual Basic の場合:*
+
+----
+...
+Public Overrides ReadOnly Property Description() As String
+    Get
+        Return "Standard Deviation"
+    End Get
+End Property
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override string Description
+{
+    get
+    {
+        return "Standard Deviation";
+    }
+}
+...
+----
+
+[start=11]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~iscalculationaffectedbysort.html[IsCalculationAffectedBySort] プロパティをオーバーライドします。
+
+IsCalculationAffectedBySort プロパティは、xamDataPresenter でフィールドをソートする時に集計が再計算されるかどうかを決定します。True が返される場合、xamDataPresenter は BeginCalculation、Aggregate、および EndCalculation メソッドを再び呼び出します。SummaryCalculator 基本クラスは、このプロパティに対して False の値を返します。したがって、デフォルト値を変更しない限り、このプロパティをオーバーライドする必要はありません。
+
+*Visual Basic の場合:*
+
+----
+...
+Public Overrides ReadOnly Property IsCalculationAffectedBySort() As Boolean
+    Get
+        Return False
+        'MyBase.IsCalculationAffectedBySort を返すことは、False を返すことと同じ結果となります。
+    End Get
+End Property
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override bool IsCalculationAffectedBySort
+{
+    get
+    {
+        return false;
+        //MyBase.IsCalculationAffectedBySort を返すことは、False を返すことと同じ結果となります。
+    }
+}
+...
+----
+
+[start=12]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~image.html[Image] プロパティをオーバーライドします。
+
+Image プロパティは、集計計算式が正しく機能するために必要ではありません。集計選択ダイアログ ボックスの集計計算式の隣りの画像を表示するために ImageSource オブジェクトを返すことができます。画像の遅延ロードも実装できるので、リソースを無駄にしません。コードを単純にするために、以下のコード例では遅延ロードを使用していません。
+
+*Visual Basic の場合:*
+
+----
+...
+Public Overrides ReadOnly Property Image() As System.Windows.Media.ImageSource 
+    Get
+        Dim converter As New ImageSourceConverter()
+        Return TryCast(converter.ConvertFrom("Some_Image_Path.png"), ImageSource) 
+    End Get 
+End Property
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override ImageSource Image
+{
+    get
+    {
+        ImageSourceConverter converter = new ImageSourceConverter();
+        return converter.ConvertFrom("Some_Image_Path.jpg") as ImageSource;
+    }
+}
+...
+----
+
+[start=13]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~applydefaultformat.html[ApplyDefaultFormat] メソッドをオーバーライドします。
+
+ApplyDefaultFormat メソッドは、集計計算式が正しく機能するために必要ではありません。実際、フィールドの SummaryStringFormats プロパティがこの集計計算式をフォーマットするために設定されると、xamDataPresente は ApplyDefaultFormat メソッドを呼び出しません。このメソッドで計算された値のフォーマットされた文字列表現を返すことができます。
+
+*Visual Basic の場合:*
+
+----
+...
+Public Overrides Function ApplyDefaultFormat(ByVal summaryResultValue As Object, ByVal context As SummaryResult) As String 
+    Return String.Format("{1} = {0:n5}", summaryResultValue, Name) 
+End Function 
+...
+----
+
+*C# の場合:*
+
+----
+...
+public override string ApplyDefaultFormat(object summaryResultValue, SummaryResult context)
+{
+    return string.Format("{1} = {0:n5}", summaryResultValue, Name);
+}
+...
+----
+
+[start=14]
+. SummaryCalculator オブジェクトの静的 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.summarycalculator~register.html[Register] メソッドを使用してカスタム集計計算式を登録します。
+
+集計計算式は一度だけ登録する必要があります。集計計算式を一度登録すれば、プロジェクト内の xamDataPresenter のすべてのインスタンスは、集計選択ダイアログ ボックスに集計計算式を表示します。メイン Window の Loaded イベントにカスタム集計計算式を登録するためにコードを配置できます。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Private Sub Window_Loaded(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+    SummaryCalculator.Register(New StandardDeviation())
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+private void Window1_Loaded(object sender, RoutedEventArgs e)
+{
+    SummaryCalculator.Register(new StandardDeviation());
+}
+...
+----
+
+[start=15]
+. アプリケーションをビルドして実行します。
+
+数値フィールドのヘッダの集計ボタンをクリックすると、以下のスクリーンショットに似ている集計選択ダイアログ ボックスが表示されます。
+
+image::images/xamDataPresenter_Creating_a_Custom_Summary_Calculator_01.png[xamdatapresenter でカスタム集計計算式の作成]
+
+== 関連トピック
+
+link:xamdatapresenter-apply-default-summary-formats.html[デフォルトの集計フォーマットを適用]
+
+link:xamdatapresenter-enable-row-summaries.html[行集計を有効]
+
+link:xamdatapresenter-format-the-value-of-a-summary.html[集計の値をフォーマット]
+
+link:xamdatapresenter-programmatically-add-summaries-to-a-field.html[集計をフィールドにプログラムで追加]
+
+link:xamdatapresenter-retrieve-the-result-of-a-summary.html[集計結果を取得]

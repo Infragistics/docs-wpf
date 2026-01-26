@@ -1,0 +1,66 @@
+﻿////
+|metadata|
+{
+    "name": "creating-an-xmldataprovider",
+    "controlName": [],
+    "tags": [],
+    "guid": "{58BC69D7-81B2-441D-AC12-EFE931CD427E}",
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-02-01T16:01:19.6158359Z"
+}
+|metadata|
+////
+
+= XmlDataProvider の作成
+
+== 始める前に
+
+XmlDataProvider を使用することによって、XML ファイルにコントロールをバインドできます。
+
+このトピックでは、XmlDataProvider を特定のコントロールバインドする方法についての説明はありません。ただし、コントロール固有のタスクについてはこのトピックで作成された XmlDataProvider を使用する必要があります。このトピックで作成した XmlDataProvider にコントロールをバインドする方法については、このトピックの最後にあるリンクをご覧ください。
+
+== 達成すること
+
+このトピックは、Extensible Application Markup Language (XAML) で XmlDataProvider オブジェクトを作成する方法を示します。XmlDataProvider を宣言するための XAML は、一般的にコントロールに依存しなくても十分な程度に記述されています。
+
+このトピックで使用される XML ファイルは link:resources-orders.html[Orders.xml] と呼ばれ、ダウンロードすることができます。例の XAML コードは、プロジェクト内の "Data" というフォルダに XML ファイルが存在していることが前提です。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® Windows® Presentation Foundation Window プロジェクトを作成します。
+[start=2]
+. Resources セクションを Window または Page で作成します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+...
+<Window.Resources>
+        <!--TODO: ここで XmlDataProvider を追加します。-->
+</Window.Resources>
+...
+----
+
+[start=3]
+. XmlDataProvider を Resources セクションに追加します。
+
+.. Key - Key プロパティを OrderData に設定します。この Key を使用してデータ プロバイダを後で参照します。
+.. Source - Source プロパティを Data/Orders.xml に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+...
+<XmlDataProvider x:Key="OrderData" Source="Data/Orders.xml" />
+...
+----
+
+[start=4]
+. この時点でアプリケーションを実行すると、空の Window を表示するだけです。結果を確認するためには、コントロールを Window に追加して、このトピックで作成した XmlDataProvider をコントロールにバインドする必要があります。
+
+== 関連トピック
+
+link:xamcomboeditor-bind-xamcomboeditor-to-an-xmldataprovider.html[xamComboEditor を XmlDataProvider にバインド]

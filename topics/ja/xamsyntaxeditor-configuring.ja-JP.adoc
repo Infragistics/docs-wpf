@@ -1,0 +1,46 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-configuring",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": [],
+    "guid": "485652cc-0c20-43fe-8521-915ca031a289",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3283598Z"
+}
+|metadata|
+////
+
+= xamSyntaxEditor の構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションでは、 _xamSyntaxEditor™_   クロス プラットフォーム コントロールのさまざまな機能を使用する上で役立つ、主要概念やタスク ベースの情報について解説します。
+
+=== トピック
+
+このセクションでは、 _xamSyntaxEditor_   の使用方法とカスタマイズについて解説します。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-configuring-initial-content.html[初期コンテンツの構成]
+|このトピックでは、 _xamSyntaxEditor_ のオーバーロードした link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument_members.html[TextDocument] メソッドの Load メソッドと Save メソッドでコンテンツを読み込み、保存する方法を解説します。
+
+| link:xamsyntaxeditor-editing-support.html[編集サポート]
+|このグループのこのトピックでは、 _xamSyntaxEditor™_ によるテキストの編集方法について解説します。
+
+| link:xamsyntaxeditor-syntax-highlighting.html[構文のハイライト表示]
+|このトピックでは、`TextDocument` の関連言語によるテキストのカラー化について解説します。
+
+| link:xamsyntaxeditor-margins.html[マージン]
+|このセクションでは、 _xamSyntaxEditor_ の組み込みマージンの使用方法とカスタム マージンの作成方法を解説します。
+
+| link:xamsyntaxeditor-customizing.html[ _xamSyntaxEditor_ のカスタマイズ]
+|このグループのトピックでは、 _xamSyntaxEditor_ のカスタマイズ方法を解説します。
+
+|====

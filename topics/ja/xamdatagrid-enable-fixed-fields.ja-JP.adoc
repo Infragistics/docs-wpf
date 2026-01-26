@@ -1,0 +1,55 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-enable-fixed-fields",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Editing"],
+    "guid": "{CF27A43E-F736-49E9-ABC4-B7C500FF1463}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.9969525Z"
+}
+|metadata|
+////
+
+= 固定フィールドを有効にする
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowfixing.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[AllowFixing] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.allowfieldfixing.html[AllowFieldFixing] 列挙値に設定することによって、xamDataPresenter™ コントロールまたは xamDataGrid™ コントロールの固定フィールドを有効にできます。コントロール レベルの FieldSettings プロパティで AllowFixing プロパティを設定すると、エンドユーザーはコントロールのすべてのフィールドを固定することができます。個々の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの FieldSettings プロパティの AllowFixing プロパティを設定することによって、この動作を変更できます。
+
+image::images/xamDataPresenter_Enable_Fixed_Fields.png[]
+
+以下のコード例は、固定フィールドを有効にする方法を示します。例のコードが xamDataPresenter コントロールを使用しているとしても、xamDataGrid コントロールを代わりに使用できます。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldSettings>
+        <igDP:FieldSettings AllowFixing="Near" />
+    </igDP:XamDataPresenter.FieldSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldSettings.AllowFixing = AllowFieldFixing.Near
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldSettings.AllowFixing = AllowFieldFixing.Near;
+----
+
+== 関連トピック
+
+link:xamdatagrid-about-fixed-non-scrolling-fields.html[固定 (非スクロール) フィールドについて]
+
+link:xamdatagrid-fix-fields.html[フィールドの固定]

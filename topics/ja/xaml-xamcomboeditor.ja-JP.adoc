@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xaml-xamcomboeditor",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{925F4CFB-F561-4BCD-9F3C-10B1B5A4A0C5}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.696093Z"
+}
+|metadata|
+////
+
+= xamComboEditor (Input)
+
+このセクションでは、xamComboEditor™ の使用に関する概要を説明します。このセクションには、コントロールが行うこと、アプリケーションでコントロールを使用する理由から、コントロールを使用して共通タスクを実現する方法の手順まで、xamComboEditor に関する有益な情報が含まれています。以下のリンクをクリックして、xamComboEditor コントロールについての情報にアクセスします。
+
+== link:xamcomboeditor-about-xamcomboeditor.html[xamComboEditor について]
+
+このセクションの説明を読むと、xamComboEditor コントロールの機能性と、それをアプリケーションに使用することの利点についてよく理解できます。
+
+== link:xamcomboeditor-adding-xamcomboeditor-to-your-page.html[xamComboEditor をページに追加]
+
+xamComboEditor コントロールの操作にできる限り早く慣れるために、コントロールを使用した作業の開始方法に関する情報を提供します。
+
+== link:xamcomboeditor-using-xamcomboeditor.html[xamComboEditor の使用]
+
+このセクションには、xamComboEditor コントロールで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamcomboeditor-api-overview.html[API の概要]
+
+このトピックは、xamComboEditor コントロールを使用して開発する際の名前空間とクラスについて説明します。このトピックに挙げられている名前空間とクラスは、{ProductName} ヘルプの「API リファレンス ガイド」セクションにリンクされています。

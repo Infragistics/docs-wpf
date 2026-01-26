@@ -1,0 +1,137 @@
+﻿////
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-import-export-docx",
+    "tags": ["Data Binding"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "4d1e6ba2-481a-40d0-8c6c-f5109966fc6e",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.489345Z"
+}
+|metadata|
+////
+
+= xamRichTextEditor で .docx ファイルのインポート / エクスポート
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールを使用して DOCX ファイル形式のデータをインポートおよびエクスポートする方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-serialization-providers.html[シリアル化プロバイダーの概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールのシリアル化プロバイダーについて説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362612534,MS Word の構成の概要をインポート / エクスポート>>
+* <<_Ref362603137,MS Word のコンテンツをインポート>>
+* <<_Ref362603145,MS Word のコンテンツをエクスポート>>
+* <<_Ref359594803,関連トピック>>
+
+[[_Ref362612534]]
+== MS Word の構成の概要をインポート / エクスポート
+
+=== 構成の概要チャートをインポート / エクスポート
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、各プロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|メソッド
+
+|<<_Ref362603137,MS Word のコンテンツをインポート>>
+|MS Word のコンテンツをストリームからインポートします。
+| link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.wordserializationproviderextensions~loadfromword.html[LoadFromWord]
+
+|<<_Ref362603145,MS Word のコンテンツをエクスポート>>
+|MS Word のコンテンツをストリームにエクスポートします。
+| link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.wordserializationproviderextensions~savetoword.html[SaveToWord]
+
+|====
+
+注:
+
+[NOTE]
+====
+最初に、以下の MS Word シリアル化プロバイダー NuGet パッケージへの参照をプロジェクトに追加する必要があります:
+
+*Infragistics.WPF.RichTextDocument.Word*
+====
+
+[[_Ref362603137]]
+== MS Word のコンテンツをインポート
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] の `LoadFromWord` 拡張メソッドを使用して、 _xamRichTextEditor_   コントロール内の MS Word のコンテンツをストリームからインポートします。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|以下の引数を提供:
+
+|MS Word のコンテンツをインポート
+|`LoadFromWord`
+|
+* MS Word ファイル形式のコンテンツを含むストリーム オブジェクト 
+
+* link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.word.wordloadoptions_members.html[WordLoadOptions] タイプのオプション オブジェクトを読み込むコンテンツ。必須ではない。 
+
+|====
+
+[[_Ref362603145]]
+== MS Word のコンテンツをエクスポート
+
+=== 概要
+
+`RichTextDocument` の `SaveToWord` 拡張メソッドを使用して、 _xamRichTextEditor_   のコンテンツを MS Word ファイル形式でストリームにエクスポートします。
+
+=== プロパティ設定
+
+以下の表では、各プロパティ設定の構成です。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このメソッドを使用|以下の引数を提供:
+
+|MS Word ファイル形式のコンテンツをエクスポート
+|`SaveToWord`
+|
+* MS Word ファイル形式のコンテンツをエクスポートするストリーム オブジェクト 
+
+* link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.word.wordsaveoptions_members.html[WordSaveOptions] タイプのオプション オブジェクトを保存するコンテンツ。必須でhaない。 
+
+|====
+
+[[_Ref359594803]]
+== 関連トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-import-export-text.html[プレーン テキストのインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、プレーン テキストのデータをインポートおよびエクスポートする方法を説明します。
+
+| link:xamrichtexteditor-managing-import-export-rtf.html[RTF のインポート / エクスポート]
+|このトピックでは、 _xamRichTextEditor_ コントロールを使用して、RTF データをインポートおよびエクスポートする方法を説明します。
+
+|====

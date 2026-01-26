@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-format-point-and-span-values",
+    "controlName": ["xamTimeline"],
+    "tags": ["Data Presentation","How Do I"],
+    "guid": "{367B1897-1F1A-427C-8209-BE650C20DDBB}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.0574013Z"
+}
+|metadata|
+////
+
+= 点およびスパン値の書式設定
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventcontrol~pointstringformat.html[PointStringFormat] および link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventcontrol~spanstringformat.html[SpanStringFormat] プロパティを使用して、点のラベルをフォーマットして任意のテキストに値をスパンできます。デフォルト表示は、イベントのタイトルに括弧 [] 内の時間が後続します。
+
+[NOTE]
+====
+注: XAML の中括弧 ('{' と '}') はマークアップ拡張のための特殊文字です。文字列の最初の値が中括弧でなければならない場合、中括弧の空のセットをエスケープ シーケンスとして使用する必要があります。これによって、リテラル値として取得すべき中括弧の空のセットにテキストが続くことができます。
+====
+
+この例は、Infragistics link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールのためにプロジェクトを設定する方法をユーザーが理解していることを前提としています。以下の xaml コードは、スパンのためにカスタム テキストを表示して、ポイント値の括弧を削除する方法を示します。
+
+*XAML の場合:*
+
+----
+    <UserControl.Resources>
+        <Style x:Key="rscEventTitleFormatStyle" TargetType="igtl:EventTitle">
+            <Setter Property="PointStringFormat" Value="{}{0}" />
+            <Setter Property="SpanStringFormat" Value="{}[Years {0} - {1}]" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+        <igtl:XamTimeline x:Name="xamTimeline"  
+                             Width="1000" Height="400" Margin="25">
+            <!-- Axis プロパティを設定 -->
+            <igtl:XamTimeline.Axis>
+                <igtl:NumericTimeAxis Minimum="-3200" Maximum="2600" 
+                                      AutoRange=" Unit="400" 
+                                      ShowLabels="True" ShowThumb="True" 
+                                      ShowMajorTickMarks="True"/>
+            </igtl:XamTimeline.Axis>
+            <!-- Timeline Series で Data を設定します -->
+            <igtl:XamTimeline.Series>
+                <!-- 歴史上の出来事 -->
+                <igtl:NumericTimeSeries Title="Historic Empires" Fill="Red" Position="TopOrLeft"
+                                        EventTitleStyle="{StaticResource rscEventTitleFormatStyle}" >
+                    <!--TODO: 数値時間エントリを追加します -->
+                    <igtl:NumericTimeSeries.Entries>
+                        <igtl:NumericTimeEntry Time="-2575" Title="Pyramid"/>
+                        <igtl:NumericTimeEntry Time="250" Title="Mayan Empire"  
+                          Duration="650" Details="Duration 250 AD – 900 AD"/>
+                        <igtl:NumericTimeEntry Time="600" Title="Chichen Itza"/>
+                        <igtl:NumericTimeEntry Time="-2650" Title="Egypt Empire"
+                          Duration="2000" Details="Duration 2650 BC – 650 BC"/>
+                        <igtl:NumericTimeEntry Time="1402" Title="Spanish Empire"
+                          Duration="311" Details="Duration 1402 BC – 1713 BC"/>
+                    </igtl:NumericTimeSeries.Entries>
+                </igtl:NumericTimeSeries>
+            </igtl:XamTimeline.Series>
+        </igtl:XamTimeline>
+    </Grid>
+----
+
+image::images/XamTimeline_Format_Numeric_Point_And_Span_Values_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-about-formatting-xamwebtimeline.html[xamTimeline の書式設定について]
+
+link:xamtimeline-format-datetime-values.html[日付/時刻の値の書式設定]
+
+link:xamtimeline-format-numeric-time-values.html[数値時間値の書式設定]

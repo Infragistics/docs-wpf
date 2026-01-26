@@ -1,0 +1,58 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-databinding-using-sap-xmla-datasource",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Data Binding","Grids","How Do I"],
+    "guid": "a0892f60-61be-4fd8-8db7-9d74e68ae160",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.0782822Z"
+}
+|metadata|
+////
+
+= Sap Xmla Datasource の使用
+
+link:{ApiPlatform}olap.xmla.sap{ApiVersion}~infragistics.olap.xmla.sap.xmlasapdatasource_members.html[XmlaSapDataSource] オブジェクトは、SAP を接続するためのデータ ソースであり、その使用法は、サーバー認証パラメータのある XmlaDataSource と同じです。以下のコード例は、XmlaSapDataSource を SAP サーバーへ接続する方法を示します。
+
+*XAML の場合:*
+
+----
+    <olap:XmlaSapDataSource x:Key="DataSource">
+        <olap:XmlaSapDataSource.ConnectionSettings>
+            <olap:XmlaSapConnectionSettings ServerUri="http://server/sap"/>
+        </olap:XmlaSapDataSource.ConnectionSettings>
+        <olap:XmlaSapDataSource.Credentials>
+            <olap:XmlaNetworkCredential Password="P@ssw0rd"
+                                        UserName="Admin">
+            </olap:XmlaNetworkCredential>
+        </olap:XmlaSapDataSource.Credentials>
+    </olap:XmlaSapDataSource>
+    ...
+    <ig:XamPivotGrid x:Name="PivotGrid" DataSource="{StaticResource DataSource}" />
+----
+
+*Visual Basic の場合:*
+
+----
+Dim Credentials As New XmlaNetworkCredential()
+Credentials.UserName = "Admin"
+Credentials.Password = "P@ssw0rd"
+Dim DataSource As New XmlaSapDataSource()
+DataSource.ServerUri = New Uri("http://server/sap")
+DataSource.Credentials = Credentials
+Me.PivotGrid.DataSource = DataSource
+----
+
+*C# の場合:*
+
+----
+XmlaNetworkCredential Credentials = new XmlaNetworkCredential();
+Credentials.UserName = "Admin";
+Credentials.Password = "P@ssw0rd";
+XmlaDataSource DataSource = new XmlaSapDataSource();
+DataSource.ServerUri = new Uri("http://server/sap");
+DataSource.Credentials = Credentials;
+this.PivotGrid.DataSource = DataSource;
+----

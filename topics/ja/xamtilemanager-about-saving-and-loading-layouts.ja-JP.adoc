@@ -1,0 +1,334 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-about-saving-and-loading-layouts",
+    "controlName": ["xamTileManager"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "5bfb4ab8-359f-4576-83f4-44058cd32775",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6553794Z"
+}
+|metadata|
+////
+
+= レイアウトの保存およびロードについて
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager.html[xamTileManager] のレイアウトの保存方法と、その後 Infragistics® Control Persistence Framework を使用してレイアウトを復元する方法について説明します。フレームワークを使用したレイアウトの保存によって、ユーザーは各セッションのアプリケーション レイアウトを再構成する必要がなくなります。
+
+=== 本トピックの内容
+
+このドキュメントには次のセクションが含まれています:
+
+* <<SavingLayouts,レイアウトの保存>>
+* <<LoadingLayouts,レイアウトのロード>>
+
+=== 必要な背景
+
+以下の表には、このトピックの必須条件が示されています。
+
+[options="header", cols="a,a"]
+|====
+|背景タイプ|コンテンツ
+
+|概念
+|以下の概念を理解する必要があります。 
+
+* link:control-persistence-framework.html[Infragistics Control Persistence Framework] 
+
+|トピック
+|まず以下のトピックを読む必要があります。 
+
+* link:persistence-about-ig-control-persistence-framework.html[Infragistics Control Persistence Framework について] 
+
+* link:persistenceframework-getting-started-with-infragistics-control-persistence-framework.html[Infragistics Control Persistence Framework を使用した作業の開始] 
+
+* link:persistence-exclude-specific-control-properties.html[特定のコントロールのプロパティを除外] 
+
+|====
+
+== コントロールの構成の概要
+
+xamTileManager は、ユーザーによるタイトルの移動とサイズ変更が可能です。ランタイム時に状態を変更できる機能によって、レイアウトを完全にカスタマイズすることができます。セッション間にカスタム レイアウトが保存および読み込まれるため、ユーザーがアプリケーションを再起動するたびに xamTileManager のレイアウトの設定をする必要はありません。Infragistics Control Persistence Framework によって、xamTileManager のタイル レイアウトを保存およびロードすることができます。
+
+レイアウトでタイルの状態の情報を保存するには、タイルに名前を付けるか、またはxamTileManager の添付プロパティである link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~setserializationid.html[SerializationId] プロパティを一意の文字列値に設定する必要があります。Name および SerializationId プロパティの両方を設定すると、SerializationId プロパティが優先されます。xamTileManager はタイルのシリアル ID を設定するためにいくつかの異なる方法を提供します。
+
+* xamTileManager によって公開されている添付の SerializationId プロパティを設定できます。xamTileManager の Items コレクションに DependencyObject クラスから派生する項目を手動で追加する時に、このアプローチを使用できます。
+* xamTileManager の link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~serializationidpath.html[SerializationIdPath] プロパティを、データ項目によって公開されるプロパティの名前に設定できます。タイルを作成するためにデータに xamTileManager をバインドする時に、このアプローチを使用できます。
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~savingitemmapping_ev.html[SavingItemMapping] イベントを処理し、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.savingitemmappingeventargs.html[SavingItemMappingEventArgs] オブジェクトの SerializationId プロパティを設定できます。SavingItemMapping イベントを処理する場合、シリアライゼーション ID を特定の項目にマップするために link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~loadingitemmapping_ev.html[LoadingItemMapping] イベントを処理する必要もあります。
+
+タイルに名前を付ける場合、あるいはシリアライゼーション ID を提供してもタイルを保存したくない場合、その link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~saveinlayout.html[SaveInLayout] プロパティを False に設定します。
+
+=== コントロールの構成チャート
+
+以下の表は、xamTileManager のレイアウトを保存およびロードするために使用できるメソッドを示しています。
+
+[options="header", cols="a,a,a"]
+|====
+|機能|詳細|静的メソッド
+
+|<<SavingLayouts,レイアウトの保存>>
+|静的メソッドの*保存* を使用して、xamTileManager のタイル レイアウトを保存します
+| link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencemanager~save.html[PersistenceManager.Save]
+
+|<<LoadingLayouts,レイアウトのロード>>
+|静的メソッドの*ロード* を使用して、xamTileManager のタイル レイアウトを復元します
+| link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencemanager~load.html[PersistenceManager.Load]
+
+|====
+
+[[SavingLayouts]]
+
+== レイアウトの保存
+
+=== レイアウトの詳細の保存
+
+xamTileManager の状態とタイトルのレイアウトを保存するためには、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencemanager.html[PersistenceManager] クラスの静的 Save メソッドを起動する必要があります。Save メソッドのオーバーロードがあり、これは link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings.html[PersistenceSettings] 引数を受け入れ、また保存/除外するプロパティを構成するために使用されます。保持メソッドは、後で保持ロケーションに保存できる MemoryStream オブジェクトを返します。
+
+*注:* アプリケーションのアーキテクチャによって、MemoryStream (XML ファイルまたはデータベースなど) を保持する方法に関して様々なアプローチを選択することができます。「レイアウトの保存とロード」サンプルを参照して、レイアウトをバイト配列に保持する方法を確認してください。
+
+=== レイアウト メソッド設定の保存
+
+Save メソッドは PersistenceManager クラス経由でアクセスできます。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|このメソッドを使用:|以下の引数を設定…
+
+|<<InOrderSave,すべてのプロパティと共にレイアウトを保存>>
+|PersistenceManager.Save
+|オブジェクト
+
+|<<InOrderSave2,レイアウトを保存し、保存または無視するプロパティを構成>>
+|PersistenceManager.Save
+|オブジェクト、設定
+
+|====
+
+[[InOrderSave]]
+
+=== すべてのプロパティと共にレイアウトを保存
+
+<<ExSavingLayout,レイアウト例の保存>>は、すべてのコントロールのプロパティを保持する方法を示しています。
+
+[options="header", cols="a,a"]
+|====
+|引数|タイプ
+
+|オブジェクト
+|プロパティが保存される DependencyObject
+
+|====
+
+[[InOrderSave2]]
+
+=== レイアウトを保存し、保存または無視するプロパティを構成
+
+<<ExSavingLayout2,例の保存中にレイアウト プロパティを含む/除外する>> は、保持フレームワークを構成して、コントロールの状態を保存するときに一部のプロパティを無視する方法を示します。
+
+[options="header", cols="a,a"]
+|====
+|引数|タイプ
+
+|オブジェクト
+|プロパティが保存される DependencyObject
+
+|設定
+|プロパティを説明し、保存または無視される PersistenceSettings オブジェクト
+
+|====
+
+[[LoadingLayouts]]
+
+== レイアウトのロード
+
+=== レイアウトの詳細のロード
+
+xamTileManager の状態とタイトルのレイアウトをロードするためには、PersistenceManager クラスの静的 Load メソッドを起動する必要があります。また、PersistenceSettings クラスのインスタンスを引数として受け入れる Load メソッドのオーバーロードがあります。PersistenceSettings インスタンスを使用して、レイアウト内で保存または無視するプロパティを構成します。Save メソッドから返されたデータは Load メソッドに提供され (Stream オブジェクトとして)、コントロールの状態を復元します。
+
+=== レイアウト メソッド設定のロード
+
+Load メソッドは PersistenceManager クラス経由でアクセスできます。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|このメソッドを使用:|以下の引数を設定…
+
+|<<InOrderLoad,すべてのプロパティと共にレイアウトをロード>>
+|PersistenceManager.Load
+|オブジェクト
+
+|====
+
+[[InOrderLoad]]
+
+=== すべてのプロパティと共にレイアウトをロード
+
+<<ExLoadingLayout,レイアウト例のロード>>は、すべてのコントロールのプロパティをロードする方法を示しています。
+
+[options="header", cols="a,a"]
+|====
+|引数|タイプ
+
+|オブジェクト
+|プロパティが復元される DependencyObject
+
+|====
+
+== コード例
+
+=== 例の概要
+
+以下の表は、以下に提供されたコード例を示しています。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|<<ExSavingLayout,レイアウトの保存>>
+|指定されたコントロールのすべてのプロパティの保存方法を示します。
+
+|<<ExSavingLayout2,保存中にレイアウト プロパティを含める/除外する>>
+|コントロールの状態の保存方法と、無視するプロパティの指定方法を示します。
+
+|<<ExLoadingLayout,レイアウトのロード>>
+|指定されたコントロールのすべての保存されたプロパティの復元方法を示します。
+
+|====
+
+[[ExSavingLayout]]
+
+== コード例: レイアウトの保存
+
+=== 例の詳細
+
+以下のコードは、以下のパラメーターと共に Save メソッドを使用して Save コントロールの状態を保存する方法を示しています。
+
+* 状態が保持されるコントロール
+
+*Visual Basic の場合:*
+
+----
+Dim memoryStream As MemoryStream =
+    PersistenceManager.Save(xamTileManager1)
+----
+
+*C# の場合:*
+
+----
+MemoryStream memoryStream =
+    PersistenceManager.Save(xamTileManager1);
+----
+
+[[ExSavingLayout2]]
+
+== コード例: 保存中にレイアウト プロパティを含める/除外する
+
+=== 例の詳細
+
+以下のコードは、以下のパラメーターと共に Save メソッドを使用して Save コントロールの状態を保存する方法を示しています。
+
+* 状態が保持されるコントロール
+* 無視するプロパティを指定する、Persistence Settings オブジェクト
+
+*Visual Basic の場合:*
+
+----
+' Persistence Settings オブジェクトを作成します
+Dim settings As New PersistenceSettings()
+' 無視するものを除くすべてのプロパティを保存します
+settings.SavePersistenceOptions =
+    Persistence.Primitives.PersistenceOption.AllButIgnored
+'  「Left」プロパティを無視されるものとして追加します
+Dim prop1 As New PropertyNamePersistenceInfo() With { _
+    .PropertyName = "Left" _
+}
+settings.IgnorePropertySettings.Add(prop1)
+'  「Top」プロパティを無視されるものとして追加します
+Dim prop2 As New PropertyNamePersistenceInfo() With { _
+    .PropertyName = "Top" _
+}
+settings.IgnorePropertySettings.Add(prop2)
+' コントロールのプロパティをメモリ ストリームに保存します
+Dim memoryStream As MemoryStream =
+    PersistenceManager.Save(xamTileManager1, settings)
+----
+
+*C# の場合:*
+
+----
+// Persistence Settings オブジェクトを作成します
+PersistenceSettings settings = new PersistenceSettings();
+// 無視するものを除くすべてのプロパティを保存します
+settings.SavePersistenceOptions =
+    Persistence.Primitives.PersistenceOption.AllButIgnored;
+//  「Left」プロパティを無視されるものとして追加します
+PropertyNamePersistenceInfo prop1 = new PropertyNamePersistenceInfo
+{
+    PropertyName = "Left"
+};
+settings.IgnorePropertySettings.Add(prop1);
+//  「Top」プロパティを無視されるものとして追加します
+PropertyNamePersistenceInfo prop2 = new PropertyNamePersistenceInfo
+{
+    PropertyName = "Top"
+};
+settings.IgnorePropertySettings.Add(prop2);
+// コントロールのプロパティをメモリ ストリームに保存します
+MemoryStream memoryStream =
+    PersistenceManager.Save(xamTileManager1, settings);
+----
+
+[[ExLoadingLayout]]
+
+== コード例: レイアウトのロード
+
+=== 例の詳細
+
+以下のコードは、以下のパラメーターと共に Load メソッドを使用して Load コントロールの状態を保存する方法を示しています。
+
+* 状態が復元されるコントロール
+
+*Visual Basic の場合:*
+
+----
+PersistenceManager.Load(xamTileManager1, memoryStream)
+----
+
+*C# の場合:*
+
+----
+PersistenceManager.Load(xamTileManager1, memoryStream);
+----
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

@@ -1,0 +1,19 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-2010-volume-3",
+    "controlName": [],
+    "tags": ["Known Issues"],
+    "guid": "c8f42f89-d4ed-4845-b803-6f91c0fe6c7f",  
+    "buildFlags": [],
+    "createdOn": "2012-01-31T21:16:05.5667976Z"
+}
+|metadata|
+////
+
+= 2010 Volume 3
+
+== xamMap
+
+画像データを取得するために link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] コントロールの link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.maps.bingmapstilesource.html[BingMapsTileSource] によって使用される Bing Maps® 画像サービスの認証方法は更新されており、現在 Microsoft® はトークンの代わりに Bing Maps Keys の使用を推奨しています。その結果、xamMap の「開発者ガイド」で Bing Maps 画像サービスのこの新しい方法を使用するために、 link:xamwebmap-add-bing-maps-as-geo-imagery-data-source.html[Bing Maps のバインド]トピックを更新しました。Bing Maps 画像サービスで行われた変更の詳細は、Microsoft link:http://msdn.microsoft.com/ja-jp/library/cc980937.aspx[ウェブサイト] (英語) を参照してください。Bing Maps Keys をリクエストするには、この link:http://msdn.microsoft.com/ja-jp/library/ff428642.aspx[トピック] (英語) を参照してください。

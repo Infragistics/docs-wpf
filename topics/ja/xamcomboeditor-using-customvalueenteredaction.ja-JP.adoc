@@ -1,0 +1,140 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-using-customvalueenteredaction",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Editing","Getting Started","How Do I"],
+    "guid": "{37CE55F1-7FD6-4FA0-96B0-17840BDA7125}",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7301332Z"
+}
+|metadata|
+////
+
+= 入力動作の構成
+
+xamComboEditor コントロールの link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~customvalueenteredaction.html[CustomValueEnteredAction] プロパティによって、エンド ユーザーがコントロールのテキスト ボックスに入力する時にコントロールがどのように動作するのかを指定できます。このプロパティは xamComboEditor が編集モードの時に動作します。
+
+CustomValueEnteredActions 列挙体は以下の 3 つの動作を可能にします。
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.customvalueenteredactions.html[Ignore]: デフォルト。入力している文字がフィルター基準を満たさない場合 (フィルター基準を指定していない場合は StartsWith 基準)、コントロールは入力の継続を許可しません。無効の値はテキスト ボックスから自動的に削除されます。
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.customvalueenteredactions.html[Allow]: このオプションによって、データの入力はできますが、入力されたテキストは項目コレクションに含まれません。
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.customvalueenteredactions.html[Add]: 入力した値が基本項目コレクションにない場合、この新しい値はこれに追加されます。link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dataobjectrequested_ev.html[DataObjectRequested]、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemadding_ev.html[ItemAdding] および link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemadded_ev.html[ItemAdded] イベントが起動されます。
+
+注:
+
+[NOTE]
+====
+固定機能のコレクション (Array など) の場合、`CustomValueEnteredAction` の `Add` は適用されません。
+====
+
+以下の例は、このプロパティを構成できる方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamComboEditor
+    x:Name="comboEditor"                
+    Height="30"
+    Width="300"
+    ItemsSource="{Binding Source={StaticResource DataUtil}, Path=Products}"
+    DisplayMemberPath="ProductName"
+    IsEditable="True"
+    CustomValueEnteredAction="Add" />
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub UserControl_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    ...
+    Dim comboEditor As New XamComboEditor()
+    ...
+    comboEditor.IsEditable = True
+    comboEditor.CustomValueEnteredAction = CustomValueEnteredActions.Add
+    ...
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void UserControl_Loaded(object sender, RoutedEventArgs e)
+{
+...
+XamComboEditor comboEditor = new XamComboEditor();
+...
+comboEditor.IsEditable = true;
+comboEditor.CustomValueEnteredAction = CustomValueEnteredActions.Add;
+...
+}
+----
+
+*イベント*
+
+xamComboEditor が項目コレクションに追加しようとする項目のための新しいデータ オブジェクトを作成する必要がある時に、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dataobjectrequested_ev.html[DataObjectRequested] イベントが発生します。
+
+項目をコントロールの基本 ItemsSource に追加しようとする時に、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemadding_ev.html[ItemAdding] イベントが発生します。このイベントはキャンセルできます。このイベントの間、入力された値を検証し、その後で追加またはキャンセルできます。
+
+項目が xamComboEditor コントロールの ItemsSource に追加された時に、 link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemadded_ev.html[ItemAdded] イベントが発生します。
+
+以下の例は、ItemAdding イベントの間に入力した値を検証およびキャンセルできる方法を示します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub UserControl_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    ' ItemAdding イベントのイベント ハンドラーを追加します。
+    AddHandler comboEditor.ItemAdding, AddressOf _ItemAdding
+End Sub
+Private Sub _ItemAdding(ByVal sender As Object, ByVal e As ComboItemAddingEventArgs)
+    ' ビジネス オブジェクトを取得します。 
+    Dim product As Product = DirectCast(e.Item.Data, Product)
+    Dim name As String = product.ProductName
+    ' 入力した製品名のサイズを検証します。
+    ' 名前が 5 文字よりも少ない場合、イベントはキャンセルされます。
+    If name.Length < 5 Then
+        e.Cancel = True
+    End If
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void UserControl_Loaded(object sender, RoutedEventArgs e)
+{
+    // ItemAdding イベントのイベント ハンドラーを追加します。
+    comboEditor.ItemAdding += new EventHandler<ComboItemAddingEventArgs>(_ItemAdding);
+}
+private void _ItemAdding(object sender, ComboItemAddingEventArgs e)
+{
+    // ビジネス オブジェクトを取得します。 
+    Product product = (Product)e.Item.Data;
+    string name = product.ProductName;
+    // 入力した製品名のサイズを検証します。
+    // 名前が 5 文字よりも少ない場合、イベントはキャンセルされます。
+    if (name.Length < 5)
+    {
+        e.Cancel=true;
+    }
+}
+----
+
+== 関連トピック
+
+link:xamcomboeditor-autocomplete.html[AutoComplete]
+
+link:xamcomboeditor-dropdown-resizing.html[ドロップダウンのサイズ構成]
+
+link:xamcomboeditor-custom-filtering.html[カスタム フィルタリング]
+
+link:xamcomboeditor-working-with-itemtemplate.html[ItemTemplate での作業]
+
+link:xamcomboeditor-selection.html[選択]

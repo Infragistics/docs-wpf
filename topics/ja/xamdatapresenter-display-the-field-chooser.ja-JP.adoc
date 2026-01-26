@@ -1,0 +1,85 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-display-the-field-chooser",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Layouts","Tips and Tricks"],
+    "guid": "{A03E17A2-7CAB-489C-A4E4-56AC2C6349F5}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1509833Z"
+}
+|metadata|
+////
+
+= フィールドの選択の表示
+
+
+
+エンド ユーザーがフィールドの選択機能を使用可能にするには、エンド ユーザーが link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldchooser.html[FieldChooser] コントロールを表示する方法を提供する必要があります。DataPresenter コントロールは、フィールドの選択を表示するための 4 つの異なる方法を提供します。
+
+[start=1]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~headerprefixareadisplaymode.html[HeaderPrefixAreaDisplayMode] プロパティを FieldChooserButton に設定することにより、レコード セレクターの上のヘッダー プレフィックス領域にフィールドの選択ボタンを表示できます。ただし、DataPresenter コントロールは、上部にヘッダーを表示しセル領域の左側または右側のレコード セレクターを表示するとき、フィールドの選択ボタンのみを表示します。
+
+image::images/xamDataPresenter_About_the_Field_Chooser_01.png[]
+
+[start=2]
+. DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~showfieldchooser.html[ShowFieldChooser] メソッドを呼び出すことで、FieldChooser コントロールをプログラム的に表示できます。
+[start=3]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands.html[DataPresenterCommands] クラスによって公開されている link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresentercommands~showfieldchooser.html[ShowFieldChooser] コマンドを実行できます。
+[start=4]
+. FieldChooser コントロールのインスタンスをウィンドウに追加し、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldchooser~datapresenter.html[DataPresenter] プロパティを DataPresenter コントロールのインスタンスに設定できます。外部のフィールドの選択を作成する必要があるコード例については、 link:xamdatapresenter-create-an-external-field-chooser.html[外部のフィールドの選択の作成] のトピックを参照してください。
+
+以下のコード例は、フィールドの選択ボタンを表示する 3 つの異なる方法を示します。
+
+*XAML の場合:*
+
+----
+<!-- ShowFieldChooser コマンドを実行するボタン -->
+<!--
+<Button 
+    Content="Show Field Chooser" 
+    Command="{x:Static igDP:DataPresenterCommands.ShowFieldChooser}" 
+    CommandTarget="{Binding ElementName=xamDataPresenter1}" />
+-->
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <!-- コマンドを使用してフィールドの選択を表示する場合は、フィールドの選択ボタンを使用する必要はありません。 -->
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings HeaderPrefixAreaDisplayMode="FieldChooserButton" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldLayoutSettings.HeaderPrefixAreaDisplayMode = HeaderPrefixAreaDisplayMode.FieldChooserButton
+' DataPresenter コントロールの ShowFieldChooser メソッドの呼び出し
+'Me.xamDataPresenter1.ShowFieldChooser()
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldLayoutSettings.HeaderPrefixAreaDisplayMode = HeaderPrefixAreaDisplayMode.FieldChooserButton;
+// DataPresenter コントロールの ShowFieldChooser メソッドの呼び出し
+//this.xamDataPresenter1.ShowFieldChooser();
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-the-field-chooser.html[フィールドの選択について]
+
+link:xamdatapresenter-about-field-chooser-settings.html[フィールドの選択の設定について]
+
+link:xamdatapresenter-prevent-fields-from-being-hidden.html[フィールドが非表示にされることを防止する]
+
+link:xamdatapresenter-create-an-external-field-chooser.html[外部のフィールドの選択の作成]
+
+link:xamdatapresenter-change-the-display-order-of-fields-in-the-field-chooser.html[フィールドの選択でフィールドの表示順序を変更]

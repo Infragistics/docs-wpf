@@ -1,0 +1,90 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-known-issues-and-limitations",
+    "tags": ["Charting","Known Issues","Section 508"],
+    "controlName": ["xamDiagram"],
+    "guid": "d934cf1f-2f59-490f-946a-33a2d0b98d94",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:58:34.4753648Z"
+}
+|metadata|
+////
+
+= 既知の問題と制限
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _Infragistics XamDiagram_   の既知の問題点と制限について説明します。
+
+== 既知の問題点と制限の概要
+
+=== 既知の問題点と制約の概要表
+
+以下の表に、 _Infragistics XamDiagram_   の既知の問題点と制限を簡単に説明します。以下の表は、すべての問題の詳細な説明とその回避策を示します。
+
+==== 凡例:
+
+image:images/Yes.png[] - 回避策
+
+image:images/No.png[] - 既知の回避策なし
+
+image:images/Fix.png[] - 修正予定です
+
+==== <<_Ref398368489, _Infragistics XamDiagram_  >>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|コードによるスタイルの適用
+|コードによるスタイルの適用は、ビュー項目の外のナビゲーション ウィンドウに反映されません
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref398368489]]
+== _Infragistics XamDiagram_
+
+=== コードによるスタイルの適用
+
+ランタイム中にスタイルを適用する場合、ダイアグラム項目および対応するナビゲーション ウィンドウ表現がすでにロードされた後は、ビュー (仮想化された) 項目の外には影響しません。すべてのダイアグラム項目を繰り返す以外、ナビゲーション ウィンドウ項目の新しい図形やカラーを適用する方法はありません。そのようなことはしたくないので、(正しいカラーでナビゲーション ウィンドウ項目を更新したいユーザーには)、すべての項目をビューに持ち込み、元のビューセクションに再度戻すことを提案します。
+
+回避方法
+
+*C# の場合:*
+
+[source,csharp]
+----
+// テーマはコードを通じて適用されます
+Rect original = Diagram.WindowRect; // 元の表示状態を保存します
+Diagram.ScaleToFit(); // すべてのノード / 接続をビューに持ち込みます
+Diagram.WindowRect = original; // 元のビューに戻します
+----
+
+==== 関連するトピック:
+
+link:xamdiagram-configuring-the-visible-portion.html[ダイアグラムの表示部分の構成 (xamDiagram)]
+
+[[_Ref367305775]]
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-the-visible-portion.html[ダイアグラムの表示部分の構成 (xamDiagram)]
+|このトピックでは、 _xamDiagram_™ コントロールの表示部分を構成する方法を説明します。
+
+| link:xamdiagram-api-reference.html[API リファレンス]
+|このトピックでは、 _Infragistics XamDiagram_ に関連したキー クラスに関する参考情報を提供します。
+
+|====

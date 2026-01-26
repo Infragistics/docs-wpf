@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamradialmenu-configuring",
+    "tags": [],
+    "controlName": ["xamRadialMenu"],
+    "guid": "fb8936b2-00ac-4c18-b7aa-bbe3862c7fee",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.8632787Z"
+}
+|metadata|
+////
+
+= xamRadialMenu の構成
+
+== このグループのトピックについて
+
+=== はじめに
+
+このセクションのトピックでは、 link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[ _xamRadialMenu_  ]™ の構成について追加の情報を提供します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamradialmenu-configuration-overview.html[xamRadialMenu 構成の概要]
+|このトピックでは、 _xamRadialMenu_ コントロールを構成する方法を説明します。
+
+| link:xamradialmenu-configuring-center-button.html[中央ボタンの構成]
+|このトピックでは、 _xamRadialMenu_ コントロールの中央ボタンを構成する方法を説明します。
+
+| link:xamradialmenu-configuring-items.html[項目の構成]
+|このグループのトピックでは、 _xamRadialMenu_ でサポートされるメニュー項目タイプの違いを説明します。
+
+| link:xamradialmenu-configuring-tooltips.html[ツールチップの構成]
+|このトピックでは、 _xamRadialMenu_ 項目のツールチップを構成する方法を説明します。
+
+| link:xamradialmenu-configuring-key-tips.html[キー チップの構成]
+|このトピックでは、 _xamRadialMenu_ 項目のキー チップを構成する方法を説明します。
+
+|====

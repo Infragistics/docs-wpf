@@ -1,0 +1,83 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-editing-data",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing"],
+    "guid": "{3D046855-54E7-403B-A11A-B1208AFE0263}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1599851Z"
+}
+|metadata|
+////
+
+= データの編集
+
+
+
+場合によっては、データ修正のためではなく、純粋に情報を目的としてデータベースを使用する場合があります。ただし、そうではない場合、エンドユーザーがデータを修正するための信頼できる簡単な方法が必要です。これらの修正には、データの追加、更新、削除が含まれ、これらすべてはデフォルトで xamDataPresenter™ コントロールが実行するタスクです。
+
+xamDataPresenter コントロールは、基本のデータ ソースを複数のビューで表示します。xamDataPresenter コントロールは、複数の便利なメソッドによってデータ ソースを操作することも可能です。これによってエンドユーザーに慣れ親しんだ使いやすさを提供することができます。
+
+以下のリンクをクリックして、xamDataPresenter コントロールを使用してデータを編集する支援を特に行うために記述されたトピックを表示します。
+
+link:xamdata-about-xamdatapresenter-and-xameditors.html[xamDataPresenter および xamEditors について]
+
+xamDataPresenter が使用するデフォルト エディターについておよび独自のエディターを登録する方法について学習します。
+
+link:xamdatapresenter-conf-editing.html[編集動作の構成 (xamDataPresenter)]
+
+This topic explains how to customize the control's editing behavior.
+
+link:xamdatapresenter-about-the-datavaluechanged-event.html[DataValueChanged イベントについて]
+
+DataValueChanged イベントが発生する場合について、および、それが提供する日付を操作する方法について学習します。
+
+link:xamdatapresenter-enable-data-value-change-tracking.html[データ値の変更追跡を有効にする]
+
+ビュー内またはビュー外のフィールドからデータ値の変更イベントを受け取る方法について説明します。
+
+link:xamdatapresenter-reset-a-cells-value-history.html[セルの値の履歴をリセット]
+
+セルの値の履歴で操作する方法またはそれをリセットする方法について学習します。
+
+link:xamdatapresenter-accessing-cell-values-in-the-active-record.html[アクティブ レコードでセル値にアクセス]
+
+アクティブ レコードから TextBox コントロールへセルの値をバインドする方法について学習します。
+
+link:xamdatapresenter-accessing-cell-values-in-the-recordactivated-event.html[RecordActivated イベントのセル値へのアクセス]
+
+RecordActivated イベントが発生したときにセル データにアクセスする方法を示す例。
+
+link:xamdatapresenter-configuring-readonly-fields-disabling-cells.html[読み取り専用フィールドの構成およびフィールドのセルの無効化]
+
+このトピックでは、xamDataPresenter コントロールで、特定のフィールドのセルを無効化する方法、およびフィールドを読み取り専用として設定する方法を説明します。
+
+link:xamdata-changing-field-record-cell-selection-behavior.html[フィールド、レコード、またはセル選択の動作を変更]
+
+xamDataPresenter で使用する異なる選択タイプについて学習します。
+
+link:xamdata-default-editor-types-for-different-data-types.html[異なるデータ タイプのデフォルトのエディター タイプ]
+
+異なるデータ タイプで使用するデフォルトのエディターのリスト。
+
+link:xamdatapresenter-embedding-a-custom-control-in-a-field.html[フィールドにカスタム コントロールを組み込む]
+
+CellValuePresenter オブジェクトのテンプレート変更し、カスタム コントロールにセル値を表示する方法を示す例。
+
+link:xamdatapresenter-embedding-a-xameditor-in-a-field.html[フィールドに xamEditor を組み込む]
+
+セル上のデフォルト エディターを変更する方法を示す例。
+
+link:xamdatapresenter-validating-data.html[データの検証]
+
+データの検証について、および、エラー通知をエンド ユーザーに表示する方法について学習します。
+
+link:xamdatapresenter-acessing-data-carousel-view.html[カルーセル ビュー]
+
+Carousel View コントロールでのデータ編集についての固有の情報を学習します。
+
+link:xamdatapresenter-accessing-data-grid-view.html[グリッド ビュー]
+
+Grid View コントロールでのデータ編集についての固有の情報を学習します。

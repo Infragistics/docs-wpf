@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "generalprogrammingconcepts-wcf-ria-support",
+    "controlName": [],
+    "tags": [],
+    "guid": "31051282-833c-4604-95e9-882bd7a52bbf",  
+    "buildFlags": ["sl"],
+    "createdOn": "2012-02-06T14:15:43.8879709Z"
+}
+|metadata|
+////
+
+= WCF RIA のサポート
+
+このセクションは、{ProductName} で Microsoft RIA サービスのサポートの概要を提供します。
+
+Microsoft RIA サービスでは、DomainDataSource と呼ばれるデータ ソース コントロールを使用してアプリケーションのクライアントおよびサーバーのデータ転送を作成することができます。このコントロールを使用すると、開発者が簡単に RIA サービスによって生成されたミドルウェアと通信することができます。また、サーバー側データをクエリすることも可能です。さらに、データ応答をページングするメカニズムを提供します。これによって、データ転送のオーバーヘッドおよびデータのグループ化およびフィルタリングを低くします。
+
+複数 Infragistics コントロールは WCF RIA サービスと互換性があります。
+
+== link:generalprogrammingconcepts-using-wcf-ria-and-xamgrid.html[xamGrid で WCF RIA の使用]
+
+このトピックは xamGrid で WCF RIA サービスを使用する方法を紹介します。

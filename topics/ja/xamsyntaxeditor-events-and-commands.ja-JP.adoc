@@ -1,0 +1,151 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-events-and-commands",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Commands","Editing","Events"],
+    "guid": "32a964e1-a195-4c82-824e-d535d3be6938",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3823929Z"
+}
+|metadata|
+////
+
+= イベントとコマンド (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   アプリケーションの構築とともにユーザーが利用できるイベントとサポート対象コマンドを紹介します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref329012372, はじめに >>
+* <<_Ref329012540, イベント >>
+** <<_Ref329012562,XamSyntaxEditor イベント>>
+** <<_Ref329012576,DocumentViewBase イベント>>
+** <<_Ref329012594,EditorDocumentView イベント>>
+** <<_Ref329012639,TextDocument イベント>>
+
+* <<_Ref329012650, コマンド >>
+** <<_Ref329012663,クリップボード コマンド>>
+** <<_Ref329012674,元に戻す/やり直しコマンド>>
+** <<_Ref329012685,分割コマンド>>
+
+* <<_Ref329012695, 関連コンテンツ >>
+
+[[_Introduction]]
+[[_Ref329012372]]
+== はじめに
+
+=== イベントとコマンドについて
+
+このトピックでは、利用できる  _xamSyntaxEditor の_  イベントとサポート対象のコマンドを紹介します。
+
+注:
+
+[NOTE]
+====
+コマンドの詳細については、以下の 2 つのトピックを参照してください。
+
+* link:xamsyntaxeditor-clipboard-support.html[クリップボードのサポート]
+* link:xamsyntaxeditor-undo-redo.html[元に戻す/やり直し]
+
+====
+
+[[_Events]]
+[[_Ref329012540]]
+== イベント
+
+=== イベントの要旨表
+
+[options="header", cols="a,a"]
+|====
+|イベント グループ|詳細
+
+|<<_Ref329012562,XamSyntaxEditor イベント>>
+|_xamSyntaxEditor_ は、テキスト編集と構文ハイライト表示機能を備えたメイン クラスです。
+
+|<<_Ref329012576,DocumentViewBase イベント>>
+|このイベントは、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.editordocumentview_members.html[EditorDocumentView] クラスの抽象基本クラスです。
+
+|<<_Ref329012594,EditorDocumentView イベント>>
+|このクラスは、 _xamSyntaxEditor_ の編集可能領域を表します (サポートしている領域は 1 つまたは 2 つです)。
+
+|<<_Ref329012639,TextDocument イベント>>
+|このクラスは文書を表し、その操作をするメソッドを開示します。
+
+|====
+
+[[_XamSyntaxEditor_Events]]
+[[_Ref329012562]]
+== XamSyntaxEditor イベント
+
+=== 概要
+
+以下の表は、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor_members.html[XamSyntaxEditor] クラスで利用できるイベントをまとめたものです。
+
+=== イベント
+
+[options="header", cols="a,a"]
+|====
+|イベント|解説
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~activedocumentviewchanged_ev.html[ActiveDocumentViewChanged]
+|`ActiveDocumentView` が変化するたびに発生します。
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~documentchanged_ev.html[DocumentChanged]
+|_xamSyntaxEditor_ コントロールに割り当てられた `TextDocument` が変化するたびに発生します。
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~selectionchanged_ev.html[SelectionChanged]
+|アクティブ ビューで選択したテキストの範囲や位置が変化するたびに発生します。
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~splitstatuschanged_ev.html[SplitStatusChanged]
+|ビュー数が変化するたびに発生します (分割の追加や削除)。
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~viewloaded_ev.html[ViewLoaded]
+|分割により新しい `DocumentViewBase` を読み込むたびに発生します。
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~viewunloaded_ev.html[ViewUnloaded]
+|分割の削除によって `DocumentViewBase` が削除されるたびに発生します。
+
+|====
+
+[[_DocumentViewBase_Events]]
+[[_Ref329012576]]
+== DocumentViewBase イベント
+
+=== 概要
+
+以下の表は、 link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.documentviewbase_members.html[DocumentViewBase] クラスで利用できるイベントをまとめたものです。
+
+=== イベント
+
+[options="header", cols="a,a"]
+|====
+|イベント|解説
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.documentviewbase~layoutchanged_ev.html[LayoutChanged]
+|ビューに設定された表示行数が、方法を問わず、変化するたびに発生します。このイベントに指定する引数により、前回のレイアウト パスで、削除、追加、あるいは並行移動 (移動) した行のリストを列挙できるプロパティをアクセスできます。通常、可視行のセットを変更したときには、コンテンツをうまく調節するため、 link:xamsyntaxeditor-custom-margins.html[カスタム マージン]
+
+|====

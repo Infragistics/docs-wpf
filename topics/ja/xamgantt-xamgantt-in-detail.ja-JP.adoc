@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-xamgantt-in-detail",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "22f5ca50-5450-4be9-a287-9adafa9fa665",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.1381544Z"
+}
+|metadata|
+////
+
+= xamGantt の詳細
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamGantt™_   コントロールの詳細について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-features.html[xamGantt の機能]
+|このグループのこのトピックでは、 _xamGantt_ コントロールを使用した機能について説明します。
+
+| link:xamgantt-xamgantt-visual-elements.html[xamGantt のビジュアル要素]
+|このグループのトピックでは、 _xamGantt_ コントロールのビジュアル要素とその構成を説明します。
+
+| link:xamgantt-xamgantt-user-interactions-and-usability.html[xamGantt のユーザー インタラクションと操作性]
+|このグループのこのトピックでは、 _xamGantt_ コントロールにおけるユーザー インタラクションと操作性について説明します。
+
+|====

@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards-navigating-and-selecting",
+    "controlName": ["xamDataCards"],
+    "tags": [],
+    "guid": "{FD526B27-8FBA-4EBD-8524-CF39C9499566}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6108753Z"
+}
+|metadata|
+////
+
+= ナビゲーションと選択
+
+
+
+xamDataGrid™ コントロールを使用した、アプリケーションでのナビゲーションと選択の実装に特化されたトピックを参照するには、以下のリンクをクリックしてください。
+
+* link:xamdata-selection-overview.html[選択の概要]
+* link:xamdata-accessing-records-through-the-recordmanager.html[RecordManager によってレコードにアクセス]
+* link:xamdata-changing-field-record-cell-selection-behavior.html[フィールド、レコード、またはセル選択の動作を変更]
+* link:xamdatapresenter-keyboard-navigation-in-xamdatapresenter.html[xamDataPresenter でのキーボード ナビゲーション]
+* link:xamdata-using-data-presenter-family-commands.html[Data Presenter Family コマンドの使用]

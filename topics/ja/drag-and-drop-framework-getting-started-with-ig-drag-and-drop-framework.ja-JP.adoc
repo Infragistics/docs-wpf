@@ -1,0 +1,178 @@
+﻿////
+
+|metadata|
+{
+    "name": "drag-and-drop-framework-getting-started-with-ig-drag-and-drop-framework",
+    "controlName": ["IG Drag and Drop Framework"],
+    "tags": ["Application Scenarios","Getting Started","How Do I"],
+    "guid": "{EB7C8284-F312-4B8D-A754-062CA8B308C0}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.6930373Z"
+}
+|metadata|
+////
+
+= Infragistics Drag and Drop Framework を使用した作業の開始
+
+== 始める前に
+
+このトピックではユーザーができるだけ早く link:{ApiPlatform}dragdrop{ApiVersion}.html[Infragistics Drag and Drop Framework] ライブラリの実行ができるよう、{PlatformName} アプリケーション内でドラッグ アンド ドロップ機能を実装するために必要な基本手順について説明します。
+
+== 達成すること
+
+ソース パネルから xamPieChart コントロールをドラッグして対象パネルにドロップします。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName}™ プロジェクトを作成します。
+[start=2]
+. ソリューション エクスプローラーで以下の NuGet パッケージ参照をプロジェクトに追加します。NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+* Infragistics.WPF.DragDrop
+* Infragistics.WPF.Charts
+
+[start=3]
+. 開始 UserControl タグに Drag and Drop Framework の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+[start=4]
+. xamPieChart コントロールによって視覚化されるサンプル データを提供します。この例は、開発者に提供された link:resources-datautil.html[DataUtil] クラスを使用します。
+
+*XAML の場合:*
+
+----
+<UserControl.DataContext>
+    <local:DataUtil x:Name="Data"/>
+</UserControl.DataContext>
+----
+
+[start=5]
+. 2 つの行定義を "LayoutRoot" という名前のグリッド コンテナーに追加します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot">    <Grid.RowDefinitions>
+        <RowDefinition Height="400" />
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <!-- TODO: Add the source and target StackPanels here. -->
+</Grid>
+----
+
+[start=6]
+. ドラッグされる xamPieChart コントロールを保持する最初の StackPanel コンテナーを追加します。
+
+注: マウス イベントが処理されるようにするため、背景色を StackPanel に追加する必要があります。
+
+*XAML の場合:*
+
+----
+<StackPanel Grid.Row="0" x:Name="sourcePanel"             Background="LightYellow"  
+    <!-- TODO: Add the xamWebChart control that will be dragged. -->
+</StackPanel>
+----
+
+[start=7]
+. xamPieChart コントロールを sourcePanel コンテナーに追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPieChart Width="480" Height="240" HorizontalAlignment="Left"
+                ItemsSource="{Binding Products}" LabelMemberPath="ProductName" ValueMemberPath="UnitPrice" ToolTip="{}{ProductName}">
+    <!--TODO: Mark the XamPieChart control as draggable element and allow drag action -->
+</ig:XamPieChart>
+----
+
+[start=8]
+. ドラッグ アンド ドロップ機能をチャートに追加します。これは、 link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource.html[DragSource] オブジェクトを追加して以下のプロパティを設定することで実行されます:
+
+** link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~isdraggable.html[IsDraggable] – True
+** link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~dragchannels.html[DragChannels] – ChannelA (これは、このコントロールをドロップできる領域を指定します。詳細は、 link:drag-and-drop-framework-set-drag-and-drop-channels.html[ドラッグ アンド ドロップ チャネルを設定]を参照してください)。
+** link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource~drop_ev.html[Drop] – DragSource_Drop
+
+*XAML の場合:*
+
+----
+<ig:DragDropManager.DragSource>
+   <ig:DragSource IsDraggable="True"
+              DragChannels="ChannelA" Drop="DragSource_Drop">
+   </ig:DragSource>
+</ig:DragDropManager.DragSource>
+----
+
+[start=9]
+. 対象の StackPanel コンテナーを追加し、それがドラッグされたコントロールがドロップできる領域であることを示します。これは、 link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget.html[DropTarget] オブジェクトを追加して以下のプロパティを設定することで実行されます:
+
+** link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget~isdroptarget.html[IsDropTarget] – True
+** link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget~dropchannels.html[DropChannels] – ChannelA (これは DragChannels が ChannelA に設定された項目をここにドロップできることを指定します。詳細は、 link:drag-and-drop-framework-set-drag-and-drop-channels.html[ドラッグ アンド ドロップ チャネルを設定]を参照してください)。
+
+*XAML の場合:*
+
+----
+<StackPanel x:Name="targetPanel" Grid.Row="1" Background="LightGreen">
+    <ig:DragDropManager.DropTarget>
+        <ig:DropTarget IsDropTarget="True"  DropChannels="ChannelA"/>
+    </ig:DragDropManager.DropTarget>
+</StackPanel>
+----
+
+[start=10]
+. コード ビハインドで、Drop イベントを処理します。この例では、xamPieChart コントロールは、対象のパネルに置かれ、ソース パネルから削除されます。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private targetChart As XamPieChart = Nothing
+…
+Private Sub DragSource_Drop(sender As Object, e As Infragistics.DragDrop.DropEventArgs)
+      Dim originalChart As XamPieChart = TryCast(e.DragSource, XamPieChart)
+      If targetChart Is Nothing Then
+            targetChart = New XamPieChart()
+            targetChart = originalChart
+            targetChart.AllowSliceExplosion = True
+            sourcePanel.Children.Remove(originalChart)
+            targetPanel.Children.Add(targetChart)
+      End If
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private XamPieChart targetChart = null;
+…
+private void DragSource_Drop(object sender, Infragistics.DragDrop.DropEventArgs e)
+{
+    XamPieChart originalChart = (e.DragSource as XamPieChart);
+    if (targetChart == null)
+    {
+        targetChart = new XamPieChart();
+        targetChart = originalChart;
+        targetChart.AllowSliceExplosion = true;
+        sourcePanel.Children.Remove(originalChart);
+        targetPanel.Children.Add(targetChart);
+    }
+}
+----
+
+[start=11]
+. アプリケーションを保存して実行します。上のスタック パネルから下のスタック パネルの上に XamPieChart をドラッグできます。
+
+image::images/SL_DragDropChart.png[]
+
+== 関連トピック
+
+link:drag-and-drop-framework-about-ig-drag-and-drop-framework.html[Infragistics Drag and Drop Framework について]
+
+link:drag-and-drop-framework-using-ig-drag-and-drop-framework.html[Infragistics Drag and Drop Framework の使用]

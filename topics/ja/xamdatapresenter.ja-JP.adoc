@@ -1,0 +1,56 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{16FF4F65-5D4D-4D68-BE0E-BE67634A8975}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0359603Z"
+}
+|metadata|
+////
+
+= xamDataPresenter
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションには、WPF の  _xamDataPresenter_™ コントロールについてのトピックが含まれています。
+
+_xamDataPresenter_   はレイアウト コントロールです。データを複数のビューおよびカスタム ビューでの視覚化を許可します。動的にデータ ビューを変更する場合に便利です。
+
+以下の画像は定義済みのビューを表示します。注: 画像に複数のビューがありますが、コントロールは一度にビューを 1 つのみ表示します。
+
+image::images/xamDataPresenter_About_xamDataPresenter_03.png[]
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-understanding-xamdatapresenter.html[ _xamDataPresenter_ について]
+|このトピックのグループは、 _xamDataPresenter_ コントロールの概要を提供します。
+
+| link:xamdatapresenter-getting-started-with-xamdatapresenter.html[ _xamDataPresenter_ をページに追加]
+|このトピックは、基本の _xamDataPresenter_ をページに追加する手順を提供します。
+
+| link:xamdatapresenter-accessing-data.html[ _xamDataPresenter_ をデータにバインド]
+|このトピックのグループは、 _xamDataPresenter_ を複数のデータ タイプにバインドする方法を紹介します。
+
+| link:xamdatapresenter-using-xamdatapresenter.html[ _xamDataPresenter_ での作業]
+|このトピックのグループは、 _xamDataPresenter_ を使用し、コードで管理する方法を説明します。
+
+| link:xamdatapresenter-designing-the-look-and-feel.html[ _xamDataPresenter_ のスタイル設定]
+|このトピックのグループは、 _xamDataPresenter_ コントロールの視覚要素をスタイル設定し、グリッドのルック アンド フィールを設定するために定義済みのテーマを変更する方法を説明します。
+
+| link:xamdatapresenter-optimizing-performance.html[パフォーマンスの最適化 ( _xamDataPresenter_ )]
+|このトピックのグループは、アプリケーションで _xamDataPresenter_ のパフォーマンスを向上する方法を説明します。
+
+| link:xamdatapresenter-api-overview.html[API リファレンス ( _xamDataPresenter_ )]
+|このトピックでは、 _xamDataPresenter_ コントロールに関連した名前空間およびクラスに関する参考情報を提供します。
+
+|====

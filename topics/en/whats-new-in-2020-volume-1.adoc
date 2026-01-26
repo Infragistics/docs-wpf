@@ -1,0 +1,9 @@
+﻿= What's New in 2020 Volume 1
+
+=== .NET Core 3.1 Support
+
+A new environment to use Infragistics controls is now available! As of version 2020.1, our assemblies now have support for the .NET Core 3.1 environment through NuGet.
+
+For some advantages of .NET Core 3.1, see link: https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-1[this article on Microsoft's site].
+
+You can read about configuring your environment to use Infragistics NuGet packages at our link:nuget-feeds.html[NuGet Feed] and link:nuget-packages.html[NuGet Packages] topics.

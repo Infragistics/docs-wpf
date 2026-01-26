@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-designing-the-look-and-feel",
+    "controlName": ["xamCarouselPanel"],
+    "tags": [],
+    "guid": "{11AE0E3C-2034-4DF4-9CF3-51070D6FD2DE}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0697671Z"
+}
+|metadata|
+////
+
+= ルック アンド フィールのデザイン
+
+
+
+コントロールのルック アンド フィールは単にスタイルではありません。属性です。「ルック」はコントロールが視覚的にどのように現れるのかを意味しますが、「フィール」はコントロールがどのように動作するのかを意味します。したがって、特定の機能と一体になった魅力的な視覚的スタイルを受け取ることになります。
+
+xamCarouselPanel™ のルック アンド フィールは、特定のオペレーティング システムのカラー スキームで構成されるか、場合によっては人気のあるワープロ アプリケーションの機能で構成される場合があります。このセクションは、これらのルック アンド フィールのオン/オフに切り替えて、アプリケーションの個人の動作に合わせて操作する支援を行います。
+
+以下のリンクをクリックして、xamCarouselPanel コントロールのルック アンド フィールをデザインする支援を特に行うために記述されたトピックを表示します。
+
+* link:xamcarousel-overview-of-path-effects.html[パス エフェクトの概要]
+* link:xamcarousel-changing-the-location-of-carousel-navigator-element.html[カルーセル ナビゲーション 要素の位置を変更]
+* link:xamcarousel-creating-a-named-path-on-the-artboard.html[アートボードで名前を指定したパスを作成]
+* link:xamcarouselpanel-editing-the-carouselpanelitem-template.html[CarouselPanelItem テンプレートを編集]
+* link:xamcarousel-disabling-reflection-for-an-item-along-a-path.html[パスに沿って項目のリフレクションを無効にする]
+* link:xamcarouselpanel-modifying-the-opacity-effect-of-items-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで項目の不透明効果を変更]
+* link:xamcarouselpanel-modifying-the-scale-of-elements-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで要素のスケールを変更]
+* link:xamcarouselpanel-modifying-the-skew-effect-of-items-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで項目の傾斜効果を変更]
+* link:xamcarouselpanel-setting-a-path-for-xamcarouselpanel-to-use.html[xamCarouselPanel のパスを使用するように設定]

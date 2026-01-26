@@ -1,0 +1,97 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamorgchart-adding-xamorgchart-using-xaml-code",
+    "controlName": ["xamOrgChart"],
+    "tags": ["Data Binding","Getting Started","Sample Data Source"],
+    "guid": "1f9e0fdb-a2b5-422c-94c3-e9aa4f5d0851",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6572959Z"
+}
+|metadata|
+////
+
+= XAML コードを使用して xamOrgChart を追加
+
+このトピックは、XAML コードを使用して xamOrgChart を追加する方法を説明します。手順を先に進める前に、 link:xamorgchart-adding-xamorgchart-to-your-application.html[「xamOrgChart をアプリケーションに追加」]トピックの要件を満たしていることを確認してください。
+
+== 概要
+
+追加手順の概念的な概要
+
+[start=1]
+. <<step_1,xamOrgChart コントロールをユーザーのアプリケーションに追加し、データ モデルにバインド。>>
+[start=2]
+. <<step_2,ノード レイアウトを OrgChart に追加します。>>
+
+== 手順
+
+[[step_1]]
+[start=1]
+. xamOrgChart コントロールをユーザーのアプリケーションに追加し、データ モデルにバインドします。
+
+.. 以下の XML 名前空間宣言を XAML ファイルに追加します:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+xmlns:data="DATA_MODEL_NAMESPACE"
+----
+
+[start=2]
+.. DataContext を link:resources-departmentviewmodel.html[DepartmentViewModel] オブジェクトにバインドし、ItemsSource を Departments プロパティにバインドして、xamOrgChart コントロールのインスタンスを追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamOrgChart ItemsSource="{Binding Departments}">
+    <ig:XamOrgChart.DataContext>
+        <data:DepartmentViewModel />
+    </ig:XamOrgChart.DataContext>
+    <ig:XamOrgChart.GlobalNodeLayouts>
+        <!--ノード レイアウトを追加します-->
+    </ig:XamOrgChart.GlobalNodeLayouts>
+</ig:XamOrgChart>
+----
+
+[[step_2]]
+[start=2]
+. ノード レイアウトを OrgChart に追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamOrgChart ItemsSource="{Binding Departments}">
+    <ig:XamOrgChart.DataContext>
+        <data:DepartmentViewModel />
+    </ig:XamOrgChart.DataContext>
+    <ig:XamOrgChart.GlobalNodeLayouts>
+        <ig:OrgChartNodeLayout 
+                               TargetTypeName="Department"
+                               DisplayMemberPath="Name"
+                               Key="EmployeePositions" />
+        <ig:OrgChartNodeLayout 
+                               TargetTypeName="EmployeePosition"
+                               DisplayMemberPath="JobTitle"
+                               Key="Employees" />
+        <ig:OrgChartNodeLayout 
+                               TargetTypeName="Employee"
+                               DisplayMemberPath="FirstName" />
+    </ig:XamOrgChart.GlobalNodeLayouts>
+</ig:XamOrgChart>
+----
+
+== *関連トピック*
+
+link:xamorgchart-adding-xamorgchart-to-your-application.html[xamOrgChart をアプリケーションに追加]
+
+link:xamorgchart-adding-xamorgchart-using-procedural-code.html[プロシージャ コードを使用して xamOrgChart を追加]
+
+link:xamorgchart-understanding-xamorgchart.html[xamOrgChart の理解]
+
+link:xamorgchart-using-xamorgchart.html[xamOrgChart の使用]
+
+link:xamorgchart-api-overview.html[API の概要]

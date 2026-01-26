@@ -1,0 +1,68 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-about-record-filtering",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Filtering"],
+    "guid": "{E0F0E3B3-595B-4428-840F-FE008022A52B}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0539639Z"
+}
+|metadata|
+////
+
+= レコード フィルタリングについて
+
+DataPresenter コントロールは、エンドユーザーがレコードをフィルターしてデータをより小さいサブセットで表示できます。2 つの異なる方法 (フィルター レコードまたはフィールド ヘッダーのフィルター アイコン) でエンドユーザーにレコード フィルタリング機能を公開できます。
+
+[NOTE]
+====
+*注:* xamDataCarousel コントロールではフィルター レコードとフィルター アイコンを使用できません。ただし、XAML またはプロシージャ コードでフィルター条件を xamDataCarousel に追加してデータをフィルターすることができます。
+====
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトおよび link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトで公開されたレコード フィルタリング関連のプロパティを設定することで、他のレコード フィルタリング動作と共にエンド ユーザーにレコード フィルタリング機能を表示する方法を変更できます。FieldLayoutSettings オブジェクトは、フィールド レイアウト全体に影響を及ぼすレコード フィルタリング関連のプロパティを公開します。一方、FieldSettings オブジェクトはフィールド レイアウト内の個々のフィールドに影響を及ぼすレコード フィルタリング関連のプロパティを公開します。レコード フィルタリングで作業する前に、以下のプロパティを学習してください。
+
+== FieldLayoutSettings オブジェクト
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filteraction.html[FilterAction] - レコードがフィルター条件に一致しない時に取られるアクションを決定します。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filterclearbuttonlocation.html[FilterClearButtonLocation] - フィルター条件をクリアするためのボタンを表示する場合、このプロパティはボタンがどこに置かれるかを決定します。フィルター レコードとこのプロパティを併用する必要があります。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filterrecordlocation.html[FilterRecordLocation] - レコードの上または下にフィルター レコードを配置したり固定することができます。フィルター レコードとこのプロパティを併用する必要があります。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filteruitype.html[FilterUIType] - フィールド レイアウトがフィルター レコードまたはフィルター アイコンを使用するかどうかを決定します。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordfilterscope.html[RecordFilterScope] - レコード フィルターが子レコードにどのように適用されるかを決定します。このプロパティはルート レベルのレコードのフィルタリングに影響を及ぼしません。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordfilterslogicaloperator.html[RecordFiltersLogicalOperator] - 'AND' または 'OR' 論理演算子を使用してフィールド レイアウトで複数のレコード フィルターを組み合わせることができます。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~reevaluatefiltersondatachange.html[ReevaluateFiltersOnDataChange] - セルの値が変わると xamDataPresenter または xamDataGrid がフィルター条件を再評価するかどうかを決定します。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~reevaluatefiltersonrecordsadded.html[ReevaluateFiltersOnRecordsAdded] - xamDataPresenter または xamDataGrid は、新しいレコードがレコードの追加テンプレートに追加し、データ ソースに直接に追加されたときに、フィルター条件を再評価するかどうかを決定します。
+
+*注:*
+
+追加されたレコードにフィルター条件を適用するには、既存の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~refreshfilters.html[DataRecord.RefreshFilters] メソッドを使用できます。
+
+== FieldSettings オブジェクト
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowrecordfiltering.html[AllowRecordFiltering] - レコード フィルタリングを有効にします。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~filterclearbuttonvisibility.html[FilterClearButtonVisibility] - フィルター条件をクリアするためのボタンを表示または非表示にします。フィルター レコードとこのプロパティを併用する必要があります。
+
+注:
+
+[NOTE]
+====
+このプロパティを `Visible` に設定する場合、アクティブ フィルターに設定されずに、クリア フィルター ボタンが無効になります。
+====
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~filterevaluationtrigger.html[FilterEvaluationTrigger] - フィルター レコードを使用すると、xamDataPresenter または xamDataGrid がエンド ユーザーのフィルター条件をいつ適用するかを決定できます。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~filterlabelicondropdowntype.html[FilterLabelIconDropDownType] - FieldLayoutSettings.FilterUIType が LabelIcon に設定されているときに、エンド ユーザーがレコードをフィルターするために操作する DropDown コントロールのタイプを決定します。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~filteroperanduitype.html[FilterOperandUIType] - エンド ユーザーがレコードをフィルターするために操作するコントロールのタイプを決定します。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~filteroperatordefaultvalue.html[FilterOperatorDefaultValue] - フィルター条件にデフォルト演算子を設定できます。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~filteroperatordropdownitems.html[FilterOperatorDropDownItems] - フィルター レコードを使用する時にエンド ユーザーが選択できる演算子のリストを変更できます。
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~filterstringcomparisontype.html[FilterStringComparisonType] - フィルタリングが大文字小文字を区別するかどうかを決定します。
+
+== 関連トピック
+
+link:xamdatapresenter-add-filter-conditions.html[フィルター条件の追加]
+
+link:xamdatapresenter-enable-record-filtering.html[レコード フィルタリングを有効にする]
+
+link:xamdatapresenter-modify-the-list-of-operators.html[演算子のリストの修正]
+
+link:xamdatapresenter-modify-the-look-of-filtered-records.html[フィルターされたレコードの外観を修正]

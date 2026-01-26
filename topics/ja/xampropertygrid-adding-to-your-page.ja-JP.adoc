@@ -1,0 +1,181 @@
+﻿////
+|metadata|
+{
+    "name": "xampropertygrid-adding-to-your-page",
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "ad2539c0-49cf-4920-944a-cad97ceb0cb4",
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:36:57.920633Z"
+}
+|metadata|
+////
+
+= xamPropertyGrid をページに追加
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid_members.html[ _xamPropertyGrid_  ] を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref393792254, xamPropertyGrid   をページに追加 >>
+* <<_Ref393792269, 関連コンテンツ >>
+
+[[_Ref393792254]]
+== _xamPropertyGrid_  をページに追加
+
+=== 概要
+
+この手順では、 _xamPropertyGrid_   をページに追加する操作をステップごとに説明しています。
+
+=== プレビュー
+
+以下のスクリーンショットは結果のプレビューです。
+
+image::images/xamPropertyGrid_09.png[]
+
+=== 概要
+
+*以下はプロセスの概要です。*
+
+*1.NuGet パッケージ参照の追加*
+
+*2.名前空間の追加*
+
+*3.xamPropertyGrid の作成*
+
+*4.オブジェクトの作成 (オプション)*
+
+*5.xamPropertyGrid で編集するためのオブジェクトのバインドまたは設定*
+
+=== 手順
+
+以下のステップでは、コントロールをページに追加する方法を示します。
+
+=== 1.NuGet パッケージ参照の追加
+
+以下の NuGet パッケージ参照をプロジェクトに追加します。
+
+** Infragistics.WPF.PropertyGrid
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+=== 2.名前空間の追加
+
+以下の名前空間を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Import Infragistics.Controls.Editors
+----
+
+=== 3.xamPropertyGrid の作成
+
+_xamPropertyGrid_   を作成してページに追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamPropertyGrid x:Name="xamPropertyGrid1">
+</ig:XamPropertyGrid>
+----
+
+=== 4.オブジェクトの作成 (オプション)
+
+_xamPropertyGrid_   によってプロパティを編集するオブジェクトを作成します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+Button b = new Button();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim b As New Button()
+----
+
+=== 5.xamPropertyGrid で編集するためのオブジェクトのバインドまたは設定
+
+前の手順で作成したオブジェクト (または任意のオブジェクト) を link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~selectedobject.html[SelectedObject] プロパティに設定します。
+
+注:
+
+[NOTE]
+====
+オブジェクトの配列を link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~selectedobjects.html[SelectedObjects] プロパティに設定し、同様のオブジェクト モデルを持つ複数のオブジェクトをまとめて編集することもできます。
+====
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamPropertyGrid1.SelectedObject = b;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamPropertyGrid1.SelectedObject = b
+----
+
+[[_Ref393792269]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-configuring.html[xamPropertyGrid の構成]
+|コントロールを構成する方法を説明する一連のトピックです。
+
+| link:xampropertygrid-working.html[xamPropertyGrid の操作]
+|コントロールを操作する方法を説明する一連のトピックです。
+
+|====

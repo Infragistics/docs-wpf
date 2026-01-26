@@ -1,0 +1,27 @@
+﻿= 2021 Volume 2 の新機能
+
+=== Visual Studio 2022 のサポート
+=== $$.NET$$ Core 6.0 のサポート
+
+=== カテゴリ チャート、ファイナンシャル チャート、データ チャート、地理マップ:
+- 同じチャート内の複数のシリーズにどのマーカー タイプを割り当てるかを設定するための link:{DataChartLink}.MarkerAutomaticBehavior.html[MarkerAutomaticBehavior] を追加しました。
+- 凡例で表されるすべてのシリーズのバッジの形状を設定するための link:{DomainChartLink}.{DomainChartName}~LegendItemBadgeShape.html[LegendItemBadgeShape] を追加しました。
+- 凡例のすべてのシリーズにバッジの複雑さを設定するための link:{DomainChartLink}.{DomainChartName}~LegendItemBadgeMode.html[LegendItemBadgeMode] を追加しました。
+
+=== データ チャート シリーズと地理マップ シリーズ:
+- 凡例で表される特定のシリーズにバッジの形状を設定するための link:{DataChartLink}.Series~LegendItemBadgeShape.html[LegendItemBadgeShape] を追加しました。
+- 凡例の特定のシリーズにバッジの複雑さを設定するための link:{DataChartLink}.Series~LegendItemBadgeMode.html[LegendItemBadgeMode] を追加しました。
+
+=== カテゴリ チャートとファイナンシャル チャート:
+- CategoryChart に link:{ApiPlatform}{CategoryChartAssembly}{ApiProp}{CategoryChartNamespace}.xamxychart{ApiProp}XAxisLabelLocation.html[XAxisLabelLocation] プロパティを追加しました。
+- 十字線をカスタマイズするための link:{ApiPlatform}{CategoryChartAssembly}{ApiProp}{CategoryChartNamespace}.xamdomainchart{ApiProp}CrosshairsLineThickness.html[CrosshairsLineThickness] およびその他のプロパティを追加しました。
+- 十字線の注釈をカスタマイズするための link:{ApiPlatform}{CategoryChartAssembly}{ApiProp}{CategoryChartNamespace}.xamdomainchart{ApiProp}CrosshairsAnnotationXAxisBackground.html[CrosshairsAnnotationXAxisBackground] およびその他のプロパティを追加しました。
+- 最終値の注釈をカスタマイズするための link:{ApiPlatform}{CategoryChartAssembly}{ApiProp}{CategoryChartNamespace}.xamdomainchart{ApiProp}FinalValueAnnotationsBackground.html[FinalValueAnnotationsBackground] およびその他のプロパティを追加しました。
+- シリーズの塗りつぶし (エリア チャートなど) の不透明度を変更するための link:{ApiPlatform}{CategoryChartAssembly}{ApiProp}{CategoryChartNamespace}.xamdomainchart{ApiProp}AreaFillOpacity.html[AreaFillOpacity] を追加しました。
+- マーカーの厚さを変更するための link:{ApiPlatform}{CategoryChartAssembly}{ApiProp}{CategoryChartNamespace}.xamdomainchart{ApiProp}MarkerThickness.html[MarkerThickness] を追加しました。
+
+=== 機能拡張
+チャートの凡例のシリーズの簡略化された図形で、円、線、または四角のみを表示します。これは、チャートの link:{DomainChartLink}~LegendItemBadgeMode.html[LegendItemBadgeMode] プロパティを `MatchSeries` 列挙値に設定することで元に戻すことができます。
+
+=== 地理マップ
+- 凡例で地理的シリーズを表すためのサポートを追加しました。

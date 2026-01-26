@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-spe",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": [],
+    "guid": "ce21dff6-8934-4ca4-a2db-a8bd04fb84d2",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.9470898Z"
+}
+|metadata|
+////
+
+= Infragistics Syntax Parsing Engine
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、Infragistics Syntax Parsing Engine について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-overview.html[Syntax Parsing Engine の概要]
+|このトピックは、Syntax Parsing Engine の概要を示します。
+
+| link:ig-spe-grammar.html[文章校正]
+|このグループのトピックでは、Infragistics Syntax Parsing Engine が行う解析について説明します。
+
+| link:ig-spe-error-handling.html[エラー処理]
+|このグループのトピックでは、Infragistics Syntax Parsing Engine が行うエラー処理について説明します。
+
+| link:ig-spe-ebnf-format.html[EBNF ファイル形式]
+|このグループのこのトピックでは、EBNF を使用した文章校正の定義について説明します。
+
+| link:ig-spe-custom-language.html[カスタム言語]
+|このグループのトピックでは、Syntax Parsing Engine 用のカスタム言語作成方法について説明します。
+
+| link:ig-spe-api-overview.html[API の概要]
+|このトピックは、 _Infragistics Syntax Parsing Engine_ でプログラミング中に扱う名前空間とクラスをリストします。このトピックでリストアップした名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]に対応しています。
+
+|====

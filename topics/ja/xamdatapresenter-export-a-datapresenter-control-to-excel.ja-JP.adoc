@@ -1,0 +1,264 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatapresenter-export-a-datapresenter-control-to-excel",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Exporting"],
+    "guid": "{6F642B9B-51EB-440F-B24B-4F25C7921997}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1959923Z"
+}
+|metadata|
+////
+
+= DataPresenter コントロールを Excel にエクスポート
+
+このトピックでは、xamDataPresenter™ コントロールを使用して、Excel へのデータのエクスポートを実装する方法を説明します。
+
+== はじめに
+
+DataPresenter コントロールは、 link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter.html[DataPresenterExcelExporter] クラスを使用して、Microsoft® Excel® フォーマットでデータをエクスポートできます。DataPresenterExcelExporter クラスは、ワークブックの作成、DataPresenter 行/セルの反復およびワークシートのセル値の設定のすべての作業をカプセル化します。
+
+DataPresenterExcelExporter クラスはビジュアル要素ではありません。このため、ウィンドウのビジュアル ツリーに追加できません。ただし、XAML で DataPresenterExcelExporter オブジェクトのインスタンスを作成する場合、ウィンドウのリソースディクショナリに追加できます。
+
+.注:
+[NOTE]
+====
+DataPresenter コントロールで使用できるスタイルが多数あるため、DataPresenterExcelExporter オブジェクトは DataPresenter コントロールのスタイルを Excel にエクスポートしません。ただし、インフラジスティックスの Excel Engine オブジェクトに直接アクセスする、またはエクスポートの前にフォーマットを適用することによって、結果のワークシートをフォーマットできます。
+====
+
+== 要件
+
+データをエクスポートできるようにするには、以下の NuGet パッケージをアプリケーションで参照する必要があります。
+
+* Infragistics.WPF.DataGrids
+* Infragistics.WPF.DataGrids.Excel
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+== 概要
+
+エクスポート手順の概念的な概要
+
+[start=1]
+. グリッドを追加
+
+[start=2]
+. エクスポート ボタンを追加
+
+[start=3]
+. xamDataPresenter コントロールを追加
+
+[start=4]
+. コード ビハインドに using/Imports のディレクティブを追加
+
+[start=5]
+. (条件付き) Button の Click イベントのイベント ハンドラーを追加
+
+[start=6]
+. DataPresenterExcelExporter オブジェクトのインスタンスを作成
+
+[start=7]
+. エクスポート メソッドを呼び出す
+
+[start=8]
+. (条件付き) 実装を検証
+
+== 手順
+
+[start=1]
+. *グリッドを追加します。*
+
+2 つの RowDefinition オブジェクトがある Grid パネルをウィンドウに追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition />
+    </Grid.RowDefinitions>
+    <!--TODO: Button コントロールを追加します-->
+    <!--TODO: xamDataPresenter コントロールを追加します-->
+</Grid>
+----
+
+[start=2]
+. *エクスポート ボタンを追加します。*
+
+Button コントロールを Grid パネルの最初の行に追加し、以下のように構成します。
+
+** ボタンの Content プロパティを Export DataPresenter に設定します。
+** ボタンの Click イベントにイベント ハンドラーを接続します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Export DataPresenter" Click="Button_Click" />
+----
+
+[start=3]
+. *xamDataPresenter コントロールを追加します。*
+
+xamDataPresenter コントロールを Grid パネルの 2 番目の行に追加し、プロパティを以下のように構成します。
+
+** Name プロパティ - xamDataPresenter1。
+** link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~bindtosampledata.html[BindToSampleData] プロパティ - True。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+</igDP:XamDataPresenter>
+----
+
+[start=4]
+. *コード ビハインドに using/Imports のディレクティブを追加します。*
+
+コード ビハインドを開き、コード ビハインド内に using/Imports のディレクティブを配置すれば、メンバーの完全に記述された名前を常にタイプする必要がなくなります。コードでインスタンスを作成する代わりに、DataPresenterExcelExporter オブジェクトのインスタンスをウィンドウのリソース ディクショナリに追加したい場合には、XML 名前空間宣言を追加することが必要になります。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:igExcelExporter="http://infragistics.com/ExcelExporter"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Windows.DataPresenter.ExcelExporter
+Imports Infragistics.Documents.Excel
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Windows.DataPresenter.ExcelExporter;
+using Infragistics.Documents.Excel;
+----
+
+[start=5]
+. (条件付き) Button コントロールの Click イベントのイベント ハンドラーを追加します。
+
+メソッド スタブが作成されていない場合には、Button コントロールの Click イベントのイベント ハンドラーを追加することが必要になります。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private Sub Button_Click(sender As Object, e As RoutedEventArgs)
+    'TODO: DataPresenterExcelExporter オブジェクトのインスタンスを作成します
+    'TODO: DataPresenterExcelExporter オブジェクトの Export メソッドを呼び出します
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private void Button_Click(object sender, RoutedEventArgs e)
+{
+    //TODO: DataPresenterExcelExporter オブジェクトのインスタンスを作成します
+    //TODO: DataPresenterExcelExporter オブジェクトの Export メソッドを呼び出します
+}
+----
+
+[start=6]
+. *DataPresenterExcelExporter オブジェクトのインスタンスを作成します。*
+
+XAML でインスタンスを作成している場合には、ウィンドウのリソース ディクショナリに追加できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Window.Resources>
+    <igExcelExporter:DataPresenterExcelExporter x:Key="excelExporter1" />
+</Window.Resources>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim exporter As New DataPresenterExcelExporter()
+'DataPresenterExcelExporter オブジェクトをウィンドウのリソース ディクショナリに追加した場合には、コードのこの行を使用します
+'Dim exporter A DataPresenterExcelExporter = DirectCast(Me.Resources("excelExporter1"), DataPresenterExcelExporter)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+DataPresenterExcelExporter exporter = new DataPresenterExcelExporter();
+//DataPresenterExcelExporter オブジェクトをウィンドウのリソース ディクショナリに追加した場合には、コードのこの行を使用します
+//DataPresenterExcelExporter exporter = (DataPresenterExcelExporter)this.Resources["excelExporter1"];
+----
+
+[start=7]
+. *エクスポート メソッドを呼び出します。*
+
+データを同期でエクスポートするか、非同期でエクスポートするかによって、 link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter~export.html[Export] と link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter~exportasync.html[ExportAsync] の 2 つのメソッドを選択できます。エクスポートされたファイルのファイル拡張子はターゲットの Excel のバージョンと一致する必要があります (Excel 2007/2010 の場合は .xlsx、Excel 97/2003 の場合は .xls)。
+
+データを同期でエクスポートするには:
+
+DataPresenterExcelExporter オブジェクトの Export メソッドを呼び出します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+exporter.Export(Me.xamDataPresenter1, "xamDataPresenter1.xlsx", WorkbookFormat.Excel2007)   
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+exporter.Export(this.xamDataPresenter1, "xamDataPresenter1.xlsx", WorkbookFormat.Excel2007);
+----
+
+データを非同期でエクスポートするには:
+
+DataPresenterExcelExporter オブジェクトの ExportAsync を呼び出してデータを非同期でエクスポートします。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+exporter.ExportAsync(Me.xamDataPresenter1, "xamDataPresenter1.xlsx", WorkbookFormat.Excel2007)   
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+exporter.ExportAsync(this.xamDataPresenter1, "xamDataPresenter1.xlsx", WorkbookFormat.Excel2007);
+----
+
+.非同期エクスポートの注意事項:
+[NOTE]
+====
+. 非同期エクスポートはデータをチャンクでエクスポートします。各チャンクは、 link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter~asyncexportduration.html[AsyncExportDuration] プロパティによって指定された時間、処理され、2 つのチャンク処理間の時間は link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter~asyncexportinterval.html[AsyncExportInterval] プロパティで指定されます。
+. ExportAsync メソッドを呼び出し、エクスポート処理が終了した時を追跡したい場合には、 link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter~exportended_ev.html[ExportEnded] イベントをフックするのが賢明です。
+====
+
+[start=8]
+. (条件付き) 実装を検証します。
+
+プロジェクトを実行して、エクスポート ボタンをクリックします。これによって xamDataPresenter コントロールが Excel にエクスポートされます。
+
+== 関連トピック
+
+link:xamdatapresenter-apply-formats-for-exporting.html[エクスポートするフォーマットを適用]
+
+link:xamdatapresenter-exclude-datapresenter-settings-when-exporting.html[エクスポート時に DataPresenter 設定を除外]
+
+link:xamdatapresenter-handle-exporting-events.html[エクスポート イベントの処理]

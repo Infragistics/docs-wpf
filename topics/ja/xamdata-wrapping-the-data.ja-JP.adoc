@@ -1,0 +1,28 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-wrapping-the-data",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Presentation","Editing","Tips and Tricks"],
+    "guid": "{1B5B9C07-4A70-4454-A40E-C56B3E11EAF0}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5828697Z"
+}
+|metadata|
+////
+
+= データのラッピング
+
+
+
+データが link:xamdata-supplying-data.html[xamDataGrid、xamTreeGrid、xamDataCarousel、または xamDataPresenter] コントロールに提供されたら、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~datasource.html[DataSource] からのルートデータを管理および同期するために link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager.html[RecordManager] が内部で作成されます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordmanager.html[RecordManager] プロパティによって公開されます。RecordManager はリクエストされると DataSource の項目ごとに自動的に link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] オブジェクトを作成します。デフォルトで、これは遅延して行われますが、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordloadmode.html[RecordLoadMode] を PreloadRecords に設定すると、すべての DataRecords が前もって作成されることになります。
+
+`RecordManager` はオリジナルの並べ替えられていない順序で、現在の並べ替え順序で、ならびに適用可能な場合にはグループ化してこれらの DataRecords を返すためのコレクションを公開します。
+
+`DataPresenterBase` の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~viewablerecords.html[ViewableRecords] コレクションは DataRecords も返しますが、その link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.record~visibility.html[Visibility] プロパティが Collapsed に設定される DataRecords を除外します。このコレクションは RecordManager のコレクションにない特別なレコードも含みます (たとえば、レコードの追加)。
+
+[NOTE]
+====
+*注:* DataRecords は UIElements ではなく、むしろデータ項目をラップする軽量のオブジェクトです。対応する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecordpresenter.html[DataRecordPresenter] 要素によって UI で表されます。`DataRecordPresenter` 要素は仮想化されます。したがって、現在表示されている DataRecords を表すためだけに作成されます。場合によっては、追加の DataRecordPresenter 要素がキャッシュされ、スクロールのパフォーマンスを最適化します。詳細は、 link:xamdata-performance-optimizations-overview.html[パフォーマンス最適化の概要]を参照してください。
+====

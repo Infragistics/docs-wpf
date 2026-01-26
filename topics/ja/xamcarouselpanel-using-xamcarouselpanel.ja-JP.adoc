@@ -1,0 +1,22 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-using-xamcarouselpanel",
+    "controlName": ["xamCarouselPanel"],
+    "tags": [],
+    "guid": "{1FEC1A11-30CE-47F1-A2E3-78DBD40A3CA2}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0947721Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel の使用
+
+
+
+このセクションでは、 xamCarouselPanel™ コントロールの様々な特長や機能を効果的に使用するための、重要なタスク ベースの情報について説明します。
+
+* link:xamcarouselpanel-defining-layouts.html[レイアウトの定義]
+* link:xamcarouselpanel-designing-the-look-and-feel.html[ルック アンド フィールのデザイン]

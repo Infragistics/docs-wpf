@@ -1,0 +1,203 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-features-overview",
+    "tags": ["Getting Started"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "bb71d5ce-a85e-4b64-93a7-fb0c2bfb5fad",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:21:11.3972785Z"
+}
+|metadata|
+////
+
+= 機能の概要 (xamTreeGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+=== 前提条件
+
+以下の表は、このトピックを理解するための前提条件として必要な概念とトピックの一覧です。
+
+[options="header", cols="a,a"]
+|====
+|タイプ|コンテンツ
+
+|概念
+|Data Presenter Family
+|==== 
+
+=== トピック
+
+[options="header", cols="a,a"] 
+
+|==== 
+
+|トピック|目的 
+
+| link:wpf-about-the-data-presenter-family.html[Data Presenter Family について] 
+
+|このトピックでは、コントロールの Data Presenter Family の概念を説明します。 
+
+| link:xamdata-theoryofoperation.html[操作理論] 
+
+|この一連のトピックは、Data Presenter アーキテクチャの柔軟性およびいくつかの一般的タスク (データのバインド、フィールド レイアウトの割り当てなど) を説明します。 
+
+| link:wpf-terms-and-concepts.html[用語と概念] 
+
+|この一連のトピックは、Data Presenter コントロールの主要要素を説明します。 
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について] 
+
+|このトピックは、 _xamDataGrid_ コントロールの概要を提供し、要素のダイアグラムを含みます。 
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref410285876, 概要 >>
+* <<_Ref410285882, 主要機能 >>
+* <<_Ref410285897, 関連コンテンツ >>
+
+[[_Ref410285876]]
+== 概要
+
+=== XamTreeGrid の概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[xamTreeGrid] は、Data Presenter Family のコントロールで、データをツリー グリッド レイアウトに配置します。このコントロールは基本的に、動的な切り替えができない単一のビュー (link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treeview.html[TreeView]) を実装する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatapresenter.html[xamDataPresenter] です。
+
+注:
+
+[NOTE]
+====
+ビューの動的な切り替えが必要な場合は、_xamDataPresenter_ を使用し、必要な link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.viewbase.html[ViewBase] 派生クラスを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatapresenter~view.html[View] プロパティにアタッチする必要があります。
+====
+
+_xamTreeGrid_ コントロールは、データのバインド、フィールド定義、イベント、コマンドなど、多くの点で _xamDataGrid_ と似ています。この一連のトピックでは、_xamDataGrid_ と比較して知っておく必要のある違いを説明します。「前提条件」セクションにリストした概念とトピックをよく理解しておくことをお勧めします。
+
+_xamDataGrid_ と同様に、_xamTreeGrid_ は link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.gridviewbase.html[GridViewBase] から拡張したビューを持つため、列と行の外にデータが配置されています。ただし、1 つのフィールドはツリー フィールドとして指定されるという重要な追加点があります。これは、コントロールにバインドされた階層データのツリー表現を含むフィールドです。指定された展開インジケーターを使用してネストされたレコードを展開および縮小し、そのレベル全体をブラウズできます。
+
+以下のスクリーンショットは、"Name" フィールドに置かれたツリーを持つレコードの階層構造を表示する _xamTreeGrid_ コントロールを示しています。この例の "Name" フィールドは、各レコードのイメージを表示する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treecellvaluepresenter.html[TreeCellValuePresenter] に対してカスタム テンプレートを使用しています。
+
+image::images/xamTreeGrid_02.png[]
+
+[[_Ref410285882]]
+== 主要機能
+
+=== 主要機能の概要
+
+以下の表に、 _xamDataGrid_   によりサポートされる機能以外の  _xamTreeGrid_   コントロールの主要機能の概要を示します。詳細は、概要表の後に記載されています。
+
+[options="header", cols="a,a"]
+|====
+|機能|説明
+
+|<<_Ref410303345,ツリー フィールド>>
+|ツリーを配置するフィールドを指定できます。
+
+|<<_Ref410303357,展開と縮小>>
+|ネストされたレコードの展開と縮小
+
+|<<_Ref410303366,ツリー選択>>
+|クロスレベル レコードの選択
+
+|<<_Ref410303373,ツリーのフィルタリング>>
+|複数レベルのレコードのフィルタリング
+
+|<<_Ref410303379,ツリーの集計>>
+|複数レベルのレコードの集計
+
+|<<_Ref410303380,データのエクスポート>>
+|Microsoft® Excel® ファイル フォーマットおよび Microsoft® Word® ファイル フォーマットにデータをエクスポート
+
+|====
+
+[[_Ref410303345]]
+
+=== ツリー フィールド
+
+_xamTreeGrid_   の `FlowDirection` プロパティを使用して、ツリーを表示するフィールドの指定、さらにフィールドへのツリーの配置 (左側または右側) を指定できます。
+
+*関連トピック:*
+
+link:xamtreegrid-conf-tree-field.html[ツリー フィールドの構成 (xamTreeGrid)]
+
+[[_Ref410303357]]
+
+=== 展開と縮小
+
+コントロールは、展開インジケーターを使用して、ネストされたレコードの展開と縮小をサポートします。展開インジケーターの初期状態を構成できます。
+
+*関連トピック:*
+
+link:xamtreegrid-conf-expansion-indicators.html[展開インジケーターの構成 (xamTreeGrid)]
+
+[[_Ref410303366]]
+
+=== ツリー選択
+
+コントロールはクロスレベル選択をサポートします。
+
+*関連トピック:*
+
+link:xamtreegrid-conf-selection.html[選択の構成 (xamTreeGrid)]
+
+[[_Ref410303373]]
+
+=== ツリーのフィルタリング
+
+コントロールは複数レベルのレコードのフィルタリングをサポートします。フィルタリング基準に一致しないレコードをコントロールが表示する方法を構成できます。
+
+*関連トピック:*
+
+link:xamtreegrid-conf-filtering.html[フィルタリングの構成 (xamTreeGrid)]
+
+[[_Ref410303379]]
+
+=== ツリーの集計
+
+コントロールはネストされた各レコード レベルの集計をサポートします。各フィールドについて計算式を指定できます。
+
+*関連トピック:*
+
+link:xamtreegrid-conf-summaries.html[集計の構成 (xamTreeGrid)]
+
+[[_Ref410303380]]
+
+=== データのエクスポート
+
+他の Data Presenter コントロールと同様に、 _xamTreeGrid_   は Microsoft® Excel® ファイル フォーマットと Word® ファイル フォーマットへのデータのエクスポートをサポートします。
+
+*関連トピック:*
+
+* link:xamdatapresenter-exporting-to-excel.html[Excel へエクスポート]
+* link:xamdatapresenter-exporting-to-word.html[Word へのエクスポート]
+
+[[_Ref410285897]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+| link:xamtreegrid-user-interactions-and-usability.html[ユーザー インタラクションと操作性 (xamTreeGrid)]
+|このトピックでは、ユーザーが実行できる操作を紹介します。
+
+| link:xamtreegrid-limitations.html[制限 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートされていない Data Presenter の機能を説明します。
+
+|====

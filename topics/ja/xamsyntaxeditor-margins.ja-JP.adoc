@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-margins",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": [],
+    "guid": "4b2ced78-51ab-4405-bc6a-78ef9763a15a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4333976Z"
+}
+|metadata|
+////
+
+= マージン (xamSyntaxEditor)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このセクションでは、 _xamSyntaxEditor™ の_  組み込みマージンの使用方法とカスタム マージンの作成方法を解説します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-line-number-margin.html[行番号のマージン]
+|このトピックでは、 _xamSyntaxEditor_ コントロールの組み込み行番号マージンの使用方法と構成方法を解説します。
+
+| link:xamsyntaxeditor-ruler-margin.html[ルーラー マージン]
+|このトピックでは、ルーラー マージンの構成方法を解説します。
+
+| link:xamsyntaxeditor-custom-margins.html[カスタム マージン]
+|このトピックでは、カスタム マージンの作成方法を解説します。
+
+|====

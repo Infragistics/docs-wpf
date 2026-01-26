@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xameditors-overview-of-the-valueeditor-class",
+    "controlName": [],
+    "tags": ["Getting Started"],
+    "guid": "{14DB6235-21DB-4359-A219-8011C173AAA7}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1819781Z"
+}
+|metadata|
+////
+
+= ValueEditor クラスの概要
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor] は、すべてのその他のエディターが生成される抽象基本クラスです。ValueEditor はすべての値エディターに共通する機能の大部分を実装します。
+
+以下は、ValueEditor を作成する主要な機能と派生クラスのリストです。
+
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuetype.html[ValueType] -- ValueType プロパティは、エディターによって表示/編集される値のタイプを指定します。ValueEditor は、ユーザー入力がこのタイプであることを保証します。エディターは入力を自動的に解析して、このタイプのオブジェクトに変更します。ユーザー入力が正しいフォーマットでない場合、値エディターは入力を拒否して link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~invalidvaluebehavior.html[InvalidValueBehavior] プロパティ設定に基づいて適切なアクションを取ります。
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~value.html[Value] -- Value プロパティは、エディターによって表示/編集される値を取得または設定します。Value プロパティはオブジェクト タイプのプロパティです。これは、Value プロパティが ValueType プロパティによって指定されるタイプのオブジェクトを返すからです。たとえば、xamTextEditor の ValueType を DateTime に設定する場合には、Value プロパティは DateTime オブジェクトを返します。エディターは、上記のようにユーザー入力を DateTime オブジェクトに自動的に変換します。
+* link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valueconstraint.html[ValueConstraint] -- ValueConstraint プロパティによって、ユーザーが値エディターにできる値の制約を指定することができます。制約には、最小値、最大値、正規表現、Nullable、長さの最大値などを含み指定できます。値エディターは、これらの制約に照らし合わせてユーザー入力を検証します。入力が制約を満たさない場合には、エディターは入力した値を無効と見なします。ValueEditor の IsValueValid プロパティは、現在の入力が有効かどうかを示します。入力が無効な場合、InvalidValueBehavior プロパティの設定に基づいてユーザーがエディターを離れようとするときにエディターはアクションを起こします。
+* Format -- Format プロパティによって、エディターが編集モードでない時に使用するフォーマットを指定することができます。たとえば、ValueType が小数に設定される xamTextEditor で Format を "c" に設定できます。xamTextEditor コントロールは、現在のフォーマット ("c" フォーマット) を使用して値をフォーマットします。エディターが編集モードになると、エディターはより自然な編集エクスペリエンスのためにこのフォーマットを削除します。
+* Custom Converters -- ValueEditor クラスと TextEditorBase クラス (すべてのテキスト ベースのエディターの派生元の) は、テキストと値間で変換を行うためのカスタム ロジックを指定するためのタイプ IValueConverter を公開します。ValueEditor はそれぞれ link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuetotextconverter.html[ValueToTextConverter] を公開し、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.texteditorbase.html[TextEditorBase] は link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.texteditorbase~valuetodisplaytextconverter.html[ValueToDisplayTextConverter] プロパティを公開します。ValueToTextConverter は、Value プロパティと Text プロパティ間の変換のために使用されます。ValueToTextConverter は、値をテキストに、またテキスト (ユーザー入力) から値タイプに変換するために、両方の方向で使用されます。一方、ValueToDisplayTextConverter プロパティは、値を変換してテキストを表示するためのみに使用されます。
+
+ValueToTextConverter と ValueToDisplayTextConverter 間の主要な違いは、ValueToDisplayTextConverter は表示モードで使用されますが、ValueToTextConverter は編集モードで使用される点です。その結果、ValueToTextConverter は値をテキストに変換するためだけでなく、テキスト形式のユーザー入力を値タイプに戻すために使用されます。たとえば、xamTextEditor の ValueType が DateTime に設定されている場合、編集モードの時に表示するために DateTime オブジェクトをテキストに変換するため、またユーザー入力を DateTime オブジェクトに戻すために、ValueToTextConverter プロパティが使用されます。ValueToDisplayTextConverter は、エディターが編集モードではない時に表示するために DateTime オブジェクトをテキストに変換するために使用されます。2 つの異なるコンバータ (ひとつは編集モード用、もうひとつは表示モード用) を使用する理由は、異なるフォーマットで値を表示したり、異なるフォーマットで値を編集できるようにするためです。たとえば、DateTime について言えば、日付表示を長い日付 (たとえば January 01, 2007) で表示させたいかもしれません。また、エンドユーザーが編集モードで値を修正するときは、より簡単に編集するために同じ値を 01/01/07 で表示させたい場合があります。ユーザーが短い日付フォーマットの日付を修正してエディターを終了後で、ValueToDisplayTextConverter プロパティを使用すると、長い日付フォーマットで新しい日付が自動的に表示されます。
+
+[NOTE]
+====
+注: 通常、これらのコンバータを指定する必要はありません。エディターが提供するデフォルトの変換ロジックで十分だからです。ただし、カスタムの変換ロジックを実装したい場合には指定することができます。基本的に、この機能によって、エディターのデータ フィルタ機能によって Windows Formsの埋め込みエディター アーキテクチャで実行できるものと同じことがいくつか実行することができます。たとえば、ValueToTextConverter を指定して、'2k'、'2m' などを 1000、1000000 にそれぞれ変換することができます。または日付での ‘+2m'、‘-1d' は今から 2 カ月後と昨日をそれぞれ表します。
+====
+
+* *InvalidValueBehavior* -- InvalidValueBehavior プロパティは、無効な値の編集後にユーザーがエディターを離れようとするときに取るべきアクションを指定します。エディターの ValueType に入力を適切に解析できない、または ValueConstraint によって指定された値の制約を満たさない時には、エディターはユーザー入力を無効と見なします。デフォルト値は DisplayErrorMessage で、入力した値が無効であることを示すメッセージをユーザーに表示します。
+* *デフォルトのエディター リポジトリ* -- ValueEditor は各既知のデータ タイプに対してデフォルトで使用するエディターのマップを保持します。このマッピングは、フィールドのデータ タイプに基づいて各フィールドに対してデフォルトのエディターを選択するために、xamDataGrid と xamDataPresenter などのコントロールによって使用されます。たとえば、ブール値フィールドでは、xamCheckEditor が使用されます。ValueEditor の RegisterDefaultEditorForType 静的メソッドを使用して、特定のデータ タイプに対してデフォルトで使用するエディターをオーバーライドできます。データ タイプに対してカスタムの ValueEditor を登録することもできます。
+* *デフォルトのマスク リポジトリ* -- xamMaskedEditor は各既知のデータ タイプに対してデフォルトで使用するマスクのマップを保持します。たとえば、長いデータ タイプの場合、使用されるデフォルトのマスクは 19 桁です。xamMaskedEditor の link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor~registerdefaultmaskfortype.html[RegisterDefaultMaskForType] 静的メソッドを使用して、データ タイプのデフォルトのマスクを指定できます。
+
+[NOTE]
+====
+注:デフォルトのマスク リポジトリは、xamMaskedEditor およびその他すべてのマスク ベースのエディターによって使用されます (xamDateTimeEditor および xamNumericEditor など)。
+====

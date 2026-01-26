@@ -1,0 +1,192 @@
+﻿////
+|metadata|
+{
+    "name": "xamtimeline-display-date-time-series",
+    "controlName": ["xamTimeline"],
+    "tags": ["API","Data Presentation","How Do I"],
+    "guid": "{A4FC47CB-1618-44C0-A50A-37485EC03C04}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.9663963Z"
+}
+|metadata|
+////
+
+= 日時シリーズを表示
+
+== 始める前に
+
+link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールを使用して DateTime データを表示できます。このコントロールは日付順に並べられた、連続するタイムラインを表すために link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeseries.html[DateTimeSeries] オブジェクトを提供します。
+
+== 達成すること
+
+xamTimeline を使用して DateTime データを表示する方法を学習します。
+
+image::images/XamTimeline_Display_Date_Time_Series_01.png[]
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName} プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をアプリケーションに追加します。
+
+** Infragistics.WPF.Timeline
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. xamTimeline の以下の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Timelines
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Timelines;
+----
+
+[start=4]
+. link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeseries.html[DateTimeSeries] オブジェクトと共にページに link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[XamTimeline] コントロールをページに追加します。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline x:Name="xamTimeline"  
+                     Width="1000" Height="580" Margin="15">
+            <ig:XamTimeline.Series>
+                <ig:DateTimeSeries Title="Date Time Series"
+                                     Position="TopOrLeft">
+                    <!-- TODO: 日時エントリを追加 -->
+                </ig:DateTimeSeries>
+            </ig:XamTimeline.Series>
+            <!-- TODO: Axis プロパティを設定 -->
+</ig:XamTimeline>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim Timeline As New XamTimeline()
+Me.LayoutRoot.Children.Add(Timeline)
+Dim dateTimeSeries As New DateTimeSeries()
+'TODO: 日時エントリを追加 
+Timeline.Series.Add(dateTimeSeries)
+----
+
+*C# の場合:*
+
+----
+var Timeline = new XamTimeline();
+this.LayoutRoot.Children.Add(Timeline);
+var dateTimeSeries = new DateTimeSeries();
+//TODO: 日時エントリを追加 
+Timeline.Series.Add(dateTimeSeries);
+----
+
+[start=5]
+. link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeentry.html[DateTimeEntry] オブジェクトをシリーズに追加することによってデータをタイムラインに追加できます。
+
+*XAML の場合:*
+
+----
+<ig:DateTimeSeries.Entries>
+      <ig:DateTimeEntry Time="01/01/1996" Title="Date Time Entry 1" 
+                                            Details="Details Time Entry 1"/>
+      <ig:DateTimeEntry Time="01/01/2000" Title="Date Time Entry 2" 
+                                            Details="Details Time Entry 2"/>
+      <ig:DateTimeEntry Time="01/01/2004" Title="Date Time Entry 3" 
+                                            Details="Details Time Entry 3"/>
+      <ig:DateTimeEntry Time="01/01/2008" Title="Date Time Entry 4" 
+                                            Details="Details Time Entry 4"/>
+      <ig:DateTimeEntry Time="01/01/2012" Title="Date Time Entry 5" 
+                                            Details="Details Time Entry 5"/>
+</ig:DateTimeSeries.Entries>
+----
+
+*Visual Basic の場合:*
+
+----
+For ind As Integer = 1 To 5
+    Dim entry As New DateTimeEntry()
+    entry.Time = New DateTime(1992 + ind * 4, 1, 1)
+    entry.Title = "Date Time Entry " + ind.ToString()
+    entry.Details = "Details Time Entry " + ind.ToString()
+    dateTimeSeries.Entries.Add(entry)
+Next
+----
+
+*C# の場合:*
+
+----
+for (int ind = 1; ind <= 5; ind++)
+{
+    var entry = new DateTimeEntry();
+    entry.Time = new DateTime(1992 + ind * 4, 1, 1);
+    entry.Title = "Date Time Entry " + ind.ToString();
+    entry.Details = "Details Time Entry " + ind.ToString();
+    dateTimeSeries.Entries.Add(entry);
+}
+----
+
+[start=6]
+. タイムラインの範囲を制御するために xamTimeline に link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.datetimeaxis.html[DateTimeAxis] オブジェクトを作成します。xamTimeline コントロールの軸の詳細は、 link:xamtimeline-axis.html[「軸」]を参照してください。
+
+** Minimum を 01/01/1992 に設定します。
+** Maximum を 12/01/2015 に設定します。
+** AutoRange を False に設定します。
+** Unit を 2 に設定します。
+** UnitType プロパティを Years に設定します。Numeric Time シリーズと異なり、DateTime シリーズは異なる単位のタイプを持つことができます。タイムラインが正しく表示するためには UnitType プロパティを設定が重要です。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline.Axis>
+      <ig:DateTimeAxis  Minimum="01/01/1992" Maximum="12/01/2015"
+                          AutoRange=" UnitType="Years" Unit="2"/>
+</ig:XamTimeline.Axis>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim axis As New DateTimeAxis()
+axis.Minimum = DateTime.Parse("01/01/1992")
+axis.Maximum = DateTime.Parse("12/01/2015")
+axis.AutoRange = False
+axis.Unit = 2
+axis.UnitType = DateTimeUnitType.Years
+Timeline.Axis = axis
+----
+
+*C# の場合:*
+
+----
+var axis = new DateTimeAxis();
+axis.Minimum = DateTime.Parse("01/01/1992");
+axis.Maximum = DateTime.Parse("12/01/2015");
+axis.AutoRange = false;
+axis.Unit = 2;
+axis.UnitType = DateTimeUnitType.Years;
+Timeline.Axis = axis;
+----
+
+[start=7]
+. アプリケーションを実行します。xamTimeline コントロールはデータを表示します。そのイベントの詳細を確認するためにスライダーをイベントに移動できます。
+
+image::images/XamTimeline_Display_Date_Time_Series_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-about-date-time-series.html[日時シリーズについて]
+
+link:xamtimeline-set-duration-in-date-time-series.html[日時シリーズで時間を設定]

@@ -1,0 +1,81 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-modifying-the-opacity-effect-of-items-on-xamcarouselpanels-path",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{1014C323-B363-4AC1-9D9E-BE2DC5FFA694}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0807693Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel のパスで項目の不透明効果を変更
+
+
+
+OpacityEffect は、項目の不透明度を変更して、項目を明るくまたは暗くしたり、フェードの効果を提供することができます。適切に使用すると、この効果で前景項目がより近く見え、背景項目がより遠く見える効果を提供することができます。OpacityEffect は link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.opacityeffectstopcollection.html[OpacityEffectStopCollection] として作成されます*。* このコレクションには、Offsets と Values を持ついくつかの link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~opacityeffectstops.html[OpacityEffectStops] が含まれています。値は 0 から 10 の小数のパーセントとして指定できます。Offset は link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~opacityeffectstopdirection.html[OpacityEffectStopDirection] によって異なり、以下の 3 つの値のいずれかに設定できます。
+
+* Vertical
+* Horizontal
+* UseItemPath
+
+[NOTE]
+====
+このトピックは、 link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]のタスクを完了していることが前提となります。
+====
+
+これらの手順に従って、xamCarouselPanel コントロールの項目に不透明効果を作成します。
+
+[start=1]
+. タイプ link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[CarouselViewSettings] の xamCarouselPanel link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamcarousellistbox~viewsettings.html[ViewSettings] を作成します。OpacityEffectStopDirection プロパティを UseItemPath に設定し、UseOpacity プロパティを True に設定します。これによって、Opacity の設定がパスに沿って使用されることが保証されます。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        <igWindows:CarouselViewSettings OpacityEffectStopDirection="UseItemPath" 
+          UseOpacity="True">
+                ...
+        </igWindows:CarouselViewSettings>
+</igWindows:XamCarouselPanel.ViewSettings>
+----
+
+[start=2]
+. CarouselViewSettings オブジェクト内で OpacityEffectStops オブジェクトと OpacityEffectStopCollection オブジェクトを定義します。
+
+*XAML の場合:*
+
+----
+<igWindows:CarouselViewSettings.OpacityEffectStops>
+        <igWindows:OpacityEffectStopCollection>
+                ...
+        </igWindows:OpacityEffectStopCollection>
+</igWindows:CarouselViewSettings.OpacityEffectStops>
+----
+
+[start=3]
+. OpacityEffectStops オブジェクトを定義します。3 つの OpacityEffectStops を作成します。Offsets はパスの先頭から開始して終わりまで続き、ゼロの不透明度から開始して 1 になるとゼロに戻ります。
+
+*XAML の場合:*
+
+----
+<igWindows:OpacityEffectStop Offset="0" Value="0" />
+<igWindows:OpacityEffectStop Offset=".5" Value="1" />
+<igWindows:OpacityEffectStop Offset="1" Value="0" />
+----
+
+[start=4]
+. プロジェクトをビルドして実行します。最も遠い項目が依然として若干見えることが分かります。これは、パス上の項目は必ずしも 0 の不透明度で開始するわけではない、また必ずしも 1 の不透明度で終わるわけではないからです。パスの先頭の後に項目が表示されます。したがって厳密に 0 の不透明度で項目を見ることはありません。
+
+image::images/xamCarousel_Modifying_the_Opacity_Effect_of_Items_on_a_Path_01.png[xamcarousel のパスで項目の不透明効果を変更]
+
+== 関連トピック
+
+link:xamcarousel-overview-of-path-effects.html[パス エフェクトの概要]
+
+link:xamcarouselpanel-modifying-the-scale-of-elements-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで要素のスケールを変更]
+
+link:xamcarouselpanel-modifying-the-skew-effect-of-items-on-xamcarouselpanels-path.html[xamCarouselPanel のパスで項目の傾斜効果を変更]

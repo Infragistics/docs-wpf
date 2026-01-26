@@ -1,0 +1,123 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-2011-volume-2",
+    "controlName": [],
+    "tags": ["API","Known Issues"],
+    "guid": "f43b45a6-564d-466d-92ce-a223732c92da",  
+    "buildFlags": [],
+    "createdOn": "2012-01-31T21:16:05.5747984Z"
+}
+|metadata|
+////
+
+= 2011 Volume 2
+
+このトピックは {ProductName} の 2011 Volume 2 リリースでの重大な変更点をリストします。
+
+== xamDataChart - クラス名の変更
+
+[options="header", cols="a,a"]
+|====
+|以前の名前|新しい名前
+
+|Infragistics.Controls.Charts.CategoryErrorBarsSettings 
+
+{ApiPlatform}Controls.Charts.XamDataChart.v11.1.dll
+|Infragistics.Controls.Charts.CategoryErrorBarSettings 
+
+{ApiPlatform}Controls.Charts.XamDataChart.v11.2.dll
+
+|====
+
+ifdef::wpf[]
+== xamMap - 移動されたクラス
+endif::wpf[]
+
+ifdef::wpf[]
+
+[options="header", cols="a,a"]
+|====
+|以前の名前空間|新しい名前空間
+
+|Infragistics.Controls.Maps.BingMapsTileSource 
+
+{ApiPlatform}Controls.Maps.XamMap.v11.1.dll
+|Infragistics.Controls.Maps.BingMapsTileSource 
+
+{ApiPlatform}DataVisualization.v11.2.dll
+
+|Infragistics.Controls.Maps.OpenStreetMapTileSource 
+
+{ApiPlatform}Controls.Maps.XamMap.v11.1.dll
+|Infragistics.Controls.Maps.OpenStreetMapTileSource 
+
+{ApiPlatform}DataVisualization.v11.2.dll
+
+|Infragistics.Controls.Maps.CloudMadeTileSource 
+
+{ApiPlatform}Controls.Maps.XamMap.v11.1.dll
+|Infragistics.Controls.Maps.CloudMadeTileSource 
+
+{ApiPlatform}DataVisualization.v11.2.dll
+
+|====
+
+endif::wpf[]
+
+ifdef::wpf[]
+== xamPivotGrid - 置き換えられたクラス
+endif::wpf[]
+
+ifdef::wpf[]
+最後の MDX クエリによる柔軟性とコントロールを与えるために全体クエリ生成モデルが変更されています。
+endif::wpf[]
+
+ifdef::wpf[]
+
+[options="header", cols="a,a"]
+|====
+|以前のクラス|新しいクラス
+
+|Infragistics.Olap.Xmla.IQuery 
+
+{ApiPlatform}Olap.Xmla.v11.1.dll
+|Infragistics.Olap.Xmla.IMdxQuery 
+
+{ApiPlatform}Olap.Xmla.v11.2.dll
+
+|====
+
+endif::wpf[]
+
+ifdef::wpf[]
+link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.data.xmla.sqlanalysisservices2008.query.html[クエリ] クラスは IQuery インターフェイスに代わり link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.imdxquery.html[IMdxQuery] インターフェイスを実装します。
+endif::wpf[]
+
+ifdef::wpf[]
+
+*C# の場合:*
+
+----
+// 派生クラス
+public class Query : IMdxQuery
+// クラス プロパティ
+protected IMdxQuery XmlaDataSource.CurrentQuery
+// クラス メソッド
+public void XmlaCommand.ExecuteCommandAsync(IMdxQuery)
+public void XmlaCommand.ExecuteCommandAsync(IMdxQuery, XmlaConnection)
+protected virtual string XmlaCommand.GenerateCommand(IMdxQuery)
+protected virtual string XmlaSapCommand.GenerateCommand(IMdxQuery)
+protected virtual string XmlaOracleCommand.GenerateCommand(IMdxQuery)
+----
+
+endif::wpf[]
+
+ifdef::wpf[]
+link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.xmlacommand.html[XmlaCommand] から派生し、XmlaCommand.GenerateCommand(IMdxQuery) メソッドをオーバーライドしたクラスについては、 link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.imdxquery.html[IMdxQuery] インターフェイスによって公開されたメソッドのタイプと目的についての情報を得るために link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla.imdxquery.html[IMdxQuery] API ドキュメンテーションを参照してください。
+endif::wpf[]
+
+ifdef::wpf[]
+また、PivotSimpleClickableContainer は使用されなくなりました。
+endif::wpf[]

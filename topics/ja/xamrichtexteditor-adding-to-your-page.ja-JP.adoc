@@ -1,0 +1,228 @@
+﻿////
+|metadata|
+{
+    "name": "xamrichtexteditor-adding-to-your-page",
+    "tags": ["Getting Started","How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "e14a6f99-9891-4b40-afd5-692be929fd4f",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.392337Z"
+}
+|metadata|
+////
+
+= xamRichTextEditor をページに追加する
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref363741952,xamRichTextEditor をページに追加する>>
+* <<_Ref363741961,関連コンテンツ>>
+
+[[_Ref363741952]]
+== _xamRichTextEditor_  をページに追加する
+
+=== はじめに
+
+この手順では、 _xamRichTextEditor_   をページに追加する操作をステップごとに説明しています。
+
+=== プレビュー
+
+以下のスクリーンショットは結果のプレビューです。
+
+image::images/xamRichTextEditor_Adding01.png[]
+
+=== 手順
+
+以下のステップでは、 _xamRichTextEditor_   をページに追加する方法を示します。
+
+=== 1. NuGet パッケージの参照
+
+以下の NuGet パッケージ参照をプロジェクトに追加します。
+
+** Infragistics.WPF.RichTextEditor
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+=== 2. シリアル化プロバイダーの NuGet パッケージ参照
+
+外部のリッチ コンテンツをインポートまたはエクスポートする必要がある場合は、以下の NuGet パッケージ参照をさらに追加します。
+
+** Infragistics.WPF.RichTextDocument.Html
+** Infragistics.WPF.RichTextDocument.Rtf
+** Infragistics.WPF.RichTextDocument.Word
+
+=== 3.名前空間
+
+以下の名前空間を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+using Infragistics.Documents.RichText;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+Imports Infragistics.Documents.RichText
+----
+
+=== 4.xamRichTextEditor の作成
+
+_xamRichTextEditor_   を作成してページに追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamRichTextEditor x:Name="xamRichTextEditor1">
+</ig:XamRichTextEditor>
+----
+
+=== 5.シリアル化プロバイダーの追加 (オプション)
+
+外部のリッチ コンテンツをインポートまたはエクスポートする必要がある場合は、以下のとおり追加します (オプション)。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamRichTextEditor.ClipboardSerializationProviders>
+    <ig:RtfSerializationProvider />
+    <ig:WordSerializationProvider />
+</ig:XamRichTextEditor.ClipboardSerializationProviders>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.ClipboardSerializationProviders.
+    Add(RtfSerializationProvider.Instance);
+this.xamRichTextEditor1.ClipboardSerializationProviders.
+    Add(WordSerializationProvider.Instance);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.ClipboardSerializationProviders.
+    Add(RtfSerializationProvider.Instance)
+Me.xamRichTextEditor1.ClipboardSerializationProviders.
+    Add(WordSerializationProvider.Instance)
+----
+
+=== 6.ドキュメントの作成 (オプション)
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument]を作成し、 _xamRichTextEditor_ の  link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~document.html[Document] プロパティに設定します (オプション)。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamRichTextEditor.Document>
+    <ig:RichTextDocument />
+</ig:XamRichTextEditor.Document>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+RichTextDocument doc = new RichTextDocument();
+this.xamRichTextEditor1.Document = doc;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim doc As New RichTextDocument()
+Me.xamRichTextEditor1.Document = doc
+----
+
+=== 7.テキストの追加 (オプション)
+
+以下の追加コードを使用して、プレーン テキストの段落をドキュメントに追加します (オプション)。
+
+*C# の場合:*
+
+[source,csharp]
+----
+RichTextDocument doc = this.xamRichTextEditor1.Document;
+ParagraphNode pn = new ParagraphNode();
+pn.SetText("Some text");
+doc.RootNode.Body.ChildNodes.Add(pn);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim doc As RichTextDocument = Me.xamRichTextEditor1.Document
+Dim pn As New ParagraphNode()
+pn.SetText("Some text")
+doc.RootNode.Body.ChildNodes.Add(pn)
+----
+
+注:
+
+[NOTE]
+====
+デフォルトで新規作成されたドキュメントの最初の段落は空になるため、2 番目の段落に前述のテキストが表示されます。
+====
+
+[[_Ref363741961]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-xamrichtexteditor.html[ _xamRichTextEditor_ の構成]
+|このセクションのトピックでは、 _xamRichTextEditor_ の構成について追加の情報を提供します。
+
+| link:xamrichtexteditor-managing-programmatically.html[プログラムによる _xamRichTextEditor_ の管理]
+|このセクションのトピックでは、 _xamRichTextEditor_ をプログラムによって管理する詳しい方法を説明します。
+
+|====

@@ -1,0 +1,46 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-xamgantt-data-binding",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "7f337f95-c26a-478b-abc9-dca13fc8c3cd",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2051203Z"
+}
+|metadata|
+////
+
+= xamGantt のデータ バインディング
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのこのトピックでは、 _xamGantt™_   コントロールを使用したデータ バインディングについて説明します。
+
+=== トピック
+
+このセクションには、 _xamGantt_   データ バインディングから、さまざまなデータ コレクションを扱うトピックが含まれています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-data-binding-overview.html[データ バインディングの概要]
+|このトピックは、 _xamGantt_ コントロールのデータ バインディングの概要を説明します。
+
+| link:xamgantt-binding-to-data-using-project.html[プロジェクトを使用してデータにバインド]
+|このトピックでは、Project プロパティによって _xamGantt_ コントロールをデータにバインドする方法を説明します。
+
+| link:xamgantt-binding-arbitrary-tasks-collection-listbackedproject.html[ListBackedProject を使用した、任意のタスク コレクションへのバインディング]
+|このトピックでは、ListBackedProject を使用して _xamGantt_ コントロールを任意のタスク コレクションにバインドする方法について説明します。
+
+| link:xamgantt-loading-project-plan-from-ms-project-xml-file.html[MS Project XML ファイルからプロジェクト計画を読み込む]
+|このトピックでは、Microsoft Project™ 2010 XML ファイルに保存された、すでに作成済みのプロジェクト計画を _xamGantt_ コントロールで読み込む方法について説明します。
+
+| link:xamgantt-saving-project-plan-to-ms-project-xml-file.html[MS Project XML ファイルにプロジェクト計画を保存する]
+|このトピックでは、Microsoft Project™ 2010 XML ファイルに _xamGantt_ プロジェクト計画を保存する方法について説明します。
+
+|====

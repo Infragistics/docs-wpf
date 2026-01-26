@@ -1,0 +1,21 @@
+﻿////
+
+|metadata|
+{
+    "name": "xameditors-enabling-right-to-left-support",
+    "controlName": [],
+    "tags": ["How Do I","Localization"],
+    "guid": "{56BDDE04-F1DF-4C8E-9788-18DA4EA78439}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1679781Z"
+}
+|metadata|
+////
+
+= 右から左へのサポートを有効にする
+
+
+
+すべての {ProductName} コントロールは、右から左への機能をサポートします。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatagrid.html[FlowDirection] プロパティを RightToLeft に設定することによって、コンテンツがコントロールの右側から左側に記述されます。(つまり、ヘブライ語とアラビア語は RightToLeft を使用します。)デフォルトで、FlowDirection は LeftToRight に設定されています。{ProductName} コントロールは System.Windows.FrameworkElement からこのプロパティを継承します。
+
+このプロパティは {ProductName} コントロールによって使用される一部のサブコントロールからも使用できます。たとえば、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor] とさらに複数のサブコントロールがこのプロパティを公開します。このレベルで FlowDirection を設定することによって、これらのサブコントロールを使用するメイン コントロールのフローの方向を今まで以上に制御できます。

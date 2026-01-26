@@ -1,0 +1,66 @@
+﻿////
+
+|metadata|
+{
+    "name": "designers-guide-styling-points-for-xamsparkline",
+    "controlName": [],
+    "tags": ["Styling","Templating"],
+    "guid": "37be908b-72ac-48ba-9585-1df07cb9931d",  
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-04-05T16:17:01.3712759Z"
+}
+|metadata|
+////
+
+= xamSparkline のスタイリング ポイント
+
+=== 概要
+
+このトピックは、 _xamSparkline_™ コントロールのスタイリング ポイントをデザイナーに提供します。
+
+=== プレビュー
+
+以下の図は、 _xamSparkline_   コントロールでスタイルできるコントロールのさまざまな領域を識別します。特定の項目をスタイルするには、最初に図でターゲットの種類を識別し、次にその後の表で対応する Style プロパティを識別する必要があります。
+
+image::images/xamSparkline_StylingPoints_1.png[]
+
+== xamSparkline スタイリング プロパティ
+
+_xamSparkline_™ コントロールのスタイリング プロパティ
+
+[options="header", cols="a,a,a"]
+|====
+|ターゲットの種類|Style プロパティ|説明
+
+|`XamSparkline`
+|XamSparkline.Style
+|_XamSparkline_ コントロール レイアウトをスタイルします。
+
+|`XamSparklineView`
+|XamSparklineView.Style
+|X および Y 軸内の四角形である _XamSpakline_ ビューをスタイルします。
+
+|`VerticalAxisView`
+|VerticalAxisView.Style
+|縦軸 (Y 軸) の外観をスタイルします。
+
+|`HorizontalAxisView`
+|HorizontalAxisView.Style
+|横軸 (X 軸) の外観をスタイルします。
+
+|====
+
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:sparkline.html[xamSparkline]
+|xamSparkline™ は、Line、Area、Column、Win/Loss などのチャート タイプを描画できる軽量のチャート コントロールです。
+
+|====

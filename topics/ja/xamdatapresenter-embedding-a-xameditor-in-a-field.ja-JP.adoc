@@ -1,0 +1,214 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-embedding-a-xameditor-in-a-field",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Tips and Tricks"],
+    "guid": "{2C0116E2-EBA0-4CB7-BF56-010CAAA363C3}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1649861Z"
+}
+|metadata|
+////
+
+= フィールドに xamEditor を組み込む
+
+
+== 始める前に
+
+xamDataPresenter、xamDataGrid、および xamDataCarousel コントロールは、フィールドのデータ タイプに基づいてフィールドにデフォルトの ValueEditor 派生コントロールを組み込みます。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editortype.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[EditorType] プロパティを設定することで、xamDataPresenter がフィールドに組み込む xamEditor コントロールを変更できます。組み込まれたエディター コントロールのプロパティを設定するには、エディター コントロールをターゲットとする Style を作成し、FieldSettings オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editorstyle.html[EditorStyle] プロパティに Style を指定する必要があります。デフォルトの xamEditor コントロールおよびデータ タイプの詳細は、 link:xamdata-about-xamdatapresenter-and-xameditors.html[xamDataPresenter および xamEditors について]を参照してください。
+
+== 達成すること
+
+xamDataGrid の組み込みサンプル データで給与フィールドを編集するために xamCurrencyEditor を組み込みます。Style を使用して組み込まれた xamCurrencyEditor コントロールの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.texteditorbase~nulltext.html[NullText] プロパティも設定します。
+
+[NOTE]
+====
+*注:* このトピックのコード例は xamCurrencyEditor コントロール用ですが、他の xamEditor コントロールを組み込むために、本トピックで示した基本的な考えを適用することができます。
+====
+
+== 次の手順を実行します
+
+[start=1]
+. コード ビハインドでは、以下の 3 つの XML 名前空間宣言と using/Imports のディレクティブを追加します。そうすれば、メンバーは完全に記述された名前を常に入力する必要がなくなります。
+
+*XAML の場合:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter" 
+xmlns:igEditors="http://infragistics.com/Editors" 
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Editors
+Imports Infragistics.Windows.DataPresenter
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Editors;
+using Infragistics.Windows.DataPresenter;
+----
+
+[start=2]
+. Window のローカル リソース ディクショナリのタグを追加します。Window のローカル リソース ディクショナリで xamCurrencyEditor コントロールをターゲットにするスタイルを作成します。xamCurrencyEditor コントロールの NullText プロパティを設定するために Setter をスタイルに追加します。
+
+*XAML の場合:*
+
+----
+<Window.Resources>
+    <Style 
+        x:Key="currencyEditorStyle" 
+        TargetType="{x:Type igEditors:XamCurrencyEditor}">
+        <Setter Property="NullText" Value="No Salary" />
+    </Style>
+</Window.Resources>
+----
+
+[start=3]
+. Window のレイアウト パネルに xamDataGrid、xamDataCarousel または xamDataPresenter コントロールを追加します。
+
+.. コントロールに名前を付けると、コード ビハインドで参照できます。
+.. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~bindtosampledata.html[BindToSampleData] プロパティを True に設定します。
+.. コード ビハインドを使用する場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutinitialized_ev.html[FieldLayoutInitialized] イベントにイベント ハンドラーを接続します。
+
+*XAML の場合:*
+
+----
+<!--xamDataGrid の XAML -->
+<igDP:XamDataGrid 
+    Name="xamDataGrid1" 
+    BindToSampleData="True"
+    FieldLayoutInitialized="xamData_FieldLayoutInitialized">
+    <!--TODO: ここに FieldLayout を追加します-->
+</igDP:XamDataGrid>
+<!--xamDataCarousel の XAML-->
+<igDP:XamDataCarousel 
+    Name="xamDataCarousel1" 
+    BindToSampleData="True"
+    FieldLayoutInitialized="xamData_FieldLayoutInitialized">
+    <!--TODO: ここに FieldLayout を追加します-->
+</igDP:XamDataCarousel>
+<!--xamDataPresenter の XAML-->
+<igDP:XamDataPresenter 
+    Name="xamDataPresenter1" 
+    BindToSampleData="True"
+    FieldLayoutInitialized="xamData_FieldLayoutInitialized">
+    <!--TODO: ここに FieldLayout を追加します-->
+</igDP:XamDataPresenter>
+----
+
+[start=4]
+. link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] オブジェクトをコントロールに追加してから、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトをフィールド レイアウトに追加します。
+
+残りの 3 つのフィールドである名前、電子メールおよび部署のためにフィールド レイアウトにフィールドを追加することもできます。自動生成フィールド機能をオフにしなかったので、xamDataGrid は自動的に残りの 3 つのフィールドを生成します。
+
+*XAML の場合:*
+
+----
+<!--xamDataGrid の XAML-->
+<igDP:XamDataGrid.FieldLayouts>
+    <igDP:FieldLayout>
+        <!--ここに Fields を追加-->
+        <igDP:FieldLayout.Fields>
+            <igDP:Field Name="salary" Label="Salary">
+                <!--TODO: ここに FieldSettings を追加します-->
+            </igDP:Field>
+        </igDP:FieldLayout.Fields>
+    </igDP:FieldLayout>
+</igDP:XamDataGrid.FieldLayouts>
+<!--xamDataCarousel の XAML-->
+<igDP:XamDataCarousel.FieldLayouts>
+    <igDP:FieldLayout>
+        <!--ここに Fields を追加-->
+        <igDP:FieldLayout.Fields>
+            <igDP:Field Name="salary" Label="Salary">
+               <!--TODO: ここに FieldSettings を追加します-->
+            </igDP:Field>
+        </igDP:FieldLayout.Fields>
+    </igDP:FieldLayout>
+</igDP:XamDataCarousel.FieldLayouts>
+<!--xamDataPresenter の XAML-->
+<igDP:XamDataPresenter.FieldLayouts>
+    <igDP:FieldLayout>
+        <!--ここに Fields を追加-->
+        <igDP:FieldLayout.Fields>
+            <igDP:Field Name="salary" Label="Salary">
+                <!--TODO: ここに FieldSettings を追加します-->
+            </igDP:Field>
+        </igDP:FieldLayout.Fields>
+    </igDP:FieldLayout>
+</igDP:XamDataPresenter.FieldLayouts>
+----
+
+*Visual Basic の場合:*
+
+----
+Private Sub xamData_FieldLayoutInitialized(ByVal sender As Object, ByVal e As Infragistics.Windows.DataPresenter.Events.FieldLayoutInitializedEventArgs)
+    'TODO: フィールド レイアウトに関連するコードをここで追加します
+    e.FieldLayout.Fields("salary").Settings.EditorType = _
+        GetType(XamCurrencyEditor)
+    Dim _style1 As Style =
+        DirectCast(Me.TryFindResource("currencyEditorStyle"), Style)
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void xamData_FieldLayoutInitialized(object sender, Infragistics.Windows.DataPresenter.Events.FieldLayoutInitializedEventArgs e)
+{
+    //TODO: フィールド レイアウトに関連するコードをここで追加します
+    e.FieldLayout.Fields["salary"].Settings.EditorType =
+        typeof(XamCurrencyEditor);
+    Style _style1 =
+        (Style)this.TryFindResource("currencyEditorStyle");
+}
+----
+
+[start=5]
+. 給与フィールドの Settings プロパティで EditorStyle プロパティを設定します。給与フィールドの Settings プロパティで link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editastype.html[EditAsType] プロパティを設定します。
+
+組み込みサンプル データは XML データであるので、データ バインド フィールドのすべてのデータ タイプは文字列です。xamCurrencyEditor コントロールを使用してこれらの文字列値を 10 進数として編集するには、EditAsType プロパティを Decimal に設定する必要があります。ただし、フィールド レイアウトのデータ バインド フィールドのデータ タイプが、エディターに編集させたいデータ タイプと一致する場合、この手順はスキップできます。
+
+*XAML の場合:*
+
+----
+<igDP:FieldLayout.Fields>
+    <igDP:Field Name="salary" Label="Salary">
+        <!--TODO: ここに FieldSettings を追加します-->
+        <igDP:Field.Settings>
+            <igDP:FieldSettings 
+                EditorType="{x:Type igEditors:XamCurrencyEditor}"
+                EditorStyle="{StaticResource currencyEditorStyle}"
+                EditAsType="{x:Type sys:Decimal}" />
+        </igDP:Field.Settings>
+    </igDP:Field>
+</igDP:FieldLayout.Fields>
+----
+
+*Visual Basic の場合:*
+
+----
+e.FieldLayout.Fields("salary").Settings.EditorStyle = _style1
+e.FieldLayout.Fields("salary").Settings.EditAsType = GetType(Decimal)
+----
+
+*C# の場合:*
+
+----
+e.FieldLayout.Fields["salary"].Settings.EditorStyle = _style1;
+e.FieldLayout.Fields["salary"].Settings.EditAsType = typeof(decimal);
+----
+
+[start=6]
+. プロジェクトを実行します。
+
+xamDataPresenter コントロールは、給与フィールドを編集するために xamCurrencyEditor を使用しています。給与フィールドで値を削除すると、xamCurrencyEditor は、Style に設定した null テキストを表示します。
+
+image::images/xamData_Embedding_a_xamEditor_in_a_Field_01.png[フィールドに埋め込みされる xamCurrencyEditor]

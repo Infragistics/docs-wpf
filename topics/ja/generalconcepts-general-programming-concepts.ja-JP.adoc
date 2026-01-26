@@ -1,0 +1,21 @@
+﻿////
+
+|metadata|
+{
+    "name": "generalconcepts-general-programming-concepts",
+    "controlName": [],
+    "tags": [],
+    "guid": "e97a43bd-19e6-4625-a116-9292b66365fb",  
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-02-01T15:58:46.5295288Z"
+}
+|metadata|
+////
+
+= 全般的なプログラミングの概念
+
+このセクションには、主要なプログラミングの概念と原則を説明するトピックが含まれています。このセクションの情報は、初心者、中級者、ならびに上級者のプログラマを対象としており、{ProductName} 製品を使用したプログラミング作業を実行する支援をすることを意図しています。
+
+以下のリンクをクリックすると、{ProductName} コントロールを使用するときに知っておく必要がある全般的なプログラミングの概念を確認することができます。
+
+* link:generalconcepts-data-binding.html[データ バインディング]

@@ -1,0 +1,47 @@
+﻿////
+|metadata|
+{
+    "name": "xamdata-theoryofoperation",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started"],
+    "guid": "{1C1D6364-1B8B-47C4-865A-C7768D4A45D3}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5758683Z"
+}
+|metadata|
+////
+
+= Theory of Operation
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] is an abstract base class for the xamDataCarousel™, xamDataGrid™, xamTreeGrid™, xamDataCards™, and xamDataPresenter™ controls.
+
+The following list describes how the controls are rendering data:
+
+* xamDataCarousel - presents data in a carousel view following a specified path.
+* xamDataGrid - presents data in a conventional grid view.
+* xamTreeGrid - presents data in a "tree-grid" view, which basically consists of a grid view with one special "tree field" which is used to represent the hierarchical data bound to the control.
+* xamDataCards - presents only flat data using "cards" similar to the Contacts folder in Microsoft® Outlook 2007.
+* xamDataPresenter - exposes a pluggable view architecture for extending its presentation beyond the predetermined views provided by the other controls (listed above). The xamDataPresenter control also supports switching between views at run time.
+
+However, all controls from the Data Presenter family (listed above) share a common theory of operation. The `DataPresenterBase` class provides the following four essential functions:
+
+* Binding to data, analyzing its structure, and generating link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayouts] that correspond to that structure.
+* Coordinating with the view to generate cell layouts to represent each link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord].
+* Listening for changes that originate from the data source and synchronizing the control so that it matches.
+* Facilitating user updates to the data through the UI (e.g., adding new records, deleting existing records, and editing cell values).
+
+{empty} +
+
+*Related Topics:*
+
+* link:xamdata-supplying-data.html[Supplying Data]
+* link:xamdata-wrapping-the-data.html[Wrapping the Data]
+* link:xamdata-assigning-a-fieldlayout.html[Assign the FieldLayout]
+* link:xamdata-specifying-settings-for-fieldlayouts.html[Specifying Settings for FieldLayouts]
+* link:xamdata-specifying-settings-for-fields.html[Specifying Settings for Fields]
+* link:xamdata-cells-cellvaluepresenters-and-cell-virtualization.html[Cells, CellValuePresenters, and Cell Virtualization]
+* link:xamdata-hierarchical-heterogenous-and-free-form-data-structures.html[Hierarchical, Heterogenous and Free-Form Data Structures]
+* link:xamdata-arranging-cells-within-the-record.html[Arranging Cells within the Record]
+* link:xamdata-adding-records.html[Adding Records]
+* link:xamdata-deleting-records.html[Deleting Records]
+* link:xamdata-editing-cell-values.html[Editing Cell Values]

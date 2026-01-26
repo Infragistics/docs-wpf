@@ -1,0 +1,144 @@
+﻿////
+|metadata|
+{
+    "name": "xamcomboeditor-adding-xamcomboeditor-to-your-page",
+    "controlName": ["xamComboEditor"],
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "guid": "011b3aa0-5629-4f81-bd4d-922a4fd9e577",
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.7411054Z"
+}
+|metadata|
+////
+
+= xamComboEditor をページに追加
+
+== 始める前に
+
+以下のコードは、データにバインドして xamComboEditor コントロールを表示する方法を示します。これは開発者に提供された  link:resources-datautil.html[DataUtil] クラスを使用します。
+
+注:
+
+[NOTE]
+====
+_xamComboEditor_ コントロールには非バインド モードがありません。データ ソースにバインドする必要があります。
+====
+
+== 達成すること
+
+このトピックでは、xamComboEditor コントロールを使用して作業を開始する方法と、プロシージャー コードを使用してそれをページに追加する方法を説明します。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName}™ プロジェクトを作成します。
+
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.Controls.Editors.XamComboEditor
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. コード ビハインドの using/Imports ディレクティブ、およびを開始 UserControl タグ内の名前空間宣言を使って、以下を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+[start=4]
+. xamComboEditor コントロールを LayoutRoot という名前の Grid コンテナーに追加します。
+
+** xamComboЕditor コントロールの link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemssource.html[ItemsSource] プロパティを Product オブジェクトの ObservableCollection に設定します。
+** link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath] プロパティを設定します。xamComboEditor 項目ドロップダウン リストに視覚的に表示されるビジネス オブジェクトのデータ プロパティにパスを指定します。
+** 項目が選択されていない時に表示されるテキストを指定するために link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~emptytext.html[EmptyText] プロパティを設定します。
+** link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~iseditable.html[IsEditable] プロパティを false に設定して、読み取り専用の xamComboEditor を作成します。デフォルトで、コントロールは編集可能であり、このプロパティは True に設定されます。
+** xamComboEditor コントロールの Height プロパティと Width プロパティを設定します。
+** link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~maxdropdownheight.html[MaxDropDownHeight] プロパティを設定します。このプロパティは、xamComboEditor ドロップダウン リストの高さを制限します。そうでない場合、コントロールの上下の使用可能なスペースが測定されます。デフォルトで、コントロールの下にリストが表示されます。下に十分なスペースがない場合、リストはコントロールの上に表示されます。ドロップダウン リストは {PlatformName} アプリケーションの使用可能な高さ内に制限されます。
+** link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dropdownbuttondisplaymode.html[DropDownButtonDisplayMode] プロパティを設定します。このプロパティはドロップダウン ボタンの表示状態を構成します。オプションは Always (デフォルト値)、MouseOver、Focused、Never です。
+
+.注:
+[NOTE]
+====
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor~iseditable.html[IsEditable] プロパティを False に設定した場合、このプロパティは使用されません。
+====
+** 新しく作成されたコントロールを Grid コンテナーの子として追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<UserControl.Resources>
+    <local:DataUtil x:Key="DataUtil" />
+</UserControl.Resources>
+<Grid x:Name="LayoutRoot">
+<ig:XamComboEditor 
+    ItemsSource="{Binding Source={StaticResource DataUtil}, Path=Products}"
+    DisplayMemberPath="ProductName"
+    EmptyText="Choose Product ..."
+    IsEditable="False"
+    Height="30" Width="250"    
+    MaxDropDownHeight="150" />
+</Grid>
+----
+
+InitializeComponent メソッド後のページ コンストラクターに xamComboEditor コントロールのインスタンスを作成します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim xamComboEditor As New XamComboEditor()
+xamComboEditor.ItemsSource = DataUtil.Products
+xamComboEditor.DisplayMemberPath = "ProductName"
+xamComboEditor.EmptyText = "Choose Product ..."
+xamComboEditor.IsEditable = False
+xamComboEditor.Height = 30
+xamComboEditor.Width = 250
+xamComboEditor.MaxDropDownHeight = 150
+LayoutRoot.Children.Add(xamComboEditor)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamComboEditor xamComboEditor = new XamComboEditor();
+xamComboEditor.ItemsSource = DataUtil.Products;
+xamComboEditor.DisplayMemberPath = "ProductName";
+xamComboEditor.EmptyText = "Choose Product ...";
+xamComboEditor.IsEditable = false;
+xamComboEditor.Height = 30;
+xamComboEditor.Width = 250;
+xamComboEditor.MaxDropDownHeight = 150;
+LayoutRoot.Children.Add(xamComboEditor);
+----
+
+[start=5]
+. {PlatformName} アプリケーションを保存して実行します。
+
+image::images/xamComboEditor_Getting_Started_With_xamComboEditor_01.png[]
+
+== 関連トピック
+
+link:xamcomboeditor-about-xamcomboeditor.html[xamComboEditor について]
+
+link:xamcomboeditor-using-xamcomboeditor.html[xamComboEditor の構成]

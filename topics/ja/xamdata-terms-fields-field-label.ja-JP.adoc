@@ -1,0 +1,34 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-terms-fields-field-label",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","Data Presentation","Getting Started"],
+    "guid": "{9B046F38-999A-461B-BBAC-0622301693ED}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5428617Z"
+}
+|metadata|
+////
+
+= フィールド ラベル
+
+
+
+link:xamdata-terms-fields.html[フィールド]に表示するヘッディングはラベルと呼ばれます。フィールドラベルはこのフィールドに関連付けられたセルに表示される値の意味を簡単に説明します。テーブルには link:xamdata-terms-records-data-record.html[データレコード]ごとに 1 つのセルがあります。デフォルトで、あらゆるフィールドはデータの「属性」の名前で自動的にラベルが付けられます (使用した link:xamdata-terms-data-sources.html[データ ソース]によって、これはパブリックプロパティ名、XML ノードのローカル名、またはデータ列名のいずれかにすることができることを思い出してください)。これらがエンド ユーザーに表示することを意図しない場合、Field オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~label.html[Label] プロパティを人間が使用するのに提示可能な名前に設定する必要があります。
+
+image::images/Terms_Fields_Field_Labels_01.png[LabelLocation 設定の比較]
+
+ラベルが表示されるかどうか、どこに表示するか、またどのくらいの頻度で繰り返すかを識別できます。link:xamdata-terms-fields-field-layout.html[フィールド レイアウト]で link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~labellocation.html[LabelLocation] プロパティに何らかの割り当てを行うだけです。
+
+[NOTE]
+====
+注: テーブルには Data Record のタイプごとに 1 つの Field Layout があります。したがって、フィールド ラベルの位置と繰り返しの設定は、特定のタイプを持つすべてのデータ レコードで同じでなければなりません。
+====
+
+image::images/Terms_Fields_Field_Labels_02.png[Field Label の ControlTemplate を指定]
+
+フィールド ラベルはシンプルなテキストに制限されません。{ProductName} コントロールの多くの領域と同じように、Microsoft® Windows® Presentation Foundation コントロール テンプレートの使用は、フィールドラベルによって完全にサポートされます。したがって、フィールド ラベルに表示するためのコンテンツのスタイリングと構造を制御するためにデザインした独自のスタイル リソースに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~labelpresenterstyle.html[LabelPresenterStyle] プロパティを設定できます。link:xamdata-terms-fields-field-settings.html[フィールド設定]の範囲の解像度によって、個々のフィールドで、フィールドレイアウトで (特定のデータ レコード タイプのすべてのフィールド)、およびコントロール レベル内のすべてのフィールドでラベル プレゼンターを定義できます。カスタムのコントロール テンプレートの使用についての詳細は、 link:xamdata-terms-presenters.html[プレゼンター]を参照してください。
+
+フィールド設定で使用可能なその他のプロパティによって、フィールド ラベルのサイズ (縦横) をカスタマイズすることができます。ユーザーがフィールド ラベルをクリックする時に発生する動作を指定するために、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~labelclickaction.html[LabelClickAction] プロパティを設定することも可能です。たとえば、そのフィールドで並べ替えを開始するために、マウス クリック イベント ハンドラーを記述することなく、LabelClickAction プロパティを宣言して設定することができます。

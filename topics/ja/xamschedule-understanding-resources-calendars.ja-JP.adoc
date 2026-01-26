@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-understanding-resources-calendars",
+    "controlName": ["xamSchedule"],
+    "tags": ["Scheduling"],
+    "guid": "5f848dcb-861b-4a2e-af49-10bc835022ab",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6313217Z"
+}
+|metadata|
+////
+
+= リソースおよびカレンダーについて
+
+XamSchedule コンポーネントは、アクティビティを表示、作成、操作するように設計されています。これらのエンティティを表示するためには、いくつかの構成が必要となります。最初のレベルは、アクティビティの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningresourceid.html[OwningResourceId] プロパティによって実行されます。これはたとえば、人または会議室などを表す link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[Resource] エンティティを参照します。オーナーとして参照されるために、あらゆる Resource は一意の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~id.html[Id] を必要とします。構成の 2 番目のレベルは、特定の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendar] を識別する link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningcalendarid.html[OwningCalendarId] プロパティによって実行されます。あらゆるアクティビティはひとつのそしてひとつだけのカレンダーに割り当てられます。
+
+[NOTE]
+====
+
+*注:* 各 Resource はひとつ以上の ResourceCalendars を持つことができます。
+====
+
+これにより開発者は特定のオーナーの予定をひとつ以上の ResourceCalendar に整理できます。
+
+[NOTE]
+====
+
+注: ResourceCalendar の最低限必要なプロパティは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~id.html[Id] と link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~owningresourceid.html[OwningResourceId] です。
+====
+
+要約すると、Resource は複数の ResourceCalendars を持つことができます (これらのひとつを PrimaryCalendar として指定できます)。あらゆる ResourceCalendar は複数のアクティビティを持つことができます。
+
+コントロールは UI にどの ResourceCalendar が表示されるのかを制御するさまざまなプロパティを公開します。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-views.html[xamSchedule ビューについて]
+
+link:xamschedule-understanding-activities.html[アクティビティについて]

@@ -1,0 +1,24 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards-designing-the-look-and-feel",
+    "controlName": ["xamDataCards"],
+    "tags": ["Styling"],
+    "guid": "{AE9052D5-C1E5-47AC-BC64-3BC124FB6982}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6018735Z"
+}
+|metadata|
+////
+
+= ルック アンド フィールのデザイン
+
+
+
+xamDataCards™ コントロールのルック アンド フィールをデザインすることに特化されたトピックをご覧になる場合は、以下のリンクをクリックしてください。
+
+* link:xamdata-changing-the-record-hover-color.html[レコード ホバーの色の変更]
+* link:xamdata-referencing-a-themepack-in-xaml.html[XAML でテーマパックを参照]
+* link:xamdata-using-built-in-themes.html[組み込みテーマを使用]
+* link:xamdatapresenter-enabling-alternating-row-colors.html[隔行の色を有効にする]

@@ -1,0 +1,148 @@
+﻿////
+|metadata|
+{
+    "name": "xamtagcloud-binding-xamtagcloud-to-data",
+    "controlName": ["xamTagCloud"],
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "guid": "{6208D273-914A-4D08-BBBF-E6C7B1C916F4}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.5603701Z"
+}
+|metadata|
+////
+
+= xamTagCloud をデータにバインド
+
+== 始める前に
+
+xamTagCloud コントロールを IEnumerable インターフェイスを実装する任意のオブジェクトにバインドできます。ただし、すべての xamTagCloud コントロールの機能を有効にしたい場合、XamTagCloudItem オブジェクトを xamTagCloud Items コレクションに追加します。
+
+XamTagCloudItem オブジェクトには、クラウドのタグ、そして個々のタグのフォントのサイズを決定するために使用される link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagclouditem~weight.html[Weight] および Content プロパティが含まれます。ただし、xamTagCloud を異なるデータ ソースにバインドする場合、Weight および Content プロパティを設定できます。
+
+この詳細なガイドで使用される観察可能なコレクションは、Product オブジェクトのコレクションです。link:resources-datautil.html[DataUtil] クラスは、C# と VB.NET で利用可能で、ダウンロードしてこのサンプルで作業をする間にプロジェクトで使用することができます。ただし、DataUtil クラスは本トピックの範囲外なので、本トピックでは説明しません。
+
+== 達成すること
+
+データにバインドされた xamTagCloud コントロールを作成し、コントロールにコンテンツおよびウェイト情報を提供するために使用するデータ ソースのプロパティを指定します。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® {PlatformName} アプリケーションを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をアプリケーションに追加します。
+
+** Infragistics.WPF.TagCloud
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. UserControl の Loaded イベントにイベント ハンドラを接続します。
+
+*XAML の場合:*
+
+----
+<UserControl Loaded="UserControl_Loaded"
+… >
+   …
+</UserControl>
+----
+
+[start=4]
+. コード ビハインドに using/Imports 命令を配置するか、次の xamTagCloud の XML 名前空間宣言および DataUtil クラスを追加します。
+
+*XAML の場合:*
+
+----
+xmlns:local="clr-namespace:xamTagCloud2XAML"
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Menus
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Menus;
+----
+
+[start=5]
+. XAML を使用する場合、ユーザー コントロール リソースとして DataUtil オブジェクトを追加します。
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+   <local:DataUtil x:Key="DataUtil" />
+</UserControl.Resources>
+----
+
+[start=6]
+. xamDataTree コントロールのインスタンスを LayoutRoot という名前のデフォルトのグリッド レイアウト パネルに追加します。プロシージャー コードでこれを行う場合、ユーザー コントロールの Loaded イベントを処理し、イベント ハンドラーにこのコードを配置することができます。
+
+** link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~maxscale.html[MaxScale] - 5
+** link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~minscale.html[MinScale] - 1
+** ItemsSource プロパティを Products コレクションを返す DataUtil オブジェクトの Products プロパティに設定します。
+** link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud~weightmemberpath.html[WeightMemberPath] プロパティを ProductID プロパティに設定します。
+** DisplayMemberPath プロパティを ProductName プロパティに設定します。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamTagCloud x:Name="myTagCloud" MaxScale="2"  
+             MinScale="1" 
+             ItemsSource="{Binding Source={StaticResource DataUtil},Path=Products}" 
+             WeightMemberPath="ProductID" DisplayMemberPath="ProductName">
+   </ig:XamTagCloud>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim myTagCloud As New XamTagCloud()
+myTagCloud.MaxScale = 5
+myTagCloud.MinScale = 1
+myTagCloud.ItemsSource = DataUtil.Products
+myTagCloud.WeightMemberPath = "ProductID"
+myTagCloud.DisplayMemberPath = "ProductName"
+----
+
+*C# の場合:*
+
+----
+XamTagCloud myTagCloud = new XamTagCloud();
+myTagCloud.MaxScale = 5;
+myTagCloud.MinScale = 1;
+myTagCloud.ItemsSource = DataUtil.Products;
+myTagCloud.WeightMemberPath = "ProductID";
+myTagCloud.DisplayMemberPath = "ProductName";
+----
+
+[start=7]
+. xamTagCloud のインスタンスを Grid パネルの Children コレクションに追加します。_注: 新しいページを初めて作成する時には、デフォルトでグリッド パネルが作成され、パネル名が LayoutRoot に指定されます。_ 
+
+*Visual Basic の場合:*
+
+----
+Me.LayoutRoot.Children.Add(myTagCloud)
+----
+
+*C# の場合:*
+
+----
+this.LayoutRoot.Children.Add(myTagCloud);
+----
+
+[start=8]
+. アプリケーションを保存して実行します。
+
+== 関連トピック
+
+link:xamtagcloud-adding-xamtagcloud-to-your-page.html[xamTagCloud をページに追加]

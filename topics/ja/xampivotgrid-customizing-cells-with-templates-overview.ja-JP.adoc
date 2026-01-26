@@ -1,0 +1,255 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-customizing-cells-with-templates-overview",
+    "controlName": ["xamPivotGrid"],
+    "tags": [],
+    "guid": "a5fdf5b9-ec36-4155-8623-839126c31111",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.2093267Z"
+}
+|metadata|
+////
+
+= テンプレートを使用したセルのカスタマイズの概要
+
+== トピックの概要
+
+=== 目的
+
+xamPivotGrid™ コントロールを使用すると、データ セルと、ヘッダー列と行のセルにカスタム データ テンプレートを指定できます。このトピックはこの機能の概要です。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-understanding-xampivotgrid.html[xamPivotGrid の概要]
+|このセクションは xamPivotGrid コントロールの主要機能について説明します。ここに記載されているトピックでは、アプリケーションで xamPivotGrid コントロールを効果的に使用する方法が説明されています。
+
+| link:xampivotgrid-getting-started-with-xampivotgrid.html[xamPivotGrid を使用した作業の開始]
+|このトピックでは、xamPivotGrid コントロールを使用して作業を開始する方法について説明するため、このコントロールを {PlatformName} アプリケーションに追加するための手順を順を追って説明しています。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref319950266, コントロールの構成の概要 >>
+
+** <<_Ref319950270,コントロールの構成の概要>>
+
+* <<_Ref319950274, データのカスタム テンプレートを指定 >>
+
+** <<_Ref319950276,概要>>
+** <<_Ref319950279,プロパティ設定>>
+** <<_Ref319950282,例>>
+
+* <<_Ref319950285, 列/行ヘッダーのカスタム テンプレートを指定 >>
+
+** <<_Ref319950288,概要>>
+** <<_Ref319950295,プロパティ設定>>
+** <<_Ref319950297,RowHeader テンプレートの例>>
+** <<_Ref319950304,ColumnHeader テンプレートの例>>
+
+* <<_Ref319950307, 関連コンテンツ >>
+
+[[_Ref319950266]]
+== コントロールの構成の概要
+
+[[_Ref319950270]]
+
+=== コントロールの構成の概要
+
+次の表に、カスタム テンプレートを xamPivotGrid のセルに適用する際に構成可能な項目の一覧を示します。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な点|詳細|プロパティ
+
+|データ セルに対するカスタム テンプレートの指定
+|xamPivotGrid コントロールには、セルまたはセルのグループにカスタム `DataTemplate` を指定するためのオプションがあります。たとえば、列内のすべてのセル、行内のすべてのセル、一部のレベルのすべてのセルなどです。
+| *XamPivotGrid プロパティ* 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~datacelltemplates.html[DataCellTemplates] 
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate_members.html[DataCellTemplate] *プロパティ* 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~columnhierarchy.html[ColumnHierarchy] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~columnlabel.html[ColumnLabel] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~columnlevel.html[ColumnLevel] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~rowhierarchy.html[RowHierarchy] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~rowlabel.html[RowLabel] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~rowlevel.html[RowLevel] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~template.html[Template] 
+
+|列または行ヘッダー セルに対するカスタム テンプレートの指定
+|データ セルに加えて、ヘッダー セルにもカスタム テンプレートを指定できます。
+| *XamPivotGrid* *プロパティ* 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~columnheadertemplates.html[ColumnHeaderTemplates] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~rowheadertemplates.html[RowHeaderTemplates] 
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate_members.html[HeaderTemplate] *プロパティ* 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate~hierarchy.html[Hierarchy] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate~label.html[Label] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate~level.html[Level] 
+
+* link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate~template.html[Template] 
+
+|====
+
+[[_Ref319950274]]
+== データ セルのカスタム テンプレートを指定
+
+[[_Ref319950276]]
+
+=== 概要
+
+xamPivotGrid では、`DataCellTemplates` プロパティが公開されています。このプロパティの型は `DataCellTemplate` オブジェクトのコレクションです。`DataCellTemplate` クラスは、xamPivotGrid のデータ セルの内容に適用される `DataTemplate` のコンテナとして振る舞います。さらに、`DataTemplate` を適用するデータ セルを決定するために使用するいくつかのプロパティがあります。
+
+[[_Ref319950279]]
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ:|次に設定
+
+|カスタム データ テンプレートを、xamPivotGrid のデータ セルに適用する
+|`DataCellTemplates`
+|`DataCellTemplate` オブジェクトのコレクション
+
+|====
+
+[[_Ref319950282]]
+
+=== 例
+
+次のスクリーンショットは、次のプロパティが設定された DataCellTemplate をその DataCellTemplates コレクションに追加したときの xamPivotGrid の外観を表しています。使用されているデータ ソースは SalesDataSample リソースです。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+|`Template`
+|赤い前景の `Textblock` を含む `DataTemplate`。
+
+|`ColumnHierarchy`
+| _Product_ 
+
+|`ColumnLabel`
+| _Components_ 
+
+|====
+
+image::images/xamPivotGrid_Customizing_Cells_with_Templates_Overview_1.png[]
+
+[[_Ref319950285]]
+== 列/行ヘッダー セルのカスタム テンプレートを指定
+
+[[_Ref319950288]]
+
+=== 概要
+
+xamPivotGrid は、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~rowheadertemplates.html[RowHeaderTemplates] および link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~columnheadertemplates.html[ColumnHeaderTemplates] プロパティを公開します。これらのタイプのプロパティは、 link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate_members.html[HeaderTemplate] オブジェクトのコレクションです。`HeaderTemplate` クラスは `DataCellTemplate` に似ていますが、`DataTemplate` の適用先を決定するプロパティは、データ セルではなくヘッダー セルに適用されます。
+
+[[_Ref319950295]]
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的|使用するプロパティ:|次に設定
+
+|カスタム データ テンプレートを、xamPivotGrid の列ヘッダー セルに適用する
+|`ColumnHeaderTemplates`
+|`HeaderTemplate` オブジェクトのコレクション
+
+|カスタム データ テンプレートを、xamPivotGrid の行ヘッダー セルに適用する
+|`RowHeaderTemplates`
+|`HeaderTemplate` オブジェクトのコレクション
+
+|====
+
+[[_Ref319950297]]
+
+=== RowHeader テンプレートの例
+
+次のスクリーンショットは、次のプロパティが設定された HeaderTemplate を RowHeaderTemplates コレクションに追加したときの xamPivotGrid の外観を表しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+|Template
+|背景がライトグリーンでテキスト ブロックがあるグリッドが含まれている `DataTemplate`。
+
+|Hierarchy
+| _Seller_ 
+
+|Level
+| _1_ 
+
+|====
+
+image::images/xamPivotGrid_Customizing_Cells_with_Templates_Overview_2.png[]
+
+[[_Ref319950304]]
+
+=== ColumnHeader テンプレートの例
+
+以下のスクリーンショットは、以下のプロパティを持つ `HeaderTemplate` がその `ColumnHeaderTemplates` コレクションに追加される時に xamPivotGrid がどのように見えるかを示します。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+|Template
+|背景がライトグリーンでテキスト ブロックがあるグリッドが含まれている `DataTemplate`。
+
+|Label
+| _Bikes_ 
+
+|====
+
+image::images/xamPivotGrid_Customizing_Cells_with_Templates_Overview_3.png[]
+
+[[_Ref319950307]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-customizing-cells-with-templates-procedure-and-code-example.html[テンプレートを使用したセルのカスタマイズ - 手順とコード例]
+|このトピックでは、xamPivotGrid™ セルの内容にカスタム DataTemplates を適用することで、セルをカスタマイズする方法について、順を追って説明しています。
+
+| link:xampivotgrid-customizing-cells-with-templates-property-reference.html[テンプレートによるセルのカスタマイズのプロパティ参照]
+|これは、xamPivotGrid のセル カスタマイズ機能に関連する最も注意すべきプロパティのリストです。
+
+| link:xampivotgrid-us-conditional-formating.html[条件フォーマッティング]
+|CellControlAttached イベントを使用し、セルの値に基づいてカスタム スタイルをデータ セルに適用する方法の説明です。
+
+|====

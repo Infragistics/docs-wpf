@@ -1,0 +1,12 @@
+﻿= Breaking Changes in 2018 Volume 1
+
+== xamCategoryChart
+* xamCategoryChart has YAxisAbbreviateLargeNumbers enabled by default and will abbreviate large numbers, e.g. 1K for 1000, 1M for 1,000,000 and so on.
+* IsHorizontalZoomEnabled and IsVerticalZoomEnabled properties are now set to true by default.
+* ChartType property defaults to Auto instead of Line. The control will select the type of series to render based on number of data points that are bound.
+* Type of XamCategoryChart.SeriesAdded event changed from CategoryChartSeriesEventHandler to ChartSeriesEventHandler 
+* Type of XamCategoryChart.SeriesRemoved event changed from CategoryChartSeriesEventHandler to ChartSeriesEventHandler
+
+== xamShapeChart
+* xamShapeChart has YAxisAbbreviateLargeNumbers and XAxisAbbreviateLargeNumbers enabled by default.
+* ShapeChart has IsHorizontalZoomEnabled and IsVerticalZoomEnabled properties set to true by default

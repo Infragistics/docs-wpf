@@ -1,0 +1,104 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-creating-of-sample-listcollectionview-code-example",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Calculations","Grids","Grouping","Sample Data Source"],
+    "guid": "cd268196-471f-4324-ae25-ac1f68dddcd0",  
+    "buildFlags": [],
+    "createdOn": "2012-09-12T13:44:54.5544044Z"
+}
+|metadata|
+////
+
+= xamDataGrid の ListCollectionView サンプルの作成
+
+=== 解説
+
+以下のコード例では、`Utils` クラスの `CreateDataSource` メソッドが、サンプルの `Item` クラス オブジェクトで生成した ListCollectionView を返します。項目クラスの定義は、 link:xamdatagrid-item-class-code-example.html[項目クラス コード例]で利用できます。
+
+=== コード
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Namespace ExternalOperations
+      Public NotInheritable Class Utils
+            Private Sub New()
+            End Sub
+            Public Shared Function CreateDataSource(itemCount As Integer) As IEnumerable
+                  Dim items As New BindingList(Of Item)()
+                  Dim r As New Random()
+                  Dim now As DateTime = DateTime.Now
+                  For i As Integer = 0 To itemCount - 1
+                        Dim item As New Item() With { 
+                              .A = "a" & r.[Next](100),
+                              .B = "b" & r.[Next](100),
+                              .DateField = now.AddDays(r.[Next](100)).[Date], 
+                              .IntField = r.[Next](200), 
+                              .FloatField = CSng(r.NextDouble() * r.[Next](1000)), 
+                              .DoubleField = r.NextDouble() * r.[Next](1000), 
+                              .DecimalField = CDec(r.NextDouble() * r.[Next](1000)) 
+                        }
+                        items.Add(item)
+                  Next
+                  Dim lcv As New ListCollectionView(items)
+                  Return lcv
+            End Function
+      End Class
+End Namespace
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+namespace ExternalOperations
+{
+    public static class Utils
+    {
+        public static IEnumerable CreateDataSource(int itemCount)
+        {
+            BindingList<Item> items = new BindingList<Item>();
+            Random r = new Random();
+            DateTime now = DateTime.Now;
+            for (int i = 0; i < itemCount; i++)
+            {
+                Item item = new Item
+                {
+                    A = "a" + r.Next(100),
+                    B = "b" + r.Next(100),
+                    DateField = now.AddDays(r.Next(100)).Date,
+                    IntField = r.Next(200),
+                    FloatField = (float)(r.NextDouble() * r.Next(1000)),
+                    DoubleField = r.NextDouble() * r.Next(1000),
+                    DecimalField = (decimal)(r.NextDouble() * r.Next(1000))
+                };
+                items.Add(item);
+            }
+            ListCollectionView lcv = new ListCollectionView(items);
+            return lcv;
+        }  
+    }
+}
+----
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-grouping.html[外部でグループ化]
+|このトピックは、外部グルーピングを _XamDataGrid_ で使用する方法について説明します。
+
+| link:xamdatagrid-external-summary-calculations.html[外部集計計算]
+|このトピックは、 _xamDataGrid_ _™_ の外部集計計算機能についてサンプル コードを用いて説明します。
+
+|====

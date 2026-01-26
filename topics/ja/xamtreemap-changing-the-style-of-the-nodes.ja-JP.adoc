@@ -1,0 +1,80 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-changing-the-style-of-the-nodes",
+    "controlName": ["xamTreemap"],
+    "tags": ["How Do I","Styling","Templating"],
+    "guid": "287dcded-0ae5-4fb9-8c35-f3e1f4b6198d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.8603908Z"
+}
+|metadata|
+////
+
+= ノードのスタイルを変更する
+
+link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.nodebinder.html[NodeBinder] がノードに適用するスタイルの変更方法について説明します。各 NodeBinder はノードにさまざまなスタイルを適用できます。
+
+== 始める前に
+
+ノードのカスタム テンプレートには “NodesPanel” という名前の NodesPanel 要素を含まれる必要があります。この要素は、各子コードを保持します。
+
+== スタイルの作成
+
+[start=1]
+. Blend でプロジェクトを作成し、xamTreemap コントロールに追加します。
+[start=2]
+. NodeBinders を xamTreemap に追加します。
+[start=3]
+. スタイルする NodeBinder を強調表示します。
+
+image::images/xamTreemap_Changing_the_Style_of_the_Nodes_01.png[]
+
+[start=4]
+. [オブジェクト] メニューから - オブジェクト - テンプレートの編集 - NodeStyle の編集 - コピーの編集… を選択します。
+
+image::images/xamTreemap_Changing_the_Style_of_the_Nodes_02.png[]
+
+[start=5]
+. カスタム ツリーマップ ノード スタイルのテンプレートを編集します。
+
+image::images/xamTreemap_Changing_the_Style_of_the_Nodes_03.png[]
+
+== DefaultStyle プロパティ
+
+xamTreemap コントロールをデータにバインドする場合、データ ソースからのノードを含むルートノードを作成します。 
+
+image::images/xamTreemap_Changing_the_Style_of_the_Nodes_04.png[]
+
+xamTreemap コントロールのスタイルを link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.xamtreemap~defaultstyle.html[DefaultStyle] プロパティへ割り当ててこのノードのスタイルを設定できます。
+
+== デフォルト ノード テンプレート
+
+*XAML の場合:*
+
+----
+<Style TargetType="ig:TreemapNode">
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType=" ig:TreemapNode">
+                <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                        Background="{TemplateBinding Fill}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{TemplateBinding Text}" 
+                                   HorizontalAlignment="Center" />
+                        <ig:NodesPanel x:Name="NodesPanel" 
+                                       Grid.Row="1" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+----

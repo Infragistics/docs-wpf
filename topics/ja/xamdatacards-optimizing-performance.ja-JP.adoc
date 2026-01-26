@@ -1,0 +1,22 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards-optimizing-performance",
+    "controlName": ["xamDataCards"],
+    "tags": ["Performance"],
+    "guid": "{58513765-944C-4F47-A61E-44ED2A68DFD4}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6138759Z"
+}
+|metadata|
+////
+
+= パフォーマンスの最適化
+
+
+
+以下のリンクをクリックして、xamDataCards のパフォーマンスの最適化に役立つトピックを確認してください。
+
+* link:xamdata-performance-optimizations-overview.html[パフォーマンス最適化の概要]
+* link:xamdata-impact-styles-have-on-performance-of-controls.html[スタイルがコントロールのパフォーマンスに与える影響]

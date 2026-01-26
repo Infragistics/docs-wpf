@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-api-overview",
+    "tags": ["API"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "8261c22c-59b3-4684-98bf-dd636f054c0f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.5693093Z"
+}
+|metadata|
+////
+
+= API の概要 (xamRichTextEditor)
+
+このセクションではコントロールに関連する各名前空間を示します。また、このコントロールでプログラミングするときに使用する主なクラスを紹介します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== コントロールの名前空間:
+
+link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics.Controls.Editors]
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext_namespace.html[Infragistics.Documents.RichText]
+
+=== 主要な API:
+
+link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[xamRichTextEditor]
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument]
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.serialization.plaintextserializationprovider.html[PlainTextSerializationProvider]
+
+link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}~infragistics.documents.richtext.rtf.rtfserializationprovider.html[RtfSerializationProvider]
+
+link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}~infragistics.documents.richtext.word.wordserializationprovider.html[WordSerializationProvider]

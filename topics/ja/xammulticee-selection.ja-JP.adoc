@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticee-selection",
+    "tags": ["Data Binding","Getting Started","How Do I","Selection"],
+    "controlName": ["xamMultiColumnComboEditor"],
+    "guid": "de14cc06-336b-40bd-ae67-872ce9164f23",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.6082933Z"
+}
+|metadata|
+////
+
+= 選択 (xamMultiColumnComboEditor)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、 _xamMultiColumnComboEditor_™ コントロールの選択機能とその使用方法について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xammulticee-user-selection-interactions-and-usability.html[ユーザー選択インタラクションと操作性]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールのユーザー選択インタラクションについて説明します。
+
+| link:xammulticee-performing-selection-programmatically.html[プログラムによる選択の実行]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールの選択をプログラムで実行する方法を説明します。
+
+| link:xammulticee-configuring-multiple-selection.html[複数選択の構成]
+|このトピックでは、 _xamMultiColumnComboEditor_ コントロールで複数選択を構成する方法を説明します。
+
+|====

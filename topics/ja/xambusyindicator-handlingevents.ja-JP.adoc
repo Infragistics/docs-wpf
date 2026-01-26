@@ -1,0 +1,76 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-handlingevents",
+    "tags": [],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "5dbd37e0-78d9-4c9c-99e1-6811ce7778c1",  
+    "buildFlags": [],
+    "createdOn": "2015-07-30T16:13:27.0188938Z"
+}
+|metadata|
+////
+
+= イベント (xamBusyIndicator)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamBusyIndicator_   コントロールのイベントについての情報を提供します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-adding-to-your-page.html[xamBusyIndicator をページに追加]
+|このトピックでは、 _xamBusyIndicator_ コントロールを短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+== xamBusyIndicator イベントの概要
+
+=== イベントの概要表
+
+以下の表は、 _xamBusyIndicator_   コントロールにより公開されるイベントを示します。
+
+[options="header", cols="a,a"]
+|====
+|イベント|詳細
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isbusychanged_ev.html[IsBusyChanged]
+|このイベントは link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator_members.html[XamBusyIndicator] link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isbusy.html[IsBusy] プロパティが変更されたときに呼び出されます。
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isindicatorvisiblechanged_ev.html[IsIndicatorVisibleChanged]
+|このイベントは `XamBusyIndicator` link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~isindicatorvisible.html[IsIndicatorVisible] プロパティが変更されたときに呼び出されます。
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~progresscompleted_ev.html[ProgressCompleted]
+|このイベントは、`XamBusyIndicator` link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~progressvalue.html[ProgressValue] が最大値 1 に到達したときに呼び出されます。
+
+|====
+
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-configuring-busy-indicator-display.html[ビジー インジケータの表示の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する方法を説明します。
+
+| link:xambusyindicator-configuring-delayed-display.html[表示の遅延の構成]
+|このトピックでは、 _xamBusyIndicator_ コンテントを表示する前の遅延時間を構成する方法を説明します。
+
+| link:xambusyindicator-configuring-determinate-xambusyindicator.html[既定のプログレス バーの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを構成して、既定の進行状況を表示する方法を説明します。
+
+|====

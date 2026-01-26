@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "designers-guide",
+    "controlName": [],
+    "tags": [],
+    "guid": "08d41825-570a-43b2-93b2-26befeff9f41",  
+    "buildFlags": [],
+    "createdOn": "2012-02-02T16:12:55.7602387Z"
+}
+|metadata|
+////
+
+= デザイナー ガイド
+
+デザイナー ガイドは、スタイルとデザイナーのリソースです。このガイドは、{ProductName} コントロールのさまざまなスタイリングの要点を学習する支援をします。アプリケーションの見栄えをよくするためにさまざまな技術を使用することによってデザイナーの教育に役立つトピックだけでなく、各コントロールのさまざまなターゲットタイプを例示する略図があります。このガイドに含まれる情報を使用すると、{ProductName} で強化されたアプリケーションで優れたスタイリングを達成することが可能となります。
+
+link:designersguide-location-of-generic-xaml-file.html[Generic.xaml ファイルの場所]
+
+link:designersguide-styling-ig-controls.html[Infragistics コントロールのスタイル]
+
+link:designersguide-editing-style-properties-using-expression-blend.html[Expression Blend を使用してスタイル プロパティを編集]
+
+link:themes.html[テーマ]
+
+link:designersguide-styling-points.html[スタイリング ポイント]

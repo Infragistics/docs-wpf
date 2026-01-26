@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "designers-guide-working-with-themes",
+    "controlName": [],
+    "tags": [],
+    "guid": "48e32407-c07b-4730-8eb7-85150363f5e6",  
+    "buildFlags": ["sl","wpf"],
+    "createdOn": "2012-01-30T16:50:12.2088012Z"
+}
+|metadata|
+////
+
+= テーマでの作業
+
+テーマを {ProductName} コントロールと使用する方法の概要を理解するには、以下のリンクをクリックしてください。
+
+link:designers-guide-what-is-a-theme.html[テーマとは?]
+
+link:designersguide-location-of-generic-xaml-file.html[Generic.xaml ファイルの場所]
+
+link:designers-guide-using-themes.html[テーマの使用]

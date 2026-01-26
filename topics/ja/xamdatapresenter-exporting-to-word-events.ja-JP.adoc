@@ -1,0 +1,58 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-exporting-to-word-events",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Events","Exporting"],
+    "guid": "ad72634e-c368-4e2b-8414-aa422253ce0c",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3880307Z"
+}
+|metadata|
+////
+
+= エクスポート イベントを処理することでエクスポートを管理
+
+
+
+link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter.html[DataPresenterWordWriter] オブジェクトは、エクスポート処理を変更するために処理可能なイベントをいくつか公開します。エクスポート処理の間にエクスポートされる要素ごとにイベントが発生します。たとえば、エクスポートされる列ヘッダーごとに LabelExporting イベントが発生します。ほとんどのイベントによって、フォーマットを適用する、またはエクスポートされる値を変更するなど、エクスポートされたデータを変更することができます。
+
+表 1 では、サポートされるエクスポート イベントを、発生する順序に説明します。
+
+表 1: エクスポート イベントの説明
+
+[options="header", cols="a,a"]
+|====
+|イベント|説明
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~exportstarted_ev.html[ExportStarted]
+|レコードがエクスポートされる前にエクスポート処理の開始時に発生します。このイベントは、エクスポート操作に使用されるグリッドのイベントをフックする、またはレコードのエクスポートの前にコンテンツを WordDocumentWriter に追加するために使用されます。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~initializerecord_ev.html[InitializeRecord]
+|DataRecord、GroupByRecord、SummaryRecord または ExpandableFieldRecord をエクスポートする前に発生します。指定されたレコード、その兄弟レコードまたは子孫レコードのエクスポートをスキップできます。link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.initializerecordeventargs.html[InitializeRecordEventArgs] の link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.initializerecordeventargs~terminateexport.html[TerminateExport] プロパティを設定することで、エクスポート処理をキャンセルすることも可能です。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~labelexporting_ev.html[LabelExporting]
+|列ヘッダーをエクスポートする前に発生します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~cellexporting_ev.html[CellExporting]
+|データ レコード値をエクスポートする前に発生します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~summaryresultsexporting_ev.html[SummaryResultsExporting]
+|集計の各結果をエクスポートする前に発生します。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~exportending_ev.html[ExportEnding]
+|ExportEnded イベントの直前に発生して、現在のエクスポート処理に関するキャンセル情報 (ある場合) を提供します。関連付けられた WordDocumentWriter が閉じる前にこのイベントが発生します。これによって閉じる前に追加情報をドキュメントに追加できます。
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}~infragistics.windows.datapresenter.wordwriter.datapresenterwordwriter~exportended_ev.html[ExportEnded]
+|エクスポート処理の終わりに発生し、完了を通知します。
+
+|====
+
+== 関連トピック
+
+link:xamdatapresenter-exporting-data-to-word.html[xamDataPresenter を使用してデータを Word にエクスポート]
+
+link:xamdatapresenter-applying-formats-when-exporting-data.html[データをエクスポートする時にフォーマットを適用]
+
+link:xamdatapresenter-exclude-settings.html[エクスポート時の DataPresenter の Exclude 設定]

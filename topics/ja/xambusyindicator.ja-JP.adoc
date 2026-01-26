@@ -1,0 +1,52 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator",
+    "tags": [],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "22a01f53-b6dc-4ef0-8ce8-96f7d760d1e8",  
+    "buildFlags": [],
+    "createdOn": "2015-07-30T13:55:50.8841462Z"
+}
+|metadata|
+////
+
+= xamBusyIndicator
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションには、WPF の  _xamBusyIndicator_  コントロールについてのトピックが含まれています。
+
+_link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator.html[xamBusyIndicator]_  は、長期的に実行するプロセスが開始されたことを視覚的な通知で提供し、そのプロセスの進行状況を表示する ContentControl です。
+
+以下のスクリーンショットは、 _xamBusyIndicator_   コントロールのデフォルトの外観を示します。
+
+image::images/xamBusyIndicator_1.png[]
+
+=== トピック
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-overview.html[概要]
+|このグループのトピックでは、コントロールの概要を説明します。
+
+| link:xambusyindicator-adding-to-your-page.html[xamBusyIndicator をページに追加]
+|このトピックでは、コントロールを短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+| link:xambusyindicator-configuring.html[xamBusyIndicator の構成]
+|このセクションのトピックでは、コントロールの構成についての情報を提供します。
+
+| link:xambusyindicator-working.html[xamBusyIndicator の作業]
+|このセクションのトピックでは、コントロールをプログラムによって管理する詳しい方法を説明します。
+
+| link:xambusyindicator-api-reference.html[API リファレンス]
+|このトピックでは、コントロールに関連した名前空間およびクラスに関する参考情報を提供します。
+
+|====

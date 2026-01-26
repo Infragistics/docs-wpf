@@ -1,0 +1,91 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-in-2014-volume-2",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "3f8518be-3c37-4647-bff9-d18a126ce333",  
+    "buildFlags": [],
+    "createdOn": "2014-09-12T13:45:52.9203408Z"
+}
+|metadata|
+////
+
+= 2014 Volume 2 の重大な変更点
+
+== 重大な変更の概要
+
+以下の表は、{ProductName} 2014 Volume 2 リリースの重大な変更点の概要を示します。問題および既存の回避策の詳細な説明は、概要表の後に記載されています。
+
+==== 凡例:
+
+image:images/Yes.png[] - 回避策
+
+image:images/No.png[] - 既知の回避策なし
+
+image:images/Fix.png[] - 既知の回避策はありません。修正予定です。
+
+==== <<Ref382990783, xamColorPicker >>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref398294255,SelectedColorChanged イベントの変更>>
+|`SelectedColorChanged` イベントは、ユーザーがマウスをクリックしてカラー パレットから色を選択すると、トリガーされます。
+|image::images/Yes.png[]
+
+|====
+
+==== <<Ref382990784, xamDataPresenter >>
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<_Ref398294256,UnboundField 型の非推奨>>
+|`UnboundField` フィールド型は非推奨です。
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref382990783]]
+== _xamColorPicker_
+
+[[_Ref398294255]]
+=== SelectedColorChanged イベントの変更
+
+{ProductName} 2014 Volume 2 リリースまで、_xamColorPicker_ `SelectedColorChanged` イベントは、ユーザーが _xamColorPicker_ パレットで色の上にホバーするたびに、トリガーされました。
+
+今度、`SelectedColorChanged` イベントは、ユーザーがマウス クリックで色を選択したときのみにトリガーされます。
+
+[options="header", cols="a,a"]
+|====
+|以前の動作|新しい動作
+
+|SelectedColorChanged イベントは _xamColorPicker_ パレットで色の上にホバーしたときに発生します。
+|SelectedColorChanged イベントは _xamColorPicker_ パレットでマウス クリックにより色が選択したときに発生します。
+
+|====
+
+[[_Ref382990784]]
+== _xamDataPresenter_
+
+[[_Ref398294256]]
+=== UnboundField 型の非推奨
+
+`UnboundField` フィールド型は非推奨です。使用しないでください。代わりに新しいエディター固有のフィールド型 (または共有の `Field` 型) を使用し、新しい `BindingType` プロパティを `Unbound` に設定します。
+
+[options="header", cols="a,a"]
+|====
+|以前のフィールド定義|新しいフィールド定義
+
+|`<UnboundField />`
+|`<Field BindingType="Unbound" />`
+|====
+
+*関連トピック:*
+
+* link:xamdatapresenter-add-unbound-fields-to-a-datapresenter-control.html[非バインド フィールドの構成]
+* link:xamdatagrid-configuring-specific-editor-fields.html[特定のエディター フィールドの構成 (xamDataGrid)]

@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcheckeditor",
+    "controlName": ["xamCheckEditor"],
+    "tags": [],
+    "guid": "{9E4BE9A5-D756-4AA4-98CA-02DA04D5A72B}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0339781Z"
+}
+|metadata|
+////
+
+= xamCheckEditor
+
+xamCheckEditor™ コントロールに関連した概要/タスクベースの情報のすべてが収められている領域を探しているのであれば、このセクションをご覧ください。このセクションは、コントロールについての概要からアプリケーションで使用する理由、コントロールを使用して共通タスクを達成するための方法の手順などの xamCheckEditor についての有益な情報を含んでいます。
+
+以下のリンクをクリックして、xamCheckEditor コントロールについての情報にアクセスします。
+
+* link:xamcheckeditor-about-xamcheckeditor.html[xamCheckEditor について]
+* link:xamcheckeditor-using-xamcheckeditor-as-a-field-in-xamdatagrid.html[xamDataGrid でフィールドとして xamCheckEditor を使用]
+* link:xamcheckeditor-api-overview.html[API の概要]

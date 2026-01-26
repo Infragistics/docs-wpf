@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-activities-tzna",
+    "controlName": ["xamSchedule"],
+    "tags": ["Appointments","How Do I","Scheduling"],
+    "guid": "04bf507b-90b6-4ad3-b844-e343465a7571",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7863207Z"
+}
+|metadata|
+////
+
+= タイム ゾーン ニュートラルなアクティビティとは
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[アクティビティ]の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~start.html[Start] 時間と link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~end.html[End] 時間は UTC (世界協定時刻) で定義されます。通常、xamSchedule link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase.html[ビュー]がアクティビティを表示する時、ユーザーが自身のタイム ゾーンに関連してアクティビティを見ることができるように、時間はローカル時間に変換されます。
+
+たとえば、ローカル タイム ゾーンが東部時間に設定されているユーザーによって 5pm に開始するよう定義されたアクティビティが開始時間を 10:00pm UTC 時間として保存するとします。ローカル タイム ゾーンが太平洋時間に設定されているカリフォルニアのユーザーが表示する場合には、2pm に開始するように表示されます。
+
+だだし、一部のアクティビティはタイム ゾーンに依存しておらず、その代わりに、関連する時間または「フローティング」時間として解釈されます。
+
+たとえば、休日を表すアクティビティが特定のカレンダー日に確認されますが、特定のタイム ゾーンの特定の時刻に開始しません。フローティング/タイム ゾーン ニュートラルとしてアクティビティを定義するには、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~istimezoneneutral.html[IsTimeZoneNeutral] プロパティを True に設定する必要があります。これで、開始時間が 12am UTC の休日を表すタイム ゾーン ニュートラルなアクティビティは、ビューのローカル タイム ゾーンにかかわらず、12am に表示されます。
+
+.注:
+[NOTE]
+====
+IsTimeZoneNeutral がアクティビティで True に設定されると、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~starttimezoneid.html[StartTimeZoneId] プロパティおよび link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~endtimezoneid.html[EndTimeZoneId] プロパティは無視されます。
+====
+
+エンドユーザーがタイム ゾーン ニュートラルな予定を作成しないようにするためには、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointmentsettings.html[AppointmentSettings] の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitysettings~allowtimezoneneutral.html[AllowTimeZoneNeutral] プロパティを False に設定できます。このケースでは、予定ダイアログで [All Day Event] チェックボックスは非表示です。これは、[All Day Event] チェックボックスをオンにすると、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~istimezoneneutral.html[isTimeZoneNeutral] プロパティを True に設定するだけでなく、開始時間と終了時間が日をまたぐように設定するからです。
+
+== 関連トピック
+
+link:xamschedule-using-activities-appointments.html[予定]
+
+link:xamschedule-using-activities-tasks.html[タスク]
+
+link:xamschedule-using-activities-journals.html[履歴]
+
+link:xamschedule-using-activities-recurrent.html[定期的なアクティビティ]
+
+link:xamschedule-using-activities-reminders.html[アラーム]

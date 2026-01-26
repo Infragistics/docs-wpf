@@ -1,0 +1,87 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-column-resizing",
+    "controlName": ["xamGrid"],
+    "tags": ["Getting Started","Grids","How Do I","Layouts"],
+    "guid": "{3873B347-DC7E-4134-85BF-4D460D0BEC71}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8231647Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列サイズの変更
+
+xamGrid コントロールによって、エンド ユーザーは右側の列セパレーターを左または右にドラッグして列のサイズを変更することができます。エンドユーザーは、列セパレーターをダブル クリックすることによって列のサイズを変更することもできます。複数列のリサイズもサポートされます。
+
+ifdef::win-rt[]
+タッチ ジェスチャを使用して列をサイズ変更する詳細については、 link:xamgrid-touch-support.html[タッチ サポート] トピックを参照してください。
+endif::win-rt[]
+
+以下の方法のいずれかで動作するように列のリサイズを構成できます:
+
+* リサイズ インジケーターは列の移動先を表示します。その他の列が star sized の場合、インジケーターは 100% 正確ではないかもしれません。 
+* エンドユーザーがリサイズ インジケーターのドラッグを開始するやいなや列はリサイズされます。
+
+デフォルトでは、列のサイズ変更は有効であり、xamGrid コントロールで Immediate に設定されています。ただし、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnresizingsettings.html[ColumnResizingSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnresizingsettings~allowcolumnresizing.html[AllowColumResizing] プロパティを以下の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnresizingtype.html[ColumnResizingType] 列挙値のいずれかに設定することによって、これをオーバーライドすることができます。
+
+* Indicator - この値は列のリサイズを有効にし、リサイズ インジケーターは列が移動する場所を示します。
+* Immediate - この値は列のサイズ変更を有効にして、エンド ユーザーがサイズ変更インジケーターを起動するとすぐに列のサイズ変更を行います。
+* Disabled - この値は列のサイズ変更を無効にします。
+
+以下のコードは列のリサイズを有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyGrid">
+   <ig:XamGrid.ColumnResizingSettings>
+      <ig:ColumnResizingSettings AllowColumnResizing="Indicator"/>
+   </ig:XamGrid.ColumnResizingSettings>
+…
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Me.MyGrid.ColumnResizingSettings.AllowColumnResizing = ColumnResizingType.Immediate
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.MyGrid.ColumnResizingSettings.AllowColumnResizing = ColumnResizingType.Immediate;
+----
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Column_Resizing_01.png[Column Resizing]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Column_Resizing_01.png[Column Resizing]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-multi-column-resizing.html[複数列のリサイズ]
+
+link:xamgrid-resize-in-the-cell-area.html[セル領域でセルのリサイズ]
+
+link:xamgrid-auto-size-columns-using-mouse-clicks.html[マウス クリックを使用して列を自動的にサイズ設定]
+
+link:xamgrid-set-columns-maximum-and-minimum-widths.html[列の最大幅と最小幅を設定]
+
+link:xamgrid-disable-resizing-of-certain-columns.html[特定の列のサイズ変更を無効にする]
+
+link:xamgrid-column-resizing-events.html[列のサイズ変更イベント]
+
+pick:[win-rt=" link:xamgrid-touch-support.html[タッチ サポート]"]

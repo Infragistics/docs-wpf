@@ -1,0 +1,57 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram feature summary chart",
+    "controlName": [],
+    "tags": [],
+    "guid": "7eba2b51-1c30-4c34-93c4-feb2f0c2b298",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-27T06:23:33.9336947Z"
+}
+|metadata|
+////
+
+以下の表で、 _xamDiagram_   コントロールの主な機能を簡単に説明します。各機能の詳細は、このヘルプで確認できます。
+
+[options="header", cols="a,a"]
+|====
+|機能|説明
+
+| link:xamdiagram-features-overview.html#_Ref390272737[データ バインディング]
+|多くのデータ モデルに対応する、柔軟なデータ バインディング メカニズムを使用できます。
+
+| link:xamdiagram-features-overview.html#_Ref388439060[ナビゲーション]
+|パンとズームはどちらも、コードとユーザー インタラクションを使用して実行できます。
+
+| link:xamdiagram-features-overview.html#_Ref388439069[選択]
+|選択は複数の項目に対応し、コードまたはユーザー インタラクションを使用して変更できます。
+
+| link:xamdiagram-features-overview.html#_Ref388439075[項目のインタラクション]
+|ダイアグラムのノードは、移動やサイズ変更が可能です。接続の始点と終点は移動できます。ノードおよび接続のコンテンツ (ラベル テキスト) を編集できます。
+
+| link:xamdiagram-features-overview.html#_Ref388439079[コマンドのサポート]
+|_xamDiagram_ は、すべてのフィッティング インタラクションのコマンドが定義済みです。
+
+| link:xamdiagram-features-overview.html#_Ref388439081[元に戻す / やり直し]
+|_xamDiagram_ は、すべてのユーザー インタラクションおよびコードを使用したプロパティ変更に対して、元に戻す / やり直しをサポートしています。
+
+| link:xamdiagram-features-overview.html#_Ref388439083[コンテキスト オプション ペイン]
+|コンテキスト オプション ペインを使用して、選択したノードや接続の外観を変更できます。
+
+| link:xamdiagram-features-overview.html#_Ref388439085[ナビゲーション ペイン]
+|_xamDiagram_ は、 _xamOverviewPlusDetailsPane_ コントロールを統合してダイアグラムの概要を表示します。
+
+| link:xamdiagram-features-overview.html#_Ref388439087[形状が定義済みのツールボックス]
+|_xamDiagram_ コントロールは、もっとも人気の高い形状を備えたツールボックス コントロールを提供します。これらの形状は、ドラッグしてダイアグラムに入力できます。
+
+| link:xamdiagram-features-overview.html#_Ref388439090[カスタム ノードの図形]
+|ダイアグラム ノードにより、カスタム図形を指定できます。
+
+| link:xamdiagram-features-overview.html#_Ref388439092[カスタム項目テンプレート]
+|_xamDiagram_ のノードおよび接続は、その内容の表示や編集が可能なカスタム テンプレートをサポートしています。
+
+| link:xamdiagram-features-overview.html#_Ref388439094[仮想化]
+|_xamDiagram_ は高性能で、数千の項目を処理できます。使用されている技術の 1 つは、現在表示されていない項目を仮想化する技術です。
+
+|====

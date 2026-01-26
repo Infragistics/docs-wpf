@@ -1,0 +1,22 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacarousel-optimizing-performance",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{0B35C95F-427F-4526-805C-12347F0204E4}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6598851Z"
+}
+|metadata|
+////
+
+= パフォーマンスの最適化
+
+
+
+以下のリンクをクリックして、xamDataCarousel のパフォーマンスの最適化に役立つトピックを確認してください。
+
+* link:xamdata-performance-optimizations-overview.html[パフォーマンス最適化の概要]
+* link:xamdata-impact-styles-have-on-performance-of-controls.html[スタイルがコントロールのパフォーマンスに与える影響]

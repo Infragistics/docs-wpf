@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-control",
+    "controlName": ["xamSchedule"],
+    "tags": [],
+    "guid": "55bb09b1-48fb-45cf-9f55-cfc3db28e48f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.848365Z"
+}
+|metadata|
+////
+
+= コントロール
+
+xamSchedule スイートに含まれるコントロールについての詳細は、以下のリンクをクリックしてください。
+
+link:xamschedule-using-control-visibledates.html[日付の表示]
+
+link:xamschedule-using-control-selactivities.html[選択されたアクティビティ コレクション]
+
+link:xamschedule-using-control-calendargrouping.html[カレンダーのグループ化]
+
+link:xamschedule-using-control-confday.html[xamDayView の構成]
+
+link:xamschedule-using-control-confschedule.html[xamScheduleView の構成]
+
+link:xamschedule-using-control-confmonth.html[xamMonthView の構成]
+
+link:xamschedule-using-control-confoutlookcalendar.html[xamOutlookCalendarView の構成]
+
+link:xamschedule-using-control-confdatenavigator.html[xamDateNavigator の構成]

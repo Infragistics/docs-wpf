@@ -1,0 +1,84 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-about-animations",
+    "controlName": ["xamTileManager"],
+    "tags": ["Getting Started"],
+    "guid": "bd720012-5594-4aba-b45b-91849d204ce0",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7063731Z"
+}
+|metadata|
+////
+
+= アニメーションについて
+
+xamTileManager によって、タイルの配置およびサイズ変更のためのデフォルト アニメーションを変更または無効にすることができます。
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings.html[NormalModeSettings] および/または link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings.html[MaximizedModeSettings] オブジェクトの link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~shouldanimate.html[ShouldAnimate] プロパティを False に設定することによって、アニメーションを無効にできます。アニメーションを無効にすると、xamTileManager はユーザーが提供するカスタム アニメーションも無視します。
+
+カスタム アニメーションのタイミングを設定したい場合、NormalModeSettings および/または MaximizedModeSettings オブジェクトの link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~repositionanimation.html[RepositionAnimation] および link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.modesettingsbase~resizeanimation.html[ResizeAnimation] プロパティを DoubleAnimationBase クラスから派生するオブジェクトに設定できます。ユーザーが提供するダブル アニメーションは、0 から 1 の double 値をアニメートします。ただし、最後のキー フレームが 1 の値で終わる限り、DoubleAnimationUsingKeyFrames オブジェクトを使用してこの範囲を一時的に超えることができます。API リファレンス ガイドで RepositionAnimation および ResizeAnimation プロパティの設定を示すコード例を見つけることができます。
+
+[NOTE]
+====
+*注:* サイズ変更アニメーションは、xamTileManager が状態のトランジション中にタイルのサイズを変更する必要がある場合に適用されます。リサイズ アニメーションは、エンドユーザーがリサイズ インジケーターを使用してタイルをリサイズする場合には適用されません。ただし、タイルのリサイズで他のタイルが表示されるようになったり、新しい列または行に移動する場合、リポジション アニメーションが適用されます。
+====
+
+xamTileManager は以下の状況でアニメーションを適用します。
+
+*通常モードのリポジション アニメーション*
+
+* タイルを別の位置にドラッグします。
+* タイルをスクロールして表示します。
+* xamTileManager のサイズを変更するとより多くのタイルが表示されるか、既存のタイルが新しい列/行に移動されます。
+* 通常のタイルを最大化されたタイルに変更します。
+
+*通常モードのリサイズ アニメーション (トランジション中にタイルのサイズが変わる場合に限って適用される) *
+
+* 最大化、最小化、または展開されたタイルを通常のタイルに変更します。
+
+*最大化モードのリポジション アニメーション*
+
+* 通常、最小化、または展開されたタイルを最大化されたタイルに変更します。
+* 最小化または展開されたタイルをスクロールして表示します (これには、展開されたタイルを最小化する時、またはその逆を行った時に表示されるタイルも含みます)。
+
+*最大化モードのリサイズ アニメーション (トランジション中にタイルのサイズを変更する場合に限って適用される)*
+
+* 通常のタイルを最大化、最小化、または展開されたタイルに変更します。
+* 最小化または展開されたタイルを最大化されたタイルに変更します。
+
+== 通知
+
+アニメーションが開始または終了する時に通知を受け取るには、以下のイベントをフックします。
+
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~animationstarted_ev.html[AnimationStarted]
+* link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~animationended_ev.html[AnimationEnded]
+
+アニメーションの現在の状態を取得するには、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~isanimationinprogress.html[IsAnimationInProgress] プロパティを使用します (ブール値、読み取り専用)。
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-about-tile-templates.html[タイル テンプレートについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]

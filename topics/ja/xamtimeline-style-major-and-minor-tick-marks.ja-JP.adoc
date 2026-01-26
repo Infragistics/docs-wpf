@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-style-major-and-minor-tick-marks",
+    "controlName": ["xamTimeline"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{7B65720D-C049-4DD6-9E6B-C3798E79303E}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1284047Z"
+}
+|metadata|
+////
+
+= 主目盛および副目盛のスタイル
+
+xamTimeline コントロールの主目盛と副目盛は、タイムラインの重要部分を示します。主目盛は、最初にタイムラインの開始点に配置され、その後はすべての主な増分に配置されます。副目盛は、それぞれの主目盛の中間に配置されます。主目盛と副目盛の外観を変更する方法は、スタイルによって行います。
+
+以下の xaml コードは、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] コントロールでスタイルを使用して主目盛と副目盛の色、サイズ、および間隔を変更する方法を示します。
+
+*XAML の場合:*
+
+----
+    <UserControl.Resources>
+        <!-- 軸のスタイル -->
+        <Style x:Key="rscMajorTickMarkStyle" TargetType="igtl:Mark">
+            <Setter Property="Width" Value="4"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Stroke" Value="Red"/>
+            <Setter Property="Fill" Value="White"/>
+            <Setter Property="Unit" Value="500"/>
+        </Style>
+        <Style x:Key="rscMinorTickMarkStyle" TargetType="igtl:Mark">
+            <Setter Property="Width" Value="4"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Stroke" Value="Blue"/>
+            <Setter Property="Fill" Value="White"/>
+            <Setter Property="Unit" Value="100"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White" >
+        <igtl:XamTimeline x:Name="xamTimeline"  
+                             Width="1000" Height="480" Margin="25">
+            <!-- Axis プロパティを設定 -->
+            <igtl:XamTimeline.Axis>
+                <igtl:NumericTimeAxis Minimum="-3000" Maximum="2200" 
+                                      AutoRange=" Unit="500" 
+                                      ShowLabels="True" 
+                                      ShowLabelsInPreview="True"
+                                      ShowMajorTickMarks="True" ShowMinorTickMarks="True" 
+                                      MajorTickMarkStyle="{StaticResource rscMajorTickMarkStyle}"
+                                      MinorTickMarkStyle="{StaticResource rscMinorTickMarkStyle}"/>
+            </igtl:XamTimeline.Axis>
+            <!-- TODO: 数値/日時シリーズを追加します...-->
+        </igtl:XamTimeline>
+    </Grid>
+----
+
+image::images/XamTimeline_Style_Tick_Marks_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-style-the-axis.html[軸のスタイル]
+
+link:xamtimeline-style-the-axis-pane.html[軸ペインのスタイル]
+
+link:xamtimeline-style-the-axis-label.html[軸ラベルのスタイル]
+
+link:xamtimeline-style-axis-thumb.html[軸のつまみのスタイル]
+
+link:xamtimeline-style-major-and-minor-grid-lines.html[主グリッド線および副グリッド線のスタイル]

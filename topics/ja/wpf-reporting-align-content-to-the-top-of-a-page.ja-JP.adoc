@@ -1,0 +1,68 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-reporting-align-content-to-the-top-of-a-page",
+    "controlName": ["IG WPF Reporting"],
+    "tags": ["Reporting"],
+    "guid": "{D836267D-23C0-473E-9F46-BBA5E287F4AA}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.8997331Z"
+}
+|metadata|
+////
+
+= コンテンツをページの上側に揃える
+
+レポートを印刷するとき、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection.html[EmbeddedVisualReportSection] オブジェクトはページ上のコンテンツを自動的に中央揃えします。コンテンツをページの上側に配置したい場合は、それを行う DataTemplate を作成する必要があります。 
+
+link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトと EmbeddedVisualReportSection オブジェクトのどちらも、ページのコンテンツ レイアウトを決定する link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.reportsection~pagecontenttemplate.html[PageContentTemplate] プロパティを公開します。Report オブジェクトの PageContentTemplate プロパティを設定する場合、データ テンプレートはレポート全体に影響を与えます。ただし、EmbeddedVisualReportSection オブジェクトの PageContentTemplate プロパティも設定する場合は、特定のセクションにのみ影響を与えます。
+
+レポート内のコンテンツの配置は、2 つの手順からなる処理です。
+
+[start=1]
+. XAML で基本 DataTemplate オブジェクトを作成します。
+[start=2]
+. DataTemplate オブジェクトを Report オブジェクトまたは EmbeddedVisualReportSection オブジェクトの PageContentTemplate プロパティに割り当てます。
+
+以下のコード例は、データ テンプレートを使用してページの上側にコンテンツを配置する方法を示します。この XAML は基本的な DataTemplate オブジェクトを作成し、プロシージャ コードはそれを Report オブジェクトの PageContentTemplate プロパティに割り当てます。このコード例は、report1 という名前の Report オブジェクトをすでに持っていることを前提とします。
+
+*XAML の場合:*
+
+----
+<Window.Resources>
+    <DataTemplate x:Key="basicContentTemplate">    
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ContentPresenter Content="{TemplateBinding Content}" />
+        </Grid>
+    </DataTemplate>
+</Window.Resources>
+----
+
+*Visual Basic の場合:*
+
+----
+' リソースを検索し、DataTemplate にキャストします。
+report1.PageContentTemplate = TryCast(Me.TryFindResource("basicContentTemplate"), DataTemplate)
+----
+
+*C# の場合:*
+
+----
+// リソースを検索し、DataTemplate にキャストします。
+report1.PageContentTemplate = this.TryFindResource("basicContentTemplate") as DataTemplate;
+----
+
+== 関連トピック
+
+link:wpf-reporting-understanding-wpf-reporting.html[WPF レポーティング について]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]
+
+link:wpf-reporting-print-or-export-a-report.html[レポートの印刷またはエクスポート]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]

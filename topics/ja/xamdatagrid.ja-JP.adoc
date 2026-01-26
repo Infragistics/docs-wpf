@@ -1,0 +1,54 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{C3963558-1190-4BFE-A7B0-FF924E965A2D}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.9679467Z"
+}
+|metadata|
+////
+
+= xamDataGrid
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションには、WPF の  _xamDataGrid_™ コントロールについてのトピックが含まれています。
+
+_xamDataGrid_   は、データを行および列で表として Infragistics® データ プレゼンター ファミリー コントロールです。  _xamGrid_™ コントロールと同様の機能があります。 (このコントロールの詳細な比較については、 link:differences-between-xamgrid-and-xamdatagrid.html[ _xamGrid_   と  _xamDataGrid_   の重要な相違点]を参照してください。)
+
+image::images/xamDataGrid_About_xamDataGrid_03.png[]
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[ _xamDataGrid_ について]
+|このトピックは、 _xamDataGrid_ コントロールの概要を提供し、要素のダイアグラムを含みます。
+
+| link:xamdatagrid-getting-started-with-xamdatagrid.html[ _xamDataGrid_ をページに追加]
+|このトピックは、基本のグリッドをページに追加する手順を提供します。
+
+| link:xamdatagrid-accessing-data.html[ _xamDataGrid_ をデータにバインド]
+|このトピックのグループは、 _xamDataGrid_ を複数のデータ タイプにバインドする方法を紹介します。
+
+| link:xamdatagrid-using-xamdatagrid.html[ _xamDataGrid_ での作業]
+|このトピックのグループは、 _xamDataGrid_ を使用し、コードで管理する方法を説明します。
+
+| link:xamdatagrid-designing-the-look-and-feel.html[ _xamDataGrid_ のスタイル設定]
+|このトピックのグループは、 _xamDataGrid_ コントロールの視覚要素をスタイル設定し、グリッドのルック アンド フィールを設定するために定義済みのテーマを変更する方法を説明します。
+
+| link:xamdatagrid-optimizing-performance.html[パフォーマンスの最適化 ( _xamDataGrid_ )]
+|このトピックのグループは、アプリケーションで _xamDataGrid_ のパフォーマンスを向上する方法を説明します。
+
+| link:xamdatagrid-api-overview.html[API リファレンス ( _xamDataGrid_ )]
+|このトピックでは、 _xamDataGrid_ コントロールに関連した名前空間およびクラスに関する参考情報を提供します。
+
+|====

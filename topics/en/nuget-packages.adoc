@@ -1,0 +1,366 @@
+﻿== Infragistics NuGet Packages
+
+As of the 2023.2 release, the Infragistics traditional installer has been removed, and so the WPF controls are now supported exclusively through NuGet moving forward.
+
+Infragistics {ProductName} provides NuGet packages for each control and component in the product. Use the below table to find which packages you need to add to your {PlatformName} application for each control.
+
+There are two ways you can consume the NuGet packages.  You can store the package files in a directory on your machine and link:nuget-feeds.html#adding_local_package[add a package source] pointing to that directory or you can use the licensed link:nuget-feeds.html#adding_infragistics_feed[Infragistics NuGet feed]. This licensed feed requires an Infragistics account linked to a valid product key. Alternatively, a trial version of the NuGet packages are now available on the default public NuGet feed https://api.nuget.org/v3/index.json.
+
+- With the 2019.1 release, the NuGet packages listed below are supported in the .NET Core 3.0 environment.
+- As of the 2020.2 release, we no longer support .NET Core 3.0, we support the .NET Core 3.1 and .NET 5.0 .
+- As of the 2021.2 release, we support .NET 6.0.
+- As of the 2022.2 release, we support .NET 7.0.
+- As of the 2023.2 release, we support .NET 8.0.
+- As of the 2024.2 release, we support .NET 9.0. We no longer support .NET 3.1, .NET 5, or .NET 7.
+- As of the 2025.2 release, we support .NET 10.0. We no longer support .NET 6.0.
+
+We also support .NET Framework 4.X using any of the above versions.
+
+If you want to use the toolbox in Visual Studio with the Infragistics {ProductName} controls, you will need to add the corresponding NuGet packages to the project first, as the toolbox will populate based on the packages that are installed to that project. A full list of which NuGet packages contain which controls can be found below:
+
+=== Controls
+
+[cols="a,a"]
+|====
+|Control|NuGet Package
+
+| BarcodeReader
+| Infragistics.WPF.BarcodeReader
+
+|
+XamQRCodeBarcode +
+XamCode128Barcode +
+XamCode39Barcode +
+XamEanUpcBarcode +
+XamInterleaved2Of5Barcode +
+XamGs1DataBarBarcode +
+XamIntelligentMailBarcode +
+XamRoyalMailBarcode +
+XamPdf417Barcode +
+XamMaxiCodeBarcode +
+
+| Infragistics.WPF.Barcodes
+
+| XamCalculationManager
+| Infragistics.WPF.CalculationManager
+
+| XamCalendar
+| Infragistics.WPF.Calendar
+
+|
+XamDataChart +
+XamDataPieChart +
+XamCategoryChart +
+XamShapeChart +
+XamFinancialChart
+| Infragistics.WPF.Charts
+
+| OlapXAxis
+| Infragistics.WPF.Charts.Olap
+
+| XamColorPicker
+| Infragistics.WPF.ColorPicker
+
+| XamComboEditor
+| Infragistics.WPF.Controls.Editors.XamComboEditor
+
+| XamDateTimeInput
+| Infragistics.WPF.Controls.Editors.XamDateTimeInput
+
+| 
+XamMaskedInput +
+XamNumericInput +
+XamCurrencyInput
+| Infragistics.WPF.Controls.Editors.XamMaskedInput
+
+|XamDashboardTile
+|Infragistics.WPF.Dashboards
+
+| 
+XamDataPresenter +
+XamDataGrid +
+XamDataCards +
+XamDataCarousel +
+XamTreeGrid
+| Infragistics.WPF.DataGrids
+
+| Asynchronous Paging Data Source
+| Infragistics.WPF.DataGrids.Async
+
+| DataPresenterCalculationAdapter
+| Infragistics.WPF.DataGrids.Calculation
+
+| DataPresenterExcelExporter
+| Infragistics.WPF.DataGrids.Excel
+
+| DataPresenterWordWriter
+| Infragistics.WPF.DataGrids.Word
+
+| XamDataTree
+| Infragistics.WPF.DataTree
+
+| XamDiagram
+| Infragistics.WPF.Diagram
+
+| XamDialogWindow
+| Infragistics.WPF.DialogWindow
+
+| XamDockManager
+| Infragistics.WPF.DockManager
+
+|
+XamCheckEditor +
+XamComboEditor +
+XamCurrencyEditor +
+XamDateTimeEditor +
+XamMaskedEditor +
+XamMonthCalendar +
+XamNumericEditor +
+XamTextEditor
+| Infragistics.WPF.Editors
+
+| XamColorEditor
+| Infragistics.WPF.Inputs
+
+| XamFormulaEditor
+| Infragistics.WPF.FormulaEditor
+
+| XamGantt
+| Infragistics.WPF.Gantt
+
+|
+XamBulletGraph +
+XamLinearGauge +
+XamRadialGauge
+| Infragistics.WPF.Gauges
+
+| XamGeographicMap
+| Infragistics.WPF.GeographicMap
+
+|
+XamContextMenu +
+XamMenu
+| Infragistics.WPF.Menus
+
+| XamNetworkNode
+| Infragistics.WPF.NetworkNode
+
+| XamOrgChart
+| Infragistics.WPF.OrgChart
+
+| XamOutlookBar
+| Infragistics.WPF.OutlookBar
+
+| XamPivotDataSlicer
+| Infragistics.WPF.PivotDataSlicer
+
+| XamPivotGrid
+| Infragistics.WPF.PivotGrid
+
+| XamPivotGridGrouping
+| Infragistics.WPF.PivotGridGrouping
+
+| XamPropertyGrid
+| Infragistics.WPF.PropertyGrid
+
+| XamRadialMenu
+| Infragistics.WPF.RadialMenu
+
+| XamRibbon
+| Infragistics.WPF.Ribbon
+
+| XamRichTextEditor
+| Infragistics.WPF.RichTextEditor
+
+|
+XamDayView +
+XamMonthView +
+XamOutlookCalendarView +
+XamScheduleView
+| Infragistics.WPF.Schedules
+
+| Schedule Dialogs
+| Infragistics.WPF.Schedules.Dialogs
+
+| ExchangeScheduleDataConnector
+| Infragistics.WPF.Schedules.Exchange
+
+| WcfListScheduleDataConnector
+| Infragistics.WPF.Schedules.Wcf
+
+|
+XamDateTimeSlider +
+XamDateTimeRangeSlider +
+XamNumericSlider +
+XamNumericRangeSlider
+| Infragistics.WPF.Slider
+
+| XamSparkline
+| Infragistics.WPF.Sparkline
+
+| XamSpellChecker
+| Infragistics.WPF.SpellChecker
+
+| XamSpreadsheet
+| Infragistics.WPF.Spreadsheet
+
+| XamSurfaceChart3D
+| Infragistics.WPF.SurfaceChart3D
+
+| XamSyntaxEditor
+| Infragistics.WPF.SyntaxEditor
+
+| XamTagCloud
+| Infragistics.WPF.TagCloud
+
+| XamTileManager
+| Infragistics.WPF.TileManager
+
+| XamTimeline
+| Infragistics.WPF.Timeline
+
+| XamToolbar
+| Infragistics.WPF.Inputs
+| Infragistics.WPF.Layouts
+
+| XamTreemap
+| Infragistics.WPF.Treemap
+
+|====
+
+=== Libraries & Frameworks
+[cols="a,a"]
+|====
+|Framework|NuGet Package
+
+| Drag and Drop Framework
+| Infragistics.WPF.DragDrop
+
+| Excel Framework
+| Infragistics.WPF.Excel
+
+| Math Library
+| Infragistics.WPF.Math
+
+| Math Calculators Library
+| Infragistics.WPF.Math.Calculators
+
+| Persistence Framework
+| Infragistics.WPF.Persistence
+
+| Reporting Engine
+| Infragistics.WPF.Reporting
+
+| Undo/Redo Framework
+| Infragistics.WPF.Undo
+
+| Word Library
+| Infragistics.WPF.Word
+
+|====
+
+=== Themes
+
+These themes apply to all {ProductName} controls.
+
+[cols="a,a"]
+|====
+|Theme|NuGet Package
+
+| IgTheme | Infragistics.WPF.Themes.IG
+| MetroDarkTheme | Infragistics.WPF.Themes.MetroDark
+| MetroTheme | Infragistics.WPF.Themes.Metro
+| Office2010BlueTheme | Infragistics.WPF.Themes.Office2010
+| Office2013Theme | Infragistics.WPF.Themes.Office2013
+| RoyalDark | Infragistics.WPF.Themes.RoyalDark
+| RoyalLight | Infragistics.WPF.Themes.RoyalLight
+|====
+
+The below themes only apply to the following {ProductName} controls:
+
+* XamDataPresenter
+* XamDataGrid
+* XamDataCards
+* XamDataCarousel
+* XamTreeGrid
+* XamCheckEditor
+* XamComboEditor (Infragistics.Windows.Editors one, *not* the Infragistics.Controls.Editors one)
+* XamCurrencyEditor
+* XamDateTimeEditor
+* XamMaskedEditor
+* XamMonthCalendar
+* XamNumericEditor
+* XamTextEditor
+* XamOutlookBar
+* XamRibbon
+* XamDockManager
+
+[cols="a,a"]
+|====
+|Theme|NuGet Package
+
+| Fall | Infragistics.WPF.Themes.Fall
+| ForestGreen | Infragistics.WPF.Themes.ForestGreen
+| Leaf | Infragistics.WPF.Themes.Leaf
+| Lipstick | Infragistics.WPF.Themes.Lipstick
+| Water | Infragistics.WPF.Themes.Water
+| Wind | Infragistics.WPF.Themes.Wind
+|====
+
+=== Misc. Dependencies
+
+[cols="a,a"]
+|====
+|NuGet Package|Description
+
+| Infragistics.WPF.DataManager
+| This package contains shared resources used by many of the LOB controls. E.g. XamDataTree, XamFormulaEditor, etc.
+
+| Infragistics.WPF.DataVisualization
+| This package contains shared resources used by all of the data visualization controls. E.g. XamDataChart, XamRadialGauge, etc.
+
+| Infragistics.WPF.Documents.Core
+| This package contains many core resources that the Excel Framework requires.
+
+|
+Infragistics.WPF.RichTextDocument +
+Infragistics.WPF.RichTextDocument.Html +
+Infragistics.WPF.RichTextDocument.Rtf +
+Infragistics.WPF.RichTextDocument.Word
+| The Infragistics.WPF.RichTextDocument package provides the RichTextDocument which is required by the XamRichTextEditor control.
+
+The other packages provide different serializers which can be used to load/save HTML, RTF and Microsoft Word files.
+
+|
+Infragistics.WPF.TextDocument +
+Infragistics.WPF.TextDocument.CSharp +
+Infragistics.WPF.TextDocument.TSql +
+Infragistics.WPF.TextDocument.VisualBasic
+| These packages are the heart of the link:ig-spe-overview[Syntax Parsing Engine].
+
+Infragistics.WPF.TextDocument is a required package when using the XamSyntaxEditor control. The other packages contain predefined languages that are ready to use right out of the box.
+
+|
+Infragistics.WPF.Olap +
+Infragistics.WPF.Olap.Adomd +
+Infragistics.WPF.Olap.Excel +
+Infragistics.WPF.Olap.FlatData +
+Infragistics.WPF.Olap.Xmla +
+Infragistics.WPF.Olap.Xmla.Oracle +
+Infragistics.WPF.Olap.Xmla.Sap
+
+| The Infragistics.WPF.Olap package contains shared resources used by the other Olap packages as well as the XamPivotGrid control.
+
+The Infragistics.WPF.Olap.Adomd package provides functionality for connecting to an ADOMD.NET data source.
+
+The Infragistics.WPF.Olap.Excel package provides functionality for connecting to an Excel spreadsheet.
+
+The Infragistics.WPF.Olap.FlatData package provides functionaliy for connecting to a flat list of data.
+
+The Infragistics.WPF.Olap.Xmla package provides functionality for connecting to an Xmla data source.
+
+The Infragistics.WPF.Olap.Xmla.Oracle package provides functionality for connecting to an Oracle Xmla data source.
+
+The Infragistics.WPF.Olap.Xmla.Sap package provides functionality for connecting to an Sap Xmla data source.
+
+|====

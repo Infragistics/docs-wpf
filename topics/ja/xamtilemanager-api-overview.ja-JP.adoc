@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-api-overview",
+    "controlName": ["xamTileManager"],
+    "tags": ["API"],
+    "guid": "bd0e6cd2-d18c-4f2c-8af2-497ffa3b249e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7323747Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== XamTileManager 名前空間
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts_namespace.html[Infragistics.Controls.Layouts]
+
+=== キー クラス
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager.html[XamTileManager]
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile]
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.maximizedmodesettings.html[MaximizedModeSettings]
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.normalmodesettings.html[NormalModeSettings]
+
+link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.tileconstraints.html[TileConstraints]

@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-the-diagram-items",
+    "tags": ["Charting"],
+    "controlName": ["xamDiagram"],
+    "guid": "79094b7c-3f1d-4f5f-ad70-3cdbe33f037e",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:22:29.3178454Z"
+}
+|metadata|
+////
+
+= ダイアグラム項目の構成 (xamDiagram)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamDiagram_™ コントロールの項目を構成する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-nodes.html[ノードの構成 ( _xamDiagram_ )]
+|このグループのトピックでは、 _xamDiagram_ コントロールのノードを構成する方法を説明します。
+
+| link:xamdiagram-configuring-diagram-connections.html[接続の構成 ( _xamDiagram_ )]
+|このグループのトピックでは、 _xamDiagram_ コントロールの接続を構成する方法を説明します。
+
+| link:xamdiagram-look-and-feel.html[ダイアグラム項目のルック アンド フィールの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールでダイアグラム項目の基本的なルック アンド フィール プロパティを構成する方法を説明します。
+
+| link:xamdiagram-templates.html[ダイアグラム項目の内容の視覚化の構成 ( _xamDiagram_ )]
+|このトピックでは、ダイアグラムの項目の内容について DataTemplates を設定する方法、およびこれらの内容を編集するために DataTemplates を設定する方法を説明します。
+
+|====

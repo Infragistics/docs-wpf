@@ -1,0 +1,201 @@
+﻿////
+|metadata|
+{
+    "name": "breaking-changes-in-2017-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "d03c1f2a-72f5-44e4-b766-366ce6a89fbc","buildFlags": [],
+    "createdOn": "2016-12-15T11:57:27.7825621Z"
+}
+|metadata|
+////
+
+= 2017 Volume 1 の重大な変更
+
+== 重大な変更の概要
+
+以下の表は、{ProductName} 2017 Volume 1 リリースの重大な変更点の概要を示します。問題の詳細な説明は、概要表の後に記載されています。
+
+==== 凡例:
+image:images/Yes.png[] - 回避策 +
+image:images/No.png[] - 既知の回避策はありません。 +
+image:images/Fix.png[] - 既知の回避策はありません。修正予定です。
+
+[options="header", cols="a,a,a"]
+|====
+|コントロール|問題|状態
+
+|<<_Ref018, DataSeriesDataProviderAnalyzer>>
+|<<_Ref019, メソッド実装の変更>>
+|image::images/No.png[]
+
+|<<_Ref016, InterpolationUtil>>
+|<<_Ref017, 名前空間の変更>>
+|image::images/No.png[]
+
+|<<_Ref014, xamBulletGraph>>
+|<<_Ref015, デフォルト設定の変更>>
+|image::images/Yes.png[]
+
+|<<_Ref001,xamBusyIndicator>>
+|<<_Ref002,型が XML 名前空間の間に移動>>
+|image::images/Yes.png[]
+
+|<<_Ref003,xamColorPicker>>
+|<<_Ref004,コントロールのテーマへの変更>>
+|image::images/Yes.png[]
+
+|<<_Ref007,xamDiagram>>
+|<<_Ref008,メソッド名の変更>>
+|image::images/Yes.png[]
+|<<_Ref007,xamDiagram>>
+|<<_Ref009,xamDiagram の項目のドロップまたはコピー/貼り付け時の新しい動作>>
+|image::images/Yes.png[]
+
+|<<_Ref005,xamEditors>>
+|<<_Ref006,スピン折り返しのデフォルト動作の変更>>
+|image::images/Yes.png[]
+
+|<<_Ref010, xamLinearGauge>>
+|<<_Ref011, デフォルト設定の変更>>
+|image::images/Yes.png[]
+
+|<<_Ref012, xamRadialGauge>>
+|<<_Ref013, デフォルト設定の変更>>
+|image::images/Yes.png[]
+
+|====
+
+[[_Ref018]]
+== DataSeriesDataProviderAnalyzer
+
+[[_Ref019]]
+==== メソッド実装の変更
+String[] specificProperties パラメーターを含むために GetTitleString メソッドの実装を変更しました。
+
+[[_Ref016]]
+== InterpolationUtil
+
+[[_Ref017]]
+==== 名前空間の変更
+InterpolationUtil クラスが Infragistics.Controls 名前空間に追加されました。Infragistics 名前空間から移動されました。
+
+[[_Ref014]]
+== xamBulletGraph
+
+[[_Ref015]]
+==== デフォルト設定の変更
+
+|====
+|プロパティ|以前の値|新しい値
+
+|RangeBrushes
+|----
+|範囲の新しいデフォルト ブラシ
+
+|TickStartExtent
+|0.1
+|0.06
+
+|MinorTickStartExtent
+|0.06
+|0.1
+
+|====
+
+[[_Ref001]]
+== xamBusyIndicator
+
+[[_Ref002]]
+==== 型が XML 名前空間の間に移動
+以前 *http://schemas.infragistics.com/xaml* XML 名前空間にマップされた *{VersionedApiPlatform}.v{ProductVersion}* アセンブリの *Infragistics.Controls.Interactions.Primitives* 名前空間に定義される型は今 *http://schemas.infragistics.com/xaml/primitives* XML 名前空間にマップされます。これはだいたい `xamBusyIndicator` コントロールに関連する型です。
+
+[[_Ref003]]
+== xamColorPicker
+
+[[_Ref004]]
+==== コントロールのテーマへの変更
+詳細カラー シェード ピッカーの文字列をスタイルおよび `RegisterResources` メソッドで設定するには、以下の変更がすべての `xamColorPicker` テーマに適用されました。`AdvancedColorShadePicker` スタイルの `TemplateBinding` が以下のプロパティで `Binding` に変更しました - *RedCaption*、*GreenCaption*、*BlueCaption*、*HueCaption*、*SaturationCaption*、*LightnessCaption*、*CyanCaption*、*MagentaCaption*、*YellowCaption*、*BlackCaption*、*AlphaCaption*、*OKCaption* および *CancelCaption*。この変更はコントロールのすべてのテーマに影響し、generic.xaml ファイルで定義される既定のコントロール スタイルにも影響します。
+
+xamColorPicker コントロールのカスタム テーマを作成する場合、`AdvancedColorShadePicker` スタイルで上記プロパティの `TemplateBinding` を `Binding` に変換する必要があります。
+
+[[_Ref007]]
+== xamDiagram
+
+[[_Ref008]]
+==== メソッド名の変更
+
+以下のメソッド名が変更されました。
+
+[options="header", cols="a,a,a"]
+|====
+|クラス|古いメソッド名|新しいメソッド名
+|DiagramNode|CloneDiagramItemPropetries|CloneDiagramItemProperties
+|DiagramConnection|CloneDiagramConnectionPropetries|CloneDiagramConnectionProperties
+|====
+
+[[_Ref009]]
+==== xamDiagram の項目のドロップまたはコピー/貼り付け時の新しい動作
+
+17.1 バージョン以後、項目をツールボックスからドロップまたはコピーして貼り付けたときに DiagramNode および DiagramConnection の Content プロパティがコピーされます。
+
+*関連トピック:* +
+link:xamdiagram-copy-when-drop-from-toolbox.html[ツールボックスから項目をドロップ (xamDiagram)]
+
+[[_Ref005]]
+== xamEditors
+
+[[_Ref006]]
+==== スピン折り返しのデフォルト動作の変更
+
+これまでは、xamEditor コントロールのデフォルトのスピン折り返し動作は現在のセクションのみを折り返しました (たとえば、12 値がある月セクションをスピンアップすると、月値は 1 になりますが、年セクションには影響しませんでした)。
+
+今後、デフォルトのスピン折り返し動作は関連するセクションにも影響します (たとえば、12 値がある月セクションをスピンアップすると、月値は 1 になり、年セクションは 1 で増加します)。
+
+.注:
+[NOTE]
+====
+以前のスピン折り返し動作を実装するには、関連エディターの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor~spinwrapbehavior.html[SpinWrapBehavior] プロパティを link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.spinwrapbehavior.html[WrapCurrentSection] に設定します。
+====
+
+[[_Ref010]]
+== xamLinearGauge
+
+[[_Ref011]]
+==== デフォルト設定の変更
+|====
+|プロパティ|以前の値|新しい値
+
+|RangeBrushes
+|----
+|範囲の新しいデフォルト ブラシ
+
+|ScaleInnerExtent
+|double.NaN
+|0.05
+
+|ScaleOuterExtent
+|double.NaN
+|0.65
+
+|====
+
+
+[[_Ref012]]
+== xamRadialGauge
+
+[[_Ref013]]
+==== デフォルト設定の変更
+
+|====
+|プロパティ|以前の値|新しい値
+
+|RangeBrushes
+|----
+|範囲の新しいデフォルト ブラシ
+
+|NeedleShape
+|Needle
+|Trapezoid
+
+|====

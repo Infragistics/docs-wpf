@@ -1,0 +1,187 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-conf-templateselector",
+    "tags": ["Editing","How Do I","Templating"],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "dfca43ec-6d9b-4873-a2c1-16c694912895",  
+    "buildFlags": [],
+    "createdOn": "2016-06-22T06:25:00.8638134Z"
+}
+|metadata|
+////
+
+= エディター定義のデータ テンプレート セレクターの構成 (xamPropertyGrid)
+
+== 目的
+
+このトピックは、エディター定義で編集テンプレートを割り当てるためのカスタム ロジックを作成する方法を紹介します。
+
+== 前提条件
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-features-overview.html[機能の概要 (xamPropertyGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xampropertygrid-visual-elements.html[視覚要素 (xamPropertyGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+| link:xampropertygrid-conf-editors.html[エディター定義の構成 (xamPropertyGrid)]
+|このトピックでは、プロパティの値の編集に使用されるエディターをカスタマイズする方法を説明します。
+
+|====
+
+== このトピックの構成
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_RefLink01, 概要 >>
+* <<_RefLink02, テンプレート セレクターの提供 >>
+* <<_RefLink03, テンプレート セレクターの例 >>
+* <<_RefLink04, テンプレート セレクターをコードで再評価 >>
+* <<_RefLink05, 関連コンテンツ >>
+
+[[_RefLink01]]
+== 概要
+
+型、カテゴリ、または名前に基づいてカスタム エディターを指定することができない場合があります。その代わり、エディター定義の link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition~templateselector.html[TemplateSelector] プロパティを使用して、 link:https://msdn.microsoft.com/ja-jp/library/system.windows.controls.datatemplateselector(v=vs.110).aspx[DataTemplateSelector] クラスから拡張するオブジェクトを提供します。テンプレート セレクターがエディター定義に提供された場合、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition~edittemplate.html[EditTemplate] プロパティおよび link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygrideditordefinition~readonlytemplate.html[ReadOnlyTemplate] プロパティは無視され、解決されたテンプレートはテンプレート セレクターの link:https://msdn.microsoft.com/ja-jp/library/system.windows.controls.datatemplateselector.selecttemplate(v=vs.110).aspx[SelectTemplate] メソッドから返されます。また、テンプレート セレクターは編集テンプレートおよび読み取り専用テンプレートへのアクセスがあり、内部ロジックに基づいて任意のデータ テンプレートを返します。
+
+[[_RefLink02]]
+== テンプレート セレクターの提供
+
+カスタム テンプレート セレクターが `DataTemplateSelector` クラスから拡張し、`SelectTemplate` メソッドを実装する必要があります。このメソッドは、以下の引数があります。
+
+* `item` - 以下のオブジェクトへのアクセスを提供する link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridtemplateselectorcontext.html[PropertyGridTemplateSelectorContext] 型の項目
+** link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridtemplateselectorcontext~edittemplate.html[EditTemplate] (指定される場合)
+** link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridtemplateselectorcontext~readonlytemplate.html[ReadOnlyTemplate] (指定される場合)
+** link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridtemplateselectorcontext~propertyitem.html[PropertyItem]
+
+* `container` - link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid.html[_xamPropertyGrid_] コントロールへの参照
+
+`xamPropertyGrid` コントロールおよびコントロールはテンプレートを要求しているプロパティ項目へのアクセスがあるため、適切なテンプレートを提供できます。また、エディター定義で指定された編集テンプレートおよび読み取り専用テンプレートへのアクセスがあります。そのテンプレートを返すか、カスタム ロジックに基づくデータ テンプレートを返します。
+
+テンプレート セレクターが `null` を返す場合、`xamPropertyGrid` はプロパティのデフォルトの定義済みエディターを使用します。
+
+[[_RefLink03]]
+== テンプレート セレクターの例
+
+以下の例は 2 つのデータ テンプレートを作成する方法を紹介します。最初のデータ テンプレート ("SpinIntEditor" のキー) は Int32 型のプロパティで使用されます。第 2 のデータ テンプレート ("SliderIntEditor" のキー) はテンプレート セレクターで使用され、「Level」の名前を持つプロパティのみで返されて設定されます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Page
+  …
+  xmlns:ig="http://schemas.infragistics.com/xaml"
+  …>
+  <Page.Resources>
+    <ResourceDictionary>
+      <DataTemplate x:Key="SpinIntEditor">
+        <igEditors:XamNumericEditor Value="{Binding Path=Value}" ValueType="{x:Type sys:Int32}"
+          SpinButtonDisplayMode="Always" Theme="IGTheme" />
+      </DataTemplate>
+      <DataTemplate x:Key="SliderIntEditor">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <TextBlock Grid.Column="0" MinWidth="20" Margin="2"
+            Text="{Binding Path=Value, Converter={StaticResource IntDoubleConv}, Mode=OneWay}" />
+          <Slider Grid.Column="1" Minimum="0" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"
+            Value="{Binding Path=Value, Converter={StaticResource IntDoubleConv}}" />
+        </Grid>
+      </DataTemplate>
+      <local:CustomDataTemplateSelector x:Key="CustomSelector" />
+    </ResourceDictionary>
+  </Page.Resources>
+  <Grid>
+    <ig:XamPropertyGrid>
+      <ig:XamPropertyGrid.EditorDefinitions>
+        <ig:PropertyGridEditorDefinition
+          TargetType="{x:Type sys:Int32}"
+          EditTemplate="{StaticResource SpinIntEditor}"
+          TemplateSelector="{StaticResource CustomSelector}">
+        </ig:PropertyGridEditorDefinition>
+      </ig:XamPropertyGrid.EditorDefinitions>
+    </ig:XamPropertyGrid>
+  </Grid>
+</Page>
+----
+
+以下のコード例は、プロパティ名に基づいてデータ テンプレートを割り当てるテンプレート セレクターの実装を紹介します。この機能はプロパティ型に基づいてコントロールによって設定されるテンプレートをオーバーライドします。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class CustomDataTemplateSelector
+  Inherits DataTemplateSelector
+  Public Overrides Function SelectTemplate(item As Object, container _
+ As DependencyObject) As DataTemplate
+    Dim context As PropertyGridTemplateSelectorContext = _
+      TryCast(item, PropertyGridTemplateSelectorContext)
+    If context.PropertyItem.PropertyName.Equals("Level") Then
+      Dim propertyGrid As XamPropertyGrid = TryCast(container, XamPropertyGrid)
+      Dim resource = propertyGrid.TryFindResource("SliderIntEditor")
+      Return DirectCast(resource, DataTemplate)
+    End If
+    Return context.EditTemplate
+  End Function
+End Class
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class CustomDataTemplateSelector : DataTemplateSelector
+{
+  public override DataTemplate SelectTemplate(object item, DependencyObject container)
+  {
+    PropertyGridTemplateSelectorContext context = item as PropertyGridTemplateSelectorContext;
+    if (context.PropertyItem.PropertyName.Equals("Level"))
+    {
+      XamPropertyGrid propertyGrid = container as XamPropertyGrid;
+      var resource = propertyGrid.TryFindResource("SliderIntEditor");
+      return (DataTemplate)resource;
+    }
+    return context.EditTemplate;
+  }
+}
+----
+
+[[_RefLink04]]
+== テンプレート セレクターをコードで再評価
+
+テンプレート セレクターの値をコードで再評価する場合があります。たとえば、テンプレート セレクターのコードがその他のプロパティの値に基づいて別のデータ テンプレートを返す場合、 link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridpropertyitem.html[PropertyGridPropertyItem] の link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.propertygridpropertyitem~requeryeditordefinition.html[RequeryEditorDefinition] メソッドを呼び出して再評価できます。
+
+注:
+
+[NOTE]
+====
+プロパティの値が変更されたことを通知するには、`xamPropertyGrid` の link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~propertyitemvaluechanged_ev.html[PropertyItemValueChanged] イベントにイベント ハンドラーをアタッチします。特定のプロパティに関連する `PropertyGridPropertyItem` を検索するには、既存の `xamPropertyGrid` の link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid~findpropertyitem.html[FindPropertyItem] メソッドを呼び出します。
+====
+
+[[_RefLink05]]
+== 関連コンテンツ
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-conf-visuals.html[表示外観の構成 (xamPropertyGrid)]
+|このトピックでは、一般的なコントロール オプションを構成する方法を説明します。
+
+| link:xampropertygrid-conf-properties-filtering.html[プロパティ リストのフィルタリング (xamPropertyGrid)]
+|このトピックでは、コントロールのプロパティ リストのフィルタリングを構成する方法を説明します。
+
+| link:xampropertygrid-conf-properties-sorting.html[プロパティ リストの並べ替え (xamPropertyGrid)]
+|このトピックでは、プロパティ リストのカスタム並べ替えのロジックを設定する方法を紹介します。
+
+|====

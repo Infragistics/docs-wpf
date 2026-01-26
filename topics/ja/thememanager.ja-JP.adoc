@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager",
+    "tags": ["Getting Started","Theming"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "18e36297-0521-4f9f-a06c-76327e0eadcd",  
+    "buildFlags": [],
+    "createdOn": "2014-09-03T11:09:49.0703315Z"
+}
+|metadata|
+////
+
+= Infragistics ThemeManager
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションには、WPF の  _Infragistics ThemeManager_™ についてのトピックが含まれています。
+
+image::images/Infragistics_Theme_Manager_1.png[]
+
+image::images/Infragistics_Theme_Manager_2.png[]
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-overview.html[機能の概要]
+|このトピックでは、 _Infragistics ThemeManager_ およびその機能の概要を説明します。
+
+| link:thememanager-working-with-thememanager.html[ThemeManager の操作]
+|このグループのトピックでは、 _Infragistics ThemeManager_ のさまざまな機能を構成する方法を説明します。
+
+| link:thememanager-known-issues-and-limitations.html[既知の問題と制限]
+|このトピックでは、 _Infragistics ThemeManager_ の既知の問題と制限事項について説明します。
+
+| link:thememanager-api-reference.html[API リファレンス]
+|このトピックでは、 _Infragistics ThemeManager_ に関連したキー クラスに関する参考情報を提供します。
+
+|====

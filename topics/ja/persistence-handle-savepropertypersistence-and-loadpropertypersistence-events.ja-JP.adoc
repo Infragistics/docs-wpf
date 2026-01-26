@@ -1,0 +1,120 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistence-handle-savepropertypersistence-and-loadpropertypersistence-events",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["How Do I","Persistence"],
+    "guid": "{6852F27F-CF64-46F0-91C5-374D280EA52D}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.5970307Z"
+}
+|metadata|
+////
+
+= SavePropertyPersistence イベントと LoadPropertyPersistence イベントの処理
+
+保存およびロードされるすべてのプロパティごとに link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceevents~savepropertypersistence_ev.html[SavePropertyPersistence] イベントと link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistenceevents~loadpropertypersistence_ev.html[LoadPropertyPersistence]イベントが発生します。これらのイベントの間に各プロパティを検証し、カスタム ロジックを実行する機会が得られます。
+
+SavePropertyPersistence イベント引数 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.savepropertypersistenceeventargs.html[SavePropertyPersistenceEventArgs] には、保存されるプロパティについての情報が含まれます。SavePropertyPersistenceEventArgs オブジェクトの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.savepropertypersistenceeventargs~cancel.html[Cancel] プロパティが True に設定されている場合、コントロールのプロパティの保存を避けることができます。
+
+LoadPropertyPersistence イベント引数 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.loadpropertypersistenceeventargs.html[LoadPropertyPersistenceEventArgs] には、ロードされるプロパティについての情報が含まれます。LoadPropertyPersistenceEventArgs オブジェクトの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.loadpropertypersistenceeventargs~handled.html[Handled] プロパティが True に設定されている場合、コントロールのプロパティのロードを避けることができます。
+
+以下の例では、 link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings.html[PersistenceSettings] オブジェクトのイベントを登録および使用する方法を示します。
+
+プロパティを検証し、プロパティが特定の基準を満たさない場合にはキャンセル、保存またはロードします。保存プロセスの間、コントロールの Width プロパティの保存をキャンセルします。ロードの間、Height プロパティ値をチェックします。
+
+InitializeComponent メソッドの後でページ コンストラクターに以下のコードを追加します。
+
+*Visual Basic の場合:*
+
+----
+Private ps As New PersistenceSettings()
+Public Sub New()
+    InitializeComponent()
+    ' イベントを登録します
+    AddHandler ps.Events.SavePropertyPersistence, AddressOf _SavePropertyPersistence
+    AddHandler ps.Events.LoadPropertyPersistence, AddressOf _LoadPropertyPersistence
+End Sub
+----
+
+*C# の場合:*
+
+----
+PersistenceSettings ps = new PersistenceSettings();
+public MainPage()
+{
+    InitializeComponent();
+    // イベントを登録します
+    ps.Events.SavePropertyPersistence +=
+		new EventHandler<SavePropertyPersistenceEventArgs>(_SavePropertyPersistence);
+    ps.Events.LoadPropertyPersistence +=
+		new EventHandler<LoadPropertyPersistenceEventArgs>(_LoadPropertyPersistence); 
+}
+----
+
+* イベント ハンドラーを追加します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub _SavePropertyPersistence(ByVal sender As Object, ByVal e As SavePropertyPersistenceEventArgs)
+    ' Width プロパティを識別します  
+    If e.PropertyPath.Equals("Width") Then
+        ' Width プロパティの保存をキャンセルします 
+        e.Cancel = True
+    End If
+End Sub
+Private Sub _LoadPropertyPersistence(ByVal sender As Object, ByVal e As LoadPropertyPersistenceEventArgs)
+    ' Height プロパティを識別して、高さが 200 を超える場合は Load をキャンセルします
+    If e.PropertyPath.Equals("Width") AndAlso Convert.ToInt32(e.Value) > 200 Then
+        ' このプロパティはロードされません
+        e.Handled = True
+     End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void _SavePropertyPersistence(object sender, SavePropertyPersistenceEventArgs e)
+{
+    // Width プロパティを識別します  
+    if (e.PropertyPath.Equals("Width"))
+    {
+        // Width プロパティの保存をキャンセルします 
+        e.Cancel = true;
+    }
+} 
+private void _LoadPropertyPersistence(object sender, LoadPropertyPersistenceEventArgs e)
+{
+    // Height プロパティを識別して、高さが 200 を超える場合は Load をキャンセルします
+    if (e.PropertyPath.Equals("Width") && Convert.ToInt32(e.Value) > 200)
+    {
+        // このプロパティはロードされません
+        e.Handled = true;
+    }
+}
+----
+
+== 関連トピック
+
+link:persistence-persistence-settings.html[保持の設定]
+
+link:persistence-exclude-specific-control-properties.html[特定のコントロールのプロパティを除外]
+
+ifdef::sl,win-rt,win-phone[]
+link:3ff664bc-2a4b-459d-8184-4ddca70ed809[識別子]
+endif::sl,win-rt,win-phone[]
+
+link:persistence-persistence-groups.html[保持グループ]
+
+link:persistence-persisting-specific-control-properties.html[特定のコントロールのプロパティを保持]
+
+ifdef::win-phone[]
+link:persistence-using-propertynamepersistenceinfo-typeconverter-property.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+endif::win-phone[]
+
+ifdef::sl,wpf,win-rt[]
+link:persistence-using-typeconverte.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+endif::sl,wpf,win-rt[]

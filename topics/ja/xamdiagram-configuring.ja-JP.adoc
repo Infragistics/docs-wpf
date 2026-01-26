@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring",
+    "tags": ["Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "34097a77-ce33-47ed-ad12-9c623a774eec",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:18:01.091528Z"
+}
+|metadata|
+////
+
+= xamDiagram の構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamDiagram_™ コントロールおよびその機能を構成する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuration-overview.html[ _xamDiagram_ 構成の概要]
+|このトピックでは、 _xamDiagram_ コントロールの構成可能な要素の概要を説明します。
+
+| link:xamdiagram-configuring-the-diagram-items.html[ダイアグラム項目の構成 ( _xamDiagram_ )]
+|このグループのトピックでは、 _xamDiagram_ コントロールの項目を構成する方法を説明します。
+
+| link:xamdiagram-configuring-user-interactions.html[ユーザー インタラクションの構成 ( _xamDiagram_ )]
+|このグループのトピックでは、 _xamDiagram_ コントロールでユーザー インタラクションを構成する方法を説明します。
+
+| link:xamdiagram-configuring-the-layout.html[レイアウトの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ のレイアウトを構成する方法、およびカスタム レイアウトのスキームを作成する方法を説明します。
+
+| link:xamdiagram-configuring-the-visible-portion.html[ダイアグラムの表示部分の構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールの表示部分を構成する方法を説明します。
+
+|====

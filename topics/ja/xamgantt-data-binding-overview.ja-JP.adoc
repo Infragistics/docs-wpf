@@ -1,0 +1,67 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-data-binding-overview",
+    "controlName": ["xamGantt"],
+    "tags": ["Data Binding","How Do I"],
+    "guid": "929c2930-35f1-4265-bccd-93f7e9e92013",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.2101592Z"
+}
+|metadata|
+////
+
+= データ バインディングの概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、  _xamGantt™_   コントロールのデータ バインディングの概要を説明します。
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref334569015, はじめに >>
+* <<_Ref334083448, データ ソースにバインドする >>
+
+[[_Ref334083448]]
+== はじめに
+
+=== データ バインディングの概要
+
+_xamGantt_   コントロールは、データ バインディングの 2 つのオプションを提供します。
+
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.xamgantt_members.html[XamGantt] の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcontrolbase~project.html[Project] プロパティを通して Project インスタンスに設定
+* link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedproject_members.html[ListBackedProject] およびその link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedproject~taskitemssource.html[TaskItemsSource] プロパティを通して任意のカスタム タスク コレクションに設定
+
+[[_Ref334083448]]
+
+== データ ソースにバインドする
+
+=== サポートされるデータ ソースの要約
+
+_xamGantt_   コントロールは以下のデータ ソースをサポートしています。
+
+[options="header", cols="a,a"]
+|====
+|データ ソース|バインディング
+
+|プロジェクト
+|_xamGantt_ コントロールを、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] インスタンスにバインドできます。 
+
+詳細については、 link:xamgantt-binding-to-data-using-project.html[プロジェクトを使用したデータへのバインディング]を参照してください。
+
+|カスタム タスクのフラット コレクション
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedproject_members.html[ListBackedProject] クラスを使って、 _xamGantt_ コントロールをカスタム タスクのフラット データ コレクションにバインドできます。 
+
+詳細については、 link:xamgantt-binding-arbitrary-tasks-collection-listbackedproject.html[ListBackedProject を使用した任意のタスク コレクションへのバインディング]を参照してください。
+
+|MS Project 2010 XML ファイル
+|Project クラス link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~loadfromprojectxml.html[LoadFromProjectXml] メソッドを使って、 _xamGantt_ コントロールを MS Project 2010 XML ファイルからのデータにバインドできます。 
+
+詳細については、 link:xamgantt-loading-project-plan-from-ms-project-xml-file.html[MS Project XML ファイルからのプロジェクト計画の読み込み]トピックを参照してください。
+
+|====

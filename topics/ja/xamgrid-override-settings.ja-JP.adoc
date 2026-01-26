@@ -1,0 +1,93 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-override-settings",
+    "controlName": ["xamGrid"],
+    "tags": ["Filtering","Grids","Grouping","Paging","Sorting"],
+    "guid": "{7F1A7DDA-555E-43B4-B8D2-1A3FBBB66909}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.9351987Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= Override の設定
+
+並べ替えやフィルタリング設定などの xamGrid の設定は、コントロールの様々なレベルでカスタマイズできます。たとえば、コントロール全体で並べ替えを有効にできますが、特定の列で並べ替えを選択的に無効にできます。現在のレイアウト レベルまたは列レベルの設定を使用することによって、xamGrid の設定をオーバーライドできます。
+
+すべての link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnlayout.html[ColumnLayout] オブジェクトは、コントロール レベルで設定をオーバーライドするプロパティを公開します。たとえば、ColumnLayout オブジェクトには、xamGrid レベルで link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettings.html[EditingSettings] オブジェクトに設定されたオプションをオーバーライドする link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editingsettingsoverride.html[EditingSettingOverride] タイプの EditingSettings プロパティが含まれます。
+
+各列には、xamGrid または ColumnLayout 設定をオーバーライドするためのプロパティが含まれます。プロパティを以下に列挙します。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~isfixable.html[IsFixable]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~isgroupable.html[IsGroupable]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~ismovable.html[IsMovable]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.editablecolumn~isreadonly.html[IsReadOnly]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~isresizable.html[IsResizable]
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~issortable.html[IsSortable]
+
+以下のコードは、子行のみの編集を許可する方法、そして子データの固有の列で編集を制限する方法を示します。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="xamGrid1" AutoGenerateColumns="False">
+   <!-- 列はデフォルトでは ReadOnly です -->
+   <ig:XamGrid.Columns>
+      <ig:TextColumn Key="CategoryName" />
+      <ig:TextColumn Key="Description" />
+   </ig:XamGrid.Columns>
+   <ig:XamGrid.ColumnLayouts>
+   <!-- 子列 -->
+      <ig:ColumnLayout Key="Products">
+         <!-- 子列で編集を許可します -->
+         <ig:ColumnLayout.EditingSettings>
+            <ig:EditingSettingsOverride AllowEditing="Row" />
+         </ig:ColumnLayout.EditingSettings>
+         <ig:ColumnLayout.Columns>
+            <!-- 列のひとつで編集を制限します -->
+            <ig:TextColumn Key="ProductName" IsReadOnly="True"/>
+            <ig:TextColumn Key="QuantityPerUnit" />
+            <ig:TextColumn Key="UnitPrice" />
+         </ig:ColumnLayout.Columns>
+      </ig:ColumnLayout>
+   </ig:XamGrid.ColumnLayouts>
+</ig:XamGrid>
+----
+
+endif::wpf[]
+
+*Visual Basic の場合:*
+
+----
+Me.xamGrid1.ColumnLayouts(0).EditingSettings.AllowEditing = Infragistics.Controls.Grids.EditingType.Row
+Dim productName As EditableColumn = TryCast(Me.xamGrid1.Columns.ColumnLayouts("Products").Columns("ProductName"), EditableColumn)
+productName.IsReadOnly = True
+----
+
+*C# の場合:*
+
+----
+this.xamGrid1.ColumnLayouts[0].EditingSettings.AllowEditing = Infragistics.Controls.Grids.EditingType.Row;
+EditableColumn productName = this.xamGrid1.Columns.ColumnLayouts["Products"].Columns["ProductName"] as EditableColumn;
+productName.IsReadOnly = true;
+----
+
+== 関連トピック
+
+link:xamgrid-fixed-columns.html[固定列]
+
+link:xamgrid-column-resizing.html[列サイズの変更]
+
+link:xamgrid-groupby.html[GroupBy]
+
+link:xamgrid-column-moving.html[列移動]
+
+link:xamgrid-editing-data.html[データの編集]
+
+link:xamgrid-sorting.html[並べ替え]

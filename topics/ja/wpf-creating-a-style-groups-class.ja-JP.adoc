@@ -1,0 +1,169 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-creating-a-style-groups-class",
+    "controlName": [],
+    "tags": ["Styling"],
+    "guid": "{120D7224-AF47-4241-A9C1-3D327A8D1ED4}",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-01-30T20:33:32.0490388Z"
+}
+|metadata|
+////
+
+= スタイル グループのクラスの作成
+
+このトピックは複数部から構成される詳細なガイドの第 2 部です。Microsoft® Visual Studio® 2008 プロジェクトの設定についての詳細は、 link:wpf-creating-and-setting-up-a-themepack-project.html[テーマパック プロジェクトの作成と設定]を参照してください。このトピックでは、スタイル グループのクラス ファイルを作成します。
+
+[NOTE]
+====
+*注:* 各スタイル グループのクラス ファイルは、コンテンツとレイアウトが似ています。したがって、この複数部から構成される詳細なガイドは、DataPresenter のスタイル グループを検討します。
+====
+
+[start=1]
+. "MyThemePack" プロジェクトで、ResourceSets の下にある DataPresenter フォルダを右クリックします。ポップアップ メニューで、[追加] をクリックし、次に [クラス] をクリックします。
+[start=2]
+. [新しい項目の追加] ダイアログ ボックスで、クラス名を "DataPresenter_ResourceSets" に設定し、[追加] をクリックします。
+
+[NOTE]
+====
+*注:* " _StyleGroupName_ _ResourceSets" という以下の規則を使用して、クラス ファイル名を指定することを推奨します。
+====
+
+[start=3]
+. クラス (クラス ファイルではなく) の名前を、"DataPresenter_ResourceSets" から "DataPresenter" に変更します。class キーワードの前に public (Visual Basic では Public) キーワードを配置します。
+[start=4]
+. クラスの名前空間を、"MyThemePack.ResourceSets.DataPresenter" から "MyThemePack.ResourceSets.OrangePeel" に変更します。
+[start=5]
+. コードの記述を開始する前にクラス ファイルの一番上に using/Imports のディレクティブを配置します。そうすれば、メンバは完全に記述された名前を常に入力する必要がなくなります。
+
+*Visual Basic の場合:*
+
+----
+Imports System.ComponentModel
+Imports System.Reflection
+Imports Infragistics.Windows
+Imports Infragistics.Windows.Themes
+----
+
+*C# の場合:*
+
+----
+using System.ComponentModel;
+using System.Reflection;
+using Infragistics.Windows;
+using Infragistics.Windows.Themes;
+----
+
+[start=6]
+. DataPresenter クラスは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.themes.datapresenterresourceset`1.html[DataPresenterResourceSet] から派生します。派生する link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourceset.html[ResourceSet] は、スタイル グループに依存します (つまり Editors のための ResourceSet を作成している場合には、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.themes.editorsresourceset`1.html[EditorsResourceSet] から派生します)。
+
+*Visual Basic の場合:*
+
+----
+Public Class DataPresenter
+        Inherits DataPresenterResourceSet(Of Locator)
+        ...
+End Class
+----
+
+*C# の場合:*
+
+----
+public class DataPresenter : DataPresenterResourceSet<Locator> 
+{
+        ... 
+}
+----
+
+[start=7]
+. DataPresenter クラスのインスタンスである静的な変数を作成し、静的なインスタンスにアクセスする静的なメソッドを提供します。これによって、このスタイルの DataPresenterResourceSet のインスタンスが常にひとつしかないことが保証されます。
+
+*Visual Basic の場合:*
+
+----
+...
+        Private Shared g_Instance As DataPresenter
+        Public Shared ReadOnly Property Instance() As DataPresenter
+                Get
+                        If g_Instance Is Nothing Then
+                                g_Instance = New DataPresenter()
+                        End If
+                        Return g_Instance
+                End Get
+        End Property
+...
+----
+
+*C# の場合:*
+
+----
+...
+        private static DataPresenter g_Instance;
+        public static DataPresenter Instance
+        {
+                get
+                {
+                        if (g_Instance == null)
+                                g_Instance = new DataPresenter();
+                        return g_Instance;
+                }
+}
+...
+----
+
+[start=8]
+. スタイルのグループのクラス ファイルには Locator クラスが含まれる必要があります。Locator クラスは、 link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcesetlocator.html[ResourceSetLocator] から派生し、以下のような主要なプロパティを定義します。
+
+** リソース セットを含む link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcesetlocator~assembly.html[Assembly] へのアクセス
+** link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcesetlocator~theme.html[Theme] またはスタイルの名前
+** link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcesetlocator~grouping.html[Grouping]、これはスタイル グループ固有
+** アセンブリ内のスタイル グループの埋め込みの ResourceDictionary への link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcesetlocator~resourcepath.html[ResourcePath]
+
+*Visual Basic の場合:*
+
+----
+...
+        Public Class Locator
+                Inherits ResourceSetLocator
+                Public Overrides ReadOnly Property [Assembly]() As [Assembly]
+                        Get
+                                Return Me.GetType().Assembly
+                        End Get
+                End Property
+                Public Overrides ReadOnly Property Theme() As String
+                        Get
+                                Return "OrangePeel"
+                        End Get
+                End Property
+                Public Overrides ReadOnly Property Grouping() As String
+                        Get
+                                Return DataPresenterGeneric.Instance.Grouping
+                        End Get
+                End Property
+                Public Overrides ReadOnly Property ResourcePath() As String
+                        Get
+                                Return "ResourceSets\DataPresenter\DataPresenter.xaml"
+                        End Get
+                End Property
+        End Class
+...
+----
+
+*C# の場合:*
+
+----
+...
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class Locator : ResourceSetLocator
+        {
+                public override Assembly Assembly { get { return this.GetType().Assembly; } }
+                public override string Theme { get { return "OrangePeel"; } }
+                public override string Grouping { get { return DataPresenterGeneric.Instance.Grouping; } }
+                public override string ResourcePath { get { return @"ResourceSets\DataPresenter\DataPresenter.xaml"; } }
+        }
+...
+----
+
+ResourcePath が設定されるファイルは、 link:wpf-creating-a-style-groups-resourcedictionary-files.html[スタイル グループの ResourceDictionary ファイルの作成]で作成されます。

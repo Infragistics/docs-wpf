@@ -1,0 +1,187 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtabcontrol-tabs-dragging-and-reordering",
+    "tags": ["Editing","Events","Layouts"],
+    "controlName": ["xamTabControl"],
+    "guid": "2d6b37f7-d233-461c-9288-e2dd182bfb9b",  
+    "buildFlags": [],
+    "createdOn": "2016-01-27T09:08:03.5299997Z"
+}
+|metadata|
+////
+
+= タブのドラッグおよび順序変更 (xamTabControl)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、タブの順序を変更するためにタブのドラッグ機能を構成する方法を紹介します。
+
+=== 前提条件
+
+本トピックの理解を深めるために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtabcontrol-about-xamtabcontrol.html[xamTabControl について]
+|このセクションでは、 _xamTabControl_ の機能をより深く理解するのに役立つ情報を提供します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref441475022, 概要 >>
+* <<_Ref441479516, タブ ドラッグの構成の概要 >>
+* <<_Ref441477017, 関連イベントの処理 >>
+* <<_Ref441479555, 関連コンテンツ >>
+
+[[_Ref441475022]]
+== 概要
+
+=== ドラッグと並べ替えの概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol.html[ _xamTabControl_  ] は、ユーザーがタブを新しい位置へドラッグして並べ替えることができます。この機能はデフォルトで無効化されています。以下の画像は、"References" と "Mailing" タブ間でページ レイアウト タブを新しい位置へ移動する処理を示します。
+
+image::images/xamTabControl_DnD.png[]
+
+[[_Ref441479516]]
+== タブ ドラッグの構成の概要
+
+=== タブ ドラッグの構成の概要
+
+タブ ドラッグ機能は 2 つのタブ ドラッグ モードをサポートします。
+
+*  *Deferred*  – タブをドラッグ中に新しい位置がフローティング表示と 2 つの挿入矢印で示されます。
+*  *Immediate*  – タブをドラッグ中にすべてのタブ領域が常に並び替えられて新しいタブ位置を可視化します。
+
+注:
+
+[NOTE]
+====
+
+タブのドラッグ モードを  *Immediate*  に設定した場合、タブが複数行に描画される場合は  *Deferred*  に解決されます。
+====
+
+注:
+
+[NOTE]
+====
+
+`ItemsSource` プロパティを読み取り専用コレクションに設定するとタブはドラッグできません。
+====
+
+=== タブ ドラッグの構成の概要表
+
+以下の表は、 _xamTabControl_   タブ ドラッグ機能の構成可能な要素を簡単に説明し、それらを構成するプロパティとイベントにマッピングします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ/イベント
+
+|タグ ドラッグの有効化/無効化
+|タブ ドラッグを有効にするには、このプロパティの値を `TabDragMode.None` ではなく link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.tabdragmode.html[TabDragMode] タイプに設定します。
+| link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol~tabdragmode.html[TabDragMode]
+
+|ドラッグ モードの構成
+|このプロパティを `TabDragMode.Deferred` または `TabDragMode.Immediate` に設定します。
+|`TabDragMode`
+
+|<<_Ref441477017,関連イベントの処理>>
+|ユーザーが特定のドラッグ操作を行った際に、これらのイベントを使用して通知を取得できます。
+|
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol~tabdragstarted_ev.html[TabDragStarted] 
+
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol~tabdragging_ev.html[TabDragging] 
+
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol~tabdragcompleted_ev.html[TabDragComplete] 
+
+|====
+
+[[_Ref441477017]]
+== 関連イベントの処理
+
+=== 概要
+
+ユーザーがさまざまな操作を行ったときにハンドラーを以下のイベントにアタッチし、通知を取得できます。
+
+=== プロパティ設定
+
+以下の表は、ユーザー操作を発生したイベントへマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|このイベントの使用:|イベント引数オブジェクトの機能:
+
+|タブ ドラッグが開始されたときに通知を受け取る
+|`TabDragStarted`
+|
+* ドラッグされた link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.events.tabitemeventargs~tab.html[Tab] を取得します。 
+
+* 関連する link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.events.tabitemeventargs~item.html[Item] を基本データソースから取得します。 
+
+|タブ ドラッグ中の各マウス移動毎に通知を取得
+|`TabDragging`
+|
+* ドラッグ イベントをキャンセルします。 
+
+* 可能性のある link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.events.tabdraggingeventargs~droptargettab.html[DropTargetTab] を取得します。 
+
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.events.tabdraggingeventargs~droplocation.html[DropLocation] を取得します (ドロップ ターゲット タブに相対)。 
+
+* ドラッグされた `Tab` を取得します。 
+
+* 関連する `Item` を基本データソースから取得します。 
+
+|タブ ドラッグが完了したときに通知を受け取る
+|`TabDragComplete`
+|
+* ドラッグされた `Tab` を取得します。 
+
+* 関連する `Item` を基本データソースから取得します。 
+
+|====
+
+注:
+
+[NOTE]
+====
+イベント引数オブジェクトの `Item` プロパティは、コントロールにバインドされた基本データ ソースの項目を含みます。タブを XAML で定義した場合、`Item` プロパティが `null` になります。
+====
+
+[[_Ref441479555]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックに関連する追加情報については、以下のトピックを参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtabcontrol-add-a-tab-to-xamtabcontrol.html[タブを xamTabControl に追加する]
+|このトピックは、タブを xamTabControl に追加する方法を説明します。
+
+| link:xamtabcontrol-add-content-to-a-tab.html[タブをコンテンツに追加する]
+|このトピックでは、xamTabControl でコンテンツをタブに追加する方法について説明します。
+
+| link:xamtabcontrol-close-a-tab.html[タブを閉じる]
+|このトピックでは、xamTabControl でタブを閉じる方法について説明します。
+
+| link:xamtabcontrol-enable-multiple-tab-rows.html[複数タブ行を有効にする]
+|このトピックは、タブ レイアウトを変更する方法と複数行を作成する方法について説明します。
+
+| link:xamtabcontrol-removing-a-closed-tab.html[閉じたタブを削除する]
+|このトピックは、TabItemEx オブジェクトの Closed イベントを処理して TabItemEx オブジェクトを xamTabControl から削除する方法について説明します。
+
+| link:xamtabcontrol-select-a-tab.html[タブの選択]
+|このトピックでは、XAML とコードビハインドでタブを選択する方法について説明します。
+
+|====

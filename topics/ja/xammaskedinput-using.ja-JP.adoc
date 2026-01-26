@@ -1,0 +1,282 @@
+﻿////
+|metadata|
+{
+    "name": "xammaskedinput-using",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "87b6f10f-36c1-4056-9886-edae30fdfa50",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.9382187Z"
+}
+|metadata|
+////
+
+{XamMaskedInputHeader}
+
+= xamMaskedInput の使用
+
+== トピックの概要
+
+== 目的
+
+このトピックでは、xamMaskedInput コントロールをアプリケーションに追加し、その有益なプロパティを使用する方法について説明します。
+
+== 必要な背景
+
+まず以下のトピックを読む必要があります。
+
+* link:xammaskedinput-about.html[xamMaskedInput について]
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+== xamMaskedInput の構成の概要
+
+== コントロールの構成チャート
+
+以下の表は、xamMaskedInput コントロールの構成可能ないくつかの動作を示しています。
+
+[cols="a,a,a"]
+|====
+|*構成可能な動作*
+|*構成の詳細*
+|*構成プロパティ*
+
+|xamMaskedInput をアプリケーションに追加
+|xamMaskedInput コントロールをアプリケーションに追加するために必要な手順
+|なし
+
+|xamMaskedInput を修正
+|コントロールの主なプロパティの一部を構成します。
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~clipmode.html[ClipMode] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~nulltext.html[NullText] 
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~promptchar.html[PromptChar]
+
+link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~isundoenabled.html[IsUndoEnabled]
+
+|====
+
+== xamMaskedInput をアプリケーションに追加
+
+[start=1]
+. *Infragistics 名前空間を追加します。*
+
+.. *必要な参照を追加します。*
+
+xamMaskedInput コントロールをアプリケーションに追加するには、以下の NuGet パッケージへの参照をプロジェクトに追加する必要があります。
+
+*** Infragistics.WPF.Controls.Editors.XamMaskedInput
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+.. *Infragistics 名前空間を追加します。*
+
+*XAML の場合:*
+[source,xaml]
+----
+xmlns:ig=http://schemas.infragistics.com/xaml
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+[start=2]
+. *xamMaskedInput コントロールを追加します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMaskedInput/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim maskedInput As XamMaskedInput = New XamMaskedInput()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamMaskedInput maskedInput = new XamMaskedInput();
+----
+
+== xamMaskedInput を修正
+
+以下の表は、プロパティ設定の推奨構成をマップしています。プロパティは xamMaskedInput コントロールから直接アクセスします。
+
+[cols="a,a,a"]
+|====
+|*目的*
+|*プロパティ*
+|*設定値*
+
+|<<SetMask,マスクの設定>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+|選択した文字列
+
+|<<InvalidValueBehavior,有効ではない場合でも、入力された値を保持>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+|RetainValue
+
+|<<ClipMode,ユーザーにマスクのリテラルをクリップボードにコピーさせ、値と共にパッド>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~clipmode.html[ClipMode]
+|IncludeLiteralsWithPadding
+
+|<<NullText,値が null の場合、特定の文字列を表示します>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~nulltext.html[NullText]
+|選択した文字列
+
+|<<PromptChar,下線以外の様々なプロンプト文字を表示します>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~promptchar.html[PromptChar]
+|選択した文字
+
+|<<IsUndoEnabled,元に戻す/やり直し操作の有効化/無効化>>
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~isundoenabled.html[IsUndoEnabled]
+|True/False
+
+|====
+
+== xamMaskedInput の詳細を修正
+
+[[SetMask]]
+[start=1]
+. *Mask の設定*
+
+入力コントロールの設定の最も重要な要素は、Mask プロパティの構成です。によって、自分のニーズに合ったマスクを設定します:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMaskedInput Mask="[Your Mask]"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+maskedInput.Mask = "[Your Mask]"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+maskedInput.Mask = "[Your Mask]";
+----
+
+マスクの作成方法の詳細は、 link:xaminputs-masks.html[マスク]トピックを参照してください。
+
+[[InvalidValueBehavior]]
+[start=2]
+. *有効ではない場合でも、入力された値を保持します。*
+
+ユーザーが無効な値を入力したときの xamMaskedInput の動作方法に関して、複数のオプションがあります。InvalidValueBehavior プロパティを RetainValue に設定した場合、ユーザーが無効な値を入力してから入力コントロールを終了しようとすると、その値は保持されます。
+
+[[ClipMode]]
+[start=3]
+. *ユーザーにマスクのリテラルをクリップボードにコピーさせ、値と共にパッドします。*
+
+ClipMode プロパティを IncludeLiteralsWithPadding に設定することによって、ユーザーが入力内容をクリップボードにコピーすると、その値はマスク リテラルおよびパディングと共にコピーされます。
+
+[[NullText]]
+[start=4]
+. *値が null の場合、特定の文字列を表示します。*
+
+コントロールに値が入力されない場合、または値が null 値にバインドされている場合、表示される文字列を設定することができます。NullText プロパティを希望の文字列に設定することで、これを実行することができます。このように、入力内容や、値が入力されていないことを明示的にユーザーに知らせることができます。
+
+[[PromptChar]]
+[start=5]
+. *下線以外の様々なプロンプト文字を表示します。*
+
+xamMaskedInput で使用されるデフォルトのプロンプト文字は下線ですが、PromptChar プロパティを希望の文字に設定することでこの動作を変更することができます。
+
+[[IsUndoEnabled]]
+[start=6]
+. *元に戻す/やり直し操作を有効/無効にします。*
+
+xamInputs は CTRL + Z および CTRL + Y キーの組み合わせによってトリガーされた元に戻す/やり直し操作をデフォルトでサポートします。この機能を無効にするには、IsUndoEnabled プロパティを False に設定します。
+
+注:
+
+[NOTE]
+====
+`IsUndoEnabled` プロパティを無効にすると、元に戻す/やり直すスタックをクリアします。元に戻す/やり直すを無効にした後に再び有効にする場合、元に戻す/やり直すの履歴がクリアされるためコマンドは実行されません。
+====
+
+== xamMaskedInput の修正例
+
+以下の画像は、以下の設定の結果として、編集モードと表示モードの xamMaskedInput コントロールを示しています。
+
+[cols="a,a"]
+|====
+|*プロパティ*
+|*設定*
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+|>aaaa (XAML に設定した場合) 
+
+>aaaa (プロシージャー コードに設定した場合)
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+|RetainValue
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~clipmode.html[ClipMode]
+|IncludeLiteralsWithPadding
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~nulltext.html[NullText]
+|コードの入力
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~promptchar.html[PromptChar]
+|~
+
+|====
+
+[cols="a,a"]
+|====
+|編集モード:
+|表示モード:
+
+|image::images/xamInputs_xamMaskedInput_Using_2.png[] 
+|image::images/xamInputs_xamMaskedInput_Using_1.png[] 
+
+|====
+
+=== xamMaskedInput プロパティの参照の修正
+
+これらのプロパティの詳細情報は、プロパティ参照セクションのリストを参照してください。
+
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~mask.html[Mask]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~clipmode.html[ClipMode]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~nulltext.html[NullText]
+* link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput~promptchar.html[PromptChar]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+* link:xaminputs-using-xaminput-controls-in-xamgrid-cells-for-data-editing.html[データ編集用の xamGrid セルにおける xamInput コントロールの使用]

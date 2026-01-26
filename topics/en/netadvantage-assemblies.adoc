@@ -1,0 +1,672 @@
+﻿////
+|metadata|
+{
+    "name": "netadvantage-assemblies",
+    "controlName": [],
+    "tags": ["API"],
+    "guid": "{894CE0A6-7D87-4FC6-85C1-592C2FE6F46A}",
+    "buildFlags": [],
+    "createdOn": "2012-01-31T16:16:07.8423347Z"
+}
+|metadata|
+////
+
+= {ProductName} Assemblies
+
+The following is a list of all the assemblies included in the Full version of the {ProductName} product. The table also specifies the {ProductName} controls included in each assembly, along with dependency assemblies.
+
+[options="header", cols="a,a"]
+|====
+|Assembly|{ProductName}Controls
+
+|{ApiPlatform}dll
+|link:xamcarouselpanel.html[xamCarouselPanel]™ +
+link:xamcarousellistbox.html[xamCarouselListBox]™ +
+link:xamtabcontrol.html[xamTabControl]™ +
+link:reswash.html[Resource Washer]™ 
+|{ApiPlatform}Controls.Barcodes.BarcodeReader.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+|link:ig-barcode-reader.html[Infragistics Barcode Reader]™
+|{ApiPlatform}Controls.Barcodes.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+| link:xambarcode.html[xamBarcode]™
+|{ApiPlatform}Calculations.XamCalculationManager.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+____
+| link:xamcalculationmanager.html[XamCalculationManager]™
+|{ApiPlatform}Controls.Charts.XamDataChart.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll +
+{ApiPlatform}Math.dll +
+{ApiPlatform}Math.Calculators.dll 
+____
+|link:datachart-datachart.html[XamDataChart]™ +
+link:funnelchart.html[XamFunnelChart]™ +
+link:piechart.html[XamPieChart]™
+|{ApiPlatform}Controls.Charts.XamDiagram.dll +
+
+*Dependent Assemblies* +
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Undodll +
+{ApiPlatform}DragDrop.dll +
+{ApiPlatform}DataVisualization.dll +
+{ApiPlatform}Controls.Editors.XamColorPicker.dll +
+{ApiPlatform}Controls.Editors.XamMaskedInput.dll +
+{ApiPlatform}Controls.Editors.XamSlider.dll 
+____
+|link:xamdiagram.html[xamDiagram]™
+
+
+|{ApiPlatform}Controls.Charts.XamSparkline.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+| link:sparkline.html[xamSparkline]™ +
+|{ApiPlatform}Controls.Charts.XamSurfaceChart3D.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+|link:xamscattersurface3d.html[xamScatterSurface3D]™
+|{ApiPlatform}Controls.Charts.XamTreemap.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+|link:xamtreemap.html[xamTreemap]™
+|{ApiPlatform}Controls.Editors.XamCalendar.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+____
+|link:xamcalendar.html[xamCalendar]™
+|{ApiPlatform}Controls.Editors.XamColorPicker.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+{ApiPlatform}Controls.Editors.XamSlider.dll 
+____
+|link:xamcolorpicker.html[xamColorPicker]™
+|{ApiPlatform}Controls.Editors.XamComboEditor.dll +
+
+*Dependent Assemblies*
+____
+{ApiPlatform}dll +
+{ApiPlatform}DataManager.dll 
+____
+|link:xaml-xamcomboeditor.html[XamComboEditor]™ +
+link:xammulticolumncomboeditor.html[XamMultiColumnComboEditor]™
+|{ApiPlatform}Controls.Editors.XamDateTimeInput.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Controls.Editors.XamCalendar.dll +
+{ApiPlatform}Controls.Editors.XamMaskedInput.dll 
+____
+|link:xamdatetimeinput.html[XamDateTimeInput]™
+|{ApiPlatform}Controls.Editors.XamMaskedInput.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+____
+|link:xamcurrencyinput.html[XamCurrencyInput]™ +
+link:xammaskedinput.html[XamMaskedInput]™ +
+link:xamnumericinput.html[XamNumericInput]™
+
+|{ApiPlatform}Controls.Editors.XamPropertyGrid.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Editors.XamCalendar.dll +
+{ApiPlatform}Editors.XamColorPicker.dll +
+{ApiPlatform}Editors.XamDateTimeInput.dll +
+{ApiPlatform}Editors.XamMaskedInput.dll +
+{ApiPlatform}Editors.XamSlider.dll 
+____
+|link:xampropertygrid.html[xamPropertyGrid]™
+|{ApiPlatform}Controls.Editors.XamRichTextEditor.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Documents.RichTextDocument.dll 
+____
+|link:xamrichtexteditor.html[xamRichTextEditor]™
+|{ApiPlatform}Controls.Editors.XamSlider.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+____
+|link:xamslider.html[xamSlider]™
+|{ApiPlatform}Controls.Editors.XamSyntaxEditor.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Documents.TextDocument.dll 
+____
+|link:xamsyntaxeditor.html[xamSyntaxEditor]™
+|{ApiPlatform}Controls.Grids.DateTimeColumn.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataManager.dll +
+{ApiPlatform}Controls.Editors.XamCalendar.dll +
+{ApiPlatform}Controls.Editors.XamMaskedInput.dll +
+{ApiPlatform}Controls.Editors.XamDateTimeInput.dll +
+{ApiPlatform}Controls.Grids.XamGrid.dll 
+____
+|link:xamgrid-datetimecolumn.html[DateTime Column]™
+|{ApiPlatform}Controls.Grids.MultiColumnComboColumn.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataManager.dll +
+{ApiPlatform}Controls.Editors.XamComboEditor.dll +
+{ApiPlatform}Controls.Grids.XamGrid.dll 
+____
+|link:xamgrid-multicolumncombo-column.html[MultiColumnCombo Column]™
+|{ApiPlatform}Controls.Grids.SparklineColumn.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Controls.Charts.XamSparkline.dll +
+{ApiPlatform}Controls.Grids.XamGrid.dll 
+____
+|link:xamgrid-sparkline-column.html[Sparkline Column]™
+|{ApiPlatform}Controls.Grids.XamGrid.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataManager.dll +
+{ApiPlatform}Controls.Menus.XamMenu.dll 
+____
+|link:xamgrid.html[xamGrid]™
+|{ApiPlatform}Controls.Grids.XamPivotDataSlicer.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Olap.dll 
+____
+|link:xampivotgrid-dataslicer.html[DataSlicer]™
+|{ApiPlatform}Controls.Grids.XamPivotGrid.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Olap.dll +
+{ApiPlatform}DragDrop.dll +
+{ApiPlatform}Controls.Menus.XamDataTree.dll 
+____
+|link:xampivotgrid.html[xamPivotGrid]™
+|{ApiPlatform}Controls.Grids.XamSpreadsheet.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Controls.Menus.XamMenu.dll +
+{ApiPlatform}Documents.Code.dll +
+{ApiPlatform}Documents.Excel.dll +
+{ApiPlatform}Undo.dll 
+____
+|link:spreadsheet.html[xamSpreadsheet]™
+|{ApiPlatform}Controls.Interactions.XamDialogWindow.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+____
+|link:xamdialogwindow.html[xamDialogWindow]™
+|{ApiPlatform}Controls.Interactions.XamFormulaEditor.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+{ApiPlatform}Calculations.XamCalculationManager.dll 
+{ApiPlatform}Controls.Menus.XamDataTree.dll 
+____
+|link:xamformulaeditor.html[xamFormulaEditor]™
+|{ApiPlatform}Controls.Interactions.XamSpellChecker.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Controls.Interactions.XamDialogWindow.dll 
+____
+|link:xamspellchecker.html[xamSpellChecker]™
+|{ApiPlatform}Controls.Layouts.XamTileManager.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+____
+|link:xamtilemanager.html[xamTileManager]™
+|{ApiPlatform}Controls.Maps.XamGeographicMap.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll +
+{ApiPlatform}Controls.Charts.XamDataChart.dll
+____
+|link:geographicmap.html[xamGeographicMap]™
+|{ApiPlatform}Controls.Maps.XamMap.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+|link:xammap.html[xamMap]™
+|{ApiPlatform}Controls.Maps.XamNetworkNode.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+|link:xamnetworknode.html[xamNetworkNode]™
+|{ApiPlatform}Controls.Maps.XamOrgChart.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll +
+{ApiPlatform}DataManager.dll 
+____
+|link:xamorgchart.html[xamOrgChart]™
+|{ApiPlatform}Controls.Menus.XamDataTree.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataManager.dll +
+{ApiPlatform}DragDrop.dll 
+____
+|link:xamdatatree.html[xamDataTree]™
+|{ApiPlatform}Controls.Menus.XamMenu.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+____
+|link:xammenu.html[xamMenu]™
+|{ApiPlatform}Controls.Menus.XamRadialMenu.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+|link:xamradialmenu.html[xamRadialMenu]™
+|{ApiPlatform}Controls.Menus.XamTagCloud.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+____
+|link:xamtagcloud.html[xamTagCloud]™
+|{ApiPlatform}Controls.Schedules.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Controls.Editors.XamCalendar.dll +
+{ApiPlatform}Controls.Menus.XamMenu.dll +
+____
+|link:xamschedule.html[xamSchedule]™
+|{ApiPlatform}Controls.SchedulesDialogs.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Editors.dll +
+{ApiPlatform}Ribbon.dll +
+{ApiPlatform}Controls.Schedules.dll 
+|
+|{ApiPlatform}Controls.SchedulesExchangeConnector.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Controls.Schedules.dll 
+____
+|link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector.html[ExchangeScheduleDataConnector]
+|{ApiPlatform}Controls.Timelines.XamTimeline.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataVisualization.dll 
+____
+|link:xamtimeline.html[xamTimeline]™
+|{ApiPlatform}DataManager.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+|
+|{ApiPlatform}DataPresenter.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Editors.dll 
+____
+|link:xamdatacarousel.html[xamDataCarousel]™ +
+link:xamdatagrid.html[xamDataGrid]™ +
+link:xamdatapresenter.html[xamDataPresenter]™ +
+link:xamdatacards.html[xamDataCards]™ +
+link:xamtreegrid.html[xamTreeGrid]™
+|{ApiPlatform}DataPresenter.CalculationAdapter.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataPresenter.dll +
+{ApiPlatform}Calculations.XamCalculationManager.dll 
+|
+|{ApiPlatform}DataPresenter.DataSources.Async.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataPresenter.dll 
+|
+|{ApiPlatform}DataPresenter.ExcelExporter.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}DataPresenter.dll +
+{ApiPlatform}Documents.Excel.dll 
+|
+|{ApiPlatform}DataVisualization.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+|
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamdock.html[xamDock]™ +
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamoverviewplusdetailpane.html[XamOverviewPlusDetailPane]™ +
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[XamZoombar]™ 
+
+|{ApiPlatform}DockManager.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Controls.Menus.XamMenu.dll 
+____
+|link:xamdockmanager.html[xamDockManager]™
+|{ApiPlatform}DragDrop.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+|link:drag-and-drop-framework.html[Infragistics Drag and Drop Framework]™
+
+|{ApiPlatform}Documents.IO.dll
+|link:word-library.html[Word Writer]
+
+|{ApiPlatform}Documents.Excel.dll
+|link:excelengine.html[Infragistics Excel Engine]™ 
+
+|{ApiPlatform}Math.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+|link:ig-math-infragistics.html[Infragistics Math Library]™
+
+|{ApiPlatform}Math.Calculators.dll
+|Assembly required when Series Error Bars or Value Overlay features are used with Math Calculators in the xamDataChart control.
+
+|{ApiPlatform}Olap.Amomd.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Olap.dll +
+{ApiPlatform}Olap.Xmla.dll 
+|
+
+|{ApiPlatform}Olap.Excel.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Olap.dll +
+{ApiPlatform}Olap.FlatData.dll +
+{ApiPlatform}Documents.Excel.dll 
+|
+
+|{ApiPlatform}Olap.FlatData.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Olap.dll 
+|
+
+|{ApiPlatform}Olap.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+|
+
+|{ApiPlatform}Olap.Xmla.Oracle.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}Olap.dll +
+{ApiPlatform}Olap.Xmla.dll 
+|
+
+|{ApiPlatform}Olap.Xmla.Sap.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}Olap.dll +
+{ApiPlatform}Olap.Xmla.dll 
+|
+
+|{ApiPlatform}Olap.Xmla.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Olap.dll 
+|
+
+|{ApiPlatform}OutlookBar.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+
+|link:xamoutlookbar.html[xamOutlookBar]™
+
+|{ApiPlatform}Persistence.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+|link:control-persistence-framework.html[Infragistics Control Persistence Framework]
+
+|{ApiPlatform}Reporting.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+|link:wpf-reporting.html[WPF Reporting]
+
+|{ApiPlatform}Ribbon.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll +
+{ApiPlatform}Editors.dll 
+
+|link:xamribbon.html[xamRibbon]™
+endif::wpf[]
+
+|{ApiPlatform}Undo.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+
+|link:undo-redo-framework.html[Infragistics Undo Redo Framework]™
+
+|*Dependent Assemblies* 
+____ 
+{ApiPlatform}dll 
+
+|link:thememanager.html[Infragistics ThemeManager]™
+
+|Infragistics4.Services.Schedules.WcfConnectorService.dll +
+
+*Dependent Assemblies*
+____ 
+{ApiPlatform}dll 
+
+|WCF service which provides list schedule data to client
+
+|====
+
+== Design Assemblies
+
+The following is a list of the design-related assemblies for the Full version of the {ProductName} product. The design assemblies are used to hide elements from the Microsoft® Expression® Blend toolbox, and to aid in the categorization of our properties.
+
+* {ApiPlatform}Design.dll
+
+* {ApiPlatform}Calculations.XamCalculationManager.Design.dll
+* {ApiPlatform}Controls.Barcodes.BarcodeReader.Design.dll
+* {ApiPlatform}Controls.Barcodes.Design.dll
+* {ApiPlatform}Controls.Charts.Olap.Design.dll
+* {ApiPlatform}Controls.Charts.XamDataChart.Design.dll
+* {ApiPlatform}Controls.Charts.XamDiagram.Design.dll
+* {ApiPlatform}Controls.Charts.XamGauge.Design.dll
+* {ApiPlatform}Controls.Charts.XamSparkline.Design.dll
+* {ApiPlatform}Controls.Charts.XamSurfaceChart3D.Design.dll
+* {ApiPlatform}Controls.Charts.XamTreemap.Design.dll
+* {ApiPlatform}Controls.Editors.XamCalendar.Design.dll
+* {ApiPlatform}Controls.Editors.XamColorPicker.Design.dll
+* {ApiPlatform}Controls.Editors.XamComboEditor.Design.dll
+* {ApiPlatform}Controls.Editors.XamDateTimeInput.Design.dll
+* {ApiPlatform}Controls.Editors.XamMaskedInput.Design.dll
+* {ApiPlatform}Controls.Editors.XamPropertyGrid.Design.dll
+* {ApiPlatform}Controls.Editors.XamRichTextEditor.Design.dll
+* {ApiPlatform}Controls.Editors.XamSlider.Design.dll
+* {ApiPlatform}Controls.Editors.XamSyntaxEditor.Design.dll
+* {ApiPlatform}Controls.Grids.XamGrid.Design.dll
+* {ApiPlatform}Controls.Grids.XamPivotDataSlicer.Design.dll
+* {ApiPlatform}Controls.Grids.XamPivotGrid.Design.dll
+* {ApiPlatform}Controls.Grids.XamSpreadsheet.Design.dll
+* {ApiPlatform}Controls.Interactions.XamDialogWindow.Design.dll
+* {ApiPlatform}Controls.Interactions.XamFormulaEditor.Design.dll
+* {ApiPlatform}Controls.Interactions.XamHtmlViewer.Design.dll
+* {ApiPlatform}Controls.Interactions.XamSpellChecker.Design.dll
+* {ApiPlatform}Controls.Layouts.XamTileManager.Design.dll
+* {ApiPlatform}Controls.Maps.XamGeographicMap.Design.dll
+* {ApiPlatform}Controls.Maps.XamMap.Design.dll
+* {ApiPlatform}Controls.Maps.XamNetworkNode.Design.dll
+* {ApiPlatform}Controls.Maps.XamOrgChart.Design.dll
+* {ApiPlatform}Controls.Menus.XamDataTree.Design.dll
+* {ApiPlatform}Controls.Menus.XamMenu.Design.dll
+* {ApiPlatform}Controls.Menus.XamTagCloud.Design.dll
+* {ApiPlatform}Controls.Menus.XamTree.Design.dll
+* {ApiPlatform}Controls.Schedules.Design.dll
+* {ApiPlatform}Controls.SchedulesExchangeConnector.Design.dll
+* {ApiPlatform}Controls.Timelines.XamTimeline.Design.dll
+* {ApiPlatform}DataPresenter.Design.dll
+* {ApiPlatform}DataVisualization.Design.dll
+* {ApiPlatform}DockManager.Design.dll
+* {ApiPlatform}OutlookBar.Design.dll
+* {ApiPlatform}Reporting.Design.dll
+* {ApiPlatform}Ribbon.Design.dll
+
+== ThemePack Assemblies
+The following table lists the ThemePack-related assemblies available with the Full version of the {ProductName} product, along with the corresponding styles:
+
+[cols="a,a"]
+|====
+|ThemePack Assembly|Styles
+
+|{ApiPlatform}Themes.Fall.dll
+|Fall
+
+|{ApiPlatform}Themes.ForestGreen.dll
+|ForestGreen
+
+|{ApiPlatform}Themes.IG.dll
+|IG
+
+|{ApiPlatform}Themes.Leaf.dll
+|Leaf
+
+|{ApiPlatform}Themes.Lipstick.dll
+|Lipstick
+
+|{ApiPlatform}Themes.Metro.dll
+|Metro
+
+|{ApiPlatform}Themes.MetroDark.dll
+|MetroDark
+
+|{ApiPlatform}Themes.Office2010Blue.dll
+|Office2010
+
+|{ApiPlatform}Themes.Office2013.dll
+|Office2013
+
+|{ApiPlatform}Themes.RoyalDark.dll
+|RoyalDark
+
+|{ApiPlatform}Themes.RoyalLight.dll
+|RoyalLight
+
+|{ApiPlatform}Themes.Water.dll
+|Water
+
+|{ApiPlatform}Themes.Wind.dll
+|Wind
+
+|====

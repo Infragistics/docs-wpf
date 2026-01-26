@@ -1,0 +1,217 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamslider-xamslider-thumbs",
+    "controlName": ["xamSlider"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{AE3824A6-3F7B-4AAA-AE04-537F932F9F97}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0413754Z"
+}
+|metadata|
+////
+
+= xamSlider につまみを追加
+
+エンドユーザーが xamSlider コントロールを操作するには、ドラッグ可能なつまみを追加する必要があります。使用するつまみのタイプは、ユーザーが使用しているスライダーのタイプによって異なります。たとえば、xamNumericRangeSlider または xamNumericSlider を使用している場合、 link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamslidernumericthumb.html[xamSliderNumericThumb] オブジェクトを使用する必要があります。これに対して、xamDateTimeRangeSlider または xamDateTimeSlider を使用している場合、 link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderdatetimethumb.html[xamSliderDateTimeThumb] オブジェクトを使用する必要があります。2 タイプのつまみは交換可能ではありません。ただし、両方とも以下の一般的に使用されるプロパティを共有します (Control クラスから継承されるプロパティに加えて)。
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderthumbbase~isactive.html[IsActive]
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderthumbbase~isdragenabled.html[IsDragEnabled]
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderthumb`1~issnaptotickenabled.html[IsSnapToTickEnabled]
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderthumb`1~istrackfillvisible.html[IsTrackFillVisible]
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderthumbbase~interactionmode.html[InteractionMode]
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderbase~trackfillbrush.html[TrackFillBrush]
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderbase~trackfillstyle.html[TrackFillStyle]
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericslider~value.html[Value]
+
+範囲スライダーはデフォルトのつまみを追加しません。したがって、範囲スライダー link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamrangeslider`1~thumbs.html[Thumbs] コレクションにつまみを追加する必要があります。ただし、単一値スライダーはデフォルトのつまみを作成するので、つまみのプロパティを変更したい場合、単一値スライダー link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsimplesliderbase`1~thumbproperty.html[Thumb] プロパティを設定する必要があるだけです。
+
+ifdef::sl,wpf[]
+
+image::images/xamSlider_xamSlider_Thumbs_01.png[]
+
+endif::sl,wpf[]
+
+ifdef::win-phone[]
+
+image::images/xamSlider_Thumbs_01.png[]
+
+endif::win-phone[]
+
+以下の例のコードは、つまみプロパティの追加と設定を示しています。
+
+*XAML の場合:*
+
+----
+<StackPanel>
+    <!--数値単一値スライダー-->
+    <TextBlock Text="Numeric single-value slider:" />
+    <ig:XamNumericSlider  
+        Name="xamNumericSlider1" 
+        MinValue="0" 
+        MaxValue="100">
+        <ig:XamNumericSlider.Thumb>
+            <ig:XamSliderNumericThumb TrackFillBrush="Red" Value="25" />
+        </ig:XamNumericSlider.Thumb>
+    </ig:XamNumericSlider >
+    <!--数値範囲スライダー-->
+    <TextBlock Text="Numeric range slider:" />
+    <ig:XamNumericRangeSlider 
+        Name="xamNumericRangeSlider1" 
+        MinValue="0" 
+        MaxValue="100">
+        <!--スライダーの Thumbs コレクションのタグを宣言する必要はありません-->
+        <ig:XamSliderNumericThumb InteractionMode="Free" Value="25" />
+        <ig:XamSliderNumericThumb InteractionMode="Lock" Value="50" />
+        <ig:XamSliderNumericThumb InteractionMode="Push" Value="75" />
+    </ig:XamNumericRangeSlider>
+    <!--DateTime 単一値スライダー-->
+    <TextBlock Text="DateTime single-value slider:" />
+    <ig:XamDateTimeSlider 
+        Name="xamDateTimeSlider1" 
+        MinValue="1/1/2009" 
+        MaxValue="12/31/2009">
+        <ig:XamDateTimeSlider.Thumb>
+            <ig:XamSliderDateTimeThumb TrackFillBrush="Red" Value="6/1/2009" />
+        </ig:XamDateTimeSlider.Thumb>
+    </ig:XamDateTimeSlider>
+    <!--DateTime 範囲スライダー-->
+    <TextBlock Text="DateTime range slider:" />
+    <ig:XamDateTimeRangeSlider 
+        Name="xamDateTimeRangeSlider1" 
+        MinValue="1/1/2009" 
+        MaxValue="12/31/2009">
+        <!--スライダーの Thumbs コレクションのタグを宣言する必要はありません-->
+        <ig:XamSliderDateTimeThumb InteractionMode="Free" Value="4/1/2009" />
+        <ig:XamSliderDateTimeThumb InteractionMode="Lock" Value="8/1/2009"/>
+        <ig:XamSliderDateTimeThumb InteractionMode="Push" Value="12/1/2009" />
+    </ig:XamDateTimeRangeSlider>
+</StackPanel>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Interactions
+Imports Infragistics
+...
+'数値単一値スライダー
+Dim numericThumb As New XamSliderNumericThumb()
+numericThumb.TrackFillBrush = New SolidColorBrush(Colors.Red)
+numericThumb.Value = 25
+Me.xamNumericSlider1.Thumb = numericThumb
+'数値範囲スライダー
+Dim numericRangeThumb1 As New XamSliderNumericThumb()
+numericRangeThumb1.InteractionMode = SliderThumbInteractionMode.Free
+numericRangeThumb1.Value = 25
+Dim numericRangeThumb2 As New XamSliderNumericThumb()
+numericRangeThumb2.InteractionMode = SliderThumbInteractionMode.Lock
+numericRangeThumb2.Value = 50
+Dim numericRangeThumb3 As New XamSliderNumericThumb()
+numericRangeThumb3.InteractionMode = SliderThumbInteractionMode.Push
+numericRangeThumb3.Value = 75
+Me.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb1)
+Me.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb2)
+Me.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb3)
+'DateTime 単一値スライダー
+Dim datetimeThumb As New XamSliderDateTimeThumb()
+datetimeThumb.TrackFillBrush = new SolidColorBrush(Colors.Red)
+datetimeThumb.Value = New DateTime(2009, 6, 1)
+Me.xamDateTimeSlider1.Thumb = datetimeThumb
+'DateTime 範囲スライダー
+Dim datetimeRangeThumb1 As New XamSliderDateTimeThumb()
+datetimeRangeThumb1.InteractionMode = SliderThumbInteractionMode.Free
+datetimeRangeThumb1.Value = New DateTime(2009, 4, 1)
+Dim datetimeRangeThumb2 As New XamSliderDateTimeThumb()
+datetimeRangeThumb2.InteractionMode = SliderThumbInteractionMode.Lock
+datetimeRangeThumb2.Value = New DateTime(2009, 8, 1)
+Dim datetimeRangeThumb3 As New XamSliderDateTimeThumb()
+datetimeRangeThumb3.InteractionMode = SliderThumbInteractionMode.Push
+datetimeRangeThumb3.Value = New DateTime(2009, 12, 1)
+Me.xamDateTimeRangeSlider1.Thumbs.Add(datetimeRangeThumb1)
+Me.xamDateTimeRangeSlider1.Thumbs.Add(datetimeRangeThumb2)
+Me.xamDateTimeRangeSlider1.Thumbs.Add(datetimeRangeThumb3)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Interactions;
+using Infragistics;
+...
+//数値単一値スライダー
+xamSliderNumericThumb numericThumb = new XamSliderNumericThumb
+{
+    TrackFillBrush = new SolidColorBrush(Colors.Red),
+    Value = 25
+};
+this.xamNumericSlider1.Thumb = numericThumb;
+//数値範囲スライダー
+xamSliderNumericThumb numericRangeThumb1 = new XamSliderNumericThumb
+{
+    InteractionMode = SliderThumbInteractionMode.Free,
+    Value = 25
+};
+xamSliderNumericThumb numericRangeThumb2 = new XamSliderNumericThumb
+{
+    InteractionMode = SliderThumbInteractionMode.Lock,
+    Value = 50
+};
+xamSliderNumericThumb numericRangeThumb3 = new XamSliderNumericThumb
+{
+    InteractionMode = SliderThumbInteractionMode.Push,
+    Value = 75
+};
+this.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb1);
+this.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb2);
+this.xamNumericRangeSlider1.Thumbs.Add(numericRangeThumb3);
+//DateTime 単一値スライダー
+xamSliderDateTimeThumb datetimeThumb = new XamSliderDateTimeThumb
+{
+    TrackFillBrush = new SolidColorBrush(Colors.Red),
+    Value = new DateTime(2009, 6, 1)
+};
+this.xamDateTimeSlider1.Thumb = datetimeThumb;
+//DateTime 範囲スライダー
+xamSliderDateTimeThumb datetimeRangeThumb1 = new XamSliderDateTimeThumb
+{
+    InteractionMode = SliderThumbInteractionMode.Free,
+    Value = new DateTime(2009, 4, 1)
+};
+xamSliderDateTimeThumb datetimeRangeThumb2 = new XamSliderDateTimeThumb
+{
+    InteractionMode = SliderThumbInteractionMode.Lock,
+    Value = new DateTime(2009, 8, 1)
+};
+xamSliderDateTimeThumb datetimeRangeThumb3 = new XamSliderDateTimeThumb
+{
+    InteractionMode = SliderThumbInteractionMode.Push,
+    Value = new DateTime(2009, 12, 1)
+};
+this.xamDateTimeRangeSlider1.Thumbs.Add(datetimeRangeThumb1);
+this.xamDateTimeRangeSlider1.Thumbs.Add(datetimeRangeThumb2);
+this.xamDateTimeRangeSlider1.Thumbs.Add(datetimeRangeThumb3);
+...
+----
+
+== 関連トピック
+
+link:xamslider-about-xamslider.html[xamSlider について]
+
+link:xamslider-getting-started-with-xamslider.html[xamSlider を使用した作業の開始]
+
+link:xamslider-xamslider-tick-marks.html[xamSlider の目盛]
+
+link:xamslider-interaction-modes.html[操作モード]
+
+ifdef::wpf,sl[]
+link:xamslider-tooltips.html[ツールチップ]
+endif::wpf,sl[]
+
+link:xamslider-value-tick-marks.html[目盛値]
+
+link:xamslider-retrieve-the-thumb-values.html[つまみの値の取得]
+
+link:xamslider-programmatically-add-or-remove-thumbs-at-runtime.html[プログラムによってランタイムでつまみを追加または削除]

@@ -1,0 +1,188 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-calculators-median-calculator",
+    "controlName": ["IG Math Calculators"],
+    "tags": ["Calculations"],
+    "guid": "5eb9e307-86ae-4141-ae0b-2ed3e898ea2e",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.7510397Z"
+}
+|metadata|
+////
+
+= Infragistics 中央値計算式
+
+このトピックでは link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Infragistics Math Calculators]™ ライブラリの一部である link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.mediancalculator.html[MedianCalculator] を紹介し、コード例と共に数の集合に対する中央値の計算方法を説明します。
+
+== 概要
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>>
+* <<MedianFormula,メソッド式>>
+* <<Properties,中央値計算プロパティ>>
+* <<Requirements,要件>>
+
+** NuGet パッケージの要件
+** データ要件
+
+* <<Example,例>>
+* <<RelatedTopics,関連トピック>>
+
+== 概要
+
+中央値は、データセットの「中点」を決めるのに使われる数学的計算で、平均計算ほど外れ値に影響を受けません。つまり、データセットのいくつかの非常に高い値または非常に低い値にあまり影響されません。データ集合の値の半分は、中央値よりも上に分類され、半分は下に分類されます。中央値は代表値の測定のひとつで、他の計算としてはモードと平均があります (インフラジスティックスの平均計算トピックを参照)。
+
+== メソッド式
+
+中央値は数値の集合を並べ替え、集合のデータ ポイント数が奇数であれば真ん中の値を返します。集合に偶数のデータ ポイントがある場合、中央値は並べ替えた (昇順または降順で) 時に 2 つの中間データ ポイントの平均です。
+
+image::images/IG_Math_Median_Calculators_01.png[]
+
+図 1 - 中央値計算のための式
+
+[cols="a"]
+|====
+|凡例
+
+|image::images/IG_Math_Median_Calculators_02.png[]
+|- データセットの中央値を表す
+
+|image::images/IG_Math_Median_Calculators_03.png[]
+|- 並べ替えたデータセットの i インデックスでの変数を表す
+
+|image::images/IG_Math_Median_Calculators_04.png[]
+|- 並べ替えたデータセットの中央インデックスでの変数を表す
+
+|image::images/IG_Math_Median_Calculators_05.png[]
+|- データセットの合計数を表す
+
+|====
+
+== 中央値計算プロパティ
+
+このセクションでは link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.mediancalculator.html[MedianCalculator] クラスのプロパティのリストを提供します。
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ名|プロパティ タイプ|説明
+
+|ItemsSource
+| link:http://msdn.microsoft.com/ja-jp/library/system.collections.ienumerable.aspx[IEnumerable] 
+|計算のためのデータ項目のソースを取得または設定します。
+
+|ValueMemberPath
+|string
+|データ項目の Value メンバー パスを取得または設定します。このプロパティはデータ項目の数値プロパティの名前にマップされなければなりません。
+
+|Value
+|double
+|計算の ItemsSource プロパティにバインドされたデータ項目の中央値を取得または設定します。
+
+|====
+
+== 要件
+
+== NuGet パッケージの要件
+
+link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators.mediancalculator.html[MedianCalculator] を使用するためには、次の NuGet パッケージ参照を {PlatformName} プロジェクトに追加する必要があります。
+
+** Infragistics.WPF.Math.Calculators
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+== データ要件
+
+MedianCalculator はデータ バインディングのための ItemsSource プロパティとデータ マッピングのための ValueMemberPath プロパティを使用します。次の要件に合致するオブジェクトはすべてこのプロパティにバインドできます。
+
+* データ モデルは link:http://msdn.microsoft.com/ja-jp/library/system.collections.ienumerable.aspx[IEnumerable] インターフェイス (たとえば link:http://msdn.microsoft.com/ja-jp/library/6sh2ey19.aspx[リスト]、 link:http://msdn.microsoft.com/ja-jp/library/ms132397.aspx[コレクション]、 link:http://msdn.microsoft.com/ja-jp/library/7977ey2c.aspx[キュー]、 link:http://msdn.microsoft.com/ja-jp/library/system.collections.stack.aspx[スタック]) を実装しなければなりません。
+* データ モデルには中央値を計算するために少なくとも 1 つの数値データ列をもつ項目がなければなりません。
+
+上記の条件を満たすオブジェクトの例が次のコード例に示されています。
+
+*Visual Basic の場合:*
+
+----
+Imports System.Collections.Generic
+'...
+Public Class DataPointList
+    Inherits List(Of DataPoint)
+    Public Sub New(dataValues As IEnumerable(Of Double))
+        For Each value As Double In dataValues
+            Me.Add(New DataPoint() With { Key .Value = value })
+        Next
+    End Sub
+End Class
+Public Class DataPoint
+    Public Property Value() As Double
+        Get
+            Return _value
+        End Get
+        Set
+            _value = Value
+        End Set
+    End Property
+    Private _value As Double
+End Class
+----
+
+*C# の場合:*
+
+----
+using System.Collections.Generic;
+//...
+public class DataPointList : List<DataPoint>
+{
+    public DataPointList(IEnumerable<double> dataValues)
+    {
+        foreach (double value in dataValues)
+        {
+            this.Add(new DataPoint { Value = value});
+        }
+    }
+}
+public class DataPoint
+{
+    public double Value { get; set; }
+}
+----
+
+== 例
+
+この例は MedianCalculator を用いて数値の集合の中央値を計算する方法を説明しています。MedianCalculator は視覚的な要素で、データ ソースまたは変数を定義するのと同じようにアプリケーション、ページ、コントロール、またはコードビハインドに関してリソースセクションに定義する必要があります。MedianCalculator を link:datachart-datachart.html[xamDataChart] コントロールに統合する方法についての例は link:datachart-series-value-overlay.html[値オーバーレイ] トピックを参照してください。
+
+[NOTE]
+====
+*注:* 以下の例は、プロジェクトで必要なすべてのアセンブリを追加したことが前提となっています。
+====
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Math.Calculators
+'...
+Dim data As New DataPointList(New List(Of Double)() From {     5.0, 1.0, 2.0, 3.0, 4.0 })
+Dim calculator As New MedianCalculator()
+calculator.ValueMemberPath = "Value"
+calculator.ItemsSource = data
+Dim median As Double = calculator.Value ' 中央値は 3
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Math.Calculators;
+//...
+DataPointList data = new DataPointList(new List<double> { 5.0, 1.0, 2.0, 3.0, 4.0 });
+MedianCalculator calculator = new MedianCalculator();
+calculator.ValueMemberPath = "Value";
+calculator.ItemsSource = data;
+double median = calculator.Value; // 中央値は 3
+----
+
+== 関連トピック
+
+* link:ig-math-calculators-api-overview.html[API の概要]
+* link:datachart-series-value-overlay.html[値オーバーレイ]

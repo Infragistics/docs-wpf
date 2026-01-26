@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-calculators-using-math-calculators",
+    "controlName": ["IG Math Calculators"],
+    "tags": ["Calculations"],
+    "guid": "81486cd6-2d80-4c68-ae1c-1c23048f08b5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.7760413Z"
+}
+|metadata|
+////
+
+= 数学計算式の使用
+
+このトピックは、 link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Infragistics Math Calculators]™ ライブラリ提供する様々な数学や統計計算を使用する際に役立つ、重要な概念的情報とタスク ベースの情報について説明します。
+
+* link:ig-calculators-correlation-calculator.html[Infragistics 相関計算式]
+* link:ig-calculators-data-calculator.html[Infragistics データ計算式]
+* link:ig-calculators-fixed-value-calculator.html[Infragistics 固定値計算式]
+* link:ig-calculators-mean-calculator.html[Infragistics 平均計算式]
+* link:ig-calculators-median-calculator.html[Infragistics 中央値計算式]
+* link:ig-calculators-percentage-calculator.html[Infragistics パーセンテージ計算式]
+* link:ig-calculators-standard-deviation-calculator.html[Infragistics 標準編差計算式]
+* link:ig-calculators-standard-error-calculator.html[Infragistics 標準誤差計算式]
+* link:ig-calculators-variance-calculator.html[Infragistics バリアンス計算式]

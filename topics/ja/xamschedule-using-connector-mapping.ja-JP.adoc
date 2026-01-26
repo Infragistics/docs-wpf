@@ -1,0 +1,254 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector-mapping",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "fd5ce6b0-8fa8-441d-88dd-1a4777105680",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6823554Z"
+}
+|metadata|
+////
+
+= バックエンド データ ソースでフィールドをマップ
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[xamScheduleDataManager] にデータを提供する一般的なシナリオは、スケジュール データがデータベースまたはカスタム オブジェクトに保存される場合です。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] は、そのコレクションのスケジュール データを提供する任意の IEnumerable オブジェクトに設定可能な複数の ItemsSource プロパティ (例、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~appointmentitemssource.html[AppointmentItemsSource]) を公開します。ListScheduleDataConnector は、データ ソースを問い合わせるために LINQ を使用します。データ ソースが IQueryable である場合、LINQ を使用して、現在の表示に必要となるアクティビティのみを取得します。
+
+作成する xamSchedule エンティティにデータ ソース オブジェクトからプロパティをマップするには、関連する PropertyMappings コレクションを提供する必要があります (例、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~appointmentpropertymappings.html[AppointmentPropertyMappings])。これらは、データ ソース オブジェクトでプロパティ名を指定する (DataObjectProperty を介して) PropertyMapping オブジェクト、対応する xamSchedule エンティティ プロパティの名前 (例、AppointmentProperty を使用して)、そしてデータ ソース オブジェクトのプロパティ値と xamSchedule プロパティ値の間で変換するために使用できるオプションのコンバーターのコレクションです。以下は、これらのマッピング プロパティを使用している例です。
+
+*注:* プロパティのマッピング コレクションには、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.propertymappingcollection`2~usedefaultmappings.html[UseDefaultMappings] プロパティがあります。データ ソース オブジェクトのプロパティ名が xamSchedule エンティティ オブジェクトのプロパティ名と同じである場合、このプロパティは自動的にプロパティをマップするために True に設定できます。リフレクションは同じ名前でプロパティを検索するために使用され、一致するプロパティが自動的にマップされます。さらに、一部のプロパティの名前が同じでない場合、それらのプロパティの明示的なプロパティ マッピング エントリをコレクションに追加できます。
+
+*XAML の場合:*
+
+----
+<ig:ListScheduleDataConnector x:Name="scheduleDataConnector"
+            ResourceItemsSource="{Binding CustomResources}"
+            ResourceCalendarItemsSource="{Binding CustomCalendars}"
+            AppointmentItemsSource="{Binding CustomAppointments}">
+<ig:ListScheduleDataConnector.ResourcePropertyMappings>
+        <ig:ResourcePropertyMappingCollection>     
+               <ig:ResourcePropertyMapping ResourceProperty="Id"
+                        DataObjectProperty="MyId" />
+                <ig:ResourcePropertyMapping ResourceProperty="Name"
+                        DataObjectProperty="MyName" />
+        </ig:ResourcePropertyMappingCollection>
+    </ig:ListScheduleDataConnector.ResourcePropertyMappings>
+<ig:ListScheduleDataConnector.ResourceCalendarPropertyMappings>
+        <ig:ResourceCalendarPropertyMappingCollection>
+                <ig:ResourceCalendarPropertyMapping
+                        ResourceCalendarProperty="Id"
+                        DataObjectProperty="MyId" />
+                <ig:ResourceCalendarPropertyMapping
+                        ResourceCalendarProperty="Name"
+                        DataObjectProperty="MyName" />
+                <ig:ResourceCalendarPropertyMapping
+                        ResourceCalendarProperty="OwningResourceId"
+                        DataObjectProperty="MyResourceId" />
+        </ig:ResourceCalendarPropertyMappingCollection>
+    </ig:ListScheduleDataConnector.ResourceCalendarPropertyMappings>
+<ig:ListScheduleDataConnector.AppointmentPropertyMappings>
+        <ig:AppointmentPropertyMappingCollection>
+                <ig:AppointmentPropertyMapping
+                        AppointmentProperty="Id"
+                        DataObjectProperty="MyId" />
+                <ig:AppointmentPropertyMapping
+                        AppointmentProperty="Start"
+                        DataObjectProperty="MyStart" />
+                <ig:AppointmentPropertyMapping
+                        AppointmentProperty="End"
+                        DataObjectProperty="MyEnd" />
+                <ig:AppointmentPropertyMapping
+                        AppointmentProperty="OwningResourceId"
+                        DataObjectProperty="MyOwnerId" />
+                <ig:AppointmentPropertyMapping
+                        AppointmentProperty="OwningCalendarId"
+                        DataObjectProperty="MyCalendarId" />
+                <ig:AppointmentPropertyMapping
+                        AppointmentProperty="Subject"
+                        DataObjectProperty="MySubject" />
+                <ig:AppointmentPropertyMapping
+                        AppointmentProperty="Description"
+                        DataObjectProperty="MyDescription" />
+        </ig:AppointmentPropertyMappingCollection>
+    </ig:ListScheduleDataConnector.AppointmentPropertyMappings>
+</ig:ListScheduleDataConnector>
+----
+
+*Visual Basic の場合:*
+
+----
+dataConnector.ResourcePropertyMappings =
+    New ResourcePropertyMappingCollection()
+dataConnector.ResourcePropertyMappings._
+    Add(ResourceProperty.Id, "MyId")
+dataConnector.ResourcePropertyMappings._
+    Add(ResourceProperty.Name, "MyName")
+dataConnector.ResourceCalendarPropertyMappings =_
+    New ResourceCalendarPropertyMappingCollection()
+dataConnector.ResourceCalendarPropertyMappings._
+    Add(ResourceCalendarProperty.Id, "MyId")
+dataConnector.ResourceCalendarPropertyMappings._
+    Add(ResourceCalendarProperty.Name, "MyName")
+dataConnector.ResourceCalendarPropertyMappings._
+    Add(ResourceCalendarProperty.OwningResourceId, "MyResourceId")
+dataConnector.AppointmentPropertyMappings =_
+    New AppointmentPropertyMappingCollection()
+dataConnector.AppointmentPropertyMappings._
+    Add(AppointmentProperty.Id, "MyId")
+dataConnector.AppointmentPropertyMappings._
+    Add(AppointmentProperty.Start, "MyStart")
+dataConnector.AppointmentPropertyMappings._
+    Add(AppointmentProperty.[End], "MyEnd")
+dataConnector.AppointmentPropertyMappings._
+    Add(AppointmentProperty.OwningResourceId, "MyOwnerId")
+dataConnector.AppointmentPropertyMappings._
+    Add(AppointmentProperty.OwningCalendarId, "MyCalendarId")
+dataConnector.AppointmentPropertyMappings._
+    Add(AppointmentProperty.Subject, "MySubject")
+dataConnector.AppointmentPropertyMappings._
+    Add(AppointmentProperty.Description, "MyDescription")
+----
+
+*C# の場合:*
+
+----
+dataConnector.ResourcePropertyMappings =
+    new ResourcePropertyMappingCollection();
+dataConnector.ResourcePropertyMappings.Add(
+    ResourceProperty.Id, "MyId");
+dataConnector.ResourcePropertyMappings.Add(
+    ResourceProperty.Name, "MyName");
+dataConnector.ResourceCalendarPropertyMappings =
+    new ResourceCalendarPropertyMappingCollection();
+dataConnector.ResourceCalendarPropertyMappings.Add(
+    ResourceCalendarProperty.Id, "MyId");
+dataConnector.ResourceCalendarPropertyMappings.Add(
+    ResourceCalendarProperty.Name, "MyName");
+dataConnector.ResourceCalendarPropertyMappings.Add(
+    ResourceCalendarProperty.OwningResourceId, "MyResourceId");
+dataConnector.AppointmentPropertyMappings =
+    new AppointmentPropertyMappingCollection();
+dataConnector.AppointmentPropertyMappings.Add(
+    AppointmentProperty.Id, "MyId");
+dataConnector.AppointmentPropertyMappings.Add(
+    AppointmentProperty.Start, "MyStart");
+dataConnector.AppointmentPropertyMappings.Add(
+    AppointmentProperty.End, "MyEnd");
+dataConnector.AppointmentPropertyMappings.Add(
+    AppointmentProperty.OwningResourceId, "MyOwnerId");
+dataConnector.AppointmentPropertyMappings.Add(
+    AppointmentProperty.OwningCalendarId, "MyCalendarId");
+dataConnector.AppointmentPropertyMappings.Add(
+    AppointmentProperty.Subject, "MySubject");
+dataConnector.AppointmentPropertyMappings.Add(
+    AppointmentProperty.Description, "MyDescription");
+----
+
+上記のサンプル コードでは、カスタム コレクション (CustomResources、CustomCalendars および CustomAppointments) は IEnumerable で、MyId や MyName などは、これらのコレクションが含むカスタム タイプのプロパティ名になります。
+
+特定のプロパティ マッピングは、XamSchedule が正しく機能するために必要となります。ID フィールドはそれらのひとつで、さらに ID 値は項目ソースの各オブジェクトに対して一意でなければなりません。
+
+== 必要フィールド
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[リソース]:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~id.html[ID] - String - ID 値はスケジュール データ コネクターによって作成および保存されません。したがって、含まれる値や長さが一意である限り制約はありません。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendar]:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~id.html[ID] - String - ID 値はスケジュール データ コネクターによって作成および保存されません。したがって、含まれる値や長さが一意である限り制約はありません。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~owningresourceid.html[OwningResourceId] - String - Resource の ID フィールドからの値は、リソース カレンダーをリソースにリンクするために使用されます。したがって、使用可能な長さは、Resource の ID フィールドで使用可能な長さに対応する必要があります。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.journal.html[Journal] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task.html[Task] に共通:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~id.html[Id] - String - 非バリアンス アクティビティでは、デフォルトで GUID 値が文字列として保存されるため、 少なくとも 36 文字を使用できるようにする必要があります。バリアンス アクティビティでは、デフォルトで GUID、反復バージョン、さらに日付時間値が保存され、少なくとも 60 文字必要です。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~start.html[Start] - DateTime - このフィールドは null を使用できる DateTime フィールドにすることができます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~end.html[End] - DateTime - このフィールドは null を使用できる DateTime フィールドにすることができます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningresourceid.html[OwningResourceId] - String - Resource の ID フィールドからの値は、リソース カレンダーをリソースにリンクするために使用されます。したがって、使用可能な長さは、Resource の ID フィールドで使用可能な長さに対応する必要があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~starttimezoneid.html[StartTimeZoneId] - String - 最大 40 文字まで使用できるようにする必要があります。 
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~endtimezoneid.html[EndTimeZoneId] - String - StartTimeZoneId と同じです。
+
+以下のフィールドは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~resourcecalendaritemssource.html[ResourceCalendarItemsSource] が提供される場合に限り必要とされます。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningcalendarid.html[OwningCalendarId] - String - ResourceCalendar の ID フィールドからの値は、リソース カレンダーをアクティビティにリンクするために使用されます。したがって、使用可能な長さは、ResourceCalendar の ID フィールドで使用可能な長さに対応する必要があります。
+
+タイム ゾーン ニュートラルなアクティビティをサポートするには:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~istimezoneneutral.html[IsTimeZoneNeutral] - Boolean - このフィールドは null にすることができます。 
+
+繰り返しアクティビティをサポートするには:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~recurrence.html[Recurrence] - String - 繰り返しルールは、iCalendar RECUR 値形式で保存されます。このフィールドは、30 文字くらいから 100 文字をはるかに超えるテキスト値を持つことができる可変長フィールドにする必要があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~maxoccurrencedatetime.html[MaxOccurrenceDateTime] - DateTime - このフィールドは null を使用できる DateTime フィールドにすることができます。
+
+繰り返しアクティビティのバリアンスをサポートするには:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~rootactivityid.html[RootActivityId] - String - 少なくとも 36 文字を使用できるようにする必要があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~originaloccurrencestart.html[OriginalOccurrenceStart] - DateTime - このフィールドは null を使用できる DateTime フィールドにすることができます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~originaloccurrenceend.html[OriginalOccurrenceEnd] - DateTime - このフィールドは null を使用できる DateTime フィールドにすることができます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~isoccurrencedeleted.html[IsOccurrenceDeleted] - bool
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~variantproperties.html[VariantProperties] - Long
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~recurrenceversion.html[RecurrenceVersion] - Integer
+
+アラームをサポートするには:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~reminderenabled.html[ReminderEnabled] - Boolean
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~reminderinterval.html[ReminderInterval] - TimeSpan
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~reminder.html[Reminder] - String - このフィールドは、繰り返しではないアクティビティには不要ですが、繰り返しアクティビティのアラームをサポートするために必要です。このフィールドは可変長テキスト フィールドである必要があります。
+
+== オプション フィールド
+
+以下のリストは、オプションのフィールドに対する要件を定義します。これらのフィールドはオプションですが、スケジュール機能をより良くするためにマッピングを提供したい場合があります。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[リソース]:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~name.html[Name] - String
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~emailaddress.html[EmailAddress] - String
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~description.html[Description] - String
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~firstdayofweek.html[FirstDayOfWeek] - .NET Nullable DayOfWeek 列挙体型または null を使用できる整数型。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~daysofweek.html[DaysOfWeek] - String - このフィールドは、ScheduleDaysOfWeek オブジェクトが XML としてシリアル化される可変長テキスト フィールドである必要があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~daysettingsoverrides.html[DaySettingsOverrides] - String - このフィールドは、DaySettingsOverridesCollection が XML としてシリアル化される可変長テキスト フィールドである必要があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~isvisible.html[IsVisible] - Nullable Boolean
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~islocked.html[IsLocked] - Boolean
+* UnmappedProperties - String - マッピングが提供されないフィールド値は、XML としてこのフィールドに保存されます。このフィールドは可変長テキスト フィールドである必要があります。UnmappedProperties によって、不要なフィールドの定義を回避できますが、それらのフィールド値をデータ ソースに保存することはできます。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendar]:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~name.html[Name] - String
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~description.html[Description] - String
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~basecolor.html[BaseColor] - String
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~isvisible.html[IsVisible] - Nullable Boolean
+* UnmappedProperties - String - 上記の Resource の UnmappedProperties の説明を参照してください。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.journal.html[Journal] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task.html[Task]:
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~subject.html[Subject] - String
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment~location.html[Location] - String - 予定のみに適用されます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~description.html[Description] - String
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~isvisible.html[IsVisible] - Nullable Boolean
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~islocked.html[IsLocked] - Nullable Boolean
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~lastmodifiedtime.html[LastModifiedTime] - DateTime
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task~percentcomplete.html[PercentComplete] - Integer - タスクのみに適用されます。
+
+== ListScheduleDataConnector での LINQ の使用
+
+LINQ はオンデマンドでアクティビティを取得するために使用されます。LINQ クエリが実行されるフィールドは、特定のタイプであることが求められます。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~start.html[Start]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~end.html[End]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~maxoccurrencedatetime.html[MaxOccurrenceDateTime]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~originaloccurrencestart.html[OriginalOccurrenceStart]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~originaloccurrenceend.html[OriginalOccurrenceEnd] - DateTime または null を使用できる DateTime である必要があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~reminderenabled.html[ReminderEnabled] - Boolean または null を使用できる Boolean である必要があります。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~reminderinterval.html[ReminderInterval] - TimeSpan 型である必要があります。
+
+== LINQ to SQL の使用
+
+LINQ to SQL を使用する場合、以下のように sql テーブルで DateTime および TimeSpan 列を定義してください。
+
+* DateTime フィールド - datetime sql データ型の Date-time 範囲は、.NET DateTime データ型より小さくなります。Microsoft SQL 2008 バージョンでは、.NET DateTime データ型に一致するより大きい date-time 範囲が使用できる新しい datetime2 データ型があります。したがって、datetime2 は任意の date-time フィールドに使用される必要があります。SQL サーバーの古いバージョンでは、null を使用できる datetime を使用する必要があり、これによってデフォルト値 (DateTime) を null として保存できます。
+* ReminderInterval - このフィールドは、TimeSpan フィールドにする必要があります。Microsoft SQL サーバーは、組み込みのタイムスパン データ型を持たないので、bigint データ型を使用できます。ただし、LINQ to SQL スキーマでは、LINQ to SQL エンティティ オブジェクトのプロパティ型を .NET TimeSpan に変更する必要があります。LINQ to SQL は、.NET TimeSpan 型と基本の SQL bigint 型で必要な変換を実行するための組み込みロジックを持ちます。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-using-connector-list.html[ListScheduleConnector]

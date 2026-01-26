@@ -1,0 +1,132 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-configuring-selection",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "b4125723-10c0-4ee4-a26d-3513cbab7391",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4353397Z"
+}
+|metadata|
+////
+
+= 選択の構成 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールの複数選択機能をオンにする方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362275414,選択構成の概要>>
+* <<_Ref362275420,複数選択>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref362275414]]
+== 選択構成の概要
+
+=== 選択構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、特定のプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+複数選択
+|複数選択を有効化または無効化します。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~ismultiselectenabled.html[IsMultiSelectEnabled]
+
+|====
+
+[[_Ref362275420]]
+== 複数選択
+
+=== 概要
+
+以下の手順では、 _xamRichTextEditor_   コントロールの複数選択機能を有効にします。デフォルトでは無効です。この機能では、ドキュメントの内容を複数の部分で選択できます。選択できる部分は範囲と呼ばれています。
+
+=== プロパティ設定
+
+以下の表では、目的の構成を特定のプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|複数選択を有効にする
+|`IsMultiSelectEnabled`
+|true
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコード例は、XAML および C# でデータを複数選択する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamRichTextEditor
+    x:Name="xamRichTextEditor1"
+    IsMultiSelectEnabled="True">
+</ig:XamRichTextEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.IsMultiSelectEnabled = true;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.IsMultiSelectEnabled = True
+----
+
+[[_Ref359594803]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-selection.html[選択の管理]
+|このトピックは、 _xamRichTextEditor_ コントロールの選択機能を、開発者の観点から説明します。
+
+|====

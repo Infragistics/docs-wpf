@@ -1,0 +1,69 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-load-an-end-users-docking-layout",
+    "controlName": ["xamDockManager"],
+    "tags": ["How Do I"],
+    "guid": "{41F7BF85-24FA-4E61-9879-F8F5015B0986}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5110553Z"
+}
+|metadata|
+////
+
+= エンド ユーザーのドッキング レイアウトをロード
+
+
+
+xamDockManager コントロールによって、エンド ユーザーはアプリケーションのレイアウトを修正できます。エンドユーザーは、アプリケーションの再起動時にレイアウトを修正する必要がないように、これらの設定の保存およびロードを開発者に期待します。xamDockManager コントロールは、以前に保存したドッキング レイアウトをロードするために使用できるオーバーロードされた link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~loadlayout.html[LoadLayout] メソッドを公開します。
+
+[NOTE]
+====
+_xamDockManager_   は、レイアウト ファイルの情報に基づいてコンテンツ ペインを自動的に作成および追加はしません。コンテンツ ペインは、`LoadLayout` メソッドの呼び出しの前に存在する必要があります。_xamDockManager_   は、現在レイアウトのコンテンツ ペインに含まれていないコンテンツ ペインをレイアウト ファイルで検出する場合、 link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~initializepanecontent_ev.html[InitializePaneContent] イベントが発生され、そのコンテンツ ペインのコンテンツを提供できます。コンテンツ ペインを識別し、提供するコンテンツを決定するには、 link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.contentpane~serializationid.html[SerializationId] プロパティを使用できます。このイベント中にコンテンツを提供しない場合、 _xamDockManager_   は不足しているコンテンツ ペインをレイアウトに追加しません。
+====
+
+以下のコード例は、以前に保存したドッキング レイアウトのロード方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Imports System.IO
+...
+Using fs As New FileStream("layout.xml", FileMode.Open, FileAccess.Read) 
+    Me.xamDockManager1.LoadLayout(fs)                                                        
+End Using 
+...
+'欠落するペインにコンテンツを追加するために InitializePaneContent イベントを処理します。
+Private Sub xamDockManager1_InitializePaneContent(ByVal sender As Object, ByVal e As InitializePaneContentEventArgs) 
+    'TODO: e.NewPane オブジェクトを使用して欠落しているコンテンツ ペインにコンテンツを追加します。 
+End Sub
+...
+----
+
+*C# の場合:*
+
+----
+using System.IO;
+...
+//ストリームからレイアウトをロードします。
+using(FileStream fs = new FileStream("layout.xml", FileMode.Open, FileAccess.Read))
+{
+    this.xamDockManager1.LoadLayout(fs);
+}
+....
+//欠落するペインにコンテンツを追加するために InitializePaneContent イベントを処理します。
+private void xamDockManager1_InitializePaneContent(object sender, InitializePaneContentEventArgs e)
+{
+    //TODO: e.NewPane オブジェクトを使用して欠落しているコンテンツ ペインにコンテンツを追加します。
+}
+...
+----
+
+== 関連トピック
+
+link:xamdockmanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamdockmanager-save-an-end-users-docking-layout.html[エンド ユーザーのドッキングレイアウトを保存]
+
+link:xamdockmanager-using-xamdockmanager.html[xamDockManager を使用]

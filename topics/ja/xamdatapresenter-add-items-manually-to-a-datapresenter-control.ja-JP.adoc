@@ -1,0 +1,74 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-add-items-manually-to-a-datapresenter-control",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I"],
+    "guid": "{7BE754AE-F231-4325-93CC-BC5242F75772}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0849701Z"
+}
+|metadata|
+////
+
+= 項目を手動で DataPresenter コントロールに追加
+
+コントロールをデータにバインドせずに、項目を DataPresenter コントロール、つまり xamDataPresenter™、xamDataGrid、xamDataCarousel または xamDataCards に手動で追加できます。DataPresenter コントロールの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~dataitems.html[DataItems] コレクションにデータ項目を直接追加することで、これを達成できます。DataPresenter コントロールは、DataItems コレクションに追加するオブジェクトごとに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] を作成します。
+
+[NOTE]
+====
+*注:* Microsoft® Windows® Presentation Foundation のデータ バインドされたコントロールと全く同じように、データ ソースに DataPresenter コントロールをバインドするか DataItems コレクションに直接項目を追加するかのいずれかを選択する必要があります。両方を行うことはできません。
+====
+
+以下のコード例は、レコードを DataPresenter コントロールに手動で追加する方法を示します。このトピックのコード例は、 link:resources-car-business-logic.html[CarsBusinessLogic] クラスを使用します。これはプロジェクトでダウンロードおよび使用するために C# および VB.NET で使用できます。
+
+*XAML の場合:*
+
+----
+...
+<!--Visual Basic を使用している場合、プロジェクト ルートの名前空間で CarsBusinessLogic クラスに割り当てている XML 名前空間を置き換えます。
+-->
+<igDP:XamDataPresenter Name="xamDataPresenter1" xmlns:Cars="clr-namespace:IGDocumentation">
+        <igDP:XamDataPresenter.DataItems>
+                <Cars:Car Make="Dodge" Model="Ram" BasePrice="22050.00" Mileage="153" />
+                <Cars:Car Make="Ford" Model="Explorer" BasePrice="27175.00" Mileage="96" />
+                <Cars:Car Make="BMW" Model="Z4" BasePrice="35600.00" Mileage="42" />
+                <Cars:Car Make="Toyota" Model="Camry" BasePrice="20790.99" Mileage="131" />
+        </igDP:XamDataPresenter.DataItems>
+</igDP:XamDataPresenter>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+...
+'このコードを Window の Loaded イベント ハンドラーなどのイベント ハンドラーに配置できます。
+Me.xamDataPresenter1.DataItems.Add(New Car("Dodge", "Ram", 22050.00, 153))
+Me.xamDataPresenter1.DataItems.Add(New Car("Ford", "Explorer", 27175.00, 96))
+Me.xamDataPresenter1.DataItems.Add(New Car("BMW", "Z4", 35600.00, 42))
+Me.xamDataPresenter1.DataItems.Add(New Car("Toyota", "Camry", 20790.99, 131))
+...
+----
+
+*C# の場合:*
+
+----
+using IGDocumentation
+...
+//このコードを Window の Loaded イベント ハンドラーなどのイベント ハンドラーに配置できます。
+this.xamDataPresenter1.DataItems.Add(new Car("Dodge", "Ram", 22050.00, 153));
+this.xamDataPresenter1.DataItems.Add(new Car("Ford", "Explorer", 27175.00, 96));
+this.xamDataPresenter1.DataItems.Add(new Car("BMW", "Z4", 35600.00, 42));
+this.xamDataPresenter1.DataItems.Add(new Car("Toyota", "Camry", 20790.99, 131));
+...
+----
+
+image::images/xamDataPresenter_Add_Items_Manually_to_xamDataPresenter.png[項目を xamDataPresenter に手動で追加]
+
+== 関連トピック
+
+link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]
+
+link:xamdatapresenter-iterate-through-the-records-collection.html[レコード コレクションで繰り返し]

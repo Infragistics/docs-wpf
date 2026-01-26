@@ -1,0 +1,137 @@
+﻿////
+
+|metadata|
+{
+    "name": "xambusyindicator-configuring-overlay-style",
+    "tags": ["Getting Started","How Do I"],
+    "controlName": ["xamBusyIndicator"],
+    "guid": "1207872d-2c58-405f-90c5-e907e24ee5a6",  
+    "buildFlags": [],
+    "createdOn": "2015-08-04T11:32:06.3356326Z"
+}
+|metadata|
+////
+
+= オーバーレイ スタイルの構成 (xamBusyIndicator)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamBusyIndicator_   コントロールのデフォルトのオーバーレイ スタイルを変更する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-features-overview.html[機能の概要]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xambusyindicator-visual-elements.html[視覚要素]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref427942477, オーバーレイ スタイルの構成 >>
+* <<_Ref427942481, 関連コンテンツ >>
+
+** <<_Ref427942485,トピック>>
+
+[[_Ref427942477]]
+== オーバーレイ スタイルの構成
+
+=== 概要
+
+インジケーターがビジーな場合、 link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator_members.html[XamBusyIndicator] の link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~overlaystyle.html[OverlayStyle] プロパティを使用して、 _xamBusyIndicator_   コンテンツの上に置かれる`長方形`要素にカスタム スタイルを適用します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|長方形をオーバーレイするコンテンツにスタイルを適用
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~overlaystyle.html[OverlayStyle]
+|`スタイル`
+
+|====
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、 _xamBusyIndicator_   コントロールの外観がどのようになるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{RootAssembly}{ApiVersion}~infragistics.controls.interactions.xambusyindicator~overlaystyle.html[OverlayStyle]
+|_<Style TargetType="{x:Type Rectangle}">_ 
+
+_<Setter Property="Opacity" Value=".5" />_ 
+
+_<Setter Property="Fill" Value="#FFF8FCC1" />_ 
+
+_</Style>_
+
+|====
+
+image::images/Configuring_Overlay_Style_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamBusyIndicator IsBusy="True" >
+    <ig:XamBusyIndicator.OverlayStyle>
+        <Style TargetType="{x:Type Rectangle}">
+            <Setter Property="Opacity" Value=".5" />
+            <Setter Property="Fill" Value="#FFF8FCC1" />
+        </Style>
+    </ig:XamBusyIndicator.OverlayStyle>
+</ig:XamBusyIndicator>
+----
+
+[[_Ref427942481]]
+== 関連コンテンツ
+
+[[_Ref427942485]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xambusyindicator-configuring-busy-indicator-display.html[ビジー インジケータの表示の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する方法を説明します。
+
+| link:xambusyindicator-configuring-busy-content.html[] link:xambusyindicator-configuring-busy-content.html[ビジー コンテンツの構成]
+|このトピックでは、 _xamBusyIndicator_  ビジー コンテンツを構成する方法を説明します。
+
+| link:xambusyindicator-configuring-delayed-display.html[表示の遅延の構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールを表示する前の遅延時間を構成する方法を説明します。
+
+| link:xambusyindicator-configuring-focus-target.html[フォーカス ターゲットの構成]
+|このトピックでは、 _xamBusyIndicator_ が非アクティブな場合に、`UIElement` がフォーカスを受け取るように明示的に構成する方法を説明します。
+
+| link:xambusyindicator-configuring-determinate-xambusyindicator.html[既定の xamBusyIndicator の構成]
+|このトピックでは、 _xamBusyIndicator_ のオーバーレイ スタイルをカスタマイズする方法を説明します。
+
+| link:xambusyindicator-configuring-animations-brushes.html[アニメーション ブラシの構成]
+|このトピックでは、 _xamBusyIndicator_ コントロールのデフォルトのアニメーション ブラシをカスタマイズする方法を説明します。
+
+|====

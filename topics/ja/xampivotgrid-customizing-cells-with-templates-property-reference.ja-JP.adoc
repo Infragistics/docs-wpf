@@ -1,0 +1,105 @@
+﻿////
+|metadata|
+{
+    "name": "xampivotgrid-customizing-cells-with-templates-property-reference",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["API","Grids","How Do I","Templating"],
+    "guid": "04c0c67b-c43c-48ad-9af5-3dcd38b156b7",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.2213273Z"
+}
+|metadata|
+////
+
+= テンプレートによるセルのカスタマイズのプロパティ参照
+
+=== 概要
+
+これは、xamPivotGrid™ のセル カスタマイズ機能に関連する最も注意すべきプロパティのリストです。
+
+=== プロパティ リファレンスの要約
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid_members.html[XamPivotGrid]  プロパティ
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~datacelltemplates.html[DataCellTemplates]
+|カスタム `DataTemplates` を link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotcellcontrol_members.html[PivotCellControl] に適用するために使用される link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate_members.html[DataCellTemplate] オブジェクトのコレクション。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~columnheadertemplates.html[ColumnHeaderTemplates]
+|カスタム `DataTemplates` を link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotcolumnheadercellcontrol_members.html[PivotColumnHeaderCellControl] に適用するために使用される link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate_members.html[HeaderTemplate] オブジェクトのコレクション。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid~rowheadertemplates.html[RowHeaderTemplates]
+|カスタム `DataTemplates` を link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotrowheadercellcontrol_members.html[PivotRowHeaderCellControl] に適用するために使用される `HeaderTemplate` オブジェクトのコレクション。
+
+|====
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate_members.html[DataCellTemplate] のプロパティ
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~columnhierarchy.html[ColumnHierarchy]
+|xamPivotGrid 内の列として現在使用されている link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.base.hierarchy_members.html[Hierarchy] の link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.base.hierarchy~caption.html[Caption] に等しい文字列を設定した場合、Template プロパティに設定されている DataTemplate が、階層の列の `PivotCellControl` (データ セル) に適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~columnlabel.html[ColumnLabel]
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotdatacolumn_members.html[PivotDataColumn] の link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotdatacolumn~headertext.html[HeaderText] に等しい文字列を設定した場合、Template プロパティに設定されている `DataTemplate` がその列の `PivotCellControl` (データ セル) に適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~columnlevel.html[ColumnLevel]
+|1 よりも大きい整数値を設定した場合、`Template` プロパティに設定された `DataTemplate` が、その列レベルにある `PivotCellControl` (データ セル) のみに適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~rowhierarchy.html[RowHierarchy]
+|xamPivotGrid 内の行として現在使用されている `Hierarchy` の `Caption` に等しい文字列を設定した場合、`Template` プロパティに設定されている `DataTemplate` が、階層の行の `PivotCellControl` (データ セル) に適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~rowlabel.html[RowLabel]
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotdatarow_members.html[PivotDataRow] の link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotdatacolumn~headertext.html[HeaderText] に等しい文字列を設定した場合、`Template` プロパティに設定されている `DataTemplate` がその行の `PivotCellControl` (データ セル) に適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~rowlevel.html[RowLevel]
+|1 よりも大きい整数値を設定した場合、`Template` プロパティに設定された `DataTemplate` が、その行レベルにある `PivotCellControl` (データ セル) のみに適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.datacelltemplate~template.html[Template]
+|`PivotCellControl` の内容のための `DataTemplate`。
+
+|====
+
+link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate_members.html[HeaderTemplate] のプロパティ
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.base.hierarchy_members.html[Hierarchy]
+|xamPivotGrid で現在使用されている Hierarchy の Caption に等しい文字列を設定した場合、`Template` プロパティに設定された `DataTemplate` が、その階層の link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotheadercell_members.html[PivotHeaderCell] に適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate~label.html[Label]
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.pivotheadercell_members.html[PivotHeaderCell] の link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.base.member_members.html[Member] の link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.data.base.hierarchy~caption.html[Caption] に等しい文字列を設定した場合、`Template` プロパティに設定された `DataTemplate` がその `PivotHeaderCell` に適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate~level.html[Level]
+|1 よりも大きい整数値を設定した場合、`Template` プロパティに設定された `DataTemplate` が、そのレベルにある `PivotHeaderCell` のみに適用されます。
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.headertemplate~template.html[Template]
+|`PivotHeaderCell` の内容のための `DataTemplate`。
+
+|====
+
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-customizing-cells-with-templates-overview.html[テンプレートを使用したセルのカスタマイズの概要]
+|xamPivotGrid コントロールを使用すると、データ セルと、ヘッダー列と行のセルにカスタム データ テンプレートを指定できます。このトピックはこの機能の概要です。
+
+| link:xampivotgrid-customizing-cells-with-templates-procedure-and-code-example.html[テンプレートを使用したセルのカスタマイズ - 手順とコード例]
+|このトピックでは、xamPivotGrid™ セルの内容にカスタム DataTemplates を適用することで、セルをカスタマイズする方法について、順を追って説明しています。
+
+| link:xampivotgrid-us-conditional-formating.html[条件フォーマッティング]
+|CellControlAttached イベントを使用し、セルの値に基づいてカスタム スタイルをデータ セルに適用する方法の説明です。
+
+|====

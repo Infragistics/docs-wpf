@@ -1,0 +1,42 @@
+﻿////
+|metadata|
+{
+    "name": "wpf-getting-started-with-wpf",
+    "controlName": [],
+    "tags": ["Getting Started"],
+    "guid": "{59EE0C3F-A1CF-4DAD-8EC7-D1C56C00390C}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.5696671Z"
+}
+|metadata|
+////
+
+= Getting Started with Infragistics for WPF
+
+The {ProductName} help documentation assumes that you are already familiar with key concepts of Microsoft® {PlatformName}™. In order to take full advantage of the power of the product, it is strongly recommended that you gain knowledge of the fundamental concepts of {PlatformName}.
+
+For more information on the key concepts and features of {PlatformName}, link:https://msdn.microsoft.com/en-us/library/ms754130.aspx[see this MSDN Library topic].
+
+Once you are familiar with WPF, you will need to install the relevant Infragistics for WPF NuGet packages that correspond to the controls that you want to use in your application. For more information regarding the usage of NuGet packages, link:https://learn.microsoft.com/en-us/nuget/what-is-nuget[see this topic on Microsoft's site].
+
+== Install Infragistics for WPF via NuGet
+
+To begin using our controls, install the Infragistics for WPF NuGet packages that correspond to the features you want to add to your application.
+
+- Learn more about installing link:https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio[using NuGet packages]
+- See link:nuget-packages.html[NuGet Packages] for package details.
+- Download trial packages from link:https://nuget.org[Nuget.org]
+- For licensed users, see link:nuget-feeds.html[NuGet Feeds]
+
+Once you have added the appropriate NuGet packages to your application, you will need to add the corresponding  link:default-xml-namespace-mappings.html[XAML namespace definitions]. Once finished, you are ready to use Infragistics for WPF controls. For documentation on specific controls and components, link:controls-components-and-frameworks.html[see this topic].
+
+At this point, you’ll be ready to start building with Infragistics WPF controls.
+
+== Samples
+
+To help you get started quickly, we’ve published a collection of sample applications on GitHub:
+
+- link:https://github.com/Infragistics/wpf-samples/tree/master[Download Samples Browser]
+
+The samples, by default, use our trial NuGet packages located at link:https://nuget.org[Nuget.org]
+

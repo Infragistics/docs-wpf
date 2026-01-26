@@ -1,0 +1,215 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-the-visible-portion",
+    "tags": ["Charting","How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "36b6f95a-588c-4349-94fb-2fa836841f61",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:42:15.4221508Z"
+}
+|metadata|
+////
+
+= ダイアグラムの表示部分の構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールの表示部分を構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref386568673, 概要 >>
+
+** <<_Ref386568682,ダイアグラムの表示部分の構成の概要>>
+** <<_Ref386568688,ダイアグラムの表示部分の構成の概要表>>
+
+* <<_Ref388264008, ダイアグラムの表示部分の構成 >>
+
+** <<_Ref386568700,概要>>
+** <<_PropertySettings,プロパティ設定>>
+** <<_Ref388264290,例 - デフォルト設定>>
+** <<_Ref388264295,例 - 縮小>>
+** <<_Ref388264299,例 - 右にパン>>
+** <<_Ref388264302,例 - 全コード>>
+
+* <<_Ref386568715, 関連コンテンツ >>
+
+** <<_Ref386568722,トピック>>
+
+[[_Ref386568673]]
+== 概要
+
+[[_Ref386568682]]
+
+=== ダイアグラムの表示部分の構成の概要
+
+xamDiagram コントロールは、現在表示されている部分を取得するためのプロパティのセットを公開します。xamDiagram では、現在表示されている部分を位置とサイズによって決定する 3 つの四角形の概念を使用します。これらの各四角形は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram_members.html[XamDiagram] クラスのプロパティとして表示されます。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~viewportrect.html[ViewportRect] は、現在コントロールで使用できるスペースを示します。コントロールのために確保される余白と link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~viewportrect.html[ViewportRect] は、 _xamDiagram_   と完全に同じサイズになります。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~worldrect.html[WorldRect] はダイアグラムのノードおよび接続が存在する領域を示しますが、その領域はダイアグラムの項目のすべての境界四角形の結合部分を表す四角形です。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect] は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~viewportrect.html[ViewportRect] で表示する link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~worldrect.html[WorldRect] の部分を決定します。
+
+[[_Ref386568688]]
+
+=== ダイアグラムの表示部分の構成の概要表
+
+以下の表では、表示部分の制御に関連する  _xamDiagram_   の構成可能な要素を簡単に説明します。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|ダイアグラムの表示部分
+|ズーム レベルと現在表示されている項目を制御します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~zoomlevel.html[ZoomLevel] 
+
+|====
+
+[[_Ref388264008]]
+== ダイアグラムの表示部分の構成
+
+[[_Ref386568700]]
+
+=== 概要
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect] プロパティを、目的の位置とサイズを持つ `Rect` オブジェクトに設定することで、現在表示されているダイアグラムの部分が構成されます。これにより、垂直方向および水平方向のパンニング位置のみならずズーム レベルも設定されます。小さなサイズの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect] を設定すると、ズーム レベルが大きくなり、その結果ダイアグラムの表示部分が小さくなります。ダイアグラムを左側に移動するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect] の X 位置の値を大きくします。この値を小さくすると、ダイアグラムの表示部分は右側に移動します。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect] の Y 位置は、ダイアグラムの垂直スクロール位置を制御します、
+
+ズーム レベルのみを設定する場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~zoomlevel.html[ZoomLevel] プロパティを使用します。
+
+さらに、 _xamDiagram_   は、ズーム レベルのリセット、またはダイアグラムのすべての項目を表示させる link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~zoomto100.html[ZoomTo100] メソッドおよび link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~scaletofit.html[ScaleToFit] メソッドを公開します。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ダイアグラムの表示する部分の設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect]
+|目的の四角形
+
+|====
+
+以下の例では、固定された link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~viewportrect.html[ViewportRect] (0,0,500,300) を確保し、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~worldrect.html[WorldRect] が (0,0,320,280) になるように 2 つのノードを配置するために、 _xamDiagram_   の `Width` プロパティおよび `Height` プロパティを設定します。
+
+[[_Ref388264290]]
+
+=== 例 - デフォルト設定
+
+以下のスクリーンショットは、以下の設定の結果、 _xamDiagram_   の 2 つのノードがどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect]
+| _0,0,500,300_ 
+
+|====
+
+image::images/xamDiagram_Configuring_The_Visible_Portion_Of_The_Diagram_1.png[]
+
+[[_Ref388264295]]
+
+=== 例 - 縮小
+
+以下のスクリーンショットは、以下の設定の結果、 _xamDiagram_   の 2 つのノードがどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect]
+| _-250,-150,1000,600_ 
+
+|====
+
+image::images/xamDiagram_Configuring_The_Visible_Portion_Of_The_Diagram_2.png[]
+
+[[_Ref388264299]]
+
+=== 例 - 右にパン
+
+以下のスクリーンショットは、以下の設定の結果、 _xamDiagram_   の 2 つのノードがどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~windowrect.html[WindowRect]
+| _200,0,500,300_ 
+
+|====
+
+image::images/xamDiagram_Configuring_The_Visible_Portion_Of_The_Diagram_3.png[]
+
+[[_Ref386568709]]
+
+=== 例 - 全コード
+
+以下のコード例は、前述の例を実行する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="Diagram"
+               WindowRect="0,0,500,300"
+               NavigationPaneVisibility="Visible"
+               Width="502" Height="302" BorderThickness="1" BorderBrush="Black">
+    <ig:DiagramNode Content="{Binding Bounds, RelativeSource={RelativeSource Self}}"/>
+    <ig:DiagramNode Content="{Binding Bounds, RelativeSource={RelativeSource Self}}" Position="200,200"/>
+</ig:XamDiagram>
+----
+
+[[_Ref386568715]]
+== 関連コンテンツ
+
+[[_Ref386568722]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-the-position-and-size-of-diagram-nodes.html[ダイアグラム ノードの位置およびサイズの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールのダイアグラム ノードのサイズと位置を制御する方法を説明します。
+
+| link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[ダイアグラム接続の開始および終了の構成 ( _xamDiagram_ )]
+|このトピックでは、ダイアグラムの接続を開始する位置と終了する位置を構成する方法について説明します。
+
+|====

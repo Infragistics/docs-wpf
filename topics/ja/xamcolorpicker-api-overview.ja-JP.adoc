@@ -1,0 +1,30 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcolorpicker-api-overview",
+    "controlName": ["xamColorPicker"],
+    "tags": ["API"],
+    "guid": "bdcab402-7d40-40c4-8092-f0b96039a2e0",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.6780912Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[options="header", cols="a,a"]
+|====
+|xamColorPicker 名前空間:|主要な API:
+
+| link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics] 
+
+link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers]
+| link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.controls.editors.xamcolorpicker.html[XamColorPicker] 
+
+link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.controls.editors.colorpalette.html[ColorPalette]
+
+|====

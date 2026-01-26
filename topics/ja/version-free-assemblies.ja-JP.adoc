@@ -1,0 +1,111 @@
+﻿////
+
+|metadata|
+{
+    "name": "version-free-assemblies",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "b1ae31bb-23d6-479e-9ba4-cc180653fc70",  
+    "buildFlags": ["wpf","sl"],
+    "createdOn": "2012-09-10T14:45:47.0059614Z"
+}
+|metadata|
+////
+
+= バージョンフリー アセンブリ
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、バージョンフリーなアセンブリーを使用するメリットを示す概念的な概要を提供します。
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref331107019, バージョンフリーなアセンブリーの概念的な概要 >>
+
+** <<_Ref331107030,はじめに>>
+
+** <<_Ref331107038,バージョンフリー アセンブリの使用>>
+
+** <<_Ref331107047,アセンブリー バインディングのリダイレクション>>
+
+** <<_Ref331107055,バインディング リダイレクションのコード>>
+
+[[_Ref331107019]]
+== バージョンフリーなアセンブリーの概念的な概要
+
+[[_Ref331107030]]
+
+=== はじめに
+
+2012 Volume 2 のリリース以後、 pick:[wpf,sl="{ProductName}"]  製品とともに zip 圧縮形式で使用できるバージョンフリー アセンブリを提供しています。
+
+バージョンフリー アセンブリは、アセンブリ名にバージョン番号またはフレームワーク バージョン識別子がないライブラリです。
+
+たとえば、{VersionedApiPlatform}.v12.2.dll は Infragistics{PlatformName}.dll と識別します。バージョンフリー アセンブリーは最新の CLR バージョン (WPF4 または SL5) に対応しており、v12.2  といったバージョン番号は廃止しました。
+
+[[_Ref331107038]]
+
+=== バージョンフリー アセンブリの使用
+
+.注:
+[NOTE]
+====
+バージョンフリーアセンブリを使用する際は、アプリケーションでリグレッション テスト一式を実行し、また、アップグレード前に使用していたボリューム リリース以後に実施された大きな変更点の項を、弊社のヘルプで確認してください。
+====
+
+バージョンフリー アセンブリは、以下の手順で使用します。
+
+* 1.フォルダー {InstallPath}\Version-Free まで移動して開きます。
+
+* 2. pick:[wpf,sl="{PlatformName}"]_20171_VersionFree.zip ファイルを解凍します。
+
+* 3.アプリケーションでは前述の場所からバージョンフリー アセンブリーを参照できます。また、アセンブリーは link:http://msdn.microsoft.com/ja-jp/library/ex0ss12c.aspx[Gacutil.exe] プログラムでも Global Assembly Cache (GAC) に追加できます。
+
+* 4.Visual Studio でツールボックス タブを作成し、[項目を選択] を使用し、バージョンフリー アセンブリーのフォルダーを参照してバージョンフリー アセンブリーのコントロールを追加します。
+
+[[_Ref331107047]]
+
+=== アセンブリー バインディングのリダイレクション
+
+バージョンフリー アセンブリを使用すれば、アプリケーションを再ビルドしなくても、アセンブリ バインディング リダイレクションで、ひとつのバージョンから別のバージョンに簡単にアップグレードできます。
+
+アセンブリー バインディング リダイレクションは、以下の要素のあるアプリケーション構成ファイルを利用して、どのようなアセンブリー バージョンでもそのアセンブリーの任意のバージョンにリダイレクトするよう .Net ランタイムに指示します。
+
+* アプリケーション構成ファイル (app.config) 内の `bindingRedirect` 要素は、バージョン リダイレクションを可能にする `oldVersion` と `newVersion` の属性を受け取ります。
+
+* `assemblyIdentity` 要素はアセンブリーを識別する名前属性を受け取ります。
+
+.注:
+[NOTE]
+====
+バージョン設定したアセンブリーでは、リリースごとにアセンブリー名が変化し (例、{VersionedApiPlatform}.v12.1.dll、 {VersionedApiPlatform}.v12.2.dll、など)、`assemblyIdentity` 要素には指定できません。バージョンフリー アセンブリでは、すべての Infragistics ボリューム リリースでアセンブリ名が共通であり、アプリケーションを再ビルドしなくても、あるバージョンから別のバージョンに bindingRedirect でアップグレードできます。
+====
+
+[[_Ref331107055]]
+
+=== バインディング リダイレクションのコード
+
+以下のコードは、アプリケーションをリダイレクトして WPF か Silverlight の新しいバージョンを使用するために、app.config ファイル内で bindingRedirect を使用する例です。
+
+*XML の場合:*
+
+[source,xaml]
+----
+<configuration>
+<runtime>
+  <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+  <dependentAssembly>
+   <assemblyIdentity name="InfragisticsWPF" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral" />
+   <bindingRedirect oldVersion="12.1.20121.0" newVersion="12.2.20122.50"/>
+  </dependentAssembly>
+  <dependentAssembly>
+   <assemblyIdentity name="InfragisticsWPF.DataPresenter" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral" />
+   <bindingRedirect oldVersion="12.1.20121.0" newVersion="12.2.20122.50"/> </dependentAssembly>
+  </assemblyBinding>
+</runtime>
+</configuration>
+----

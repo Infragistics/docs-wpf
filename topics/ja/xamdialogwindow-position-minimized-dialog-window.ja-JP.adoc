@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-position-minimized-dialog-window",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["Editing","How Do I"],
+    "guid": "{61F05386-BA7E-4760-A821-5479B2BF9058}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.0041185Z"
+}
+|metadata|
+////
+
+= 最小化ダイアログ ウィンドウの配置
+
+デフォルトで、ダイアログ ウィンドウは最小化された時に位置を変えません。ダイアログ ウィンドウの幅と高さは変わりますが、位置は変わりません。ただし、デフォルトの設定をオーバーライドして最小化されたダイアログ ウィンドウの位置を変更できます。
+
+たとえば、アプリケーションに多数のダイアログ ウィンドウがある場合、アプリケーションの特定の場所に統一してすべてのダイアログ ウィンドウを最小化して表示する方がエンドユーザーには使いやすいはずです。
+
+これを実行するには、xamDialogWindow™ コントロールの link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~minimizedpanel.html[MinimizedPanel] プロパティを設定します。これは、ダイアログ ウィンドウが最小化されるようにパネルに指定します。
+
+*XAML の場合:*
+
+----
+<StackPanel
+ Grid.Column="0" Grid.Row="0" Background="Black"
+ Orientation="Horizontal" x:Name="MinPanel">
+</StackPanel>
+<ig:XamDialogWindow
+ Content="Dialog Window" 
+ x:Name="DialogWindow" Width="200" Height="200" 
+ MinimizedPanel="{Binding ElementName=MinPanel}"/>
+----
+
+*Visual Basic の場合:*
+
+----
+DialogWindow.MinimizedPanel = Me.MinPanel
+----
+
+*C# の場合:* 
+
+[source,csharp]
+----
+DialogWindow.MinimizedPanel = this.MinPanel;
+----
+
+== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-xamwebzoombar",
+    "controlName": ["xamTimeline"],
+    "tags": ["Navigation"],
+    "guid": "{BC0DBE67-C455-4070-ADCC-AFE59C1FE439}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.0913928Z"
+}
+|metadata|
+////
+
+= xamZoombar をタイムラインとの使用
+
+時刻シリーズでスクロールだけでなくズームを可能にするために link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[xamZoombar] コントロールを link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] と併用できます。長い時刻シリーズで空間的に互いに近いイベントを表示することが容易になります。
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[xamZoombar] コントロールは、つまみ、2 つのボタン、およびプレビュー領域で構成されます。つまみは表示可能な領域だけでなく link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] の倍率レベルを制御します。つまみを展開して表示領域を増やしたりズームを小さくする、または前後にスライドしてタイムラインの表示可能な部分を変更できます。ボタンはつまみのスクロール、つまり xamTimeline の表示可能な部分の感情的な変更を制御します。プレビュー領域は、xamTimeline に示される時刻シリーズの部分を表示します。
+
+image::images/XamTimeline_About_XamZoombar_01.png[]
+
+== 関連トピック
+
+* link:xamzoombar-getting-started-with-xamzoombar.html[xamZoombar を使用した作業の開始]
+* link:xamzoombar-using-xamzoombar.html[xamZoombar の使用]

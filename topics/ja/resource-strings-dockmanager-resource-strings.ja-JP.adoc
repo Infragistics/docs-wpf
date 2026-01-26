@@ -1,0 +1,79 @@
+﻿////
+
+|metadata|
+{
+    "name": "resource-strings-dockmanager-resource-strings",
+    "controlName": [],
+    "tags": [],
+    "guid": "13d11168-8d5b-4fbd-8c2a-5af78da42c62",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-11-20T15:52:17.2502465Z"
+}
+|metadata|
+////
+
+= DockManager リソース文字列
+
+コントロール/コンポーネントによりユーザーに表示されるリソース文字列値を迅速にそして簡単に変更することができます。リソース文字列には、ダイアログ ボックスのキャプション、警告メッセージ、アラートなどがあります。
+
+次の表は、文字列のデフォルト テキスト値と共に、このアセンブリによって使用されるリソース文字列の名前を示しています。
+
+[options="header", cols="a,a"]
+|====
+|リソース文字列名|デフォルト値
+
+|CloseAllButThisPaneMenuItem
+|これを除いてすべてを閉じる
+
+|CloseButtonToolTip
+|閉じる
+
+|ClosePaneMenuItem
+|閉じる
+
+|DockablePaneMenuItem
+|ドッキング可能
+
+|DocumentFilesMenuToolTip
+|アクティブ ファイル
+
+|DocumentPaneMenuItem
+|タブ付きドキュメント
+
+|DocumentShowNavigatorToolTip
+|ペイン ナビゲータを表示
+
+|FloatingPaneMenuItem
+|フローティング
+
+|HidePaneMenuItem
+|非表示
+
+|MoveToNewHorizontalGroupPaneMenuItem
+|新規水平タブ グループ
+
+|MoveToNewVerticalGroupPaneMenuItem
+|新しい垂直タブ グループ
+
+|MoveToNextGroupPaneMenuItem
+|次のタブ グループへ移動
+
+|MoveToPreviousGroupPaneMenuItem
+|前のタブ グループへ移動
+
+|PaneNavigatorActiveFilesLabel
+|アクティブ ファイル
+
+|PaneNavigatorActiveToolWindowsLabel
+|アクティブ ツール ウィンドウ
+
+|PinButtonToolTip
+|自動的に隠す
+
+|PinPaneMenuItem
+|自動的に隠す
+
+|PositionMenuToolTip
+|ウィンドウの位置
+
+|====

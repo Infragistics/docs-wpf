@@ -1,0 +1,151 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-2010-volume-2",
+    "controlName": [],
+    "tags": ["Known Issues"],
+    "guid": "c536c031-c7a6-40e3-a437-cccc3c153b02",  
+    "buildFlags": [],
+    "createdOn": "2012-01-31T21:16:05.5617971Z"
+}
+|metadata|
+////
+
+= 2010 Volume 2
+
+以下の重要な変更点は、 {ProductName} Data Visualization のすべてのコントロールに適用されます。
+
+== Infragistics.Silverlight.DataVisualization (現在: {ApiPlatform}DataVisualization)
+
+*名前空間の変更:*
+
+Infragistics.Silverlight $$->$$ Infragistics
+
+*URI:*
+
+ig:(http://schemas.infragistics.com/xaml) は以下を表します: (Infragistics)
+
+*設計アセンブリ:*
+
+Infragistics.Silverlight.DataVisualization.v9.2.Design - > {ApiPlatform}DataVisualization.v10.2.Design
+
+== Infragistics.Silverlight.DataVisualization.Controls (現在: {ApiPlatform}Controls)
+
+*名前空間の変更:*
+
+Infragistics.Silverlight.Controls $$->$$ Infragistics.Controls
+
+*URI:*
+
+ig:(http://schemas.infragistics.com/xaml) represents: (Infragistics.Controls)
+
+*クラス名の変更:*
+
+XamWebZoombar $$->$$ xamZoombar
+
+XamWebDock $$->$$ xamDock
+
+*設計アセンブリ:*
+
+Infragistics.Silverlight.DataVisualization.Controls.v9.2.Design - > {ApiPlatform}Controls.v10.2.Design
+
+== Infragistics.Silverlight.DataVisualization.Gauge (現在: {ApiPlatform}Controls.Charts.XamGauge)
+
+*名前空間の変更:*
+
+Infragistics.Silverlight.Gauge $$->$$ Infragistics.Controls.Charts
+
+*URI:*
+
+ig:(http://schemas.infragistics.com/xaml) represents: (Infragistics.Controls.Charts)
+
+*クラス名の変更:*
+
+XamWebLinearGauge $$->$$ xamLinearGauge
+
+XamWebRadialGauge $$->$$ xamRadialGauge
+
+XamWebSegmentedDisplay $$->$$ xamSegmentedDisplay
+
+XamWebBulletGraph $$->$$ xamBulletGraph
+
+*設計アセンブリ:*
+
+Infragistics.Silverlight.DataVisualization.Gauge.v9.2.Design - > {ApiPlatform}Controls.Charts.XamGauge.v10.2.Design
+
+== Infragistics.Silverlight.DataVisualization.Map (現在: {ApiPlatform}Controls.Maps.XamMap)
+
+*名前空間の変更:*
+
+Infragistics.Silverlight.Map $$->$$ Infragistics.Controls.Maps
+
+*URI:*
+
+ig:(http://schemas.infragistics.com/xaml) represents: (Infragistics.Controls.Maps)
+
+*クラス名の変更:*
+
+XamWebMap $$->$$ xamMap
+
+*設計アセンブリ:*
+
+Infragistics.Silverlight.DataVisualization.Map.v9.2.Design - > {ApiPlatform}Controls.Maps.XamMap.v10.2.Design
+
+== Infragistics.Silverlight.DataVisualization.Timeline (現在: {ApiPlatform}Controls.Timelines.XamTimeline)
+
+*名前空間の変更:*
+
+Infragistics.Silverlight.Timeline $$->$$ Infragistics.Controls.Timelines
+
+*URI:*
+
+ig:(http://schemas.infragistics.com/xaml) represents: (Infragistics.Controls.Timelines)
+
+クラス名の変更:
+
+XamWebTimeline $$->$$ xamTimeline
+
+SeriesPane - EventTitlesPanel
+
+*削除されたクラス:*
+
+GridArea
+
+*追加されたクラス:*
+
+StripesPanel
+
+GridLinesPanel
+
+AxisEventsPanel
+
+LabelsPanel
+
+TickMarksPanel
+
+PreviewAxis
+
+*変更されたクラス:*
+
+Axis $$->$$ TimelineAxis
+
+Series $$->$$ TimelineSeries
+
+SeriesCollection $$->$$ TimelineSeriesCollection
+
+Legend $$->$$ TimelineLegend
+
+*設計アセンブリ:*
+
+Infragistics.Silverlight.DataVisualization.Timeline.v9.2.Design - > {ApiPlatform}Controls.Timelines.XamTimeline.v10.2.Design
+
+== Infragistics.Silverlight.DataVisualization.Chart (現在: {ApiPlatform}Controls.Charts.XamWebChart)
+
+*URI:*
+
+ig:(http://schemas.infragistics.com/xamWebChart) represents: (Infragistics.Silverlight.Chart)
+
+*設計アセンブリ:*
+
+Infragistics.Silverlight.DataVisualization.Chart.v9.2.Design - > {ApiPlatform}Controls.Charts.XamWebChart.v10.2.Design

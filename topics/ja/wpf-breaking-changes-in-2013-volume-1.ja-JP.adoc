@@ -1,0 +1,84 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-breaking-changes-in-2013-volume-1",
+    "controlName": [],
+    "tags": [],
+    "guid": "0bf67a2f-9000-4dad-a0c6-4a7194aab916",  
+    "buildFlags": [],
+    "createdOn": "2013-03-07T15:45:06.7686458Z"
+}
+|metadata|
+////
+
+= 2013 Volume 1 の重大な変更点
+
+== 既知の問題と制限
+
+=== 概要
+
+以下の表に、{ProductName} 2013 Volume 1 の既知の問題と制限事項の概要を示します。以下の表は、すべての問題の詳細な説明とその回避策を示します。
+
+==== 凡例:
+
+[cols="a,a"]
+|====
+|image::images/Yes.png[]
+|回避策
+
+|image::images/No.png[]
+|既知の回避策はありません
+
+|image::images/Fix.png[]
+|修正予定です
+
+|====
+
+[options="header", cols="a,a,a"]
+|====
+|問題|説明|状態
+
+|<<issue1,RecordFilterAction 列挙型>>
+|列挙型定数の動作に変更があります。
+|image::images/Yes.png[]
+
+|<<issue2,テーマの再構築>>
+|テーマを整理し、再構築しました。
+|image::images/Yes.png[]
+
+|====
+
+[[issue1]]
+== RecordFilterAction 列挙型
+
+=== RecordFilterAction 列挙型の説明
+
+RecordFilterAction link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordfilteraction.html[RecordFilterAction] 列挙型定数  *None*  は廃止されました。新しい定数  *ReduceOpacity*  で置き換えられました。
+
+=== RecordFilterAction 列挙型の回避策
+
+{ProductName} 13.1 またはそれ以降を使用する場合、 *None*  定数を `RecordFilterAction` 列挙型から  *ReduceOpacity*  定数に変更します。
+
+[[issue2]]
+== テーマの再構築
+
+=== Theme.Colors.xaml の説明
+
+このファイルは ResourceDictionary です。指定したテーマのすべてのスタイルで使用される色の定義を含みます。
+
+=== Styles.Shared.xaml 説明
+
+このファイルは ResourceDictionary です。Buttons、Checkboxes、Lists など、共通のクロス プラットフォーム MS コントロールに適用するスタイルおよびブラシを含みます。
+
+=== Styles.WPF.xaml 説明
+
+このファイルは ResourceDictionary です。Scrollers、TextBoxes、Comboboxesなど、WPF プラットフォームに固有な MS コントロールのスタイルおよびブラシを含みます。
+
+=== IG.$$*$$.xaml 説明
+
+これらのファイルは整理されて再構築され、Themes.Colors.xaml および Styles.Shared.xaml、Styles.WPF.xaml、 IG.DataVisualization.xaml などのその他の共通 ResourceDictionaries で使用されます。
+
+=== テーマ再構築の回避策
+
+新しいテーマを古いテーマにコピーし、テーマ ファイルの隣に関連性のある共通ファイル (Themes.Colors.xaml、 Styles.Shared.xaml, Styles.WPF.xaml、 IG.DataVisualization.xaml) をコピーします。

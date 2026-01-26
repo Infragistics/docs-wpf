@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-exporting-data",
+    "tags": [],
+    "controlName": ["xamDataPresenter"],
+    "guid": "2b323413-e4b3-46dd-a092-5a393b7f06e6",  
+    "buildFlags": [],
+    "createdOn": "2014-04-03T10:54:18.5271093Z"
+}
+|metadata|
+////
+
+= データのエクスポート (xamDataPresenter)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックは、 _xamDataPresenter_™ のデータを複数のファイル形式にエクスポートする方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-exporting-to-excel.html[Excel へエクスポート]
+|このトピックのグループは、 _xamDataPresenter_ のデータを Microsoft® Excel® ファイル形式にエクスポートする方法を説明します。
+
+| link:xamdatapresenter-exporting-to-word.html[Word へのエクスポート]
+|このトピックのグループは、 _xamDataPresenter_ __ のデータを Microsoft Word® ファイル形式にエクスポートする方法を説明します。
+
+|====

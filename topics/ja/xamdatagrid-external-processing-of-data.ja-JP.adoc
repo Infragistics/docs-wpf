@@ -1,0 +1,46 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-external-processing-of-data",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Filtering","Grids","Grouping","Sorting","Summaries"],
+    "guid": "bd1c0038-eb6e-438e-a83a-44231618c542",  
+    "buildFlags": [],
+    "createdOn": "2012-09-17T19:30:03.5430635Z"
+}
+|metadata|
+////
+
+= データの外部処理
+
+== このグループのトピックについて
+
+=== はじめに
+
+このトピックは、CollectionView と内部処理を使用したデータの外部処理について説明します。内部処理は、 _xamDataGrid_   _™_   のデータ プレゼンターで処理されます。フィルタリング、並べ替え、グループ化、集計計算の外部処理。
+
+=== トピック
+
+このセクションには、外部データ処理の実装に関するトピックが含まれています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:external-sorting-filtering-grouping-summaries-overview-xamdatagrid.html[外部ソート フィルタリング グループ集計の概要]
+|このトピックは、外部ソート、フィルタリング、グループ化、集計を含む _xamDataGrid_ の機能の概要について説明します。
+
+| link:xamdatagrid-external-filtering.html[外部のフィルタリング]
+|このトピックは、コード例を使用して _xamDataGrid_ コントロールでレコードフィルタリング処理を外部で行う方法を説明します。
+
+| link:xamdatagrid-external-grouping.html[外部でグループ化]
+|このトピックは、 _xamDataGrid_ コントロールで外部グルーピングを使用する方法について説明します。
+
+| link:xamdatagrid-external-sorting.html[外部ソート]
+|コード例を使用した _xamDataGrid_ コントロールで外部ソートを実行する方法を説明します。
+
+| link:xamdatagrid-external-summary-calculations.html[外部集計計算]
+|このトピックでは、 _xamDataGrid_ コントロールの外部集計計算機能についての説明とそのデモを提供します。
+
+|====

@@ -1,0 +1,214 @@
+﻿////
+|metadata|
+{
+    "name": "xamtreemap-adding-xamtreemap-using-procedural",
+    "controlName": ["xamTreemap"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "3a442ea3-626f-4668-878c-d6217fb51694",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.7713815Z"
+}
+|metadata|
+////
+
+= プロシージャ コードを使用して xamTreemap を追加
+
+== 始める前に
+
+このトピックでは、XAML を使用して xamTreemap コントロールを独自の pick:[sl="ページ"]  pick:[wpf,win-phone="アプリケーション"] へ追加する基本的な手順を説明します。コントロールでは、データ オブジェクト モデルを DataContext プロパティにマップする必要があります。トピックは簡易データ オブジェクトモデルを提供しますが、カスタムモデルを作成することも可能です。
+
+== 達成すること
+
+アプリケーションへバインドしたシンプルなデータのある xamTreemap コントロールのインスタンスを追加します。
+
+== 次の手順を実行します
+
+*注:* このサンプルは xamTreemap コントロールの DataContext プロパティのバインドにサンプル データ モデルを使用しています。サンプル データ モデルは link:resources-manufacturer-view-model.html[ManufacturerViewModel] からダウンロードできます。
+
+[start=1]
+. Microsoft® {PlatformName} アプリケーションを作成します。
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.Treemap
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. UserControl の Loaded イベントにイベント ハンドラーを追加します。
+
+*XAML の場合:*
+
+----
+<UserControl Loaded="UserControl_Loaded">
+</UserControl>
+----
+
+ 
+[start=4]
+. コード ビハインドに using/Imports を配置します。 
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Charts
+Imports DATA_MODEL_NAMESPACE
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Charts;
+using DATA_MODEL_NAMESPACE;
+----
+
+[start=5]
+. UserControl_Loaded イベント ハンドラー内で、DataContext を ManufacturerViewModel にバインドし、ItemsSource をビュー モデルの Manufacturers プロパティをバインドして xamTreemap コントロールのインスタンスを作成します。  
+
+*Visual Basic の場合:*
+
+----
+Dim data As New ManufacturerViewModel()
+Dim Treemap As New XamTreemap()
+Treemap.DataContext = data
+Treemap.ItemsSource = data.Manufacturers
+----
+
+*C# の場合:*
+
+----
+ManufacturerViewModel data = new ManufacturerViewModel();
+XamTreemap Treemap = new XamTreemap();
+Treemap.DataContext = data;
+Treemap.ItemsSource = data.Manufacturers;
+----
+
+[start=6]
+. xamTreemap の新しいインスタンスを Grid パネルの Children コレクションに追加します (新しいページを初めて作成する時には、デフォルトで「LayoutRoot」という名前のグリッド パネルが定義されます)。 
+
+*Visual Basic の場合:*
+
+----
+Me.LayoutRoot.Children.Add(Treemap)
+----
+
+*C# の場合:*
+
+----
+this.LayoutRoot.Children.Add(Treemap);
+----
+
+[start=7]
+. 新しい link:xamtreemap-node-binders.html[ノード バインダー]を作成して、xamTreemap コントロールの NodeBinders コレクションに追加します。
+
+*Visual Basic の場合:*
+
+----
+Dim binder As New NodeBinder()
+binder.TargetTypeName = "Manufacturer"
+binder.ValuePath = "Revenue"
+binder.TextPath = "Name"
+Treemap.NodeBinders.Add(binder)
+----
+
+*C# の場合:*
+
+----
+NodeBinder binder = new NodeBinder();
+binder.TargetTypeName = "Manufacturer";
+binder.ValuePath = "Revenue";
+binder.TextPath = "Name";
+Treemap.NodeBinders.Add(binder);
+----
+
+注: これは、この手順でアプリケーションを実行した場合に xamTreemap コントロールがどのように表示するかを示します。
+
+image::images/xamTreemap_Adding_xamTreemap_Using_Xaml_Procedural_Code_01.png[]
+[start=8]
+. 新しい link:xamtreemap-value-mappers.html[値マッパー]を作成して、xamTreemap コントロールの ValueMappers コレクションに追加します。
+
+*Visual Basic の場合:*
+
+----
+Dim mapper As New ColorMapper()
+mapper.ValueTypeName = "Manufacturer"
+mapper.TargetProperty = "Fill"
+mapper.ValuePath = "Revenue"
+mapper.From = Color.FromArgb(144, 255, 0, 0)
+mapper.To = Color.FromArgb(144, 0, 128, 0)
+Treemap.ValueMappers.Add(mapper)
+----
+
+*C# の場合:*
+
+----
+ColorMapper mapper = new ColorMapper();
+mapper.ValueTypeName = "Manufacturer";
+mapper.TargetProperty = "Fill";
+mapper.ValuePath = "Revenue";
+mapper.From = Color.FromArgb(144, 255, 0, 0);
+mapper.To = Color.FromArgb(144, 0, 128, 0);
+Treemap.ValueMappers.Add(mapper);
+----
+
+[start=9]
+. アプリケーションを保存して実行します。
+
+image::images/xamTreemap_Adding_xamTreemap_Using_Xaml_Procedural_Code_02.png[]
+
+== 完全なコード
+
+*Visual Basic の場合:*
+
+----
+    Private Sub UserControl_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+        Dim data As New ManufacturerViewModel()
+        Dim Treemap As New XamTreemap()
+        Treemap.DataContext = data
+        Treemap.ItemsSource = data.Manufacturers
+        Me.LayoutRoot.Children.Add(Treemap)
+        Dim binder As New NodeBinder()
+        binder.TargetTypeName = "Manufacturer"
+        binder.ValuePath = "Revenue"
+        binder.TextPath = "Name"
+        Treemap.NodeBinders.Add(binder)
+        Dim mapper As New ColorMapper()
+        mapper.ValueTypeName = "Manufacturer"
+        mapper.TargetProperty = "Fill"
+        mapper.ValuePath = "Revenue"
+        mapper.From = Color.FromArgb(144, 255, 0, 0)
+        mapper.To = Color.FromArgb(144, 0, 128, 0)
+        Treemap.ValueMappers.Add(mapper)
+    End Sub
+----
+
+*C# の場合:*
+
+----
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ManufacturerViewModel data = new ManufacturerViewModel();
+            XamTreemap Treemap = new XamTreemap();
+            Treemap.DataContext = data;
+            Treemap.ItemsSource = data.Manufacturers;
+            this.LayoutRoot.Children.Add(Treemap);
+            NodeBinder binder = new NodeBinder();
+            binder.TargetTypeName = "Manufacturer";
+            binder.ValuePath = "Revenue";
+            binder.TextPath = "Name";
+            Treemap.NodeBinders.Add(binder);
+            ColorMapper mapper = new ColorMapper();
+            mapper.ValueTypeName = "Manufacturer";
+            mapper.TargetProperty = "Fill";
+            mapper.ValuePath = "Revenue";
+            mapper.From = Color.FromArgb(144, 255, 0, 0);
+            mapper.To = Color.FromArgb(144, 0, 128, 0);
+            Treemap.ValueMappers.Add(mapper);
+        }
+----
+
+== 関連トピック
+
+* link:xamtreemap-adding-xamtreemap-using-xaml.html[XAML コードを使用して xamTreemap を追加]
+* link:xamtreemap-adding-xamtreemap-using-blend.html[Expression Blend を使用して xamTreemap を追加]

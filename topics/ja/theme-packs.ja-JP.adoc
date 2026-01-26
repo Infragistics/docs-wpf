@@ -1,0 +1,19 @@
+﻿////
+
+|metadata|
+{
+    "name": "theme packs",
+    "controlName": [],
+    "tags": [],
+    "guid": "715f3e51-b297-45e0-9bd7-ce99e9dfed26",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-01-30T20:32:17.6005947Z"
+}
+|metadata|
+////
+
+= テーマ パック
+
+link:wpf-external-themepacks.html[外部のテーマ パック]
+
+link:wpf-creating-a-themepack.html[テーマ パックの作成]

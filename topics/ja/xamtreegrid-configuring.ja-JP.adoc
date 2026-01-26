@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-configuring",
+    "tags": [],
+    "controlName": ["xamTreeGrid"],
+    "guid": "8ce7f18d-bff0-4ef9-aeda-ed3a99a54909",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:27:46.6661229Z"
+}
+|metadata|
+////
+
+= xamTreeGrid の構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションのトピックでは、コントロールの構成についての情報を提供します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-conf-tree-field.html[ツリー フィールドの構成 (xamTreeGrid)]
+|このトピックでは、コントロールのツリー フィールドを構成する方法を説明します。
+
+| link:xamtreegrid-conf-expansion-indicators.html[展開インジケーターの構成 (xamTreeGrid)]
+|このトピックでは、展開インジケーターの動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-indentation-per-level.html[レベルごとのインデントの構成 (xamTreeGrid)]
+|このトピックでは、子レコードの表示に使用するインデントの設定方法を説明します。
+
+| link:xamtreegrid-conf-selection.html[選択の構成 (xamTreeGrid)]
+|このトピックでは、子レベルのレコードに対して選択動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-filtering.html[フィルタリングの構成 (xamTreeGrid)]
+|このトピックでは、コントロールのフィルタリング機能を構成する方法を説明します。
+
+| link:xamtreegrid-conf-summaries.html[集計の構成 (xamTreeGrid)]
+|このトピックでは、コントロールの集計サポートの詳細を説明します。
+
+|====

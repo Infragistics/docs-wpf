@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-toggle-button",
+    "controlName": ["xamRibbon"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{F85A0B61-19CF-4FB1-9949-F729F15238D9}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.2211973Z"
+}
+|metadata|
+////
+
+= トグル ボタン
+
+
+
+
+
+トグル ボタン ツールは、ワード プロセッシング アプリケーションの、太字、斜体、下線などのフォント スタイルと同義です。このボタンをクリックすると関連付けられたアクションが発生します。これは通常、True または False の 2 つの値に設定できるブール プロパティです。ワープロアプリケーションでは、一部のテキストを強調表示したり [太字] ボタンをクリックします。選択したテキストが太字である限り、ボタンは選択した状態のままになり、これはチェックボックス タイプのコントロールと非常に似ています。チェックボックス コントロールのように、エンド ユーザーはトグル ボタンツールをチェックされた状態、チェックを解除された状態、または中間の状態にすることができます。
+
+Toggle Button ツールは、Microsoft® Windows® Presentation Foundation の System.Windows.Controls ToggleButton クラスから派生します。したがって、標準の Windows Presentation Foundation トグル ボタンと同じ機能をすべて得られます。トグル ボタン ツールは IRibbonTool インターフェイスも実装します。これは、高度な xamRibbon™ 機能を促進するクローンおよびバインド機能を追加します。ユーザー独自のカスタム xamRibbon ツールを作成していなければ、IRibbonTool インターフェイスについての心配は不要です。
+
+link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool.html[ToggleButtonTool] クラスは、xamRibbon でボタンを容易に管理する上で役立つ複数の追加プロパティを公開します。ToggleButtonTool は、プロパティが設定されているかどうか、またはトグル ボタンが特定の状態にあるかどうかの確認を手助けするために複数の 'Has' および 'Is' プロパティを公開します。xamRibbon で Toggle Button ツール (または他のツール) を設定する手助けをする標準プロパティには以下が含まれます。
+
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~caption.html[Caption] - ツールのキャプションが表示可能である状態にツールのサイズが設定されている場合、ツールの隣りにこのテキストが表示されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~id.html[Id] - 異なる複数の場所 (つまり、リボン グループとクイック アクセス ツールバーに同時に) に配置された時にツールを関連付けるために xamRibbon が使用する識別文字列。Id は不要ですが、ランタイムに link:xamribbon-access-a-tool-by-its-id.html[ツールにアクセス]する手助けとなります。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~keytip.html[KeyTip] - 各ツールには、それに関連付けられた link:xamribbon-key-tips.html[キーチップ]があります (メイン メニュー ニーモニックに似ている)。明示的にキーチップを提供しなければ、ユーザーに代わって xamRibbon が内部的に選択します。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~largeimage.html[LargeImage] - 通常は 32 x 32 ピクセルの画像です。ツールの SizingMode が ImageAndTextLarge に設定される場合にこの画像が表示されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~sizingmode.html[SizingMode] - このプロパティは読み取り専用で、ツールが関連付けられたリボン グループで現在どのようにサイズ設定されているかを返します。link:xamribbon-resize-a-tool.html[ツールのサイズを設定]したい場合、RibbonGroup の link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~minimumsizeproperty.html[MinimumSize] および/または link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.ribbongroup~maximumsizeproperty.html[MaximumSize] 添付プロパティを設定できます。また、 link:xamribbon-add-tools-to-a-buttongroup.html[ボタン グループにツールを配置]する場合、ツールは自動的に ImageOnly にサイズ設定されます。
+* link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.togglebuttontool~smallimage.html[SmallImage] - 通常は 16 x 16 ピクセルの画像です。ツールの SizingMode が ImageAndTextNormal に設定される場合にこの画像が表示されます。
+
+xamRibbon ツールすべては同じオブジェクトから派生および実装するので、ツールの各機能は非常に似ています。以下のトピックはすべての xamRibbon ツールに適用されます。
+
+== 関連トピック
+
+link:xamribbon-access-a-tool-by-its-id.html[ID でツールにアクセス]
+
+link:xamribbon-add-tools-to-a-buttongroup.html[ツールを ButtonGroup に追加]
+
+link:xamribbon-add-tools-to-a-ribbon-group.html[リボン グループにツールを追加]
+
+link:xamribbon-resize-a-tool.html[ツールのサイズ変更]

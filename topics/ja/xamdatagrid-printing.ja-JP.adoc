@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-printing",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{6DBF78B4-837E-483F-BEFC-9EC51F0E17AF}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0149561Z"
+}
+|metadata|
+////
+
+= 印刷
+
+
+
+xamDataGrid™ の印刷に関する情報の詳細は、以下のリンクを参照してください。
+
+* link:xamdatapresenter-exclude-datapresenter-settings-when-printing.html[印刷時に DataPresenter 設定を除外]
+* link:xamdatapresenter-fit-all-fields-on-a-single-page.html[単一ページにすべてのフィールドを収める]
+* link:xamdatapresenter-handling-events-to-customize-print-operations.html[印刷操作をカスタマイズするためにイベントを処理]
+* link:xamdatapresenter-print-all-records-in-a-hierarchy.html[階層のすべてのレコードを印刷]
+* link:xamdatapresenter-repeat-field-headers-on-all-pages.html[すべてのページでフィールド ヘッダーを繰り返す]

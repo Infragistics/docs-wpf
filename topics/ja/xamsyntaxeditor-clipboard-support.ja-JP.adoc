@@ -1,0 +1,333 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-clipboard-support",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","How Do I"],
+    "guid": "ea5d9c5c-52c0-4858-87d0-531948ad18a5",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3563536Z"
+}
+|metadata|
+////
+
+= クリップボードのサポート (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   コントロールでサポートしているクリップボードの操作について解説します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref332610425,  _xamSyntaxEditor の_  クリップボード サポートの概要 >>
+* <<_Ref332610432, コントロールの構成の概要 >>
+* <<_Ref332610439, クリップボードによる切り取り >>
+* <<_Ref332610446, クリップボードによるコピー >>
+* <<_Ref332610457, クリップボードにより貼り付け >>
+* <<_Ref324632235, イベント要旨 >>
+* <<_Ref094327652, ClipboardOperationExecuting イベント >>
+* <<_Ref764325452, ClipboardOperationExecuted イベント >>
+* <<_Ref332610464, 関連コンテンツ >>
+
+[[_Ref332610425]]
+== _xamSyntaxEditor_  のクリップボード サポートとは
+
+=== はじめに
+
+_xamSyntaxEditor_   コントロールでは、文書の編集に便利な、クリップボードによる切り取り、コピー、貼り付けができます。これらの操作は、 link:generalconcepts-about-ig-commanding.html[インフラスジスティックス コマンディング フレームワーク]で利用できます。
+
+注:
+
+[NOTE]
+====
+限定トラストの XBAP アプリケーションと Silverlight アプリケーションでは、このコントロールはプライベート クリップボードを使用します。プライベート クリップボードの場合、コントロール内のテキストではすべてのクリップボード機能を利用できますが、そのアプリケーション内の他の要素とはクリップボードによるインタラクションはできません。
+====
+
+[[_Ref332610432]]
+== コントロールの構成の概要
+
+=== コントロール構成の要点チャート
+
+以下の表は、クリップボード サポートで利用できるコマンドをまとめたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|作業|詳細|呼び出すコマンド
+
+|<<_Ref332610439,クリップボードによる切り取り>>
+|切り取り操作の実行
+|
+* 切り取り 
+
+|<<_Ref332610446,クリップボードによるコピー>>
+|コピー操作を実行します
+|
+* コピー 
+
+|<<_Ref332610457,クリップボードにより貼り付け>>
+|貼り付け操作を実行します
+|
+* 貼り付け 
+
+|====
+
+_xamSyntaxEditor_   コマンドの全リストについては、 link:xamsyntaxeditor-events-and-commands.html[イベントとコマンド]のトピックを参照してください。
+
+[[_Ref332610439]]
+== クリップボードによる切り取り
+
+=== 概要
+
+クリップボードによる切り取り操作は、文書から選択したテキストをキャプチャして削除し、同時にその選択テキストをクリップボードに追加します。
+
+=== コマンド設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|以下のコマンド ソースをインスタンス化します。|設定するプロパティ:
+
+|切り取り操作の実行
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.primitives.syntaxeditorcommandsource.html[SyntaxEditorCommandSource]
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.primitives.syntaxeditorcommandsource~eventname.html[EventName] 
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.primitives.syntaxeditorcommandsource~commandtype.html[CommandType]
+
+|====
+
+=== 例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Cut">
+    <ig:Commanding.Command>
+        <igPrim:SyntaxEditorCommandSource EventName="Click" CommandType="Cut" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+[[_Ref332610446]]
+== クリップボードによるコピー
+
+=== 概要
+
+クリップボードによるコピーでは、文書から選択したテキストをコピーしてクリップボードに追加します。
+
+=== コマンド設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|以下のコマンド ソースをインスタンス化します。|設定するプロパティ:
+
+|コピー操作の実行
+|`SyntaxEditorCommandSource`
+|`EventName` 
+
+`CommandType`
+
+|====
+
+=== 例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Copy">
+    <ig:Commanding.Command>
+        <igPrim:SyntaxEditorCommandSource EventName="Click" CommandType="Copy" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+[[_Ref332610457]]
+== クリップボードにより貼り付け
+
+=== 概要
+
+クリップボードによる貼り付けでは、状況に応じて、 _xamSyntaxEditor の_  現在のカレット位置にクリップボードのテキスト コンテンツを挿入するか、クリップボードのテキスト コンテンツを挿入して、文書で選択したテキストと置換します。
+
+=== コマンド設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|以下のコマンド ソースをインスタンス化します。|設定するプロパティ:
+
+|貼り付け操作の実行
+|`SyntaxEditorCommandSource`
+|`EventName` 
+
+`CommandType`
+
+|====
+
+=== 例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Paste">
+    <ig:Commanding.Command>
+        <igPrim:SyntaxEditorCommandSource EventName="Click" CommandType="Paste" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+[[_Ref324632235]]
+== イベント要旨
+
+=== イベントの要旨表
+
+クリップボード操作を実行すると、`TextDocument` を変更する前に  _xamSyntaxEditor_   コントロールの link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~clipboardoperationexecuting_ev.html[ClipboardOperationExecuting] イベントを発生します。`TextDocument` への変更を保存するクリップボード操作の後に link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~clipboardoperationexecuted_ev.html[ClipboardOperationExecuted] イベントを発生します。`ClipboardOperationExecuting` イベントをキャンセルすると、`ClipboardOperationExecuted` イベントを発生せずに現在のクリップボード操作を中止します。実行しているイベントまたは実行したイベントによってトリガーされたかどうかに関係なく、要求されたクリップボード操作 (切り取り、コピー、貼り付け) およびそのコンテンツを取得できます。
+
+以下の表は、 _xamSyntaxEditor_   コントロールによって発生されるクリップボード イベントをリストします。
+
+[options="header", cols="a,a,a"]
+|====
+|イベント|詳細|イベント プロパティ
+
+|<<_Ref094327652,ClipboardOperationExecuting イベント>>
+|このイベントは、`TextDocument` を変更する前にクリップボード操作を実行する前に発生します。
+|
+* クリップボード操作 
+
+* クリップボード コンテンツ 
+
+* イベントはキャンセル可能です。 
+
+|<<_Ref764325452,ClipboardOperationExecuted イベント>>
+|このイベントは、`TextDocument` を変更したにクリップボード操作を実行した後に発生します。
+|
+* クリップボード操作 
+
+* クリップボード コンテンツ 
+
+|====
+
+[[_Ref094327652]]
+== ClipboardOperationExecuting イベント
+
+=== 説明
+
+このイベントは、`TextDocument` を変更する前にクリップボード操作の実行の前に発生します。
+
+=== コード
+
+以下のコードは、`ClipboardOperationExecuting` イベントを処理する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public void editor_COExecuting(object s, ClipboardOperationExecutingEventArgs e)
+{
+    // クリップボード操作 (切り取り、コピー、貼り付け) を取得する
+    ClipboardOperation operation = e.ClipboardOperation;
+    // クリップボード データを操作するためにデータ オブジェクトを取得する
+    SyntaxEditorDataObject dataObject = e.DataObject;
+    string dataAsString =
+        dataObject.GetData(SyntaxEditorDataFormats.Text) as string;
+    // クリップボード データを変更するか、
+    dataObject.SetData(SyntaxEditorDataFormats.Text, "new string");
+    // イベントとクリップボード操作をキャンセルできます
+    e.Cancel = true;
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Sub editor_COExecuting(s As Object, e As ClipboardOperationExecutingEventArgs)
+    ' クリップボード操作 (切り取り、コピー、貼り付け) を取得する
+    Dim operation As ClipboardOperation = e.ClipboardOperation
+    ' クリップボード データを操作するためにデータ オブジェクトを取得する
+    Dim dataObject As SyntaxEditorDataObject = e.DataObject
+    Dim dataAsString As String = _
+        TryCast(dataObject.GetData(SyntaxEditorDataFormats.Text), String)
+    ' クリップボード データを変更するか、
+    dataObject.SetData(SyntaxEditorDataFormats.Text, "new string")
+    ' イベントとクリップボード操作をキャンセルできます
+    e.Cancel = True
+End Sub
+----
+
+[[_Ref764325452]]
+== ClipboardOperationExecuted イベント
+
+=== 説明
+
+このイベントは、`TextDocument` を変更した後にクリップボード操作の実行の後に発生します。
+
+=== コード
+
+以下のコードは、`ClipboardOperationExecuted` イベントを処理する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public void editor_COExecuted(object s, ClipboardOperationExecutingEventArgs e)
+{
+    // クリップボード操作 (切り取り、コピー、貼り付け) を取得する
+    ClipboardOperation operation = e.ClipboardOperation;
+    // クリップボード データを操作するためにデータ オブジェクトを取得する
+    SyntaxEditorDataObject dataObject = e.DataObject;
+    string dataAsString =
+        dataObject.GetData(SyntaxEditorDataFormats.Text) as string;
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Sub editor_COExecuted(s As Object, e As ClipboardOperationExecutingEventArgs)
+    ' クリップボード操作 (切り取り、コピー、貼り付け) を取得する
+    Dim operation As ClipboardOperation = e.ClipboardOperation
+    ' クリップボード データを操作するためにデータ オブジェクトを取得する
+    Dim dataObject As SyntaxEditorDataObject = e.DataObject
+    Dim dataAsString As String = _
+        TryCast(dataObject.GetData(SyntaxEditorDataFormats.Text), String)
+End Sub
+----
+
+[[_Ref332610464]]
+== 関連コンテンツ
+
+このトピックにの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-events-and-commands.html[イベントとコマンド]
+|このトピックでは、 _xamSyntaxEditor_ アプリケーションの構築とともにユーザーが利用できるイベントとサポート対象コマンドを紹介します。
+
+| link:generalconcepts-about-ig-commanding.html[インフラジスティックス コマンディング フレームワーク]
+|このトピックでは、インフラジスティックス コマンディング フレームワークに関するさまざまな情報と、サンプルを紹介します。
+
+|====

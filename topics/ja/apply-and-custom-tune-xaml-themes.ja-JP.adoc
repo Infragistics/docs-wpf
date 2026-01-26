@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "apply-and-custom-tune-xaml-themes",
+    "controlName": ["Infragistics Color Tuner"],
+    "tags": ["Getting Started","How Do I","Theming"],
+    "guid": "d5b40aa2-ea85-45b2-be9f-262223f5b19b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.2774048Z"
+}
+|metadata|
+////
+
+= Silverlight および WPF コントロールの XAML テーマを適用およびカスタム調整
+
+=== 概要
+
+このセクションは、Microsoft Visual Studio の拡張機能である Infragistics Color Tuner の使用の概要を提供します。
+
+このセクションには、Infragistics Color Tunerに関する情報、ツールが何を実行するのかの説明、提供する機能、このツールを使用して一般的なタスクを実行する方法に関する手順ごとの説明が含まれています。
+
+=== トピック
+
+Infragistics Color Tuner に関する詳細は、 link:using-infragistics-color-tuner.html[「Infragistics Color Tuner を使用」]のトピックで説明されます。
+

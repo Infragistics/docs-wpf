@@ -1,0 +1,48 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-cells-cellvaluepresenters-and-cell-virtualization",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Virtualization"],
+    "guid": "{38E3669D-E1D5-495A-9BC1-FFCC85D3420A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.4948521Z"
+}
+|metadata|
+////
+
+= Cells、CellValuePresenters、および Cell の仮想化
+
+
+
+各 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] 内の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] ごとに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cell] を遅延作成する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord~cells.html[Cells] コレクションを公開します。「遅延作成」は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cell] オブジェクトがコードまたは XAML でリクエストされるまで作成されないことを意味します。
+
+[NOTE]
+====
+*注:* セルは UIElements ではなく、関連付けられたフィールドのデータ ソース内に値をラップする軽量オブジェクトです。対応する link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] 要素によって UI に表示されます。
+====
+
+CellValuePresenter 要素は現在表示されているセルを表すためだけに作成されるように仮想化されます (詳細は、 link:xamdata-performance-optimizations-overview.html[パフォーマンス最適化の概要]を参照してください)。ただし、以下の 2 つの事例では、表示してはならないセルに対して CellValuePresenters が作成されます。
+
+* すべてのフィールドのセルの仮想化をオフにする以下の例のように、CellValuePresenters は対応する Field の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowcellvirtualization.html[AllowCellVirtualization] プロパティが False に設定されるセルに対して常に作成されます。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldSettings> 
+                <igDP:FieldSettings 
+                  AllowCellVirtualization="False"/> 
+        </igDP:XamDataGrid.FieldSettings> 
+</igDP:XamDataGrid>
+----
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~datarecordsizingmode.html[DataRecordSizingMode] プロパティが SizedToContentAndFixed のデフォルト値のまま、または SizedToContentAndIndividuallySizable に設定される時 (以下の例の XAML のように)。この事例では、セル エディターの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~isextentbasedonvalue.html[IsExtentBasedOnValue] メソッドが呼び出されて、方向に基づいてセルを仮想化できるかどうかを決定します。セル エディターの詳細については、 link:xamdata-editing-cell-values.html[セル値の編集]を参照してください。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldLayoutSettings> 
+                <igDP:FieldLayoutSettings 
+                  DataRecordSizingMode="SizedToContentAndIndividuallySizable"/> 
+        </igDP:XamDataGrid.FieldLayoutSettings> 
+</igDP:XamDataGrid>
+----

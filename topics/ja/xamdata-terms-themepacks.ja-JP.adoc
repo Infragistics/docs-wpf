@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-terms-themepacks",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started","Theming"],
+    "guid": "{8BC64175-21EE-4B99-B629-97E62DE328B6}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5708673Z"
+}
+|metadata|
+////
+
+= テーマパック
+
+テーマパックを使用して、スタイル リソースをより適切に管理および配備できます。テーマパックは、{ProductName} コントロールに整合性のあるルック アンド フィールを提供することを意図して関連するスタイル リソースをまとめてパッケージしたアセンブリです。単一のユニットとしてスタイル リソースを管理する、またコントロールに共通の外見を簡単に強制するために使用できます。
+
+link:xamdata-referencing-a-themepack-in-xaml.html[「XAML でテーマパックを参照」]で説明したように、XAML を通してテーマパックを参照することができます。
+
+image::images/Terms_ThemePacks_01.png[含まれているテーマパックのいくつかが xamDataGrid コントロールに表示されています。]
+
+Windows® Presentation Foundation アプリケーションの外観にプロフェッショナルなデザインを簡単に適用できます。Microsoft® Office® 2007 などの多数のテーマに準拠したデザイン性の高い UI をすばやく作成できます。テーマパックのすべてのサポートは、コントロール インフラストラクチャに組み込まれており、独自のテーマパックをデザインできるように公開されています。固有のテーマパックの作成と {ProductName} コントロールとの使用の詳細については、 link:wpf-creating-a-themepack.html[「テーマパックの作成」]を参照してください。
+
+テーマパックによるプログラムを理解するために必要な主要概念は以下のとおりです。
+
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.thememanager.html[テーマ マネージャー] -- 名前が指定されたテーマで使用するためにロードおよび登録されているスタイル リソースのセットの追跡を担当するシングルトン オブジェクト。
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcesetlocator~theme.html[名前] -- すべてのテーマは一意に識別するために名前が必要で、名前によってコードまたは XAML のいずれかで Theme Manager に登録することができます。
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcesetlocator~grouping.html[グループ] -- テーマに属するスタイル リソースは、「Primitives」または「WPF」のようなグループのサブカテゴリに分類できます。これらのグループ化は、テーマが適用された時に UI のどの要素がこれらのスタイル リソースを受け取るかを識別するために使用されます。
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcesetlocator~resourcepath.html[リソース パス] -- このパスはアセンブリ内からスタイル リソースの選択を指定するために使用されます。
+
+テーマパック アーキテクチャがどのように機能するかについての詳細な説明は、 link:themes.html[「テーマ」]を参照してください。

@@ -1,0 +1,61 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-auto-size-columns-using-mouse-clicks",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids","How Do I","Layouts"],
+    "guid": "{A6115212-38FE-4C82-A638-E7937D6FDD58}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.853166Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= マウス クリックを使用して列を自動的にサイズ設定
+
+エンド ユーザーが列のサイズを変更する方法には 2 種類あります。列の端を希望のサイズにドラッグできます。または列のヘッダーの右側の端をダブルクリックして、現在表示可能な最長値に列の幅を設定するようにリサイズできます。
+
+ダブルクリックを使用してエンドユーザーが列をリサイズできるようにするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnresizingsettings.html[ColumnResizingSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnresizingsettings~allowdoubleclicktosize.html[AllowDoubleClickToResize] プロパティを True に設定する必要があります。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyGrid">
+   <ig:XamGrid.ColumnResizingSettings>
+      <ig:ColumnResizingSettings AllowColumnResizing="Indicator" 
+                    AllowDoubleClickToSize="True"/>
+   </ig:XamGrid.ColumnResizingSettings>
+   …
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyGrid.ColumnResizingSettings.AllowDoubleClickToSize = True
+----
+
+*C# の場合:*
+
+----
+this.MyGrid.ColumnResizingSettings.AllowDoubleClickToSize = true;
+----
+
+== 関連トピック
+
+link:xamgrid-column-resizing.html[列サイズの変更]
+
+link:xamgrid-multi-column-resizing.html[複数列のリサイズ]
+
+link:xamgrid-resize-in-the-cell-area.html[セル領域でセルのリサイズ]
+
+link:xamgrid-set-columns-maximum-and-minimum-widths.html[列の最大幅と最小幅を設定]
+
+link:xamgrid-disable-resizing-of-certain-columns.html[特定の列のサイズ変更を無効にする]
+
+link:xamgrid-column-resizing-events.html[列のサイズ変更イベント]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

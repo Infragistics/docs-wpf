@@ -1,0 +1,131 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-using-xamgrid",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids"],
+    "guid": "{527947C0-55C1-494D-A0DC-1D234E823431}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6391826Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= xamGrid の使用
+
+このセクションは、xamGrid コントロールの重要な概念および機能を効果的に使用するためのタスク ベースの情報について説明します。
+
+link:xamgrid-activation.html[アクティベーション] 
+
+このセクションは、アクティベーション機能の説明や xamGrid コントロールのアクティベーションを有効にする方法などのタスクを実装する方法について示します。
+
+link:xamgrid-active-item.html[アクティブな項目]
+
+このセクションは、アクティブな項目の機能を示します。
+
+link:xamgrid-change-child-bands-visibility.html[子バンドの表示の変更]
+
+このチュートリアルでは xamGrid コントロールの ChildBand ヘッダー行のランタイム時の表示を変更する方法を示します。
+
+link:xamgrid-columns.html[列]
+
+このセクションは、xamGrid コントロールで使用可能な列および列を操作する方法を示します。
+
+link:xamgrid-column-chooser.html[列選択]
+
+このセクションは、列選択機能の説明や xamGrid コントロールの列選択を有効にする方法などのタスクを実装する方法について示します。
+
+link:xamgrid-column-moving.html[列移動]
+
+このセクションは、xamGrid の列移動の機能の説明や xamGrid コントロールの列移動を有効にする方法などのタスクを実装する方法について示します。
+
+link:xamgrid-column-resizing.html[列のサイズ変更]
+
+このセクションは、xamGrid の列のサイズ変更機能の説明や xamGrid コントロールの列移動を有効にする方法などのタスクを実装する方法について示します。
+
+link:xamgrid-conditional-formatting.html[条件付き書式]
+
+セクションは、xamGrid コントロールで列値に基づいて条件付き書式を構築する方法を説明します。
+
+link:xamgrid-copy-paste-support.html[コピー/貼り付けのサポート]
+
+このセクションは、xamGrid でサポートされるコピーおよび貼り付けの方法を説明します。
+
+link:xamgrid-data-annotations.html[データの注釈]
+
+このトピックは、xamGrid コントロールでデータの注釈を実装する方法を説明します。
+
+link:xamgrid-data-binding.html[データ バインディング]
+
+このトピックは、xamGrid コントロールでデータ バインディングを構築する方法を説明します。
+
+link:xamgrid-deferred-scrolling.html[遅延スクロール]
+
+このセクションは、xamGrid の遅延スクロール機能についての説明およびパフォーマンスを向上する方法について示します。
+
+link:xamgrid-editing-data.html[データの編集] 
+
+このセクションは、xamGrid コントロールでデータを編集する方法を示します。
+
+link:xamgrid-filtering.html[フィルタリング] 
+
+このセクションは、フィルタリング機能の説明や xamGrid コントロールでフィルタリングを有効にする方法などのタスクを実装する方法について示します。
+
+link:xamgrid-fixed-columns.html[列固定]
+
+このセクションは、xamGrid の列固定機能についての説明と xamGrid で機能を実装する方法を示します。
+
+link:xamgrid-groupby.html[GroupBy]
+
+このセクションは、xamGrid で GroupBy を有効にする方法と GroupBy 機能をカスタマイズする方法を示します。
+
+link:xamgrid-merged-cells.html[結合セル]
+
+このセクションは、セル結合を有効にする方法とこの機能をカスタマイズする方法を示します。
+
+link:xamgrid-paging.html[ページング]
+
+このセクションは、ページング機能についての説明と xamGrid で機能を実装する方法を示します。
+
+link:xamgrid-right-to-left-bidirectional-language-support.html[双方向言語のサポート]
+
+このトピックは、xamGrid 内で双方向言語のサポートを実装する方法を示します。
+
+link:xamgrid-row-selectors.html[行選択]
+
+このセクションは、xamGrid の行選択機能についての説明と xamGrid で機能を実装する方法を示します。
+
+link:xamgrid-rows.html[行]
+
+このセクションは、xamGrid の行を操作する方法について説明します。
+
+link:xamgrid-selection.html[選択]
+
+このセクションは xamGrid の選択機能について説明します。また、機能を実装する方法について示します。
+
+link:xamgrid-sorting.html[並び替え]
+
+このセクションは、xamGrid コントロールの並べ替え機能についての説明およびコントロールで並べ替えを有効にするなどのタスクを実装する方法について示します。
+
+link:xamgrid-summaries.html[集計]
+
+このセクションは、集計機能についての説明および xamGrid の集計を有効にするなどのタスクを実装する方法について示します。
+
+link:xamgrid-implicitdatatemplates.html[セルのデータ タイプによって、異なるユーザー インターフェイスを適用する]
+
+このトピックでは、暗黙的データ テンプレートを使用して、xamGrid™ コントロールの TemplateColumn 内のセルのデータ タイプによって異なる視覚的表現を適用する方法を説明します。
+
+link:xamgrid-support-for-string-indexers.html[文字列インデクサーのサポート]
+
+このトピックは、xamGrid で文字列インでクサーをサポートする方法について説明します。
+
+link:xamgrid-tooltips.html[ツールチップ]
+
+このトピックは、xamGrid でツールチップを実装する方法を説明します。
+
+link:xamgrid-virtualization.html[仮想化]
+
+このセクションは仮想化を使用して xamGrid のパフォーマンスを向上する方法と説明します。

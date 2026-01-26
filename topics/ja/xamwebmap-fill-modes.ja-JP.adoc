@@ -1,0 +1,248 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-fill-modes",
+    "controlName": ["xamMap"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{E33267CF-5F28-4A98-9E41-03D592C237BD}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2352742Z"
+}
+|metadata|
+////
+
+= Fill モードの使用
+
+xamMap コントロールにはコントロールの異なる要素に色を付けるための塗りつぶしモードが link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[RandomInterpolate]、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[RandomSelect] および link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[Choropleth] の 3 つあります。レイヤーの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~fillmode.html[FillMode] プロパティをこれらのオプションのいずれかに設定すると、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap] コントロールはブラシのレイヤーの選択を使用して要素の色を塗りつぶします。塗りつぶしのカラー ブラシを使用する場合、XAML を短縮するために xamMap のブラシ属性を使用して色を定義することができます。
+
+*Choropleth モード*
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[Choropleth] モードによって以前の 2 つのモードよりも高い柔軟性を提供できます。このモードは値スケールによって異なりますが、要素の値に応じて要素の色を塗りつぶします。以下の画像は、xamMap コントロールで Choropleth 塗りつぶしモードを使用して、米国の 1 平方マイル当たりの人口がどのように表示されるのかを示します。
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer x:Name="statesLayer" FillMode="Choropleth" Brushes="Blue Yellow Red">
+</igMap:MapLayer>
+----
+
+image::images/xamMap_Fill_Modes_01.png[]
+
+*ランダム補間モード*
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[RandomInterpolate] 塗りつぶしモードはブラシからの色の範囲で xamMap コントロールの要素をランダムに塗りつぶします。RandomInterpolate 塗りつぶしモードと "SkyBlue"、"DodgerBlue"、"RoyalBlue" および "Blue" の単色ブラシを使用すると、米国の 1 平方マイル当たりの人口が以下の画像のように視覚化されます。
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer x:Name="statesLayer" FillMode="RandomInterpolate" Brushes="Blue Yellow Red">
+</igMap:MapLayer>
+----
+
+image::images/xamMap_Fill_Modes_02.png[]
+
+*ランダム選択モード*
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[RandomSelect] モードでは、xamMap コントロールの要素をランダムに塗りつぶすためにレイヤーのブラシが使用されます。RandomSelect の塗りつぶしモードと上記と同じブラシを選択すると、米国の 1 平方マイル当たりの人口を示すマップは以下のようになります。
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer x:Name="statesLayer" FillMode="RandomSelect" Brushes="Blue Yellow Red">
+</igMap:MapLayer>
+----
+
+image::images/xamMap_Fill_Modes_03.png[]
+
+== Choropleth モードを使用してマップ要素に色を付ける
+
+== 始める前に
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[Choropleth] 塗りつぶしモードによって、値に基づいて xamMap の要素に色を付けることができます。これを実行するには、最小値と最大値で link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.valuescale.html[ValueScale] オブジェクトを定義する必要があります。各要素が使用可能な色の範囲はブラシの色と値の範囲によって異なります。つまり、値スケールはレイヤーの Brushes コレクションを使用して、値スケールの最小値および最大値と関係して、各要素の数値に基づき適切なスケールされたブラシを見つけ出します。
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.linearscale.html[LinearScale]、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.logarithmicscale.html[LogarithmicScale] および link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.distributionscale.html[DistributionScale] の 3 つのタイプの値スケールがあります。それぞれの使用はアプリケーションによって異なります。
+
+== 達成すること
+
+青、緑、黄色、赤のブラシの選択を使用して、1 平方マイルあたりの人口の値に基づいて link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap] コントロールの要素に色を付けるために Choropleth モードで link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.logarithmicscale.html[LogarithmicScale] を使用する方法を学習します。以下の画像は、xamMap コントロールで Choropleth 塗りつぶしモードの対数目盛を使用して、米国の 1 平方マイル当たりの人口がどのように表示されるのかを示します。
+
+== 次の手順を実行します
+
+[start=1]
+. xamMap という名前の xamMap コントロールをページに追加します。xamMap を表示するように Microsoft® {PlatformName} アプリケーションを設定する方法は、 link:xamwebmap-display-map-using-shapefiles.html[「シェープファイルをバインド」]を参照してください。
+
+[NOTE]
+====
+注: Value プロパティを設定することは重要です。そうでないと、Choropleth モードは適切に動作しません。
+====
+
+[start=2]
+. xamMap の以下の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:igMap="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Maps
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Maps;
+----
+
+[start=3]
+. xamMap の link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer.html[MapLayer] コレクションで link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapfillmode.html[Choropleth 塗りつぶしモード]を使用する マップ レイヤーを追加します。
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer x:Name="statesLayer" FillMode="Choropleth">
+       <!-- TODO: シェープファイルを読み、ブラシを定義し、値スケールを定義します。 -->
+</igMap:MapLayer>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim statesLayer As New MapLayer()
+xamMap.Layers.Add(statesLayer)
+statesLayer.FillMode = MapFillMode.Choropleth
+----
+
+*C# の場合:*
+
+----
+// マップ レイヤーを取得して Choropleth モードを作成します
+MapLayer statesLayer = new MapLayer();
+xamMap.Layers.Add(statesLayer);
+statesLayer.FillMode = MapFillMode.Choropleth;
+----
+
+[start=4]
+. link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.reader~datamapping.html[DataMapping] オブジェクトの Caption プロパティと Value プロパティを以下の属性に設定します。これで、キャプションが州の略語の列、そして値が人口密度の列にマップされます。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer.Reader>
+   <igMap:ShapeFileReader Uri="/../../Shapefiles/usa_st" DataMapping="Caption=STATE_ABBR; Value=POP90_SQMI" />
+</igMap:MapLayer.Reader>
+----
+
+endif::wpf[]
+
+ifdef::wpf[]
+
+*Visual Basic の場合:*
+
+----
+Dim reader As New ShapeFileReader()
+reader.Uri = "/../../Shapefiles/usa_st"
+Dim converter As New DataMapping.Converter()
+reader.DataMapping = TryCast(converter.ConvertFromString("Caption=STATE_ABBR; Value=POP90_SQMI"), DataMapping)
+statesLayer.Reader = reader
+----
+
+endif::wpf[]
+
+ifdef::wpf[]
+
+*C# の場合:*
+
+----
+ShapeFileReader reader = new ShapeFileReader();
+reader.Uri = "/../../Shapefiles/usa_st";
+DataMapping.Converter converter = new DataMapping.Converter();
+reader.DataMapping = converter.ConvertFromString("Caption=STATE_ABBR; Value=POP90_SQMI") as DataMapping;
+statesLayer.Reader = reader;
+----
+
+endif::wpf[]
+
+[start=5]
+. link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.brushcollection.html[BrushCollection] オブジェクトを XamMap コントロールの MapLayer の link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~brushes.html[Brushes] プロパティに追加します。
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer.Brushes>
+   <ig:BrushCollection>
+      <SolidColorBrush Color="SkyBlue" />
+      <SolidColorBrush Color="DodgerBlue" />
+      <SolidColorBrush Color="RoyalBlue" />
+      <SolidColorBrush Color="Blue" />
+   </ig:BrushCollection>
+</igMap:MapLayer.Brushes>
+----
+
+*Visual Basic の場合:*
+
+----
+' ブラシ コレクションを宣言します
+Dim brushCollection As New Infragistics.BrushCollection()
+brushCollection.Add(New SolidColorBrush(Colors.SkyBlue))
+brushCollection.Add(New SolidColorBrush(Colors.DodgerBlue))
+brushCollection.Add(New SolidColorBrush(Colors.RoyalBlue))
+brushCollection.Add(New SolidColorBrush(Colors.Blue))
+' Set brush collection to use 
+statesLayer.Brushes = brushCollection
+----
+
+*C# の場合:*
+
+----
+// ブラシ コレクションを宣言します 
+BrushCollection brushCollection = new Infragistics.BrushCollection();
+brushCollection.Add(new SolidColorBrush(Colors.SkyBlue));
+brushCollection.Add(new SolidColorBrush(Colors.DodgerBlue));
+brushCollection.Add(new SolidColorBrush(Colors.RoyalBlue));
+brushCollection.Add(new SolidColorBrush(Colors.Blue));
+// Set brush collection to use
+statesLayer.Brushes = brushCollection;
+----
+
+[start=6]
+. Choropleth モードで使用する link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~valuescale.html[ValueScale] を宣言します。人口値の範囲が 0 から 9200 であり、より小さい範囲にほとんどが分布しているため、0 から 500 の対数スケールを使用できます。 
+
+*XAML の場合:*
+
+----
+<igMap:MapLayer.ValueScale>
+   <igMap:LogarithmicScale IsAutoRange="  MinimumValue="0" MaximumValue="500" />
+</igMap:MapLayer.ValueScale>
+----
+
+*Visual Basic の場合:*
+
+----
+' 値スケールを宣言します 
+statesLayer.ValueScale = New LogarithmicScale()
+statesLayer.ValueScale.IsAutoRange = False
+statesLayer.ValueScale.MinimumValue = 0
+statesLayer.ValueScale.MaximumValue = 500
+----
+
+*C# の場合:*
+
+----
+// 値スケールを宣言します
+statesLayer.ValueScale = new LogarithmicScale();
+statesLayer.ValueScale.IsAutoRange = false;
+statesLayer.ValueScale.MinimumValue = 0;
+statesLayer.ValueScale.MaximumValue = 500;
+----
+
+[start=7]
+. アプリケーションを実行します。xamMap コントロールは人口密度によって色が付けられている米国のマップを表示します。人口密度が高いほど赤くなります。
+
+image::images/xamMap_Fill_Modes_04.png[]

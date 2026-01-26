@@ -1,0 +1,239 @@
+﻿////
+|metadata|
+{
+    "name": "wpf-known-issues-and-limitations",
+    "controlName": [],
+    "tags": ["Getting Started","How Do I","Known Issues"],
+    "guid": "{4483411E-3ED9-4188-A732-253B6A81AA4D}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.6816895Z"
+}
+|metadata|
+////
+
+= 既知の問題と制限
+
+このトピックは、{ProductName} 関連の現在確認されている問題点と制限に関する情報を提供します (link:https://jp.infragistics.com/support/online-documentation/revision-history[改訂履歴])。製品の将来のリリースで既知の問題点に対応します。
+
+== 既知の問題
+
+このセクションには、将来のホットフィックスおよびフル リリースの両方またはいずれか一方で対応する製品の現在のリリースの問題のリストが含まれています。
+
+=== サンプル
+
+サンプルをインストールしてソースコードをコンパイルした場合、サンプルをアンインストールしようとすると、コンパイルされたファイルは残ります。これは、インストーラーはインストーラーが作成するもののみを追跡するためです。したがってサンプルはユーザーがコンパイルしたものであるため、インストーラーはこれらのファイルを削除しません。これらのファイルとフォルダーを自分で手動で削除する必要があります。
+
+=== Microsoft™ Visual Studio にマニュアルを複数インストールする場合
+
+{ProductName} 2010.1 の製品マニュアルは、他のバージョンの製品マニュアルと同時にインストールできません。たとえば、同じコンピュータに {ProductName} 2010.2 の製品マニュアルとともに {ProductName} 2010.1 の製品マニュアルをインストールすることはできません。他のバージョンの製品マニュアルをインストールする前に {ProductName} 2010.1 をアンインストールしてください。2010.2 およびそれ以降のバージョンには同様の制限はありません。
+
+=== Microsoft® Excel® へのエクスポートとレコードの展開
+
+ExportOptions オブジェクトの ExcludeExpandState プロパティはルートレベルのレコードのみに影響します。
+
+=== Copy Local が True の時テーマ アセンブリがロードされない
+
+Microsoft® Expression® Blend でテーマ アセンブリをプロジェクトに追加すると、Copy Local プロパティが自動的に True に設定されます。この場合、CLR はランタイムにテーマ アセンブリをロードしません。この動作の副作用は、コントロールの Theme プロパティを外部テーマの名前に設定したとしても、アプリケーションで外部テーマがコントロールに適用されないことです。たとえば、Expression Blend で {VersionedApiPlatform}.Themes.Fall.v{ProductVersion}.dll テーマアセンブリをプロジェクトに追加して、xamDataGrid コントロールの Theme プロパティを "Fall" に設定する場合、Fall テーマはランタイムに xamDataGrid コントロールに適用されません。Fall テーマ アセンブリのタイプを参照する、またはテーマ アセンブリの Copy Local プロパティを False に設定するのいずれかを実行する必要があります。テーマ アセンブリの Copy Local プロパティを True に設定する必要がある場合、以下の例のコードを使用してアセンブリをロードすることができます。
+
+*XAML の場合:*
+[source,xaml]
+----
+<!--Theme プロパティを設定しなくても、XAML はテーマ アセンブリをロードして Window ですべての DataPresenters にテーマを適用します。-->
+<Window.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <igThemeFall:DataPresenter 
+                xmlns:igThemeFall="http://infragistics.com/Themes/Fall" />
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+</Window.Resources>
+----
+
+*Visual Basic の場合:*
+[source,vb]
+----
+'TODO: このコードをアプリケーションの Application.xaml.vb ファイルに配置します
+Protected Overrides Sub OnStartup(ByVal e As StartupEventArgs)
+    MyBase.OnStartup(e);
+    'クラスのメンバーのいずれにもアクセスする必要はありません
+    'テーマ アセンブリからクラスをインスタンス化する時に、CLR はアセンブリを読み込みます
+    Dim temp As New Infragistics.Windows.Themes.Fall.Primitives()
+End Sub
+----
+
+*C# の場合:*
+[source,csharp]
+----
+//TODO: このコードをアプリケーションの App.xaml.cs ファイルに配置します
+protected override void OnStartup(StartupEventArgs e)
+{
+    base.OnStartup(e);
+    //クラスのメンバーのいずれにもアクセスする必要はありません
+    //テーマ アセンブリからクラスをインスタンス化する時に、CLR はアセンブリを読み込みます
+    Infragistics.Windows.Themes.Fall.Primitives temp = new Infragistics.Windows.Themes.Fall.Primitives();
+}
+----
+
+=== コマンドおよび xamDockManager のフローティング ペイン
+
+xamDockManager コントロール以外のフォーカス範囲でコマンドが ButtonBase 派生コントロールに接続されると (たとえば xamRibbon コントロールの ButtonTool)、コマンドは xamDockManager のフローティングペインでターゲットの要素を見つけられません。この問題は、xamDockManager のサービス リリースで解決される予定です。また、ドックされたペインのターゲット要素については問題ありません。
+
+=== タブ コントロール内の xamCarouselPanel および xamCarouselListBox の使用
+
+xamCarouselPanel または xamCarouselListbox のいずれかがタブ コントロール内で使用される場合、アクティブなタブが変更するときに link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselpanelnavigator.html[CarouselPanelNavigator] が変わらずに表示されることを保証するために、xamCarouselPanel コントロールまたは xamCarouselListBox コントロールを AdornerDecorator でラップする必要があります。AdornerDecorator を使用しない場合には、xamCarouselPanel コントロールまたは xamCarouselListBox コントロールを含むタブ間で切り替えを実行すると CarouselPanelNavigator は表示されない場合があります。
+
+*XAML の場合:*
+[source,xaml]
+----
+<TabControl>
+    <TabItem x:Name="tabSample" Header="Sample">
+        <Grid>
+            <AdornerDecorator>
+                <igDP:XamCarouselPanel />            
+            </AdornerDecorator>
+        </Grid>
+    </TabItem>
+</TabControl>
+----
+
+== xamDataChart™
+
+== LabelSettings
+
+link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.axis.html[Axis] の link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.axis~labelsettings.html[LabelSettings] プロパティのデフォルト値は null で、このプロパティは、軸ラベルのプロパティにアクセスする前に link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.axislabelsettings.html[AxisLabelSettings] コンストラクターで初期化する必要があります。フォント設定、前景色などの AxisLabels の継承されたプロパティをランタイムに複数回設定した場合は更新されません。回避策: AxisLabel プロパティを更新するには、AxisLabelSettings の新しいインスタンスを作成します。
+
+*Visual Basic の場合:*
+[source,vb]
+----
+Me.numericYAxis.LabelSettings = New AxisLabelSettings()
+Me.numericYAxis.LabelSettings.Extent = 40
+----
+
+*C# の場合:*
+[source,csharp]
+----
+this.numericYAxis.LabelSettings = new AxisLabelSettings();
+this.numericYAxis.LabelSettings.Extent = 40;
+----
+
+== TitleSettings
+
+デフォルトで、axis.TitleSettings の設定を変更するには、TitleSettings の新しいインスタンスを作成し、軸の TitleSettings プロパティに割り当てます。
+
+== Infragistics Control Persistence Framework
+
+==== 一般的な既知の問題点
+
+コントロールのすべてのプロパティが Infragistics Control Persistence Framework を介して保存されるわけではありません。良い例として *ItemsSource* の多くのリスト ライクなコントロールがあります。コントロールの現在のプロパティ値を永続化する場合、コントロールの *ItemsSource* を永続化する必要はありません。それによって、以下の {ProductName} コントロールはインターフェイスを実装し、Control Persistence Framework はリスト プロパティを無視します。
+
+これは、デフォルトで無視されるコントロールとプロパティのリストです。
+
+==== 無視されるコントロール プロパティ
+
+[options="header", cols="a,a"]
+|====
+|コントロール|プロパティ
+
+|共有
+|
+* AttachedProperties 
+
+* ControlTemplates 
+
+* DataTemplates 
+
+* ItemPanelTemplates 
+
+* Paths 
+
+* Styles 
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor_members.html[XamComboEditor]
+|
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditoritem_members.html[ComboEditorItem] 
+
+* link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~isdropdownopen.html[IsDropDownOpen] 
+
+* Items 
+
+* ItemsSource 
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid_members.html[XamGrid]
+|
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~activecell.html[ActiveCell] 
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~rows.html[Rows] 
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.selectionsettings~selectedcells.html[SelectedCells] 
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.selectionsettings~selectedrows.html[SelectedRows] 
+
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenu_members.html[XamMenu]
+|
+* Items 
+
+* ItemsSource 
+
+| link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}~infragistics.controls.menus.xamtagcloud_members.html[XamTagCloud]
+|
+* Items 
+
+* ItemsSource 
+
+| link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow_members.html[XamDialogWindow]
+|
+* link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.xamdialogwindow~minimizedpanel.html[MinimizedPanel] 
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.xamspellchecker_members.html[XamSpellChecker]
+|
+* link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.xamspellchecker~spellchecktargets.html[SpellCheckTargets] 
+
+|====
+
+==== 入力コントロールの既知の問題点
+
+[options="header", cols="a,a"]
+|====
+|問題|説明
+
+|Default の値名の列挙体を永続できません
+|この問題は、*InvalidValueBehavior* プロパティのため、 link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xammaskedinput_members.html[XamMaskedInput]、 link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xamnumericinput_members.html[XamNumericInput]、および link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xamcurrencyinput_members.html[XamCurrencyInput] コントロールに影響します。
+
+|====
+
+==== xamGrid コントロールの既知の問題点
+
+[options="header", cols="a,a"]
+|====
+|問題|説明
+
+|フィルターされたデータは永続化されません。
+|xamGrid コントロールのフィルタリング機能が有効な場合、フィルター データを永続化するために link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filteringsettings~filteringscope.html[FilteringScope] プロパティを link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filteringscope.html[ColumnLayout] に設定する必要があります。
+
+|====
+
+== xamBarcode™
+
+link:{ApiPlatform}controls.barcodes{ApiVersion}~infragistics.controls.barcodes.xamqrcodebarcode.html[xamQRCodeBarcode]™ コントロールを使用する場合は、次の NuGet パッケージ参照をプロジェクトに含めてください。
+
+* Infragistics.WPF.Barcodes
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+バーコード リーダーの性能を高めるには、以下の調整を行って評価してください。
+
+* 読み込む記号数を減らします。MaxNumberOfSymbolsToRead プロパティの値セットを減らすことで行うことができます。
+* 記号に設定できる最小ピクセル サイズを増やします。これには、MinSymbolSize プロパティを調整します。
+* Decode メソッドまたは DecodeAsync メソッドに渡す画像のサイズを小さくします。
+* Decode メソッドまたは DecodeAsync メソッドに送る記号タイプの数を制限します。
+
+
+== xamSparkline™
+
+制限
+
+* xamSparkline コントロールは xamDataChart とは異なり、単一データポイントのレンダリングをサポートしません。少なくとも 2 つの数値データ ポイントが必要です。
+
+== xamGrid™
+
+UnboundColumn の場合、xamGrid フィルター メニューでフィルター機能は無効です。

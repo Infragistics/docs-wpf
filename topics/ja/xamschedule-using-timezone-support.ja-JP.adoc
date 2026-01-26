@@ -1,0 +1,91 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-timezone-support",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "e0f05708-9b35-44e6-a278-165ae77852bf",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.8243633Z"
+}
+|metadata|
+////
+
+= xamSchedule での TimeZone のサポート
+
+タイム ゾーンの適切なサポートは、堅牢なスケジュール システムに不可欠です。以下のシナリオを検討します。ニューヨークに居て、ニューヨーク時間の昼の 12:00 に予定または会合を設定したいと仮定します。同僚が一人はロスアンゼルス、もう一人はロンドンに居て、会合に参加する必要があります。この予定の時間は LA 時間で 9:00 a.m.、ロンドン時間で 5:00 p.m. (17:00) になります。各人がカレンダーを見るときに、それぞれ 9:00、12:00 および 17:00 というローカル タイム ゾーンに相対して予定を表示する必要があります。
+
+これらを保持する唯一の信頼がおける方法は、標準時つまり「UTC」時間 (このケースでは 17:00) でこれらのアクティビティの開始時間と終了時間を保存し、次にそれを各ローカル時間に変換して表示することです。これは繰り返し予定を処理する場合にさらに重要となります。発生ごとにその年の時間に基づいてタイム ゾーンごとにサマータイム調整を考慮に入れて将来的に計算する必要があるからです。
+
+== タイム ゾーン ニュートラルなアクティビティ
+
+タイム ゾーン ニュートラルな特定の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[アクティビティ]があります。たとえば、祝日を表すアクティビティは、すべてのタイム ゾーンで 12:00 a.m. から 12:00 a.m. まで (つまり、全日) です。事実、[予定] ダイアログで [All Day Event] チェックボックスがオンになると、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~start.html[Start] 時間と link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~end.html[End] 時間は、それに基づいて設定され、アクティビティは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~istimezoneneutral.html[「タイム ゾーン ニュートラル」]とマークされるので、UTC に対するローカル調整は行われず、開始時間と終了時間が「そのまま」ユーザーに表示されます。注: 1 日に満たない場合でも、「タイム ゾーン ニュートラル」として任意のアクティビティをマークすることができます。つまり、開始時間と終了時間は、タイム ゾーン変換なしで「そのまま」表示されます。
+
+== タイム ゾーン情報の提供
+
+タイムゾーンの変換を正確に行うために、スケジューリング コントロールが すべてのタイムゾーンに関する情報にアクセスできる必要があります。これには、各タイムゾーンの基本 UTC オフセット、および毎年夏時間調整の開始/終了時を定義するルールのセットなどが含まれます。
+
+WPF フレームワークは、TimeZoneInfo クラスを介してすべてのタイム ゾーンに対してこの情報を提供します。Silveright では、TimeZoneInfo クラスはフレームワークに存在しますが、「ローカル」および「UTC」タイム ゾーンの情報を公開するだけです。
+
+この問題を解決するために、Infragistics のスケジュール コンポーネントは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezoneinfoprovider.html[TimeZoneInfoProvider] と呼ばれる基本クラスを定義します。フレームワークの TimeZoneInfo クラスの周囲の薄いラッパーとして本質的に実装される OSTimeZoneInfoProvider 派生クラスがあります。それ自体は、コントロールの WPF バージョンにだけ存在します。他の派生クラスである link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.customtimezoneinfoprovider.html[CustomTimeZoneInfoProvider] は、Silverlight および WPF の両方に存在します。コードでタイム ゾーンを登録するか、xml 形式でロード/保存して使用できます。
+
+pick:[wpf="TimeZoneInfoProvider は、"]  pick:[wpf="OSTimeZoneInfoProvider クラスのインスタンスを WPF が返す、"]  pick:[wpf=" link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezoneinfoprovider~defaultprovider.html[DefaultProvider]"]  という名前のスレッド静的プロパティを公開します。pick:[sl="Silverlight では、アセンブリの xml リソースからすべてのタイム ゾーン情報でプリロードされる CustomTimeZoneInfoProvider クラスのインスタンスを返します。"]
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[xamScheduleDataManager] から公開される link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase.html[DataConnector] は、タイム ゾーンに関係する以下のプロパティを公開します。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase~timezoneinfoprovider.html[TimeZoneInfoProvider] - これはカスタム タイム ゾーン プロバイダーを指定するために使用できる get/set プロパティです。これはデフォルトで null です。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase~timezoneinfoproviderresolved.html[TimeZoneInfoProviderResolved] - これは、プロバイダーを常に返す読み取り専用プロパティで、指定されている場合は TimeZoneInfoProvider、または上記に説明した TimeZoneInfoProvider.DefaultProvider のいずれかです。注: 特定のタイム ゾーンをユーザーに選択させるための ComboBox を表示したい場合には、このオブジェクトから公開される TimeZoneTokens コレクションに ItemsSource をバインドし、ComboBox の DisplayMember プロパティを 「DisplayName」に設定します。例: 
+
+*XAML の場合:*
+
+----
+<ComboBox 
+    DisplayMemberPath="DisplayName"
+    ItemsSource="{Binding
+        Path=DataConnector.TimeZoneInfoProviderResolved.TimeZoneTokens,
+        ElementName=myDataManager}” />
+----
+
+== ローカル タイム ゾーンの識別
+
+WPF で OsTimeZoneInfoProvider を使用する時、「ローカル」タイム ゾーンが OS 設定から選ばれます。
+
+CustomTimeZoneInfoProvider を使用している時には、以下のアプローチに基づいてローカル タイム ゾーンをデフォルトにします。
+
+[start=1]
+. タイム ゾーンが現在の OS のローカル タイム ゾーンと同じ ID で登録されている場合、このタイム ゾーンが使用されます。注: この情報は Silverlight では使用できないため、この手順は WPF にのみ適用されます。
+[start=2]
+. 手順 1 が成功しなければ、システムのローカル タイム ゾーンと同じ基本 UTC オフセットを持つプロバイダーに登録されたすべてのタイム ゾーンがチェックされます。ひとつのタイム ゾーンに、UTC へのシステムのローカル タイム ゾーン変換を正確に一致させる UTC 時間への日付変換がある場合、それがデフォルトとして使用されます。それ以外は、ローカル タイム ゾーンは設定されません。これは非常に効率的なプロセスです。サマータイム期間の直前と直後だけをチェックすればよくなるからです。
+
+ローカル タイム ゾーンは、プロバイダーの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezoneinfoprovider~localtimezoneid.html[LocalTimeZoneId] プロパティを設定することでプログラムで変更できます。
+
+xamScheduleDataManager は、以下の値で link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~promptforlocaltimezone.html[PromptForLocalTimeZone] という名前の列挙体プロパティも公開します。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.promptforlocaltimezone.html[OnlyIfRequired] - これはデフォルト設定で、デフォルトのローカル タイム ゾーンが見つからなかった場合に限ってタイム ゾーン選択をユーザーに求めるダイアログが表示されます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.promptforlocaltimezone.html[Always] - デフォルトが見つかったかどうかに関係なくこのダイアログは表示されます。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.promptforlocaltimezone.html[Never] - デフォルトのローカル タイム ゾーンが見つからなかった場合でもこのダイアログは表示されません。注: この例では、コントロールはブロック誤りとしてこれを処理します。これは、このコントロールは時間を正確に変換できず、コントロール オーバーレイ内のブロック誤りを表示するためです。
+
+== TimeZoneTokens
+
+TimeZoneInfoProvider クラスは、特定のタイム ゾーンについての情報を取得するメソッドと、TimeZoneToken クラスを介してタイム ゾーン間で時間を変換するメソッドを公開します。タイム ゾーンの ID を渡すプロバイダーの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezoneinfoprovider~gettimezonetoken.html[GetTimeZoneToken] メソッドを呼び出してトークンにアクセスします。返されたトークンは、タイム ゾーンを識別するために他のメソッドに渡されます。
+
+*注:* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezonetoken.html[TimeZoneToken] は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezonetoken~id.html[Id] プロパティ、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezonetoken~displayname.html[DisplayName] プロパティ、および関連付けられた link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezoneinfoprovider.html[TimeZoneInfoProvider] を返す link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezonetoken~provider.html[Provider] プロパティを公開します。
+
+== アクティビティのタイム ゾーン情報を指定
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[ActivityBase] (link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointment]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.journal.html[Journal] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task.html[Task] の基本クラス) は、タイム ゾーンに直接的または間接的な効果を持つ以下のプロパティを公開します。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~start.html[Start]/ link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~end.html[End] - これらのプロパティは DateTime 型で、UTC 時間でアクティビティの開始時間と終了時間を保存します (またはタイム ゾーン ニュートラル アクティビティでは未指定)。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~starttimezoneid.html[StartTimeZoneId]/ link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~endtimezoneid.html[EndTimeZoneId] - これらの文字列プロパティは、Start 時間と End 時間が関係するタイム ゾーンを識別します。繰り返しアクティビティの発生を作成する時に、これらのタイム ゾーン ID は、サマータイムが始まる時、そして終わる時であっても正しい時間が使用されることを保証します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~istimezoneneutral.html[IsTimeZoneNeutral] - True にされている場合、タイム ゾーン変換は行われません。これによって StartTimeZoneId/EndTimeZoneId 設定は無視されます。
+
+ActivityBase は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~setstartlocal.html[SetStartLocal] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~setendlocal.html[SetEndLocal] という 2 つのヘルパー メソッドも公開します。これらは、タイム ゾーン トークンと DateTime を取得し、IsTimeZoneNeutral 設定に基づいて Start/End 時間を正確に設定します。True に設定されている場合、Start および End プロパティを変換を行わずに渡された DateTime に設定します。False に設定されている場合、そのタイム ゾーンから DateTime を UTC 時間に変換します。
+
+*注:* これらのメソッドを呼び出す前に、IsTimeZoneNeutral プロパティが適切に設定されていることを確認してください。このプロパティを後で変更すると日付/時刻値は変更されないためです。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-using-control.html[コントロール]

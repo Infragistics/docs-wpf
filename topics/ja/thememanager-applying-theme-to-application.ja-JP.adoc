@@ -1,0 +1,122 @@
+﻿////
+
+|metadata|
+{
+    "name": "thememanager-applying-theme-to-application",
+    "tags": ["Getting Started","How Do I","Theming"],
+    "controlName": ["IG Theme Manager"],
+    "guid": "5f6a41e5-f121-4fdd-88b2-9bc818c2486c",  
+    "buildFlags": [],
+    "createdOn": "2014-09-03T11:36:56.2902893Z"
+}
+|metadata|
+////
+
+= アプリケーション レベルへのテーマの適用 (ThemeManager)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _Infragistics ThemeManager_™を使用してアプリケーションにテーマを適用する方法について説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-overview.html[機能の概要 (ThemeManager)]
+|このトピックでは、 _Infragistics ThemeManager_ およびその機能の概要を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref397200603,アプリケーションへのテーマの適用>>
+* <<_Ref397200630,関連コンテンツ>>
+
+** <<_Ref397200637,トピック>>
+
+[[_Ref397200603]]
+== アプリケーションへのテーマの適用
+
+[[_Hlk368069110]]
+
+=== 概要
+
+link:{RootAssembly}{ApiVersion}~infragistics.themes.thememanager.html[ThemeManager] link:{RootAssembly}{ApiVersion}~infragistics.themes.thememanager~applicationtheme.html[ApplicationTheme] プロパティを使用して、アプリケーションにテーマを適用します。
+
+テーマは、サポートされている共通の Microsoft WPF コントロールなど、アプリケーションのすべてのコントロールに適用されます。
+
+注:
+
+[NOTE]
+====
+`ApplicationTheme` プロパティは、コード ビハインドでのみ設定されます。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマッピングを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|WPF アプアリケーション全体へのテーマの適用
+| link:{RootAssembly}{ApiVersion}~infragistics.themes.thememanager~applicationtheme.html[ApplicationTheme]
+| link:{RootAssembly}{ApiVersion}~infragistics.themes.themebase_members.html[ThemeBase]
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコードは、 _Office2013_    __のテーマ__ をアプリケーションに適用する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+ThemeManager.ApplicationTheme = new Office2013Theme();
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+ThemeManager.ApplicationTheme = New Office2013Theme()
+----
+
+[[_Ref397200630]]
+== 関連コンテンツ
+
+[[_Ref397200637]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:thememanager-applying-theme-to-control.html[FrameworkElement レベルのテーマの適用]
+|このトピックでは、 _Infragistics ThemeManager_ を使用して FrameworkElement にテーマを適用する方法について説明します。
+
+| link:thememanager-applying-theme-to-supported-ms-wpf-controls.html[サポートされる Microsoft の WPF コントロールへのテーマの適用]
+|このトピックでは、サポートされるマイクロソフトの WPF コントロールのテーマ設定を、 _Infragistics ThemeManager_ を使用して有効または無効にする方法を説明します。
+
+| link:thememanager-creating-new-custom-theme.html[新規のカスタム テーマの作成]
+|このトピックでは、 _Infragistics ThemeManager_ を使用して、新しいカスタム テーマを作成し適用する方法について説明します。
+
+| link:thememanager-extending-existing-control-theme.html[既存のコントロール テーマの拡張]
+|このトピックでは、 _Infragistics ThemeManager_ を使用して既存のコントロール テーマを拡張する方法について説明します。
+
+|====

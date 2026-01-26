@@ -1,0 +1,24 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacarousel-exporting-to-excel",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{E9B1E68E-541A-4C14-82C9-92A59C28F9DF}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6488829Z"
+}
+|metadata|
+////
+
+= Excel へエクスポート
+
+
+
+Microsoft® Excel® へのエクスポートについての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-export-a-datapresenter-control-to-excel.html[DataPresenter コントロールを Excel にエクスポート]
+* link:xamdatapresenter-apply-formats-for-exporting.html[エクスポートするフォーマットを適用]
+* link:xamdatapresenter-exclude-datapresenter-settings-when-exporting.html[エクスポート時に DataPresenter 設定を除外]
+* link:xamdatapresenter-handle-exporting-events.html[エクスポート イベントの処理]

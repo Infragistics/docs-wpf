@@ -1,0 +1,55 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamoutlookbar-collapse-xamoutlookbar",
+    "controlName": ["xamOutlookBar"],
+    "tags": ["Editing","How Do I"],
+    "guid": "{95349E6F-23B4-46B9-9FC8-3EAB9AC76BAA}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.0391609Z"
+}
+|metadata|
+////
+
+= xamOutlookBar の縮小
+
+
+
+Microsoft® Outlook® のナビゲーション ペインと全く同じように、エンドユーザーは画面領域を最大限にするために実行時に xamOutlookBar™ を縮小することができます。エンドユーザーが xamOutlookBar を縮小することに加えて、 link:{ApiPlatform}outlookbar{ApiVersion}~infragistics.windows.outlookbar.xamoutlookbar~isminimized.html[IsMinimized] プロパティを True に設定することで xamOutlookBar をプログラム的に縮小することも可能です。
+
+以下のコード例は、xamOutlookBar の縮小方法を示します。
+
+image::images/xamOutlookBar_Collapse_xamOutlookBar_01.png[]
+
+*XAML の場合:*
+
+----
+<igOutlookBar:XamOutlookBar Name="xamOutlookBar1"
+               HorizontalAlignment="Left"
+               IsMinimized="True" />
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xamOutlookBar1.IsMinimized = True
+----
+
+*C# の場合:*
+
+----
+this.xamOutlookBar1.IsMinimized = true;
+----
+
+== 関連トピック
+
+link:xamoutlookbar-about-styling-xamoutlookbar.html[xamOutlookBar のスタイリングについて]
+
+link:xamoutlookbar-add-groups-to-xamoutlookbar.html[グループを xamOutlookBar に追加]
+
+link:xamoutlookbar-add-content-to-a-group.html[コンテンツをグループに追加]
+
+link:xamoutlookbar-collapse-xamoutlookbar.html[xamOutlookBar の縮小]
+
+link:xamoutlookbar-select-a-group.html[グループの選択]

@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-accessing-records-through-the-recordmanager",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding"],
+    "guid": "{06C0EBE9-8ED8-4260-AB18-16717606E5BE}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.4858503Z"
+}
+|metadata|
+////
+
+= RecordManager によってレコードにアクセス
+
+
+
+データを表示するときのひとつの重要なタスクは、基本データを列挙することです。DataPresenter コントロールは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager.html[RecordManager] と呼ばれるメカニズムを含みます。RecordManager によって、異なるフォーマットのレコードへのアクセスがより簡単になります。たとえば、RecordManager の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager~unsorted.html[UnSorted] オプションを使用することによってソートされないフォーマットでデータで作業できます。UnSorted オプションは読み取り専用の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecordcollection.html[DataRecordCollection] を返します。これで link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] のこのコレクションで列挙して、レコードの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] から主要な情報を検索できます。
+
+RecordManager は link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager~sorted.html[Sorted] DataRecord のコレクションを検索することも可能です。Sorted DataRecords は、エンドユーザーが並べ替える順序であればどの順序でも並べ替えられます。RecordManager の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager~issorted.html[IsSorted] プロパティを使用して、エンドユーザーがレコードをソートしたかどうかをチェックします。
+
+以下の疑似コードは、エンドユーザーがレコードを並べ替えたかどうかをテストしています。ユーザーがレコードを並べ替えた場合、DataRecordCollection のインスタンスが作成され、並べ替えられたれコートが保存されます。
+
+*C# の場合:*
+
+----
+DataRecordCollection myCollection;
+RecordManager myManager = XamDataGrid1.RecordManager;
+if (myManager.IsSorted)
+{
+    myCollection = myManager.Sorted;
+}
+----
+
+*Visual Basic の場合:*
+
+----
+Dim myCollection As DataRecordCollection
+Dim myManager As RecordManager = XamDataGrid1.RecordManager
+If myManager.IsSorted Then
+    myCollection = myManager.Sorted
+End If
+----

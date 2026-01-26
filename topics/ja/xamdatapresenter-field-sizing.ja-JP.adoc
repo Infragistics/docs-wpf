@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-field-sizing",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{3B8B40A1-ECE0-47AC-8748-D08A00A7E076}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2039939Z"
+}
+|metadata|
+////
+
+= フィールドのサイズ設定
+
+
+
+DataPresenter コントロールは、フィールドのサイズ変更インジケーターをダブルクリックすることで自動的にフィールドをサイズ変更する機能をエンド ユーザーに提供します。この動作は、Microsoft® Excel® に見られる列のサイズ変更機能を再現します。さらに、Excel と同様に、エンドユーザーは、複数のフィールドを選択しサイズ変更インジケーターをドラッグまたはダブルクリックすることで、フィールドのサイズ変更を同期できます。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~labelclickaction.html[LabelClickAction] プロパティを SelectField に設定して、フィールドの選択を有効にする場合、エンド ユーザーはフィールドのヘッダーをクリックしてフィールドを並べ替えることができません。
+
+エンド ユーザーがフィールドを自動的にサイズ変更できることに加え、DataPresenter コントロールはフィールド レイアウト内のすべてのフィールドを自動的にサイズ変更して、コントロールの境界線内にフィットさせることができます。この機能を補完するため、DataPresenter コントロールでは、Grid パネルに見られるスター サイズ指定構文を使用してフィールドの幅をパーセンテージで設定することもできます。
+
+フィールドのサイズ設定についての詳細は、以下のトピックをクリックしてください。
+
+link:xamdatapresenter-set-a-fields-width.html[フィールドの幅の設定]
+
+異なる単位および方法を使用してフィールドのサイズを手動で設定する方法について学習します。
+
+link:xamdatapresenter-automatically-fit-fields.html[自動的にフィールドを調整]
+
+フィールドに設定できる「自動調整」機能の様々なモードについて学習します。
+
+link:xamdatapresenter-modify-field-sizing-behaviors.html[フィールドのサイズ設定動作の修正]
+
+フィールドのサイズ変更インジケーターに影響する異なる要因について学習します。
+
+link:xamdatapresenter-perform-an-auto-sizing-operation.html[自動サイズ設定操作の実行]
+
+プログラム コードから「自動サイズ設定」機能を強制的に実行する場面と方法を学習します。

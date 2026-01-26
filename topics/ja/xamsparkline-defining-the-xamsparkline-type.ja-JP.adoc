@@ -1,0 +1,261 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsparkline-defining-the-xamsparkline-type",
+    "controlName": ["xamSparkline"],
+    "tags": ["API","Charting","How Do I"],
+    "guid": "2ff3fb45-379f-4f86-a3b2-b2ef6ee36b04",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.2433513Z"
+}
+|metadata|
+////
+
+= xamSparkline タイプの定義
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、コード例を示して、 link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}.html[xamSparkline]™ タイプを定義する方法を説明します。このスパークライン タイプの要件は特殊なため、Win/Loss 型の指定については個々のセクションで説明します。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+| link:xamsparkline-configuring-xamsparkline.html[xamSparkline の構成]
+|このトピックは、コード例を示して、 _xamSparkline_ でヒントを構成し、カスタマイズする方法を説明します。
+
+|====
+
+=== このトピックの構成
+
+このトピックには次のセクションがあります。
+
+* <<_Ref317092856,Sparkline タイプの定義>>
+
+** <<_Ref317164782,概要>>
+** <<_Ref317164795,プロパティ設定>>
+** <<_Ref317164807,例>>
+** <<_Ref317165117,コード>>
+
+* <<_Ref317186415,Win/Loss 型のスパークラインの定義>>
+
+** <<_Ref317165227,概要>>
+** <<_Ref317165233,プロパティ設定>>
+** <<_Ref317165239,例>>
+** <<_Ref317165392,コード>>
+
+* <<_Ref317164828,関連コンテンツ>>
+
+** <<_Topics,トピック>>
+
+[[_Ref317092856]]
+== Sparkline タイプの定義
+
+[[_Ref317164782]]
+
+=== 概要
+
+xamSparkline コントロールは、以下のタイプのスパークラインをサポートしています。
+
+*  _線_  
+*  _面_  
+*  _列_  
+*  _Win/Loss_  
+
+タイプは link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline.html[DisplayType] プロパティの設定により定義されます。link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline.html[DisplayType] プロパティが指定されていない場合は、既定では link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.sparklinedisplaytype.html[Line] 型が表示されます。
+
+[[_Ref317164795]]
+
+=== プロパティ設定
+
+以下の表は、スパークライン タイプとそれらを構成するプロパティ設定の関係を示しています。
+
+[options="header", cols="a,a"]
+|====
+|xamSparkline タイプ|_DisplayType_   プロパティを以下に設定:
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.sparklinedisplaytype.html[線]
+| _Line_ 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.sparklinedisplaytype.html[面]
+| _Area_ 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.sparklinedisplaytype.html[列]
+| _Column_ 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.sparklinedisplaytype.html[WinLoss]
+| _WinLoss_ 
+
+|====
+
+[[_Ref317164807]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定で定義されたスパークラインを示します。
+
+[options="header", cols="a,a"]
+|====
+| *プロパティ* | *値* 
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline.html[DisplayType]
+| _Column_ 
+
+|====
+
+image::images/Define_Sparkline_Types_1.png[]
+
+[[_Ref317165117]]
+
+=== コード
+
+以下のコードは、Sparkline の表示タイプを link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.sparklinedisplaytype.html[Column] に設定するコードを示しています。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSparkline Name="xamSparkline1" DisplayType="Column"/>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSparkline1.DisplayType = SparklineDisplayType.Column;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSparkline1.DisplayType = SparklineDisplayType.Column
+----
+
+[[_Ref317186415]]
+== Win/Loss 型のスパークラインの定義
+
+[[_Ref317165227]]
+
+=== 概要
+
+Win/Loss 型は、柱状チャート タイプです。ここでは、各列の値はデータ セットの正の最大値 (正の値の場合) または負の最小値 (負の最小値の場合) に等しくなり、ウィンまたはロス (または似たような相反する概念) を意味することが多いです。Win/Loss チャートを正しく表示するには、データ セットには正の値と負の値がなければなりません。
+
+Win/Loss 型が (数値のコレクションにバインドできる) Line 型 など他のタイプと同じデータにバインドされている場合、 _xamSparkline_   はコレクションから最高値と最低値という 2 つの値を選択し、それらの値に基づいてスパークラインをレンダリングします。
+
+たとえば、次のようにすべてのスパークライン タイプが同じデータ ソースにバインドされている場合:
+
+[options="header", cols="a,a"]
+|====
+|*レコード*|* 値*
+
+|レコード 1
+|2
+
+|レコード 2
+|5
+
+|レコード 3
+|-1
+
+|レコード 4
+|4
+
+|レコード 5
+|-3
+
+|====
+
+_Win/Loss_   型は、データ ソース全体から最高値  _(5)_   および最低値  _(-3)_   という 2 つの値のみ選択し、最高値と同一のすべての正のデータ ポイントと最低値と同一のすべての負のデータ ポイントをプロットします。
+
+[[_Ref317165233]]
+
+=== プロパティ設定
+
+以下の表は、Win/Loss 型の Sparkline をそれを指定するプロパティ設定に設定するプロパティ設定を示しています。
+
+[options="header", cols="a,a,a"]
+|====
+|以下を行うために:|プロパティ|次に設定
+
+|Sparkline タイプを Win/Loss に設定する
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline.html[DisplayType]
+| _WinLoss_ 
+
+|====
+
+[[_Ref317165239]]
+
+=== 例
+
+以下のスクリーンショットは、以下の設定の結果、スパークラインがどのように表示されるかを示しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|値
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}~infragistics.controls.charts.xamsparkline.html[DisplayType]
+| _WinLoss_ 
+
+|====
+
+image::images/Define_Sparkline_Types_2.png[]
+
+[[_Ref317165392]]
+
+=== コード
+
+以下のコードは、xamSparkline の表示タイプを  _WinLoss_   に設定するコードを示しています。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamSparkline Name="xamSparkline1" DisplayType="WinLoss"/>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSparkline1.DisplayType = SparklineDisplayType.WinLoss;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSparkline1.DisplayType = SparklineDisplayType.WinLoss
+----
+
+[[_Ref317164828]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsparkline-xamsparkline-overview.html[xamSparkline の概要]
+|このトピックは、 _xamSparkline_ コントロールの概要、その利点、およびサポートされるチャート タイプを提供します。
+
+| link:xamsparkline-configuring-xamsparkline.html[xamSparkline を構成]
+|このトピックは、コード例を示して、 _xamSparkline_ でヒントを構成し、カスタマイズする方法を説明します。
+
+| link:xamsparkline-xamsparkline-property-reference.html[xamSparkline プロパティ参照]
+|このトピックは、 _xamSparkline_ コントロールの主なプロパティを説明します。
+
+|====

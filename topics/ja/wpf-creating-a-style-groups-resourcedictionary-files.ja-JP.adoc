@@ -1,0 +1,93 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-creating-a-style-groups-resourcedictionary-files",
+    "controlName": [],
+    "tags": ["Styling"],
+    "guid": "{80C0D492-F7A7-4E34-9DD2-B628D9981597}",  
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-01-30T20:33:32.051039Z"
+}
+|metadata|
+////
+
+= スタイル グループの ResourceDictionary ファイルの作成
+
+このトピックは複数部から構成される詳細なガイドの第 3 部で、 link:wpf-creating-a-style-groups-class.html[「スタイル グループのクラスの作成」]の続きです。このトピックは ResourceDictionary ファイルとテーマパックにおけるその役割を検討します。
+
+スタイル グループごとに 2 つの ResourceDictionary があります。これらのファイルは以下のとおりです。
+
+* Primary ResourceDictionary – 設定しているスタイル グループのスタイルを含みます。Primary ResourceDictionary はスタイル グループに因んで命名され、MergedDictionary を手段として Brushes ResourceDictionary を参照します。
+* Brushes ResourceDictionary – Primary ResourceDictionary ファイルで使用されるブラシを含みます。Brushes ResourceDictionaryは、スタイル グループに因んで命名されますがそれに "OrangePeel_Brushes" が付加されます。この場合、"OrangePeel" は作成しているスタイル名です。
+
+[NOTE]
+====
+*注:* 各スタイル グループの ResourceDictionary ファイルはレイアウトが似ています。違いはスタイル グループのターゲットのコントロールにあります。
+====
+
+[start=1]
+. ソリューション エクスプローラで、DataPresenter のフォルダを右クリックして [追加] をクリックし、次に [新しい項目...] をクリックします。
+[start=2]
+. [新しい項目の追加] ダイアログ ボックスで、ResourceDictionary (WPF) を選択して、スタイル グループの名前 (つまり DataPresenter、Editors、または Primitives) に一致する名前を割り当てます。[追加] をクリックします。
+[start=3]
+. 手順 2 を繰り返します。ただし、OrangePeel_Brushes をスタイル グループの名前に追加します。
+[start=4]
+. Primary ResourceDictionary で、開始の ResourceDictionary タグ内に以下の名前空間宣言を配置します。
+
+*XAML の場合:*
+
+----
+...
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006"
+	mc:Ignorable="d"
+	xmlns:igwindows="http://infragistics.com/Windows"
+	xmlns:editors="http://infragistics.com/Editors"	
+	xmlns:controls="http://infragistics.com/DataPresenter"
+...
+----
+
+[start=5]
+. ResourceDictionary 開始タグの後に ResourceDictionary MergedDictionaries オブジェクトを指定します。これによって、Brushes ResourceDictionary ファイルで定義したブラシを参照することができます。
+
+*XAML の場合:*
+
+----
+<ResourceDictionary.MergedDictionaries>
+	<ResourceDictionary Source="DataPresenterOrangePeel_Brushes.xaml" />
+</ResourceDictionary.MergedDictionaries>
+----
+
+[start=6]
+. Brushes ResourceDictionary で、Primary ResourceDictionary で使用したいブラシを作成します。以下の XAML は、LinearGradientBrush と SolidColorBrush という 2 つのブラシを作成します。
+
+*XAML の場合:*
+
+----
+<LinearGradientBrush x:Key="CellAreaBackgroundHover" StartPoint="0,0" EndPoint="0,1">
+	<GradientStop Offset="0" Color="#FFFFFFFF"/>
+	<GradientStop Offset="1" Color="#FFFF9900"/>
+</LinearGradientBrush>
+<SolidColorBrush x:Key="CellAreaBackgroundHoverBorder" Color="#FFCCCCCC" />
+----
+
+[NOTE]
+====
+*注:* Brush に Key を割り当てて参照できるようにします。
+====
+
+[start=7]
+. Primary ResourceDictionary ファイル内で、スタイルを作成し、スタイル グループのコントロールのためのコントロール テンプレートをオーバーライドできます。以下の XAML は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecordcellarea.html[DataRecordCellArea] のスタイルを定義して、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecordcellarea~backgroundhover.html[BackgroundHover] と link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecordcellarea~borderhoverbrush.html[BorderHoverBrush] を上記で定義した 2 つのブラシに設定します。
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type controls:DataRecordCellArea}">
+	<Setter Property="BackgroundHover" Value="{StaticResource CellAreaBackgroundHover}" />
+	<Setter Property="BorderHoverBrush" 
+	  Value="{StaticResource CellAreaBackgroundHoverBorder}" />
+</Style>
+----
+
+ResourceDictionaries とスタイル グループのクラスを作成したら、新しいスタイル グループを登録する必要があります。これによって、テーマパック アセンブリが呼び出される時に適切にロードされます。link:wpf-creating-the-assemblyresourcesetloader-class.html[「AssemblyResourceSetLoader クラスの作成」]で新しいスタイル グループの登録方法を学習します。

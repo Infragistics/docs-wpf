@@ -1,0 +1,115 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-conf-tree-field",
+    "tags": ["Layouts","How Do I"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "d507749e-b724-473b-a712-18ab550d7d0c",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:27:52.3694846Z"
+}
+|metadata|
+////
+
+= ツリー フィールドの構成 (xamTreeGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールのツリー フィールドを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-features-overview.html[機能の概要 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+|====
+
+== ツリー フィールドの構成の概要
+
+=== ツリー フィールドの概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[xamTreeGrid] コントロールにより、ツリーを配置するフィールドを指定できます。値は、フィールド レイアウトに設定したフィールドの名前と一致している必要があります。_xamTreeGrid_   の `FlowDirection` プロパティに応じて、ツリーはデフォルトでフィールドのコンテンツの左側または右側に表示されるように配置されます。
+
+=== ツリー フィールドの構成の概要
+
+以下の表は、xamTreeGrid コントロールの構成可能な要素を簡単に説明し、それを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+ツリー フィールド
+|ツリー フィールドの指定に使用されます。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treeviewsettings~treefieldname.html[XamTreeGrid.ViewSettings.TreeFieldName]
+
+|====
+
+注:
+
+[NOTE]
+====
+`TreeFieldName` プロパティが指定されていない場合、最初のフィールドまたはプライマリ フィールドがツリー フィールドとして使用されます。
+====
+
+=== コード例
+
+以下のコード例では、ツリー フィールドを設定する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamTreeGrid>
+  <igDP:XamTreeGrid.FieldLayouts>
+    <igDP:XamTreeGrid.FieldLayout>
+      <igDP:Field Name="ID" Label="Customer ID" />
+      <igDP:Field Name="Name" Label="Customer Name" />
+      <igDP:Field Name="Address" Label="Customer Address" />
+    </igDP:XamTreeGrid.FieldLayout>
+  </igDP:XamTreeGrid.FieldLayouts>
+  <igDP:XamTreeGrid.ViewSettings>
+    <igDP:TreeViewSettings TreeFieldName="Name" />
+  </igDP:XamTreeGrid.ViewSettings>
+</igDP:XamTreeGrid>
+----
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-conf-expansion-indicators.html[展開インジケーターの構成 (xamTreeGrid)]
+|このトピックでは、展開インジケーターの動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-indentation-per-level.html[レベルごとのインデントの構成 (xamTreeGrid)]
+|このトピックでは、子レコードの表示に使用するインデントの設定方法を説明します。
+
+| link:xamtreegrid-conf-selection.html[選択の構成 (xamTreeGrid)]
+|このトピックでは、子レベルのレコードに対して選択動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-filtering.html[フィルタリングの構成 (xamTreeGrid)]
+|このトピックでは、コントロールのフィルタリング機能を構成する方法を説明します。
+
+| link:xamtreegrid-conf-summaries.html[集計の構成 (xamTreeGrid)]
+|このトピックでは、コントロールの集計サポートの詳細を説明します。
+
+|====

@@ -1,0 +1,91 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-tooltips",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Selection","Tips and Tricks"],
+    "guid": "4cbc6d44-6718-4054-a21b-09daa00e7824",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.1692123Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= ツールチップ
+
+特定の列のツールチップを有効にすると、エンド ユーザーがセル上にマウスをホバーした際に、その特定のセルの情報が表示されます。ツールチップが xamGrid コントロールの任意の場所に表示されないようにしたり、カスタマイズしてセルのコンテンツがオーバーフローしたときに限り表示されるようにしたり、あるいはすべての場合において表示させることもできます。
+
+デフォルトでは、ツールチップは表示されません。
+
+列の link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~allowtooltips.html[AllowToolTips] プロパティを AllowTooltips 列挙体の以下の値の 1 つに設定して、ツールチップを有効にすることができます。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.allowtooltips.html[Always]: エンド ユーザーがセル上をホバーするときは常にツールチップを表示します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.allowtooltips.html[Never]: ツールチップを決して表示しません。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.allowtooltips.html[Overflow]: セルのコンテンツがオーバーフローしたときに限り、ツールチップを表示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyDataGrid" ItemsSource="{Binding Source={StaticResource 
+                   DataUtil}, Path=Products}" AutoGenerateColumns="False">
+   <ig:XamGrid.Columns>
+      <ig:TextColumn AllowToolTips="Always" Key="ProductID"/>
+      <ig:TextColumn AllowToolTips="Overflow" Key="ProductName"/>
+      <ig:TextColumn AllowToolTips="Never" Key="QuantityPerUnit"/>
+      <ig:TextColumn Key="UnitPrice"/>
+   </ig:XamGrid.Columns>
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+MyDataGrid.Columns.DataColumns("ProductID").AllowToolTips = AllowTooltips.Always
+MyDataGrid.Columns.DataColumns("ProductName").AllowToolTips = AllowTooltips.Overflow
+MyDataGrid.Columns.DataColumns("QuantityPerUnit").AllowToolTips = AllowTooltips.Never
+----
+
+*C# の場合:*
+
+----
+MyDataGrid.Columns.DataColumns["ProductID"].AllowToolTips = AllowTooltips.Always;
+MyDataGrid.Columns.DataColumns["ProductName"].AllowToolTips = AllowTooltips.Overflow;
+MyDataGrid.Columns.DataColumns["QuantityPerUnit"].AllowToolTips = AllowTooltips.Never;
+----
+
+ToolTip コントロールをターゲットとする link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~tooltipstyle.html[ToolTipStyle] プロパティを設定することによって、ツールチップのスタイルを設定できます。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~tooltipcontenttemplate.html[ToolTipContentTemplate] プロパティをデータ テンプレートのインスタンスに設定することによって、ツールチップのコンテンツを指定できます。このプロパティの DataContext は行のデータです。
+
+以下のコードは、これらのプロパティを設定してツールチップをカスタマイズする方法を示しています。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyDataGrid" ItemsSource="{Binding Source={StaticResource 
+                   DataUtil}, Path=Products}" AutoGenerateColumns="False">
+   <ig:XamGrid.Columns>
+      <ig:TextColumn AllowToolTips="Always" Key="ProductID">
+         <!-- ToolTipStyle プロパティを設定します -->
+         <ig:TextColumn.ToolTipStyle>
+            <Style TargetType="ToolTip">
+               <Setter Property="Foreground" Value="Red"/>
+            </Style>
+         </ig:TextColumn.ToolTipStyle>
+      </ig:TextColumn>
+      <ig:TextColumn AllowToolTips="Overflow" Key="ProductName">
+         <!-- ToolTipContentTemplate プロパティを設定します -->
+         <ig:TextColumn.ToolTipContentTemplate>
+            <DataTemplate>
+               <TextBlock Text="{Binding ProductID}"/>
+            </DataTemplate>
+         </ig:TextColumn.ToolTipContentTemplate>
+      </ig:TextColumn>
+      <ig:TextColumn AllowToolTips="Never" Key="QuantityPerUnit"/>
+      <ig:TextColumn Key="UnitPrice"/>
+   </ig:XamGrid.Columns>
+</ig:XamGrid>
+----

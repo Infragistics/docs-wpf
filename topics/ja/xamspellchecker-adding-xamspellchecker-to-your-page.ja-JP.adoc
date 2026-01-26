@@ -1,0 +1,251 @@
+﻿////
+|metadata|
+{
+    "name": "xamspellchecker-adding-xamspellchecker-to-your-page",
+    "controlName": ["xamSpellChecker"],
+    "tags": ["Getting Started"],
+    "guid": "{25AA5881-477F-4F4C-831A-9E4D0F15900D}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.176383Z"
+}
+|metadata|
+////
+
+= xamSpellChecker をページに追加
+
+== 始める前に
+
+このトピックでは、ユーザーができるだけ早く操作に慣れるために、プロシージャー コードおよび XAML を使用して xamSpellChecker コントロールをページに追加するために必要な基本手順について説明します。
+
+_前提:_
+
+_このトピックは辞書がアプリケーションに追加済みであることを前提とします。詳細については、 link:xamspellchecker-dictionaries.html[「辞書」]を参照してください。_
+
+== 達成すること
+
+エンドユーザーがテキスト ボックスに入力した単語をスペルチェックする xamSpellChecker コントロールを作成します。
+
+== 次の手順を実行します
+
+[start=1]
+. {PlatformName} プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をアプリケーションに追加します。
+
+** Infragistics.WPF.SpellChecker
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. UserControl の Loaded イベントにイベント ハンドラを接続します。
+
+*XAML の場合:*
+
+----
+<UserControl Loaded="UserControl_Loaded"
+   …
+>
+----
+
+[start=4]
+. 以下の using/Import のディレクティブを追加します。これでメンバーの完全に記述された名前を入力したり、xamSpellChecker用に XAML 名前空間を追加する必要がなくなります。
+
+*XAML の場合:*
+
+----
+<xmlns:ig="http://schemas.infragistics.com/xaml">
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Interactions
+Imports Infragistics
+Imports System.Windows.Data
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Interactions;
+using Infragistics;
+using System.Windows.Data;
+----
+
+[start=5]
+. xamSpellChecker コントロールのインスタンスを LayoutRoot という名前のデフォルトのグリッド レイアウト パネルに追加します。プロシージャー コードでこれを行う場合、ユーザー コントロールの Loaded イベントを処理し、イベント ハンドラーにこのコードを配置することができます。
+
+*XAML の場合:*
+
+----
+<ig:XamSpellChecker x:Name="spellChecker">
+   <!-- SpellCheckerTargets を追加します --> 
+</ig:XamSpellChecker>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim spellChecker As New XamSpellChecker()
+----
+
+*C# の場合:*
+
+----
+XamSpellChecker spellChecker = new XamSpellChecker();
+----
+
+[start=6]
+. txtSpellCheck という名前のテキストボックスを作成します。TextWrapping プロパティを Wrap に設定します。
+
+*XAML の場合:*
+
+----
+<TextBox x:Name="txtSpellCheck" TextWrapping="Wrap" />
+----
+
+*Visual Basic の場合:*
+
+----
+Dim txtSpellCheck As New TextBox()
+txtSpellCheck.TextWrapping = TextWrapping.Wrap
+----
+
+*C# の場合:*
+
+----
+TextBox txtSpellCheck = new TextBox();
+txtSpellCheck.TextWrapping = TextWrapping.Wrap;
+----
+
+[start=7]
+. xamSpellChecker コントロールの link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.xamspellchecker~spellchecktargets.html[SpellCheckTargets] コレクションの Binding 要素を作成します。これはスペルチェックされるテキストを指定します。詳細については、 link:xamspellchecker-how-to-specify-text-to-be-spell-checked.html[「テキストをスペルチェックするように指定する方法」]を参照してください。
+
+*XAML の場合:*
+
+----
+<ig:XamSpellChecker.SpellCheckTargets>
+   <Binding ElementName="txtSpellCheck" Path="Text" Mode="TwoWay" ></Binding>
+</ig:XamSpellChecker.SpellCheckTargets>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim spellBinding As New Binding()
+spellBinding.Mode = BindingMode.TwoWay
+Dim propPathSpellBinding As New PropertyPath("Text")
+spellBinding.Path = propPathSpellBinding
+' 以前に作成した TextBox を指定します
+spellBinding.Source = txtSpellCheck
+----
+
+*C# の場合:*
+
+----
+Binding spellBinding = new Binding();
+spellBinding.Mode = BindingMode.TwoWay;
+PropertyPath propPathSpellBinding = new PropertyPath("Text");
+spellBinding.Path = propPathSpellBinding;
+// 以前に作成した TextBox を指定します
+spellBinding.Source = txtSpellCheck;
+----
+
+[start=8]
+. プロシージャ コードを使用している場合、SpellCheckTargets コレクションに Binding 要素を追加します。
+
+*Visual Basic の場合:*
+
+----
+Me.spellChecker.SpellCheckTargets.Add(spellBinding)
+----
+
+*C# の場合:*
+
+----
+this.spellChecker.SpellCheckTargets.Add(spellBinding);
+----
+
+[start=9]
+. Button コントロールを作成します。以下のプロパティを設定します。
+
+** Content - Check Spelling
+** プロシージャ コードを使用している場合、新しい RoutedEvenHandler(btnCheckSpelling_Click) の Click イベントを設定します。
+** XAMLを使用している場合、Button がクリックされた時に実行される Button コントロールにコマンドを追加します。この例は、ボタンのクリックのコマンドを使用します。
+
+*XAML の場合:*
+
+----
+<Button x:Name="btnCheckSpelling" Content="Check Spelling">
+<ig:Commanding.Command>
+   <ig:XamSpellCheckerCommandSource CommandType="SpellCheck" TargetName="spellChecker" EventName="Click"/>
+</ig:Commanding.Command>
+</Button>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim btnCheckSpelling As New Button()
+btnCheckSpelling.Content = "Check Spelling"
+btnCheckSpelling.VerticalAlignment = Windows.VerticalAlignment.Bottom
+btnCheckSpelling.HorizontalAlignment = Windows.HorizontalAlignment.Left
+AddHandler btnCheckSpelling.Click, AddressOf btnCheckSpelling_Click
+----
+
+*C# の場合:*
+
+----
+Button btnCheckSpelling = new Button();
+btnCheckSpelling.Content = "Check Spelling";
+btnCheckSpelling.VerticalAlignment = VerticalAlignment.Bottom;
+btnCheckSpelling.HorizontalAlignment = HorizontalAlignment.Left;
+btnCheckSpelling.Click += new RoutedEventHandler(btnCheckSpelling_Click);
+----
+
+[start=10]
+. プロシージャー コードのステップに従う場合、TextBox、Button および xamSpellChecker を Grid パネルの Children コレクションに追加します。_注: 新しいページを初めて作成する時には、デフォルトでグリッド パネルが作成され、パネル名が LayoutRoot に指定されます。_ 
+
+*Visual Basic の場合:*
+
+----
+Me.LayoutRoot.Children.Add(txtSpellCheck)
+Me.LayoutRoot.Children.Add(btnCheckSpelling)
+Me.LayoutRoot.Children.Add(spellChecker)
+----
+
+*C# の場合:*
+
+----
+this.LayoutRoot.Children.Add(txtSpellCheck);
+this.LayoutRoot.Children.Add(btnCheckSpelling);
+this.LayoutRoot.Children.Add(spellChecker);
+----
+
+[start=11]
+. プロシージャ コードのステップに従う場合、ボタンのクリックで xamSpellChecker コントロールの link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.xamspellchecker~spellcheck.html[SpellCheck()] メソッドを呼び出します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub btnCheckSpelling_Click(sender As Object, e As RoutedEventArgs)
+    Me.spellChecker.SpellCheck()
+End Sub
+----
+
+*C# の場合:*
+
+----
+void btnCheckSpelling_Click(object sender, RoutedEventArgs e)
+{
+   this.spellChecker.SpellCheck();
+}
+----
+
+[start=12]
+. アプリケーションを保存して実行します。スペルミスのテキストをテキストボックスに入力してボタンをクリックします。スペルチェッカー ダイアログが表示されます。
+
+== 関連トピック
+
+link:xamspellchecker-using-xamspellchecker.html[xamSpellChecker の使用]

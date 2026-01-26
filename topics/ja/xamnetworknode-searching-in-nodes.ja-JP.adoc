@@ -1,0 +1,106 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-searching-in-nodes",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["How Do I","Tips and Tricks"],
+    "guid": "7f287b0e-aea4-40ca-b433-170ca8ff81e6",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.4762485Z"
+}
+|metadata|
+////
+
+= ノードでの検索
+
+== 概要
+
+ノード内を検索する場合、検索条件は述語デリゲートによって指定されます。検索の間、 link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode] コントロールすべてのノードを列挙し、各ノードに関して述語デリゲートを呼び出します。ネットワーク ノードはその基本データが述語デリゲートの条件を満たす場合に、一致と認識され検索結果が返されます。照合結果は、NetworkNodeNode オブジェクトのコレクションとして表されます。
+
+== ノードでの検索の実装
+
+実現手法には述語デリゲートの定義方法に基づいて 2 種類のアプローチがあります。それぞれを以下の個々のサブセクションで説明します。
+
+== 標準述語デリゲートの使用
+
+標準的に定義された述語デリゲートを使用する時、最初に述語デリゲートを作成し (検索条件)、次にそれを使用して検索を実行します。
+
+[start=1]
+. *述語デリゲートの作成。*
+
+.. *述語デリゲート検索条件を定義します。*
+
+述語デリゲートは一般的パラメーターを受け入れ、論理値を返すメソッドです。
+
+次のメソッドでは *NodeModel* オブジェクトを受け取り、そのラベルを文字列と比較します。
+
+*Visual Basic の場合:*
+
+----
+Private _searchText As String = "some text"
+Private Function SearchCondition(node As NodeModel) As Boolean
+      Dim nodeLabel As String = node.Label.ToLower()
+      'ラベルを文字列と比較します。
+      Return nodeLabel.Contains(_searchText)
+End Function
+----
+
+*C# の場合:*
+
+----
+private string _searchText = "some text";
+private bool SearchCondition(NodeModel node)
+{
+    string nodeLabel = node.Label.ToLower();
+    //ラベルを文字列と比較します。
+    return nodeLabel.Contains(_searchText);
+}
+----
+
+[start=2]
+.. *検索条件メソッドをカプセル化します。*
+
+link:http://msdn.microsoft.com/ja-jp/library/bfcke1bz.aspx[Predicate<T>] オブジェクトを作成します。これはステップ 1 で作られた *SearchCondition* メソッドをカプセル化します。predicate オブジェクトはパラメーターとしてネットワーク ノードの *Search* メソッドに渡されます。
+
+*Visual Basic の場合:*
+
+----
+Dim searchCondition As New _
+    Predicate(Of NodeModel)(AddressOf SearchCondition)
+----
+
+*C# の場合:*
+
+----
+Predicate searchCondition = new Predicate(SearchCondition);
+----
+
+[start=2]
+. *検索を実行します。*
+
+== ラムダ式の使用
+
+これはショートカットで、述語デリゲートを *Search* メソッド中に直接定義するラムダ式を使います。
+
+*Visual Basic の場合:*
+
+----
+Dim searchText As String = "some text"
+Dim searchResults As IEnumerable(Of NetworkNodeNode) = _ 
+    networkNodeInstance.Search(Function(node As NodeModel) _
+    node.Label.ToLower().Contains(searchText))
+----
+
+*C# の場合:*
+
+----
+string searchText = "some text";
+IEnumerable searchResults = networkNodeInstance.Search
+    ((NodeModel node) => node.Label.ToLower().Contains(searchText));
+----
+
+== 関連トピック
+
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]
+* link:xamnetworknode-using-xamnetworknode.html[xamNetworkNode の使用]

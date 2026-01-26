@@ -1,0 +1,109 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatacarousel-getting-started-with-xamdatacarousel",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Getting Started"],
+    "guid": "{DE160CFA-D79B-4DDA-93C7-17BDE333DACC}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.6558843Z"
+}
+|metadata|
+////
+
+= xamDataTree をページに追加
+
+このトピックではユーザーができるだけ早く操作に慣れることができるよう、xamDataCarousel™ コントロールを Page または Window に追加するために必要な基本手順について説明します。
+
+[start=1]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.DataGrids
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=2]
+. xamDataCarousel の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+----
+
+[start=3]
+. コード ビハインドを使用する場合、Window の Loaded イベントにイベント ハンドラーを接続します。
+
+*XAML の場合:*
+
+----
+<Window ... Loaded="Window_Loaded"  ... >
+----
+
+[start=4]
+. Window でデフォルトのグリッド レイアウト パネルに名前を付け、コード ビハインドでそれを参照できます。
+
+*XAML の場合:*
+
+----
+<Grid Name="layoutRoot">
+</Grid>
+----
+
+[start=5]
+. xamDataCarousel のインスタンスを作成し、XAML または Window_Loaded イベント ハンドラーを使用したコード ビハインドのいずれかから追加します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~bindtosampledata.html[BindToSampleData] プロパティを True に設定します。これはサンプル データで xamDataCarousel を自動的に移植するので、データ ソースを設定せずに xamDataCarousel コントロールをプレビューできます。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataCarousel Name="xamDataCarousel1" BindToSampleData="True" />
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+xamDataCarousel1 = New XamDataCarousel()
+' xamDataCarousel のインスタンスを
+' 組み込みサンプル データを使用する代わりにデータ バインドできます
+xamDataCarousel1.BindToSampleData = True
+Me.layoutRoot.Children.Add(xamDataCarousel1)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+xamDataCarousel1 = new XamDataCarousel();
+// xamDataCarousel のインスタンスを
+// 組み込みサンプル データを使用する代わりにデータ バインドできます
+xamDataCarousel1.BindToSampleData = true;
+this.layoutRoot.Children.Add(xamDataCarousel1);
+----
+
+[start=6]
+. プロジェクトを実行して、サンプル データで移植された xamDataCarousel を確認します。
+
+image::images/xamDataCarousel_Creating_xamDataCarousel_in_XAML_01.png[XAML で xamDataCarousel を作成]
+
+== 関連トピック
+
+link:creating-a-flat-dataset.html[フラットな DataSet の作成]
+
+link:creating-an-objectdataprovider.html[ObjectDataProvider の作成]
+
+link:creating-an-xmldataprovider.html[XmlDataProvider の作成]
+
+link:using-the-data-context-for-data-binding.html[データ バインドでデータ コンテキストを使用]

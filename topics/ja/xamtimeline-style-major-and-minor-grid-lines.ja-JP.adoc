@@ -1,0 +1,72 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-style-major-and-minor-grid-lines",
+    "controlName": ["xamTimeline"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{EB35B464-736D-4BEE-B140-6B0598E9826E}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1203999Z"
+}
+|metadata|
+////
+
+= 主グリッド線および副グリッド線のスタイル
+
+xamWebTimeline コントロールの主グリッド線と副グリッド線は、タイムラインの値の間隔をマークする垂直の線です。グリッド線の外観をカスタマイズするには、それらにスタイルを設定する必要があります。
+
+以下の xaml コードは、 link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamWebTimeline] コントロールでスタイルを使用して主グリッド線と副グリッド線の色、サイズ、および間隔を変更する方法を示します。
+
+*XAML の場合:*
+
+----
+    <UserControl.Resources>
+        <!-- 軸のスタイル -->
+        <Style x:Key="rscMajorGridLineStyle" TargetType="igtl:Mark">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Fill" Value="Gray"/>
+            <Setter Property="Stroke" Value="Gray"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Unit" Value="500"/>
+        </Style>
+        <Style x:Key="rscMinorGridLineStyle" TargetType="igtl:Mark">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Fill" Value="Silver"/>
+            <Setter Property="Stroke" Value="Silver"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Unit" Value="100"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White" >
+        <igtl:XamTimeline x:Name="xamTimeline"  
+                             Width="1000" Height="480" Margin="25">
+            <!-- Axis プロパティを設定 -->
+            <igtl:XamTimeline.Axis>
+                <igtl:NumericTimeAxis Minimum="-3000" Maximum="2300" 
+                                      AutoRange=" Unit="500" 
+                                      ShowLabels="True" 
+                                      ShowMajorGridLines="True" 
+                                      ShowMinorGridLines="True" 
+                                      MajorGridLineStyle="{StaticResource rscMajorGridLineStyle}"
+                                      MinorGridLineStyle="{StaticResource rscMinorGridLineStyle}"
+                                      />
+            </igtl:XamTimeline.Axis>
+            <!-- TODO: 数値/日時シリーズを追加します...-->
+        </igtl:XamTimeline>
+    </Grid>
+----
+
+image::images/XamTimeline_Style_Grid_Lines_01.png[]
+
+== 関連トピック
+
+link:xamtimeline-style-the-axis.html[軸のスタイル]
+
+link:xamtimeline-style-the-axis-pane.html[軸ペインのスタイル]
+
+link:xamtimeline-style-the-axis-label.html[軸ラベルのスタイル]
+
+link:xamtimeline-style-axis-thumb.html[軸のつまみのスタイル]
+
+link:xamtimeline-style-major-and-minor-tick-marks.html[主目盛および副目盛のスタイル]

@@ -1,0 +1,22 @@
+﻿////
+
+|metadata|
+{
+    "name": "whats-new-netadvantage-for-wpf-data-visualization",
+    "controlName": [],
+    "tags": [],
+    "guid": "c9e47432-9024-4f77-b1dc-ce6e929bbf14",  
+    "buildFlags": [],
+    "createdOn": "2012-01-31T20:20:51.5344945Z"
+}
+|metadata|
+////
+
+= {ProductName} Data Visualization
+
+このセクションを理解すれば、次のボリューム リリースで {ProductName} コントロールおよびコンポーネントに加えられたすべての新しい機能および拡張機能を簡単にたどることができます。
+
+* link:wpf-dv-whats-new-in-2011-volume-2.html[2011 Volume 2 の新機能]
+* link:wpf-dv-whats-new-in-2011-volume-1.html[2011 Volume 1 の新機能]
+* link:wpf-dv-whats-new-in-2010-volume-3.html[2010 Volume 3 の新機能]
+* link:wpf-dv-whats-new-in-2010-volume-2.html[2010 Volume 2 の新機能]

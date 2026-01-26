@@ -1,0 +1,68 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-default-editor-types-for-different-data-types",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing"],
+    "guid": "{5CFAB3B1-CDE6-48D2-BE62-9D915FEE30C2}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5018535Z"
+}
+|metadata|
+////
+
+= 異なるデータ タイプのデフォルトのエディター タイプ
+
+
+
+xamDataGrid™、xamDataCarousel™、および xamDataPresenter™ コントロールは特定のデータ タイプのためにデフォルトのエディターを登録しています。以下のテーブルは、デフォルトで編集するために登録されているデータ タイプとエディターを示しています。
+
+[options="header", cols="a,a"]
+|====
+|データ型|エディター
+
+|string
+|xamTextEditor™
+
+|bool
+|xamCheckEditor™
+
+|DateTime
+|xamDateTimeEditor™
+
+|decimal
+|xamCurrencyEditor™
+
+|double
+|xamNumericEditor™
+
+|float
+|xamNumericEditor
+
+|byte
+|xamNumericEditor
+
+|sbyte
+|xamNumericEditor
+
+|short
+|xamNumericEditor
+
+|ushort
+|xamNumericEditor
+
+|int
+|xamNumericEditor
+
+|uint
+|xamNumericEditor
+
+|long
+|xamNumericEditor
+
+|ulong
+|xamNumericEditor
+
+|====
+

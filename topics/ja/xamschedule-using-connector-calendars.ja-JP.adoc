@@ -1,0 +1,48 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector-calendars",
+    "controlName": ["xamSchedule"],
+    "tags": ["Data Binding","How Do I","Scheduling"],
+    "guid": "c5435552-bed5-4d39-82d3-25d4c95ed2d8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7013563Z"
+}
+|metadata|
+////
+
+= カレンダー項目ソースの使用
+
+XamSchedule は、指定されたリソースに関連付けられたひとつ以上のカレンダーを持つ機能をサポートします。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[アクティビティ]は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningcalendarid.html[OwningCalendarId] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~owningresourceid.html[OwnerResourceId] プロパティを介して特定のリソースの特定のカレンダーと関連付けられます。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] では、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector~resourcecalendaritemssource.html[ResourceCalendarItemsSource] は、カレンダー コレクションが生成されるデータ ソースを提供するために使用されます。ResourceCalendarsItemsSource のカレンダーは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar~owningresourceid.html[OwningResourceId] プロパティを介して所有するリソースに関連付けられます。
+
+複数のカレンダーをサポートするための機能はすべてのアプリケーションで必要とされるわけではないので、ResourceCalendarItemsSource はオプションであることに注意してください。提供されていない場合、コネクターがリソースごとに PrimaryCalendar としてデフォルト カレンダーを作成し、アクティビティがそのカレンダーに関連付けられます。また、ResourceCalendarItemsSource が提供されていない場合、アクティビティの OwningCalendarId プロパティ マッピングは不要であることにも注意してください。
+
+*XAML の場合:*
+
+----
+<ig:ListScheduleDataConnector
+    x:Name="scheduleDataConnector"
+    ResourceItemsSource="{Binding Resources}"
+    ResourceCalendarItemsSource="{Binding Calendars}"
+    AppointmentItemsSource="{Binding Appointments}" />
+<ig:XamScheduleDataManager
+    x:Name="dataManager"
+    DataConnector="{Binding ElementName=scheduleDataConnector}">
+    <ig:XamScheduleDataManager.CalendarGroups>
+        <ig:CalendarGroup
+            InitialCalendarIds="own1,own2[cal1]"
+            InitialSelectedCalendarId="own2[cal1]" />
+    </ig:XamScheduleDataManager.CalendarGroups>
+</ig:XamScheduleDataManager>
+----
+
+上記の例では、Resource “own1” は Primary Calendar (明示的に指定されていない場合には、ResourceCalendarItemsSource コレクションの最初のカレンダー) に属するアクティビティと表示され、Resource “own2” は Id=“cal1” で ResourceCalendar に属するアクティビティだけと表示されます。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-understanding-resources-calendars.html[リソースおよびカレンダーについて]
+
+link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]

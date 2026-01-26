@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamspellchecker-api-overview",
+    "controlName": ["xamSpellChecker"],
+    "tags": ["API"],
+    "guid": "{5E62EBD6-1131-4B55-B117-FB9BCD1D2248}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.1263763Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[cols="a,a"]
+|====
+|*xamSpellChecker 名前空間*
+|*キー クラス*
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics_namespace.html[Infragistics] 
+
+link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers] 
+
+link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.primitives_namespace.html[Infragistics.Controls.Interactions.SpellChecker.Primitives] 
+
+link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.spellchecker_namespace.html[Infragistics.Controls.Interactions.SpellChecker]
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.spellchecker_namespace.html[SpellChecker]
+
+|====
+
+  

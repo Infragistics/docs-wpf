@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-visualizing-kpi-data",
+    "controlName": ["xamPivotGrid"],
+    "tags": [],
+    "guid": "d08d6e62-0ad7-424a-ada9-bc51975aec53",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.3363341Z"
+}
+|metadata|
+////
+
+= KPI (キー パフォーマンス インジケーター) のサポート (xamPivotGrid、xamPivotDataSelector)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、KPI (キー パフォーマンス インジケーター) のデータをピボット グリッドで視覚化する方法を説明します。この機能は、 _XmlaDataSource_™ コンポーネント、 _xamPivotGrid_™ コントロールおよび  _xamPivotDataSelector_™ コントロールにより提供されます。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampivotgrid-kpis-visualization-overview.html[KPI 視覚エフェクトの概要 ( _xamPivotGrid_ 、 _xamPivotDataSelector_ )]
+|このトピックは、多次元 (OLAP) データ セットからの KPI データが {ProductName}® で視覚化される状態を概念的に説明します。
+
+| link:xampivotgrid-configuring-kpis-visualization.html[KPI 視覚化エフェクトの構成 ( _xamPivotGrid_ 、 _xamPivotDataSelector_ )]
+|このトピックでは、 _xamPivotGrid_ および _xamPivotDataSelector_ コントロールで KPI の視覚化をカスタマイズする方法を説明します。
+
+|====

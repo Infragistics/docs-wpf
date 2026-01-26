@@ -1,0 +1,58 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-setting-the-drop-area-location",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Layouts","Selection"],
+    "guid": "{D8065F68-E7B6-488F-AD96-633132779636}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7751708Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= ドロップ領域の場所を設定
+
+xamGrid コントロールでエンドユーザーが列をドラッグできる領域を構成できます。これは自動的に固定されます。また、エンドユーザーがこの領域から固定列をドラッグすると、自動的に元のピン解除された位置に戻ります。
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumnsettings.html[FixedColumnSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.fixedcolumnsettings.html[FixedDropAreaLocation] プロパティを左、右、または両方に設定すると、ドロップ エリアの場所を決定できます。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid.FixedColumnSettings>
+   <ig:FixedColumnSettings AllowFixedColumns="DropArea"            
+      FixedDropAreaLocation="Left"/>
+</ig:XamGrid.FixedColumnSettings>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Me.MyGrid.FixedColumnSettings.AllowFixedColumns = FixedColumnType.DropArea
+Me.MyGrid.FixedColumnSettings.FixedDropAreaLocation = FixedDropAreaLocation.Left
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.MyGrid.FixedColumnSettings.AllowFixedColumns = FixedColumnType.DropArea;
+this.MyGrid.FixedColumnSettings.FixedDropAreaLocation = FixedDropAreaLocation.Left;
+----
+
+== 関連トピック
+
+link:xamgrid-fixed-columns.html[固定列を有効にする]
+
+link:xamgrid-fixed-column-events.html[固定列イベント]
+
+link:xamgrid-setting-fixed-columns-programmatically.html[プログラムによる固定列の設定]
+
+pick:[win-rt=" link:bb45cdbe-7149-49bc-a63a-1a77676c6986[タッチ サポート]"]

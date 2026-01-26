@@ -1,0 +1,61 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-using-xamribbon",
+    "controlName": ["xamRibbon"],
+    "tags": [],
+    "guid": "{D6F02478-8EAE-4728-88F4-1A34DF5DE21E}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.2291989Z"
+}
+|metadata|
+////
+
+= xamRibbon の使用
+
+このセクションは、xamRibbon™ コントロールの様々な特徴や機能を効果的に使用するための重要なタスク ベースの情報について説明します。
+
+link:xamribbon-application-menu.html[アプリケーション メニュー]
+
+このセクションは、xamRibbon コントロールのアプリケーション メニュー領域についての説明と項目の追加方法を示します。
+
+link:xamribbon-applicationmenu2010.html[アプリケーション メニュー 2010]
+
+このセクションは、xamRibbon コントロールのアプリケーション メニュー 2010 を作成して構成する方法を紹介します。
+
+link:xamribbon-key-tips.html[キー チップ]
+
+このトピックは、xamRibbon のキー チップの機能、使用する理由と方法を説明します。
+
+link:xamribbon-quick-access-toolbar.html[クイック アクセス ツールバー]
+
+このセクションは、xamRibbon のクイック アクセス ツールバー領域について説明します。
+
+link:xamribbon-ribbon-group-layout-panels.html[リボン グループ レイアウト パネル]
+
+このセクションは、xamRibbon コントロールのレイアウト パネルについて説明します。
+
+link:xamribbon-ribbon-groups.html[リボン グループ]
+
+このセクションは、xamRibbon のリボン グループ領域についての説明とリボン タブ項目に追加する方法を示します。
+
+link:xamribbon-ribbon-tabs.html[リボン タブ]
+
+このセクションは、xamRibbon のリボン タブ領域についての説明と xamRibbon に追加する方法を示します。
+
+link:xamribbon-ribbon-window.html[リボン ウィンドウ]
+
+このセクションは、リボン ウィンドウの目的を説明し、xamRibbon をリボン ウィンドウに表示する方法を紹介します。
+
+link:xamribbon-screen-tips.html[画面ヒント]
+
+このセクションは画面ヒントを説明し、リボン ツールに追加する方法を紹介します。
+
+link:xamribbon-tab-item-area-toolbar.html[タブ項目領域のツールバー]
+
+このトピックでは、タブ項目の隣に配置されるツールバー領域を作成し、構成する方法を紹介します。
+
+link:xamribbon-tools.html[ツール]
+
+このセクションは、xamRibbon コントロールで使用できるツールについて説明します。

@@ -1,0 +1,92 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-set-the-size-of-a-floating-pane",
+    "controlName": ["xamDockManager"],
+    "tags": ["How Do I"],
+    "guid": "{77D71F6F-C5AC-47B5-825C-C5E8053F3F8A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5300591Z"
+}
+|metadata|
+////
+
+= フローティング ペインのサイズを設定
+
+
+
+xamDockManager™ コントロールの link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~initiallocationproperty.html[InitialLocation] 添付プロパティを FloatingOnly に設定することでペインをフロートする場合、xamDockManager の link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~floatingsizeproperty.html[FloatingSize] 添付プロパティを Size 構造のインスタンスに設定することでフローティング ペインのサイズを明示的に設定できます。XAML では、コンマまたはスペースで分離した幅の値と高さの値を指定することで、FloatingSize 添付プロパティを設定できます。
+
+以下のコードは、フローティング ペインのサイズを設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<igDock:XamDockManager Name="xamDockManager1">
+    <igDock:XamDockManager.Panes>
+        <igDock:SplitPane 
+            Name="splitPane1" 
+            igDock:XamDockManager.InitialLocation="FloatingOnly"
+            igDock:XamDockManager.FloatingSize="150 150">
+            <igDock:ContentPane Header="Pane 1" />
+        </igDock:SplitPane>
+    </igDock:XamDockManager.Panes>
+</igDock:XamDockManager>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DockManager
+...
+Dim splitPane1 As New SplitPane()
+XamDockManager.SetFloatingSize(splitPane1, New Size(150, 150))
+XamDockManager.SetInitialLocation(splitPane1, InitialPaneLocation.FloatingOnly)
+Me.xamDockManager1.Panes.Add(splitPane1)
+Dim pane1 As New ContentPane()
+pane1.Header = "Pane 1"
+splitPane1.Panes.Add(pane1)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DockManager;
+...
+SplitPane splitPane1 = new SplitPane();
+XamDockManager.SetFloatingSize(splitPane1, new Size(150, 150));
+XamDockManager.SetInitialLocation(splitPane1, InitialPaneLocation.FloatingOnly);
+this.xamDockManager1.Panes.Add(splitPane1);
+ContentPane pane1 = new ContentPane();
+pane1.Header = "Pane 1";
+splitPane1.Panes.Add(pane1);
+...
+----
+
+== 関連トピック
+
+link:xamdockmanager-about-opening-and-closing-panes.html[開始ペインと終了ペインについて]
+
+link:xamdockmanager-add-content-to-a-contentpane.html[コンテンツを ContentPane に追加]
+
+link:xamdockmanager-add-panes-to-the-documentcontenthost-object.html[ペインを DocumentContentHost オブジェクトに追加]
+
+link:xamdockmanager-add-panes-to-xamdockmanager.html[ペインを xamDockManager に追加]
+
+link:xamdockmanager-creating-a-tabbed-mdi-application.html[タブ付き MDI アプリケーションを作成]
+
+link:xamdockmanager-pin-and-unpin-a-pane.html[ペインのピンを固定および解除]
+
+link:xamdockmanager-prevent-end-users-from-resizing-floating-panes.html[エンドユーザーがフローティング ペインのサイズを変更することを禁止]
+
+link:xamdockmanager-set-the-location-of-a-floating-pane.html[フローティング ペインの場所を設定]
+
+link:xamdockmanager-set-the-initial-location-of-a-pane.html[ペインの最初の位置を設定]
+
+link:xamdockmanager-show-the-pane-navigator-programmatically.html[プログラミングによるペインナビゲータの表示]
+
+link:xamdockmanager-end-user-settings.html[エンドユーザー設定]
+
+link:xamdockmanager-styling-xamdockmanager.html[xamDockManager のスタイリング]

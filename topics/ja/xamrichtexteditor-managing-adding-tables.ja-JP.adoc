@@ -1,0 +1,166 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-adding-tables",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "2433051d-6c7c-499a-ac47-4da9efd5a330",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.5203067Z"
+}
+|metadata|
+////
+
+= テーブルの追加 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ を使用してテーブルを作成する方法を、開発者の観点から説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref364244625,テーブルの紹介>>
+* <<_Ref364244630,関連コンテンツ>>
+
+[[_Ref364244625]]
+== テーブルの紹介
+
+=== テーブルの概要
+
+_xamRichTextEditor_   は、テーブル ノードを使用して構築され、行ノードを保持するテーブルをサポートします。テーブルの中にセル ノードを保持してグリッド形式でデータを表示します。テーブル セルは、段落、画像、他のテーブルなどの他のリッチ コンテンツのコンテナーとして使用します。
+
+以下のツリー図は、適切な型を使用した 3 列× 2 行のテーブルのノード階層を示します。
+
+[start=1]
+. link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tablenode_members.html[TableNode]
+
+.. link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tablerownode_members.html[TableRowNode]
+
+... link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tablecellnode_members.html[TableCellNode]
+
+.... link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode_members.html[ParagraphNode]
+
+... `TableCellNode`
+
+.... `ParagraphNode`
+
+... `TableCellNode`
+
+.... `ParagraphNode`
+
+.. `TableRowNode`
+
+... `TableCellNode`
+
+.... `ParagraphNode`
+
+... `TableCellNode`
+
+.... `ParagraphNode`
+
+... `TableCellNode`
+
+.... `ParagraphNode`
+
+注:
+
+[NOTE]
+====
+各 `TableCellNode` の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes] コレクションには、1 つ以上の または `TableNode` が必要です。
+====
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentbodynode_members.html[DocumentBodyNode] の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes] コレクションに前述の構造を直接作成できます。または、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument_members.html[RichTextDocument] の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~inserttable.html[InsertTable] メソッドを使用します。メソッドは、構造を作成しルート テーブル ノードに参照を返します。
+
+=== 例
+
+以下のコード スニペットは、文字列 3列× 2 行のテーブルを (オフセット 0 ) ドキュメントの先頭に挿入し、構造全体でコンテンツを繰り返し挿入する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+string error = null;
+TableNode tn = this.xamRichTextEditor1.Document.InsertTable(0, 3, 2, out error);
+if (error == null)
+{
+    int cRow = 1;
+    foreach (TableRowNode trn in tn.ChildNodes)
+    {
+        int cCell = 1;
+        foreach (TableCellNode tcn in trn.ChildNodes)
+        {
+            ParagraphNode pn = tcn.ChildNodes[0] as ParagraphNode;
+            pn.SetText(string.Format("Row {0}, Cell {1}", cRow, cCell));
+            cCell++;
+        }
+        cRow++;
+    }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim [error] As String = Nothing
+Dim tn As TableNode = Me.xamRichTextEditor1.Document.InsertTable(0, 3, 2, [error])
+If [error] Is Nothing Then
+      Dim cRow As Integer = 1
+      For Each trn As TableRowNode In tn.ChildNodes
+            Dim cCell As Integer = 1
+            For Each tcn As TableCellNode In trn.ChildNodes
+                  Dim pn As ParagraphNode = TryCast(tcn.ChildNodes(0), ParagraphNode)
+                  pn.SetText(String.Format("Row {0}, Cell {1}", cRow, cCell))
+                  cCell += 1
+            Next
+            cRow += 1
+      Next
+End If
+----
+
+[[_Ref364244630]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-adding-text.html[テキストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテキストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-hyperlinks.html[ハイパーリンクの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してハイパーリンクを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-lists.html[リストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してリストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-images.html[画像の追加]
+|このトピックは、 _xamRichTextEditor_ を使用して画像を作成する方法を、開発者の観点から説明します。
+
+|====

@@ -1,0 +1,45 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-changing-the-column-headers-style",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Layouts","Styling"],
+    "guid": "{9FDE68A2-6A8D-4DE6-804B-1ED72FB6C944}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1109753Z"
+}
+|metadata|
+////
+
+= 列ヘッダーのスタイルを変更
+
+
+
+列ヘッダーは、グリッドで最も一般的にスタイルされた要素のひとつになる傾向があります。
+
+image::images/xamDataGrid_Changing_the_Column_Headers_Style_01.png[デフォルト xamdatapresenter 列ヘッダー。]
+
+xamDataPresenter のグリッド ビューよって、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.labelpresenter.html[LabelPresenter] クラスをターゲットとするスタイルを作成することによって列ヘッダーをスタイル設定することができます。以下の XAML の例のコードは、LabelPresenter の背景色と前景色を変更します。このスタイルは、そのリソース セクションにこのスタイルが配置される要素に含まれるすべての xamDataPresenter によって使用されます。そのスタイルに割り当てられている Key がないためこのようになります。
+
+*XAML の場合:*
+
+----
+<Style TargetType="{x:Type igDP:LabelPresenter}">
+        <Setter Property="Background">
+                <Setter.Value>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FF8790AD" Offset="0"/>
+                                <GradientStop Color="#FF424759" Offset="0.5"/>
+                                <GradientStop Color="#FF505DA3" Offset="0.5"/>
+                                <GradientStop Color="#FF2D2DDE" Offset="1"/>
+                        </LinearGradientBrush>
+                </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="#FFDACA1E"/>
+</Style>
+----
+
+Grid.Resources セクション内に上記の XAML の例のコードを配置するだけで (link:xamdatapresenter-getting-started-with-xamdatapresenter.html[xamDataPresenter をアプリケーションに追加]を参照)、以下のようになります。
+
+image::images/xamDataGrid_Changing_the_Column_Headers_Style_02.png[カスタム スタイル設定された xamdatapresenter 列ヘッダー]

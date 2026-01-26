@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xaminputs",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "96a3ea80-b6f9-4294-be1b-4e2608b0ca74",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.8802159Z"
+}
+|metadata|
+////
+
+{XamInputHeader}
+
+= xamInputs
+
+== 概要
+
+このグループ化は、4 つの入力コントロール link:xammaskedinput.html[xamMaskedInput]™、 link:xamcurrencyinput.html[xamCurrencyInput]™ pick:[sl,wpf,win-rt="、 link:xamdatetimeinput.html[xamDateTimeInput]"]  および link:xamnumericinput.html[xamNumericInput]™ の開始点として機能します。
+
+== トピック
+
+以下のトピックは入力コントロールに適用される情報を提供します。特定のコントロールの詳細を理解したい場合は、目次にあるそのコントロールのグループを参照してください。
+
+* link:xaminputs-about.html[xamInputs について]
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xamcurrencyinput.html[xamCurrencyInput]
+* link:xamnumericinput.html[xamNumericInput]
+
+ifdef::sl,wpf,win-rt[]
+* link:xamdatetimeinput.html[xamDateTimeInput]
+
+endif::sl,wpf,win-rt[]
+
+* link:xammaskedinput.html[xamMaskedInput]

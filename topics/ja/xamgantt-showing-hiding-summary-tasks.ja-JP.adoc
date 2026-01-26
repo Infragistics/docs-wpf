@@ -1,0 +1,105 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-showing-hiding-summary-tasks",
+    "controlName": ["xamGantt"],
+    "tags": ["Data Presentation","How Do I","Scheduling"],
+    "guid": "71d203bb-62d8-4ce5-b924-e350831bb9d3",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.3571671Z"
+}
+|metadata|
+////
+
+= サマリー タスクの表示/非表示
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   コントロールを使用してサマリー タスクの表示状態を構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-adding-xamgantt-to-a-page.html[xamGantt をページに追加]
+|このトピックでは、 _xamGantt_ コントロールをページに追加する方法について説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref334910790, サマリー タスクの表示/非表示 >>
+
+** <<_Ref335272110,概要>>
+** <<_Ref335272117,プロパティ設定>>
+** <<_Ref335272123,例>>
+
+* <<_Ref334910796, 関連コンテンツ >>
+
+[[_Ref334910790]]
+== サマリー タスクの表示/非表示
+
+[[_Ref335272110]]
+
+=== 概要
+
+デフォルトで、サマリー タスクは  _xamGantt_   コントロールに表示されます。
+
+link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings_members.html[ProjectViewSettings] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings~aresummarytasksvisible.html[AreSummaryTasksVisible] プロパティを介してサマリー タスクの表示状態を構成します。
+
+[[_Ref335272117]]
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|次に設定:
+
+|サマリー タスクを表示/非表示にします。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectviewsettings~aresummarytasksvisible.html[AreSummaryTasksVisible]
+|`bool`
+
+|====
+
+[[_Ref335272123]]
+
+=== 例
+
+以下のコードは、サマリー タスクを表示/非表示にする方法を示しています。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamGantt x:Name="gantt" 
+             Project="{Binding Project}">
+    <ig:XamGantt.ViewSettings>
+        <ig:ProjectViewSettings AreSummaryTasksVisible=" />
+    </ig:XamGantt.ViewSettings>
+</ig:XamGantt>
+----
+
+[[_Ref334910796]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-project-view-settings-configuration-overview.html[プロジェクト ビュー設定の構成概要]
+|このトピックでは、 _xamGantt_ ProjectViewSettings クラスとその構成可能な項目の概要を提供します。
+
+|====

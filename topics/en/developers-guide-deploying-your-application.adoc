@@ -1,0 +1,937 @@
+﻿////
+|metadata|
+{
+    "name": "developers-guide-deploying-your-application",
+    "controlName": [],
+    "tags": ["How Do I"],
+    "guid": "{A5C3EA0C-364E-41D5-8C00-B0046A0AF471}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T15:17:19.5555974Z"
+}
+|metadata|
+////
+
+= Deploying Your Application
+
+The first step in deploying applications that include tools from the {ProductName}™ product is to determine what resources you will need to include as part of your deployment package.
+
+When deploying a .NET application, you must distribute certain files in addition to your executable. If your application contains one or more Infragistics elements, you will have to distribute or deploy one or more Infragistics assembly files as part of your application. This topic outlines the files that you must re-distribute.
+
+.Note
+[NOTE]
+====
+Any files not specifically covered by this topic should be considered non-redistributable. Files that are included with your Infragistics product but not listed here are not licensed for distribution, and should not be copied to, moved to or shared with any machine other than the one on which the licensed Infragistics product is installed.
+====
+
+== Required Assemblies for All Controls/Components
+
+In addition to individual assembly files listed for each control/component, the deployment of any {PlatformName} control/component also requires the re-distribution of the following file:
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{RootAssembly}{ApiVersion}.html[{ApiPlatform}dll]
+|{ProductName} assembly containing functionality used by the Infragistics assemblies.
+
+| link:{ApiPlatform}datavisualization{ApiVersion}.html[{ApiPlatform}DataVisualization.dll]
+|{ProductName} assembly containing functionality used by the Infragistics assemblies. It contains the following controls: 
+
+* link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamdock.html[xamDock] 
+
+* link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[xamZoombar] 
+
+* link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamoverviewplusdetailpane.html[xamOverviewPlusDetailPane] 
+
+|====
+
+== Required Assemblies for Individual Controls/Components
+
+The following tables identify which assemblies are required when deploying each individual control or component.
+
+== Drag and Drop Framework™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}dragdrop{ApiVersion}.html[{ApiPlatform}DragDrop.dll]
+|{ProductName} assembly containing the Drag and Drop framework
+
+|====
+
+== Documents Features
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}documents.core{ApiVersion}.html[{ApiPlatform}Documents.Core.dll]
+|{ProductName} assembly containing core documents related functionality
+
+| link:{ApiPlatform}documents.excel{ApiVersion}.html[{ApiPlatform}Documents.Excel.dll]
+|{ProductName} assembly containing Excel related documents functionality
+
+| link:{ApiPlatform}documents.io{ApiVersion}.html[{ApiPlatform}Documents.IO.dll]
+|{ProductName} assembly containing IO operations documents related functionality
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}.html[{ApiPlatform}Documents.RichTextDocument.dll]
+|{ProductName} assembly containing rich text documents related functionality
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}.html[{ApiPlatform}Documents.RichTextDocument.Html.dll]
+|{ProductName} assembly containing rich text documents HTML related functionality
+
+| link:{ApiPlatform}documents.richtextdocument.rtf{ApiVersion}.html[{ApiPlatform}Documents.RichTextDocument.Rtf.dll]
+|{ProductName} assembly containing rich text documents RTF related functionality
+
+| link:{ApiPlatform}documents.richtextdocument.word{ApiVersion}.html[{ApiPlatform}Documents.RichTextDocument.Word.dll]
+|{ProductName} assembly containing rich text documents Word related functionality
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}.html[{ApiPlatform}Documents.TextDocument.dll]
+|{ProductName} assembly containing text documents related functionality
+
+| link:{ApiPlatform}documents.textdocument.csharp{ApiVersion}.html[{ApiPlatform}Documents.TextDocument.CSharp.dll]
+|{ProductName} assembly containing text documents C# related functionality
+
+| link:{ApiPlatform}documents.textdocument.tsql{ApiVersion}.html[{ApiPlatform}Documents.TextDocument.TSql.dll]
+|{ProductName} assembly containing text documents TSQL related functionality
+
+| link:{ApiPlatform}documents.textdocument.visualbasic{ApiVersion}.html[{ApiPlatform}Documents.TextDocument.VisualBasic.dll]
+|{ProductName} assembly containing text documents VB related functionality
+
+|====
+
+== Infragistics Barcode Reader™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}.html[{ApiPlatform}Controls.Barcodes.BarcodeReader.dll]
+|{ProductName} assembly containing the Infragistics link:{ApiPlatform}controls.barcodes.barcodereader{ApiVersion}~infragistics.controls.barcodes_namespace.html[Barcode Reader].
+
+|====
+
+== Infragistics Control Persistence Framework
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}persistence{ApiVersion}.html[{ApiPlatform}Persistence.dll]
+|{ProductName} assembly containing the Infragistics Control Persistence Framework
+
+|====
+
+== Infragistics Excel Engine
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}documents.excel{ApiVersion}.html[{ApiPlatform}Documents.Core.dll]
+|{ProductName} assembly containing core documents related functionality
+
+| link:{ApiPlatform}documents.excel{ApiVersion}.html[{ApiPlatform}Documents.Excel.dll]
+|{ProductName} assembly containing the Infragistics Excel Engine
+
+|====
+
+== Infragistics Math Library™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}math{ApiVersion}.html[{ApiPlatform}Math.dll]
+|{ProductName} assembly containing the Math Library
+
+|====
+
+== Infragistics Math Calculators™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}math.calculators{ApiVersion}.html[{ApiPlatform}Math.Calculators.dll]
+|{ProductName} assembly containing link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Math Calculators] to compute mean, median, variance and many more.
+
+|====
+
+== Themes Assemblies
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+|{ApiPlatform}Themes.Fall.dll
+|{ProductName} assembly containing the Fall theme.
+
+|{ApiPlatform}Themes.ForestGreen.dll
+|{ProductName} assembly containing the ForestGreen theme.
+
+|{ApiPlatform}Themes.Leaf.dll
+|{ProductName} assembly containing the Leaf theme.
+
+|{ApiPlatform}Themes.Lipstick.dll
+|{ProductName} assembly containing the Lipstick theme.
+
+|{ApiPlatform}Themes.Water.dll
+|{ProductName} assembly containing the Water theme.
+
+|{ApiPlatform}Themes.Wind.dll
+|{ProductName} assembly containing the Wind theme.
+
+|====
+
+== WPF Reporting
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}reporting{ApiVersion}.html[{ApiPlatform}Reporting.dll]
+|{ProductName} Assembly containing the WPF Reporting engine and xamReportPreview™ control.
+|====
+
+== xamBarcode™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.barcodes{ApiVersion}.html[{ApiPlatform}Controls.Barcodes.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.barcodes{ApiVersion}~infragistics.controls.barcodes_namespace.html[xamBarcode] set of barcode symbologies.
+
+|====
+
+== xamBulletGraph™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.gauges{ApiVersion}.html[{ApiPlatform}Controls.Gauges.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.gauges{ApiVersion}~infragistics.controls.gauges.xambulletgraph.html[xamBulletGraph] control.
+
+|====
+
+== xamCalculationManager™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}.html[{ApiPlatform}Calculations.XamCalculationManager.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.xamcalculationmanager_members.html[xamCalculationManager] control
+
+|====
+
+== xamCalendar™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamCalendar.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors.xamcalendar_members.html[xamCalendar] control
+
+|====
+
+== xamCarouselListBox™
+
+Located in the Wpf assembly. No additional files required.
+
+== xamCarouselPanel™
+
+Located in the Wpf assembly. No additional files required.
+
+== xamColorPicker™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamColorPicker.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.controls.editors.xamcolorpicker_members.html[xamColorPicker] control
+
+|====
+
+== xamComboEditor™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamComboEditor.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xamcomboeditor_members.html[xamComboEditor] control
+
+|====
+
+== xamContextMenu™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamMenu.dll]
+|{ProductName} assembly containing the xamContextMenu control
+
+|====
+
+== xamDataCarousel™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}datapresenter{ApiVersion}.html[{ApiPlatform}DataPresenter.dll]
+|{ProductName} Assembly containing the xamDataCarousel control.
+
+| link:{ApiPlatform}editors{ApiVersion}.html[{ApiPlatform}Editors.dll]
+|{ProductName} Assembly containing the xamEditor controls.
+
+|====
+
+== xamDataChart™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{ApiPlatform}Controls.Charts.XamDataChart.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xamdatachart.html[xamDataChart] control.
+
+| link:{ApiPlatform}math.calculators{ApiVersion}.html[{ApiPlatform}Math.Calculators.dll]
+|{ProductName} assembly required when Series Error Bars or Value Overlay features are used with link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Math Calculators] in the xamDataChart control.
+
+| link:{ApiPlatform}math{ApiVersion}.html[{ApiPlatform}Math.dll]
+|{ProductName} assembly required when link:{ApiPlatform}math.calculators{ApiVersion}~infragistics.math.calculators_namespace.html[Math Calculators] are used in the xamDataChart control
+
+|====
+
+== xamDataChart OlapAxis™, xamOlapPieChart
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.charts.olap{ApiVersion}.html[{ApiPlatform}Controls.Charts.Olap.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.charts.olap{ApiVersion}~infragistics.controls.charts.xamolappiechart.html[XamOlapPieChart] control and the OlapXAxis for the xamDataChart.
+
+| link:{ApiPlatform}olap{ApiVersion}.html[{ApiPlatform}Olap.dll]
+|{ProductName} assembly containing some of the OLAP data sources related classes
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{ApiPlatform}Controls.Charts.XamDataChart.dll]
+|{ProductName} assembly containing the xamDataChart control
+
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamDataTree.dll]
+|{ProductName} assembly containing the xamDataTree control
+
+|====
+
+== xamDataGrid™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}datapresenter{ApiVersion}.html[{ApiPlatform}DataPresenter.dll]
+|{ProductName} Assembly containing the xamDataGrid control.
+
+| link:{ApiPlatform}editors{ApiVersion}.html[{ApiPlatform}Editors.dll]
+|{ProductName} Assembly containing the xamEditor controls.
+
+|====
+
+== xamDataPresenter™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}datapresenter{ApiVersion}.html[{ApiPlatform}DataPresenter.dll]
+|{ProductName} Assembly containing the xamDataPresenter control.
+
+| link:{ApiPlatform}editors{ApiVersion}.html[{ApiPlatform}Editors.dll]
+|{ProductName} Assembly containing the xamEditor controls.
+
+|====
+
+== xamDataPresenter Calculation Adapter, xamDataPresenter Excel Exporter, xamDataPresenter Asynchronous Data Source, xamDataPresenter Word Writer
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}datapresenter.calculationadapter{ApiVersion}.html[{ApiPlatform}DataPresenter.CalculationAdapter.dll]
+|{ProductName} Assembly containing the CalculationAdapter class.
+
+| link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}.html[{ApiPlatform}DataPresenter.ExcelExporter.dll]
+|{ProductName} Assembly containing the DataPresenterExcelExporter class.
+
+| link:{ApiPlatform}datapresenter.datasources.async{ApiVersion}.html[{ApiPlatform}DataPresenter.DataSources.Async.dll]
+|{ProductName} Assembly containing the AsyncPagingDataSourceBase class.
+
+| link:{ApiPlatform}datapresenter.wordwriter{ApiVersion}.html[{ApiPlatform}DataPresenter.WordWriter.dll]
+|{ProductName} Assembly containing the DataPresenter Word Exporter class.
+
+|====
+
+== xamDataTree™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamDataTree.dll]
+|{ProductName} assembly containing the xamDataTree control
+
+| link:{ApiPlatform}dragdrop{ApiVersion}.html[{ApiPlatform}DragDrop.dll]
+|{ProductName} assembly containing the Drag and Drop framework
+
+|====
+
+== xamDateTimeInput™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamMaskedInput.dll]
+|{ProductName} assembly containing the MaskedInput controls
+
+| link:{ApiPlatform}controls.editors.xamdatetimeinput{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamDateTimeInput.dll]
+|{ProductName} assembly containing the xamDateTimeInput control
+
+| link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamCalendar.dll]
+|{ProductName} assembly containing the xamCalendar control
+
+|====
+
+== xamDiagram™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}.html[{ApiPlatform}Controls.Charts.xamDiagram.dll]
+|{ProductName} assembly containing the xamDiagram control.
+
+|====
+
+== xamDialogWindow™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}.html[{ApiPlatform}Controls.Interactions.XamDialogWindow.dll]
+|{ProductName} assembly containing the xamDialogWindow control
+
+|====
+
+== xamDockManager™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}dockmanager{ApiVersion}.html[{ApiPlatform}DockManager.dll]
+|{ProductName} assembly containing the xamDockManager control
+
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamMenu.dll]
+|{ProductName} assembly containing the xamMenu control
+
+|====
+
+== xamFormulaEditor™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}.html[{ApiPlatform}Calculations.XamCalculationManager.dll]
+|{ProductName} assembly containing the xamCalculationManager control
+
+| link:{ApiPlatform}controls.interactions.xamformulaeditor{ApiVersion}.html[{ApiPlatform}Controls.Interactions.XamFormulaEditor.dll]
+|{ProductName} assembly containing the xamFormulaEditor control
+
+| link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}.html[{ApiPlatform}Controls.Interactions.XamDialogWindow.dll]
+|{ProductName} assembly containing the xamDialogWindow control
+
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamDataTree.dll]
+|{ProductName} assembly containing the xamDataTree control
+
+|====
+
+== xamFunnelChart™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{ApiPlatform}Controls.Charts.XamDataChart.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xamfunnelchart.html[xamFunnelChart] control.
+
+|====
+
+== xamGantt™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}.html[{ApiPlatform}Controls.Schedules.XamGantt.dll]
+|{ProductName} assembly containing the xamGantt control
+
+| link:{ApiPlatform}datamanager{ApiVersion}.html[{ApiPlatform}DataManager.dll]
+|{ProductName} assembly containing the DataManager component
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}.html[{ApiPlatform}Controls.Schedules.dll]
+|{ProductName} assembly containing the schedule related controls
+
+| link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamCalendar.dll]
+|{ProductName} assembly containing the xamCalendar control
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}.html[{ApiPlatform}Controls.Grids.XamGrid.dll]
+|{ProductName} assembly containing the xamGrid control
+
+|====
+
+== XamGeographicMap™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.maps.xamgeographicmap{ApiVersion}.html[{ApiPlatform}Controls.Maps.XamGeographicMap.dll]
+|{ProductName} assembly containing the XamGeographicMap control
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{ApiPlatform}Controls.Charts.XamDataChart.dll]
+|{ProductName} assembly containing the xamDataChart control
+
+|====
+
+== xamGrid™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}.html[{ApiPlatform}Controls.Grids.XamGrid.dll]
+|{ProductName} assembly containing the xamGrid control
+
+|====
+
+== xamGrid DateTime Column, xamGrid MultiColumnCombo Column, xamGrid Sparkline Column
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.grids.datetimecolumn{ApiVersion}.html[{ApiPlatform}Controls.Grids.DateTimeColumn.dll]
+|{ProductName} assembly containing the DateTime column for the xamGrid control
+
+| link:{ApiPlatform}controls.grids.multicolumncombocolumn{ApiVersion}.html[{ApiPlatform}Controls.Grids.MultiColumnComboColumn.dll]
+|{ProductName} assembly containing the MultiColumnComboBox column for the xamGrid control
+
+| link:{ApiPlatform}controls.grids.sparklinecolumn{ApiVersion}.html[{ApiPlatform}Controls.Grids.SparklineColumn.dll]
+|{ProductName} assembly containing the SparklineColumn column for the xamGrid control
+
+|====
+
+== xamLinearGauge™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.gauges{ApiVersion}.html[{ApiPlatform}Controls.Gauges.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.gauges{ApiVersion}~infragistics.controls.gauges.xamlineargauge.html[XamLinearGauge] control.
+
+|====
+
+== xamMap™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}.html[{ApiPlatform}Controls.Maps.XamMap.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] control.
+
+|====
+
+== xamMaskedInput™, xamCurrencyInput™, xamNumericInput™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamMaskedInput.dll]
+|{ProductName} assembly containing the MaskedInput controls
+
+|====
+
+== xamMenu™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamMenu.dll]
+|{ProductName} assembly containing the xamMenu control
+
+|====
+
+== xamMultiColumnComboEditor™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamComboEditor.dll]
+|{ProductName} assembly containing the Combo editors
+
+|====
+
+== xamNetworkNode™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}.html[{ApiPlatform}Controls.Maps.XamNetworkNode.dll]
+|{ProductName} assembly containing link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode] control.
+
+|====
+
+== xamOrgChart™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}.html[{ApiPlatform}Controls.Maps.XamOrgChart.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.maps.xamorgchart{ApiVersion}~infragistics.controls.maps.xamorgchart.html[xamOrgChart] control.
+
+| link:{ApiPlatform}datamanager{ApiVersion}.html[{ApiPlatform}DataManager.dll]
+|{ProductName} assembly containing logic for resolving collection types.
+
+|====
+
+== xamOutlookBar™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}outlookbar{ApiVersion}.html[{ApiPlatform}OutlookBar.dll]
+|{ProductName} assembly containing the xamOutlookBar control.
+
+|====
+
+== xamOverviewPlusDetailPane™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}datavisualization{ApiVersion}.html[{ApiPlatform}DataVisualization.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamoverviewplusdetailpane.html[xamOverviewPlusDetailPane] control.
+
+|====
+
+== xamPieChart™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}.html[{ApiPlatform}Controls.Charts.XamDataChart.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.xampiechart.html[xamPieChart] control.
+
+|====
+
+== xamPivotGrid™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}.html[{ApiPlatform}Controls.Grids.XamPivotGrid.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] and link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector.html[xamPivotDataSelector] controls.
+
+| link:{ApiPlatform}controls.grids.xampivotdataslicer{ApiVersion}.html[{ApiPlatform}Controls.Grids.XamPivotDataSlicer.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.grids.xampivotdataslicer{ApiVersion}~infragistics.controls.grids.xampivotdataslicer.html[xamPivotDataSlicer] control.
+
+| link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamDataTree.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree.html[xamDataTree] - required for link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] and link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector.html[xamPivotDataSelector] .
+
+| link:{ApiPlatform}dragdrop{ApiVersion}.html[{ApiPlatform}DragDrop.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop_namespace.html[Drag and Drop] - required for link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] and link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotdataselector.html[xamPivotDataSelector] .
+
+| link:{ApiPlatform}olap{ApiVersion}.html[{ApiPlatform}Olap.dll]
+|{ProductName} assembly containing the base classes for the data sources.
+
+| link:{ApiPlatform}documents.excel{ApiVersion}.html[{ApiPlatform}Documents.Excel.dll]
+|{ProductName} assembly containing the base classes for the link:{ApiPlatform}olap.excel{ApiVersion}~infragistics.olap.excel_namespace.html[Olap.Excel] data source.
+
+|
+
+* link:{ApiPlatform}olap.xmla{ApiVersion}.html[{ApiPlatform}Olap.Xmla.dll] 
+
+* link:{ApiPlatform}olap.xmla.oracle{ApiVersion}.html[{ApiPlatform}Olap.Xmla.Oracle.dll] 
+
+* link:{ApiPlatform}olap.xmla.sap{ApiVersion}.html[{ApiPlatform}Olap.Xmla.Sap.dll] 
+
+* link:{ApiPlatform}olap.flatdata{ApiVersion}.html[{ApiPlatform}Olap.FlatData.dll] 
+
+* link:{ApiPlatform}olap.excel{ApiVersion}.html[{ApiPlatform}Olap.Excel.dll] 
+
+* link:{ApiPlatform}olap.adomd{ApiVersion}.html[{ApiPlatform}Olap.Adomd.dll] 
+
+|
+
+* {ProductName} assembly containing the link:{ApiPlatform}olap.xmla{ApiVersion}~infragistics.olap.xmla_namespace.html[Olap.Xmla] data source. 
+
+* {ProductName} assembly containing the link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata_namespace.html[Olap.FlatData] data source. 
+
+* {ProductName} assembly containing the link:{ApiPlatform}olap.excel{ApiVersion}~infragistics.olap.excel_namespace.html[Olap.Excel] data source. 
+
+* {ProductName} assembly containing the link:{ApiPlatform}olap.adomd{ApiVersion}~infragistics.olap.adomd_namespace.html[Olap.Adomd] data source. 
+
+|====
+
+== xamPropertyGrid™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamPropertyGrid.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.editors.xampropertygrid{ApiVersion}~infragistics.controls.editors.xampropertygrid.html[XamPropertyGrid] control.
+
+|====
+
+== xamRadialGauge™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.gauges{ApiVersion}.html[{ApiPlatform}Controls.Gauges.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.gauges{ApiVersion}~infragistics.controls.gauges.xamradialgauge.html[{RadialGaugeName}] control.
+
+|====
+
+== xamRadialMenu™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamRadialMenu.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.menus.xamradialmenu{ApiVersion}~infragistics.controls.menus.xamradialmenu.html[xamRadialMenu] control.
+
+|====
+
+== xamRibbon™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}ribbon{ApiVersion}.html[{ApiPlatform}Ribbon.dll]
+|{ProductName} assembly containing the xamRibbon control
+
+|====
+
+== xamRichTextEditor™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamRichTextEditor.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[XamRichTextEditor] control.
+
+| link:{ApiPlatform}undo{ApiVersion}.html[{ApiPlatform}Undo.dll]
+|{ProductName} assembly containing the Undo/Redo Framework
+
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}.html[{ApiPlatform}Documents.RichTextDocument.dll]
+|{ProductName} assembly containing the rich text documents related logic
+
+| link:{ApiPlatform}controls.menus.xammenu{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamMenu.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.menus.xammenu{ApiVersion}~infragistics.controls.menus.xammenu.html[xamMenu] control.
+
+|====
+
+== xamSchedule™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}.html[{ApiPlatform}Controls.Schedules.dll]
+|{ProductName} assembly containing the xamSchedule controls family
+
+| link:{ApiPlatform}controls.schedulesdialogs{ApiVersion}.html[{ApiPlatform}Controls.SchedulesDialogs.dll]
+|{ProductName} assembly containing the xamSchedule dialogs
+
+|====
+
+== xamSchedule Extended Features
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.schedulesdialogs{ApiVersion}.html[{ApiPlatform}Controls.SchedulesDialogs.dll]
+|{ProductName} assembly containing the xamSchedule dialogs
+
+| link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}.html[{ApiPlatform}Controls.SchedulesExchangeConnector.dll]
+|{ProductName} assembly containing the xamSchedule connectors
+
+|====
+
+== xamSlider™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xamslider{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamSlider.dll]
+|{ProductName} assembly containing the following controls: 
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimeslider.html[xamDateTimeSlider] 
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimerangeslider.html[xamDateTimeRangeSlider] 
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericslider.html[xamNumericSlider] 
+
+* link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericrangeslider.html[xamNumericRangeSlider] 
+
+|====
+
+== xamSparkline™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.charts.xamsparkline{ApiVersion}.html[{ApiPlatform}Controls.Charts.XamSparkline.dll]
+|{ProductName} assembly containing the xamSparkline control.
+
+|====
+
+== xamScatterSurface3D™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.charts.xamsurfacechart3d{ApiVersion}.html[{ApiPlatform}Controls.Charts.XamSurfaceChart3D.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.charts.xamsurfacechart3d{ApiVersion}~infragistics.controls.charts.xamscattersurface3d.html[xamScatterSurface3D] control.
+
+|====
+
+== xamSpellChecker™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}.html[{ApiPlatform}Controls.Interactions.XamSpellChecker.dll]
+|{ProductName} assembly containing the xamSpellChecker control
+
+|====
+
+== xamSpreadSheet™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.grids.xamspreadsheet{ApiVersion}.html[{ApiPlatform}Controls.Grids.XamSpreadsheet.dll]
+|{ProductName} assembly containing the xamSpreadSheet control
+
+|====
+
+== XamSyntaxEditor™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}.html[{ApiPlatform}Controls.Editors.XamSyntaxEditor.dll]
+|{ProductName} assembly containing the xamSyntaxEditor control
+
+| link:{ApiPlatform}documents.textdocument{ApiVersion}.html[{ApiPlatform}Documents.TextDocument.dll]
+|{ProductName} assembly containing text documents related logic
+
+| link:{ApiPlatform}undo{ApiVersion}.html[{ApiPlatform}Undo.dll]
+|{ProductName} assembly containing the Undo/Redo Framework
+
+|====
+
+== xamTabControl™
+
+Located in the Wpf assembly. No additional files required.
+
+== xamTagCloud™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.menus.xamtagcloud{ApiVersion}.html[{ApiPlatform}Controls.Menus.XamTagCloud.dll]
+|{ProductName} assembly containing the xamTagCloud control
+
+|====
+
+== xamTileManager™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}.html[{ApiPlatform}Controls.Layouts.XamTileManager.dll]
+|{ProductName} assembly containing the xamTileManager control
+
+|====
+
+== xamTimeline™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}.html[{ApiPlatform}Controls.Timelines.XamTimeline.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.xamtimeline.html[xamTimeline] control.
+
+|====
+
+== xamTreemap™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}.html[{ApiPlatform}Controls.Charts.XamTreemap.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.xamtreemap.html[xamTreemap] control.
+
+|====
+
+== xamZoombar™
+
+[options="header", cols="a,a"]
+|====
+|File Name|Description
+
+| link:{ApiPlatform}datavisualization{ApiVersion}.html[{ApiPlatform}DataVisualization.dll]
+|{ProductName} assembly containing the link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[xamZoombar] control.
+
+|====

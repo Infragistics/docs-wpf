@@ -1,0 +1,33 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcheckeditor-api-overview",
+    "controlName": ["xamCheckEditor"],
+    "tags": ["API"],
+    "guid": "{033A1105-B2A2-44D8-B004-56D53E4EE3EB}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.0539781Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== Editors の名前空間:
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors_namespace.html[Infragistics.Windows.Editors]
+
+=== 主要な API:
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor.html[ValueEditor]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamcheckeditor.html[xamCheckEditor]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamcheckeditor~ischecked.html[IsChecked]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamcheckeditor~isthreestate.html[IsThreeState]
+
+link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valuechanged_ev.html[ValueChanged]

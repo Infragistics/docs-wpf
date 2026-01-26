@@ -1,0 +1,120 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-2011-volume-1",
+    "controlName": [],
+    "tags": [],
+    "guid": "d03572b9-85bf-4a31-b4ee-69aa33340a12",  
+    "buildFlags": [],
+    "createdOn": "2012-01-31T21:16:05.5717981Z"
+}
+|metadata|
+////
+
+= 2011 Volume 1
+
+このトピックは {ProductName} の 2011 Volume 1 リリースでの重大な変更点をリストします。
+
+== xamDataChart
+
+link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.axis.html[Axis] の link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.axis~labelsettings.html[LabelSettings] プロパティのデフォルト値は null で、このプロパティは、軸ラベルのプロパティにアクセスする前に link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.axislabelsettings.html[AxisLabelSettings] コンストラクターで初期化する必要があります。
+
+*Visual Basic の場合:*
+
+----
+Me.numericYAxis.LabelSettings = New AxisLabelSettings()
+Me.numericYAxis.LabelSettings.Extent = 40
+----
+
+*C# の場合:*
+
+----
+this.numericYAxis.LabelSettings = new AxisLabelSettings();
+this.numericYAxis.LabelSettings.Extent = 40;
+----
+
+== Office 2010 Blue テーマ
+
+Office 2010 Blue テーマのリソース ディクショナリの名前が変更されました:
+
+Office2010Blue.xamZoombar.xaml $$->$$ Office2010Blue.DataVisualization.xaml
+
+== xamNetworkNode
+
+*動的なレイアウト変更*
+
+一部のアプリケーション シナリオは、グラフからのノード項目の動的な追加または削除に関与します。このビヘイビアーは、データ モデルが INotifyPropertyChanged を実装するとサポートされます。ただし、基本のノード データに対して変更を行うと、xamNetworkNode がレイアウトを更新し、既存のノードの場所が変わるので注意してください。今後、このコントロールは、ノードを追加または削除する時に既存のノードの場所を保持するためのメカニズムを提供する予定です。
+
+*ノードの重複*
+
+Network Node コントロールのレイアウト アルゴリズムによってノードが重複する場合があります。これは、開発チームによって確認されており、検討中です。
+
+== xamBarcode
+
+xamQRCodeBarcode コントロールを使用する場合は、次のアセンブリをプロジェクトに使用してください。
+
+* {ApiPlatform}Encodings.v11.1.dll
+
+{ApiPlatform}Controls.Barcodes.v11.1 アセンブリのサイズを削減するために、エンコードは個別のアセンブリで展開されました。xamQRCodeBarcode コントロールは、{PlatformName} フレームワークでサポートされていないエンコードを使用する、コントロールの xamBarcode シリーズの唯一のバーコード記号です。
+
+QR Code 記号をデコードするため、Infragistics Barcode Reader は、{ApiPlatform}Encodings.v11.1 アセンブリへの参照が必要なので注意してください。
+
+== xamPivotGrid - FlatDataSource
+
+2011 Volume 1 リリースから、 link:{ApiPlatform}olap.flatdata{ApiVersion}~infragistics.olap.flatdata.flatdatasource.html[FlatDataSource] は、ディメンションの名前を指定する代わりに link:{ApiPlatform}controls.grids.xampivotgrid{ApiVersion}~infragistics.controls.grids.xampivotgrid.html[xamPivotGrid] コントロールに対して計算されるデータのスライスの基本となる階層に対する一意な名前を必要とするようになりました。これは以前のリリースではディメンションあたり 1 つの階層しかなかったからです。
+
+*C# の場合:*
+
+----
+// 2011 Volume 1 リリースにおける事項:
+xmlaDataSource.Rows = DataSourceBase.GenerateInitialItems("[Date].[Calendar], [Region].[Country]");
+xmlaDataSource.Columns = DataSourceBase.GenerateInitialItems("[Company].[Product]");
+// 2010 Volume 3 リリースにおける事項:
+xmlaDataSource.Rows = DataSourceBase.GenerateInitialItems("[Date], [Region]");
+xmlaDataSource.Columns = DataSourceBase.GenerateInitialItems("[Company]");
+----
+
+== xamPivotGrid - カスタム データ プロバイダー
+
+この変更によって、xamPivotGrid コントロールに対しカスタム データ プロバイダーを実装する開発者に影響があります。link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.dataproviderbase.html[DataProviderBase] クラスの次のメソッドが変更されました。
+
+*C# の場合:*
+
+[source]
+----
+protected void OnLoadMeasureGroupsCompleted(AsyncCompletedEventArgs)
+----
+
+[source]
+----
+protected void OnLoadMeasureGroupDimensionsCompleted(AsyncCompletedEventArgs)
+----
+
+今後これらのメソッドはキューブを指定して AsyncCompletedEventArgs オブジェクトのコンストラクター内の 3 番目のパラメーターとして呼び出す必要があります。
+
+*C# の場合:*
+
+----
+this.OnLoadMeasureGroupsCompleted(new AsyncCompletedEventArgs(e.Error, e.Cancelled, cube));
+this.OnLoadMeasureGroupDimensionsCompleted(new AsyncCompletedEventArgs(e.Error, e.Cancelled, cube));
+----
+
+事前フィルタリング機能の正しい動作のためのカスタム データ プロバイダーに関係するその他の変化としては、LoadMembersAsync (ICube cube、IHierarchy hierarchy) メソッドが必要になったことが挙げられます。事前フィルターが適用される場合は階層全体を生成する必要があります。これは link:{ApiPlatform}olap{ApiVersion}~infragistics.olap.dataproviderbase~loadmembersasync.html[LoadMembersAsync] メソッドの呼び出し時に発生します。階層の全メンバーが階層に収められた時点で、関連するイベントが発生し動作が完了したことをデータ ソースに通知するためにこのメソッド呼び出しがなされる必要があります。
+
+*C# の場合:*
+
+----
+this.OnLoadMembersCompleted(new AsyncCompletedEventArgs(e.Error, e.Cancelled, hierarchy));
+----
+
+== アセンブリ名の変更
+
+[options="header", cols="a,a"]
+|====
+|以前のアセンブリ名|新しいアセンブリ名
+
+|{ApiPlatform}Excel.v10.3.dll
+|{ApiPlatform}Documents.Excel.v11.1.dll
+
+|====

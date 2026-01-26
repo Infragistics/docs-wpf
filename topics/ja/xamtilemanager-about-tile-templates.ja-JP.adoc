@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtilemanager-about-tile-templates",
+    "controlName": ["xamTileManager"],
+    "tags": ["Templating"],
+    "guid": "6cde3380-eadd-4a00-b15c-8eebeeeb4115",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6683712Z"
+}
+|metadata|
+////
+
+= タイル テンプレートについて
+
+xamTileManager は、通常、最大化、最小化、および最小・展開という 4 つのタイル状態にそれぞれ対応する link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~itemtemplate.html[ItemTemplate]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~itemtemplatemaximized.html[ItemTemplateMaximized]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~itemtemplateminimized.html[ItemTemplateMinimized] および link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~itemtemplateminimizedexpanded.html[ItemTemplateMinimizedExpanded] の 4 つの項目テンプレート プロパティを公開します。タイルの状態に基づいてテンプレートを切り替えるコードを書く必要はありません。その代わりに、各状態に対してデータ テンプレートを作成し、対応する項目テンプレート プロパティを設定することができます。また xamTileManager はタイルの状態に基づいて正しいテンプレートを自動的に使用します。
+
+xamTileManager によって公開される項目テンプレート プロパティに加えて、各 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile.html[XamTile] オブジェクトは link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~contenttemplateresolved.html[ContentTemplateResolved]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~contenttemplatemaximized.html[ContentTemplateMaximized]、 link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~contenttemplateminimized.html[ContentTemplateMinimized] および link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtile~contenttemplateminimizedexpanded.html[ContentTemplateMinimizedExpanded] の 4 つのコンテンツ テンプレート プロパティも公開します。項目テンプレート プロパティを設定するのか、またはコンテンツ テンプレート プロパティを設定するのかの決定は、xamTileManager をデータにバインドするか、または xamTileManager の link:{ApiPlatform}controls.layouts.xamtilemanager{ApiVersion}~infragistics.controls.layouts.xamtilemanager~items.html[Items] コレクションにデータ項目を直接追加するかによって異なります。xamTileManager をデータにバインドする場合、xamTileManager によって公開されている項目テンプレート プロパティ、または Tile オブジェクトによって公開されているコンテンツ テンプレート プロパティを使用できます。ただし、データ項目を xamTileManager の Items コレクションに直接追加する場合、XamTile オブジェクトのコンテンツ テンプレート プロパティを使用する必要があります。
+
+xamTileManager は、タイルの状態に基づいて正しい項目テンプレートを自動的に表示します。テンプレートを切り替えるためにコードを書く必要はありません。ただし、すべての 4 つの項目テンプレートを定義しない場合の影響に注目してください。
+
+* 最小化された項目テンプレートを定義しなければ、最小化されたタイルはヘッダーしか表示しません。
+* 通常の項目テンプレートを定義するが、他のテンプレートを定義しない場合、最大化されたタイルおよび展開されたタイルは通常のタイルの項目テンプレートを使用しますが、最小化されたタイルはヘッダーしか表示しません。
+* 最大化、最小化、および展開された項目テンプレートを定義するが、通常の項目テンプレートを定義しない場合、通常のタイルはそのデータ項目に対してデフォルトのデータ テンプレート、つまり、 DataType プロパティがデータ項目のタイプに設定されているデータ テンプレートを使用します。データ項目にデフォルトのテンプレートを定義しない場合、通常のタイルはデータ項目の ToString メソッドから返される文字列を表示します。
+
+xamTileManager をデータにバインドしたり、さまざまな項目テンプレートを使用する例については、「データ バインディングおよび項目テンプレート」を参照してください。
+
+== 関連トピック
+
+link:xamtilemanager-about-tile-layout.html[タイル レイアウトについて]
+
+link:xamtilemanager-add-tiles-to-xamtilemanager.html[タイルを xamTileManager に追加]
+
+link:xamtilemanager-retrieve-a-reference-to-a-tile.html[タイルへの参照を取得]
+
+link:xamtilemanager-change-the-state-of-a-tile.html[タイルの状態を変更]
+
+link:xamtilemanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+
+link:xamtilemanager-binding-xamtilemanager-to-data.html[xamTileManager をデータにバインド]
+
+link:xamtilemanager-explicitly-arrange-tiles.html[明示的にタイルを配列]
+
+link:xamtilemanager-allow-end-users-to-close-tiles.html[エンド ユーザーにタイルを閉じることを許可]
+
+link:xamtilemanager-restrict-a-tiles-size.html[XamTile のサイズ制限]
+
+link:xamtilemanager-modify-tile-behaviors-in-normal-mode.html[通常モードでタイル動作を変更]
+
+link:xamtilemanager-modify-tile-behaviors-in-maximized-mode.html[最大化モードでタイル動作を変更]
+
+link:xamtilemanager-about-animations.html[アニメーションについて]

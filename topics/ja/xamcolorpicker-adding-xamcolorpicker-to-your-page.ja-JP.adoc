@@ -1,0 +1,113 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcolorpicker-adding-xamcolorpicker-to-your-page",
+    "controlName": ["xamColorPicker"],
+    "tags": ["Getting Started"],
+    "guid": "4993c8ab-d3e9-4517-a579-cc4f51cf8b33",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.6420987Z"
+}
+|metadata|
+////
+
+= xamColorPicker をページに追加
+
+== 始める前に
+
+xamColorPicker コントロールは、定義済みの色パレットからエンドユーザーが色を選択できる簡単なエディター コントロールです。
+
+== 達成すること
+
+このトピックは、XAML とプロシージャー コードを使用して、ページに xamColorPicker コントロールを追加する方法を示します。
+
+== 以下の手順を実行します。
+
+[start=1]
+. {PlatformName} プロジェクトを作成します。
+
+[start=2]
+. 以下の NuGet パッケージをアプリケーションに追加します。
+
+** Infragistics.WPF.ColorPicker
+
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. xamColorPicker の以下の名前空間宣言を追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+[start=4]
+. xamColorPicker コントロールをページに追加します。以下のプロパティを設定します。
+
+.. X:Name - MyColorPicker
+.. link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.controls.editors.xamcolorpicker~derivedpalettescount.html[DerivedPalettesCount] - 5
+.. link:{ApiPlatform}controls.editors.xamcolorpicker{ApiVersion}~infragistics.controls.editors.xamcolorpicker~selectedcolor.html[SelectedColor] - Black
+.. Width - 100
+.. Height - 20
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamColorPicker x:Name="MyColorPicker"  
+                   DerivedPalettesCount="10" 
+                   Width="100" Height="20" SelectedColor="Black">
+</ig:XamColorPicker>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim MyColorPicker As New XamColorPicker()
+MyColorPicker.DerivedPalettesCount = 10
+MyColorPicker.Width = 100
+MyColorPicker.Height = 20
+MyColorPicker.SelectedColor = Colors.Black
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamColorPicker MyColorPicker = new XamColorPicker();
+MyColorPicker.DerivedPalettesCount = 10;
+MyColorPicker.Width = 100;
+MyColorPicker.Height = 20;
+MyColorPicker.SelectedColor = Colors.Black;
+----
+
+[start=5]
+. アプリケーションを保存して実行します。
+
+image::images/xamColorPicker_About_xamColorPicker_01.png[]
+
+== 関連トピック
+
+link:xamcolorpicker-about-xamcolorpicker.html[xamColorPicker について]
+
+link:xamcolorpicker-adding-xamcolorpicker-to-your-grid.html[xamColorPicker をグリッドに追加]
+
+link:xamcolorpicker-using-xamcolorpicker.html[xamColorPicker の使用]

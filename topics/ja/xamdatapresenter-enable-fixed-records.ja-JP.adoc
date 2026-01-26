@@ -1,0 +1,70 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-enable-fixed-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I"],
+    "guid": "{EF68A455-4F39-4819-96D6-8C77B0040162}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1769885Z"
+}
+|metadata|
+////
+
+= 固定されたレコードを有効にする
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowrecordfixing.html[AllowRecordFixing] プロパティを以下の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.allowrecordfixing.html[AllowRecordFixing] 列挙値のいずれかに設定することによって、xamDataPresenter™ コントロールまたは xamDataGrid™ コントロールに対して固定レコードを有効にすることができます。
+
+* 上部 - エンド ユーザーは、レコードのピン アイコンをクリックして、それをレコード リストの上部に固定することができます。固定レコードのピンをクリックすると、レコードの固定が解除されます。
+* 下部 - エンド ユーザーは、レコードのピン アイコンをクリックして、それをレコード リストの下部に固定することができます。固定レコードのピンをクリックすると、レコードの固定が解除されます。
+* TopOrBottom - エンド ユーザーがレコードのピン アイコンをクリックするとポップアップ メニューが表示され、そこからレコードの固定場所を選択できます。固定レコードのピンアイコンをクリックするとポップアップ メニューが表示され、レコードの固定を解除するか、またはそれを反対側に固定することができます。
+
+image::images/xamDataPresenter_Enable_Fixed_Records_01.png[]
+
+[NOTE]
+====
+*注:* ネストされたパネルが有効な場合、ルート レベルのレコードのみを固定できます。
+====
+
+以下のコード例は、固定レコードを有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AllowRecordFixing="Top" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldLayoutSettings.AllowRecordFixing = AllowRecordFixing.Top
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldLayoutSettings.AllowRecordFixing = AllowRecordFixing.Top;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-fixed-non-scrolling-records.html[固定 (非スクロール) レコードについて]
+
+link:xamdatapresenter-about-fixed-records-and-sorting.html[固定されたレコードと並べ替えについて]
+
+link:xamdatapresenter-fix-records.html[レコードの固定]
+
+link:xamdatapresenter-limit-the-number-of-fixed-records.html[固定されたレコード数の制限]

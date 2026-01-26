@@ -1,0 +1,67 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-types-of-rules",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Styling","Tips and Tricks"],
+    "guid": "662b3a27-d575-4120-b357-a68dee8841a3",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.3521903Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= ルールのタイプ
+
+構築できる条件にはいくつかのタイプがあります。これらの条件のいくつかは、LessThan または GreaterThan のような単純な演算子を使用します。他の条件によって、アプリケーションの個々の要件を満たす複雑な数式を構築することができます。
+
+以下は異なるタイプの条件をリストします。
+
+*数値ルール*
+
+数値ルールは 2 つの値間で一般的な比較を実行するシンプルな方法を提供します。これらのルールは最終的なセル スタイルを決定します。
+
+5 つの異なるタイプの数値ルールがあります。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.averagevalueconditionalformatrule.html[AverageValueConditionalFormatRule] - このルールは値が列の平均値に等しいセルを強調表示します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.databarconditionalformatrule.html[DataBarConditionalFormatRule] -- このルールは列のその他のセルに相対してセル値を示すバーを挿入します。ルールによって最小/最大範囲値を指定できます。このルールを使用すると、バーの外観、塗りつぶしの色、ボーダーのスタイル、ボーダーの色を構成できます。バーの方向を Left-to-Right または Right-to-Left に構成することも可能です。バーだけがセルで表示されるように値をセルから削除することも可能です。セル値に負の値が含まれる場合、バーの外観を変更できます。またセルの中点に軸を表示できます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.iconconditionalformatrule.html[IconConditionalFormatRule] -- このルールは列のその他のセルに相対してセル値を示すアイコンを挿入します。ルールによって一連の画像を定義でき、各画像はより大きい合計範囲値内の特定の値の小領域に関連づけられます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.threecolorscaleconditionalformatrule.html[ThreeColorScaleConditionalFormatRule] -- このルールは列値の範囲に基づいて 3 色のグラデーションを作成します。ルールによって最小/中点/最大範囲値を指定できます。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.twocolorscaleconditionalformatrule.html[TwoColorScaleConditionalFormatRule] -- このルールは列値の範囲に基づいて 2 色のグラデーションを作成します。ルールによって最小/最大範囲値を指定できます。
+
+*ブール値ルール*
+
+ブール値ルールは、個々のセルに対して評価される時に Boolean True / False の結果になるルールです。ブール値ルールは、ルール条件に一致した各セルに同一の事前に決定したスタイルを適用します。ルールが True 値になる場合、さらなるルール処理が中止されるようにブール値ルールを構成できます。
+
+ブール値ルールの入力値は以下の通りです。
+
+* セル値
+* テキスト文字列
+* 日付
+
+以下のルールはセル値を取得します。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.betweenxandyconditionalformatrule.html[BetweenXandYConditionalFormatRule] -- このルールは値が特定の値の間であるセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.equaltoconditionalformatrule.html[EqualToConditionalFormatRule] -- このルールは値が特定の値に等しいセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.greaterthanconditionalformatrule.html[GreaterThanConditionalFormatRule] -- このルールは値が特定の値よりも大きいセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.greaterthanorequaltoconditionalformatrule.html[GreaterThanOrEqualToConditionalFormatRule] -- このルールは値が特定の値以上のセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.lessthanconditionalformatrule.html[LessThanConditionalFormatRule] -- このルールは値が特定の値よりも小さいセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.lessthanorequaltoconditionalformatrule.html[LessThanOrEqualToConditionalFormatRule] -- このルールは値が特定の値以下のセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.maximumvalueconditionalformatrule.html[MaximumValueConditionalFormatRule] -- このルールはセルの値が列の最大値であるかどうかを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.minimumvalueconditionalformatrule.html[MinimumValueConditionalFormatRule] -- このルールはセルの値が列の最小値であるかどうかを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.notbetweenxandyconditionalformatrule.html[NotBetweenXandYConditionalFormatRule] -- このルールは値が特定の値の間でないセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.notequaltoconditionalformatrule.html[NotEqualToConditionalFormatRule] -- このルールは値が特定の値に等しくないセルを決定します。
+
+以下のルールはテキスト文字列を取得します。
+
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.beginningwithconditionalformatrule.html[BeginningWithConditionalFormatRule] -- このルールは値がルールによって定義されたサブ文字列で始まるセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.containingconditionalformatrule.html[ContainingConditionalFormatRule] -- このルールはセル値に特定の文字列が含まれるかどうかを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.endingwithconditionalformatrule.html[EndingWithConditionalFormatRule] -- このルールは値がルールによって定義されたサブ文字列で終わるセルを決定します。
+* link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.notcontainingconditionalformatrule.html[NotContainingConditionalFormatRule] -- このルールはセル値に特定の文字列が含まれないかどうかを決定します。
+
+関連トピック
+
+link:xamgrid-conditional-formatting.html[条件付き書式]

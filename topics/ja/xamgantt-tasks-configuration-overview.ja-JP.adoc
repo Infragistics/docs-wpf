@@ -1,0 +1,270 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-tasks-configuration-overview",
+    "controlName": ["xamGantt"],
+    "tags": ["Data Presentation","Getting Started","How Do I","Scheduling"],
+    "guid": "a0f79f72-6081-4fcc-9d84-313d4200207b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.463173Z"
+}
+|metadata|
+////
+
+= タスクの構成の概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask_members.html[ProjectTask] クラスとその構成可能な項目の概要を提供します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-overview.html[xamGantt の概要]
+|このトピックでは、 _xamGantt_ 、プロジェクト、タスクおよびその他の _xamGantt_ 要素についての基本的な概念的な情報を説明します。
+
+| link:xamgantt-xamgantt-in-detail.html[xamGantt の詳細]
+|このグループのトピックでは、 _xamGantt_ コントロールの詳細について説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref334894028, 概要 >>
+* <<_Ref334823701, プロジェクト タスク構成プロパティの概要 >>
+* <<_Ref335667557, プロジェクト タスク集計プロパティおよび読み取り専用プロパティの概要 >>
+* <<_Ref335667642, プロジェクト タスク メソッドの概要 >>
+* <<_Ref335667648, 関連コンテンツ >>
+
+[[_Ref334894028]]
+== 概要
+
+=== ProjectTask クラスの概要
+
+`ProjectTask` オブジェクトは  _xamGantt_   コントロールで link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] の単一タスクを表します。
+
+あらゆるプロジェクトには 1 つのルート タスクがあり、それはサマリー プロジェクト タスクです。プロジェクトに関連付けられたすべてのタスクはそのタスクの子孫です。
+
+[[_Ref334823701]]
+== プロジェクト タスク構成プロパティの概要
+
+=== プロジェクト タスク構成プロパティの概要表
+
+以下の表は、 _xamGantt_   `ProjectTask` の主要な構成可能な項目の一部を説明しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|説明|プロパティ
+
+|タスクの制約の構成
+|タスクの制約の日付 (UTC) とタイプを返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~constraintdate.html[ConstraintDate] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~constrainttype.html[ConstraintType]
+
+|タスクの期限の構成
+|協定世界時 (UTC) でタスクを完了するための期限日付を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~deadline.html[Deadline]
+
+|タスクの期間および期間の形式の構成
+|タスクの期間および期間の形式を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~duration.html[Duration] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~durationformat.html[DurationFormat]
+
+|タスクの終了日の構成
+|協定世界時 (UTC) で終了日を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~finish.html[Finish]
+
+|タスクがアクティブか、非アクティブかを構成
+|タスクの状態 (アクティブ/非アクティブ) を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~isactive.html[IsActive]
+
+|タスク バーの表示状態の構成
+|タスク バーが _xamGantt_ のチャート セクションに表示されるかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~isbarhidden.html[IsBarHidden]
+
+|タスク モードの構成 (自動/手動スケジュール)
+|タスクの予定が手動または自動かどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~ismanual.html[IsManual]
+
+|マイルストーンを構成
+|タスクがプロジェクトで主要イベントを表し、マイルストーンとしてマークされるかどうかを示すブール値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~ismilestone.html[IsMilestone]
+
+|指定された単位の数と単位のタイプに基づいてタスクの期間、開始日および終了日を構成
+|期間、開始日および終了日を返すか、設定します。 
+
+_xamGantt_ グリッド セクションの Start および Finish 列に `ManualStart` 値と `ManualFinish` 値を表示します。 *例:* 
+
+[start=1] 
+
+. link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectduration_members.html[ProjectDuration] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectduration~fromformatunits.html[FromFormatUnits] メソッドを使用してタスクの期間を 5 日間設定: 
+
+`ManualDuration = ProjectDuration.FromFormatUnits(5, ProjectDurationFormat.Days)` 
+
+[start=2] 
+
+. link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.manualdatetime~_ctor.html[ManualDateTime] コンストラクターを使用して手動スケジュール タスクの終了日列で自由な形式のテキストを設定: 
+
+`ManualFinish = new ManualDateTime(“Not Defined Yet”)`
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~manualduration.html[ManualDuration] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~manualfinish.html[ManualFinish] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~manualstart.html[ManualStart]
+
+|タスクの進行状況の構成
+|完了した link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~manualduration.html[ManualDuration] のパーセンテージを表す 0 から 100 の間 (0 と 100 を含む) 値を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~percentcomplete.html[PercentComplete]
+
+|タスクの先行処理の構成
+|`Add` メソッドを使用して、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~predecessors.html[Predecessors] コレクションでタスクの先行処理を設定します。または link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~predecessorsidtext.html[PredecessorsIdText] を介して ID で先行処理を表す文字列を設定/取得します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~predecessors.html[Predecessors] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~predecessorsidtext.html[PredecessorsIdText]
+
+|タスクのリソースの構成
+|`Add` メソッドを使用して、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~resources.html[Resources] コレクションでタスクのリソースを設定します。または link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~resourcestext.html[ResourcesText] を介してリソースを表す文字列を設定/取得します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~resources.html[Resources] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~resourcestext.html[ResourcesText]
+
+|タスクのスケジュールされた期間、開始および終了を構成
+|タスクのアクティブな稼働時間の合計スパンを返すか、設定します。スケジュールされた開始日およびスケジュールされた終了日は協定世界時 (UTC) で表されます。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~scheduledduration.html[ScheduledDuration] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~scheduledfinish.html[ScheduledFinish] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~scheduledstart.html[ScheduledStart]
+
+|タスクの開始日の構成
+|協定世界時 (UTC) でタスクの開始日を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~start.html[Start]
+
+|タスクの後続処理の構成
+|`Add` メソッドを使用して、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~successors.html[Successors] コレクションでタスクの後続処理を設定します。または link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~successorsidtext.html[SuccessorsIdText] を介して ID で後続処理を表す文字列を設定/取得します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~successors.html[Successors] link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~successorsidtext.html[SuccessorsIdText]
+
+|タスクの名前の構成
+|タスクの名前を返すか、設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~taskname.html[TaskName]
+
+|子タスクのコレクションの構成
+|子タスクのコレクションを返します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~tasks.html[Tasks]
+
+|====
+
+[[_Ref335667557]]
+[[_Ref335654344]]
+[[_Ref335654257]]
+== プロジェクト タスク集計プロパティおよび読み取り専用プロパティの概要
+
+=== プロジェクト タスク集計プロパティの概要表
+
+以下の表は、 _xamGantt_   `ProjectTask` の主要な集計プロパティの一部を説明しています。
+
+[options="header", cols="a,a"]
+|====
+|プロパティ|説明
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~earlyfinish.html[EarlyFinish]
+|先行処理と制約に基づいてタスクが終了できる最も早い計算日付を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~earlystart.html[EarlyStart]
+|先行処理と制約に基づいてタスクが開始できる最も早い計算日付を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~finishslack.html[FinishSlack]
+|タスクの `EarlyFinish` 日と `LateFinish` 日の間のタスクの計算期間を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~freeslack.html[FreeSlack]
+|後続処理の遅延またはプロジェクトの終了日に影響せずにタスクが受ける遅延時間の計算時間を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~id.html[ID]
+|タスクの割り当てられた計算された識別子の番号を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~index.html[Index]
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~parent.html[Parent] の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~tasks.html[Tasks] 内でタスクの現在のインデックスを返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~iscritical.html[IsCritical]
+|タスクがプロジェクトのクリティカル パスにあるかどうかを示すブール値を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~issummary.html[IsSummary]
+|タスクがサマリー タスクかどうかを示すブール値を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~latefinish.html[LateFinish]
+|プロジェクト終了日を遅延せずにタスクが終了できる計算された最遅日付を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~latestart.html[LateStart]
+|プロジェクトを遅延させずに先行タスク、後続タスクおよび制約に基づいてタスクが開始できる計算された最遅日付を返します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~project.html[Project]
+|タスクを含む関連付けられたプロジェクトを返します
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~totalslack.html[TotalSlack]
+|プロジェクトを遅延させずにタスクが受ける遅延の計算された総時間を返します。
+
+|====
+
+[[_Ref335667642]]
+== プロジェクト タスク メソッドの概要
+
+=== プロジェクト タスク メソッドの概要表
+
+以下の表は、 _xamGantt_   `ProjectTask` の主要なメソッドの一部を説明しています。
+
+[options="header", cols="a,a"]
+|====
+|メソッド|説明
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~delete.html[Delete]
+|すべてのサブタスクとともにタスクを削除します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~getlocal.html[GetLocal]
+|指定された `TimeZoneToken` に基づいてローカル時間でタスク日付を取得します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~indent.html[Indent]
+|現在の親からタスクを削除し、前の兄弟タスクの子にします。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~outdent.html[Outdent]
+|現在の親からタスクを削除し、親の兄弟にします。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~respectlinks.html[RespectLinks]
+|依存関係、制約および期限を認識する手動タスクの開始日と終了日を更新するようにスケジューリング エンジンを強制します。
+
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttask~setlocal.html[SetLocal]
+|指定された `TimeZoneToken` に基づいてローカル時間でタスク日付を設定します。
+
+|====
+
+[[_Ref335667648]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-tasks-manual-automatic.html[タスクを手動/自動で構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクを手動または自動スケジュールに構成する方法を説明します。
+
+| link:xamgantt-configuring-tasks-active-inactive.html[タスクをアクティブ/非アクティブで構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクをアクティブ/非アクティブのいずれかに構成する方法を説明します。
+
+| link:xamgantt-configuring-deadlines.html[期限の構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクの期限を構成する方法を説明します。
+
+| link:xamgantt-configuring-milestones.html[マイルストーンの構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してマイルストーンを作成する方法を説明します。
+
+| link:xamgantt-configuring-task-progress.html[タスクの進行状況の構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクの進行状況を設定する方法を説明します。
+
+| link:xamgantt-configuring-task-duration-duration-format.html[タスク期間と期間の形式の構成]
+|このトピックでは _xamGantt_ コントロールを使用してタスク期間とタスク期間単位を設定する方法を説明します。
+
+| link:xamgantt-configuring-task-dependencies.html[タスクの依存関係の構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクの依存関係を構成する方法を説明します。
+
+| link:xamgantt-configuring-task-constraint.html[タスクの制約の構成]
+|このトピックでは、 _xamGantt_ コントロールを使用してタスクの制約を構成する方法を説明します。
+
+|====

@@ -1,0 +1,109 @@
+﻿////
+|metadata|
+{
+    "name": "xamdiagram-configuring-connections-line-jumps",
+    "tags": ["How Do I"],
+    "controlName": ["xamDiagram"],
+    "guid": "a95db7fd-d917-4c17-880c-7b51a7cbd88f",
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:31:51.2794156Z"
+}
+|metadata|
+////
+
+= Configuring the Line Jumps of Diagram Connections (xamDiagram)
+
+== Topic Overview
+
+=== Purpose
+
+This topic explains how to configure the xamDiagram™ rendering behavior when two connections are intersecting.
+
+=== Required background
+
+The following topics are prerequisites to understanding this topic:
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdiagram-general-overview.html[General Overview (xamDiagram)]
+|This topic provides a conceptual overview of the _xamDiagram_ control and its main features and capabilities.
+
+| link:xamdiagram-connections-configuration-overview.html[Diagram Connections Configuration Overview (xamDiagram)]
+|This topic provides an overview of the connections' configurable aspects of the control.
+
+|====
+
+== Configuring Line Jumps
+
+=== Overview
+
+Sometimes when two connections are intersecting it is hard to follow their route. This is why the control is able to render "line jumps" at the intersection point. There are several line jump types you can chose from. The line jumps are rendered on the top connection and are updated whenever a diagram item changes its bounds (position, size or both).
+
+.Note:
+[NOTE]
+====
+If there is no space to render the line jump on the top connection (for example when the two connections are intersecting very close to one of the ends of the top connection) it will be rendered on the bottom connection.
+====
+
+=== Property settings
+
+The following table maps the desired line jump type to the link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectionlinejumps.html[ConnectionLineJumps] property value.
+
+[options="header", cols="a,a,a"]
+|====
+|Line Jump Type:
+|Description:
+|Value:
+
+|image:images/xamDiagram_LineJumps_None.png[]
+|No line jumps are rendered and connections are just intersecting each other (default behavior).
+|link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionlinejumps.html[None]
+
+|image:images/xamDiagram_LineJumps_Arc.png[]
+|An arc is rendered at the connections' intersection point.
+|link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionlinejumps.html[Arc]
+
+|image:images/xamDiagram_LineJumps_Gap.png[]
+|A gap is rendered at the connections' intersection point.
+|link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionlinejumps.html[Gap]
+
+|image:images/xamDiagram_LineJumps_Square.png[]
+|A square is rendered at the connections' intersection point.
+|link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.connectionlinejumps.html[Square]
+
+|====
+
+=== Example
+
+The following example demonstrates how to configure the xamDiagram control to render an Arc type line jumps:
+
+[source,xaml]
+---- 
+<xamDiagram ConnectionLineJumps="Arc"> 
+...
+</xamDiagram> 
+---- 
+
+== Related Content
+
+The following topics provide additional information related to this topic.
+
+[options="header", cols="a,a"]
+|====
+|Topic|Purpose
+
+| link:xamdiagram-connections-configuration-overview.html[Diagram Connections Configuration Overview ( _xamDiagram_ )]
+|This topic provides an overview of the configurable aspects of the connections of the _xamDiagram_ control.
+
+| link:xamdiagram-connections-connection-points.html[Configuring the Connection Points of Diagram Nodes ( _xamDiagram_ )]
+|This topic explains how to configure the connection points of diagram nodes in the _xamDiagram_ control.
+
+| link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[Configuring the Start and End of Diagram Connections ( _xamDiagram_ )]
+|This topic covers the alternative approaches used to configure the start and end points of diagram connections in _xamDiagram_, either by specifying the nodes to connect to or by specifying the coordinates of the connection’s start and end points on the diagram space.
+
+| link:xamdiagram-configuring-the-caps-of-diagram-connections.html[Configuring the Caps of Diagram Connections ( _xamDiagram_ )]
+|This topic explains how to configure the caps of the diagram connections of the _xamDiagram_ control by either selecting a pre-defined cap or applying a custom cap.
+
+|====

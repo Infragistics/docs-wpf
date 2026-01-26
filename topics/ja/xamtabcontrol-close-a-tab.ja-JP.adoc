@@ -1,0 +1,80 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtabcontrol-close-a-tab",
+    "controlName": ["xamTabControl"],
+    "tags": ["How Do I"],
+    "guid": "{EF1109C4-02FB-4989-B528-164D30D9C030}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.4572445Z"
+}
+|metadata|
+////
+
+= タブを閉じる
+
+
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.tabitemex.html[TabItemEx] オブジェクトを xamTabControl™ に追加すると、xamTabControl の link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.xamtabcontrol~allowtabclosing.html[AllowTabClosing] プロパティは True に設定され、エンドユーザーはタブのヘッダーを中クリックすることによって、タブを閉じることができます。
+
+[NOTE]
+====
+*注:* エンド ユーザーがタブを閉じると、xamTabControl は項目コレクションからタブを削除せず、非表示にします。リソースの多いオブジェクトがタブに含まれている場合、項目コレクションから link:xamtabcontrol-removing-a-closed-tab.html[閉じたタブを削除]することもできます。
+====
+
+以下のコード例は、タブを閉じる方法を示します。
+
+*XAML の場合:*
+
+----
+<Button 
+    Content="Close the selected tab" 
+    Command="{x:Static igWindows:TabControlCommands.CloseSelected}" 
+    CommandTarget="{Binding ElementName=xamTabControl1}" />
+<igWindows:XamTabControl Name="xamTabControl1" AllowTabClosing="True">
+    <igWindows:TabItemEx Header="Tab 1">
+        <!--TODO: ここでコンテンツを追加します-->
+    </igWindows:TabItemEx>
+    <igWindows:TabItemEx Header="Tab 2">
+        <!--TODO: ここでコンテンツを追加します-->
+    </igWindows:TabItemEx>
+    <igWindows:TabItemEx Header="Tab 3">
+        <!--TODO: ここでコンテンツを追加します-->
+    </igWindows:TabItemEx>
+</igWindows:XamTabControl>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Controls
+...
+Me.xamTabControl1.ExecuteCommand(TabControlCommands.CloseSelected)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Controls;
+...
+this.xamTabControl1.ExecuteCommand(TabControlCommands.CloseSelected)
+...
+----
+
+== 関連トピック
+
+link:xamtabcontrol-about-styling-xamtabcontrol.html[xamTabControl のスタイリングについて]
+
+link:xamtabcontrol-add-a-tab-to-xamtabcontrol.html[タブを xamTabControl に追加]
+
+link:xamtabcontrol-add-content-to-a-tab.html[コンテンツをタブに追加]
+
+link:xamtabcontrol-enable-multiple-tab-rows.html[複数のタブ行を有効にする]
+
+link:xamtabcontrol-removing-a-closed-tab.html[閉じたタブを削除]
+
+link:xamtabcontrol-select-a-tab.html[タブを選択]
+
+link:xamtabcontrol-tabs-dragging-and-reordering.html[タブのドラッグおよび順序変更 (xamTabControl)]

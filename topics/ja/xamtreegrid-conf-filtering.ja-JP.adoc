@@ -1,0 +1,121 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-conf-filtering",
+    "tags": ["Filtering"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "7f722621-3d80-4cf9-b583-4deb579cf5f7",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:35:33.4304661Z"
+}
+|metadata|
+////
+
+= フィルタリングの構成 (xamTreeGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールのフィルタリング機能を構成する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-features-overview.html[機能の概要 (xamTreeGrid)]
+|このトピックでは、このコントロールでサポートする機能を開発者の観点から説明します。
+
+| link:xamtreegrid-visual-elements-overview.html[視覚要素の概要 (xamTreeGrid)]
+|このトピックでは、コントロールの視覚要素についての概要を紹介します。
+
+| link:xamdatapresenter-about-record-filtering.html[レコードのフィルタリングについて (xamDataPresenter)]
+|このトピックでは、フィルタリング機能の概要を示し、フィルタリング機能に関連する主要なオブジェクトとプロパティについて簡単に説明します。
+
+|====
+
+== フィルタリングの概要
+
+=== フィルタリングの概要
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[xamTreeGrid] コントロールのフィルタリング機能は、指定されたフィルタリング基準に対してレコードをフィルター処理し、フィルター操作 (フィルター基準に一致しないレコードの非表示、無効化、または不透明度の引き下げなど) を実行します。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordfilteraction.html[RecordFilterAction] 列挙体から値を選択し、コントロールの実行するフィルター操作を指定できます。
+
+注:
+
+[NOTE]
+====
+フィルター操作が Hide に設定されている場合、ネストされたレベルのレコードの一部はフィルター基準に一致しても、その先祖のレコードがフィルター基準に一致しないときは、先祖のレコードは透明度を引き下げて表示されます。
+====
+
+フィルター操作が `Hide` (デフォルト値でもある) に設定されている場合でも、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treeviewfilterresultsdisplaymode.html[TreeViewFilterResultsDisplayMode] 列挙体から該当する値を選択すると、親レコードがフィルター基準に一致するときには、フィルター処理で除外されたネストされた (子孫の) レコードを透明度を引き下げて表示するようにコントロールを設定できます。
+
+=== フィルタリング構成の概要
+
+以下の表は、 _xamTreeGrid_   コントロールのフィルタリングの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|フィルター処理された項目に対して実行する操作
+|フィルター基準に一致しないレコードに対して実行するフィルター操作を指定します。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filteraction.html[XamTreeGrid.FieldLayoutSettings.FilterAction]
+
+|フィルタリングにより除外されたレコードの表示状態
+|フィルタリング基準に一致する親レコードのフィルタリング基準に一致しない子レコードの表示状態を構成します。
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treeviewsettings~filterresultsdisplaymode.html[XamTreeGrid.ViewSettings.FilterResultsDisplayMode]
+
+|====
+
+=== コード例
+
+以下のコード例は、レコードのフィルタリングを有効にし、フィルタリング基準に一致する親のフィルタリングで除外されたネストされたレコードを表示するようにコントロールを構成する方法を示します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamTreeGrid>
+  <igDP:XamTreeGrid.FieldSettings>
+    <igDP:FieldSettings AllowRecordFiltering="True" />
+  </igDP:XamTreeGrid.FieldSettings>
+  <igDP:XamTreeGrid.FieldLayoutSetting>
+    <igDP:FieldLayoutSetting FilterAction="Hide" />
+  </igDP:XamTreeGrid.FieldLayoutSetting>
+  <igDP:XamTreeGrid.ViewSettings>
+    <igDP:TreeViewSettings FilterResultDisplayMode="ShowWithAncestorAndDescendants" />
+  </igDP:XamTreeGrid.ViewSettings>
+</igDP:XamTreeGrid>
+----
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-conf-tree-field.html[ツリー フィールドの構成 (xamTreeGrid)]
+|このトピックでは、コントロールのツリー フィールドを構成する方法を説明します。
+
+| link:xamtreegrid-conf-expansion-indicators.html[展開インジケーターの構成 (xamTreeGrid)]
+|このトピックでは、展開インジケーターの動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-indentation-per-level.html[レベルごとのインデントの構成 (xamTreeGrid)]
+|このトピックでは、子レコードの表示に使用するインデントの設定方法を説明します。
+
+| link:xamtreegrid-conf-selection.html[選択の構成 (xamTreeGrid)]
+|このトピックでは、子レベルのレコードに対して選択動作を構成する方法を説明します。
+
+| link:xamtreegrid-conf-summaries.html[集計の構成 (xamTreeGrid)]
+|このトピックでは、コントロールの集計サポートの詳細を説明します。
+
+|====

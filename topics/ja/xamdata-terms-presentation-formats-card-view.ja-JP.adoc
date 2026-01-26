@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-terms-presentation-formats-card-view",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Presentation","Getting Started"],
+    "guid": "4adf09ae-44cd-4f42-bc24-debbce778d54",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5848701Z"
+}
+|metadata|
+////
+
+= カード ビュー
+
+
+
+xamDataCards™ コントロールでは、Microsoft® Outlook 2007 の連絡先のような「カード」を使用してフラット データを表示できます。xamDataCards コントロールは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase.html[DataPresenterBase] クラスから派生しているため、DataPresenter コントロールにある中核的な機能を継承します。ただし、xamDataCards コントロールは以下の機能をサポートしません。
+
+* 階層データ
+* 固定レコード
+* グループ化
+* 集計
+* 固定フィールド
+
+image::images/xamDataCards_About_xamDataCards_01.png[]
+
+== 関連トピック
+
+link:xamdata-terms-presentation-formats-grid-view-format.html[グリッド ビュー]
+
+link:xamdata-terms-presentation-formats-tree-view-format.html[ツリー ビュー]
+
+link:xamdata-terms-presentation-formats-carousel-view.html[カルーセル ビュー]

@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-disable-moving-of-certain-columns",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Layouts","Selection"],
+    "guid": "{D5717024-A925-47B7-AFF4-B36E5EA58316}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.7991626Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 特定の列の移動を無効にする
+
+グリッド全体での列移動が有効になっていても、xamGrid コントロールで特定の列の移動を無効にすることができます。たとえば、並び替えられた列があり、エンド ユーザーがその列を移動できないようにするとします。
+
+以下のコードが示すように link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column.html[Column] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~ismovable.html[IsMovable] プロパティを false に設定するだけでこれを実現できます。
+
+*XAML の場合:*
+
+----
+<ig:TextColumn Key="ProductName" IsMovable="/>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Dim ColumnNotMovable As Column =Me.MyGrid.Columns.DataColumns("ProductName")
+ColumnNotMovable.IsMovable = False
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+Column ColumnNotMovable = this.MyGrid.Columns.DataColumns["ProductName"];
+ColumnNotMovable.IsMovable = false;
+----
+
+== 関連トピック
+
+link:xamgrid-column-moving.html[列移動]
+
+link:xamgrid-column-moving-events.html[列移動イベント]
+
+link:xamgrid-customize-animation-of-column-moving.html[列移動のアニメーションのカスタマイズ]

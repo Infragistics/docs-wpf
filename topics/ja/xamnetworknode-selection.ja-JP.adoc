@@ -1,0 +1,695 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-selection",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["Selection"],
+    "guid": "af881919-4b90-4c19-ad06-ef1b515821e9",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.4702474Z"
+}
+|metadata|
+////
+
+= 選択
+
+このトピックは、link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode]™ コントロールによってサポートされているノード選択動作を紹介し (カスタム動作を含む)、コードに構成する方法を示します。最後で、トピックで使用される完全なコード例を提供します。
+
+トピックは以下のとおりです。
+
+* <<Introduction,概要>> 
+* <<SelectionType,選択タイプ>>
+** <<ST-NONE,None>>
+** <<ST-SINGLE,Single>>
+** <<ST-MULTIPLE,Multiple>>
+** <<ST-EXTENDED,Extended>>
+* <<SettingSelectionType,選択タイプの設定>>
+* <<SelectingNodes,プロシージャ コードを使用してノードを追加>>
+* <<Configure,カスタム選択動作の構成>>
+* <<CompleteCodeSample,全コード例>>
+** <<View,ビュー>>
+** <<CodeBehind,コード ビハインド>>
+** <<NodeModel,NodeModel.cs>>
+** <<ConnectionModel,ConnectionModel.cs>>
+** <<SimpleGraphData,SimpleGraphData.cs>>
+* <<RelatedTopics,関連トピック>>
+
+[[Introduction]]
+== 概要
+
+Network Node コントロールは、link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~selectiontype.html[SelectionType] プロパティを介して事前に定義されたさまざまな選択動作をサポートします。選択タイプは、クリック イベントの応答でいつどのように選択された状態になるか、そしてどれぐらいのノード数を同時に選択できるかを定義します。使用可能な選択タイプは、以下の「選択タイプ」のセクションで説明します。
+
+カスタム動作も可能で、「カスタム選択動作の構成」のセクションで説明します。
+
+[[SelectionType]]
+== 選択タイプ
+
+[[ST-NONE]]
+=== None
+
+このタイプが設定されると、ノードをクリックしても選択されません。
+
+このタイプは、SelectionType プロパティを link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodeselectiontype.html[None] に設定することによって構成されます。
+
+image::images/xamNetworkNode_NodeSelection_01.png[]
+
+図 1: SelectionType プロパティを None に設定した場合のノードの動作
+
+[[ST-SINGLE]]
+=== Single
+
+このタイプを設定した場合、ノードをクリックすると、そのノードが選択され、既存の選択はクリアされます。
+
+このタイプは、SelectionType プロパティを link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodeselectiontype.html[Single] に設定することによって構成されます。
+
+image::images/xamNetworkNode_NodeSelection_02.png[]
+
+図 2: SelectionType プロパティを Single に設定した場合のノードの動作
+
+[[ST-MULTIPLE]]
+=== Multiple
+
+このタイプが設定されると、ノードをクリックすると選択されます。Shift キーを押すと、以前に選択したノードが選択された状態のままになります。Ctrl キーを押すと、ノードをクリックして選択を切り替えます。
+
+このタイプは、SelectionType プロパティを link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodeselectiontype.html[Multiple] に設定することによって構成されます。
+
+image::images/xamNetworkNode_NodeSelection_03.png[]
+
+図 3: SelectionType プロパティを Multiple に設定した場合のノードの動作
+
+[[ST-EXTENDED]]
+=== Extended
+
+このタイプを設定した場合、ひとつのノードをクリックするとそのノードと近隣のすべてノードが選択されます。Shift キーを押すと、以前に選択したノードが選択された状態のままになります。Ctrl キーを押すと、ノードをクリックして選択を切り替えます。
+
+このタイプは、SelectionType プロパティを link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.networknodeselectiontype.html[Extended] に設定することによって構成されます。
+
+image::images/xamNetworkNode_NodeSelection_04.png[]
+
+図 4: SelectionType プロパティを Extended に設定した場合のノードの動作
+
+[[SettingSelectionType]]
+== 選択タイプの設定
+
+選択モードは、SelectionType プロパティで設定されます:
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<ig:XamNetworkNode x:Name="xnn"
+                   ...
+                   SelectionType="Multiple">
+                   ...
+</ig:XamNetworkNode>
+----
+
+**C# の場合:**
+
+[source,csharp]
+----
+this.xnn.SelectionType = NetworkNodeSelectionType.Multiple;
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Me.xnn.SelectionType = NetworkNodeSelectionType.Multiple
+----
+
+[[SelectingNodes]]
+== プロシージャ コードを使用してノードを選択
+
+選択したノードのコレクションは、SelectedNodes プロパティでプログラムによってアクセスできます。たとえば、コントロールがロードされると、以下のコードは 4 で割り切ることができる数値ラベルのすべてのノードを選択します:
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<ig:XamNetworkNode x:Name="xnn"
+                   ...
+                   Loaded="xnn_Loaded">
+                   ...
+</ig:XamNetworkNode>
+----
+
+**C# の場合:**
+
+[source,csharp]
+----
+private void xnn_Loaded(object sender, RoutedEventArgs e)
+{
+   foreach (var node in xnn.Search<NodeModel>(nm =>
+          Convert.ToInt32(nm.Label) > 0 &&
+          Convert.ToInt32(nm.Label) % 4 == 0))
+   {
+      xnn.SelectedNodes.Add(node);
+   }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Private Sub xnn_Loaded(sender As Object, e As RoutedEventArgs)            
+   For Each node As var In xnn.Search(Of NodeModel)_
+		(Function(nm) Convert.ToInt32(nm.Label) > 0_ 
+		AndAlso Convert.ToInt32(nm.Label) Mod 4 = 0) 
+		xnn.SelectedNodes.Add(node)  
+   Next  
+End Sub
+----
+
+「Network Node コントロールの追加」の詳細説明からのデータを使用している場合、グラフは図 5 に示すように表示されます:
+
+image::images/xamNetworkNode_NodeSelection_05.png[]
+
+図 5: 4 で割り切れる数値ラベルのすべてのノードを持つグラフが選択された状態
+
+[[Configure]]
+== カスタム選択動作の構成
+
+link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~selectednodes.html[SelectedNodes] コレクションにノードを追加したり削除すると、link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode~selectednodescollectionchanged_ev.html[SelectedNodesCollectionChanged] イベントが発生します。このイベントの処理によってカスタム動作を有効にできます。たとえば、ノードを選択した時に、最初に選択したノードの値の倍数になる値を持つすべてのノードを自動的に選択できます:
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<ig:XamNetworkNode x:Name="xnn"
+                   ...
+                   SelectedNodesCollectionChanged="xnn_SelectedNodesCollectionChanged">
+                   ...
+</ig:XamNetworkNode>
+----
+
+**C# の場合:**
+
+[source,csharp]
+----
+private void xnn_SelectedNodesCollectionChanged(object sender, NetworkNodeSelectionEventArgs e)
+{
+   if (e.CurrentSelectedNodes.Count == 1)
+   {
+      NodeModel data = e.CurrentSelectedNodes[0].Data as NodeModel;
+      int val = Convert.ToInt32(data.Label);
+      if (val > 0)
+      {
+         foreach (var node in xnn.Search<NodeModel>(nm =>
+                  Convert.ToInt32(nm.Label) > 0 &&
+                  Convert.ToInt32(nm.Label) % val == 0))
+         {
+            xnn.SelectedNodes.Add(node);
+         }
+      }
+   }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Private Sub xnn_SelectedNodesCollectionChanged(sender As Object, e As NetworkNodeSelectionEventArgs) 
+   If e.CurrentSelectedNodes.Count = 1 Then 
+      Dim data As NodeModel = TryCast(e.CurrentSelectedNodes(0).Data, NodeModel)            
+      Dim val As Integer = Convert.ToInt32(data.Label)           
+      If val > 0 Then
+         For Each node As var In xnn.Search(Of NodeModel)_
+			(Function(nm) Convert.ToInt32(nm.Label) > 0_
+			AndAlso Convert.ToInt32(nm.Label) Mod val = 0)        
+            xnn.SelectedNodes.Add(node)     
+         Next 
+      End If
+   End If 
+End Sub
+----
+
+では、たとえばノード 10 を選択すると、10 の倍数である値を持つ各ノードも選択できます:
+
+image::images/xamNetworkNode_NodeSelection_06.png[]
+
+図 6: ノード 10 を選択すると、10 の倍数である値を持つ各ノードも選択できる
+
+[[Complete]]
+== 全コード例
+
+以下は、コンテキストで実装された完全なコード例です。
+
+[[View]]
+== ビュー
+
+**XAML の場合:**
+
+[source,xaml]
+----
+<UserControl x:Class="xamNetworkNode_Selection.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ig="http://schemas.infragistics.com/xaml"
+    xmlns:data="clr-namespace:xamNetworkNode_Selection.Data"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+ 
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.Resources>
+            <data:SimpleGraphData x:Key="GraphData" />
+        </Grid.Resources>
+        <ig:XamNetworkNode x:Name="xnn"
+                           ItemsSource="{Binding Nodes, Source={StaticResource GraphData}}"
+                           SelectionType="Multiple"
+                           Loaded="xnn_Loaded"
+                           SelectedNodesCollectionChanged="xnn_SelectedNodesCollectionChanged">
+            <ig:XamNetworkNode.GlobalNodeLayouts>
+                <ig:NetworkNodeNodeLayout
+                    TargetTypeName = "NodeModel"
+                    DisplayMemberPath = "Label"
+                    ConnectionsMemberPath = "Connections"
+                    ConnectionTargetMemberPath = "Target"
+                    />
+            </ig:XamNetworkNode.GlobalNodeLayouts>
+        </ig:XamNetworkNode>
+    </Grid>
+</UserControl>
+----
+
+[[CodeBehind]]
+== コード ビハインド
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Windows.Controls;
+ 
+namespace xamNetworkNode_Selection
+{
+    public partial class MainPage : UserControl
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+
+        private void xnn_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var node in xnn.Search<NodeModel>(nm =>
+                Convert.ToInt32(nm.Label) > 0 &&
+                Convert.ToInt32(nm.Label) % 4 == 0))
+            {
+                xnn.SelectedNodes.Add(node);
+            }
+        }
+ 
+        private void xnn_SelectedNodesCollectionChanged(object sender, NetworkNodeSelectionEventArgs e)
+        {
+            if (e.CurrentSelectedNodes.Count == 1)
+            {
+                NodeModel data = e.CurrentSelectedNodes[0].Data as NodeModel;
+                int val = Convert.ToInt32(data.Label);
+                if (val > 0)
+                {
+                    foreach (var node in xnn.Search<NodeModel>(nm =>
+                        Convert.ToInt32(nm.Label) > 0 &&
+                        Convert.ToInt32(nm.Label) % val == 0))
+                    {
+                        xnn.SelectedNodes.Add(node);
+                    }
+                }
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Windows.ControlsNamespace xamNetworkNode_Selection 
+Public Partial Class MainPage     
+   Inherits UserControl    
+    Public Sub New()   
+         InitializeComponent() 
+    End Sub   
+    Private Sub xnn_Loaded(sender As Object, e As RoutedEventArgs) 
+       For Each node As var In xnn.Search(Of NodeModel)_
+			(Function(nm) Convert.ToInt32(nm.Label) > 0_
+			AndAlso Convert.ToInt32(nm.Label) Mod 4 = 0)      
+          xnn.SelectedNodes.Add(node)      
+       Next    
+    End Sub   
+     
+   Private Sub xnn_SelectedNodesCollectionChanged(sender As Object, e As NetworkNodeSelectionEventArgs)    
+      If e.CurrentSelectedNodes.Count = 1 Then   
+         Dim data As NodeModel = TryCast(e.CurrentSelectedNodes(0).Data, NodeModel)         
+         Dim val As Integer = Convert.ToInt32(data.Label)        
+         If val > 0 Then    
+            For Each node As var In xnn.Search(Of NodeModel)_ 
+			(Function(nm) Convert.ToInt32(nm.Label) > 0_
+			AndAlso Convert.ToInt32(nm.Label) Mod val = 0)    
+                    xnn.SelectedNodes.Add(node)
+            Next     
+         End If
+      End If       
+   End Sub 
+End Class 
+----
+
+[[NodeModel]]
+== NodeModel.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+ 
+namespace xamNetworkNode_Selection.Models
+{
+    public class NodeModel : INotifyPropertyChanged
+    {
+        private string _label;
+        public string Label
+        {
+            get { return _label; }
+            set
+            {
+                if (value != _label)
+                {
+                    _label = value;
+                    NotifyPropertyUpdated("Label");
+                }
+            }
+        }
+ 
+        private string _toolTip;
+        public string ToolTip
+        {
+            get { return _toolTip; }
+            set
+            {
+                if (value != _toolTip)
+                {
+                    _toolTip = value;
+                    NotifyPropertyUpdated("ToolTip");
+                }
+            }
+        }
+ 
+        private ObservableCollection<ConnectionModel> _connections;
+        public ObservableCollection<ConnectionModel> Connections
+        {
+            get { return _connections; }
+            set
+            {
+                if (value != _connections)
+                {
+                    _connections = value;
+                    NotifyPropertyUpdated("Connections");
+                }
+            }
+        }
+ 
+        #region Implementation of INotifyPropertyChanged
+ 
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
+        protected virtual void NotifyPropertyUpdated(string propertyName)
+        {
+            var handler = PropertyChanged;
+ 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+ 
+        #endregion
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Collections.ObjectModel
+Imports System.ComponentModel
+
+Namespace xamNetworkNode_Selection.Models
+    Public Class NodeModel
+        Implements INotifyPropertyChanged
+        Private _label As String
+        Public Property Label() As String
+            Get
+                Return _label
+            End Get
+            Set
+                If value <> _label Then
+                    _label = value
+                    NotifyPropertyUpdated("Label")
+                End If
+            End Set
+        End Property
+
+        Private _toolTip As String
+        Public Property ToolTip() As String
+            Get
+                Return _toolTip
+            End Get
+            Set
+                If value <> _toolTip Then
+                    _toolTip = value
+                    NotifyPropertyUpdated("ToolTip")
+                End If
+            End Set
+        End Property
+
+        Private _connections As ObservableCollection(Of ConnectionModel)
+        Public Property Connections() As ObservableCollection(Of ConnectionModel)
+            Get
+                Return _connections
+            End Get
+            Set
+                If value IsNot _connections Then
+                    _connections = value
+                    NotifyPropertyUpdated("Connections")
+                End If
+            End Set
+        End Property
+
+        #Region "Implementation of INotifyPropertyChanged"
+
+        Public Event PropertyChanged As PropertyChangedEventHandler
+
+        Protected Overridable Sub NotifyPropertyUpdated(propertyName As String)
+            Dim handler = PropertyChanged
+
+            RaiseEvent handler(Me, New PropertyChangedEventArgs(propertyName))
+        End Sub
+
+        #End Region
+    End Class
+End Namespace
+----
+
+[[ConnectionModel]]
+== ConnectionModel.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.ComponentModel;
+ 
+namespace xamNetworkNode_Selection.Models
+{
+    public class ConnectionModel : INotifyPropertyChanged
+    {
+        private NodeModel _target;
+        public NodeModel Target
+        {
+            get { return _target; }
+            set
+            {
+                if (value != _target)
+                {
+                    _target = value;
+                    NotifyPropertyUpdated("Target");
+                }
+            }
+        }
+ 
+        #region Implementation of INotifyPropertyChanged
+ 
+        public event PropertyChangedEventHandler PropertyChanged;
+ 
+        protected virtual void NotifyPropertyUpdated(string propertyName)
+        {
+            var handler = PropertyChanged;
+ 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.ComponentModel
+Namespace xamNetworkNode_Selection.Models
+    Public Class ConnectionModel    
+    Implements INotifyPropertyChanged 
+       Private _target As NodeModel 
+       Public Property Target() As NodeModel 
+           Get  
+              Return _target    
+        End Get
+            Set    
+            If value IsNot _target Then      
+              _target = value     
+               NotifyPropertyUpdated("Target")      
+          End If
+            End Set 
+       End Property
+    
+    Public Event PropertyChanged As PropertyChangedEventHandler  
+      Protected Overridable Sub NotifyPropertyUpdated(propertyName As String)
+            Dim handler = PropertyChanged  
+          RaiseEvent handler(Me, New PropertyChangedEventArgs(propertyName)) 
+       End Sub   
+ End Class 
+End Namespace
+----
+
+[[SimpleGraphData]]
+== SimpleGraphData.cs
+
+**C# の場合:**
+
+[source,csharp]
+----
+using System.Collections.ObjectModel;
+using xamNetworkNode_Selection.Models;
+ 
+namespace xamNetworkNode_Selection.Data
+{
+    public class SimpleGraphData
+    {
+        public ObservableCollection<NodeModel> Nodes { get; set; }
+        private const int K = 7; // ノード当たりの接続数 (最大) 
+        private const int NUM_NODES = 98; // グラフのノード数
+ 
+        public SimpleGraphData()
+        {
+            Nodes = new ObservableCollection<NodeModel>();
+ 
+            // NUM_NODES ノード オブジェクトをコレクションに追加します
+            for (int i = 0; i < NUM_NODES; i++)
+            {
+                NodeModel node = new NodeModel();
+                node.Label = i.ToString();
+                node.ToolTip = "ToolTip for " + node.Label;
+                Nodes.Add(node);
+            }
+ 
+            // ノード 0 から開始し、ルートとしてそのノードを設定します
+            // 最大 K 接続までルート ノードに追加します
+            // 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します
+            int root = 0;
+            int first = 1;
+            int last = K;
+            while (first < Nodes.Count)
+            {
+                Nodes[root].Connections = new ObservableCollection<ConnectionModel>();
+                for (int i = first; i <= last; i++)
+                {
+                    if (i >= Nodes.Count)
+                    {
+                        break;
+                    }
+                    Nodes[root].Connections.Add(new ConnectionModel { Target = Nodes[i] });
+                }
+                root++;
+                first = last + 1;
+                last += K;
+            }
+        }
+    }
+}
+----
+
+**Visual Basic の場合:**
+
+[source,vb]
+----
+Imports System.Collections.ObjectModel
+Imports xamNetworkNode_Selection.Models
+
+Namespace xamNetworkNode_Selection.Data    
+   Public Class SimpleGraphData
+      Public Property Nodes() As ObservableCollection(Of NodeModel)   
+         Get   
+            Return m_Nodes    
+         End Get
+         Set  
+            m_Nodes = Value     
+         End Set  
+      End Property     
+      Private m_Nodes As ObservableCollection(Of NodeModel)    
+      Private Const K As Integer = 7     
+      ' ノード当たりの接続数 (最大) 
+      Private Const NUM_NODES As Integer = 98        
+      ' グラフのノード数 
+      Public Sub New()            
+         Nodes = New ObservableCollection(Of NodeModel)()          
+         ' NUM_NODES ノード オブジェクトをコレクションに追加します   
+         For i  As  Integer = 0 To NUM_NODES - 1             
+            Dim node  As New NodeModel()
+               node.Label = i.ToString()                
+               node.ToolTip = "ToolTip for " & node.Label
+               Nodes.Add(node)    
+            Next
+            ' ノード 0 から開始し、ルートとしてそのノードを設定します
+            ' 最大 K 接続までルート ノードに追加します  
+            ' 次にルート ノード インデックスを増分してすべてのノードが接続されるまで繰り返します 
+            Dim root  As Integer = 0
+            Dim  first As Integer = 1        
+            Dim  last As Integer = K   
+            While first < Nodes.Count
+               Nodes(root).Connections = New ObservableCollection(Of ConnectionModel)()           
+               For i As Integer = first To last
+                  If i >= Nodes.Count Then 
+                     Exit For  
+                  End If 
+                  Nodes(root).Connections.Add(New ConnectionModel() With { _      
+                  Key .Target = Nodes(i) _                    
+               })  
+               Next
+               root += 1     
+               first = last + 1    
+               last += K   
+            End While
+        End Sub
+    End Class
+End Namespace
+----
+
+[[RelatedTopics]]
+== 関連トピック
+
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]
+* link:xamnetworknode-conditional-formatting.html[条件付き書式]
+* link:xamnetworknode-node-relocation.html[ノードの移動]

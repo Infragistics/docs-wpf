@@ -1,0 +1,49 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreemap-about-node-binding",
+    "controlName": ["xamTreemap"],
+    "tags": ["Charting","Data Binding","How Do I"],
+    "guid": "106b97a2-b481-4da0-8a30-e94d5c2ffe68",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.891392Z"
+}
+|metadata|
+////
+
+= xamTreemap ノード バインディングについて
+
+== 始める前に
+
+xamTreemap コントロールは階層データ (ツリー構造) を、ネストされるノードのセットとして表示します。ツリーの各ブランチにツリーマップ ノードを割り当てし、そのノードにサブブランチを表す小さいノードでタイルします。
+
+データを xamTreemap コントロールに渡す時に、データを理解しどのノードを表示するのかを知っておく必要があります。これは link:{ApiPlatform}controls.charts.xamtreemap{ApiVersion}~infragistics.controls.charts.nodebinder.html[ノード バインダー]を使用して実行されます。
+
+== 例
+
+以下は XAML コードを使用して定義される NodeBinder の例です。
+
+*XAML の場合:*
+
+----
+<ig:NodeBinder 
+        TargetTypeName="Manufacturer"
+        ValuePath="Revenue" 
+        TextPath="Name" 
+        ItemsSourcePath="Products" />
+----
+
+== 例の理解
+
+例の NodeBinder は、データ ソースからすべての Manufacturer 項目のためにノードを作成するように xamTreemap コントロールに指示します。ノードのサイズは各項目の Revenue プロパティによって異なります。各 Manufacturer の Name は各ノードのヘッダーとして表示されます。xamTreemap コントロールは各 Manufacturer の Products を子項目として表示します (NodeBinder は Product 項目に定義される必要があります)。
+
+ItemsSourcePath を指定しないと、xamTreemap コントロールは子ノードを探さないことに注意してください。
+
+シナリオによっては、階層データ ソースの子要素は親要素と同じタイプです (同じタイプのネスト)。この事例では、このタイプに指定されたひとつの NodeBinder は項目のネストを管理します。
+
+関連トピック
+
+link:xamtreemap-node-binders.html[ノード バインダー]
+
+link:xamtreemap-about-value-mapping.html[xamTreemap 値マッピングについて]

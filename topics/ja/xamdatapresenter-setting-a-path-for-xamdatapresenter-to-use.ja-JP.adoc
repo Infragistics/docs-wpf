@@ -1,0 +1,46 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-setting-a-path-for-xamdatapresenter-to-use",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{5ECF0AE1-2A84-458C-AAE0-B2827786CB4E}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3290189Z"
+}
+|metadata|
+////
+
+= xamDataPresenter のパスを使用するように設定
+
+
+
+link:xamcarousel-creating-a-named-path-on-the-artboard.html[アートボードで名前を指定したパスを作成]で、使用する xamCarouselPanel、xamDataCarousel、xamDataPresenter のカルーセル ビュー、または xamCarouselListBox のカスタム パスを定義するために使用できるパスを作成します。このトピックの目標は、そのパスを取得して、xamDataPresenter のカルーセルビューに適用する方法を示すことです。
+
+[NOTE]
+====
+*注:* このトピックは、xamDataPresenter をすでに設定してあることを前提とします。これを実行する方法の詳細は、 link:xamdatapresenter-getting-started-with-xamdatapresenter.html[xamDataPresenter をアプリケーションに追加]を参照し、 link:xamdatapresenter-about-carouselview.html[CarouselView について]を読んでください。
+====
+
+[start=1]
+. 最初に Microsoft® Expression® Blend プロジェクトから作成したパスを Visual Studio プロジェクトにコピーする必要があります。Window1.xaml は Blend プロジェクトのデフォルトのウィンドウであるため、このファイルでパスを定義すべきです。
+[start=2]
+. パスをコピーしたら、プロジェクトのリソース セクションに貼り付けます。
+[start=3]
+. 今すぐコンパイルする場合には、これを実行するとエラーが発生します。このエラーが発生するのは、パスがリソース セクションにあり、リソース セクションのすべての項目が項目に関連付けられた Key を持つ必要があるからです。したがって、パスの Key を指定します。
+[start=4]
+. Blend が設定した Fill、Stretch、および Stroke 設定をパスから削除できます。xamDataPresenter はこれらの設定を必要としないからです。項目が xamDataPresenter 内で辿るパスを見たい場合には、設定をそのままにすることも可能です。
+[start=5]
+. xamDataPresenter の CarouselView の開始タグの下に、以下の例のコードを配置します。このコードは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatacarousel~viewsettings.html[ViewSettings] を作成します。これにはパスに割り当てた Key を指定することによって、カスタム パスも割り当てる link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~itempath.html[ItemPath] プロパティを持つ link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[CarouselViewSettings] が含まれます。
+
+*XAML の場合:*
+
+----
+<igDP:CarouselView.ViewSettings>
+        <igWindows:CarouselViewSettings ItemPath="{StaticResource myPath}"/>
+</igDP:CarouselView.ViewSettings>
+----
+
+[start=6]
+. プロジェクトを実行すると、xamDataPresenter のカルーセル ビュー項目が定義したパスを辿るのを確認できます。

@@ -1,0 +1,57 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-enable-idataerrorinfo-interface-support",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing","Tips and Tricks"],
+    "guid": "{5E867605-9532-4410-A21E-9D6DBEEFDD2A}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1789889Z"
+}
+|metadata|
+////
+
+= IDataErrorInfo インターフェイスのサポートを有効にする
+
+
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~supportdataerrorinfo.html[SupportDataErrorInfo] プロパティを SupportDataErrorInfo 列挙値に設定することにより、.NET Framework にある IDataErrorInfo インターフェイスのサポートを有効にできます。CellsOnly または RecordsAndCells 列挙値を使用して FieldLayoutSettings オブジェクトで IDataErrorInfo インターフェイスのサポートを有効にすると、そのフィールド レイアウトのすべてのフィールドで IDataErrorInfo インターフェイスのサポートが有効になります。ただし、特定のフィールドにエラーを表示させたくない場合、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] プロパティによって公開されている link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~supportdataerrorinfo.html[SupportDataErrorInfo] プロパティを False に設定できます。フィールドでのエラーのサポートを無効にすると、そのフィールドのすべての link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cell.html[Cell] オブジェクトおよび link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] オブジェクトによって公開されている link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter~hasdataerror.html[HasDataError] プロパティは、データ項目にそのフィールドのエラーが含まれていても False を返します。
+
+以下の例のコードは、IDataErrorInfo インターフェイスのサポートを有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings SupportDataErrorInfo="RecordsAndCells" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+...
+Me.xamDataPresenter1.FieldLayoutSettings.SupportDataErrorInfo = SupportDataErrorInfo.RecordsAndCells
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+...
+this.xamDataPresenter1.FieldLayoutSettings.SupportDataErrorInfo = SupportDataErrorInfo.RecordsAndCells;
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-validate-data-as-your-end-users-edit-a-cell.html[エンドユーザーがセルを編集するとデータを検証]
+
+link:xamdatapresenter-styling-data-errors.html[データ エラーのスタイリング]
+
+link:xamdatapresenter-validating-edited-cell-data-in-xamdatapresenter.html[xamDataPresenter で編集したセル データを検証]

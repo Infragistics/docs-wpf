@@ -1,0 +1,63 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-enable-copy-and-paste-support",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I"],
+    "guid": "9130a43d-40f4-4062-bd7f-d43f3329074f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.2282157Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= コピーと貼り付けサポートの有効化
+
+xamGrid コントロールでのコピーと貼り付けのサポートは、デフォルトでは有効ではありません。
+
+XAML ファイルまたはコード ビハインドでこの機能を有効にできます。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardsettings.html[ClipboardSettings] オブジェクトのプロパティは、この機能を構成するために使用されます。
+
+xamGrid コントロールでは、コピーおよび貼り付け操作は標準のキーボード ショートカットに割り当てられます。"CTRL + C" の組み合わせはコピーを実行し、"CTRL + V" は貼り付けを実行します。
+
+コピー操作を有効にするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardsettings~allowcopy.html[AllowCopy] プロパティを True に設定する必要があります。貼り付け操作を有効にするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardsettings~allowpaste.html[AllowPaste] プロパティを True に設定します。
+
+ユーザーが開始した貼り付けは、xamGrid コントロールでの内部的な貼り付け操作に関係ありません。この操作の結果は起動されたイベントであり、イベント引数 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.clipboardpastingeventargs.html[ClipboardPastingEventArgs] に保存されるデータをさらに操作できます。
+
+以下のコードは、XAML およびコード ビハインドでコピーおよび貼り付け操作を有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="xamGrid" … >
+    <ig:XamGrid.ClipboardSettings>
+        <ig:ClipboardSettings AllowCopy="True" AllowPaste="True"/>
+    </ig:XamGrid.ClipboardSettings>
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+xamGrid.ClipboardSettings.AllowCopy = True
+xamGrid.ClipboardSettings.AllowPaste = True
+----
+
+*C# の場合:*
+
+----
+xamGrid.ClipboardSettings.AllowCopy = true;
+xamGrid.ClipboardSettings.AllowPaste = true;
+----
+
+ifdef::sl[]
+コピーおよび貼り付け操作ではクリップボードを使用します。クリップボードに初めてアクセスする時に、Silverlight は許可を求めます。
+endif::sl[]
+
+ifdef::sl[]
+
+image::images/SL_xamGrid_Popup.png[]
+
+endif::sl[]

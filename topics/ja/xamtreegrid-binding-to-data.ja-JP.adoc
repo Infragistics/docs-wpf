@@ -1,0 +1,395 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-binding-to-data",
+    "tags": ["Data Binding","How Do I"],
+    "controlName": ["xamTreeGrid"],
+    "guid": "88a7b40f-e7ac-41a2-85f8-9410a09687eb",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:27:36.1874662Z"
+}
+|metadata|
+////
+
+= xamTreeGrid をデータにバインド
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、コントロールをデータにバインドする方法およびそのフィールド レイアウトを定義する方法を説明します。
+
+=== 前提条件
+
+以下の表は、このトピックを理解するための前提条件として必要な概念とトピックの一覧です。
+
+[options="header", cols="a,a"]
+|====
+|タイプ|コンテンツ
+
+|概念
+|Data Presenter Family
+|==== 
+=== トピック
+[options="header", cols="a,a"] 
+
+|==== 
+
+|トピック|目的 
+
+| link:wpf-about-the-data-presenter-family.html[Data Presenter Family について] 
+
+|このトピックでは、コントロールの Data Presenter Family の概念を説明します。 
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について] 
+
+|このトピックは、 _xamDataGrid_ コントロールの概要を提供し、要素のダイアグラムを含みます。 
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義 (xamDataPresenter)] 
+
+|このトピックでは、データ エンティティが表示されるフィールドのカスタム セットを定義する方法を説明します。 
+
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref411351578, 詳細のバインド >>
+** <<_Ref411351599,オブジェクト階層定義>>
+** <<_Ref411351604,同種データ ソース>>
+** <<_Ref411351610,異種データ ソース>>
+
+* <<_Ref411351622, 関連コンテンツ >>
+
+[[_Ref411351578]]
+== 詳細のバインド
+
+[[_Ref411351599]]
+
+=== オブジェクト階層の概要
+
+AutoGenerateField true の場合、link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamtreegrid.html[xamTreeGrid] は、調べた各データ オブジェクトによりレコード階層を確立し、IEnumerable インターフェイスを実装するプロパティを検索して、サブレコード リストを作成します。データ オブジェクトに IEnumarable インターフェイスを実装する複数のプロパティが含まれる場合、そのすべての子オブジェクトが子項目の単一のリスト作成に使用されます。
+
+注:
+
+[NOTE]
+====
+子レコードの複数のセットを導く複数の IEnumerable プロパティがあり、このリストを並べ替える場合、子レコードの各セットは個別に並べ替えられます。
+====
+
+[[_Ref411351604]]
+
+=== 同種データ ソース
+
+データ ソース コレクションに単一のデータ型が含まれる場合、 _xamTreeGrid_   はフィールド レイアウトを作成し、すべてのレコードに対してそれを使用します。このフィールド レイアウトには、データオブジェクト型のすべての公開プロパティのフィールド定義を含みます。
+
+データ オブジェクトの公開プロパティの一部を非表示にする場合は、以下のいずれかの方法で実行できます。
+
+* link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[AutoGenerateFields] プロパティを `True` のままにします。次にフィールド レイアウトを作成し、それらの名前に設定した `Name` プロパティと、`Collapse` に設定した `Visibility` を持つこれらのプロパティについてフィールド定義を追加します。
+* `AutoGenerateFields` プロパティを `False` に設定します。次にフィールド レイアウトを作成し、表示するプロパティについてのみフィールド定義を追加します。
+
+たとえば、以下のデータ型のコレクションがあるとします。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class FileSystemNode
+{
+  public int ID { get; set; }
+  public string Name { get; set; }
+  public int FileSize { get; set; }
+  public bool IsFolder { get; set; }
+  public DateTime DateCreated { get; set; }
+  public DateTime DateModified { get; set; }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class FileSystemNode
+        Public Property ID() As Integer
+                Get
+                        Return m_ID
+                End Get
+                Set
+                        m_ID = Value
+                End Set
+        End Property
+        Private m_ID As Integer
+        Public Property Name() As String
+                Get
+                        Return m_Name
+                End Get
+                Set
+                        m_Name = Value
+                End Set
+        End Property
+        Private m_Name As String
+        Public Property FileSize() As Integer
+                Get
+                        Return m_FileSize
+                End Get
+                Set
+                        m_FileSize = Value
+                End Set
+        End Property
+        Private m_FileSize As Integer
+        Public Property IsFolder() As Boolean
+                Get
+                        Return m_IsFolder
+                End Get
+                Set
+                        m_IsFolder = Value
+                End Set
+        End Property
+        Private m_IsFolder As Boolean
+        Public Property DateCreated() As DateTime
+                Get
+                        Return m_DateCreated
+                End Get
+                Set
+                        m_DateCreated = Value
+                End Set
+        End Property
+        Private m_DateCreated As DateTime
+        Public Property DateModified() As DateTime
+                Get
+                        Return m_DateModified
+                End Get
+                Set
+                        m_DateModified = Value
+                End Set
+        End Property
+        Private m_DateModified As DateTime
+End Class
+----
+
+以下のいずれかの方法で、"ID"、"IsFolder"、"DateCreated" 公開プロパティを非表示にできます。
+
+非表示にするプロパティについてのみフィールドを定義します。その `Visibility` プロパティを `Collapesed` に設定し、`AutoGenerateFields` を `True` に設定します (またはデフォルト値はすべて True であるため指定しない)。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamTreeGrid>
+  <igDP:XamTreeGrid.FieldLayoutSettings>
+    <igDP:FieldLayoutSettings AutoGenerateFields="True" />
+  </igDP:XamTreeGrid.FieldLayoutSettings>
+  <igDP:XamTreeGrid.FieldLayouts>
+    <igDP:FieldLayout>
+      <igDP:NumericField Name="ID" Visibility="Collapsed" />
+      <igDP:CheckBoxField Name="IsFolder" Visibility="Collapsed" />
+      <igDP:NumericField Name="FileSize" Visibility="Collapsed" />
+    </igDP:FieldLayout>
+  </igDP:XamTreeGrid.FieldLayouts>
+</igDP:XamTreeGrid>
+----
+
+表示するプロパティについてのみフィールドを定義し、`AutoGenerateFields` を `False` に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamTreeGrid>
+  <igDP:XamTreeGrid.FieldLayoutSettings>
+    <igDP:FieldLayoutSettings AutoGenerateFields=" />
+  </igDP:XamTreeGrid.FieldLayoutSettings>
+  <igDP:XamTreeGrid.FieldLayouts>
+    <igDP:FieldLayout>
+      <igDP:TextField Name="Name" Label="Name" />
+      <igDP:NumericField Name="FileSize" Label="Size" />
+      <igDP:DateTimeField Name="DateModified" Label="Date" />
+    </igDP:FieldLayout>
+  </igDP:XamTreeGrid.FieldLayouts>
+</igDP:XamTreeGrid>
+----
+
+[[_Ref411351610]]
+
+=== 異種データ ソース
+
+データ ソース コレクションに複数のデータ型が含まれる場合、 _xamTreeGrid_   はそれぞれの型に対してフィールド レイアウトを作成します。これらのフィールド レイアウトは、各型のすべての公開プロパティのフィールド定義を含みます。最初に作成されるフィールド レイアウトは、デフォルトのフィールド レイアウトでもあります。いずれかのフィールド レイアウトに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~isdefault.html[IsDefault] プロパティを設定し、デフォルトのフィールド レイアウトを変更できます。
+
+注:
+
+[NOTE]
+====
+デフォルトのフィールド レイアウトは、コントロールによってグリッドの列の描画に使用されます。
+====
+
+デフォルト以外のフィールド レイアウトは、`Name` プロパティまたは `Label` プロパティの一致により、その型のプロパティをデフォルトのフィールド レイアウトのフィールドにマップするために使用されます。
+
+デフォルト以外のフィールド レイアウトを定義する場合は、以下の規則に注意してください。
+
+* 表示する各プロパティについて、`Name` プロパティがデータ オブジェクトのプロパティの名前と正確に一致するフィールドを定義します。
+* 各フィールド定義の `Label` プロパティは、デフォルト フィールド レイアウトからのフィールドの `Name` または `Label` と一致するように設定し、マッピングを作成します。
+* フィールド レイアウト定義があいまいな場合 (たとえば、2 つの異なる型のマッピングで、両方に存在するフィールド レイアウト定義のみを使用する場合)、フィールド レイアウトの `Key` プロパティとして型名を設定できます。
+
+たとえば、以下の型定義があるとします。
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class SystemNodeBase
+{
+  public int ID { get; set; }
+  public DateTime DateCreated { get; set; }
+  public DateTime DateModified { get; set; }
+}
+public class FileNode : SystemNodeBase
+{
+  public string FileName { get; set; }
+  public long FileSize { get; set; }
+}
+public class FolderNode : SystemNodeBase
+{
+  public string FolderName { get; set; }
+  private List<object> _children;
+  public List<object> Children
+  {
+    get { return this._children; }
+    set { this._children = value; }
+  }
+}
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class SystemNodeBase
+        Public Property ID() As Integer
+                Get
+                        Return m_ID
+                End Get
+                Set
+                        m_ID = Value
+                End Set
+        End Property
+        Private m_ID As Integer
+        Public Property DateCreated() As DateTime
+                Get
+                        Return m_DateCreated
+                End Get
+                Set
+                        m_DateCreated = Value
+                End Set
+        End Property
+        Private m_DateCreated As DateTime
+        Public Property DateModified() As DateTime
+                Get
+                        Return m_DateModified
+                End Get
+                Set
+                        m_DateModified = Value
+                End Set
+        End Property
+        Private m_DateModified As DateTime
+End Class
+Public Class FileNode
+        Inherits SystemNodeBase
+        Public Property FileName() As String
+                Get
+                        Return m_FileName
+                End Get
+                Set
+                        m_FileName = Value
+                End Set
+        End Property
+        Private m_FileName As String
+        Public Property FileSize() As Long
+                Get
+                        Return m_FileSize
+                End Get
+                Set
+                        m_FileSize = Value
+                End Set
+        End Property
+        Private m_FileSize As Long
+End Class
+Public Class FolderNode
+        Inherits SystemNodeBase
+        Public Property FolderName() As String
+                Get
+                        Return m_FolderName
+                End Get
+                Set
+                        m_FolderName = Value
+                End Set
+        End Property
+        Private m_FolderName As String
+        Private _children As List(Of Object)
+        Public Property Children() As List(Of Object)
+                Get
+                        Return Me._children
+                End Get
+                Set
+                        Me._children = Value
+                End Set
+        End Property
+End Class
+----
+
+`FolderNode` 型に対して以下のデフォルト フィールド レイアウト定義を使用できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:FieldLayout Key="FolderNode" IsDefault="True">
+  <igDP:TextField Name="FolderName" Label="Name" />
+  <igDP:TemplateField BindingType="Unbound" Label="Size" DataType="{x:Type sys:String}">
+    <igDP:TemplateField.DisplayTemplate>
+      <DataTemplate>
+        <TextBlock HorizontalAlignment="Center" Text="&lt;DIR&gt;" />
+      </DataTemplate>
+    </igDP:TemplateField.DisplayTemplate>
+  </igDP:TemplateField>
+  <igDP:DateTimeField Name="DateModified" Label="Date" />
+  <igDP:Field Name="Children" />
+</igDP:FieldLayout>
+----
+
+`FileNode` 型に対するフィールド レイアウト定義
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:FieldLayout Key="FileNode">
+  <igDP:TextField Name="FileName" Label="Name" />
+  <igDP:NumericField Name="FileSize" Label="Size" />
+  <igDP:DateTimeField Name="DateModified" Label="Date" />
+</igDP:FieldLayout>
+----
+
+[[_Ref411351622]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-adding.html[xamTreeGrid をページに追加]
+|このトピックでは、コントロールを短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+| link:xamtreegrid-configuring.html[xamTreeGrid の構成]
+|この一連のトピックでは、コントロールを構成する方法を説明します。
+
+| link:xamtreegrid-styling.html[xamTreeGrid のスタイル設定]
+|この一連のトピックでは、コントロールのいくつかの主要要素をスタイル設定する方法を説明します。
+
+|====

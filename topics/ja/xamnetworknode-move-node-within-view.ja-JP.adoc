@@ -1,0 +1,143 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-move-node-within-view",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["Navigation"],
+    "guid": "fe3eb24a-f1be-4dda-b2c3-93dc9b5f0777",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.5182505Z"
+}
+|metadata|
+////
+
+= ビュー内でノードを移動
+
+== トピックの概要
+
+== 目的
+
+このドキュメントの目的は、ビュー ポータル内で NetworkNode を移動させる、マウスとキーボードを使用してのナビゲーションの方法を説明することです。
+
+== 本トピックの内容
+
+次のセクションで触れるビュー ポータル内での NetworkNode コントロールのナビゲーションは次の通りです。
+
+[cols="a,a"]
+|====
+|*Ctrl キー + [プラス キー]*
+|*- ズームイン*
+
+|*Ctrl キー + [マイナス キー]*
+|*- ズームアウト*
+
+|*マウス ホイール*
+|*- ズームイン / アウト*
+
+|*矢印キー (上下左右)*
+|*- パン*
+
+|*マウスをクリックし NetworkNode を移動*
+|*- パン*
+
+|*WindowRect メソッドを使用 (コード内)*
+|*- ビュー内で NetworkNode を移動*
+
+|====
+
+== 前提条件
+
+以下の表は、このトピックでの前提条件を示しています。
+
+[options="header", cols="a,a"]
+|====
+|背景タイプ|コンテンツ
+
+|概念
+|以下の概念を理解する必要があります。 
+
+* コントロールの背景ビューをクリックしてコントロールにフォーカスを設定します (デフォルトのコントロールはフォーカスをしません)。 
+
+* パンとズームのプロパティが無効になっていないことを確認します (デフォルトではパンとズームは有効になっています)。 
+
+|トピック
+|まず以下のトピックを読む必要があります。 
+
+link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]
+
+|====
+
+ここで示されているパンとズーム設定はオプションです。デフォルトでは、それらは有効になっています。
+
+*XAML の場合:*
+
+----
+<ig:XamNetworkNode.NavigationSettings>
+   <ig:NavigationSettings AllowPan="True" AllowZoom="True" />
+</ig:XamNetworkNode.NavigationSettings>
+----
+
+*C# の場合:*
+
+----
+xnn.NavigationSettings.AllowPan = true;
+xnn.NavigationSettings.AllowZoom = true;
+----
+
+*Visual Basic の場合:*
+
+----
+xnn.NavigationSettings.AllowPan = True
+xnn.NavigationSettings.AllowZoom = True
+----
+
+== ビューでネットワーク ノードを移動
+
+xamNetworkNode コントロールはビュー内のコントロールをズームおよびパンするためにマウスとキーボードによるナビゲーションをサポートします。プログラムによるナビゲーションはコントロールの WindowsRect メソッドを呼び出すことで可能です。関連するキーの組み合わせによるキーボード ナビゲーション コマンドは以下のセクションで定義されます。
+
+== ナビゲーション セクション
+
+[options="header", cols="a,a"]
+|====
+|コマンド|操作
+
+|キーボードの *Ctrl キー* とプラス (+) キーを押します。
+|ビューポートは NetworkNode 上でズームインします。
+
+|キーボードの *Ctrl キー* とマイナス (-) キーを押します。
+|ビューポートは NetworkNode 上でズームアウトします。
+
+|スクロールには*マウス ホイール* を使用します。
+|ビューポートは NetworkNode 上でズームインおよびズームアウトします。
+
+|キーボードの*矢印キー* を使用します。
+|ビューポートは NetworkNode をビューの中で対応する方向に動かします。
+
+|*マウス*で NetworkNode の背景 (ノード上以外) をポイントし、次に*マウスの左ボタン* を押してマウスを移動
+|ビューポートは NetworkNode をビューの中でパンします。
+
+|====
+
+プログラムによる NetworkNode のナビゲーションのためには、*WindowRect* メソッドを使用します。ズーム位置はこのメソッドに渡される座標パラメーターに基づきます。たとえば、以下のコード例がノードへのズーム インの方法を示しています。このメソッドのパラメーターはノードの X 座標、Y 座標、幅、高さです。ここでは X 座標だけが変更され X 座標に沿って NetworkNode が移動します。
+
+*注:* 幅と高さの値だけが操作される場合はビュー ポートもコントロールに対してズームします。
+
+*C# の場合:*
+
+[source,csharp]
+----
+xnn.WindowRect = new Rect(xnn.WindowRect.X + 100, xnn.WindowRect.Y, xnn.WindowRect.Width, xnn.WindowRect.Height);
+----
+
+*VB の場合:*
+
+[source,vb]
+----
+xnn.WindowRect = New Rect(xnn.WindowRect.X + 100, xnn.WindowRect.Y, xnn.WindowRect.Width, xnn.WindowRect.Height)
+----
+
+== 関連トピック
+
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始] 
+* link:xamnetworknode-using-xamnetworknode.html[xamNetworkNode の使用]

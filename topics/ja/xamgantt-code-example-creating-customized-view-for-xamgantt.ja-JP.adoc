@@ -1,0 +1,433 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-code-example-creating-customized-view-for-xamgantt",
+    "controlName": ["xamGantt"],
+    "tags": ["Data Binding","Extending","Grids","Layouts","Scheduling"],
+    "guid": "20730917-94c5-4a3c-b9f9-e3b489f78690",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.5441395Z"
+}
+|metadata|
+////
+
+= コード例: xamGantt のためにカスタマイズされたビューを作成
+
+== トピックの概要
+
+=== 目的
+
+link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider_members.html[ListBackedProjectViewProvider] と定義済みプロジェクト列、プロジェクト テーブル、プロジェクト ビュー クラスを使用することによってカスタマイズされた  _xamGantt_   ビューを作成できます。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-adding-xamgantt-to-a-page.html[ _xamGantt_ をページに追加]
+|このトピックでは、 _xamGantt_ コントロールをページに追加する方法を説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Code_Example_Creating_Customizing_View_for_xamGantt, コード例:  _xamGantt_   のためにカスタマイズされたビューを作成 >>
+
+** <<_Ref333763526,説明>>
+
+** <<_Ref334102005,前提条件>>
+
+** <<_Ref334102013,プレビュー>>
+
+** <<_Ref334464995,コード>>
+
+* <<_Related_Content, 関連コンテンツ >>
+
+[[_Code_Example_Creating_Customizing_View_for_xamGantt]]
+== コード例: xamGantt のためにカスタマイズされたビューを作成
+
+[[_Ref333763526]]
+
+=== 説明
+
+コード例は定義済みの link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcolumn_members.html[ProjectColumn]、 link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttable_members.html[ProjectTable] および link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectview_members.html[ProjectView] クラスを使用することによって  _xamGantt_   ビューをカスタマイズする方法を示します。次に XAML で link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider_members.html[ListBackedProjectViewProvider] を作成し、その link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~tableitemssource.html[TableItemsSource] と link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~viewitemssource.html[ViewItemsSource] をプロジェクト テーブルおよびプロジェクト ビューの対応するコレクションに設定します。カスタム クラス間のマッピングは、`ListBackedProjectViewProvider` の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~tablepropertymappings.html[TablePropertyMappings] プロパティと link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~viewpropertymappings.html[ViewPropertyMappings] プロパティで作成されます。
+
+最後に、xamGantt の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcontrolbase~viewprovider.html[ViewProvider] プロパティは `ListBackedProjectViewProvider` インスタンスに設定されます。
+
+注:
+
+[NOTE]
+====
+
+`ProjectColumn` クラスと `ProjectTable` クラスを使用する場合、`ListBackedProjectViewProvider` の link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.listbackedprojectviewprovider~columnitemssource.html[ColumnItemsSource] を設定する必要はありません。列は `ProjectTable` link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projecttable~columns.html[Columns] プロパティによって提供できるからです。
+
+`ColumnItemsSource` で列を事前に定義したい場合列にバインドします。このように、テーブルにまだない列を表示することを選択する場合、列項目ソースが最初に検索されますが、列が見つからない場合、新しい列が作成されます。
+====
+
+[[_Ref334102005]]
+
+=== 前提条件
+
+コード例を完了するには  _xamGantt_   プロジェクトが必要です。サンプルの  _xamGantt_   プロジェクトを作成するためには、 link:xamgantt-adding-xamgantt-to-a-page.html[ _xamGantt_   をページに追加]の指示に従ってください。マークアップと `ProjectViewModel` クラスをコード セクションに表示されるこれらで置き換える必要があります。
+
+[[_Ref334102013]]
+
+=== プレビュー
+
+以下は完全なサンプル プロジェクトのプレビューです。`ViewKey``=”Standard01”` でスクリーンショットが撮られます。`Key=“Standard01”` の `ProjectView` クラスのこのインスタンスはクリティカル タスクだけでなくサマリー タスクを表示するように  _xamGantt_   を設定します。列セットは、`Columns` プロパティによって制御されます。
+
+image::images/xamGantt_Code_Example_Creating_Customized_View_for_xamGantt_1.png[]
+
+[[_Ref334464995]]
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+ <Grid>
+        <Grid.Resources>
+            <local:ProjectViewModel x:Key="dc" />
+        </Grid.Resources>
+        <Grid.DataContext>
+            <Binding Source="{StaticResource dc}" />
+        </Grid.DataContext>
+        <ig:ListBackedProjectViewProvider x:Name="lbpViewProvider" TableItemsSource="{Binding Tables}" ViewItemsSource="{Binding Views}">
+            <ig:ListBackedProjectViewProvider.TablePropertyMappings>
+                <ig:ProjectTablePropertyMappingCollection UseDefaultMappings="True" />
+            </ig:ListBackedProjectViewProvider.TablePropertyMappings>
+            <ig:ListBackedProjectViewProvider.ViewPropertyMappings>
+                <ig:ProjectViewPropertyMappingCollection UseDefaultMappings="True" />
+            </ig:ListBackedProjectViewProvider.ViewPropertyMappings>
+        </ig:ListBackedProjectViewProvider>
+        <ig:XamGantt x:Name="xamGantt" ViewProvider="{Binding ElementName=lbpViewProvider}" Project="{Binding Project}" ViewKey="Standard01" />
+    </Grid>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+ public class ProjectViewModel : 
+INotifyPropertyChanged
+    {
+        #region Private variables
+        private ObservableCollection<ProjectView> views;
+        private ObservableCollection<ProjectTable> tables;
+        private ObservableCollection<ProjectColumn> columns;
+        private Project project;
+        #endregion // プライベート変数
+        #region Public Properties
+        public Project Project
+        {
+            get
+            {
+                if (project == null)
+                {
+                    project = ProjectDataHelper.GenerateProjectData();
+                }
+                return project;
+            }
+            set
+            {
+                if (value != project)
+                {
+                    project = value;
+                    OnPropertyChanged("Project");
+                }
+            }
+        }
+        public ObservableCollection<ProjectColumn> Columns
+        {
+            get
+            {
+                if (columns == null)
+                {
+                    columns = GenerateColumns();
+                }
+                return columns;
+            }
+        }
+        public ObservableCollection<ProjectTable> Tables
+        {
+            get
+            {
+                if (tables == null)
+                {
+                    tables = GenerateTables();
+                }
+                return tables;
+            }
+        }
+        public ObservableCollection<ProjectView> Views
+        {
+            get
+            {
+                if (views == null)
+                {
+                    views = GenerateViews();
+                }
+                return views;
+            }
+        }
+        #endregion // パブリック プロパティ
+        #region Private helper methods
+        private ObservableCollection<ProjectView> GenerateViews()
+        {
+            ObservableCollection<ProjectView> views = new ObservableCollection<ProjectView>
+();
+            ProjectView view = new ProjectView
+            {
+                Key = "Standard01",
+                TableKey = "Table 01",
+                Settings = new ProjectViewSettings
+                {
+                    AreSummaryTasksVisible = true,
+                    AreCriticalTasksHighlighted = true,
+                    IsOutlineStructurePreservedWhenSorting = true,
+                    NonWorkingTimeHighlightStyle = NonWorkingTimeHighlightStyle.ActualNonWorkingHours
+                }
+            };
+            view.SortedColumns.Add(new ProjectColumnSortDescription { ColumnKey = "ManualStart" });
+            view.SortedColumns.Add(new ProjectColumnSortDescription { ColumnKey = "ManualFinish", Direction = ListSortDirection.Descending });
+            views.Add(view);
+            view = new ProjectView { Key = "Standard02", TableKey = "Table 02" };
+            views.Add(view);
+            return views;
+        }
+        private ObservableCollection<ProjectTable> GenerateTables()
+        {
+            var columnsMap = Columns.ToDictionary(c => c.Key);
+            ObservableCollection<ProjectTable> tables = new 
+ObservableCollection<ProjectTable>();
+            ProjectTable table = new ProjectTable { Key = "Table 01", 
+ShowInMenu = true };
+            table.Columns.Add(columnsMap["TaskName"]);
+            table.Columns.Add(columnsMap["ManualStart"]);
+            table.Columns.Add(columnsMap["ManualDuration"]);
+            table.Columns.Add(columnsMap["ManualFinish"]);
+            tables.Add(table);
+            table = new ProjectTable { Key = "Table 02", ShowInMenu = true };
+            table.Columns.Add(columnsMap["TaskName"]);
+            table.Columns.Add(columnsMap["ManualStart"]);
+            table.Columns.Add(columnsMap["ManualFinish"]);
+            table.Columns.Add(columnsMap["Notes"]);
+            tables.Add(table);
+            return tables;
+        }
+        private ObservableCollection<ProjectColumn> GenerateColumns()
+        {
+            return new ObservableCollection<ProjectColumn>()
+            {
+                new ProjectColumn { Key = "TaskName", HeaderText = "Name"},
+                new ProjectColumn { Key = "ManualStart", HeaderText = "Start", 
+                    Settings = new ProjectColumnSettings { HeaderTextHorizontalAlignment = 
+HorizontalAlignment.Center}},
+                new ProjectColumn { Key = "ManualFinish", HeaderText = "Finish", 
+                    Settings = new ProjectColumnSettings { HeaderTextHorizontalAlignment = 
+HorizontalAlignment.Center}},
+                    new ProjectColumn { Key = "ManualDuration", HeaderText = 
+"Duration"},
+                    new ProjectColumn { Key = "Notes", HeaderText = "Notes"}
+            };
+        }
+        #endregion // プライベート ヘルパー メソッド
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string 
+propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs
+(propertyName));
+            }
+        }
+        #endregion // INotifyPropertyChanged
+    }
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class ProjectViewModel
+      Implements INotifyPropertyChanged
+      #Region "Private variables"
+      Private m_views As ObservableCollection(Of ProjectView)
+      Private m_tables As ObservableCollection(Of ProjectTable)
+      Private m_columns As ObservableCollection(Of ProjectColumn)
+      Private m_project As Project
+      #End Region
+      #Region "Public Properties"
+      Public Property Project() As Project
+            Get
+                  If m_project Is Nothing 
+Then
+                        m_project = ProjectDataHelper.GenerateProjectData()
+                  End If
+                  Return m_project
+            End Get
+            Set
+                  If value <> m_project Then
+                        m_project = value
+                        OnPropertyChanged("Project")
+                  End If
+            End Set
+      End Property
+      Public ReadOnly Property Columns() As ObservableCollection(Of ProjectColumn)
+            Get
+                  If m_columns Is Nothing 
+Then
+                        m_columns = GenerateColumns()
+                  End If
+                  Return m_columns
+            End Get
+      End Property
+      Public ReadOnly Property Tables() As ObservableCollection(Of ProjectTable)
+            Get
+                  If m_tables Is Nothing Then
+                        m_tables = GenerateTables()
+                  End If
+                  Return m_tables
+            End Get
+      End Property
+      Public ReadOnly Property Views() As ObservableCollection(Of ProjectView)
+            Get
+                  If m_views Is Nothing Then
+                        m_views = GenerateViews()
+                  End If
+                  Return m_views
+            End Get
+      End Property
+      #End Region
+      #Region "Private helper methods"
+      Private Function GenerateViews() As 
+ObservableCollection(Of ProjectView)
+            Dim views As New 
+ObservableCollection(Of ProjectView)()
+            Dim view As New ProjectView() 
+With { _
+                  Key .Key = "Standard01", _
+                  Key .TableKey = "Table 01", _
+                  Key .Settings = New ProjectViewSettings() With { _
+                        Key .AreSummaryTasksVisible = True, _
+                        Key .AreCriticalTasksHighlighted = True, _
+                        Key .IsOutlineStructurePreservedWhenSorting = True, _
+                        Key .NonWorkingTimeHighlightStyle = NonWorkingTimeHighlightStyle.ActualNonWorkingHours _
+                  } _
+            }
+            view.SortedColumns.Add(New ProjectColumnSortDescription() With 
+{ _
+                  Key .ColumnKey = "ManualStart" _
+            })
+            view.SortedColumns.Add(New ProjectColumnSortDescription() With 
+{ _
+                  Key .ColumnKey = "ManualFinish", _
+                  Key .Direction = ListSortDirection.Descending _
+            })
+            views.Add(view)
+            view = New ProjectView() With { _
+                  Key .Key = "Standard02", _
+                  Key .TableKey = "Table 02" _
+            }
+            views.Add(view)
+            Return views
+      End Function
+      Private Function GenerateTables() As 
+ObservableCollection(Of ProjectTable)
+            Dim columnsMap = Columns.ToDictionary(Function(c) c.Key)
+            Dim tables As New 
+ObservableCollection(Of ProjectTable)()
+            Dim table As New ProjectTable() 
+With { _
+                  Key .Key = "Table 01", _
+                  Key .ShowInMenu = True _
+            }
+            table.Columns.Add(columnsMap("TaskName"))
+            table.Columns.Add(columnsMap("ManualStart"))
+            table.Columns.Add(columnsMap("ManualDuration"))
+            table.Columns.Add(columnsMap("ManualFinish"))
+            tables.Add(table)
+            table = New ProjectTable() With { _
+                  Key .Key = "Table 02", _
+                  Key .ShowInMenu = True _
+            }
+            table.Columns.Add(columnsMap("TaskName"))
+            table.Columns.Add(columnsMap("ManualStart"))
+            table.Columns.Add(columnsMap("ManualFinish"))
+            table.Columns.Add(columnsMap("Notes"))
+            tables.Add(table)
+            Return tables
+      End Function
+      Private Function GenerateColumns() As 
+ObservableCollection(Of ProjectColumn)
+            Return New ObservableCollection(Of ProjectColumn)() From { _
+                  New ProjectColumn() With { _
+                        Key .Key = "TaskName", _
+                        Key .HeaderText = "Name" _
+                  }, _
+                  New ProjectColumn() With { _
+                        Key .Key = "ManualStart", _
+                        Key .HeaderText = "Start", _
+                        Key .Settings = New ProjectColumnSettings() With { 
+_
+                              Key .HeaderTextHorizontalAlignment = HorizontalAlignment.Center _
+                        } _
+                  }, _
+                  New ProjectColumn() With { _
+                        Key .Key = "ManualFinish", _
+                        Key .HeaderText = "Finish", _
+                        Key .Settings = New ProjectColumnSettings() With { 
+_
+                              Key .HeaderTextHorizontalAlignment = HorizontalAlignment.Center _
+                        } _
+                  }, _
+                  New ProjectColumn() With { _
+                        Key .Key = "ManualDuration", _
+                        Key .HeaderText = "Duration" _
+                  }, _
+                  New ProjectColumn() With { _
+                        Key .Key = "Notes", _
+                        Key .HeaderText = "Notes" _
+                  } _
+            }
+      End Function
+      #End Region
+      #Region "INotifyPropertyChanged"
+      Public Event PropertyChanged As 
+PropertyChangedEventHandler
+      Public Sub OnPropertyChanged(propertyName As String)
+            RaiseEvent PropertyChanged(Me, New 
+PropertyChangedEventArgs(propertyName))
+      End Sub
+      #End Region
+End Class
+----
+
+[[_Related_Content]]
+== 関連コンテンツ
+
+このトピックについては、以下のトピックもあわせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-the-listbackedproject-viewprovider-for-xamgantt.html[xamGantt の ListBacked ViewProvider の構成]
+|このグループのトピックには、 _xamGantt_ `ListBackedProjectViewProvider` の情報が含まれています。
+
+| link:xamgantt-configuring-the-listbackedproject-viewprovider-overview.html[ _xamGantt_ ListBacked ViewProvider の概要]
+|このトピックでは、 _xamGantt_ カレンダーの主要な機能の概要を提供します。_xamGantt_ はカレンダーを使用して時間を計算します。
+
+| link:xamgantt-code-example-creating-view-for-xamgantt-using-custom-classes.html[コード例、カスタム クラスを使用して xamGantt のビューを作成]
+|プロジェクト列、プロジェクト テーブルおよびプロジェクト ビューのカスタム クラスを作成し、これらのクラスを使用して _xamGantt_ の外観をカスタマイズできます。
+
+|====

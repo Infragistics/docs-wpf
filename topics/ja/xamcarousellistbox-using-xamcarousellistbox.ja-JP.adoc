@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousellistbox-using-xamcarousellistbox",
+    "controlName": ["xamCarouselListBox"],
+    "tags": [],
+    "guid": "{BCE0AC8B-9A79-4FB0-B5C9-A29836670418}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0577647Z"
+}
+|metadata|
+////
+
+= xamCarouselListBox の使用
+
+
+
+このセクションでは、 xamCarouselListBox™ コントロールの様々な特長や機能を効果的に使用するための、重要なタスク ベースの情報について説明します。
+
+* link:xamcarousellistbox-accessing-data.html[データ アクセス]
+* link:xamcarousellistbox-defining-layouts.html[レイアウトの定義]
+* link:xamcarousellistbox-designing-the-look-and-feel.html[ルック アンド フィールのデザイン]

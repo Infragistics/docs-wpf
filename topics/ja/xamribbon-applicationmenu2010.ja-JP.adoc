@@ -1,0 +1,40 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-applicationmenu2010",
+    "controlName": ["xamRibbon"],
+    "tags": [],
+    "guid": "53a42839-5c20-4d18-aea8-377391dc074d",  
+    "buildFlags": [],
+    "createdOn": "2013-03-04T07:10:46.6554069Z"
+}
+|metadata|
+////
+
+= アプリケーション メニュー 2010 (xamRibbon)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このセクションは、 link:{ApiPlatform}ribbon{ApiVersion}~infragistics.windows.ribbon.xamribbon.html[xamRibbon™] コントロールのアプリケーション メニュー 2010 を作成して構成する方法を紹介します。
+
+=== トピック
+
+このセクションのトピックでは、 _xamRibbon_   コントロールのアプリケーション メニュー 2010 について説明します。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamribbon-applicationmenu2010-overview.html[アプリケーション メニュー 2010 の概要]
+|このトピックは、アプリケーション メニュー 2010 およびその動作の概要について説明します。
+
+| link:xamribbon-defininganapplicationmenu2010.html[アプリケーション メニュー 2010 の定義]
+|このトピックは、アプリケーション メニュー 2010 を定義する方法を手順に従って説明します。
+
+| link:xamribbon-applicationmenu2010keytips.html[アプリケーション メニュー 2010 の KeyTips]
+|このトピックは、アプリケーション メニュー 2010 の KeyTip 機能を説明します。
+
+|====

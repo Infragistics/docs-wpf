@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-control-visibledates",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "9062e1af-26b6-4da1-9c91-3d2eb0accfab",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.8553649Z"
+}
+|metadata|
+////
+
+= 日付の表示
+
+xamSchedule ビュー コントロールは、コントロールによって表示される日付を表す link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~visibledates.html[VisibleDates] コレクションを公開します。デフォルトで、このコレクションは空で、現在の日付に基づいてコントロールによって初期化されます。たとえば、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview.html[xamMonthView] は VisibleDates を初期化して、現在の日付を含む月を表す週のすべての日を含みます。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduleview.html[XamScheduleView] と link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdayview.html[xamDayView] は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduletimecontrolbase~weekdisplaymode.html[WeekDisplayMode] プロパティに基づいてこのコレクションを初期化します。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.weekdisplaymode.html[None] (デフォルト値) に設定されると、VisibleDates には現在の日付が移植されます。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.weekdisplaymode.html[Week] に設定されると、VisibleDates は現在の日付を含む曜日に設定されます。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.weekdisplaymode.html[WorkWeek] に設定されると、コレクションには非稼働日としてマークされる日を除き、現在の日付を含む曜日が含まれます。稼働日と見なされる日は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduletimecontrolbase~workinghourssource.html[WorkingHoursSource] プロパティに基づいています。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~selectedtimerange.html[SelectedTimeRange] はオプションで選択された日付/時間の範囲を定義します。デフォルトで、このプロパティは null です。設定されない場合にはコントロールによって初期化されます。XamDayView と xamScheduleView は現在の日付内の最初の稼働時間タイムスロットを選択しますが、xamMonthView は現在の日付を選択します。
+
+SelectedTimeRange が VisibleDates コレクション外の日付に変更されると、コレクションはその日付を含むように更新されます。
+
+コントロールは、Outlook に似たモデルを後継します。たとえば、VisibleDates に 4/13/2010 と 4/14/2010 が含まれる状況を検討しましょう。ユーザーが 4/12/2010 にナビゲートすると、VisibleDates は 4/12/2010 と 4/13/2010 を含むように更新されます。4/15、4/17、4/19 などの複雑な選択があり、4/14 にナビゲートする場合、選択は 4/14、4/15 および 4/17 になります。同じ複雑な選択があり、現在の表示可能な日付 (たとえば、5/30) と非常に離れた日付を選択する場合、日付は新しい選択 (たとえば、5/28、5/29 および 5/30) に隣接した日付に変わります。
+
+*注* : VisibleDates が SelectedTimeRange を含まないように変更される場合、SelectedTimeRange は表示可能な日付内になるように更新されます。
+
+== 関連トピック
+
+link:xamschedule-using-control-selactivities.html[選択されたアクティビティ コレクション]
+
+link:xamschedule-using-control-calendargrouping.html[カレンダーのグループ化]
+
+link:xamschedule-using-control-confday.html[xamDayView の構成]
+
+link:xamschedule-using-control-confschedule.html[xamScheduleView の構成]
+
+link:xamschedule-using-control-confmonth.html[xamMonthView の構成]

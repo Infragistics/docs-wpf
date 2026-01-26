@@ -1,0 +1,325 @@
+﻿////
+
+|metadata|
+{
+    "name": "reswash-adding",
+    "controlName": ["Resource Washer"],
+    "tags": ["How Do I","Styling","Templating"],
+    "guid": "24025438-a4a0-4a12-9b81-0f30d2515261",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.2574036Z"
+}
+|metadata|
+////
+
+= リソース ウォッシャーをページに追加
+
+== トピックの概要
+
+== 目的
+
+このトピックは link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher.html[ResourceWasher] コンポーネントをアプリケーションに追加し、リソース内で定義された色をウォッシングする方法を説明します。
+
+== 必要な背景
+
+まず以下のトピックを読む必要があります。
+
+* link:reswash-about.html[リソース ウォッシャーについて]
+* link:reswash-using.html[リソース ウォッシャーの使用]
+
+== ResourceWasher の構成の概要
+
+== コントロールの構成チャート
+
+以下の表は、ResourceWasher コンポーネントの構成可能な動作の一部を示しています。
+
+[cols="a,a,a"]
+|====
+|*構成可能な動作*
+|*構成の詳細*
+|*構成プロパティ*
+
+|<<Adding,ResourceWasher コンポーネントをアプリケーションに追加>>
+|ResourceWasher コントロールをアプリケーションに追加するために必要な手順。
+|none
+
+|<<Modifying,ResourceWasher の修正>>
+|コンポーネントを構成します。
+|link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washcolor.html[WashColor] プロパティ 
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~autowash.html[AutoWash] プロパティ 
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washmode.html[WashMode] プロパティ 
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~sourcedictionary.html[SourceDictionary] プロパティ 
+
+link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~setwashgroup.html[WashGroup] プロパティ
+
+|====
+
+[[Adding]]
+== ResourceWasher をアプリケーションに追加
+
+. *Infragistics 名前空間を追加します。*
+
+.. *必要な NuGet パッケージを追加します。*
++
+ResourceWasher をアプリケーションに追加するには、Infragistics.WPF NuGet パッケージをプロジェクトに追加する必要があります。NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+.. *Infragistics 名前空間を追加します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xamlThemes"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Windows.Themes
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Windows.Themes;
+----
+
+. ResourceWasher コンポーネントをアプリケーションに追加
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher />
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim resourceWasher As ResourceWasher = New ResourceWasher()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+ResourceWasher resourceWasher = new ResourceWasher();
+----
+
+[[Modifying]]
+== ResourceWasher の修正
+
+以下の表では、望ましい構成をプロパティ設定にマップしています。プロパティには ResourceWasher クラスから直接アクセスします。
+
+[cols="a,a,a"]
+|====
+|*目的*
+|*使用するプロパティ*
+|*それを次に設定...*
+
+|<<WashColor,ウォッシング リソースで使われる色を定義>>
+|link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washcolor.html[WashColor] 
+|選択したSystem.Windows.Media.Color
+
+|<<AutoWash,ウォッシング プロセスが開始される時を設定>>
+|link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~autowash.html[AutoWash]
+|プロセスが自動的に始まるかどうかについてのブール値
+
+|<<WashMode,適用される色変化のタイプを設定>>
+|link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washmode.html[WashMode]
+|WashMode 型の列挙値
+
+|<<SourceDictionary,プロセスで使用するソース ディクショナリの設定>>
+|link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~sourcedictionary.html[SourceDictionary]
+|ウォッシュされるリソースを含む辞書
+
+|<<WashGroups,1 つの辞書内で異なる要素に対し異なるウォッシュ カラーとモードを使用>>
+|link:{RootAssembly}{ApiVersion}~infragistics.windows.themes.resourcewasher~washgroups.html[WashGroups]
+|WashGroupCollection オブジェクト
+
+|====
+
+== ResourceWasher の詳細を修正
+
+[[WashColor]]
+[start=1]
+. *ウォッシング リソースで使われる色を定義*
+
+ResourceWasher コンポーネントを設定する際の重要な部分はこのプロセスで使われる色を設定することです。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher WashColor="[your color]" />
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+resourceWasher.WashColor = [your color]
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+resourceWasher.WashColor = [your color];
+----
+
+[[AutoWash]]
+[start=2]
+. *ウォッシング プロセスが開始される時を設定します。*
+
+ロード後直ちにリソースを処理したい場合には、AutoWash プロパティを true に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher AutoWash="True" />
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+resourceWasher.AutoWash = True
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+resourceWasher.AutoWash = true;
+----
+
+ウォッシング プロセスを手動で開始させたい場合には、AutoWash プロパティを false に設定しコード内で WashResources メソッドを呼び出します。
+
+*Visual Basic の場合:*
+
+----
+resourceWasher.WashResources()
+----
+
+*C# の場合:*
+
+----
+resourceWasher.WashResources();
+----
+
+[[WashMode]]
+[start=3]
+. *適用される色変化のタイプを設定*
+
+ResourceWasher でサポートされる色ウォッシュのメソッドには HueSaturationReplacement と SoftLightBlend の 2 つがあります。ResourceWasher 上の WashMode プロパティを自分の選択として設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher WashMode="SoftLightBlend"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+resourceWasher.WashMode = WashMode.SoftLightBlend
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+resourceWasher.WashMode = WashMode.SoftLightBlend;
+----
+
+[[SourceDictionary]]
+[start=4]
+. *プロセスで使用するソース ディクショナリの設定*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher.SourceDictionary>
+    <ig:ResourceWasher Source="[your dictionary]" />
+<ig:ResourceWasher.SourceDictionary>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+resourceWasher.SourceDictionary = [your dictionary]
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+resourceWasher.SourceDictionary = [your dictionary];
+----
+
+[[WashGroups]]
+[start=5]
+. *1 つの辞書内で異なる要素に対し異なるウォッシュ カラーとモードを使用*
+
+異なる要素を異なるウォッシュ設定でウォッシュする (または、ある要素をウォッシュから除外する) ためには、添付プロパティ ig:ResourceWasher.WashGroup を用いてグループに要素を定義する必要があります。ひとつのグループをウォッシュから除外するには、ig:ResourceWasher.IsExcludedFromWash を true に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Page.Resources>
+    <SolidColorBrush x:Key="Background1" Color="Wheat"
+        ig:ResourceWasher.WashGroup="WashGroup1"
+        ig:ResourceWasher.IsExcludedFromWash="False" />        
+    <SolidColorBrush x:Key="Background2" Color="BlueViolet"          
+        ig:ResourceWasher.WashGroup="WashGroup2"                 
+        ig:ResourceWasher.IsExcludedFromWash="False" />        
+    <SolidColorBrush x:Key="Background3" Color="Honeydew"
+        ig:ResourceWasher.WashGroup="WashGroup3"
+        ig:ResourceWasher.IsExcludedFromWash="True" />        
+    <SolidColorBrush x:Key="Background4" Color="Orange"
+        ig:ResourceWasher.WashGroup="WashGroup4"
+        ig:ResourceWasher.IsExcludedFromWash="False" />
+</Page.Resources>
+----
+
+いったんウォッシュ グループがリソース内に定義されると、それを WashGroupCollection に追加し、それをコンポーネントの WashGroups プロパティに設定できます。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:ResourceWasher WashColor="Red"> 
+   <ig:ResourceWasher.WashGroups>  
+      <ig:WashGroupCollection>   
+         <!--これは赤でウォッシュされます-->  
+         <ig:WashGroup Name="WashGroup1" />   
+         <!--これは赤をオーバーライドして、青でウォッシュされます-->
+         <ig:WashGroup Name="WashGroup2" WashColor="Blue" />   
+         <!--これは IsExcludedFromWash="True" として定義されるため、全くウォッシュされません-->
+         <ig:WashGroup Name="WashGroup3" />   
+         <!--WashGroup4 は ResourceDictionary Washed の一部であるため、赤でウォッシュされます -->
+      </ig:WashGroupCollection> 
+   </ig:ResourceWasher.WashGroups>
+</ig:ResourceWasher>
+----
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+link:reswash-about.html[リソース ウォッシャーについて]
+
+link:reswash-using.html[リソース ウォッシャーの使用]

@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtreegrid-styling",
+    "tags": [],
+    "controlName": ["xamTreeGrid"],
+    "guid": "df213f71-da02-4d45-a0bc-f879644d148b",  
+    "buildFlags": [],
+    "createdOn": "2015-02-06T12:35:45.5172259Z"
+}
+|metadata|
+////
+
+= xamTreeGrid のスタイル設定
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、コントロールのいくつかの主要要素をスタイル設定する方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamtreegrid-styling-tree-connector-lines.html[ツリー コネクタ線のスタイル設定 (xamTreeGrid)]
+|このトピックでは、コントロールのツリー コネクタ線をスタイル設定する方法を説明します。
+
+| link:xamtreegrid-styling-expansion-indicators.html[展開インジケーターのスタイル設定 (xamTreeGrid)]
+|このトピックでは、コントロールの展開インジケーターをスタイル設定する方法を説明します。
+
+|====

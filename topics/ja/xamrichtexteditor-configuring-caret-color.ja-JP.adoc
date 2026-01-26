@@ -1,0 +1,131 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-configuring-caret-color",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "22571119-47cd-4782-bd98-fe0e9876f882",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4293393Z"
+}
+|metadata|
+////
+
+= カレット カラーの構成 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ コントロールのカレット カラーを変更する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加する]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref362440761,カレット カラー構成の概要>>
+* <<_Ref362430808,xamRichTextEditor のカレット ブラシの変更>>
+* <<_Ref359594803,関連コンテンツ>>
+
+[[_Ref362440761]]
+== カレット カラー構成の概要
+
+=== カレット カラー構成の概要表
+
+以下の表は、 _xamRichTextEditor_   コントロールで構成できる要素を簡単に説明し、特定のプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref362430808, _xamRichTextEditor_ のカレット ブラシの変更>>
+|エディターのカレットを描画に使用するブラシを変更します。
+| link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor~caretcolor.html[CaretColor]
+
+|====
+
+[[_Ref362430808]]
+== _xamRichTextEditor_  のカレット ブラシの変更
+
+=== 概要
+
+_xamRichTextEditor_   コントロールの `CaretBrush` プロパティを使用し、カレットを表示する色を設定します。
+
+=== プロパティ設定
+
+以下の表では、目的の構成を特定のプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|エディターのカレットに使用するブラシの変更
+|`CaretBrush`
+| link:http://msdn.microsoft.com/en-us/library/system.windows.media.brush.aspx[Brush] 型の値
+
+|====
+
+[[_Hlk337817761]]
+
+=== 例
+
+次のコード スニペットは、 _xamRichTextEditor_   のカレット ブラシを緑色の塗りつぶし色ブラシに設定する方法を示しています。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamRichTextEditor x:Name="xamRichTextEditor1">
+  <ig:XamRichTextEditor.CaretBrush>
+    <SolidColorBrush Color="Green" />
+  </ig:XamRichTextEditor.CaretBrush>
+</ig:XamRichTextEditor>
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamRichTextEditor1.CaretBrush = new SolidColorBrush(Colors.Green);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamRichTextEditor1.CaretBrush = New SolidColorBrush(Colors.Green)
+----
+
+[[_Ref359594803]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-configuring-overview.html[xamRichTextEditor の概要の構成]
+|このトピックでは、 _xamRichTextEditor_ コントロールで複数の有用なコンテンツ編集機能を構成する方法を説明します。
+
+|====

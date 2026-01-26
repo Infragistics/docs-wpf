@@ -1,0 +1,70 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-modifying-the-skew-effect-of-items-on-xamcarouselpanels-path",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["How Do I","Styling"],
+    "guid": "{0388B60F-5794-4E30-9184-D273AB3FE765}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0857703Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel のパスで項目の傾斜効果を変更
+
+
+
+xamCarouselPanel コントロールはパス上の項目を斜めにすることができます。X 軸または Y 軸のいずれかで個々に傾斜効果を設定できます。その他のパス エフェクト (不透明、スケール、Z-オーダー) と同じように、 link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings.html[CarouselViewSettings] オブジェクトは link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.skewanglexeffectstopcollection.html[SkewAngleXEffectStopCollection] および link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.skewangleyeffectstopcollection.html[SkewAngleYEffectStopCollection] を公開します。さらに、その他の効果と同じように、 link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~skewanglexeffectstopdirection.html[SkewAngleXEffectStopDirection] プロパティと link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~skewangleyeffectstopdirection.html[SkewAngleYEffectStopDirection] プロパティを設定することによって、X および Y の傾斜両方に対して Horizontal、Vertical、または UseItemPath のいずれかに効果の方向を設定する必要があります。傾斜の値は、オブジェクトの回転を処理します。有効な値は -360 から +360 です。
+
+[NOTE]
+====
+このトピックは、 link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]のタスクを完了していることが前提となります。
+====
+
+== 傾斜-X を修正
+
+以下のコードは、パスに関連して X 軸に沿ってオブジェクトを傾斜します。最初の link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.skewanglexeffectstop.html[SkewAngleXEffectStop] はパスの先頭 (オフセット 0) で 25 度傾斜します。中間点 (オフセット .5) で項目は傾斜されません。パスの最後 (オフセット 1) で項目は -25 度傾斜されます。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        <igWindows:CarouselViewSettings SkewAngleXEffectStopDirection="UseItemPath" 
+          UseSkewing="True">
+                <igWindows:CarouselViewSettings.SkewAngleXEffectStops>
+                        <igWindows:SkewAngleXEffectStopCollection>
+                                <igWindows:SkewAngleXEffectStop Offset="0" Value="25" />
+                                <igWindows:SkewAngleXEffectStop Offset=".5" Value="0" />
+                                <igWindows:SkewAngleXEffectStop Offset="1" Value="-25" />
+                        </igWindows:SkewAngleXEffectStopCollection>
+                </igWindows:CarouselViewSettings.SkewAngleXEffectStops>
+        </igWindows:CarouselViewSettings>
+</igWindows:XamCarouselPanel.ViewSettings>
+----
+
+image::images/xamCarousel_Modifying_the_Skew_Effects_of_Items_on_a_Path_01.png[xamcarouselpanel のパスで項目の傾斜 X 効果を変更]
+
+== 傾斜-Y を修正
+
+以下のコードは、パスに関連して Y 軸に沿ってオブジェクトを傾斜します。最初の link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.skewangleyeffectstop.html[SkewAngleYEffectStop] はパスの先頭 (オフセット 0) で項目を 10 度傾斜します。中間点 (オフセット .5) で項目は傾斜されません。パスの最後 (オフセット 1) で項目は -10 度傾斜されます。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        <igWindows:CarouselViewSettings SkewAngleYEffectStopDirection="UseItemPath" 
+          UseSkewing="True">
+                <igWindows:CarouselViewSettings.SkewAngleYEffectStops>
+                        <igWindows:SkewAngleYEffectStopCollection>
+                                <igWindows:SkewAngleYEffectStop Offset="0" Value="10" />
+                                <igWindows:SkewAngleYEffectStop Offset=".5" Value="0" />
+                                <igWindows:SkewAngleYEffectStop Offset="1" Value="-10" />
+                        </igWindows:SkewAngleYEffectStopCollection>
+                </igWindows:CarouselViewSettings.SkewAngleYEffectStops>
+        </igWindows:CarouselViewSettings>
+</igWindows:XamCarouselPanel.ViewSettings>
+----
+
+image::images/xamCarousel_Modifying_the_Skew_Effects_of_Items_on_a_Path_02.png[xamcarousel のパスで項目の傾斜 Y 効果を変更]

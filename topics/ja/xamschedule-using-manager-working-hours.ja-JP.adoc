@@ -1,0 +1,112 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-manager-working-hours",
+    "controlName": ["xamSchedule"],
+    "tags": ["Appointments","How Do I","Recurrences","Scheduling"],
+    "guid": "61f573f8-f8d8-479f-8748-5f889dd2c5d7",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7213268Z"
+}
+|metadata|
+////
+
+= 稼働時間
+
+「稼働時間」機能は、稼働時間または業務時間と見なすことができる 1 日の ひとつ以上の期間を定義します。デフォルトで、稼働時間は 9 a.m. から 5 p.m. の期間に設定されますが、稼働時間がひとつの連続する期間でない場合には、稼働時間機能は複数の範囲に対応します。
+
+稼働時間は特定の日にちのリソースごとに解決されるため、さまざまなレベルで指定できます。以下は、優先順位による稼働時間の解決の概要です。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[Resource] $$->$$ DaySettingsOverrides[] $$->$$ DaySettings
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] $$->$$ Settings $$->$$ DaySettingsOverrides[] $$->$$ DaySettings
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[Resource] $$->$$ DaysOfWeek[] $$->$$ DaySettings
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] $$->$$ Settings $$->$$ DaysOfWeek[] $$->$$ DaySettings
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~workinghours.html[WorkingHours] プロパティは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.timerange.html[TimeRange] インスタンスのコレクションです。TimeRange は 2 つの TimeSpan プロパティ、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.timerange~start.html[Start] 時間と link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.timerange~end.html[End] 時間を公開するカスタム構造です。稼働時間は、稼働日としてマークされる日に限り考慮されます。したがって、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.daysettings~isworkday.html[IsWorkDay] は上記の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.daysettings.html[DaySettings] オブジェクトを使用する時に設定してください。同様に、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings.html[xamScheduleDataManager の Settings] オブジェクトには、稼働日として見なされるデフォルトの曜日を定義するフラグの付けられた列挙体である link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulesettings~workdays.html[WorkDays] プロパティがあります。このプロパティはデフォルトで月曜日から金曜日に設定されています。
+
+以下は週の稼働日を設定し、すべてのリソースに対してデフォルトの稼働時間を変更する例です。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamScheduleDataManager x:Name="dataManager">
+    <ig:XamScheduleDataManager.Settings>
+        <ig:ScheduleSettings WorkDays="Monday, Wednesday, Friday">
+            <ig:ScheduleSettings.WorkingHours>
+                <ig:WorkingHoursCollection>
+                    <ig:TimeRange Start="08:00" End="12:00" />
+                    <ig:TimeRange Start="13:00" End="17:00" />
+                </ig:WorkingHoursCollection>
+            </ig:ScheduleSettings.WorkingHours>
+        </ig:ScheduleSettings>
+    </ig:XamScheduleDataManager.Settings>
+</ig:XamScheduleDataManager>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim range1 As New TimeRange() With { _
+        .Start = New TimeSpan(8, 0, 0), _
+        .[End] = New TimeSpan(12, 0, 0) _
+}
+
+Dim range2 As New TimeRange() With { _
+        .Start = New TimeSpan(13, 0, 0), _
+        .[End] = New TimeSpan(17, 0, 0) _
+}
+
+If dataManager.Settings Is Nothing Then
+        dataManager.Settings = New ScheduleSettings()
+End If
+
+If dataManager.Settings.WorkingHours Is Nothing Then
+        dataManager.Settings.WorkingHours = New WorkingHoursCollection()
+End If
+
+dataManager.Settings.WorkingHours.Add(range1)
+dataManager.Settings.WorkingHours.Add(range2)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+TimeRange range1 = new TimeRange()
+{
+    Start = new TimeSpan(8, 0, 0),
+    End = new TimeSpan(12, 0, 0)
+};
+
+TimeRange range2 = new TimeRange()
+{
+    Start = new TimeSpan(13, 0, 0),
+    End = new TimeSpan(17, 0, 0)
+};
+
+if (dataManager.Settings == null)
+    dataManager.Settings = new ScheduleSettings();
+	
+if (dataManager.Settings.WorkingHours == null)
+    dataManager.Settings.WorkingHours = new WorkingHoursCollection();
+	
+dataManager.Settings.WorkingHours.Add(range1);
+dataManager.Settings.WorkingHours.Add(range2);
+----
+
+「稼働日」および「稼働時間」情報は、2 通りの方法でビューに影響を与えます。稼働時間は Day および Schedule ビュー内のタイムスロットの表示に影響を与えます。稼働日の稼働時間を含むタイムスロットには、非稼働タイムスロットとは異なる背景が付きます。
+
+稼働時間は、表示される日にちと時間にも影響を与えることができます。たとえば、Month ビューで、ShowWorkingDaysOfWeekOnly を True に設定して、週の非稼働日を非表示にすることができます。Day および Schedule ビューで、ShowWorkingHoursOnly を True に設定して、稼働時間を含まないタイムスロットを非表示にすることができます。注: Day ビューでは、UI に穴が全くないようにタイムスロットの時間は結合されます。したがって、異なる稼働時間情報を含む複数の日を表示する時に、いくつかの日で非稼働のタイムスロットが表示される場合があります。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview~workingdayssource.html[WorkingDaySource] (Month ビュー) と link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduletimecontrolbase~workinghourssource.html[WorkingHoursSource] (Day/Schedule ビュー) は、どの日にち/時間を稼働時間として見なすべきかを決定する時に、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuser.html[CurrentUser] を検討するのか、それとも現在表示されているすべてのリソースを検討するのかを決定します。
+
+*注* : WorkingHours はフローティング時間として見なされるので、時間は特定のタイム ゾーンに相対します。たとえば、Day ビューと Schedule ビューでどのタイムスロットを稼働時間として表示するかを解決する時、稼働時間は、含んでいる CalendarGroup で現在選択されている Resource である Resource の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~primarytimezoneid.html[PrimaryTimeZoneId] に相対します。PrimaryTimeZoneId が指定されない場合、時間はローカルなタイム ゾーンに相対します。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-views.html[xamSchedule ビューについて]
+
+link:xamschedule-using-manager-logical-day.html[論理的な 1 日とタイムスロット]

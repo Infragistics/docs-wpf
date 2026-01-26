@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-deleting-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I"],
+    "guid": "{AC0DDC96-FAB7-4A9A-A262-99FE69E78DAA}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5038539Z"
+}
+|metadata|
+////
+
+= レコードの削除
+
+
+
+デフォルトで、UI によるレコードの削除は有効に設定されています。UI によるレコードの削除を無効にするには、以下の例に示すように、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowdelete.html[AllowDelete] を False に設定します。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldLayoutSettings> 
+                <igDP:FieldLayoutSettings 
+                  AllowDelete="False"/> 
+        </igDP:XamDataGrid.FieldLayoutSettings> 
+</igDP:XamDataGrid>
+----
+
+UI でのレコードの削除のサポートは、現在選択されているレコードに適用されます (link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~selecteditems.html[SelectedItems] を参照)。通常、エンドユーザーはレコードを選択してから Delete キーを押します。デフォルトで、レコードが削除される前に確認メッセージ ボックスが表示されます。ただし、この動作は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~recordsdeleting_ev.html[RecordsDeleting] イベントを処理することによって修正できます。
+
+[NOTE]
+====
+*注:* レコードの削除は、すべてのデータ ソースでサポートされるわけではありません。
+====

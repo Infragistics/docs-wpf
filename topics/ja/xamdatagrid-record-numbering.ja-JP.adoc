@@ -1,0 +1,226 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-record-numbering",
+    "tags": ["Formatting","Getting Started","Grids","How Do I"],
+    "controlName": ["xamDataGrid"],
+    "guid": "78e293f2-ecad-4c24-a51b-8576f7dbc9a3",  
+    "buildFlags": [],
+    "createdOn": "2014-03-19T13:59:16.329423Z"
+}
+|metadata|
+////
+
+= レコード番号の設定 (xamDataGrid)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDataGrid_   のレコード番号設定機能について説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックは、 _xamDataGrid_ コントロールとコントロールが構成されるさまざまな要素を紹介します。
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、 _xamDataGrid_ によってフィールドがどのように表示されるかを説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref379536599,はじめに>>
+* <<_Ref379536605,レコード番号設定の構成の概要>>
+* <<_Ref379536555,番号設定タイプの構成>>
+* <<_Ref379536576,番号設定形式の構成>>
+* <<_Ref379536583,設定開始番号の構成>>
+* <<_Ref379542969,番号設定スタイルの構成>>
+* <<_Ref379536624,関連コンテンツ>>
+
+[[_Ref379536599]]
+== はじめに
+
+=== レコード番号設定の概要
+
+レコード番号設定機能を使用すると、さまざまな番号設定タイプから 1 つを  _xamDataGrid_   のレコード セレクター列に表示できます。番号設定は、新しいコントロール要素、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordselectornumber_members.html[RecordSelectorNumber] に配置されます。
+
+以下のスクリーンショットは、レコード番号設定を有効にした  _xamDataGrid_   を示します。
+
+image::images/Record_Numbering_1.png[]
+
+[[_Ref379536605]]
+== レコード番号設定の構成の概要
+
+=== レコード番号設定構成の概要表
+
+以下の表は、レコード番号設定の構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。詳細は、表の後に記載されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref379536555,番号設定タイプの構成>>
+|使用する番号設定タイプを構成します
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordselectornumbertype.html[RecordSelectorNumberType]
+
+|<<_Ref379536576,番号設定形式の構成>>
+|子レコードの番号設定形式を構成します
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordselectornumberformat.html[RecordSelectorNumberFormat]
+
+|<<_Ref379536583,設定開始番号の構成>>
+|設定開始番号を構成します
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordselectornumberstart.html[RecordSelectorNumberStart]
+
+|<<_Ref379542969,番号設定スタイルの構成>>
+|レコード番号設定要素を構成します
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordselectornumberstyle.html[RecordSelectorNumberStyle]
+
+|====
+
+[[_Ref379536555]]
+== 番号設定タイプの構成
+
+[[_Hlk368069110]]
+
+=== 概要
+
+`RecordSelectorNumberType` プロパティを使用して、レコード番号設定の有効 / 無効を切り替え、番号設定のタイプを指定します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|レコードの番号設定を無効にします。
+|`RecordSelectorNumberType`
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordselectornumbertype.html[None]
+
+|基になるデータ項目に基づいてレコード番号を表示します。
+|`RecordSelectorNumberType`
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordselectornumbertype.html[DataItemIndex]
+
+|レコードの並べ替え順序にしたがってレコード番号を表示します。
+|`RecordSelectorNumberType`
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordselectornumbertype.html[RecordIndex]
+
+|表示されるレコードについてのみレコード番号を表示します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+このモードでは、フィルターされたレコードに欠番は発生しません。 
+
+====
+|`RecordSelectorNumberType`
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordselectornumbertype.html[VisibleIndex]
+
+|====
+
+[[_Ref379536576]]
+== 番号設定形式の構成
+
+=== 概要
+
+`RecordSelectorNumberFormat` を使用して、子ノードのレコード番号設定を階層データ構造で指定します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|親コレクション内の子のレコード番号インデックスを表示します。
+|`RecordSelectorNumberFormat`
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordselectornumberformat.html[RecordNumberOnly]
+
+|親の番号を子の番号に連結します。 
+
+例:"2.1.5" は、2 番目のルート レコードの 1 番目の子レコードの 5 番目の子レコードを示します。
+|`RecordSelectorNumberFormat`
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordselectornumberformat.html[IncludeParentRecordNumber]
+
+|====
+
+[[_Ref379536583]]
+== 設定開始番号の構成
+
+=== 概要
+
+`RecordSelectorNumberStart` プロパティを使用して、レコード番号設定の開始番号を指定します。
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|レコード番号設定の新しい開始番号を設定します。
+|`RecordSelectorNumberStart`
+|`int` 型の新しい値。
+
+|====
+
+[[_Ref379542969]]
+== 番号設定スタイルの構成
+
+=== 概要
+
+`RecordSelectorNumberStyle` プロパティを使用して、レコード セレクター番号設定要素のスタイルを指定します。
+
+注:
+
+[NOTE]
+====
+`RecordSelectorNumber` は新しいコントロール要素です。スタイルを明示的に指定する場合は、`RecordSelectorNumberStyle` プロパティを使用し、黙示的に指定する場合は、自身のタイプでキーを付けることができる Resources コレクション内の Style を定義します。
+====
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|レコード番号設定要素をスタイル設定します。
+|`RecordSelectorNumberStyle`
+|`Style` 型の新しい値。
+
+|====
+
+[[_Ref379536624]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdata-selection-overview.html[選択の概要]
+|このトピックでは、データ プレゼンターのセル、列、およびフィールドの選択について概要を説明します。
+
+|====

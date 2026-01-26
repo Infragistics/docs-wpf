@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector",
+    "controlName": ["xamSchedule"],
+    "tags": [],
+    "guid": "9dfcaad0-8576-4d4e-84db-667370f1d4de",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.6623233Z"
+}
+|metadata|
+////
+
+= データ コネクター
+
+さまざまな機能の xamSchedule データ コネクターについての詳細は、以下のリンクをクリックしてください。
+
+link:xamschedule-using-connector-list.html[ListScheduleConnector]
+
+link:xamschedule-using-connector-wcf.html[WCFScheduleConnector]
+
+link:xamschedule-using-connector-exchange.html[Exchange Data Connector を使用して xamSchedule を Exchange Server に接続]
+
+link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]
+
+link:xamschedule-using-connector-recurring.html[繰り返し予定項目ソースの使用]
+
+link:xamschedule-using-connector-calendars.html[カレンダー項目ソースの使用]
+
+link:xamschedule-using-connector-custom-connectors.html[カスタム コネクター]

@@ -1,0 +1,61 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtimeline-change-event-title-layout-for-time-series",
+    "controlName": ["xamTimeline"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{7A15A427-C664-406E-BD92-8751F38157E8}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.1594059Z"
+}
+|metadata|
+////
+
+= 時刻シリーズのイベント タイトル レイアウトを変更
+
+xamTimeline コントロールの link:{ApiPlatform}controls.timelines.xamtimeline{ApiVersion}~infragistics.controls.timelines.eventtitlelayoutsettings.html[EventTitleLayoutSettings] プロパティを使用して、イベント タイトル レイアウトの設定を変更できます。自動レイアウトを有効/無効にでき、レイアウトの水平/垂直のオフセットを変更できます。
+
+以下のコードは、イベント タイトル レイアウト設定を有効にする方法、そして Numeric Time Series のイベント タイトル間の水平および垂直の間隔を変更する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamTimeline x:Name="xamTimeline" Width="1000" Height="350">
+    <!-- TO DO: ここにシリーズを追加します -->
+    <!-- TO DO: ここに軸を追加します -->
+    <!-- イベント タイトル レイアウトを有効にします -->
+    <ig:XamTimeline.EventTitleLayoutSettings>
+        <ig:EventTitleLayoutSettings HorizontalOffset="5" 
+                                       VerticalOffset="5" Enabled="True" />
+    </ig:XamTimeline.EventTitleLayoutSettings>
+</ig:XamTimeline>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xamTimeline.EventTitleLayoutSettings.Enabled = True
+Me.xamTimeline.EventTitleLayoutSettings.HorizontalOffset = 5
+Me.xamTimeline.EventTitleLayoutSettings.VerticalOffset = 5
+----
+
+*C# の場合:*
+
+----
+this.xamTimeline.EventTitleLayoutSettings.Enabled = true;
+this.xamTimeline.EventTitleLayoutSettings.HorizontalOffset = 5;
+this.xamTimeline.EventTitleLayoutSettings.VerticalOffset = 5;
+----
+
+image::images/XamTimeline_Change_Event_Title_Layout_for_Time_Series_01.png[]
+
+図 1 - イベント タイトル レイアウトが有効な XamTimeline
+
+image::images/XamTimeline_Change_Event_Title_Layout_for_Time_Series_02.png[]
+
+図 2 - イベント タイトル レイアウトを無効な XamTimeline
+
+== 関連トピック
+
+link:xamtimeline-display-date-time-series.html[日時シリーズを表示]

@@ -1,0 +1,57 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-disable-sorting-on-certain-columns",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Sorting"],
+    "guid": "{1879CFB0-7008-480D-906B-EFF656DE7ECD}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6871857Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 特定の列の並べ替えを無効にする
+
+グリッド全体で並べ替えが有効になっていても、xamGrid で特定の列の並べ替えを無効にすることができます。たとえば、固定列があり、エンド ユーザーがその列を並べ替えできないようにするとします。
+
+以下のコードが示すように、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column.html[Column] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~issortable.html[IsSortable] プロパティを false に設定するだけでこれを実現できます。
+
+*XAML の場合:*
+
+----
+<ig:TextColumn Key="ProductID" IsSortable="False" />
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Dim UnsortableColumn As Column = Me.MyGrid.Columns.DataColumns("ProductName")
+UnsortableColumn.IsSortable = False
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+Column UnsortableColumn = this.MyGrid.Columns.DataColumns["ProductName"];
+UnsortableColumn.IsSortable = false;
+----
+
+== 関連トピック
+
+link:xamgrid-sorting.html[並べ替え]
+
+link:xamgrid-multi-column-sorting.html[複数列の並べ替え]
+
+link:xamgrid-remove-sort-indicator.html[並べ替えインジケーターの削除]
+
+link:xamgrid-sorting-events.html[並べ替えイベント]
+
+link:xamgrid-custom-sort.html[カスタム並べ替え]

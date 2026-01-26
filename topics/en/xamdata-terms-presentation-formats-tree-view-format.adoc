@@ -1,0 +1,111 @@
+﻿////
+|metadata|
+{
+    "name": "xamdata-terms-presentation-formats-tree-view-format",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Data Binding","Data Presentation","How Do I","Templating"],
+    "guid": "",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5518635Z"
+}
+|metadata|
+////
+
+= Tree View
+
+Tree View expresses your data in the form of a table, containing regular columns and rows because it has a view extending from the  link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.gridviewbase.html[GridViewBase] (like the Grid View). However, the Tree View has a special "tree-field" which contains a tree representation of the hierarchical data bound to the control. The user has the ability to browse through the nested records' levels by expanding and collapsing them using the designated expansion indicators.
+
+The following screenshot shows a Tree View displaying hierarchical structure of records with the tree positioned in the "Name" field. The "Name" field in this example is using a custom template for the link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.treecellvaluepresenter.html[TreeCellValuePresenter] which displays an image for each record:
+
+image::images/xamTreeGrid_02.png[]
+
+=== Main features summary
+
+The following table summarizes the main features of the Tree View in addition to the features supported by the Grid View. More details are available after the summary table.
+
+[options="header", cols="a,a"]
+|====
+|Feature|Description
+
+|<<_Ref410303345,Tree Field>>
+|You can specify field in which the tree will be positioned.
+
+|<<_Ref410303357,Expand/Collapse>>
+|Expanding and collapsing of nested records.
+
+|<<_Ref410303366,Tree Selection>>
+|Selection of cross-level records.
+
+|<<_Ref410303373,Tree Filtering>>
+|Filtering of multi-level records.
+
+|<<_Ref410303379,Tree Summaries>>
+|Multi-level records' summaries.
+
+|<<_Ref410303380,Exporting Data>>
+|Exporting data to Microsoft® Excel® file format and Microsoft® Word® file format.
+
+|====
+
+[[_Ref410303345]]
+=== Tree Field
+
+You can specify the field in which the tree will be displayed and also position the tree on the left or on the right side of the field using the `FlowDirection` property.
+
+*Related Topic:*
+
+link:xamtreegrid-conf-tree-field.html[Configuring Tree Field (xamTreeGrid)]
+
+[[_Ref410303357]]
+=== Expand/Collapse
+
+The view supports expanding and collapsing of nested records using expansion indicators. The initial state of the expansion indicators can be configured.
+
+*Related Topic:*
+
+link:xamtreegrid-conf-expansion-indicators.html[Configuring Expansion Indicators (xamTreeGrid)]
+
+[[_Ref410303366]]
+=== Tree Selection
+
+The view supports cross-level selection.
+
+*Related Topic:*
+
+link:xamtreegrid-conf-selection.html[Configuring Selection (xamTreeGrid)]
+
+[[_Ref410303373]]
+=== Tree Filtering
+
+The view supports multi-level record filtering. You can configure how the view displays records which do not match the filtering criteria.
+
+*Related Topic:*
+
+link:xamtreegrid-conf-filtering.html[Configuring Filtering (xamTreeGrid)]
+
+[[_Ref410303379]]
+=== Tree Summaries
+
+The view supports summaries for each nested record level. You can specify the calculators for each field.
+
+*Related Topic:*
+
+link:xamtreegrid-conf-summaries.html[Configuring Summaries (xamTreeGrid)]
+
+[[_Ref410303380]]
+=== Exporting Data
+
+As any other view, the Tree View supports data exporting to popular Microsoft® Excel® file format and Word® file format.
+
+*Related Topics:*
+
+* link:xamdatapresenter-exporting-to-excel.html[Exporting to Excel]
+* link:xamdatapresenter-exporting-to-word.html[Exporting to Word]
+
+== Related Topics
+
+link:xamdata-terms-presentation-formats-grid-view-format.html[Grid View]
+
+link:xamdata-terms-presentation-formats-carousel-view.html[Carousel View]
+
+link:xamdata-terms-presentation-formats-card-view.html[Card View]

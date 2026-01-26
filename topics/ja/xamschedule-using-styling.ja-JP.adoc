@@ -1,0 +1,21 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-styling",
+    "controlName": ["xamSchedule"],
+    "tags": [],
+    "guid": "848f2938-58c4-42b8-9359-5fa0d1ec060d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.8303632Z"
+}
+|metadata|
+////
+
+= スタイル設定
+
+xamSchedule のスタイル設定についての詳細は、以下のリンクをクリックしてください。
+
+link:xamschedule-using-styling-custom.html[カスタムの配色]
+
+link:xamschedule-using-styling-washingcolorschemes.html[ウォッシュ カラー スキーム (xamSchedule)]

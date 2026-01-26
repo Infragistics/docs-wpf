@@ -1,0 +1,17 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnumericeditor-about-xamnumericeditor",
+    "controlName": ["xamNumericEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{06EBFFE0-1CDC-4622-B707-8E756928250B}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2279781Z"
+}
+|metadata|
+////
+
+= xamNumericEditor について
+
+xamNumericEditor™ コントロールは、エンド ユーザーの数値入力 (最大長さ: 29 数字) を支援するためにマスクを使用するシンプルなテキスト ボックス コントロールです。このマスクを使用して、事前に決定した有効な数値フォーマットにエンド ユーザーの入力を制限することができます。スタンドアロン エディターとして、または xamDataGrid™ コントロールの Field で xamNumericEditor コントロールを使用します。xamDataGrid のフィールドとして、xamNumericEditor は特定のグリッド列の適切なフォーマットを維持すると同時に、エンド ユーザーのデータ入力を支援します。

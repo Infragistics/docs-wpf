@@ -1,0 +1,828 @@
+﻿////
+|metadata|
+{
+    "name": "netadvantage-assemblies",
+    "controlName": [],
+    "tags": ["API"],
+    "guid": "{894CE0A6-7D87-4FC6-85C1-592C2FE6F46A}",
+    "buildFlags": [],
+    "createdOn": "2012-01-31T16:16:07.8423347Z"
+}
+|metadata|
+////
+
+= {ProductName} アセンブリ
+
+以下は、{ProductName} 製品のフル バージョンに含まれているすべてのアセンブリのリストです。この表は従属するアセンブリとともに各アセンブリに含まれる {ProductName} コントロールも指定しています。 
+
+[options="header", cols="a,a"]
+|====
+|アセンブリ|{ProductName}コントロール
+
+|{VersionedApiPlatform}.v{ProductVersion}.dll
+|
+
+link:xamcarouselpanel.html[xamCarouselPanel] 
+
+link:xamcarousellistbox.html[xamCarouselListBox] 
+
+link:xamtabcontrol.html[xamTabControl] 
+
+link:reswash.html[Resource Washer]™ 
+
+|{VersionedApiPlatform}.Controls.Barcodes.BarcodeReader.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:ig-barcode-reader.html[Infragistics Barcode Reader]
+
+|{VersionedApiPlatform}.Controls.Barcodes.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:xambarcode.html[xamBarcode]™
+
+|{VersionedApiPlatform}.Calculations.XamCalculationManager.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xamcalculationmanager.html[XamCalculationManager]™
+
+|{VersionedApiPlatform}.Controls.Charts.XamDataChart.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Math.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Math.Calculators.v{ProductVersion}.dll 
+
+| link:datachart-datachart.html[XamDataChart]™ 
+
+link:funnelchart.html[XamFunnelChart]™ 
+
+link:piechart.html[XamPieChart]™
+
+|{VersionedApiPlatform}.Controls.Charts.XamDiagram.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Undo.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DragDrop.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamColorPicker.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamMaskedInput.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamSlider.v{ProductVersion}.dll 
+
+| link:xamdiagram.html[xamDiagram]™
+
+|{VersionedApiPlatform}.Controls.Charts.XamSparkline.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:sparkline.html[xamSparkline]™
+
+|{VersionedApiPlatform}.Controls.Charts.XamSurfaceChart3D.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:xamscattersurface3d.html[xamScatterSurface3D]™
+
+|{VersionedApiPlatform}.Controls.Charts.XamTreemap.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:xamtreemap.html[xamTreemap]
+
+|{VersionedApiPlatform}.Controls.Editors.XamCalendar.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xamcalendar.html[xamCalendar]
+
+|{VersionedApiPlatform}.Controls.Editors.XamColorPicker.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamSlider.v{ProductVersion}.dll 
+
+| link:xamcolorpicker.html[xamColorPicker]
+
+|{VersionedApiPlatform}.Controls.Editors.XamComboEditor.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll 
+
+| link:xaml-xamcomboeditor.html[XamComboEditor]™ 
+
+link:xammulticolumncomboeditor.html[XamMultiColumnComboEditor]™
+
+|{VersionedApiPlatform}.Controls.Editors.XamDateTimeInput.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamCalendar.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamMaskedInput.v{ProductVersion}.dll 
+
+| link:xamdatetimeinput.html[XamDateTimeInput]™
+
+|{VersionedApiPlatform}.Controls.Editors.XamMaskedInput.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xamcurrencyinput.html[XamCurrencyInput]™ 
+
+link:xammaskedinput.html[XamMaskedInput]™ 
+
+link:xamnumericinput.html[XamNumericInput]™
+
+|{VersionedApiPlatform}.Controls.Editors.XamPropertyGrid.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Editors.XamCalendar.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Editors.XamColorPicker.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Editors.XamDateTimeInput.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Editors.XamMaskedInput.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Editors.XamSlider.v{ProductVersion}.dll 
+
+| link:xampropertygrid.html[xamPropertyGrid]™
+
+|{VersionedApiPlatform}.Controls.Editors.XamRichTextEditor.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Documents.RichTextDocument.v{ProductVersion}.dll 
+
+| link:xamrichtexteditor.html[xamRichTextEditor]™
+
+|{VersionedApiPlatform}.Controls.Editors.XamSlider.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xamslider.html[xamSlider]
+
+|{VersionedApiPlatform}.Controls.Editors.XamSyntaxEditor.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Documents.TextDocument.v{ProductVersion}.dll 
+
+| link:xamsyntaxeditor.html[xamSyntaxEditor]™
+
+|{VersionedApiPlatform}.Controls.Grids.DateTimeColumn.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamCalendar.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamMaskedInput.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamDateTimeInput.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Grids.XamGrid.v{ProductVersion}.dll 
+
+| link:xamgrid-datetimecolumn.html[DateTime Column]™
+
+|{VersionedApiPlatform}.Controls.Grids.MultiColumnComboColumn.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Editors.XamComboEditor.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Grids.XamGrid.v{ProductVersion}.dll 
+
+| link:xamgrid-multicolumncombo-column.html[MultiColumnCombo Column]™
+
+|{VersionedApiPlatform}.Controls.Grids.SparklineColumn.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Charts.XamSparkline.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Grids.XamGrid.v{ProductVersion}.dll 
+
+| link:xamgrid-sparkline-column.html[Sparkline Column]™
+
+|{VersionedApiPlatform}.Controls.Grids.XamGrid.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll 
+
+| link:xamgrid.html[xamGrid]
+
+|{VersionedApiPlatform}.Controls.Grids.XamPivotDataSlicer.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+| link:xampivotgrid-dataslicer.html[DataSlicer]™
+
+|{VersionedApiPlatform}.Controls.Grids.XamPivotGrid.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DragDrop.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Menus.XamDataTree.v{ProductVersion}.dll 
+
+| link:xampivotgrid.html[xamPivotGrid]™
+
+|{VersionedApiPlatform}.Controls.Grids.XamSpreadsheet.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Documents.Code.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Documents.Excel.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Undo.v{ProductVersion}.dll 
+
+| link:spreadsheet.html[xamSpreadsheet]™
+
+|{VersionedApiPlatform}.Controls.Interactions.XamDialogWindow.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xamdialogwindow.html[xamDialogWindow]
+
+|{VersionedApiPlatform}.Controls.Interactions.XamFormulaEditor.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Calculations.XamCalculationManager.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Menus.XamDataTree.v{ProductVersion}.dll 
+
+| link:xamformulaeditor.html[xamFormulaEditor]™
+
+|{VersionedApiPlatform}.Controls.Interactions.XamSpellChecker.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Interactions.XamDialogWindow.v{ProductVersion}.dll 
+
+| link:xamspellchecker.html[xamSpellChecker]
+
+|{VersionedApiPlatform}.Controls.Layouts.XamTileManager.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xamtilemanager.html[xamTileManager]
+
+|{VersionedApiPlatform}.Controls.Maps.XamGeographicMap.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Charts.XamDataChart.v{ProductVersion}.dll 
+
+| link:geographicmap.html[xamGeographicMap]™
+
+|{VersionedApiPlatform}.Controls.Maps.XamMap.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:xammap.html[xamMap]
+
+|{VersionedApiPlatform}.Controls.Maps.XamNetworkNode.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:xamnetworknode.html[xamNetworkNode]
+
+|{VersionedApiPlatform}.Controls.Maps.XamOrgChart.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll 
+
+| link:xamorgchart.html[xamOrgChart]
+
+|{VersionedApiPlatform}.Controls.Menus.XamDataTree.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DragDrop.v{ProductVersion}.dll 
+
+| link:xamdatatree.html[xamDataTree]
+
+|{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xammenu.html[xamMenu]
+
+|{VersionedApiPlatform}.Controls.Menus.XamRadialMenu.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:xamradialmenu.html[xamRadialMenu]™
+
+|{VersionedApiPlatform}.Controls.Menus.XamTagCloud.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xamtagcloud.html[xamTagCloud]
+
+|{VersionedApiPlatform}.Controls.Schedules.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll
+
+{VersionedApiPlatform}.Controls.Editors.XamCalendar.v{ProductVersion}.dll
+
+{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll
+
+| link:xamschedule.html[xamSchedule]
+
+|{VersionedApiPlatform}.Controls.SchedulesDialogs.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Editors.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Ribbon.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Schedules.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.Controls.SchedulesExchangeConnector.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Schedules.v{ProductVersion}.dll 
+
+| link:{ApiPlatform}controls.schedulesexchangeconnector{ApiVersion}~infragistics.controls.schedules.exchangescheduledataconnector.html[ExchangeScheduleDataConnector]
+
+|{VersionedApiPlatform}.Controls.Timelines.XamTimeline.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+| link:xamtimeline.html[xamTimeline]
+
+|{VersionedApiPlatform}.DataManager.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.DataPresenter.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Editors.v{ProductVersion}.dll 
+
+| link:xamdatacarousel.html[xamDataCarousel] 
+
+link:xamdatagrid.html[xamDataGrid] 
+
+link:xamdatapresenter.html[xamDataPresenter] 
+
+link:xamdatacards.html[xamDataCards]
+
+|{VersionedApiPlatform}.DataPresenter.CalculationAdapter.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataPresenter.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Calculations.XamCalculationManager.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.DataPresenter.DataSources.Async.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataPresenter.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.DataPresenter.ExcelExporter.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.DataPresenter.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Documents.Excel.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.DataVisualization.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+|
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamdock.html[xamDock]™ 
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamoverviewplusdetailpane.html[XamOverviewPlusDetailPane]™ 
+
+link:{ApiPlatform}datavisualization{ApiVersion}~infragistics.controls.xamzoombar.html[XamZoombar]™ 
+
+|{VersionedApiPlatform}.DockManager.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.dll 
+
+| link:xamdockmanager.html[xamDockManager]
+
+|{VersionedApiPlatform}.DragDrop.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:drag-and-drop-framework.html[Infragistics Drag and Drop Framework]
+
+|{VersionedApiPlatform}.Documents.IO.v{ProductVersion}.dll
+| link:word-library.html[Word ライター]
+
+|{VersionedApiPlatform}.Documents.Excel.v{ProductVersion}.dll
+| link:excelengine.html[Infragistics Excel Engine について] 
+
+|{VersionedApiPlatform}.Math.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:ig-math-infragistics.html[Infragistics Math Library]
+
+|{VersionedApiPlatform}.Math.Calculators.v{ProductVersion}.dll
+|シリーズ誤差範囲または Value Overlay 機能を xamDataChart コントロールで Math Calculators と共に使用する時に必要とされるアセンブリ。
+
+|{VersionedApiPlatform}.Olap.Amomd.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.Xmla.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.Olap.Excel.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.FlatData.{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Documents.Excel.{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.Olap.FlatData.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.Olap.Xmla.Oracle.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.Xmla.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.Olap.Xmla.Sap.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.Xmla.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.Olap.Xmla.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Olap.v{ProductVersion}.dll 
+
+|
+
+|{VersionedApiPlatform}.OutlookBar.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:xamoutlookbar.html[xamOutlookBar]
+
+|{VersionedApiPlatform}.Persistence.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:control-persistence-framework.html[Infragistics Control Persistence Framework]
+
+|{VersionedApiPlatform}.Reporting.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:wpf-reporting.html[WPF Reporting]
+
+|{VersionedApiPlatform}.Ribbon.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+{VersionedApiPlatform}.Editors.v{ProductVersion}.dll 
+
+| link:xamribbon.html[xamRibbon]
+
+|{VersionedApiPlatform}.Undo.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:undo-redo-framework.html[Infragistics Undo Redo Framework]™
+
+|*従属するアセンブリ* 
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+| link:thememanager.html[Infragistics ThemeManager]™
+
+|Infragistics4.Services.Schedules.WcfConnectorService.v{ProductVersion}.dll 
+
+*従属するアセンブリ*
+
+{VersionedApiPlatform}.v{ProductVersion}.dll 
+
+|クライアントにリスト スケジュール データを提供する WCF サービス
+
+|====
+
+== デザイン アセンブリ
+
+以下は、{ProductName} 製品のフル バージョンのデザイン関連のアセンブリのリストです。デザイン アセンブリは、Microsoft® Expression® Blend ツールボックスから要素を非表示にして、プロパティのカテゴリ化を支援するために使用されます。
+
+* {VersionedApiPlatform}.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Calculations.XamCalculationManager.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Barcodes.BarcodeReader.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Barcodes.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Charts.Olap.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Charts.XamDataChart.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Charts.XamDiagram.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Charts.XamGauge.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Charts.XamSparkline.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Charts.XamSurfaceChart3D.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Charts.XamTreemap.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamCalendar.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamColorPicker.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamComboEditor.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamDateTimeInput.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamMaskedInput.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamPropertyGrid.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamRichTextEditor.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamSlider.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Editors.XamSyntaxEditor.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Grids.XamGrid.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Grids.XamPivotDataSlicer.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Grids.XamPivotGrid.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Grids.XamSpreadsheet.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Interactions.XamDialogWindow.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Interactions.XamFormulaEditor.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Interactions.XamHtmlViewer.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Interactions.XamSpellChecker.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Layouts.XamTileManager.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Maps.XamGeographicMap.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Maps.XamMap.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Maps.XamNetworkNode.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Maps.XamOrgChart.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Menus.XamDataTree.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Menus.XamMenu.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Menus.XamTagCloud.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Menus.XamTree.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Schedules.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.SchedulesExchangeConnector.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Controls.Timelines.XamTimeline.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.DataPresenter.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.DataVisualization.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.DockManager.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.OutlookBar.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Reporting.v{ProductVersion}.Design.dll
+* {VersionedApiPlatform}.Ribbon.v{ProductVersion}.Design.dll
+
+== テーマパック アセンブリ
+
+以下の表は、対応するスタイルとともに、{ProductName} 製品のフル バージョンで使用可能なテーマパック関連のアセンブリのリストです。
+
+[cols="a,a"]
+|====
+|テーマパック アセンブリ|スタイル
+
+|{VersionedApiPlatform}.Themes.Fall.v{ProductVersion}.dll
+|Fall
+
+|{VersionedApiPlatform}.Themes.ForestGreen.v{ProductVersion}.dll
+|ForestGreen
+
+|{VersionedApiPlatform}.Themes.IG.v{ProductVersion}.dll
+|IG
+
+|{VersionedApiPlatform}.Themes.Leaf.v{ProductVersion}.dll
+|Leaf
+
+|{VersionedApiPlatform}.Themes.Lipstick.v{ProductVersion}.dll
+|Lipstick
+
+|{VersionedApiPlatform}.Themes.Metro.v{ProductVersion}.dll
+|Metro
+
+|{VersionedApiPlatform}.Themes.MetroDark.v{ProductVersion}.dll
+|MetroDark
+
+|{VersionedApiPlatform}.Themes.Office2010Blue.v{ProductVersion}.dll
+|Office2010
+
+|{VersionedApiPlatform}.Themes.Office2013.v{ProductVersion}.dll
+|Office2013
+
+|{VersionedApiPlatform}.Themes.RoyalDark.v{ProductVersion}.dll
+|RoyalDark
+
+|{VersionedApiPlatform}.Themes.RoyalLight.v{ProductVersion}.dll
+|RoyalLight
+
+|{VersionedApiPlatform}.Themes.Water.v{ProductVersion}.dll
+|Water
+
+|{VersionedApiPlatform}.Themes.Wind.v{ProductVersion}.dll
+|Wind
+
+|====

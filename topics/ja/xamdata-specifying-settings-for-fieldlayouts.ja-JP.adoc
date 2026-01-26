@@ -1,0 +1,52 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-specifying-settings-for-fieldlayouts",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Layouts"],
+    "guid": "{5CF44296-5243-4B1C-A6F8-A68BBFD5E398}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5288589Z"
+}
+|metadata|
+////
+
+= FieldLayout の設定を指定
+
+
+
+FieldLayoutSettings オブジェクトは、以下に説明するように、ひとつまたは複数の FieldLayout に適用される設定を指定するために使用されます。このオブジェクトは以下の 2 つのプロパティによって公開されます。
+
+* DataPresenterBase の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayoutsettings.html[FieldLayoutSettings] プロパティ
+* FieldLayout の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~settings.html[Settings] プロパティ
+
+== FieldLayoutSettings プロパティ
+
+このプロパティに指定された設定は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~fieldlayouts.html[FieldLayouts] コレクションのすべての FieldLayouts のデフォルトになります。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldLayoutSettings> 
+                <igDP:FieldLayoutSettings 
+                  HighlightAlternateRecords="True"/> 
+        </igDP:XamDataGrid.FieldLayoutSettings> 
+</igDP:XamDataGrid>
+----
+
+== Settings プロパティ
+
+このプロパティに指定された設定は特定の FieldLayout のみに適用されます。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldLayouts> 
+                <igDP:FieldLayout> 
+                        <igDP:FieldLayout.Settings> 
+                                <igDP:FieldLayoutSettings 
+                                  AutoGenerateFields="False"/> 
+                        </igDP:FieldLayout.Settings> 
+                </igDP:FieldLayout> 
+        </igDP:XamDataGrid.FieldLayouts> 
+</igDP:XamDataGrid>
+----

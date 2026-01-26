@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager",
+    "controlName": ["xamDockManager"],
+    "tags": [],
+    "guid": "{E24E8F78-0D6A-47D6-AA6E-FB055AC7AF50}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.4770485Z"
+}
+|metadata|
+////
+
+= xamDockManager
+
+
+
+このセクションでは、xamDockManager™ コントロールに関連した概要/タスクベースの全ての情報を提供します。このセクションには、コントロールが何を実行するのか、またアプリケーションでなぜコントロールを使用したくなるのかから、コントロールを使用して一般的なタスクを完了する方法に関するステップバイステップの手順まで、xamDockManager に関する貴重な情報が含まれています。
+
+以下のリンクをクリックして、xamDockManager コントロールについての情報にアクセスします。
+
+== link:xamdockmanager-understanding-xamdockmanager.html[xamDockManager について]
+
+このセクションには xamDockManager コントロールの機能をより理解するための情報があります。なぜアプリケーションのビルドの一部として使用するかも説明します。
+
+== link:xamdockmanager-getting-started-with-xamdockmanager.html[xamDockManager をアプリケーションに追加]
+
+xamDockManager コントロールでできる限り素早く起動して実行するために、コントロールを使用して開始する方法 (たとえば、ウィンドウに xamDockManager を追加) についての情報を提供します。
+
+== link:xamdockmanager-using-xamdockmanager.html[xamDockManager を使用]
+
+このセクションには、xamDockManager コントロールで提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamdockmanager-api-overview.html[API の概要]
+
+このトピックは、xamDockManager コントロールでプログラミングする間に作業をする名前空間とクラスをリストします。このトピックに示されている名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[API リファレンス ガイド]にリンクしています。

@@ -1,0 +1,76 @@
+﻿////
+
+|metadata|
+{
+    "name": "xaminputs-overview-of-the-valueinput-class",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing","Getting Started"],
+    "guid": "aad73c96-9dc3-4d79-b6ed-570542b0dfcb",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.9092161Z"
+}
+|metadata|
+////
+
+{XamInputHeader}
+
+= ValueInput クラスの概要
+
+ValueInput クラスは、その他のすべての (xamInputs ) が生成される抽象基本クラスです。ValueInput クラスはすべての link:xaminputs.html[xamInputs] に共通する機能の大部分を実装します。継承の階層の詳細については、 link:xammaskedinput-api-overview.html[API の概要] を参照してください。
+
+== ValueInput クラスのプロパティ チャート
+
+以下の表は、ValueInput クラスの重要なプロパティの一部を説明しています。 
+
+[cols="3a,3a,11a,3a"]
+|====
+|プロパティ
+|タイプ
+|説明
+|デフォルト値
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~valuetype.html[ValueType]
+|Type
+|ValueType プロパティは、入力によって表示/編集される値のタイプを指定します。ValueInput は、ユーザー入力が確実にこのタイプであるようにします。これは入力されたデータを自動的に解析し、このタイプのオブジェクトに変換します。入力されたデータが正しいフォーマットでない場合、値の入力はそれを拒否し、InvalidValueBehavior プロパティ設定に基づいて適切なアクションを取ります。
+|null
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~value.html[Value]
+|Object
+|Value プロパティは、入力コントロールによって表示/編集される値を取得または設定します。これは、ValueType プロパティによって指定されたタイプのオブジェクトを返します。たとえば、xamMaskedinput™ の ValueType を DateTime に設定した場合には、Value プロパティは DateTime オブジェクトを返します。上記のように、xamMaskedInput はユーザーが入力したデータを自動的に DateTime オブジェクトに変換します。
+|null
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~valueconstraint.html[ValueConstraint]
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueconstraint.html[ValueConstraint]
+|ValueConstraint プロパティによって、ユーザーが xamInputs に入力できる値の制約を指定することができます。指定できる制約には、最小値、最大値、正規表現、nullable、最大長などがあります。使用される xamInput は、これらの制約に照らし合わせてユーザー入力を検証し、入力が制約を満たさない場合には、入力した値は無効と見なされます。
+|null
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~isvaluevalid.html[IsValueValid]
+|bool
+|ValueInput の IsValueValid プロパティは、現在の入力が有効かどうかを示します。入力が無効な場合、入力コントロールは、ユーザーがコントロールを終了しようとするときに、InvalidValueBehavior プロパティの設定に基づいてアクションを取ります。
+|True
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~invalidvaluebehavior.html[InvalidValueBehavior]
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.invalidvaluebehavior.html[InvalidValueBehavior]
+|InvalidValueBehavior プロパティは、ユーザーが無効な値を入力してから xamInput を終了しようとするときに取るべきアクションを指定します。ValueInput の ValueType への入力を適切に解析できない、または ValueConstraint によって指定された値の制約が満たされない時には、コントロールはユーザー入力を無効と見なします。デフォルト値では、入力した値が無効であることを示すメッセージをユーザーに表示します。
+|DisplayErrorMessageAndRevertValue
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~valuetotextconverter.html[ValueToTextConverter]
+|IValueConverter
+|このプロパティによって、Value および Text プロパティ間で変換するためのカスタム ロジックを指定することができます。これは、値からテキストに、またテキスト (ユーザー入力) から値の、両方向の変換に使用されます。たとえば、xamMaskedInput の ValueType が DateTime に設定されている場合、ValueToTextConverter プロパティを使用して、DateTime オブジェクトをテキストに変換して編集モード中に表示したり、またユーザー入力を DateTime オブジェクトに戻したりします。xamInput コントロールが提供するデフォルトの変換ロジックでは十分なため、通常、このコンバーターを指定する必要はありません。ただし、特別なニーズがある場合は、カスタムの変換を実装することができます。link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~valuetotextconverter.html[ValueToTextConverter] ページで例を参照してください。
+|none
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.textinputbase~valuetodisplaytextconverter.html[ValueToDisplayTextConverter]
+|IValueConverter
+|このプロパティは TextInputBase クラスによって実装されますが、ValueToTextConverter プロパティに似ているためここで説明されています。主な違いは、ValueToDisplayTextConverter は表示モードでのみ使用されることです。そのため、値からテキストへの変換用にのみ使用されます。2 つの異なるコンバータ (ひとつは編集モード用、もうひとつは表示モード用) を使用する理由は、異なるフォーマットで値を表示したり、異なるフォーマットで値を編集できるようにするためです。たとえば、DateTime の場合、日付表示を長い日付 (たとえば January 01, 2007) として表示することができます。また、エンドユーザーが編集モードで値を修正するときは、より簡単に編集するために同じ値を 01/01/07 で表示させたい場合があります。ユーザーが短い日付フォーマットの日付を修正して入力コントロールを終了した後、ValueToDisplayTextConverter プロパティを使用して長い日付フォーマットで新しい日付が自動的に表示されます。例については、 link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.valueinput~valuetotextconverter.html[ValueToTextConverter] のページを参照してください。
+|none
+
+|====
+
+ 
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-about.html[xamInputs について]
+* link:xaminputs-masks.html[マスク]

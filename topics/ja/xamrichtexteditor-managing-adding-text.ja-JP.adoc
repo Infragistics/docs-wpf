@@ -1,0 +1,459 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-adding-text",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "dbf0277b-0fc9-48bb-8883-43425dd3b2c0",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4953427Z"
+}
+|metadata|
+////
+
+= テキストの追加 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ を使用してテキストを作成する方法を、開発者の観点から説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref364783180,テキスト コンテンツの紹介>>
+* <<_Ref364783183,段落ノード>>
+* <<_Ref364783187,実行ノード>>
+* <<_Ref364783192,テキスト ノード>>
+* <<_Ref364783197,実例>>
+* <<_Ref364783202,関連コンテンツ>>
+
+[[_Ref364783180]]
+== テキスト コンテンツの紹介
+
+=== テキスト コンテンツの概要
+
+_xamRichTextEditor_   コントロールは、要求に応じてさまざまにスタイルできるドキュメントのテキスト コンテンツをサポートしています。テキスト ノードはテキスト一式を保持しますが、スタイルを設定する機能はありません。テキスト ノードをスタイル設定するには、実行ノード インスタンスに追加します。実行ノードは、提供された設定とスタイルに基づき、すべての子テキスト ノードをスタイル設定できます。実行ノードは段落ノードに追加されます。
+
+テキスト ノードや実行ノードをドキュメントの本文に直接追加できません。本文に追加できるのは、段落と表のみです。段落には実行ノードとハイパーリンク ノードのみを含めることができます。以下のツリー図は、テキスト コンテンツを定義することができる構造を示します。
+
+```
+DocumentRootNode
+   DocumentBodyNode
+      ParagraphNode
+         RunNode
+            TextNode
+         HyperlinkNode
+            RunNode
+               TextNode
+      TableNode
+         TableRowNode
+            TableCellNode
+               ParagraphNode
+               TableNode
+```
+
+=== API リンク
+
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode_members.html[DocumentRootNode]
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentbodynode_members.html[DocumentBodyNode]
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode_members.html[ParagraphNode]
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.runnode_members.html[RunNode]
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.textnode_members.html[TextNode]
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.hyperlinknode_members.html[HyperlinkNode]
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tablenode_members.html[TableNode]
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tablerownode_members.html[TableRowNode]
+* link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.tablecellnode_members.html[TableCellNode]
+
+[[_Ref364783183]]
+== 段落ノード
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode_members.html[ParagraphNode] は、 または `TableCellNode` の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes] コレクションに追加され、ドキュメントのテキスト コンテンツの段落を表すために使用されます。段落は、段落設定やスタイルを使用してカスタマイズできます。
+
+=== 主なプロパティ
+
+以下の表は、主要な構成と各プロパティ設定をマップします。
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するプロパティ / コレクション:
+
+|配置、インデント、スペースなど段落の設定
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode~settings.html[Settings]
+
+|配置されているカスタム スタイルの設定 
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~styles.html[DocumentRootNode.Styles]
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode~styleid.html[StyleId]
+
+|実行ノードの追加
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes]
+
+|====
+
+注:
+
+[NOTE]
+====
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~applyparagraphsettings.html[RichTextDocument.ApplyParagraphSettings] メソッドを使用して、引数として提供されたドキュメント範囲に特定の段落設定を適用できます。また、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~applyparagraphstyle.html[RichTextDocument.ApplyParagraphStyle] メソッドを使用して、引数として提供されたドキュメント範囲に特定のスタイルを適用できます。
+====
+
+[[_Ref364783187]]
+== 実行ノード
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.runnode_members.html[RunNode] を または `HyperlinkNode` の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes] コレクションに追加して、1 つ以上のテキスト コンテンツ一式に同じ設定とスタイルを適用します。実行ノードは、文字設定やスタイルを使用してカスタマイズできます。
+
+=== 主なプロパティ
+
+以下の表は、主要な構成と各プロパティ設定をマップします。
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するプロパティ / コレクション:
+
+|太字、斜体、フォント ファミリー、フォント サイズ、カラー、シェーディングなどの設定
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode~settings.html[Settings]
+
+|配置されているカスタム スタイルの設定 
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~styles.html[DocumentRootNode.Styles]
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode~styleid.html[StyleId]
+
+|テキスト ノードの追加
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes]
+
+|====
+
+注:
+
+[NOTE]
+====
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~applyparagraphsettings.html[RichTextDocument.ApplyParagraphSettings] メソッドを使用して、引数として提供されたドキュメント範囲に特定の段落設定を適用できます。また、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~applyparagraphstyle.html[RichTextDocument.ApplyParagraphStyle] メソッドを使用して、引数として提供されたドキュメント範囲に特定のスタイルを適用できます。
+====
+
+[[_Ref364783192]]
+== テキスト ノード
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.textnode_members.html[TextNode] を `RunNode` の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.nodebase~childnodes.html[ChildNodes] コレクションに追加して、テキスト コンテンツ一式を表します。
+
+=== 主なプロパティ
+
+以下の表は、主要な構成と各プロパティ設定をマップします。
+
+[options="header", cols="a,a"]
+|====
+|目的:|使用するプロパティ:
+
+|テキスト コンテンツの設定または取得
+| link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.textnode~text.html[Text]
+
+|====
+
+注:
+
+[NOTE]
+====
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~applyparagraphsettings.html[RichTextDocument.ApplyParagraphSettings] メソッドを使用して、引数として提供されたドキュメント範囲に特定の段落設定を適用できます。また、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~applyparagraphstyle.html[RichTextDocument.ApplyParagraphStyle] メソッドを使用して、引数として提供されたドキュメント範囲に特定のスタイルを適用できます。
+====
+
+[[_Ref364783197]]
+== 実例
+
+=== プレーン テキスト
+
+以下のコード スニペットは、プレーン テキスト コンテンツを作成する 2 つのアプローチを示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+TextNode tn = new TextNode();
+tn.Text = "Plain text";
+RunNode rn = new RunNode();
+rn.ChildNodes.Add(tn);
+ParagraphNode pn = new ParagraphNode();
+pn.ChildNodes.Add(rn);
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn);
+ParagraphNode pn = new ParagraphNode();
+pn.SetText("Plain text");
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim tn As New TextNode()
+tn.Text = "Plain text"
+Dim rn As New RunNode()
+rn.ChildNodes.Add(tn)
+Dim pn As New ParagraphNode()
+pn.ChildNodes.Add(rn)
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn)
+Dim pn As New ParagraphNode()
+pn.SetText("Plain text")
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn)
+----
+
+=== フォントとスタイル設定
+
+以下のコード スニペットは、異なるフォント ファミリー、サイズおよびスタイルを使用してテキスト コンテンツを作成する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+CharacterSettings cs = new CharacterSettings()
+{
+   Bold = true,
+   Italic = true,
+   FontSize = new Extent(24, ExtentUnitType.Points),
+   FontSettings = new FontSettings() { Ascii = "Consolas" }
+};
+TextNode tn = new TextNode();
+tn.Text = "Styled text";
+RunNode rn = new RunNode();
+rn.Settings = cs;
+rn.ChildNodes.Add(tn);
+ParagraphNode pn = new ParagraphNode();
+pn.ChildNodes.Add(rn);
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim cs As New CharacterSettings() With { _
+      Key .Bold = True, _
+      Key .Italic = True, _
+      Key .FontSize = New Extent(24, ExtentUnitType.Points), _
+      Key .FontSettings = New FontSettings() With { _
+            Key .Ascii = "Consolas" _
+      } _
+}
+Dim tn As New TextNode()
+tn.Text = "Styled text"
+Dim rn As New RunNode()
+rn.Settings = cs
+rn.ChildNodes.Add(tn)
+Dim pn As New ParagraphNode()
+pn.ChildNodes.Add(rn)
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn)
+----
+
+=== 前景と強調表示
+
+以下のコード スニペットは、異なる前景と強調表示色を使用してテキスト コンテンツを作成する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+CharacterSettings cs = new CharacterSettings()
+{
+    Color = new ColorInfo(Colors.Red),
+    HighlightColorc = HighlightColor.Blue
+};
+TextNode tn = new TextNode();
+tn.Text = "Colored text";
+RunNode rn = new RunNode();
+rn.Settings = cs;
+rn.ChildNodes.Add(tn);
+ParagraphNode pn = new ParagraphNode();
+pn.ChildNodes.Add(rn);
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim cs As New CharacterSettings() With { _
+      Key .Color = New ColorInfo(Colors.Red), _
+      Key .HighlightColorc = HighlightColor.Blue _
+}
+Dim tn As New TextNode()
+tn.Text = "Colored text"
+Dim rn As New RunNode()
+rn.Settings = cs
+rn.ChildNodes.Add(tn)
+Dim pn As New ParagraphNode()
+pn.ChildNodes.Add(rn)
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn)
+----
+
+=== 下付き文字と上付き文字
+
+以下のコード スニペットは、下付き文字と上付き文字のテキスト コンテンツを作成する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+CharacterSettings superscriptCharacterSettings = new CharacterSettings()
+{
+    VerticalAlignment = RunVerticalAlignment.Superscript,
+    FontSize = new Extent(10, ExtentUnitType.Points),
+};
+CharacterSettings subscriptCharacterSettings = new CharacterSettings()
+{
+    VerticalAlignment = RunVerticalAlignment.Subscript,
+    FontSize = new Extent(10, ExtentUnitType.Points),
+};
+ParagraphNode pn = new ParagraphNode();
+pn.ChildNodes.Add(rn);
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn);
+RunNode rn = new RunNode();
+rn.SetText("Normal text");
+pn.ChildNodes.Add(rn);
+rn = new RunNode();
+rn.SetText("Subscripted text");
+rn.Settings = subscriptCharacterSettings;
+pn.ChildNodes.Add(rn);
+rn = new RunNode();
+rn.SetText("Superscripted text");
+rn.Settings = superscriptCharacterSettings;
+pn.ChildNodes.Add(rn);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim superscriptCharacterSettings As New CharacterSettings() With { _
+      Key .VerticalAlignment = RunVerticalAlignment.Superscript, _
+      Key .FontSize = New Extent(10, ExtentUnitType.Points) _
+}
+Dim subscriptCharacterSettings As New CharacterSettings() With { _
+      Key .VerticalAlignment = RunVerticalAlignment.Subscript, _
+      Key .FontSize = New Extent(10, ExtentUnitType.Points) _
+}
+Dim pn As New ParagraphNode()
+pn.ChildNodes.Add(rn)
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn)
+Dim rn As New RunNode()
+rn.SetText("Normal text")
+pn.ChildNodes.Add(rn)
+rn = New RunNode()
+rn.SetText("Subscripted text")
+rn.Settings = subscriptCharacterSettings
+pn.ChildNodes.Add(rn)
+rn = New RunNode()
+rn.SetText("Superscripted text")
+rn.Settings = superscriptCharacterSettings
+pn.ChildNodes.Add(rn)
+----
+
+ifdef::sl[]
+注:
+endif::sl[]
+
+ifdef::sl[]
+[NOTE]
+====
+Silverlight プロパティは下付き文字と上付き文字の状態を維持しますが、これらの設定を持つテキストは適切に垂直方向に配置されません。
+====
+endif::sl[]
+
+=== ドロップ キャップ
+
+以下のコード スニペットは、ドロップ キャップを作成する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+// ドロップ キャップの段落を作成
+ParagraphNode pn = new ParagraphNode();
+pn.Settings = new ParagraphSettings();
+pn.Settings.Frame = new TextFrameSettings();
+pn.Settings.Frame.DropCap = TextFrameDropCap.Drop; // ドロップ キャップを有効化
+pn.Settings.Frame.DropCapLines = 3; // ドロップ キャップの適用行数
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn);
+RunNode rn = new RunNode();
+rn.Settings = new CharacterSettings();
+rn.Settings.FontSize = new Extent(48, ExtentUnitType.Points); // フォント サイズ
+rn.SetText("O");
+pn.ChildNodes.Add(rn);
+// 残りのコンテンツの段落を作成
+pn = new ParagraphNode();
+pn.SetText("nce upon a time…");
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' ドロップ キャップの段落を作成
+Dim pn As New ParagraphNode()
+pn.Settings = New ParagraphSettings()
+pn.Settings.Frame = New TextFrameSettings()
+' ドロップ キャップを有効化
+pn.Settings.Frame.DropCap = TextFrameDropCap.Drop
+' ドロップ キャップの適用行数
+pn.Settings.Frame.DropCapLines = 3
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn)
+Dim rn As New RunNode()
+rn.Settings = New CharacterSettings()
+' フォント サイズ
+rn.Settings.FontSize = New Extent(48, ExtentUnitType.Points)
+rn.SetText("O")
+pn.ChildNodes.Add(rn)
+' 残りのコンテンツの段落を作成
+pn = New ParagraphNode()
+pn.SetText("nce upon a time…")
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn)
+----
+
+[[_Ref364783202]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-adding-hyperlinks.html[ハイパーリンクの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してハイパーリンクを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-lists.html[リストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してリストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-images.html[画像の追加]
+|このトピックは、 _xamRichTextEditor_ を使用して画像を作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-tables.html[テーブルの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテーブルを作成する方法を、開発者の観点から説明します。
+
+|====

@@ -1,0 +1,20 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpfspecific-menus",
+    "controlName": [],
+    "tags": [],
+    "guid": "a6896fd6-207c-4861-9f1f-77c34bc8f60e",  
+    "buildFlags": [],
+    "createdOn": "2012-02-07T14:23:03.553822Z"
+}
+|metadata|
+////
+
+= メニュー
+
+以下のメニュー コントロールは WPF 専用です。
+
+* link:xamoutlookbar.html[XamOutlookBar]
+* link:xamribbon.html[xamRibbon]

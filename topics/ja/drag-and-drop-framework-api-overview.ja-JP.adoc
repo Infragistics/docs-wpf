@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "drag-and-drop-framework-api-overview",
+    "controlName": ["IG Drag and Drop Framework"],
+    "tags": ["API"],
+    "guid": "{5B58F83D-57A1-4F98-8AF5-26382DB355B0}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.671035Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションは link:{ApiPlatform}dragdrop{ApiVersion}.html[Infragistics Drag and Drop Framework] ライブラリに関連した各名前空間をリストします。このコントロールでプログラムする間に使用するいくつかのキー クラスもあります。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[cols="a,a"]
+|====
+|*Infragistics Drag and Drop Framework 名前空間*
+|*キー クラス*
+
+| link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop_namespace.html[Infragistics.DragDrop]
+| link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragdropmanager.html[DragDropManager] 
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.dragsource.html[DragSource] 
+
+link:{ApiPlatform}dragdrop{ApiVersion}~infragistics.dragdrop.droptarget.html[DropTarget]
+
+|====

@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-making-the-path-continuous",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Layouts","Tips and Tricks"],
+    "guid": "{FAAAA587-C609-4A3E-A3B8-D6F7058E939B}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.2490029Z"
+}
+|metadata|
+////
+
+= パスを継続
+
+
+
+リストで使用可能な最後のレコードが依然として表示されている間、xamDataPresenter™ でレコード コレクションを右または左にナビゲートできます。link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~islistcontinuous.html[IsListContinuous] プロパティを True に設定することによって、コレクションによって継続的にナビゲートすることも可能です。
+
+リストを継続させるためには、以下のコードを使用します。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter.View>
+        <igDP:CarouselView>
+                <igDP:CarouselView.ViewSettings>
+                        <igWindows:CarouselViewSettings IsListContinuous="True" />
+                </igDP:CarouselView.ViewSettings>
+        </igDP:CarouselView>
+</igDP:XamDataPresenter.View>
+----
+
+link:xamdatapresenter-getting-started-with-xamdatapresenter.html[xamDataPresenter をアプリケーションに追加]の XamDataPresenter タグ内のコードを上記のコードで置き換えて、この機能を表示します。

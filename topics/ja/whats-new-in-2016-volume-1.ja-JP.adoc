@@ -1,0 +1,103 @@
+﻿////
+
+|metadata|
+{
+    "name": "whats-new-in-2016-volume-1",
+    "controlName": [],
+    "tags": ["Getting Started"],
+    "guid": "c10c2400-b859-46da-8ca7-454a824d5c89",  
+    "buildFlags": [],
+    "createdOn": "2015-11-09T12:44:32.7125469Z"
+}
+|metadata|
+////
+
+= 2016 Volume 1 の新機能
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、{ProductName} 2016 Volume 1 リリースで導入された新しいコントロールと機能の概要について説明します。
+
+== _xamDataPresenter_
+
+=== 非同期ページングのデータ ソース
+
+この機能は、非同期およびページ化アクセスを使用して待ち時間の長いリモート データストアからデータを取得できるデータソースを作成する方法について説明します。
+
+==== 関連トピック:
+
+link:xamdatagrid-asynchronouspagingdatasource.html[非同期ページング データ ソース (xamDataGrid)]
+
+link:xamdatapresenter-asynchronouspagingdatasource.html[非同期ページングのデータ ソース (xamDataPresenter)]
+
+=== ユーザーが入力を始めると編集モードに入る
+
+セルがアクティブ化されたときにユーザーがスペースキーまたは BackSpace キーを押下した際に自動的に編集モードに入ることができます。
+
+==== 関連トピック:
+
+link:xamdatapresenter-conf-editing.html[編集動作の構成 (xamDataPresenter)]
+
+=== フィールドのグループ化
+
+フィールド グループ化機能は、複数のフィールドを共通フィールド グループにグループ化できます。
+
+以下のスクリーンショットは、共通フィールド グループ "IDs" に描画された "Order" および "Customer" フィールド、共通フィールド グループ "Dates" に描画された"Ordered" および "Shipped" フィールドを示します。
+
+image::images/xamDataPresenter_Field_Grouping.png[]
+
+==== 関連トピック:
+
+link:xamdatagrid-field-grouping.html[フィールドのグループ化 (xamDataGrid)]
+
+link:xamdatapresenter-field-grouping.html[フィールドのグループ化 (xamDataPresenter)]
+
+== _xamScatterSurface3D_
+
+=== 新しいコントロール
+
+_xamScatterSurface3D_   コントロールは、立体表面の視覚化をすばやく簡単に実現できます。このコントロールは、あらゆる 3D 等高線の描画要件の実装が可能な API オプションを提供し、デフォルト値が設定されているためコーディングを最小限に抑えることができます。
+
+image::images/xamScatterSurface3D_1.png[]
+
+==== 関連トピック:
+
+link:surfacechart-overview.html[概要]
+
+link:surfacechart-getting-started-with-surfacechart.html[等高線グラフを使用した作業の開始]
+
+link:surfacechart-configuring-surfacechart.html[等高線グラフの構成]
+
+== _xamSchedule_
+
+=== 参照ダイアログの説明ラベル表示
+
+_xamSchedule_   の定期的な予定ダイアログの説明ラベルがドイツ語およびフランス語でもデフォルトで提供されます。
+
+image::images/WhatsNew_16.1_WPF_1.png[]
+
+image::images/WhatsNew_16.1_WPF_2.png[]
+
+==== 関連トピック:
+
+link:xamschedule-using-activitydialogs.html[アクティビティ ダイアログ]
+
+== _xamTabControl_
+
+=== タブのドラッグおよび並び替え
+
+_xamTabControl_   はタブのドラッグと並べ替えが可能になりました。
+
+image::images/xamTabControl_DnD.png[]
+
+==== 関連トピック:
+
+link:xamtabcontrol-tabs-dragging-and-reordering.html[タブのドラッグおよび順序変更 (xamTabControl)]
+
+== _xamRadialGauge および xamLinearGauge_
+
+=== 針のドラッグ (CTP)
+
+isDraggingEnabled プロパティを有効にして xamRadialGauge および xamLinearGauge コントロールの針を移動できます。

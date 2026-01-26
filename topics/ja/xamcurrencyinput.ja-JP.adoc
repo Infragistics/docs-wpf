@@ -1,0 +1,30 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcurrencyinput",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "756edb7e-b14f-498e-a27b-54231ab9b59f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.9502186Z"
+}
+|metadata|
+////
+
+{XamCurrencyInputHeader}
+
+= xamCurrencyInput
+
+以下のリンクには、コントロールが行うこと、コントロールをアプリケーションで使用する理由、コントロールを使用して共通タスクを達成する方法手順など、 link:xamcurrencyinput.html[xamCurrencyInput] コントロールに関する有益な情報が含まれています。
+
+* link:xamcurrencyinput-about.html[xamCurrencyInput について]
+* link:xamcurrencyinput-using.html[xamCurrencyInput の使用]
+* link:xamcurrencyinput-api-overview.html[API の概要]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]

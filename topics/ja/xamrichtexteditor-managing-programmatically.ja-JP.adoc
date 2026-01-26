@@ -1,0 +1,65 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-programmatically",
+    "tags": [],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "f10ebe73-694a-4ca5-b73f-4bdb08fb6ac4",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.4473423Z"
+}
+|metadata|
+////
+
+= xamRichTextEditor のプログラムによる管理
+
+== このグループのトピックについて
+
+=== はじめに
+
+このセクションのトピックでは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ をプログラムによって管理する詳しい方法を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-import-export.html[インポート / エクスポート]
+|このグループのトピックでは、リッチ テキストのインポートおよびエクスポートに関する情報を提供します。
+
+| link:xamrichtexteditor-managing-adding-text.html[テキストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテキストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-hyperlinks.html[ハイパーリンクの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してハイパーリンクを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-lists.html[リストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してリストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-images.html[画像の追加]
+|このトピックは、 _xamRichTextEditor_ を使用して画像を作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-tables.html[テーブルの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテーブルを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-context-menu.html[コンテキスト メニューの管理]
+|このトピックは、 _xamRichTextEditor_ のコンテキスト メニューを管理する方法を説明します。
+
+| link:xamrichtexteditor-managing-clipboard.html[クリップボードの管理]
+|このトピックは、 _xamRichTextEditor_ コントロールのクリップボードの操作について、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-find-replace.html[検索 / 置換の管理]
+|このトピックは、 _xamRichTextEditor_ コントロールの検索および置換機能を説明します。
+
+| link:xamrichtexteditor-managing-selection.html[選択の管理]
+|このトピックは、 _xamRichTextEditor_ コントロールの選択機能を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-undo-redo.html[元に戻す / やり直しの管理]
+|このトピックは、 _xamRichTextEditor_ コントロールの [元に戻す] および [やり直し] の操作について、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-view-splitting.html[ビュー分割の管理]
+|このトピックは、 _xamRichTextEditor_ コントロールのビュー分割について、開発者の観点から説明します。
+
+|====

@@ -1,0 +1,110 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-user-selection-interactions-and-usability",
+    "tags": ["Selection"],
+    "controlName": ["xamDataTree"],
+    "guid": "6844214e-afc5-4f71-b16f-a19550ef34e4",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.9341234Z"
+}
+|metadata|
+////
+
+= ユーザー選択インタラクションと操作性 (xamDataTree)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDataTree_   コントロールのユーザー選択インタラクションについて説明します。
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref382215363,ユーザー インタラクションと操作性>>
+* <<_Ref382215368,関連コンテンツ>>
+
+** <<_Ref382215389,トピック>>
+
+[[_Ref382215363]]
+== ユーザー インタラクションと操作性
+
+=== ユーザー インタラクションの概要表
+
+以下の表で、 _xamDataTree_   コントロールのユーザー選択インタラクション機能を概略します。
+
+[options="header", cols="a,a,a,a"]
+|====
+|目的|方法|詳細|構成方法
+
+|[[_Hlk377147553]] 
+
+1 つのノードの選択
+|マウス
+|ノードをクリックして選択します。
+|image::images/Yes.png[] 
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[TreeSelectionSettings] オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection] プロパティを link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectiontype.html[None] に設定してノード選択を無効化します。
+
+|[[_Hlk377147649]] 
+
+1 つのノードの選択
+|キーボード
+|`Up` および `Down` 方向キーでノードをナビゲートし 1 つのノードを選択します。
+|image::images/Yes.png[] 
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[TreeSelectionSettings] オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection] プロパティを link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectiontype.html[None] に設定してノード選択を無効化します。
+
+|1 つのノードの選択
+|ノードのチェック ボックス
+|ノードのチェック ボックスをチェックして 1 つのノードを選択します。
+|image::images/Yes.png[] 
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings_members.html[CheckBoxSettings] オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.checkboxsettings~checkboxvisibility.html[CheckBoxVisibility] プロパティを `Visible` に設定します。
+
+|複数のノードの選択
+|マウス
+|`CTRL` キーを押してマウスの左ボタンで複数のノードを選択します。
+|image::images/Yes.png[] 
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[TreeSelectionSettings] オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection] プロパティを link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectiontype.html[Multiple] に設定します。
+
+|複数のノードの選択
+|キーボード
+|`SHIFT` キーを押したまま `Up` および `Down` 方向キーでノードをナビゲートしノードのシーケンスを選択します。
+|image::images/Yes.png[] 
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[TreeSelectionSettings] オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection] プロパティを link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectiontype.html[Multiple] に設定します。
+
+|複数のノードの選択
+|ノードのチェック ボックス
+|ノードのチェック ボックスをチェックして複数のノードを選択します。
+|image::images/Yes.png[] 
+
+link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[TreeSelectionSettings] オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[NodeSelection] プロパティを link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectiontype.html[Multiple] に、 link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings_members.html[CheckBoxSettings] オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.treeselectionsettings~nodeselection.html[CheckBoxVisibility] プロパティを `Visible` に設定します。
+
+|====
+
+[[_Ref382215368]]
+== 関連コンテンツ
+
+[[_Ref382215389]]
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatatree-xamdatatree-check-boxes.html[チェック ボックスの表示の構成]
+|このトピックでは、 _xamDataTree_ コントロールのノードのチェック ボックスを有効にする方法を説明します。
+
+| link:xamdatatree-performing-selection-programmatically.html[プログラムによる選択の実行]
+|このトピックでは、プログラムで _xamDataTree_ コントロールの選択を実行する方法を説明します。
+
+|====

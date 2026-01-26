@@ -1,0 +1,30 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-map-elements-color-map-elements",
+    "controlName": ["xamMap"],
+    "tags": [],
+    "guid": "{54031F1D-0E96-4B59-BB43-EAE9075485DD}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2482752Z"
+}
+|metadata|
+////
+
+= マップ要素に色を付ける
+
+このセクションは、Map 要素の重要な概念および色付け機能を効果的に使用する方法をタスクベースで説明します。
+
+* link:xamwebmap-color-map-elements-individually.html[各マップ要素に色を付ける]
+* link:xamwebmap-color-swatch-pane.html[色見本ペイン]
+* link:xamwebmap-fill-modes.html[Fill モード]
+* link:xamwebmap-value-scales.html[値スケール]
+
+image::images/SL_DV_XamMap_About_Color_Swatch_Pane_02.png[]
+
+image::images/SL_DV_XamMap_About_Color_Swatch_Pane_03.png[]
+
+image::images/SL_DV_XamMap_About_Color_Swatch_Pane_01.png[]
+
+image::images/XamMap_Color_Group_Elements_Using_Distribution_Value_Scale_02.png[]

@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampropertygrid-configuring",
+    "tags": [],
+    "controlName": ["xamPropertyGrid"],
+    "guid": "db16e40e-7587-40dd-adb7-a0d22d593ea4",  
+    "buildFlags": [],
+    "createdOn": "2014-08-28T10:39:05.5713618Z"
+}
+|metadata|
+////
+
+= xamPropertyGrid の構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このセクションのトピックでは、コントロールの構成についての情報を提供します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xampropertygrid-conf-visuals.html[表示外観の構成 (xamPropertyGrid)]
+|このトピックでは、一般的なコントロール オプションを構成する方法を説明します。
+
+| link:xampropertygrid-conf-editors.html[エディター定義の構成 (xamPropertyGrid)]
+|このトピックでは、プロパティの値の編集に使用されるエディターをカスタマイズする方法を説明します。
+
+| link:xampropertygrid-conf-brush-resources.html[ブラシ リソースの構成 (xamPropertyGrid)]
+|このトピックでは、ブラシ エディターのブラシ リソース パネルを構成する方法を説明します。
+
+| link:xampropertygrid-conf-properties-filtering.html[プロパティ リストのフィルタリング (xamPropertyGrid)]
+|このトピックでは、コントロールのプロパティ リストのフィルタリングを構成する方法を説明します。
+
+| link:xampropertygrid-conf-properties-sorting.html[プロパティ リストの並べ替え (xamPropertyGrid)]
+|このトピックでは、プロパティ リストのカスタム並べ替えのロジックを設定する方法を紹介します。
+
+| link:xampropertygrid-conf-templateselector.html[エディター定義のデータ テンプレート セレクターの構成 (xamPropertyGrid)]
+|このトピックは、エディター定義で編集テンプレートを割り当てるためのカスタム ロジックを作成する方法を紹介します。
+
+|====

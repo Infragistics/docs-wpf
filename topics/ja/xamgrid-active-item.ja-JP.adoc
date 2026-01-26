@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-active-item",
+    "controlName": ["xamGrid"],
+    "tags": ["Getting Started","Grids","How Do I","Selection"],
+    "guid": "e01456f3-c0ea-4c30-b0da-5bedd78cc44b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.4882024Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= アクティブ項目
+
+Model-View-ViewModel (MVVM) アーキテクチャを使用中、xamGrid コントロールの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.xamgrid~activeitem.html[ActiveItem] プロパティによって、ルート レベル link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnbase~columnlayout.html[ColumnLayout] のデータ項目に簡単にアクセスできます。
+
+この機能を有効にするには、以下のコードに示すように、xamGrid コントロールの ActiveItem プロパティへのバインディングを作成します。
+
+*XAML の場合:*
+
+----
+ <ig:XamGrid x:Name="dataGrid" 
+             ActiveItem="{Binding Path=ActiveCustomer, Mode=TwoWay}"
+             ItemsSource="{Binding Path=Customers}" >
+----
+
+上記のコードに基づく:
+
+* ActiveCell が行を変更すると、ViewModel の ActiveCustomer プロパティが更新します。
+* ActiveCustomer プロパティが変更されると、グリッドはその解決を試み、その行の最初の視覚的なセルに ActiveCell を設定します。
+
+[NOTE]
+====
+*注:* ActiveItem 機能は、ルート レベル ColumnLayout のみに影響します。子 ColumnLayout のセルがアクティブになると、ActiveItem は null 値に設定されます。
+====

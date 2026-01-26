@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarouselpanel-making-the-xamcarouselpanels-path-continuous",
+    "controlName": ["xamCarouselPanel"],
+    "tags": ["How Do I"],
+    "guid": "{A2660B40-F0F6-4F44-B087-C7BCB15F9065}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0787689Z"
+}
+|metadata|
+////
+
+= xamCarouselPanel のパスを継続
+
+
+
+デフォルトで、xamCarouselPanel によって最後の使用可能な項目だけが表示されるまで項目のリストを左右にナビゲートできます。link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.carouselviewsettings~islistcontinuous.html[IsListContinuous] プロパティを True に設定すると、xamCarouselListBox の項目のリストを継続して周期的に繰り返すことができます。
+
+リストを継続させるためには、 link:xamcarouselpanel-getting-started-with-xamcarouselpanel.html[xamCarouselPanel をページに追加]で XamCarouselPanel 開始タグ内に以下の例のコードを配置します。
+
+*XAML の場合:*
+
+----
+<igWindows:XamCarouselPanel.ViewSettings>
+        <igWindows:CarouselViewSettings IsListContinuous="True" />
+</igWindows:XamCarouselPanel.ViewSettings>
+----

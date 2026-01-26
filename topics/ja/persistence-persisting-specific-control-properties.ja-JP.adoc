@@ -1,0 +1,91 @@
+﻿////
+
+|metadata|
+{
+    "name": "persistence-persisting-specific-control-properties",
+    "controlName": ["IG Control Persistence Framework"],
+    "tags": ["How Do I","Persistence"],
+    "guid": "{6D93C146-9826-4218-B621-6C972BFE1D06}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:53.5630358Z"
+}
+|metadata|
+////
+
+= 特定のコントロールのプロパティを保持
+
+次のコードは TextBox コントロールの Background プロパティのみを保持するように選択できる方法を示します。
+
+*XAML の場合:*
+
+----
+<TextBox x:Name="txtAccount" Background="#FFCCFAEA">
+    <ig:PersistenceManager.Settings>
+        <ig:PersistenceSettings SavePersistenceOptions="OnlySpecified" >
+            <ig:PersistenceSettings.PropertySettings>
+                <ig:PropertyNamePersistenceInfo PropertyName="Background" Options="PropertyPath" />
+            </ig:PersistenceSettings.PropertySettings>
+        </ig:PersistenceSettings>
+    </ig:PersistenceManager.Settings>
+</TextBox>
+----
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings.html[PersistenceSettings] オブジェクトの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.persistencesettings~savepersistenceoptions.html[SavePersistenceOptions] プロパティを OnlySpecified に設定します。
+
+link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertynamepersistenceinfo.html[PropertyNamePersistenceInfo] オブジェクトの link:{ApiPlatform}persistence{ApiVersion}~infragistics.persistence.propertynamepersistenceinfo~propertyname.html[PropertyName] プロパティを使用して、xamWebDialogWindow の Width プロパティを保持するように指定します。
+
+同じ機能をコード ビハインドに実装できます。
+
+*Visual Basic の場合:*
+
+----
+' 新しい PersistenceSettings オブジェクトを作成します
+Dim settings As New PersistenceSettings()
+' パーシステンス オプション (OnlySpecified) の保存を設定します
+settings.SavePersistenceOptions = Infragistics.Controls.Persistence.Primitives.PersistenceOption.OnlySpecified
+' 名前で特定のプロパティを識別します
+Dim pnpi As New PropertyNamePersistenceInfo()
+pnpi.PropertyName = "Background"
+' PropertySettings コレクションでプロパティを追加します
+settings.PropertySettings.Add(pnpi)
+Dim memoryStream As MemoryStream = PersistenceManager.Save(txtAccount, settings)
+----
+
+*C# の場合:*
+
+----
+// 新しい PersistenceSettings オブジェクトを作成します
+PersistenceSettings settings = new PersistenceSettings();
+// パーシステンス オプション (OnlySpecified) の保存を設定します
+settings.SavePersistenceOptions = Infragistics.Controls.Persistence.Primitives.PersistenceOption.OnlySpecified;
+// 名前で特定のプロパティを識別します
+PropertyNamePersistenceInfo pnpi = new PropertyNamePersistenceInfo();
+pnpi.PropertyName = "Background";
+// PropertySettings コレクションでプロパティを追加します
+settings.PropertySettings.Add(pnpi);
+MemoryStream memoryStream = PersistenceManager.Save(txtAccount, settings);
+----
+
+== 関連トピック
+
+link:persistence-persistence-settings.html[保持の設定]
+
+link:persistence-exclude-specific-control-properties.html[特定のコントロールのプロパティを除外]
+
+ifdef::sl,win-rt,win-phone[]
+link:3ff664bc-2a4b-459d-8184-4ddca70ed809[識別子]
+endif::sl,win-rt,win-phone[]
+
+link:persistence-persistence-groups.html[保持グループ]
+
+ifdef::win-phone[]
+link:persistence-using-propertynamepersistenceinfo-typeconverter-property.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+endif::win-phone[]
+
+ifdef::sl,wpf,win-rt[]
+link:persistence-using-typeconverte.html[PropertyNamePersistenceInfo TypeConverter プロパティの使用]
+endif::sl,wpf,win-rt[]
+
+link:persistence-handle-persistencesaved-and-persistenceloaded-events.html[PersistenceSaved イベントと PersistenceLoaded イベントの処理]
+
+link:persistence-handle-savepropertypersistence-and-loadpropertypersistence-events.html[SavePropertyPersistence イベントと LoadPropertyPersistence イベントの処理]

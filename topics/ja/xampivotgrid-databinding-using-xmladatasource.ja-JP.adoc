@@ -1,0 +1,169 @@
+﻿////
+
+|metadata|
+{
+    "name": "xampivotgrid-databinding-using-xmladatasource",
+    "controlName": ["xamPivotGrid"],
+    "tags": ["Data Binding","Grids","How Do I"],
+    "guid": "2f0e90ca-c426-488f-aeec-6b796f3a269a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.0842818Z"
+}
+|metadata|
+////
+
+= xamPivotGrid を XmlaDataSource にバインド
+
+XmlaDataSource は、 link:http://msdn.microsoft.com/ja-jp/library/ms175609(v=sql.90).aspx[SQL Server Analysis Services (SSAS)] のインスタンスを使用して link:http://msdn.microsoft.com/ja-jp/library/ms187178(v=SQL.90).aspx[XML for Analysis (XMLA)] HTTP アクセス プロバイダー (msmdpump.dll など) からデータに接続します。XML for Analysis は、 link:http://msdn.microsoft.com/ja-jp/library/ms175367(v=SQL.90).aspx[Online Analytical Processing (OLAP)] および link:http://msdn.microsoft.com/ja-jp/library/ms173767(v=sql.90).aspx[Business Intelligence (BI)] スペースにおける標準 API であり、Microsoft®、SAP®、SAS® および Oracle® など広範囲に及ぶデータベース ベンダーにサポートされています。
+
+以下の手順は、XmlaDataSource を xamPivotGrid コントロールのデータ ソースとして使用する方法を説明します。
+
+[start=1]
+. ServerURI プロパティを適切な URL に設定して、レイアウト ルートの Resources セクションで XmlaDataSource のインスタンスを作成します。
+
+*XAML の場合:*
+
+----
+<Grid.Resources>
+   <olap:XmlaDataSource x:Key="DataSource" ServerUri="http://sampledata.infragistics.com/olap/msmdpump.dll" />
+</Grid.Resources>
+----
+
+[NOTE]
+====
+注: コードでデータ ソースをセットアップする場合は、XmlaDataSource クラスのインスタンスをインスタンス化し適切な URI にマップしてください。
+====
+
+*Visual Basic の場合:*
+
+----
+Dim DataSource As New XmlaDataSource()
+DataSource.ServerUri = New Uri("http://sampledata.infragistics.com/olap/msmdpump.dll")
+' またはすべての関連オブジェクトを提供することにより
+Dim Settings As New XmlaConnectionSettings()
+Settings.ServerUri = New Uri("http://sampledata.infragistics.com/olap/msmdpump.dll")
+Dim Connection As New XmlaConnection(Settings)
+Dim DataProvider As New XmlaDataProvider(Connection)
+Dim DataSource As New XmlaDataSource(DataProvider)
+DataSource.LoadSchemaAsync()
+----
+
+*C# の場合:*
+
+----
+XmlaDataSource DataSource = new XmlaDataSource();
+DataSource.ServerUri = new Uri("http://sampledata.infragistics.com/olap/msmdpump.dll");
+// またはすべての関連オブジェクトを提供することにより
+XmlaConnectionSettings Settings = new XmlaConnectionSettings();
+Settings.ServerUri = new Uri("http://sampledata.infragistics.com/olap/msmdpump.dll");
+XmlaConnection Connection = new XmlaConnection(Settings);
+XmlaDataProvider DataProvider = new XmlaDataProvider(Connection);
+XmlaDataSource DataSource = new XmlaDataSource(DataProvider);
+DataSource.LoadSchemaAsync();
+----
+
+[start=2]
+. xamPivotGrid コントロールを追加し、定義済みの XmlaDataSource の DataSource プロパティを静的なリソースとして設定します。
+
+*XAML の場合:*
+
+----
+   <Grid x:Name="LayoutRoot" >
+      <ig:XamPivotGrid x:Name="PivotGrid" DataSource="{StaticResource DataSource}" />
+      <!-- TODO: xamPivotDataSelector  コントロールを追加します -->
+   </Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim PivotGrid As New XamPivotGrid()
+PivotGrid.DataSource = DataSource
+Me.LayoutRoot.Children.Add(PivotGrid);
+----
+
+*C# の場合:*
+
+----
+XamPivotGrid PivotGrid = new XamPivotGrid();
+PivotGrid.DataSource = DataSource;
+this.LayoutRoot.Children.Add(PivotGrid);
+----
+
+[start=3]
+. xamPivotDataSelector コントロールを追加し、DataSource プロパティを XmlaDataSource リソースに設定します。
+
+*XAML の場合:*
+
+----
+<ig:XamPivotDataSelector x:Name="DataSelector" DataSource="{StaticResource DataSource}" />
+        <!-- または -->
+<ig:XamPivotDataSelector x:Name="DataSelector" DataSource="{Binding DataSource, ElementName=PivotGrid}" />
+----
+
+*Visual Basic の場合:*
+
+----
+Dim DataSelector As New XamPivotDataSelector()
+DataSelector.DataSource = DataSource
+Me.LayoutRoot.Children.Add(DataSelector);
+----
+
+*C# の場合:*
+
+----
+XamPivotDataSelector DataSelector = new XamPivotDataSelector();
+DataSelector.DataSource = DataSource;
+this.LayoutRoot.Children.Add(DataSelector);
+----
+
+または、XmlaDataSource は xamPivotGrid コントロールで行内に作成できます。
+
+*XAML の場合:*
+
+----
+   <ig:XamPivotGrid x:Name="PivotGrid">
+      <ig:XamPivotGrid.DataSource>
+            <olap:XmlaDataSource ServerUri="http://sampledata.infragistics.com/olap/msmdpump.dll" />
+      </ig:XamPivotGrid.DataSource>
+   </ig:XamPivotGrid>
+----
+
+サーバー認証が求められる場合、UserName、Password、および Domain (オプション) で XmlaDataSource の Credentials プロパティの定義を追加します。ドメイン定義は、基本および Windows 認証でのみ必要となります。
+
+*XAML の場合:*
+
+----
+    <olap:XmlaDataSource x:Key="DataSource">
+        <olap:XmlaDataSource.ConnectionSettings>
+            <olap:XmlaConnectionSettings ServerUri="http://sampledata.infragistics.com/olap/msmdpump.dll"/>
+        </olap:XmlaDataSource.ConnectionSettings>
+        <olap:XmlaDataSource.Credentials>
+            <olap:XmlaNetworkCredential Password="diQ2j#f"
+                                        UserName="Administrator">
+            </olap:XmlaNetworkCredential>
+        </olap:XmlaDataSource.Credentials>
+    </olap:XmlaDataSource>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim Credentials As New XmlaNetworkCredential()
+Credentials.UserName = "Administrator"
+Credentials.Password = "diQ2j#f"
+Dim DataSource As New XmlaDataSource()
+DataSource.ServerUri = New Uri("http://sampledata.infragistics.com/olap/msmdpump.dll")
+DataSource.Credentials = Credentials
+----
+
+*C# の場合:*
+
+----
+XmlaNetworkCredential DataSource = new XmlaNetworkCredential();
+Credentials.UserName = "Administrator";
+Credentials.Password = "diQ2j#f";
+XmlaDataSource DataSource = new XmlaDataSource();
+DataSource.ServerUri = new Uri("http://sampledata.infragistics.com/olap/msmdpump.dll");
+DataSource.Credentials = Credentials;
+----

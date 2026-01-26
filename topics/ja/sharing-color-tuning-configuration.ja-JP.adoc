@@ -1,0 +1,103 @@
+﻿////
+|metadata|
+{
+    "name": "sharing-color-tuning-configuration",
+    "controlName": ["Infragistics Color Tuner"],
+    "tags": ["Exporting","Getting Started","How Do I","Styling","Theming"],
+    "guid": "1da5a519-44c6-4dde-8aec-9afc29df54ad",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:22:00.2974057Z"
+}
+|metadata|
+////
+
+= 色調整の構成を共有
+
+== トピックの概要
+
+=== 目的
+
+このトピックはカラー調整の構成を共有するための説明を行います。
+
+=== 前提条件
+
+以下の表に、このトピックを理解するための前提条件として求められるトピックをリストします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:using-infragistics-color-tuner.html[Infragistics Color Tuner の使用]
+|このトピックは、Microsoft Visual Studio® 2010 の拡張機能である、Infragistics Color Tuner を説明します。このトピックは、便利な UI を使用して、 pick:[sl="Silverlight"] pick:[wpf="WPF"] コントロールの XAML テーマを適用して色を調節する詳細を提供します。
+
+| link:creating-and-applying-color-tuning-configurations.html[色調整の構成を作成および適用]
+|このトピックは、 Infragistics Color Tuner を使用してカスタム カラー調整されたテーマを作成および適用する方法を説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Sharing_Color_Tuning_Configurations,カラー調整の構成を共有>>
+* <<_Related_Content,関連コンテンツ>>
+
+[[_Sharing_Color_Tuning_Configurations]]
+== カラー調整の構成を共有
+
+=== 概要
+
+Infragistics Color Tuner のカラー調整の構成を共有できます。
+
+=== プレビュー
+
+Infragistics Color Tuner のカラー調整の構成は、`CommonApplicationData\Infragistics\Tools\ColorTuner\_version_\SavedThemes.xml` に保存されます。`CommonApplicationData` はすべてのユーザーが使用するアプリケーション固有のデータに共通するリポジトリとしての役割を果たすディレクトリです。
+
+たとえば、Windows 7 マシンと Infragistics コントロール インストーラー バージョン 12.1 の一般的な設定では、この場所は以下の通りです:
+
+C:\ProgramData\Infragistics\Tools\ColorTuner\12.1\SavedThemes.xml
+
+=== 要件
+
+保存されたカラー調整の構成を使用したい場合、新しいマシンには、Infragistics Color Tuner がインストールされている必要があります。
+
+=== 手順
+
+以下の手順は、カラー調整の構成を共有する方法を示します。
+
+=== 構成ファイルをコピー
+
+マシン上にある既存の  _SavedThemes.xml_   ファイルをコピーします。
+
+=== 構成ファイルを貼り付け
+
+新しいマシンの適切な場所 (`Environment.SpecialFolder.CommonApplicationData\Infragistics\Tools\ColorTuner\version\`) にコピーしたファイル、 _SaveThemes.xml_   を配置する必要があります。
+
+注:
+
+[NOTE]
+====
+コピーしたファイルは既存のファイルをオーバーライドします。  _SavedThemes.xml_   ファイルをコピーしている時ときは、新しいマシン上で同じ名前の既存のファイルを置き換えます。 
+====
+
+[[_Related_Content]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:creating-and-applying-color-tuning-configurations.html[色調整の構成を作成および適用]
+|このトピックは、 Infragistics Color Tuner を使用してカスタム カラー調整されたテーマを作成および適用する方法を説明します。
+
+| link:using-infragistics-color-tuner.html[Infragistics Color Tuner を使用]
+|このトピックは、Visual Studio 2010 の拡張機能である、Infragistics Color Tuner を説明します。XAML カラー チューナーによって、便利な UI を使用して、 pick:[sl="Silverlight"] および pick:[wpf="WPF"] コントロールの XAML テーマを適用して色を調節できます。
+
+| link:reswash-using.html[リソース ウォッシャーの使用]
+|このトピックでは、ResourceWasher コンポーネントを紹介します。これを使用して、アプリケーションの配色全体を変更することができます。
+
+|====

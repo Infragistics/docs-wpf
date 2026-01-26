@@ -1,0 +1,226 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-currentlinehl",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Data Presentation","Editing"],
+    "guid": "10bd103a-9ef7-459b-9946-1b4e3dcba8dc",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4963613Z"
+}
+|metadata|
+////
+
+= 現在の行の強調表示 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは現在の行の強調表示機能について説明します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor_ の機能を分かりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能をまとめました。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref343683034, はじめに >>
+* <<_Ref343683007, 機能の構成の概要 >>
+* <<_Ref343682982, 現在の行の強調表示の有効化または無効化 >>
+* <<_Ref343682991, 現在の行の強調表示の背景ブラシの設定 >>
+* <<_Ref343850371, 現在の行の強調表示の境界線ブラシの設定 >>
+* <<_Ref343683027, 関連コンテンツ >>
+
+[[_Ref343683034]]
+== はじめに
+
+=== 現在の行の強調表示の概要
+
+現在の行の強調表示機能はカレットを含む行を強調表示します。現在の行の強調表示のために背景および境界線ブラシを指定できます。
+
+以下の画像は現在の行の強調表示機能を有効にした  _xamSyntaxEditor_   を示します。
+
+image::images/xamSyntaxEditor_CurrentLineHL.png[]
+
+[[_Ref343683007]]
+== 機能の構成の概要
+
+=== 機能構成の要点チャート
+
+以下の表は  _xamSyntaxEditor_   コントロールの現在の行の強調表示の構成可能な要素をリストします。追加情報を表の下に示します。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|<<_Ref343682982,現在の行の強調表示の有効化または無効化>>
+|現在の行の強調表示を表示または非表示にします
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~currentlinehighlightvisibility.html[CurrentLineHighlightVisibility] 
+
+|<<_Ref343682991,現在の行の強調表示の背景ブラシの設定>>
+|現在の行の強調表示の背景ブラシを設定します
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~currentlinehighlightbackgroundbrush.html[CurrentLineHighlightBackgroundBrush] 
+
+|<<_Ref343850371,現在の行の強調表示の境界線ブラシの設定>>
+|現在の行の強調表示の境界線ブラシを設定します
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~currentlinehighlightborderbrush.html[CurrentLineHighlightBorderBrush] 
+
+|====
+
+[[_Ref343682982]]
+== 現在の行の強調表示の有効化または無効化
+
+=== 概要
+
+_xamSyntaxEditor_   コントロールの `CurrentLineHighlightVisibility` プロパティを使用し、現在の行の強調表示を有効または無効にできます。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|現在の行の強調表示機能を有効にします
+|`CurrentLineHighlightVisibility`
+|`Visibility.Visible`
+
+|現在の行の強調表示機能を無効にします
+|`CurrentLineHighlightVisibility`
+|`Visibility.Collapsed`
+
+|====
+
+=== コード
+
+以下のコードは現在の行の強調表示を有効にする方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.CurrentLineHighlightVisibility = Visibility.Visible;
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.CurrentLineHighlightVisibility = Visibility.Visible
+----
+
+[[_Ref343682991]]
+== 現在の行の強調表示の背景ブラシの設定
+
+=== 概要
+
+_xamSyntaxEditor_   コントロールの `CurrentLineHighlightBackgroundBrush` プロパティを使用すると、現在の行の強調表示の背景を描画するために使用されるブラシを設定します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|現在の行を強調表示する背景を描画するためのブラシを設定します
+|`CurrentLineHighlightBackgroundBrush`
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.brush.aspx[Brush] タイプのオブジェクト。
+
+|====
+
+=== コード
+
+以下のコード例は、現在の行を強調表示する背景を描画するために黄色の単色ブラシを設定する方法を紹介します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.CurrentLineHighlightBackgroundBrush =
+    new SolidColorBrush(Colors.Yellow);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.CurrentLineHighlightBackgroundBrush = _
+    New SolidColorBrush(Colors.Yellow)
+----
+
+[[_Ref343850371]]
+== 現在の行の強調表示の境界線ブラシの設定
+
+=== 概要
+
+_xamSyntaxEditor_   コントロールの `CurrentLineHighlightBorderBrush` プロパティを使用すると、現在の行を強調表示する境界線を描画するために使用するブラシを設定します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値
+
+|現在の行を強調表示する境界線を描画するためのブラシを設定します
+|`CurrentLineHighlightBorderBrush`
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.brush.aspx[Brush] タイプのオブジェクト。
+
+|====
+
+=== コード
+
+以下のコード例は、現在の行を強調表示する境界線を描画するために赤色の単色ブラシを設定する方法を紹介します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.CurrentLineHighlightBorderBrush =
+    new SolidColorBrush(Colors.Magenta);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.CurrentLineHighlightBorderBrush _
+    New SolidColorBrush(Colors.Magenta)
+----
+
+[[_Ref343683027]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-changing-font-and-styles.html[フォントとスタイルの変更]
+|このトピックでは、 _xamSyntaxEditor_ 内のドキュメントのコンテンツの表示の変更方法を説明します。
+
+| link:xamsyntaxeditor-splitting.html[分割]
+|このトピックでは、 _xamSyntaxEditor_ のドキュメント分割機能を解説し、カスタマイズする方法について解説します。
+
+| link:xamsyntaxeditor-syntax-highlighting.html[構文のハイライト表示]
+|このトピックでは、`TextDocument` の関連言語に基づくテキストの色付けについて解説します。
+
+|====

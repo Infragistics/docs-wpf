@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcalculationmanager-api-overview",
+    "controlName": ["xamCalculationManager"],
+    "tags": ["API","Calculations"],
+    "guid": "1648dab6-e858-4183-b2f6-58461ce058c0",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.5881257Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+=== コントロールの名前空間:
+
+link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations_namespace.html[Infragistics.Calculations]
+
+=== 主要な API:
+
+link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.xamcalculationmanager.html[XamCalculationManager]
+
+link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.itemcalculator.html[ItemCalculator]
+
+link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.listcalculator.html[ListCalculator]
+
+link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.namedreference.html[NamedReference]

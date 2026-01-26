@@ -1,0 +1,52 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-editing-unbound-columns",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids","How Do I"],
+    "guid": "49fb8548-a633-4605-a3bf-f8939593c567",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.3441889Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 非バインド列の編集
+
+link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.unboundcolumn~editortemplate.html[EditorTemplate] プロパティを設定することによって、非バインド列を編集できます。編集モードで使用するためのエディターを定義できます。セルに直接関係する基本フィールドが存在しないので、エディターが動作する方法を指定する必要があります。以下の例では、編集中に表示するセルは UnitsOnOrder 値です。値が更新されると、UnitsOnOrder セルの値は変更され、非バインド列の値になります。これはそれから派生されます。
+
+以下のコードは、xamGrid の非バインド列のエディターとして xamSlider コントロールを設定する方法を示します。pick:[sl,wpf="xamSlider コントロールの詳細は、 link:xamslider-getting-started-with-xamslider.html[xamSlider を使用した作業の開始]トピックを参照してください。"]
+
+*XAML の場合:*
+
+----
+<ig:UnboundColumn Key="TotalUnits" ValueConverter="{StaticResource TotalUnitsConverter}">
+   <ig:UnboundColumn.EditorTemplate>
+      <DataTemplate>
+         <StackPanel Orientation="Vertical">
+            <ig:XamNumericSlider  x:Name="slider1"  SmallChange="1" LargeChange="1" MinValue="0" MaxValue="100" Value="{Binding RowData.UnitsOnOrder, Mode=TwoWay, UpdateSourceTrigger=Explicit}"></ig:XamNumericSlider >
+            <TextBlock Text="{Binding Value, ElementName=slider1}" HorizontalAlignment="Center"/>
+         </StackPanel>
+      </DataTemplate>
+   </ig:UnboundColumn.EditorTemplate> 
+</ig:UnboundColumn>
+----
+
+ifdef::sl,wpf[]
+image::images/xamGrid_Unbound_Column_02.png[Sorting]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Unbound_Column_02.png[Sorting]
+endif::win-rt[]
+
+関連トピック
+
+link:xamgrid-sorting-unbound-columns.html[非バインド列の並べ替え]
+
+link:xamgrid-itemtemplate-binding.html[ItemTemplate のバインド]
+
+link:xamgrid-unbound-column.html[非バインド列]

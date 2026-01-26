@@ -1,0 +1,35 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-xamdatatree-selection",
+    "controlName": ["xamDataTree"],
+    "tags": ["How Do I","Selection"],
+    "guid": "aae62872-9eb9-4a6d-bbd1-3cbf77c2d947",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.917122Z"
+}
+|metadata|
+////
+
+= 選択 (xamDataTree)
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamDataTree_™ コントロールでの選択について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatatree-user-selection-interactions-and-usability.html[ユーザー選択インタラクションと操作性]
+|このトピックでは、 _xamDataTree_ コントロールのユーザー選択インタラクションについて説明します。
+
+| link:xamdatatree-performing-selection-programmatically.html[プログラムによる選択の実行]
+|このトピックでは、プログラムで _xamDataTree_ コントロールの選択を実行する方法を説明します。
+
+|====

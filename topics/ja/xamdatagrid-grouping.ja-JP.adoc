@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-grouping",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "abb8292a-a8a4-4ac9-b3fd-20099a55c45d",  
+    "buildFlags": [],
+    "createdOn": "2012-07-18T15:35:10.953372Z"
+}
+|metadata|
+////
+
+= グループ化
+
+以下のリンクをクリックすると xamDataGrid コントロールを使用してデータをグループ化する方法についてのトピックを表示します。
+
+* link:xamdatagrid-grouping-overview.html[グループ化の概要]
+* link:xamdatapresenter-change-the-location-of-the-groupbyarea.html[GroupByArea の位置の変更]
+* link:xamdatapresenter-create-an-external-group-by-area.html[外部の Group-By 領域の作成]
+* link:xamdatapresenter-disable-groupby.html[グループ化を無効にする]
+* link:xamdatapresenter-modify-the-group-by-area.html[Group-By 領域の修正]
+* link:xamdatagrid-external-grouping.html[外部のグループ化]
+* link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[コードを使用したフィールドの並べ替えとグループ化]
+* link:xamdatagrid-sorting-and-grouping-process-overview.html[並べ替えとグループ化プロセスの概要]
+* link:xamdatagrid-user-interaction-grouping-records.html[レコード並べ替え時のユーザー操作]

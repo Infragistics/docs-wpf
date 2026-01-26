@@ -1,0 +1,75 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-connections-configuration-overview",
+    "tags": ["Charting","Getting Started","How Do I","Summaries"],
+    "controlName": ["xamDiagram"],
+    "guid": "94f08487-69b8-4ae9-8ef6-4287334185c8",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:32:50.2834696Z"
+}
+|metadata|
+////
+
+= ダイアグラム接続の構成の概要 (xamDiagram)
+
+[[_Ref391537902]]
+== _xamDiagram_   接続の構成の概要
+
+=== 目的
+
+このトピックでは、  _xamDiagram_™ コントロールの接続の構成可能な要素の概要を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[ _xamDiagram_ の概要]
+|このトピックでは、 _xamDiagram_ コントロールの概要を説明します。
+
+|====
+
+[[_Ref391538037]]
+== 接続の構成の概要
+
+[[_Ref391538045]]
+
+=== xamDiagram 接続の構成の概要表
+
+include::xamdiagram-connections-configuration-summary-chart.ja-JP.adoc[]
+
+[[_Ref391538049]]
+
+=== 始点および終点
+
+_xamDiagram_   コントロールのダイアグラム接続の始点および終点は、2 つの方法で構成されます。
+
+*  *相対*  - 接続するノード、すなわち開始ノードと終了ノードを指定します。
+
+この方法では、接続を開始ノードおよび終了ノードに関連付ける必要があります。この場合、ノードが接続の始点と終点を制御します (ノードの位置を移動すると、接続は自動的に調整されます。)。
+*  *絶対*  - ダイアグラム上の接続の始点および終点の座標を指定します。
+
+接続の一端にノードを指定し、もう一端に座標を指定する方法もあります。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[ダイアグラム接続の開始および終了の構成 ( _xamDiagram_ )]
+
+[[_Ref391538053]]
+
+=== 接続キャップ
+
+ダイアグラム接続のキャップは、始点および終点を示す図形です。デフォルトでは、接続の開始点にキャップはなく、接続端は塗りつぶされた矢印キャップです。
+
+_xamDiagram_   には、定義済みのキャップの図形が複数あります。(詳細は、 link:xamdiagram-visual-elements-overview.html[視覚要素の概要 ( _xamDiagram_ )] のトピックを参照してください。)定義済みのキャップは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcaptype.html[StartCapType] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcaptype.html[EndCapType] プロパティを使用して選択します。これらのプロパティは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncaptype.html[DiagramConnectionCapType] 列挙体として選択できるキャップ図形を、値として受け取ります。任意の定義済みのキャップ タイプを使用する場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapsize.html[StartCapSize] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapsize.html[EndCapSize] プロパティでキャップ サイズも指定できます。
+
+カスタム キャップを全体的に使用する場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter_members.html[DiagramConnectionCapPresenter] のターゲット タイプのカスタム `スタイル`を link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapstyle.html[StartCapStyle] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapstyle.html[EndCapStyle] プロパティで設定できます。このスタイルでは、目的の外観を得るためにカスタムの `ControlTemplate` を指定できます。
+
+==== 関連トピック:
+
+* link:xamdiagram-configuring-the-caps-of-diagram-connections.html[ダイアグラム接続のキャップの構成 ( _xamDiagram_ )]

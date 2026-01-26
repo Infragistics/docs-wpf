@@ -1,0 +1,37 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-defining-layouts-carousel-view",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{95379DEF-4BB1-455B-A453-2D4303F6F1F4}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1369805Z"
+}
+|metadata|
+////
+
+= カルーセル ビュー
+
+以下のリンクをクリックして、xamDataPresenter™ のカルーセル ビューを使用してレイアウトを定義する支援を特に行うために記述されたトピックを表示します。
+
+link:xamdatapresenter-changing-the-location-of-the-carouselbreadcrumb.html[CarouselBreadcrumb の位置の変更]
+
+カルーセル ビューの Breadcrumb の位置の変更方法を確認してください。
+
+link:xamdatapresenter-limiting-the-number-of-items-viewed-on-xamdatapresenters-path.html[xamDataPresenter のパス上で表示される項目数を制限]
+
+xamDataPresenter のパスに沿って表示される項目数の変更方法を確認してください。
+
+link:xamdatapresenter-making-the-path-continuous.html[パスを継続]
+
+パスを継続する、つまり、項目のコレクションを継続的にナビゲートする方法を確認してください。
+
+link:xamdatapresenter-setting-padding-on-xamdatapresenters-path.html[xamDataPresenter のパス上でパディングを設定]
+
+コレクションの最初のカードの前および最後のカードの後でバッファーやパディングのサイズを追加および変更する方法を確認してください。
+
+link:xamdatapresenter-showing-more-than-three-fields-in-xamdatapresenter.html[xamDataPresenter に 3 つ以上のフィールドを表示]
+
+カルーセル ビューでフィールドをより多く表示する方法を確認してください。

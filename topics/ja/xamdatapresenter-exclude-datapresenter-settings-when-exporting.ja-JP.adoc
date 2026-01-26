@@ -1,0 +1,58 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-exclude-datapresenter-settings-when-exporting",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Exporting"],
+    "guid": "{DFB7AB91-C702-427C-BE14-B3AF37C0D604}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1909913Z"
+}
+|metadata|
+////
+
+= エクスポート時に DataPresenter 設定を除外
+
+
+
+DataPresenter コントロールを Microsoft® Excel® にエクスポートするとき、生成されるファイルは、エクスポートする前にエンド ユーザーが DataPresenter コントロールをどのように操作するかに依存します。たとえば、エンドユーザーがフィールドを並べ替える場合、エクスポーターは現在の並べ替え順序を使用してレコードをエクスポートします。ただし、 link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.exportoptions.html[ExportOptions] オブジェクトを link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter.html[DataPresenterExcelExporter] オブジェクトの link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.datapresenterexcelexporter~export.html[Export] メソッドに渡すことによって、DataPresenter コントロールの設定を排除できます。
+
+ExportOptions オブジェクトは、エクスポート処理の形態を操作できるようにする複数のプロパティを公開します。たとえば、エンド ユーザーがレコードを並べ替えても、ワークシートの行が並べ替えられないようにしたい場合、ExportOptions オブジェクトの link:{ApiPlatform}datapresenter.excelexporter{ApiVersion}~infragistics.windows.datapresenter.excelexporter.exportoptions~excludesortorder.html[ExcludeSortOrder] プロパティを True に設定し、それを Export メソッドに渡すことができます。
+
+以下のコード例は、Excel にエクスポートする時に DataPresenter コントロールの並べ替え順序を排除する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter.ExcelExporter
+Imports Infragistics.Documents.Excel
+...
+Dim exporter As New DataPresenterExcelExporter()
+Dim options As New ExportOptions With {.ExcludeSortOrder = True}
+exporter.Export(Me.xamDataPresenter1, "xamDataPresenter1.xls", WorkbookFormat.Excel97To2003, options)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter.ExcelExporter;
+using Infragistics.Documents.Excel;
+...
+DataPresenterExcelExporter exporter = new DataPresenterExcelExporter();
+ExportOptions options = new ExportOptions
+{
+    ExcludeSortOrder = true
+};
+exporter.Export(this.xamDataPresenter1, "xamDataPresenter1.xls", WorkbookFormat.Excel97To2003, options);
+...
+----
+
+== 関連トピック
+
+link:xamdatapresenter-export-a-datapresenter-control-to-excel.html[DataPresenter コントロールを Excel にエクスポート]
+
+link:xamdatapresenter-apply-formats-for-exporting.html[エクスポートするフォーマットを適用]
+
+link:xamdatapresenter-handle-exporting-events.html[エクスポート イベントの処理]

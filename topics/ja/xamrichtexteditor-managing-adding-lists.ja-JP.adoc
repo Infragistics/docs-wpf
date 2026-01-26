@@ -1,0 +1,351 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamrichtexteditor-managing-adding-lists",
+    "tags": ["How Do I"],
+    "controlName": ["xamRichTextEditor"],
+    "guid": "92e369d3-a481-44ca-8613-3650258968ff",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.508306Z"
+}
+|metadata|
+////
+
+= リストの追加 (xamRichTextEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamrichtexteditor{ApiVersion}~infragistics.controls.editors.xamrichtexteditor.html[ _xamRichTextEditor_  ]™ を使用してリストを作成する方法を、開発者の観点から説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-features-overview.html[機能の概要]
+|このトピックでは、 _xamRichTextEditor_ コントロールがサポートする機能の概要を説明します。
+
+| link:xamrichtexteditor-content-structure.html[コンテンツの構造]
+|このトピックは、 _xamRichTextEditor_ でコンテンツをプログラム処理する際に必要なドキュメントのコンテンツ論理構造を説明します。
+
+| link:xamrichtexteditor-adding-to-your-page.html[xamRichTextEditor をページに追加する]
+|このトピックでは、 _xamRichTextEditor_ を短時間で起動、実行するために役立つ詳細な操作方法を紹介します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref364171003,はじめに>>
+* <<_Ref364171004,RichTextList の定義>>
+** <<_Ref364171021,リスト テンプレートのみの使用>>
+** <<_Ref364089999,リスト スタイルとリスト テンプレートの使用>>
+
+* <<_Ref364171071,RichTextList への段落の追加>>
+* <<_Ref366584860,リスト スタイルの段落全体への適用>>
+* <<_Ref364171159,関連コンテンツ>>
+
+[[_Ref364171003]]
+== はじめに
+
+=== リストの概要
+
+_xamRichTextEditor_   コントロールは、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~defaultavailablestyles.html[RichTextDocument.DefaultAvailableStyles] 内のカスタム定義のリスト スタイル、または事前定義されたリスト スタイルの 1 つを使用して、マルチレベルのリストをサポートしています。
+
+リストの定義は、メモリのフットプリントを最小限にするために、再使用可能なように完全設計されたリスト、スタイルおよびテンプレートを使用する必要があります。そのために、このトピックで後述するいくつかの制限があります。
+
+[[_Ref364171004]]
+== RichTextList の定義
+
+=== RichTextList 概要表の定義
+
+リスト内でレベルやその他の設定を定義するには、2 つの方法があります。
+
+* <<_Ref364089994,リスト テンプレートのみの使用>>
+* <<_Ref364089999,リスト スタイルとリスト テンプレートの使用>>
+
+[[_Ref364089994]]
+[[_Ref364171021]]
+==== リスト テンプレートのみの使用
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.listtemplate_members.html[ListTemplate] は、リストとそのすべてのレベル (1 ～ 9 のレベルの定義) の構造に関する実際の定義を含みます。link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.listleveldefinition_members.html[ListLevelDefinition] クラスのインスタンスで表現される各レベルの定義は、使用する項目番号付きまたは箇条書き、リスト インジケータの周囲で使用するテキストの書式化、およびリスト内のレベルで段落に適用される段落の設定などの情報を提供します。link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextlist~template.html[RichTextList.Template] プロパティを使用して、リスト テンプレートをリストに割り当てることができます。リスト テンプレートは、複数のリスト インスタンスで共有できます。link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextlist_members.html[RichTextList] インスタンスは、解決に対応するために link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~lists.html[DocumentRootNode.Lists] コレクション内に置く必要があります。
+
+注:
+
+[NOTE]
+====
+複数のリスト間で 1 つのテンプレートを共有する場合は、リストで使用される実際の数値がリスト テンプレート自体によって増加または減少します。たとえば、テンプレートを共有している 1 つのドキュメント内に 2 つのリストが存在し、各リストが 3 つの項目を持つ場合、最初のリストの項目は 1、2、3 の番号が付けられ、2 番目のリストの項目には 4、5、6 の番号が付けられます。2 番目のリストの番号をリセットするには、1 の値の link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.listleveloverride~startoverride.html[StartOverride] を持つ link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.listleveloverride_members.html[ListLevelOverride] インスタンスで、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextlist~leveloverrides.html[RichTextList.LevelOverrides] コレクションを生成する必要があります。すべてのレベルで項目番号付けをリセットする場合は、テンプレート内で定義された各レベルに対して 1 つの `ListLevelOverride` インスタンスが必要です。
+====
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコード スニペットは、テンプレートのみを使用してカスタム リストを定義する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+// 一番上と一番下にスペースを入れずに、段落の設定を作成
+ParagraphSettings listParagraphSettings = new ParagraphSettings();
+listParagraphSettings.Spacing = new ParagraphSpacingSettings()
+{
+    AfterParagraph = new ParagraphVerticalSpacing(
+        new Extent(0, ExtentUnitType.LogicalPixels)),
+    BeforeParagraph = new ParagraphVerticalSpacing(
+        new Extent(0, ExtentUnitType.LogicalPixels)),
+};
+// 項目番号付け用の小数値、太字のスタイル、および緑色を
+// 使用する 1 つのレベル定義で、リスト テンプレートを作成
+ListTemplate greenListTemplate = new ListTemplate()
+{
+    LevelDefinitions = new ListLevelDefinitionCollection()
+    { 
+        new ListLevelDefinition()
+        {
+            Level = 0,
+            LevelText = "TAKE %1",
+            NumberFormat = NumberFormat.DecimalEnclosedFullstop,
+            NumberSuffix = NumberSuffix.Space,
+            NumberSettings = new CharacterSettings()
+            {
+                Bold = true,
+                Color = new ColorInfo(Colors.Green)
+            },
+            ParagraphSettings = listParagraphSettings,
+        }
+    }
+};
+// テンプレートを使用しリッチ テキスト リストを作成
+RichTextList greenRichTextList = new RichTextList()
+{
+    Id = "MyGreenRichTextList",
+    Template = greenListTemplate
+};
+this.xamRichTextEditor1.Document.RootNode.Lists.Add(greenRichTextList);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' 一番上と一番下にスペースを入れずに、段落の設定を作成
+Dim listParagraphSettings As New ParagraphSettings()
+listParagraphSettings.Spacing = New ParagraphSpacingSettings() With { _
+      Key .AfterParagraph = New ParagraphVerticalSpacing(New Extent(0, ExtentUnitType.LogicalPixels)), _
+      Key .BeforeParagraph = New ParagraphVerticalSpacing(New Extent(0, ExtentUnitType.LogicalPixels)) _
+}
+' 項目番号付け用の小数値、太字のスタイル、および緑色を
+' 使用する 1 つのレベル定義で、リスト テンプレートを作成
+Dim greenListTemplate As New ListTemplate() With { _
+      Key .LevelDefinitions = New ListLevelDefinitionCollection() From { _
+            New ListLevelDefinition() With { _
+                  Key .Level = 0, _
+                  Key .LevelText = "TAKE %1", _
+                  Key .NumberFormat = NumberFormat.DecimalEnclosedFullstop, _
+                  Key .NumberSuffix = NumberSuffix.Space, _
+                  Key .NumberSettings = New CharacterSettings() With { _
+                        Key .Bold = True, _
+                        Key .Color = New ColorInfo(Colors.Green) _
+                  }, _
+                  Key .ParagraphSettings = listParagraphSettings _
+            } _
+      } _
+}
+' テンプレートを使用しリッチ テキスト リストを作成
+Dim greenRichTextList As New RichTextList() With { _
+      Key .Id = "MyGreenRichTextList", _
+      Key .Template = greenListTemplate _
+}
+Me.xamRichTextEditor1.Document.RootNode.Lists.Add(greenRichTextList)
+----
+
+[[_Ref364089999]]
+==== リスト スタイルとリスト テンプレートの使用
+
+=== 概要
+
+link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.liststyle_members.html[ListStyle] を作成するには、最初に `ListTemplate` (前述のセクションで説明) を作成し、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.liststyle~template.html[ListStyle.Template] プロパティに設定する必要があります。次に、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextstylebase~id.html[ListStyle.Id] プロパティを使用して固有の ID を設定し、 link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~styles.html[DocumentRootNode.Styles] コレクションにスタイルを追加します。link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextlist~liststyleid.html[RichTextList.ListStyleId] プロパティを使用して、リスト スタイルを任意のリストに割り当てることができます。リスト スタイルは、複数のリスト インスタンスで共有できます。link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextlist_members.html[RichTextList] インスタンスは、解決に対応するために link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.documentrootnode~lists.html[DocumentRootNode.Lists] コレクション内に置く必要があります。
+
+テンプレートのみの場合と比較して、リスト スタイルとテンプレートの併用は利点があります。
+
+* 直接 1 つのテンプレートを共有する場合と同様に、リスト スタイルのリストの項目番号付けは共有されません。`StartOverride` の値は、設定する必要がありません。その理由は、リスト スタイルを使用するリストは、独自のテンプレートを内部的に取得しますが、このテンプレートは実際には空で、リスト スタイルからメイン テンプレート定義にリンクするからです。リストが番号の値を取得すると、各リスト インスタンスは独立した番号の値をこの空のテンプレートから取得します。
+* リスト スタイルはリスト ギャラリーに表示できるため、新しいリストで作成されたリスト スタイルを再使用することができます。
+
+=== 例
+
+以下のコード スニペットは、リスト スタイルとテンプレートを使用してカスタム リストを定義する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+// 一番上と一番下にスペースを入れずに、段落の設定を作成
+ParagraphSettings listParagraphSettings = new ParagraphSettings();
+listParagraphSettings.Spacing = new ParagraphSpacingSettings()
+{
+    AfterParagraph = new ParagraphVerticalSpacing(
+        new Extent(0, ExtentUnitType.LogicalPixels)),
+    BeforeParagraph = new ParagraphVerticalSpacing(
+    new Extent(0, ExtentUnitType.LogicalPixels)),
+};
+// 項目番号付け用の小数値、太字のスタイル、および赤色を
+// 使用する 1 つのレベル定義で、リスト テンプレートを作成
+ListTemplate redListTemplate = new ListTemplate()
+{
+    LevelDefinitions = new ListLevelDefinitionCollection()
+    { 
+        new ListLevelDefinition()
+        {
+            Level = 0,
+            LevelText = "FORGET %1",
+            NumberFormat = NumberFormat.DecimalEnclosedFullstop,
+            NumberSuffix = NumberSuffix.Space,
+            NumberSettings = new CharacterSettings ()
+            {
+                Bold = true,
+                Color = new ColorInfo(Colors.Red)
+            },
+            ParagraphSettings = listParagraphSettings,
+        }
+    }
+};
+// テンプレートを使用しリスト スタイルを作成
+ListStyle redListStyle = new ListStyle()
+{
+    Id = "MyRedListStyle",
+    Template = redListTemplate
+};
+this.xamRichTextEditor1.Document.RootNode.Styles.Add(redListStyle);
+// リスト スタイルを使用しリッチ テキスト リストを作成
+RichTextList redRichTextList = new RichTextList()
+{
+    Id = "MyRedRichTextList",
+    ListStyleId = "MyRedListStyle"
+};
+this.xamRichTextEditor1.Document.RootNode.Lists.Add(redRichTextList);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' 一番上と一番下にスペースを入れずに、段落の設定を作成
+Dim listParagraphSettings As New ParagraphSettings()
+listParagraphSettings.Spacing = New ParagraphSpacingSettings() With { _
+      Key .AfterParagraph = New ParagraphVerticalSpacing(New Extent(0, ExtentUnitType.LogicalPixels)), _
+      Key .BeforeParagraph = New ParagraphVerticalSpacing(New Extent(0, ExtentUnitType.LogicalPixels)) _
+}
+' 項目番号付け用の小数値、太字のスタイル、および赤色を
+' 使用する 1 つのレベル定義で、リスト テンプレートを作成
+Dim redListTemplate As New ListTemplate() With { _
+      Key .LevelDefinitions = New ListLevelDefinitionCollection() From { _
+            New ListLevelDefinition() With { _
+                  Key .Level = 0, _
+                  Key .LevelText = "FORGET %1", _
+                  Key .NumberFormat = NumberFormat.DecimalEnclosedFullstop, _
+                  Key .NumberSuffix = NumberSuffix.Space, _
+                  Key .NumberSettings = New CharacterSettings() With { _
+                        Key .Bold = True, _
+                        Key .Color = New ColorInfo(Colors.Red) _
+                  }, _
+                  Key .ParagraphSettings = listParagraphSettings _
+            } _
+      } _
+}
+' テンプレートを使用しリスト スタイルを作成
+Dim redListStyle As New ListStyle() With { _
+      Key .Id = "MyRedListStyle", _
+      Key .Template = redListTemplate _
+}
+Me.xamRichTextEditor1.Document.RootNode.Styles.Add(redListStyle)
+' リスト スタイルを使用しリッチ テキスト リストを作成
+Dim redRichTextList As New RichTextList() With { _
+      Key .Id = "MyRedRichTextList", _
+      Key .ListStyleId = "MyRedListStyle" _
+}
+Me.xamRichTextEditor1.Document.RootNode.Lists.Add(redRichTextList)
+----
+
+[[_Ref364171071]]
+==== RichTextLists への段落の追加
+
+=== リスト概要の作成
+
+`RichTextList` 内の各リスト項目は、段落です (link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.paragraphnode_members.html[ParagraphNode])。必要な数のリスト項目を作成し、以下を使用して 1 つのリスト項目にします。
+
+[[_Ref364171084]]
+
+=== リスト テンプレートのみの市油、または ListStyle の使用
+
+以下のコード スニペットは、段落を作成し、それをリストに追加する方法を示します。
+
+*C# の場合:*
+
+[source,csharp]
+----
+// リッチ テキスト リストを使用する段落の作成
+ParagraphNode pn = new ParagraphNode();
+pn.SetText("Some content");
+pn.Settings = new ParagraphSettings()
+{
+    ListId = "MyGreenRichTextList",
+    ListLevel = 0
+};
+this.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+' リッチ テキスト リストを使用する段落の作成
+Dim pn As New ParagraphNode()
+pn.SetText("Some content")
+pn.Settings = New ParagraphSettings() With { _
+      Key .ListId = "MyGreenRichTextList", _
+      Key .ListLevel = 0 _
+}
+Me.xamRichTextEditor1.Document.RootNode.Body.ChildNodes.Add(pn)
+----
+
+[[_Ref364171159]]
+
+[[_Ref366584860]]
+== リスト スタイルの段落全体への適用
+
+=== リスト概要の適用
+
+特定のリスト スタイルを既存のいくつかの段落に適用して、リストを作成することもできます。最初に、リストの各項目に対して段落ノードを作成します (段落の作成方法の詳細は、 link:xamrichtexteditor-managing-adding-text.html[テキストの追加] のトピックを参照してください)。次に link:{ApiPlatform}documents.richtextdocument{ApiVersion}~infragistics.documents.richtext.richtextdocument~applyparagraphstyle.html[RichTextDocument.ApplyParagraphStyle] メソッドを呼び出して、作成されたすべての段落とリスト スタイル ID で占められたドキュメント スパンを提供します。これによって、段落を新しいリストに関連付け、リスト スタイルを段落に適用します。
+
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamrichtexteditor-managing-adding-text.html[テキストの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテキストを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-hyperlinks.html[ハイパーリンクの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してハイパーリンクを作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-images.html[画像の追加]
+|このトピックは、 _xamRichTextEditor_ を使用して画像を作成する方法を、開発者の観点から説明します。
+
+| link:xamrichtexteditor-managing-adding-tables.html[テーブルの追加]
+|このトピックは、 _xamRichTextEditor_ を使用してテーブルを作成する方法を、開発者の観点から説明します。
+
+|====

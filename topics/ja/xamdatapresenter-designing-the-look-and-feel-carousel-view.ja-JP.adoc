@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-designing-the-look-and-feel-carousel-view",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "{7C60C549-3861-4126-AD65-951AA741534F}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1439819Z"
+}
+|metadata|
+////
+
+= カルーセル ビューのスタイル設定
+
+以下のリンクをクリックして、xamDataPresenter™ のカルーセル ビューのルック アンド フィールをデザインする支援を特に行うために記述されたトピックを表示します。
+
+* link:xamcarousel-overview-of-path-effects.html[パス エフェクトの概要]
+* link:xamcarousel-changing-the-location-of-carousel-navigator-element.html[カルーセル ナビゲーション 要素の位置を変更]
+* link:xamcarousel-creating-a-named-path-on-the-artboard.html[アートボードで名前を指定したパスを作成]
+* link:xamcarousel-disabling-reflection-for-an-item-along-a-path.html[パスに沿って項目のリフレクションを無効にする]
+* link:xamdatapresenter-modifying-the-opacity-effect-of-items-on-a-path.html[パスで項目の不透明効果を変更]
+* link:xamdatapresenter-modifying-the-scale-of-elements-on-a-path.html[xamDataPresenter のパスで項目のスケール効果を変更]
+* link:xamdatapresenter-modifying-the-skew-effect-of-items-on-a-path.html[パスで項目の傾斜効果を変更]
+* link:xamdatapresenter-setting-a-path-for-xamdatapresenter-to-use.html[xamDataPresenter のパスを使用するように設定]

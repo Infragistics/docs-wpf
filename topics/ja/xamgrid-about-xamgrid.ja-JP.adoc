@@ -1,0 +1,59 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-about-xamgrid",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids"],
+    "guid": "{E897E36E-E4C5-4B65-BD8B-42C7BBF05BC7}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.6451453Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= xamGrid について
+
+xamGrid コントロールはスタイル設定可能性と高パフォーマンスのために設計された階層データ グリッド コントロールです。このコントロールによって、ニーズに最も合うようなスタイルと方法でデータを表示することができます。
+
+以下は xamGrid コントロールの主な機能のリストです。
+
+ifdef::sl,wpf[]
+*高パフォーマンス* - データおよび UI の仮想化によって xamGrid が非常に軽量かつ高速になり、大量のデータを処理することができます。
+endif::sl,wpf[]
+
+*階層データ* - マスター/詳細データの関係、および各レベルの様々な列レイアウトを使用して、複雑な階層データを表示することができます。
+
+ifdef::win-rt[]
+*向上したタッチ サポート* - 列のタッチ対応のメニューで有効な機能を表示します。
+endif::win-rt[]
+
+*固定列* - エンド ユーザーは、水平スクロール時に列が常に表示されるように、列を適切な位置に固定できます。
+
+*移動可能な列* - エンドユーザーは最も適した位置に列をドラッグすることによって xamGrid を操作できます。
+
+*並び替え可能な列* - エンドユーザーは、1 つまたは複数の列を並び替えることができます。
+
+*サイズ変更可能な列* - エンド ユーザーは、1 つまたは複数の列をサイズ変更することができます。
+
+*グループ化* - エンド ユーザーは、xamGrid データをグループ化できます。
+
+*ページング* - 大きいデータ セットをページに分割します。
+
+*テンプレート* - アプリケーション全体で整合性の取れたルック アンド フィールを保持できるように xamGrid のスタイルを設定できます。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_About_01.png[詳細情報]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_About_01.png[詳細情報]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-adding-xamgrid-to-your-page.html[xamGrid をページに追加]
+
+link:xamgrid-using-xamgrid.html[xamGrid の使用]

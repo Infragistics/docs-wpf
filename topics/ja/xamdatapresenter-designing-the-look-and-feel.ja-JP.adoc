@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-designing-the-look-and-feel",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Styling"],
+    "guid": "{0EFBA92D-3862-492C-A01A-1889ADA6E818}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1409813Z"
+}
+|metadata|
+////
+
+= xamDataPresenter のスタイル設定
+
+
+
+コントロールのルック アンド フィールは単にスタイルではありません。属性です。「ルック」はコントロールが視覚的にどのように現れるのかを意味しますが、「フィール」はコントロールがどのように動作するのかを意味します。したがって、特定の機能と一体になった魅力的な視覚的スタイルを受け取ることになります。
+
+xamDataPresenter™ のルック アンド フィールは、特定のオペレーティング システムのカラー スキームで構成されるか、場合によっては人気のあるワープロ アプリケーションの機能で構成される場合があります。このセクションは、これらのルック アンド フィールのオン/オフに切り替えて、アプリケーションの個人の動作に合わせて操作する支援を行います。
+
+以下のリンクをクリックして、xamDataPresenter コントロールのルック アンド フィールをデザインする支援を特に行うために記述されたトピックを表示します。
+
+* link:xamdata-changing-the-record-hover-color.html[レコード ホバーの色の変更]
+* link:xamdata-referencing-a-themepack-in-xaml.html[XAML でテーマパックを参照]
+* link:xamdata-using-built-in-themes.html[組み込みテーマを使用]
+* link:xamdatapresenter-enabling-alternating-row-colors.html[隔行の色を有効にする]
+* link:xamdatapresenter-changing-the-column-headers-style.html[列ヘッダーのスタイルを変更]
+* link:xamdatapresenter-styling-treeview.html[ツリー ビューのスタイル設定]
+* link:xamdatapresenter-designing-the-look-and-feel-carousel-view.html[カルーセル ビュー]

@@ -1,0 +1,38 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcomboeditor-selection",
+    "tags": ["Getting Started","Selection"],
+    "controlName": ["xamComboEditor"],
+    "guid": "44189635-d712-4a51-b33d-7b27ce7fb590",  
+    "buildFlags": ["WPF"],
+    "createdOn": "2016-05-25T18:21:54.6900972Z"
+}
+|metadata|
+////
+
+= 選択 (xamComboEditor)
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのトピックでは、 _xamComboEditor_™ コントロールの選択機能とその使用方法について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcomboeditor-selection-overview.html[ユーザー選択インタラクションと操作性]
+|このトピックでは、 _xamComboEditor_ コントロールのユーザー選択インタラクションについて説明します。
+
+| link:xamcomboeditor-performing-selection-programmatically.html[プログラムによる選択の実行]
+|このトピックでは、 _xamComboEditor_ コントロールの選択をプログラムで実行する方法を説明します。
+
+| link:xamcomboeditor-configuring-multiple-selection.html[複数選択の構成]
+|このトピックでは、 _xamComboEditor_ コントロールで複数選択を構成する方法を説明します。
+
+|====

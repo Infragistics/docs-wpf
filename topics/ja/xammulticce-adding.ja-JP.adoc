@@ -1,0 +1,521 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammulticce-adding",
+    "controlName": ["xamMultiColumnComboEditor"],
+    "tags": ["Editing","Filtering","Getting Started","How Do I","Selection"],
+    "guid": "5090f3f0-fad8-4597-960d-8aa7257441d9",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.5512535Z"
+}
+|metadata|
+////
+
+= xamMultiColumnComboEditor をページに追加
+
+== トピックの概要
+
+== 目的
+
+このトピックでは、xamMultiColumnComboEditor™ コントロールをアプリケーションに追加し、より重要ないくつかのプロパティの使用方法を示します。
+
+== 前提条件
+
+まず以下のトピックを読む必要があります。
+
+* link:xammulticce-about.html[xamMultiColumnComboEditor について]
+* link:xammulticce-using.html[xamMultiColumnComboEditor の使用]
+
+== 構成の概要
+
+以下の表は、xamMultiColumnComboEditor コントロールの構成可能な動作の一部を説明しています。
+
+[cols="a,a,a"]
+|====
+|*構成可能な動作*
+|*構成の詳細*
+|*構成プロパティ*
+
+|<<Adding,xamMultiColumnComboEditor を アプリケーションに追加>>
+|xamMultiColumnComboEditor コントロールをアプリケーションに追加するために必要な手順。
+|なし
+
+|xamMultiColumnComboEditor を項目で生成
+|xamMultiColumnComboEditor を項目と読み込む
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemssource.html[ItemsSource プロパティ]
+
+|<<Modifying,xamMultiColumnComboEditor の修正>>
+|コントロールの主なプロパティの一部を構成します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~autogeneratecolumns.html[AutoGenerateColumns プロパティ] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath プロパティ] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~columns.html[Columns プロパティ] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection プロパティ] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility プロパティ] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~dropdownbuttondisplaymode.html[DropDownButtonDisplayMode プロパティ] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~selecteditemsresetbuttonvisibilityproperty.html[SelectedItemsResetButtonVisibility プロパティ]
+
+|<<Using,xamMultiColumnComboEditor の使用>>
+|コントロールの選択された項目を取得します。
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditems.html[SelectedItems プロパティ] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditem.html[SelectedItem プロパティ] 
+
+link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedindex.html[SelectedIndex プロパティ]
+
+|====
+
+== xamMultiColumnComboEditor を アプリケーションに追加
+
+[[Adding]]
+
+[start=1]
+. *Infragistics 名前空間を追加します。*
+
+.. *必要な参照を追加します。*
+
+xamMultiColumnComboEditor をアプリケーションに追加するには、以下の NuGet パッケージへの参照をプロジェクトに追加する必要があります。
+
+** Infragistics.WPF.Controls.Editors.XamComboEditor
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+.. *Infragistics 名前空間を追加します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+[start=2]
+. *xamMultiColumnComboEditor コントロールを追加します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim multiColumnCombo As XamMultiColumnComboEditor = New XamMultiColumnComboEditor()
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamMultiColumnComboEditor multiColumnCombo = new XamMultiColumnComboEditor();
+----
+
+== xamMultiColumnComboEditor を項目で生成
+
+[[Populating]]
+
+[cols="a,a,a"]
+|====
+|*目的*
+|*プロパティ*
+|*設定値*
+
+|<<Populate,xamMultiColumnComboEditor を項目で生成>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~itemssource.html[ItemsSource プロパティ]
+|IEnumerable データ ソース
+
+|====
+
+[start=1]
+. *Key プロパティを設定します。*
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor ItemsSource="[your IEnumerable source]"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+multiColumnCombo.ItemsSource = "[your IEnumerable source]"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+multiColumnCombo.ItemsSource = "[your IEnumerable source]";
+----
+
+== xamMultiColumnComboEditor の修正
+
+[[Modifying]]
+
+以下の表では、望ましい構成をプロパティ設定にマップしています。プロパティは xamMultiColumnComboEditor コントロールから直接アクセスされます。
+
+[cols="a,a,a"]
+|====
+|*目的*
+|*プロパティ*
+|*設定値*
+
+|<<AutoGenerateColumns,コントロールに列を生成させます>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~autogeneratecolumns.html[AutoGenerateColumns プロパティ]
+|選択したブール値
+
+|<<DisplayMemberPath,ドロップダウンが閉じたときに表示される列の値を設定します>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~displaymemberpath.html[DisplayMemberPath プロパティ]
+|選択されたプロパティの名前。
+
+|<<Columns,コントロールのドロップダウンに表示される列を定義します (AutoGenerateColumns が False に設定されている場合)>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.xammulticolumncomboeditor~columns.html[Columns プロパティ]
+|ComboColumns のコレクション
+
+|<<AllowMultipleSelection,ユーザーにコントロールで複数の項目を選択することを許可>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~allowmultipleselection.html[AllowMultipleSelection プロパティ]
+|選択したブール値
+
+|<<CheckBoxVisibility,あらゆる項目の前にチェックボックスを表示>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~checkboxvisibility.html[CheckBoxVisibility プロパティ]
+|選択した System.Windows.Visibility
+
+|====
+
+== XamMultiColumnComboEditor の詳細を修正
+
+[start=1]
+. *コントロールに列を生成させます。*
+
+[[AutoGenerateColumns]]
+
+xamMultiColumnComboEditor コントロールの設定で重要な部分は列の生成です。以下によってコントロールに自動的に列を生成させることができます:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor AutoGenerateColumns="True"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+multiColumnCombo.AutoGenerateColumns = True
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+multiColumnCombo.AutoGenerateColumns = true;
+----
+
+[start=2]
+. *ドロップダウンが閉じたときに表示される列の値を設定します。*
+
+[[DisplayMemberPath]]
+
+選択した項目を表示するためにコントロールによって使用されるプロパティを定義するには、コントロールの DisplayMemberPath プロパティをプロパティ名と同じに設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor DisplayMemberPath="[Property Name]"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+multiColumnCombo.DisplayMemberPath = "[Property Name]"
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+multiColumnCombo.DisplayMemberPath = "[Property Name]";
+----
+
+[start=3]
+. *コントロールのドロップダウンに表示される列を定義します (AutoGenerateColumns が False に設定されている場合)。*
+
+[[Columns]]
+
+コントロールで列を手動で選択して配列したい場合、AutoGenerateColumns プロパティを false に設定し、xamMultiColumnComboEditor コントロールの Columns Collection を設定します:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor.Columns>
+        <ig:TextComboColumn Key="ContactName"/>
+        <ig:TextComboColumn Key="Company"/>
+</ig:XamMultiColumnComboEditor.Columns>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+multiColumnCombo.AutoGenerateColumns = False
+Dim colContactName = New TextComboColumn()
+Dim colCompany = New TextComboColumn()
+colContactName.Key = "ContactName"
+colCompany.Key = "Company"
+multiColumnCombo.Columns.Add(colConactName)
+multiColumnCombo.Columns.Add(colCompany)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+multiColumnCombo.AutoGenerateColumns = false;
+var colContactName = new TextComboColumn();
+var colCompany = new TextComboColumn();
+colContactName.Key = "ContactName";
+colCompany.Key = "Company";
+multiColumnCombo.Columns.Add(colContactName);
+multiColumnCombo.Columns.Add(colCompany);
+----
+
+[start=4]
+. *ユーザーにコントロールで複数の項目を選択することを許可します。*
+
+[[AllowMultipleSelection]]
+
+ユーザーに xamMultiColumnComboEditor から複数の項目を選択させたい場合には、AllowMultipleSelection プロパティを true に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor AllowMultipleSelection="True"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+multiColumnCombo.AllowMultipleSelection = True
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+multiColumnCombo.AllowMultipleSelection = true;
+----
+
+[start=5]
+. *あらゆる項目の前にチェックボックスを表示定義します。*
+
+[[CheckBoxVisibility]]
+
+ユーザーに xamMultiColumnComboEditor から複数の項目を選択させたい場合には、AllowMultipleSelection プロパティを true に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor CheckBoxVisibility="Visible"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+multiColumnCombo.CheckBoxVisibility = System.Windows.Visibility.Visible
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+multiColumnCombo.AllowMultipleSelection = System.Windows.Visibility.Visible;
+----
+
+== xamMultiColumnComboEditor の使用
+
+[[Using]]
+
+選択された項目は以下を使用することによって取得できます:
+
+[cols="a,a,a"]
+|====
+|*目的*
+|*プロパティ*
+|*そして …*
+
+|<<SelectedItems,選択された項目コレクションを取得します。>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditems.html[SelectedItems プロパティ]
+|選択された項目の ObservableCollection<object> を取得します。 
+
+|<<SelectedItem,選択した項目を取得または設定します>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selecteditem.html[SelectedItem プロパティ]
+|項目をデータ モデルから取得または設定します。
+
+|<<SelectedIndex,選択したインデックスを取得または設定します>>
+| link:{ApiPlatform}controls.editors.xamcomboeditor{ApiVersion}~infragistics.controls.editors.comboeditorbase`2~selectedindex.html[SelectedIndex プロパティ]
+|選択された項目のインデックスを取得または設定します。
+
+|====
+
+== XamMultiColumnComboEditor の詳細を使用
+
+[start=1]
+. *選択された項目コレクションを取得します。*
+
+[[SelectedItems]]
+
+AllowMultipleSelection プロパティが true に設定されると、SelectedItems プロパティにアクセスすることによって選択された項目コレクションを取得できます:
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim selItems = multiColumnCombo.SelectedItems
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+var selItems =  multiColumnCombo.SelectedItems;
+----
+
+[start=2]
+. *選択した項目を取得または設定します。*
+
+[[SelectedItem]]
+
+.. *選択された項目を取得します。*
+
+AllowMultipleSelection プロパティが false に設定されると、SelectedItem プロパティにアクセスすることによって選択された項目を取得できます:
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim selItem = multiColumnCombo.SelectedItem
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+int selItem = multiColumnCombo.SelectedItem;
+----
+
+[start=2]
+.. *選択された項目を設定します。*
+
+AllowMultipleSelection プロパティが false に設定されると、データ ソース コレクションからの項目のインスタンスを SelectedItem プロパティと等しく割り当てることによって選択された項目を設定できます:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor SelectedItem="[an item from the data mode]"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+multiColumnCombo.SelectedItem = [an item from the data mode]
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+multiColumnCombo.SelectedItem = [an item from the data mode];
+----
+
+[start=3]
+. *選択したインデックスを取得または設定します。*
+
+[[SelectedIndex]]
+
+.. *選択されたインデックスを取得します。*
+
+SelectedIndex プロパティにアクセスすることによって選択されたインデックスを取得できます:
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim selIndex = multiColumnCombo.SelectedIndex
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+int selIndex = multiColumnCombo.SelectedIndex;
+----
+
+[start=2]
+.. *選択された項目を設定します。*
+
+インデックス値を SelectedIndex プロパティに割り当てることによって選択されたインデックスを設定できます:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamMultiColumnComboEditor SelectedIndex="[your index value]"/>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+multiColumnCombo.SelectedIndex = [your index value]
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+multiColumnCombo.SelectedIndex = [your index value];
+----
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+link:xammulticce-about.html[xamMultiColumnComboEditor について]
+
+link:xammulticce-configuring-xammulticolumncomboeditor.html[xamMultiColumnComboEditor の構成]

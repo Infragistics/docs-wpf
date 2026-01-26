@@ -1,0 +1,81 @@
+﻿////
+
+|metadata|
+{
+    "name": "designers-guide-styling-points-for-xammap",
+    "controlName": [],
+    "tags": ["Styling","Templating"],
+    "guid": "7a19a01c-fb2a-4fb0-b1f5-6bb6ee45abb0",  
+    "buildFlags": ["wpf","sl"],
+    "createdOn": "2012-04-05T16:16:38.6042759Z"
+}
+|metadata|
+////
+
+= xamMap のスタイリング ポイント
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap]™ コントロールのスタイリング ポイントをデザイナーに提供します。
+
+[[_Ref320651776]]
+== スタイリング ポイント
+
+=== xamMap プロパティ
+
+以下の図は、 _xamMap_   コントロールが使用するさまざまなコントロールを示しています。特定の項目を再スタイルするには、最初に図で TargetType を識別し、次にその後の表で対応する Style プロパティを識別します。
+
+image::images/Designers_Guide_Styling_Points_for_xamMap_1.png[]
+
+以下の表で、 _xamMap_   コントロールの要素のためのプロパティを簡単に説明します。
+
+[options="header", cols="a,a,a"]
+|====
+|TargetType|Style プロパティ|説明
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap]
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]
+|_xamMap_ コントロールのスタイルを指定します。
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer_members.html[MapLayer]
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[XamMap]. link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~layers.html[Layers][x]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]
+|_xamMap_ コントロールの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap~layers.html[Layers] コレクションでシリーズのスタイルを指定します。
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapthumbnailpane_members.html[MapThumbnailPane]
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapthumbnailpane_members.html[MapThumbnailPane]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]
+|_xamMap_ コントロールのサムネイル ペインでシリーズのスタイルを指定します。
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapcolorswatchpane_members.html[MapColorSwatchPane]
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapcolorswatchpane_members.html[MapColorSwatchPane]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]
+|_xamMap_ コントロールのカラー スワッチ ペインでシリーズのスタイルを指定します。
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapscalepane_members.html[MapScalePane]
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapscalepane_members.html[MapScalePane]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]
+|_xamMap_ コントロールのスケール ペインでシリーズのスタイルを指定します。
+
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapnavigationpane_members.html[MapNavigationPane]
+| link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.mapnavigationpane_members.html[MapNavigationPane]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]
+|_xamMap_ コントロールのナビエーション ペインでシリーズのスタイルを指定します。
+
+|====
+
+[[_Ref320185294]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamwebmap-understanding-xamwebmap.html[xamMap の理解]
+|_xamMap_ コントロールの視覚要素についての情報を提供します。
+
+| link:xamwebmap-using-multiple-layers.html[複数レイヤーの使用]
+|_xamMap_ コントロールで複数のマップ レイヤーを使用することについての情報を提供します。
+
+|====

@@ -1,0 +1,233 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-creating-a-tabbed-mdi-application",
+    "controlName": ["xamDockManager"],
+    "tags": ["Getting Started","How Do I"],
+    "guid": "{F32D2875-BB1D-4678-BDF4-036A5AC5A723}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5020535Z"
+}
+|metadata|
+////
+
+= タブ付き MDI アプリケーションを作成
+
+
+== 始める前に
+
+xamDockManager™ でタブ付けされた Multiple Document Interface (MDI) アプリケーションを作成するために新しいオブジェクト モデルを学習する必要はありません。タブ付けされた MDI アプリケーションを作成するために xamDockManager および Microsoft® Windows® Presentation Foundation の既存の知識を活用できます。
+
+== 達成すること
+
+タブ付けされた MDI アプリケーションを作成するためにコンテンツ ペインおよび link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.documentcontenthost.html[DocumentContentHost] オブジェクトを使用します。DocumentContentHost オブジェクトの各コンテンツ ペインが個別のタブに表示されます。
+
+== 次の手順を実行します
+
+[start=1]
+. xamDockManager コントロールを Window に追加して名前を付けます。
+
+*XAML の場合:*
+
+----
+<igDock:XamDockManager Name="xamDockManager1">
+    <!--TODO: ここに DocumentContentHost を追加します-->
+</igDock:XamDockManager>
+----
+
+[start=2]
+. xamDockManager の link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager.html[Content] プロパティを DocumentContentHost のインスタンスに設定します。XAML で Content プロパティのタグを明示的に宣言する必要はありません。
+
+*XAML の場合:*
+
+----
+<igDock:DocumentContentHost>
+    <!--TODO: ここに SplitPane を追加します-->
+</igDock:DocumentContentHost>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DockManager
+...
+Dim documentContentHost1 As New DocumentContentHost()
+Me.xamDockManager1.Content = documentContentHost1
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DockManager;
+...
+DocumentContentHost documentContentHost1 = new DocumentContentHost();
+this.xamDockManager1.Content = documentContentHost1;
+----
+
+[start=3]
+. DocumentContentHost オブジェクトの link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.splitpane.html[Panes] コレクションに link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.documentcontenthost~panes.html[SplitPane] オブジェクトを追加します。DocumentContentHost オブジェクトの Panes コレクションのタグを明示的に宣言する必要はありません。
+
+*XAML の場合:*
+
+----
+<igDock:SplitPane>
+    <!--TODO: ここに TabGroupPane を追加します-->
+</igDock:SplitPane>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim splitPane1 As New SplitPane()
+documentContentHost1.Panes.Add(splitPane1)
+----
+
+*C# の場合:*
+
+----
+SplitPane splitPane1 = new SplitPane();
+documentContentHost1.Panes.Add(splitPane1);
+----
+
+[start=4]
+. SplitPane オブジェクトの link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.splitpane~panes.html[Panes] コレクションに link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.tabgrouppane.html[TabGroupPane] オブジェクトを追加します。SplitPane オブジェクトの Panes コレクションのタグを明示的に宣言する必要はありません。
+
+*XAML の場合:*
+
+----
+<igDock:TabGroupPane>
+    <!--TODO: ここに ContentPanes を追加します-->
+</igDock:TabGroupPane>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim tabGroupPane1 As New TabGroupPane()
+splitPane1.Panes.Add(tabGroupPane1)
+----
+
+*C# の場合:*
+
+----
+TabGroupPane tabGroupPane1 = new TabGroupPane();
+splitPane1.Panes.Add(tabGroupPane1);
+----
+
+[start=5]
+. TabGroupPane オブジェクトの link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.contentpane.html[Items] コレクションに link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.tabgrouppane.html[ContentPane] オブジェクトを追加します。TabGroupPane オブジェクトの項目コレクションのタグを明示的に宣言する必要はありません。
+
+DocumentContentHost オブジェクトのコンテンツ ペインは、通常のコンテンツ ペインのように動作します。つまり、エンド ユーザーはランタイムでコンテンツ ペインをドックまたはフローティングすることができます。コンテンツ ペインの link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.contentpane~allowdocking.html[AllowDocking] プロパティおよび link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.contentpane~allowfloatingonly.html[AllowFloatingOnly] プロパティを False に設定することで、この動作を制限することができます。
+
+*XAML の場合:*
+
+----
+<!--各コンテンツ ペインでそれらを設定する代わりに、Style を使用して AllowDocking および AllowFloatingOnly プロパティを設定できます。-->
+<igDock:ContentPane Header="Document1.xaml" AllowDocking=" AllowFloatingOnly=">
+    <!--TODO: ここでコンテンツを追加します-->
+</igDock:ContentPane>
+----
+
+*Visual Basic の場合:*
+
+----
+Dim contentPane1 As New ContentPane()
+contentPane1.Header = "Document1.xaml"
+'コンテンツ ペインの AllowDocking および AllowFloatingOnly プロパティを設定するために Style を作成した場合、ここでプロパティを設定する必要はありません。
+contentPane1.AllowDocking = False
+contentPane1.AllowFloatingOnly = False
+tabGroupPane1.Items.Add(contentPane1)
+----
+
+*C# の場合:*
+
+----
+ContentPane contentPane1 = new ContentPane();
+contentPane1.Header = "Document1.xaml";
+//コンテンツ ペインの AllowDocking および AllowFloatingOnly プロパティを設定するために Style を作成した場合、ここでプロパティを設定する必要はありません。
+contentPane1.AllowDocking = false;
+contentPane1.AllowFloatingOnly = false;
+tabGroupPane1.Items.Add(contentPane1);
+----
+
+[start=6]
+. ContentPane の link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.contentpane.html[Content] プロパティを設定します。ContentPane オブジェクトはコンテンツ コントロールです。したがって、Windows Presentation Foundation のコンテンツ コントロールのように使用できます。
+
+*XAML の場合:*
+
+----
+<RichTextBox VerticalScrollBarVisibility="Auto" />
+----
+
+*Visual Basic の場合:*
+
+----
+Dim richTextBox1 As New RichTextBox()
+richTextBox1.VerticalScrollBarVisibility = ScrollBarVisibility.Auto
+contentPane1.Content = richTextBox1
+----
+
+*C# の場合:*
+
+----
+RichTextBox richTextBox1 = new RichTextBox();
+richTextBox1.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+contentPane1.Content = richTextBox1;
+----
+
+[start=7]
+. 第 2 のコンテンツ ペイン (タブ) を DocumentContentHost オブジェクトに動的に追加します。
+
+以下のコード例は、 link:{ApiPlatform}dockmanager{ApiVersion}~infragistics.windows.dockmanager.xamdockmanager~adddocument.html[AddDocument] メソッドを呼び出してコンテンツ ペイン (タブ) を追加する方法を示します。AddDocument メソッドの呼び出しは、DocumentContentHost オブジェクトに新しいコンテンツ ペインを動的に追加する便利な方法です。AddDocument メソッドを使用したくない場合、新しい ContentPane オブジェクトをインスタンス化し、それを TabGroupPane オブジェクトの Items コレクションに追加できます。
+
+*Visual Basic の場合:*
+
+----
+Dim richTextBox2 As New RichTextBox() 
+richTextBox2.VerticalScrollBarVisibility = ScrollBarVisibility.Auto 
+Dim contentPane2 As ContentPane = Me.xamDockManager1.AddDocument("Document2.xaml", richTextBox2) 
+contentPane2.AllowDocking = False 
+contentPane2.AllowFloatingOnly = False
+----
+
+*C# の場合:*
+
+----
+RichTextBox richTextBox2 = new RichTextBox();
+richTextBox2.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+ContentPane contentPane2 = this.xamDockManager1.AddDocument("Document2.xaml", richTextBox2);
+contentPane2.AllowDocking = false;
+contentPane2.AllowFloatingOnly = false;
+----
+
+[start=8]
+. プロジェクトを実行すると、"Document1.xaml" および "Document2.xaml" という名前の 2 つのタブが表示されます。
+
+image::images/xamDockManager_Creating_a_Tabbed_MDI_Application_01.png[xamdockmanager を使用してタブ付き mdi アプリケーションを作成]
+
+== 関連トピック
+
+link:xamdockmanager-about-opening-and-closing-panes.html[開始ペインと終了ペインについて]
+
+link:xamdockmanager-add-content-to-a-contentpane.html[コンテンツを ContentPane に追加]
+
+link:xamdockmanager-add-panes-to-the-documentcontenthost-object.html[ペインを DocumentContentHost オブジェクトに追加]
+
+link:xamdockmanager-add-panes-to-xamdockmanager.html[ペインを xamDockManager に追加]
+
+link:xamdockmanager-pin-and-unpin-a-pane.html[ペインのピンを固定および解除]
+
+link:xamdockmanager-prevent-end-users-from-resizing-floating-panes.html[エンドユーザーがフローティング ペインのサイズを変更することを禁止]
+
+link:xamdockmanager-set-the-location-of-a-floating-pane.html[フローティング ペインの場所を設定]
+
+link:xamdockmanager-set-the-initial-location-of-a-pane.html[ペインの最初の位置を設定]
+
+link:xamdockmanager-set-the-size-of-a-floating-pane.html[フローティング ペインのサイズを設定]
+
+link:xamdockmanager-show-the-pane-navigator-programmatically.html[プログラミングによるペインナビゲータの表示]
+
+link:xamdockmanager-end-user-settings.html[エンドユーザー設定]
+
+link:xamdockmanager-styling-xamdockmanager.html[xamDockManager のスタイリング]

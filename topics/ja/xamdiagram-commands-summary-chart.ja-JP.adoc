@@ -1,0 +1,103 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram commands summary chart",
+    "controlName": [],
+    "tags": [],
+    "guid": "45aa3039-ca64-4bbd-88bc-cd6eccd56d69",  
+    "buildFlags": ["docx-booklet","docx-online"],
+    "createdOn": "2014-06-23T09:10:39.9779814Z"
+}
+|metadata|
+////
+
+以下の表は、 _xamDiagram_   コントロールがサポートするコマンドを簡単に説明し、これらのコマンドを事前構成済みのキーボード ショートカットにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|コマンドのプロパティ|詳細|キー
+
+|[[_bringForwardCommand]] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~bringforward.html[DiagramCommands.BringForward]
+|ダイアグラム項目は、現在、その上にある項目の前に移動できます。
+|
+
+|[[_bringToFrontCommand]] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~bringtofront.html[DiagramCommands.BringToFront]
+|ダイアグラム項目は、すべての項目の前に移動できます。
+|Ctrl+Shift+F
+
+|[[_Hlk377147553]] 
+
+link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.applicationcommands.copy%28v=vs.110%29.aspx[ApplicationCommands.Copy]
+|ダイアグラムの項目が選択され、コマンドがキーボード ショートカット (または組み合わせ) に適用されている場合、ダイアグラムの項目をコピーできます。
+|Ctrl+C
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.applicationcommands.cut%28v=vs.110%29.aspx[ApplicationCommands.Cut]
+|現在選択されているダイアグラムの項目 (複数可) を切り取ることができます。
+|Ctrl+X
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.applicationcommands.delete%28v=vs.110%29.aspx[ApplicationCommands.Delete]
+|現在選択されているダイアグラムの項目 (複数可) を削除することができます。
+|Del
+
+|[[_enterEditModeCommand]] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~entereditmode.html[DiagramCommands.EnterEditMode]
+|選択されている単一の項目は、このコマンドの実行時に編集モードに入ります。
+|
+
+|[[_exitEditModeCommand]] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~exiteditmode.html[DiagramCommands.ExitEditMode]
+|現在、編集中の項目は、このコマンドの実行時に編集モードを終了します。
+|
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~closeoptionspane.html[DiagramCommands.CloseOptionsPane]
+|オプション ペインがフォーカスされている場合にEsc キーを押すと、オプション ペインを非表示にできます。
+|Esc
+
+|[[_Hlk377147649]] 
+
+link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.applicationcommands.paste%28v=vs.110%29.aspx[ApplicationCommands.Paste]
+|コピーしたダイアグラムの項目 (複数可) をダイアグラムに貼り付けることができます。
+|Ctrl+V
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.applicationcommands.redo%28v=vs.110%29.aspx[ApplicationCommands.Redo]
+|「元に戻す」コマンドを使用してこの操作を元に戻して、操作をやり直すと、ダイアグラムの項目に対する最後の操作が再適用されます。
+|Ctrl+Y
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.applicationcommands.selectall%28v=vs.110%29.aspx[ApplicationCommands.SelectAll]
+|「すべて選択」コマンドを適用するには、ダイアグラムにフォーカスが設定されている必要があります。
+|Ctrl+A
+
+|[[_sendBackwardCommand]] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~sendbackward.html[DiagramCommands.SendBackward]
+|ダイアグラム項目は、現在、その背後にある項目の背後に移動できます。
+|
+
+|[[_sendToBackCommand]] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~sendtoback.html[DiagramCommands.SendToBack]
+|ダイアグラム項目は、すべての項目の背後に移動できます。
+|Ctrl+Shift+B
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~showoptionspane.html[DiagramCommands.ShowOptionsPane]
+|オプション ペインの表示が有効になっている場合に、ダイアグラムの項目を選択すると表示されるギア アイコンをクリックすると、オプション ペインを表示することができます。
+|
+
+|[[_toggleEditMode]] 
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramcommands~toggleeditmode.html[DiagramCommands.ToggleEditMode]
+|ダイアグラムに編集された項目があるかどうかに応じて、EnterEditMode コマンドまたは ExitEditMode コマンドを実行します。
+|F2
+
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.input.applicationcommands.undo%28v=vs.110%29.aspx[ApplicationCommands.Undo]
+|**元に戻す** コマンドを適用すると、最後の操作が取り消され、この操作に関わるすべてのオブジェクトは元の状態に戻ります。
+|Ctrl+Z
+
+|====

@@ -1,0 +1,31 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-activities",
+    "controlName": ["xamSchedule"],
+    "tags": [],
+    "guid": "30aeb229-1b40-4e28-a532-8e365025796b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7793303Z"
+}
+|metadata|
+////
+
+= アクティビティ
+
+xamSchedule アクティビティのさまざまな機能についての詳細は、以下のリンクをクリックしてください。
+
+link:xamschedule-using-activities-tzna.html[タイム ゾーン ニュートラルなアクティビティとは]
+
+link:xamschedule-using-activities-appointments.html[予定]
+
+link:xamschedule-using-activities-tasks.html[タスク]
+
+link:xamschedule-using-activities-journals.html[履歴]
+
+link:xamschedule-using-activities-recurrent.html[繰り返しアクティビティ]
+
+link:xamschedule-using-activities-reminders.html[アラーム]
+
+link:xamschedule-using-activities-categories.html[アクティビティ カテゴリ]

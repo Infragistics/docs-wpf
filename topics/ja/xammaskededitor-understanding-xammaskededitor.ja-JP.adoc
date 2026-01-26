@@ -1,0 +1,21 @@
+﻿////
+
+|metadata|
+{
+    "name": "xammaskededitor-understanding-xammaskededitor",
+    "controlName": ["xamMaskedEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{B770698D-46F1-4888-80B6-B2312E938E99}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.2069781Z"
+}
+|metadata|
+////
+
+= xamMaskedEditor について
+
+
+
+xamMaskedEditor™ コントロールは、エンド ユーザーのデータ入力を支援するためにマスクを使用するシンプルなテキスト ボックス コントロールです。このマスクを使用して、事前に決定した有効なテキスト フォーマットにエンド ユーザーの入力を制限することができます。スタンドアロン エディターとして、または xamDataGrid™ コントロールの Field で xamMaskedEditor コントロールを使用します。xamDataGrid のフィールドとして、xamMaskedEditor は特定のグリッド列の適切なフォーマットを維持すると同時に、エンド ユーザーのデータ入力を支援します。
+
+詳細については、xamMaskEditor の基本クラス - link:xameditors-overview-of-the-valueeditor-class.html[ValueEditor] クラスをチェックできます。また、使用可能な link:xameditors-masks.html[Masks] のリストを参照することもできます。

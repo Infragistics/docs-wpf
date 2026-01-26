@@ -1,0 +1,95 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-add-a-contextual-tab-to-xamribbon",
+    "controlName": ["xamRibbon"],
+    "tags": ["Getting Started","Grouping","How Do I"],
+    "guid": "{CA7FD6F2-C7DC-41FA-9A71-1B76337C7DB6}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.0991729Z"
+}
+|metadata|
+////
+
+= コンテキスト タブを xamRibbon に追加
+
+
+
+
+
+コンテキスト タブは、エンドユーザーがアプリケーション内で特定のコントロールにフォーカスした時に限って表示される一意のタイプのタブです。入力フォーカスを持つコントロールに基づき ContextualTabGroup をプログラムで表示または非表示にする必要があります。たとえば、エンド ユーザーが xamDataGrid™ コントロールにフォーカスすると、データ入力タスクに特に関連するツールを持つ ContextualTabGroup を表示することができます。
+
+xamRibbon™ コントロールは、ContextualTabGroups コレクションを公開します。各 ContextualTabGroup はタブのコレクションを公開します。ContextualTabGroup オブジェクトを非表示にすると、ContextualTabGroup の Tabs コレクションのすべてのタブを非表示にします。ContextualTabGroup オブジェクトを表示すると、ContextualTabGroup の Tabs コレクションのすべてのタブも表示します。
+
+ContextualTabGroup を ContextualTabGroups コレクションに追加する場合、設定すべき 3 つの重要な ContextualTabGroup プロパティがあります。
+
+* ContextualTabGroup が表示可能である場合、Caption プロパティは ContextualTabGroup の Tabs コレクションのタブ上に表示します。
+* Key プロパティを使用して、ContextualTabGroups コレクションの ContextualTabGroup への参照を取得します。
+* IsVisible プロパティは、ContextualTabGroup がエンド ユーザーに表示可能かどうかを決定します。IsVisible プロパティはデフォルトで True に設定されているので、ContextualTabGroup を非表示にしたい場合は、明示的にこれを False に設定する必要があります。
+
+以下のコード例は、2 つのタブを持つコンテキスト タブを xamRibbon に追加する方法を示します。
+
+*XAML の場合:*
+
+----
+...
+<igRibbon:XamRibbon Name="xamRibbon1">
+	<igRibbon:XamRibbon.ContextualTabGroups>
+		<igRibbon:ContextualTabGroup Caption="XamDataGrid Tools"
+		  Key="xdgTools" IsVisible=">
+			<igRibbon:RibbonTabItem Header="Design">
+			</igRibbon:RibbonTabItem>
+			<igRibbon:RibbonTabItem Header="Layout">
+			</igRibbon:RibbonTabItem>
+		</igRibbon:ContextualTabGroup>
+	</igRibbon:XamRibbon.ContextualTabGroups>
+</igRibbon:XamRibbon>
+...
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Ribbon
+...
+Dim contextualGroup As New ContextualTabGroup()
+contextualGroup.Key = "xdgTools"
+contextualGroup.Caption = "XamDataGrid Tools"
+contextualGroup.IsVisible = True
+Me.xamRibbon1.ContextualTabGroups.Add(contextualGroup)
+Dim tab As RibbonTabItem
+tab = New RibbonTabItem()
+tab.Header = "Design"
+contextualGroup.Tabs.Add(tab)
+tab = New RibbonTabItem()
+tab.Header = "Layout"
+contextualGroup.Tabs.Add(tab)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Ribbon;
+...
+ContextualTabGroup contextualGroup = new ContextualTabGroup();
+contextualGroup.Key = "xdgTools";
+contextualGroup.Caption = "XamDataGrid Tools";
+contextualGroup.IsVisible = true;
+this.xamRibbon1.ContextualTabGroups.Add(contextualGroup);
+RibbonTabItem tab;
+tab = new RibbonTabItem();
+tab.Header = "Design";
+contextualGroup.Tabs.Add(tab);
+tab = new RibbonTabItem();
+tab.Header = "Layout";
+contextualGroup.Tabs.Add(tab);
+...
+----
+
+== 関連トピック
+
+link:xamribbon-adding-xamribbon-to-your-application-.html[xamRibbon をアプリケーションに追加]
+
+link:xamribbon-showing-a-contextual-tab-group-programmatically.html[コンテキスト タブ グループをプログラムで表示]

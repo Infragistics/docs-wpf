@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-right-to-left-bidirectional-language-support",
+    "controlName": ["xamGrid"],
+    "tags": ["Formatting","Grids","How Do I","Layouts","Localization"],
+    "guid": "ae3b5c51-dea2-436b-aadd-ab4f0931b2f8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.063208Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 右から左の双方向言語のサポート
+
+Right-to-Left (RTL) および Bi-Directional (BiDi) 言語のサポートで、{PlatformName} アプリケーションをよりグローバルにすることができます。ローカライズ機能の利点を活用するために、xamGrid オブジェクトの FlowDirection プロパティを以下の FlowDirection 列挙体のいずれかの値に設定します。
+
+* LeftToRight
+* RightToLeft
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyDataGrid" FlowDirection="RightToLeft" ItemsSource={StaticResource DataUtil} 
+      AutoGenerateColumns="True">
+      …
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.MyDataGrid.FlowDirection = Windows.FlowDirection.RightToLeft
+----
+
+*C# の場合:*
+
+----
+this.MyDataGrid.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+----

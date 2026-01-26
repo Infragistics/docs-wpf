@@ -1,0 +1,91 @@
+﻿////
+
+|metadata|
+{
+    "name": "ig-spe-improve-ebnf-files-readability",
+    "controlName": ["IG Syntax Parsing Engine"],
+    "tags": [],
+    "guid": "57dcc31d-f452-403a-a258-7feb4b8e21e8",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.1681005Z"
+}
+|metadata|
+////
+
+= EBNF ファイルの読みやすさの向上 (Syntax Parsing Engine)
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、EBNF ファイルの読みやすさを向上する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-overview.html[Syntax Parsing Engine の概要]
+|このトピックは、Syntax Parsing Engine の概要を示します。
+
+| link:ig-spe-non-terminal-symbols.html[非終端記号]
+|このトピックは、文章校正の非終端記号について説明します。
+
+| link:ig-spe-defining-productions.html[生成コードの定義]
+|このトピックでは、非終端記号を作成する方法を説明します。
+
+|====
+
+== 非終端記号の定義
+
+=== 概要
+
+以下は、EBNF コードの見せる役割を向上する方法を提供します。
+
+各非終端記号を新しい行の左側で開始し、各ルート レベルのオプションを新しいインデントされた行で開始します。
+
+----
+Start =
+    [UsingStatements], (NamespaceDeclaration | TypeDeclaration);
+TypeDeclaration =
+    ClassDeclaration
+    | StructDeclaration
+    | InterfaceDeclaration
+    | EnumDeclaration
+    | DelegateDeclaration;
+----
+
+ルート レベルのオプションが連結の長いリストを含む場合、リストの部分を次の行に移動し、用語が 1 行にあることを確認してインデントします。
+
+----
+ClassDeclaration =
+    [Attributes], [Modifiers], [PartialKeyword], ClassKeyword, Identifier,
+        [TypeParameterList], [BaseList], [TypeParameterConstraintClauses],
+        OpenBrace, ClassMembers, CloseBrace, [Semicolon]
+    | …
+    | …;
+----
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:ig-spe-optimize-non-terminal-symbol-definitions.html[非終端記号の定義の最適化]
+|このトピックは、生産数を最小にするために非終端記号の定義を最適化する方法を説明します。
+
+| link:ig-spe-writing-operator-precedence-rules.html[演算子の優先順位ルールの定義]
+|このトピックでは、演算子の優先順位ルールの作成方法について説明します。
+
+| link:ig-spe-use-symbolnames-constants-instead-of-strings.html[String の代わりに SymbolName 定数を使用]
+|このトピックは、SymbolName 定数を使用する利点を説明します。
+
+|====

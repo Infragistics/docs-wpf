@@ -1,0 +1,156 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-nodes-connection-points",
+    "tags": [],
+    "controlName": ["xamDiagram"],
+    "guid": "8fec2e84-3741-4325-8d60-9d201babd81d",  
+    "buildFlags": [],
+    "createdOn": "2014-09-24T12:45:03.5276162Z"
+}
+|metadata|
+////
+
+= ダイアグラム ノードの接続ポイントの構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamDiagram_™ コントロールでダイアグラム ノードの接続ポイントを構成する方法を説明します。これは、カスタム ノードを使用する場合や、標準ノードの事前設定された接続ポイントをカスタマイズする場合に必要です。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-node-configuration-overview.html[ノードの構成の概要 ( _xamDiagram_ )]
+|このトピックは、ダイアグラムのノードについて構成可能な内容の概要を提供します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref388886756, 概要 >>
+
+** <<_Ref388886771,接続ポイントの構成の概要>>
+** <<_Ref388886777,接続ポイントの構成の概要表>>
+
+* <<_Ref388886813, ノードのカスタム接続ポイントの構成 >>
+
+** <<_Ref388886819,概要>>
+** <<_PropertySettings,プロパティ設定>>
+** <<_Ref388886826,例>>
+
+* <<_Ref388886833, 関連コンテンツ >>
+
+[[_Ref388886756]]
+== 概要
+
+[[_Ref388886771]]
+
+=== 接続ポイントの構成の概要
+
+接続ポイントとは、ダイアグラム接続を開始 / 終了できるノードのポイントです。ノードの接続ポイントは、名前と座標により指定されます。
+
+*  *名前*  - 接続の link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startnodeconnectionpointname.html[StartNodeConnectionPointName] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endnodeconnectionpointname.html[EndNodeConnectionPointName] プロパティを介して接続の接続ポイントを明示的に指定する場合に使用されます。このため、ノードの接続ポイントの名前は、すべて一意であることが必要です。
+*  *座標*  - ノードの長方形に対応しています。座標の範囲は 0,0 (左上) から 1,1 (右下) までです。
+
+各接続ポイントは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint~name.html[Name] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint~position.html[Position] プロパティを公開する link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpoint_members.html[DiagramConnectionPoint] オブジェクトによって表されます。
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~shapetype.html[DiagramNode.ShapeType] プロパティにより設定された定義済みの図形タイプを使用する場合、ノードの link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~connectionpoints.html[ConnectionPoints] コレクションで、ノード タイプに応じていくつかのポイントが事前設定されます。カスタム ノードの図形では、デフォルトで接続ポイントが追加されません。
+
+[[_Ref388886777]]
+
+=== 接続ポイントの構成の概要表
+
+以下の表は、ダイアグラムのノードの接続ポイントの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|カスタム接続ポイント
+|このノードに接続されたコネクションの開始 / 終了ポイントを追加 / 削除します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~connectionpoints.html[ConnectionPoints] 
+
+|====
+
+[[_Ref388886813]]
+== ノードのカスタム接続ポイントの構成
+
+[[_Ref388886819]]
+
+=== 概要
+
+ノードの接続ポイントは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~connectionpoints.html[ConnectionPoints] プロパティで指定されます。link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectionpointcollection_members.html[DiagramConnectionPointCollection] の `Add` メソッドと `Remove` メソッドを使用できます。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|ノードに対するカスタム接続ポイントの設定
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramnode~connectionpoints.html[ConnectionPoints]
+|接続ポイントの目的のセット
+
+|====
+
+[[_Ref388886826]]
+
+=== 例
+
+以下のスクリーンショットは、以下のコードを実行した結果、接続ポイントのプレゼンターが表示される場合に、 _xamDiagram_  のノードがどのように表示されるかを示しています。
+
+image::images/xamDiagram_Configuring_The_Connection_Points_Of_Diagram_Nodes_1.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="Diagram">
+      <ig:DiagramNode>
+            <ig:DiagramNode.ConnectionPoints>
+                  <ig:DiagramConnectionPoint Name="Position1" Point="0,0"/>
+                  <ig:DiagramConnectionPoint Name="Position2" Point="0.25,0.25"/>
+                  <ig:DiagramConnectionPoint Name="Position3" Point="0.5,0.5"/>
+                  <ig:DiagramConnectionPoint Name="Position4" Point="0.75,0.75"/>
+                  <ig:DiagramConnectionPoint Name="Position5" Point="1,1"/>
+            </ig:DiagramNode.ConnectionPoints>
+      </ig:DiagramNode>
+</ig:XamDiagram>
+----
+
+[[_Ref388886833]]
+== 関連コンテンツ
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[ダイアグラム接続の開始および終了の構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ にダイアグラム接続の始点および終点を構成する場合に使用できる 2 つのアプローチ (接続先のノードを指定する方法と、ダイアグラム スペースに接続の始点と終点の座標を指定する方法) について説明します。
+
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.xamdiagram~connectionpointsdisplaymode.html[XamDiagram.ConnectionPointsDisplayMode]
+|XamDiagram.ConnectionPointsDisplayMode プロパティの API 参照。
+
+|====

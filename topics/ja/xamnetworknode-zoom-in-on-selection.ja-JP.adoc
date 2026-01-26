@@ -1,0 +1,302 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnetworknode-zoom-in-on-selection",
+    "controlName": ["xamNetworkNode"],
+    "tags": ["How Do I","Navigation","Selection"],
+    "guid": "a0d99004-fe51-452b-a4d2-ac681fe1a8d7",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.5062494Z"
+}
+|metadata|
+////
+
+= 選択上のズームイン
+
+このトピックは、 link:{ApiPlatform}controls.maps.xamnetworknode{ApiVersion}~infragistics.controls.maps.xamnetworknode.html[xamNetworkNode] コントロールの選択されたノードでズームする方法を説明します。
+
+* <<Introduction,概要>>
+* <<Requirements,要件>>
+* <<Zooming in on Selection,選択上のズームイン>>
+
+** コード例: <<Zooming_in_on_Selected_Nodes,選択されたノード上のズームイン>>
+
+*** コード例: <<Single_Node_Zooming,単一ノードのズーム>>
+*** コード例: <<Multiple_Node_Zooming,複数ノードのズーム>>
+*** コード例: <<Zooming_in_on_Searched_Node,検索されたノード上のズームイン>>
+
+**** <<Purpose,目的>>
+**** <<Given_Scenarios,任意のシナリオ>>
+
+[[Introduction]]
+
+== 概要
+
+xamNetworkNode コントロールには、1 つ以上の選択されたノード上でズームインできる強化機能が含まれます。コントロールには、ユーザーが検索したノード上でズームインできる機能も含まれます。
+
+[NOTE]
+====
+注: ノードは、選択されたノードでは Zoom-To-Fit 状態になるので、選択されたノード上でズームインすると、別のノードもビューに入ります。
+====
+
+分かりやすくするため、1から 100 までの番号が付いた一連のノードを考えてみましょう。コントロールとやりとりしている間は、1 から始まるノードでズームインすることにします。検索結果には、1、11、12、13、14、15、16、17、18、19 および 100 が含まれます。多くのノードには接続されている別のノードもあるということにご注意ください。接続されたノードがレイアウトのビュー内にあると非表示にはなりません。
+
+* データ ソース
+
+____
+IEnumerable を実行する任意のオブジェクト (List、Collection など)。
+____
+
+[[Requirements]]
+
+== 要件
+
+開始するには、 link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使った作業の開始]トピックをお読みください。このチュートリアルでは「はじめに」トピックからのコードを開始点として使用しています。
+
+また、希望の機能を実現するためには、いくつかのプロパティおよびメソッドを設定し実装する必要があります。
+
+* xamNetworkNode で設定するプロパティ:
+
+** SelectionType
+
+* xamNetworkNode で呼び出すプロパティ:
+
+** ZoomSelectedNodes
+** ZoomNodes
+
+[[Zooming-in-on-Selection]]
+
+== 選択上のズームイン
+
+このセクションは、xamNetworkNode コントロール内のノード上でズームインするための 3 つの異なる方法をコード例を示して説明し、使用事例シナリオおよび最終結果のスクリーンショットを示します。
+
+[[Zooming_in_on_Selected_Nodes]]
+== コード例: 選択されたノード上のズームイン
+
+== 例の概要
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|単一ノードのズーム
+|SelectionType プロパティを「Single」に設定すると、1 つのノードを表示できます。
+
+|複数ノードのズーム
+|SelectionType プロパティを「Multiple」に設定すると、複数のノードを表示できます。
+
+|検索により選択されたノード上でズームイン
+|各種方法を使用して選択されたノードを配置し、選択においてズームインするよう xamNetworkNode に指示します。ZoomNodes メソッドは、検索手順からのパラメータをメソッドに返す Predicate オブジェクトとしてノードのリスト (IEnumerable) を受け取ります。
+
+|====
+
+[[Single_Node_Zooming]]
+== コード例: 単一ノードのズーム
+
+単一ノードのズームでは、XAML またはコードビハインドで SelectionType プロパティを「Single」に設定し、(コードビハインド) で メソッドを呼び出して選択されたノードをズームする必要があります。
+
+[start=1]
+. SelectionType プロパティを設定します。
+
+*XAML の場合:*
+
+----
+<ig:XamNetworkNode SelectionType="Single"/>
+----
+
+*C# の場合:*
+
+----
+xnn.SelectionType = Infragistics.Controls.Maps.NetworkNodeSelectionType.Single;
+----
+
+*Visual Basic の場合:*
+
+----
+xnn.SelectionType = Infragistics.Controls.Maps.NetworkNodeSelectionType.Single
+----
+
+[start=2]
+. xamNetworkNode コントロール上で ZoomSelectedNodes メソッドを呼び出します。
+
+*C# の場合:*
+
+----
+xnn.ZoomSelectedNodes();
+----
+
+*Visual Basic の場合:*
+
+----
+xnn.ZoomSelectedNodes()
+----
+
+以下のスクリーンショットは、ノードをクリックすることにより単一ノードをビューにズームインすることを示しています。
+
+image::images/xamNetworkNode_ZoomIn_On_Selection_01.png[]
+
+[[Multiple_Node_Zooming]]
+== コード例: 複数ノードのズーム
+
+複数ノードのズームでは、XAML またはコードビハインドで SelectionType プロパティを「Multiple」に設定し、(コード ビハインド) で メソッドを呼び出して選択されたノードをズームする必要があります。
+
+選択されたノードが選択されたノードと Zoom-To-Fit 状態にあるため、その他のノードも表示される可能性がある点にご注意ください。「Zoom-To-Fit 」は、選択されたノードにその他の選択されたノード (NetworkNode レイアウトの表示可能領域に適合する) がある場合にそれらも表示されるという状態を指します。
+
+*XAML の場合:*
+
+----
+<ig:XamNetworkNode SelectionType="Multiple"/>
+----
+
+*C# の場合:*
+
+----
+xnn.SelectionType = Infragistics.Controls.Maps.NetworkNodeSelectionType.Multiple;
+----
+
+*Visual Basic の場合:*
+
+----
+xnn.SelectionType = Infragistics.Controls.Maps.NetworkNodeSelectionType.Multiple
+----
+
+xamNetworkNode コントロール上で ZoomSelectedNodes メソッドを呼び出します。
+
+*C# の場合:*
+
+----
+xnn.ZoomSelectedNodes();
+----
+
+*Visual Basic の場合:*
+
+----
+xnn.ZoomSelectedNodes()
+----
+
+以下のスクリーンショットは、キーボード上で [Ctrl] キーと組み合わせて複数のノード上でクリックすることにより、複数のノードをビューにズームインすることを示しています。
+
+image::images/xamNetworkNode_ZoomIn_On_Selection_02.png[]
+
+次のスクリーンショットは、ビュー内のその他のノードとの複数のノードのズームを示します。ズーム用に選択されたノードは、9 および 3 であるのでご注意ください。ただし、選択されたノードに別の接続されたノード (2、28 および 30) があり、xamNetworkNode コントロール レイアウトのビューに適合し、そのためズーム用に選択されていなくても表示されます。
+
+image::images/xamNetworkNode_ZoomIn_On_Selection_03.png[]
+
+[[Zooming_in_on_Searched_Node]]
+== コード例: 検索されたノード上のズームイン
+
+[[Purpose]]
+=== 目的
+
+検索されたノード上でズームインする目的は、ビューで表示されない特定のノードを取得、またはノードのグループを表示させることにあります。検索されたノード上でズームインするには、ビュー ポートで表示する任意のノードのみのコレクションを収集する必要があります。フィルタリングされたノードのコレクションがあると、xamNetworkNode コントロールにそれらのノードにズームするよう伝えることができます。
+
+xamNetworkNode コントロールの Search メソッドにより、ビューに表示するノードのみに絞り込むための検索条件を渡すことができます。Predicate オブジェクトを Search メソッドに渡すことにより、検索条件を構築します。
+
+ズームするノードのリストを手に入れたら、IEnumerable タイプの 1 つの属性を受け入れる ZoomNodes メソッドを呼び出します。
+
+以下のコード リストは、検索条件に一致するノードを SelectedNodes コレクションに追加する方法を示します。
+
+*ステップ 1*
+
+*C# の場合:*
+
+----
+foreach (var node in xnn.Search((NodeModel item) => item.Label.StartsWith("1")))
+{
+     xnn.SelectedNodes.Add(node);
+}
+----
+
+*Visual Basic の場合:*
+
+----
+For Each node As var In xnn.Search(Function(item As NodeModel) item.Label.StartsWith("1"))
+    xnn.SelectedNodes.Add(node)
+Next
+----
+
+適切なノードを選択し、ZoomNodes メソッドを呼び出して選択したノードのコレクションに渡します。
+
+*ステップ2*
+
+*C# の場合:*
+
+----
+xnn.ZoomNodes(xnn.SelectedNodes);
+----
+
+*Visual Basic の場合:*
+
+----
+xnn.ZoomNodes(xnn.SelectedNodes)
+----
+
+または、以下の任意のシナリオ内のサンプルは、ZoomNodes メソッド内で Search メソッドを一時的な属性として直接呼び出す方法を示しています。
+
+[[Given_Scenarios]]
+=== 任意のシナリオ
+
+[start=1]
+. StartWith メソッドの使用
+
+以下のコード例は、xamNetworkNode コントロールの Search メソッドを呼び出して、ラムダ式を直接使用する検索結果を渡します。検索条件は、ビュー内の他のノードは制限しません。
+
+例:
+
+入力した文字が「12」であると、ノード「1234」と「1200」がビュー内で少なくともズームされますが、ノード「2312」または「3124」がビューにある場合も無い場合もあります。
+
+*C# の場合:*
+
+----
+this.xnn.ZoomNodes(xnn.Search((NodeModel n) => n.Label.StartsWith("12")));
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xnn.ZoomNodes(xnn.Search(Function(n As NodeModel) n.Label.StartsWith(“12”)))
+----
+
+[start=2]
+. EndWith メソッドの使用
+
+例:
+
+入力した文字が「4」であると、ノード「1234」と「1004」がビュー内で少なくともズームされますが、ノード「4000」または「1040」はビューにある場合も無い場合もあります。
+
+*C# の場合:*
+
+----
+this.xnn.ZoomNodes(xnn.Search((NodeModel n) => n.Label.EndsWith("4")));
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xnn.ZoomNodes(xnn.Search(Function(n As NodeModel) n.Label.EndsWith(“4”)))
+----
+
+[start=3]
+. Contains メソッドの使用
+
+例:
+
+入力した文字が「2」であると、「2341」、「1234」または「1002」など、ノード内のどの位置に「2」が含まれる場合もビューでズームインされます。
+
+*C# の場合:*
+
+----
+this.xnn.ZoomNodes(xnn.Search((NodeModel n) => n.Label.Contains("2")));
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xnn.ZoomNodes(xnn.Search(Function(n As NodeModel) n.Label.Contains(“2“)))
+----
+
+== 関連トピック
+
+* link:xamnetworknode-getting-started-with-xamnetworknode.html[xamNetworkNode を使用した作業の開始]
+* link:xamnetworknode-using-xamnetworknode.html[xamNetworkNode の使用]

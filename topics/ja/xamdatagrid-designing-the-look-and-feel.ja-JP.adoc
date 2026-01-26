@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-designing-the-look-and-feel",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Styling"],
+    "guid": "{449A983B-DFAF-4A06-AA58-F2A765110232}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.9919515Z"
+}
+|metadata|
+////
+
+= xamDataGrid のスタイル設定
+
+xamDataGrid™ コントロールのルック アンド フィールをデザインすることに特化されたトピックをご覧になる場合は、以下のリンクをクリックしてください。
+
+* link:xamdatapresenter-changing-the-cells-foreground.html[セルの前景スタイルの変更]
+* link:xamdatapresenter-changing-the-column-headers-style.html[列ヘッダーのスタイルを変更]
+* link:xamdata-changing-the-record-hover-color.html[レコード ホバーの色の変更]
+* link:xamdatagrid-cellvaluepesenterstyleselector-reevaluated.html[条件付きの書式設定 (xamDataGrid)]
+* link:xamdatapresenter-enabling-alternating-row-colors.html[隔行の色を有効にする]
+* link:xamdata-referencing-a-themepack-in-xaml.html[XAML でテーマパックを参照]
+* link:xamdata-using-built-in-themes.html[組み込みテーマを使用]

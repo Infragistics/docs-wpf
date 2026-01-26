@@ -1,0 +1,71 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-set-columns-maximum-and-minimum-widths",
+    "controlName": ["xamGrid"],
+    "tags": ["Editing","Grids","How Do I","Layouts"],
+    "guid": "{5A3DD004-387F-48F3-BF7F-824F83FDA747}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.859166Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列の最大幅と最小幅を設定
+
+エンドユーザーが特定のしきい値を超えて列をリサイズすることを制限するために列の最大幅と最小幅を設定できます。サイズ変更された列は、列の最大幅を超えたり、列の最小幅より小さくなることはできません。
+
+列の最大および最小幅を設定するには、以下のコードに示されているように link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column.html[Column] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~minimumwidth.html[MinimumWidth] および link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~maximumwidth.html[MaximumWidth] プロパティを設定します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyGrid" AutoGenerateColumns="False">
+   <ig:XamGrid.ColumnResizingSettings>
+      <ig:ColumnResizingSettings AllowColumnResizing="Indicator" AllowCellAreaResizing="True" AllowMultipleColumnResize="True" AllowDoubleClickToSize="True"/>
+   </ig:XamGrid.ColumnResizingSettings>
+   <ig:XamGrid.Columns>
+      <ig:TextColumn Key="ProductID"/>
+      <ig:TextColumn Key="ProductName" IsResizable="/>
+      <ig:TextColumn Key="QuantityPerUnit" MinimumWidth="10" MaximumWidth="175" />
+      ...
+   </ig:XamGrid.Columns>
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Dim ColumnWidth As Column = Me.MyGrid.Columns.DataColumns("QuantityPerUnit")
+ColumnWidth.MaximumWidth = 175
+ColumnWidth.MinimumWidth = 10
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+Column ColumnWidth = this.MyGrid.Columns.DataColumns["QuantityPerUnit"];
+ColumnWidth.MaximumWidth = 175;
+ColumnWidth.MinimumWidth = 10;
+----
+
+== 関連トピック
+
+link:xamgrid-column-resizing.html[列サイズの変更]
+
+link:xamgrid-multi-column-resizing.html[複数列のリサイズ]
+
+link:xamgrid-resize-in-the-cell-area.html[セル領域でセルのリサイズ]
+
+link:xamgrid-auto-size-columns-using-mouse-clicks.html[マウス クリックを使用して列を自動的にサイズ設定]
+
+link:xamgrid-disable-resizing-of-certain-columns.html[特定の列のサイズ変更を無効にする]
+
+link:xamgrid-column-resizing-events.html[列のサイズ変更イベント]

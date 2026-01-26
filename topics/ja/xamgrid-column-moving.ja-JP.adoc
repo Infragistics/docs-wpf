@@ -1,0 +1,85 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-column-moving",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Layouts"],
+    "guid": "{23AA8A63-1716-41BF-9198-E2F04669A36C}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.793163Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= 列移動
+
+xamGrid コントロールのもうひとつの機能は列移動です。列が移動できることによって、希望の方法で、ユーザーは自由に xamGrid の列を配置することができます。
+
+エンド ユーザーが以下の内のいずれかを実行できるように、この機能をカスタマイズすることができます。
+
+* プレビュー付きで列をドラッグして移動
+* 列を新しい位置に即座に移動
+
+ifdef::win-rt[]
+タッチ ジェスチャを使用して列を移動する詳細については、 link:xamgrid-touch-support.html[タッチ サポート]トピックを参照してください。
+endif::win-rt[]
+
+デフォルトで、xamGrid の列移動は有効ではありません。列移動を有効にするには、 link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnmovingsettings.html[ColumnMovingSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnmovingsettings~allowcolumnmoving.html[AllowColumnMoving] を link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.columnmovingtype.html[ColumnMovingType] 列挙体の以下の値のいずれかに設定するだけです。
+
+* Indicator - この値は、列移動が有効であることを指定し、またエンド ユーザーが列を新しい位置にドラッグするとプレビューが表示されます。
+* Immediate - この値は、列移動が有効であることを指定し、またエンド ユーザーが列を新しい位置にドラッグすると、列はその位置に即座に移動します。
+* Disabled - この値は、列移動を無効にします。
+
+以下のコードは列移動を有効にする方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="MyGrid" AutoGenerateColumns="False">
+   <ig:XamGrid.ColumnMovingSettings>
+      <ig:ColumnMovingSettings AllowColumnMoving="Indicator"/>
+   </ig:XamGrid.ColumnMovingSettings>
+   …
+</ig:XamGrid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+...
+Me.MyGrid.ColumnMovingSettings.AllowColumnMoving = ColumnMovingType.Indicator
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+...
+this.MyGrid.ColumnMovingSettings.AllowColumnMoving = ColumnMovingType.Indicator;
+----
+
+以下のスクリーン ショットは、列移動を有効にした xamGrid を示します。
+
+ifdef::sl,wpf[]
+image::images/SL_xamGrid_Column_Moving_01.png[列移動]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Column_Moving_01.png[列移動]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-column-moving.html[列移動]
+
+link:xamgrid-disable-moving-of-certain-columns.html[特定の列の移動を無効にする]
+
+link:xamgrid-column-moving-events.html[列移動イベント]
+
+link:xamgrid-customize-animation-of-column-moving.html[列移動のアニメーションのカスタマイズ]
+
+pick:[win-rt=" link:xamgrid-touch-support.html[タッチ サポート]"]

@@ -1,0 +1,23 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdockmanager-end-user-settings",
+    "controlName": ["xamDockManager"],
+    "tags": [],
+    "guid": "{D9C782EA-57F9-4DD1-9003-7D57217F8965}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.5050541Z"
+}
+|metadata|
+////
+
+= エンドユーザー設定
+
+
+
+このセクションでは、エンド ユーザーのドッキング レイアウトを効果的に保存およびロードするための、重要なタスク ベースの情報について説明します。
+
+* link:xamdockmanager-about-saving-and-loading-layouts.html[レイアウトの保存およびロードについて]
+* link:xamdockmanager-load-an-end-users-docking-layout.html[エンド ユーザーのドッキング レイアウトをロード]
+* link:xamdockmanager-save-an-end-users-docking-layout.html[エンド ユーザーのドッキング レイアウトを保存]

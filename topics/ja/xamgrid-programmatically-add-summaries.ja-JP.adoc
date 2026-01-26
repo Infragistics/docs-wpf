@@ -1,0 +1,86 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-programmatically-add-summaries",
+    "controlName": ["xamGrid"],
+    "tags": ["Grids","How Do I","Summaries"],
+    "guid": "{CE80AD49-2D70-4C85-AED0-B23D9FCD38C1}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0162056Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= プログラムで集計を追加
+
+集計選択ダイアログ ボックスから集計計算式をエンドユーザーが選択することなく、XAML またはプロシージャー コードを使用して列の集計を表示できます。
+
+個々の SummaryOperand の IsApplied プロパティを True に設定することによってこれを達成できます。
+
+*XAML の場合:*
+
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+…
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamGrid x:Name="dataGrid" AutoGenerateColumns="False">
+      <ig:XamGrid.SummaryRowSettings>
+         <ig:SummaryRowSettings AllowSummaryRow="Top" SummaryScope="ColumnLayout">
+         </ig:SummaryRowSettings>
+      </ig:XamGrid.SummaryRowSettings>
+      <ig:XamGrid.Columns>
+         <ig:TextColumn Key="ProductID">
+         <ig:TextColumn Key="ProductName">
+            <ig:TextColumn.SummaryColumnSettings>
+               <ig:SummaryColumnSettings>
+                  <ig:SummaryColumnSettings.SummaryOperands>
+                     <ig:CountSummaryOperand IsApplied="True">
+                     </ig:CountSummaryOperand>
+                     <ig:MaximumSummaryOperand>
+                     </ig:MaximumSummaryOperand>                           
+                     <ig:MinimumSummaryOperand>
+                     </ig:MinimumSummaryOperand>
+                  </ig:SummaryColumnSettings.SummaryOperands>
+               </ig:SummaryColumnSettings>
+            </ig:TextColumn.SummaryColumnSettings>
+         </ig:TextColumn>
+         …
+      </ig:XamGrid.Columns>
+   </ig:XamGrid>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Grids
+…
+Dim DisplaySummary As Column = Me.MyDataGrid.Columns.DataColumns("ProductName")
+DisplaySummary.SummaryColumnSettings.SummaryOperands(2).IsApplied = True
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Grids;
+…
+Column DisplaySummary = this.MyDataGrid.Columns.DataColumns["ProductName"];          
+DisplaySummary.SummaryColumnSettings.SummaryOperands[2].IsApplied = true;
+----
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_ProgSummaries.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-summaries.html[集計]
+
+link:xamgrid-retrieve-the-result-of-a-summary.html[集計結果を取得]
+
+link:xamgrid-create-a-custom-summary.html[カスタム サマリーの作成]
+
+link:xamgrid-formatting-row-summaries.html[行集計の書式設定]

@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamtabcontrol",
+    "controlName": ["xamTabControl"],
+    "tags": [],
+    "guid": "{91BA9C46-FA27-41F4-B649-41BBFE9DEE10}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.4362403Z"
+}
+|metadata|
+////
+
+= xamTabControl
+
+
+
+このセクションは、コントロールの機能とアプリケーションでのコントロールの使用についてのステップバイステップの手順に至るまで xamTabControl™ を説明します。
+
+以下のリンクをクリックして、xamTabControl についての重要な情報にアクセスします。
+
+== link:xamtabcontrol-about-xamtabcontrol.html[xamTabControl について]
+
+このセクションでは、xamTabControl の機能の理解を深める支援となる情報を提供します。
+
+== link:xamtabcontrol-adding-xamtabcontrol-to-your-page-.html[xamTabControl をアプリケーションに追加]
+
+xamTabControl にできる限り素早く慣れるために、コントロールを使用して作業を開始する方法についての情報を提供します。
+
+== link:xamtabcontrol-using-xamtabcontrol.html[xamTabControl の使用]
+
+このセクションには、xamTabControl で提供される主要な特徴および機能についての情報が含まれています。
+
+== link:xamtabcontrol-about-styling-xamtabcontrol.html[xamTabControl のスタイル設定]
+
+このトピックは、xamTabControl の外観をカスタマイズするためのスタイル ポイントを説明します。
+
+== link:xamtabcontrol-api-overview.html[API の概要]
+
+このトピックは、xamTabControl でプログラミング中に作業する名前空間とクラスをリストします。このトピックにリストされる名前空間とクラスは、{ProductName} ヘルプの link:api-reference-guide.html[「API リファレンス ガイド」]に便宜上リンクします。

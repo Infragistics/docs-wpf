@@ -1,0 +1,209 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-custom-cursors",
+    "controlName": ["xamTagCloud"],
+    "tags": ["How Do I","Styling","Templating"],
+    "guid": "{2EE9F1FB-63C7-4782-8177-EEAE7FB1379D}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.6044069Z"
+}
+|metadata|
+////
+
+= カスタム カーソル
+
+== 始める前に
+
+エンド ユーザーが xamDialogWindow コントロールをリサイズする時に使用される既定のカーソルをオーバーライドできます。これは link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.customcursors.html[CustomCursors] オブジェクトの link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.customcursors~diagonalresizecursor.html[DiagonalResizeCursor]、 link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.customcursors~horizontalresizecursor.html[HorizontalResizeCursor] および link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.customcursors~verticalresizecursor.html[VerticalResizeCursor] プロパティを設定することによって実行できます。
+
+_前提_
+
+_このトピックは、ページ上に xamDialogWindow コントロールがすでにあることを前提とします。_ 詳細は、 link:xamdialogwindow-adding-xamdialogwindow-to-your-page.html[xamDialogWindow をページに追加]のトピックを参照してください。
+
+== 達成すること
+
+CustomCursors オブジェクトの DiagonalResizeCursor、HorizontalResizeCursor、VerticalResizeCursor プロパティをカスタム テンプレートに設定することによって、リサイズ カーソルをカスタマイズできます。
+
+== 次の手順を実行します
+
+[start=1]
+. ページでリソース ディクショナリを作成します。
+
+*XAML の場合:*
+
+----
+<UserControl.Resources>
+   <!-- TODO: DataTemplateを追加します -->
+</UserControl.Resources>
+----
+
+[start=2]
+. DataTemplate を作成します。x:Name プロパティを HorizontalResizeCustomCursor に設定します。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="HorizontalResizeCustomCursor">
+   <!-- TODO: グリッド パネルを追加します -->
+</DataTemplate>
+----
+
+[start=3]
+. Grid パネルを DataTemplate に追加します。以下のプロパティを設定します。
+
+** Height - 20
+** Width - 20
+
+*XAML の場合:*
+
+----
+<Grid Height="20" Width="20"
+   <!-- TODO: ボタンを追加します -->
+</Grid>
+----
+
+[start=4]
+. Image を Grid パネルに追加します。以下のプロパティを設定します。
+
+** Stretch - Fill
+** Source - /Images/HorizontalResizeCursor
+
+*XAML の場合:*
+
+----
+<Image Stretch="Fill"
+       Source="/Images/HorizontalResizeCursor.png">
+</Image>
+----
+
+[start=5]
+. DataTemplate を作成します。x:Name プロパティを VerticalResizeCustomCursor に設定します。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="VerticalResizeCustomCursor">
+   <!-- TODO: グリッド パネルを追加します -->
+</DataTemplate>
+----
+
+[start=6]
+. Grid パネルを DataTemplate に追加します。以下のプロパティを設定します。
+
+** Height - 20
+** Width - 20
+
+*XAML の場合:*
+
+----
+<Grid Height="20" Width="20">
+   <!-- TODO: 画像を追加します -->
+</Grid>
+----
+
+[start=7]
+. Image を Grid パネルに追加します。以下のプロパティを設定します。
+
+** Stretch - Fill
+** Source - /Images/VerticalResizeCursor
+
+*XAML の場合:*
+
+----
+<Image Stretch="Fill"
+       Source="/Images/VerticalResizeCursor.png">
+</Image>
+----
+
+[start=8]
+. DataTemplate を作成します。x:Name プロパティを DiagonalResizeCustomCursor に設定します。
+
+*XAML の場合:*
+
+----
+<DataTemplate x:Key="DiagonalResizeCustomCursor">
+   <!-- TODO: グリッド パネルを追加します -->
+</DataTemplate>
+----
+
+[start=9]
+. Grid パネルを DataTemplate に追加します。以下のプロパティを設定します。
+
+** Height - 20
+** Width - 20
+
+*XAML の場合:*
+
+----
+<Grid Height="20" Width="20">
+   <!-- TODO: 画像を追加します -->
+</Grid>
+----
+
+[start=10]
+. Image を Grid パネルに追加します。以下のプロパティを設定します。
+
+** Stretch - Fill
+** Source - /Images/DiagonalResizeCursor
+
+*XAML の場合:*
+
+----
+<Image Stretch="Fill"
+       Source="/Images/DiagonalResizeCursor.png">
+</Image>
+----
+
+[start=11]
+. 以下の CustomCursors オブジェクトのプロパティを設定します:
+
+** DiagonalResizeCursor - {StaticResource DiagonalResizeCustomCursor}
+** HorizontalResizeCursor - {StaticResource HorizontalResizeCustomCursor}
+** VerticalResizeCursor - {StaticResource VerticalResizeCustomCursor}
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamDialogWindow x:Name="DialogWindow" Width="200" 
+       Height="200" IsModal="True"        Content="This is a sample dialog">
+      <ig:XamDialogWindow.CustomCursors>
+         <ig:CustomCursors 
+             DiagonalResizeCursor="{StaticResource DiagonalResizeCustomCursor}"    
+             HorizontalResizeCursor="{StaticResource HorizontalResizeCustomCursor}" 
+             VerticalResizeCursor="{StaticResource VerticalResizeCustomCursor}" />
+      </ig:XamDialogWindow.CustomCursors>        
+   </ig:XamDialogWindow>
+</Grid>
+----
+
+[start=12]
+. アプリケーションを保存して実行します。
+
+image::images/SL_xamDialogWindow_Custom_Cursors_01.png[カスタム カーソル]
+
+== 関連トピック
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-keyboard-settings.html[キーボードの設定]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

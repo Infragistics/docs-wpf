@@ -1,0 +1,99 @@
+﻿////
+
+|metadata|
+{
+    "name": "breaking-changes-in-2015-volume-1",
+    "controlName": [],
+    "tags": ["Breaking Changes"],
+    "guid": "752c4981-bfeb-4848-a1ae-baaeacdb3b56",  
+    "buildFlags": [],
+    "createdOn": "2015-03-17T13:28:18.6997944Z"
+}
+|metadata|
+////
+
+= 2015 Volume 1 の重大な変更点
+
+== 重大な変更の概要
+
+=== 重大な変更の概要表
+
+以下の表は、{ProductName} 2015 Volume 1 リリースの重大な変更点の概要を示します。問題の詳細な説明は、概要表の後に記載されています。
+
+==== _<<Ref382990783, xamComboEditor / xamMultiColumnComboEditor >>_
+
+[options="header", cols="a,a"]
+|====
+|問題|説明
+
+|<<_Ref398294255,MinDropDownWidth プロパティのデフォルト設定の変更>>
+|_xamComboEditor_ の `MinDropDownWidth` プロパティのデフォルト値は `double.NegativeInfinity` から `double.NaN` に変更されました。
+
+|====
+
+==== _<<Ref382990784, xamGrid >>_
+
+[options="header", cols="a,a"]
+|====
+|問題|説明
+
+|<<_Ref398294256,ChildBands コレクションの動作>>
+|`GroupByRow.ChildBands` コレクションのプロパティの戻り値が変更されました。
+
+|<<_Ref398294257,列の縮小動作の変更>>
+|ユーザーが最後の表示可能な列を縮小される場合、動作が変更されました。
+
+|====
+
+[[_Ref382990783]]
+== _xamComboEditor / xamMultiColumnComboEditor_
+
+[[_Ref398294255]]
+
+=== MinDropDownWidth プロパティのデフォルト設定の変更
+
+_xamComboEditor_   の `MinDropDownWidth` プロパティのデフォルト値は変更されました。
+
+[options="header", cols="a,a"]
+|====
+|以前の値|新しい値
+
+|`double.NegativeInfinity`
+|`double.NaN`
+
+|====
+
+[[_Ref382990784]]
+== _xamGrid_
+
+[[_Ref398294256]]
+
+=== ChildBands コレクションの動作
+
+`GroupByRow` 型の行でサポートされていないため、`GroupByRow.ChildBands` コレクション プロパティは `null` を返します。
+
+[options="header", cols="a,a"]
+|====
+|以前の動作|新しい動作
+
+|子バンドにアクセスするときに InvalidCastException を発生します。
+|null を返します。
+
+|====
+
+[[_Ref398294257]]
+
+=== 列の縮小動作の変更
+
+以下の表に説明された列の表示状態動作の変更があります。
+
+[options="header", cols="a,a"]
+|====
+|以前の動作|新しい動作
+
+|ユーザーがグループの最後の表示可能な列を縮小した際に親列は縮小されても子列が表示されたままになります。
+|ユーザーが最後の表示可能な子列を縮小する場合、親列も縮小されます。
+
+|====
+
+親列の表示状態を縮小状態から表示可能に切り替える際に親列およびすべての子列が表示されます。

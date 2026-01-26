@@ -1,0 +1,87 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-add-surface-element",
+    "controlName": ["xamMap"],
+    "tags": ["Application Scenarios","Data Presentation","How Do I"],
+    "guid": "{F4C4FA06-B489-4361-81EC-132C099318DD}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.1822677Z"
+}
+|metadata|
+////
+
+= 表面要素の追加
+
+link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.surfaceelement.html[SurfaceElement] オブジェクトは、xamMap の多角形および図形を表します。カスタムの図形を表示するためにユーザー固有の SurfaceElement オブジェクトを追加できます。カスタムの図形を作成するために測地座標またはデカルト座標のいずれかで指定された少なくとも 3 つの点を定義する必要があります。
+
+以下のコードは、マップ レイヤーの link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.maplayer~imported_ev.html[Imported] イベントを使用して、アメリカ合衆国の東海岸に停泊される船舶を作成する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub worldLayer_Imported(ByVal sender As System.Object, ByVal e As Infragistics.Controls.Maps.MapLayerImportEventArgs)
+   If e.Action = MapLayerImportAction.[End] Then
+      ' 図形のための点を保持するための線分群コレクション 
+      Dim lines As New MapPolylineCollection()
+      Dim points As New List(Of Point)()
+      ' 図形を作るための点 
+      points.Add(New Point(-74.535 - 2, 40.246 - 1))
+      points.Add(New Point(-74.535 + 2, 40.246 - 1))
+      points.Add(New Point(-74.535 + 4, 40.246 + 1))
+      points.Add(New Point(-74.535 - 4, 40.246 + 1))
+      ' 測地座標をデカルト座標に変換します 
+      lines.Add(map1.MapProjection.ProjectToMap(points))
+      ' 表面要素を作成して線分群を使用して図形を配置します 
+      Dim surfaceElement As New SurfaceElement()
+      surfaceElement.Polylines = lines
+      surfaceElement.Fill = New SolidColorBrush(Colors.Brown)
+      map1.Layers(0).Elements.Add(surfaceElement) 
+      Dim worldRect As Rect = surfaceElement.WorldRect
+      worldRect = lines.GetWorldRect()
+      surfaceElement.WorldRect = worldRect
+   End If
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void worldLayer_Imported(object sender, Infragistics.Controls.Maps.MapLayerImportEventArgs e)
+{
+   if (e.Action == MapLayerImportAction.End)
+   {
+      // 図形のための点を保持するための線分群コレクション
+      MapPolylineCollection lines = new MapPolylineCollection();
+      List<Point> points = new List<Point>();
+      // 図形を作るための点
+      points.Add(new Point(-74.535 - 2, 40.246 - 1));
+      points.Add(new Point(-74.535 + 2, 40.246 - 1));
+      points.Add(new Point(-74.535 + 4, 40.246 + 1));
+      points.Add(new Point(-74.535 - 4, 40.246 + 1));
+      // 測地座標をデカルト座標に変換します
+      lines.Add(map1.MapProjection.ProjectToMap(points));
+      // 表面要素を作成して線分群を使用して図形を配置します
+      SurfaceElement surfaceElement = new SurfaceElement() { Polylines = lines, Fill = new SolidColorBrush(Colors.Brown) };
+      map1.Layers[0].Elements.Add(surfaceElement);
+      Rect worldRect = surfaceElement.WorldRect;
+      worldRect = lines.GetWorldRect();
+      surfaceElement.WorldRect = worldRect;
+   }
+}
+----
+
+image::images/xamMap_Add_Surface_Element_01.png[]
+
+== 関連トピック
+
+link:xamwebmap-add-image-using-map-elements.html[マップ要素を使用した画像の追加]
+
+link:xamwebmap-add-symbol-element.html[記号要素の追加]
+
+link:xamwebmap-add-path-element.html[パス要素の追加]
+
+link:xamwebmap-map-elements-color-map-elements.html[マップ要素に色を付ける]
+
+link:xamwebmap-set-custom-format-string.html[カスタムのフォーマット文字列を設定]

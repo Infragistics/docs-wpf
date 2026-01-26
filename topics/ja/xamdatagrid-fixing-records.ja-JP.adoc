@@ -1,0 +1,25 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-fixing-records",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{1D968857-B86E-47AA-A36A-D9F4B37A2203}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0059543Z"
+}
+|metadata|
+////
+
+= レコードの固定 (xamDataGrid)
+
+
+
+固定されたレコードについての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-about-fixed-non-scrolling-records.html[固定 (非スクロール) レコードについて]
+* link:xamdatapresenter-about-fixed-records-and-sorting.html[固定されたレコードと並べ替えについて]
+* link:xamdatapresenter-enable-fixed-records.html[固定されたレコードを有効にする]
+* link:xamdatapresenter-fix-records.html[レコードの固定]
+* link:xamdatapresenter-limit-the-number-of-fixed-records.html[固定されたレコード数の制限]

@@ -1,0 +1,29 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnumericinput-api-overview",
+    "controlName": ["xamInputs"],
+    "tags": ["API"],
+    "guid": "f1ec631c-2326-463f-8c3d-e7246be9da70",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.0472639Z"
+}
+|metadata|
+////
+
+{XamNumericInputHeader}
+
+= API の概要
+
+このセクションは、 link:xamnumericinput.html[xamNumericInput] コントロールに関連する各名前空間をリストします。このコントロールでプログラムする間に使用するいくつかのキー クラスもあります。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。  
+
+[options="header", cols="a,a"]
+|====
+|名前空間：|キー クラス:
+
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics.Controls.Editors]
+| link:{ApiPlatform}controls.editors.xammaskedinput{ApiVersion}~infragistics.controls.editors.xamnumericinput.html[XamNumericInput]
+
+|====
+

@@ -1,0 +1,90 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-add-filter-conditions",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Filtering","How Do I"],
+    "guid": "{C54EDBEB-97DF-4C05-AF34-E82E2D9D1FBB}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.0829697Z"
+}
+|metadata|
+////
+
+= フィルター条件の追加
+
+ユーザーがレコードをフィルターするために、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowrecordfiltering.html[AllowRecordFiltering] プロパティを設定する必要があります。ユーザーにフィルタリング操作の実行を許可していない場合も link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~recordfilters.html[RecordFilters] コレクションまたは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager.html[RecordManager] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordmanager~recordfilters.html[RecordFilters] コレクションに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordfilter.html[RecordFilter] オブジェクトを追加してプログラム的にフィルター レコードを追加できます。ユーザーがレコード フィルターを設定するための方法をコントロールが公開していない場合も xamDataCarousel™ コントロールでプログラム的にレコードをフィルターすることができます。
+
+宣言的に `FieldSettings` オブジェクトの `AllowRecordFiltering` プロパティを `true` に設定した場合、コントロールはフィールド レイアウトの各フィールドのための `RecordFilter` オブジェクトを自動生成します。この `RecordFilter` オブジェクトは、`RecordFilters` の `Clear` メソッドを呼び出したあとも `FieldLayout.RecordFilters` から削除されません。ただし、そのフィルタリング link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.recordfilter~conditions.html[Conditions] はクリアできます。
+
+プログラム的にレコード フィルターを作成するときにカスタム `RecordFilter` を追加する代わりに、自動生成された `RecordFilter` を使用して、そのフィルタリング `Conditions` を変更できます。
+
+`RecordFilter` オブジェクトは、フィールドのセル値に対する条件のコレクションを表します。`RecordFilter` オブジェクトの `Conditions` コレクションに `ICondition` インターフェイスを実装するオブジェクトを追加することで条件を定義できます。{VersionedApiPlatform}.v{ProductVersion} アセンブリの Infragistics.Windows.Controls 名前空間は、以下の条件オブジェクトを提供します:
+
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.comparisoncondition.html[ComparisonCondition] - 比較演算子を使用して値を比較する単純な条件。
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.complementcondition.html[ComplementCondition] - 既存の条件を無効にする条件。
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.controls.conditiongroup.html[ConditionGroup] - 'And' または 'Or' などの論理演算子を使用した条件の組み合わせ。
+
+最後に、レコード フィルターがユーザーのレコードに影響を及ぼすためには、`RecordFilter` オブジェクトを適切な `RecordFilters` コレクションに追加する必要があります。ルート レベルのレコードについては、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~recordfilterscope.html[RecordFilterScope] プロパティ値に関係なく、`RecordFilter` オブジェクトを `FieldLayout` オブジェクトの `RecordFilters` コレクションに追加する必要があります。子レコードについては、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの `RecordFilterScope` プロパティ値に基づいて、`RecordFilter` オブジェクトを適切な `RecordFilters` コレクションに追加する必要があります。
+
+たとえば、xamDataPresenter を顧客/注文の階層的なコレクションにバインドして、顧客項目をフィルターする場合、顧客クラス (`FieldLayouts` コレクションの最初の `FieldLayout` オブジェクト) を表す `FieldLayout` オブジェクトの `RecordFilters` コレクションに `RecordFilter` オブジェクトを追加する必要があります。注文項目をフィルターして、デフォルトの `RecordFilterScope` プロパティ値 (iblingDataRecords) を使用する場合、`RecordFilter` オブジェクトを子 `RecordManager` オブジェクトの `RecordFilters` コレクションに追加する必要があります。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.expandablefieldrecord.html[ExpandableFieldRecord] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.expandablefieldrecord~childrecordmanager.html[ChildRecordManager] プロパティを使用して子レコード マネージャーにアクセスできます。一方、`RecordFilterScope` プロパティを `AllRecords` に設定する場合、注文項目 (`FieldLayouts` コレクションの 2 番目の `FieldLayout` オブジェクト) を表す `FieldLayout` オブジェクトの `RecordFilters` コレクションに `RecordFilter` オブジェクトを追加する必要があります。
+
+image::images/xamDataPresenter_Add_Filter_Conditions.png[]
+
+以下のコード例は、フィルター条件を追加する方法を示します。
+
+*XAML の場合:*
+
+----
+<!--
+Infragistics.Windows.Controls 名前空間で ComparisonCondition オブジェクトを参照するために以下の XML 名前空間定義が必要です: xmlns:igWindows="http://infragistics.com/Windows"
+-->
+<igDP:XamDataPresenter Name="xamDataPresenter1" BindToSampleData="True">
+    <igDP:XamDataPresenter.FieldLayouts>
+        <igDP:FieldLayout>
+            <igDP:FieldLayout.RecordFilters>
+                <igDP:RecordFilter FieldName="department">
+                    <igDP:RecordFilter.Conditions>
+                        <igWindows:ComparisonCondition Operator="Contains" Value="Sales" />
+                    </igDP:RecordFilter.Conditions>
+                </igDP:RecordFilter>
+            </igDP:FieldLayout.RecordFilters>
+        </igDP:FieldLayout>
+    </igDP:XamDataPresenter.FieldLayouts>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.DataPresenter
+Imports Infragistics.Windows.Controls
+...
+Dim deptRecordFilter As New RecordFilter With {.FieldName = "department"}
+Dim salesDeptCondition As New ComparisonCondition(ComparisonOperator.Contains, "Sales")
+deptRecordFilter.Conditions.Add(salesDeptCondition)
+Me.xamDataPresenter1.FieldLayouts(0).RecordFilters.Add(deptRecordFilter)
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.DataPresenter;
+using Infragistics.Windows.Controls;
+...
+RecordFilter deptRecordFilter = new RecordFilter { FieldName = "department" };
+ComparisonCondition salesDeptCondition = new ComparisonCondition(ComparisonOperator.Contains, "Sales");
+deptRecordFilter.Conditions.Add(salesDeptCondition);
+this.xamDataPresenter1.FieldLayouts[0].RecordFilters.Add(deptRecordFilter);
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+
+link:xamdatapresenter-enable-record-filtering.html[レコード フィルタリングを有効にする]
+
+link:xamdatapresenter-modify-the-list-of-operators.html[演算子のリストの修正]
+
+link:xamdatapresenter-modify-the-look-of-filtered-records.html[フィルターされたレコードの外観を修正]

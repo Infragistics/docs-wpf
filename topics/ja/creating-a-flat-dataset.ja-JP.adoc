@@ -1,0 +1,195 @@
+﻿////
+|metadata|
+{
+    "name": "creating-a-flat-dataset",
+    "controlName": [],
+    "tags": [],
+    "guid": "{8DF832EC-13A1-480B-BA08-A060989FE1AA}",
+    "buildFlags": ["wpf"],
+    "createdOn": "2012-02-01T16:01:19.6108354Z"
+}
+|metadata|
+////
+
+= フラット DataSet の作成
+
+== 始める前に
+
+ADO.NET® クラスはデータベース アクセスをカプセル化および簡素化します。Connection オブジェクト、Command オブジェクト、および DataAdapter オブジェクトを使用して、DataSet にデータを取得および保存することができます。
+
+Microsoft® Windows® Presentation Foundation コントロールを DataTable にバインドしたい場合には、DataView を使用することを忘れないでください。これは、すべてのデータバインドされた Windows® Presentation Foundation コントロールが IEnumerable インタフェースを実装するオブジェクトをバインドしなければならないためです。この要件を満たすための最も単純な方法は、DataTable の DefaultView プロパティをデータ ソースとして使用することです。
+
+この要件を満たすもうひとつの方法は、アプリケーションのプレゼンテーション層に DataTable を公開する ObjectDataProvider を Extensible Application Markup Language (XAML) で作成することです。ObjectDataProvider は DataView で DataTable を自動的にラップします。DataTable を返す ObjectDataProvider を作成することは、オブジェクトのコレクションを返す ObjectDataProvider と大差ありません。これら 2 つの唯一の違いは、データを取得するために ObjectDataProvider が呼び出すメソッドです。ObjectDataProvider の作成の詳細は、 link:creating-an-objectdataprovider.html[「ObjectDataProvider の作成」]を参照してください。
+
+このトピックでは、DataSet を特定のコントロールへバインドする方法についての説明はありません。ただし、コントロール固有のタスクについてはこのトピックで作成された DataSet を使用することが必要になります。このトピックで作成した DataSet にコントロールをバインドする方法については、このトピックの最後のリンクをご覧ください。
+
+== 達成すること
+
+プロシージャ コードでフラットな DataSet を作成するために必要なコンポーネント (SqlConnection、SqlCommand、および SqlDataAdapter) を作成する方法を示します。以下のプロシージャ コードは、一般的にコントロールに依存しなくても十分な程度に記述されています。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® Windows® Presentation Foundation Window または Page プロジェクトを作成します。
+[start=2]
+. コード ビハインドで using/imports のディレクティブを追加します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports System.Data
+Imports System.Data.SqlClient
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using System.Data;
+using System.Data.SqlClient;
+----
+
+[start=3]
+. SqlConnection、SqlCommand、SqlDataAdapter、および DataSet オブジェクトのプライベート変数を追加します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Private sqlConnection1 As SqlConnection
+Private sqlSelectCommand1 As SqlCommand
+Private sqlDataAdapter1 As SqlDataAdapter
+Private exampleDataSet As DataSet
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+private SqlCommand sqlSelectCommand1;
+private SqlConnection sqlConnection1;
+private SqlDataAdapter sqlDataAdapter1;
+private DataSet exampleDataSet;
+----
+
+[start=4]
+. Window または Page の OnInitialized メソッドをオーバーライドします。
+
+Window または Page の Load イベントを処理することによっても同じ機能を達成することができます。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Protected Overrides Sub OnInitialized(ByVal e As EventArgs) 
+        MyBase.OnInitialized(e) 
+        ' TODO: ここでプライベート変数を初期化します。
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+protected override void OnInitialized(EventArgs e)
+{
+        base.OnInitialized(e);
+        // TODO: ここでプライベート変数を初期化します。
+}
+----
+
+[start=5]
+. OnInitialized メソッドでプライベート変数を初期化します。
+
+SqlConnection オブジェクトを初期化する時には、DATABASE_NAME プレースホルダをデータベース名に必ず変更してください。
+
+[NOTE]
+====
+*注*:以下の事例のコードは、Microsoft® SQL Server で実行している Northwind と呼ばれるデータベースを持っていることを前提としています。このデータベースを持っていない場合には、実行しているデータベース名をポイントするために SqlCommand と SqlConnection を変更する必要があります。
+====
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+...
+' DataSet を初期化して名前を設定します。
+Me.exampleDataSet = New DataSet("exampleDataSet")
+' 接続文字列で SqlConnection を初期化します。
+Me.sqlConnection1 = New SqlConnection("Data Source=DATABASE_NAME; Initial Catalog=Northwind; Integrated Security=True")
+' Select ステートメントで SqlCommand を初期化します。
+Me.sqlSelectCommand1 = New SqlCommand("SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, PostalCode, Country, Phone FROM Customers")
+' SqlCommand の Connection プロパティに SqlConnection を割り当てます。
+Me.sqlSelectCommand1.Connection = Me.sqlConnection1
+' SqlDataAdapter を初期化します。
+Me.sqlDataAdapter1 = New SqlDataAdapter()
+' 作成された SqlCommand に SelectCommand プロパティを割り当てます。
+Me.sqlDataAdapter1.SelectCommand = Me.sqlSelectCommand1
+...
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+...
+// データセットを初期化して名前を指定します。
+this.exampleDataSet = new DataSet("exampleDataSet");
+// 接続文字列で SqlConnection を初期化します。
+this.sqlConnection1 = new SqlConnection("Data Source=DATABASE_NAME; Initial Catalog=Northwind; Integrated Security=True");
+// Select コマンドを含む SqlCommand を初期化します。
+this.sqlSelectCommand1 = new SqlCommand("SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, PostalCode, Country, Phone FROM Customers");
+// SqlCommand の Connection プロパティに SqlConnection を割り当てます。
+this.sqlSelectCommand1.Connection = this.sqlConnection1;
+// SqlDataAdapter を初期化します。
+this.sqlDataAdapter1 = new SqlDataAdapter();
+// 作成された SqlCommand に SelectCommand プロパティを割り当てます。
+this.sqlDataAdapter1.SelectCommand = this.sqlSelectCommand1;
+...
+----
+
+[start=6]
+. SqlDataAdapter の Fill メソッドを呼び出すことによって、DataSet を埋めます。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+...
+Try
+        ' DataSet を埋めます。
+        Me.sqlDataAdapter1.Fill(Me.exampleDataSet)
+        ' TODO: コントロールの DataSource を設定します。
+Catch ex As SqlException
+        ' 発生する可能性がある例外をキャッチして表示します。
+        MessageBox.Show(ex.Message.ToString())
+End Try
+...
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+...
+try
+{
+        // DataSet を埋めます。
+        this.sqlDataAdapter1.Fill(this.exampleDataSet);
+        // TODO: コントロールの DataSource を設定します。
+}
+catch (SqlException ex)
+{
+        // 発生する可能性がある例外をキャッチして表示します。
+        MessageBox.Show(ex.Message.ToString());
+}
+...
+----
+
+[start=7]
+. この時点でアプリケーションを実行すると、空の Window を表示するだけです。結果を確認するためには、コントロールを Window に追加して、このトピックで作成した DataSet をコントロールにバインドする必要があります。
+
+== 関連トピック
+
+link:xamcomboeditor-bind-xamcomboeditor-to-a-dataset.html[xamComboEditor を DataSet にバインド]

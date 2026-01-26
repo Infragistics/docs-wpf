@@ -1,0 +1,26 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamwebmap-using-xamwebmap",
+    "controlName": ["xamMap"],
+    "tags": [],
+    "guid": "{A7D61F5A-B783-460B-A032-CCEBF2010848}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.2932378Z"
+}
+|metadata|
+////
+
+= xamMap の使用
+
+このセクションは、 link:{ApiPlatform}controls.maps.xammap{ApiVersion}~infragistics.controls.maps.xammap.html[xamMap] コントロールが提供する様々な特徴や機能を使用するための重要な概念とタスク ベースの情報について説明します。
+
+* link:xamwebmap-accessing-data.html[データ アクセス]
+* link:xamwebmap-geo-imagery-integration.html[地理画像の統合]
+* link:xamwebmap-customize-map-with-value-templates.html[値テンプレートの表示]
+* link:xamwebmap-map-panes.html[マップ ペインの表示]
+* link:xamwebmap-map-elements.html[マップ要素の表示]
+* link:xamwebmap-map-elements-color-map-elements.html[マップ要素に色を付ける]
+* link:xammap-map-window-animation.html[マップ ウインドウ アニメーションの使用]
+* link:xamwebmap-using-multiple-layers.html[複数レイヤーの使用]

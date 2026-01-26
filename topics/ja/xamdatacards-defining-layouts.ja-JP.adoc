@@ -1,0 +1,36 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacards-defining-layouts",
+    "controlName": ["xamDataCards"],
+    "tags": ["Layouts"],
+    "guid": "{C22FA9CF-0B65-411C-8B19-B28EC8B5FFDF}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.5988729Z"
+}
+|metadata|
+////
+
+= レイアウトの定義
+
+
+
+DataPresenter コントロールのレイアウト定義に役立つトピックをご覧になる場合は、以下のリンクをクリックしてください。
+
+* link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+* link:xamdatapresenter-add-unbound-fields-to-a-datapresenter-control.html[DataPresenter コントロールにバインドされていないフィールドを追加]
+* link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+* link:xamdata-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xamdatapresenter-displaying-an-image-in-a-field.html[フィールドに画像を表示]
+* link:xamdatapresenter-load-field-customizations.html[フィールド カスタマイズのロード]
+* link:xamdatapresenter-save-field-customizations.html[フィールド カスタマイズの保存]
+* link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[フィールド レイアウトを xamDataPresenter を手動で割り当て]
+* link:xamdatapresenter-about-card-settings.html[カード設定について]
+* link:xamdatapresenter-about-card-sizing.html[カード サイズについて]
+* link:xamdatapresenter-about-repositioning-animations.html[リポジション アニメーションについて]
+* link:xamdatapresenter-collapse-a-card.html[カードの縮小]
+* link:xamdatapresenter-collapse-an-empty-cell.html[空のセルの縮小]
+* link:xamdatapresenter-set-the-maximum-number-of-viewable-cards.html[表示可能なカードの最大数の設定]
+* link:xamdatapresenter-set-the-space-between-cards.html[カード間のスペースの設定]
+* link:xamdatapresenter-working-with-card-headers.html[カード ヘッダーでの作業]

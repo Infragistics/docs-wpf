@@ -1,0 +1,131 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamribbon-showing-a-contextual-tab-group-programmatically",
+    "controlName": ["xamRibbon"],
+    "tags": ["Application Blocks","Grouping","How Do I"],
+    "guid": "{2B54676A-72BC-442C-8929-713C12296467}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.2121955Z"
+}
+|metadata|
+////
+
+= コンテキスト タブ グループをプログラムで表示
+
+
+
+
+
+== 始める前に
+
+ContextualTabGroup オブジェクトでコンテキスト センシティブなタブを表示できます。ただし、ContextualTabGroup を ContextualTabGroupCollection に追加することだけではコンテキストセンシティブなタブを表示するために十分ではありません。ContextualTabGroup オブジェクトをプログラムで表示または非表示にするには、ご使用のアプリケーション内のコントロールの GotFocus および LostFocus イベントを処理する必要があります。
+
+このトピックは、 link:xamribbon-add-a-contextual-tab-to-xamribbon.html[Extensible Application Markup Language (XAML) を使用して基本 xamRibbon™ を作成する]方法と link:xamribbon-adding-xamribbon-to-your-application-.html[ContextualTabGroup を xamRibbon に追加する]方法を知っていることを前提とします。
+
+== 達成すること
+
+Window のコントロールの GotFocus and LostFocus イベントを処理することで、 ContextualTabGroup をそれぞれ表示または非表示にします。
+
+== ContextualTabGroup プログラムで表示する：
+
+[start=1]
+. ContextualTabGroup を ContextualTabGroups コレクションに追加します。
+
+.. Caption プロパティを 'RichTextBox Tools' に設定します。
+.. Key プロパティを "RichTextBox_Tabs" に設定します。
+.. IsVisible プロパティを False に設定します。
+
+[start=2]
+. RibbonTabItem を ContextualTabGroup の Tabs コレクションに追加します。
+[start=3]
+. RibbonTabItem の Header プロパティを "Style" に設定します。
+[start=4]
+. 2 番目の RibbonTabItem を ContextualTabGroups Tab コレクションに追加します。
+[start=5]
+. 2 番目の RibbonTabItem の Header プロパティを "Behavior" に設定します。
+
+*XAML の場合:*
+
+----
+<igRibbon:XamRibbon Name="XamRibbon1">
+...
+    <igRibbon:XamRibbon.ContextualTabGroups>
+        <igRibbon:ContextualTabGroup Caption="RichTextBox Tools" Key="RichTextBox_Tabs" IsVisible=">
+            <igRibbon:RibbonTabItem Header="Style" />
+            <igRibbon:RibbonTabItem Header="Behavior" />
+        </igRibbon:ContextualTabGroup>
+    </igRibbon:XamRibbon.ContextualTabGroups>
+...
+</igRibbon:XamRibbon>
+----
+
+[start=6]
+. RichTextBox コントロールを Window のレイアウト コンテナーに追加します。以下の XAML は StackPanel を使用していることを前提とします。
+
+.. RichTextBox コントロールの GotFocus イベントに対してイベント ハンドラを接続します。
+.. RichTextBox コントロールの LostFocus イベントに対してイベント ハンドラを接続します。
+
+[start=7]
+. Button コントロールを Window のレイアウト コンテナに追加します。この Button コントロールによって、RichTextBox コントロールからのフォーカスを削除できます。
+
+*XAML の場合:*
+
+----
+...
+<RichTextBox GotFocus="RichTextBox1_GotFocus"
+  LostFocus="RichTextBox1_LostFocus" />
+<Button Content="Remove focus from the RichTextBox control" />
+...
+----
+
+[start=8]
+. コード ビハインドでは、RichTextBox コントロールの GotFocus イベントを処理するために RichTextBox1_GotFocus という名前のメソッドを作成します。
+[start=9]
+. RichTextBox1_LostFocus という名前の別のメソッドを作成して RichTextBox コントロールの LostFocus イベントを処理します。
+[start=10]
+. GotFocus イベント ハンドラでは、"RichTextBox_Tabs" キーを使用して、手順 1 で追加した ContextualTabGroup への参照を取得します。
+[start=11]
+. この ContextualTabGroup の IsVisible プロパティを True に設定します。
+[start=12]
+. LostFocus イベント ハンドラでは、"RichTextBox_Tabs" キーを使用して、手順 1 で追加した ContextualTabGroup への参照を取得します。
+[start=13]
+. この ContextualTabGroup の IsVisible プロパティを False に設定します。
+
+*Visual Basic の場合:*
+
+----
+Private Sub RichTextBox1_GotFocus(ByVal sender As Object, _
+  ByVal e As RoutedEventArgs) 
+    Me.XamRibbon1.ContextualTabGroups("RichTextBox_Tabs").IsVisible = True 
+End Sub 
+Private Sub RichTextBox1_LostFocus(ByVal sender As Object, _
+  ByVal e As RoutedEventArgs) 
+    Me.XamRibbon1.ContextualTabGroups("RichTextBox_Tabs").IsVisible = False 
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void RichTextBox1_GotFocus(object sender, RoutedEventArgs e)
+{
+        this.XamRibbon1.ContextualTabGroups["RichTextBox_Tabs"].IsVisible = true;
+}
+private void RichTextBox1_LostFocus(object sender, RoutedEventArgs e)
+{
+        this.XamRibbon1.ContextualTabGroups["RichTextBox_Tabs"].IsVisible = false;
+}
+----
+
+[start=14]
+. アプリケーションを実行し、RichTextBox にフォーカスを置き、RichTextBox タスクに関連する Contextual タブを表示します。
+[start=15]
+. Button コントロールをクリックして RichTextBox コントロールからフォーカスを除去します。これによって、RichTextBox タスクに関連する Contextual タブを非表示にします。
+
+== 関連トピック
+
+link:xamribbon-add-a-tab-to-xamribbon.html[タブを xamRibbon に追加]
+
+link:xamribbon-add-a-contextual-tab-to-xamribbon.html[コンテキスト タブを xamRibbon に追加]

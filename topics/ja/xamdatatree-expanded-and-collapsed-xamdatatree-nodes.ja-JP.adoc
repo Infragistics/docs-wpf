@@ -1,0 +1,81 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-expanded-and-collapsed-xamdatatree-nodes",
+    "controlName": ["xamDataTree"],
+    "tags": ["Data Presentation","Editing"],
+    "guid": "373d1884-439b-45e7-9391-802101ea25fa",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8871119Z"
+}
+|metadata|
+////
+
+= ノードの展開と縮小状態の構成
+
+デフォルトでは、最初のロードで、xamDataTree™ コントロールはすべてのノードが縮小されて表示されます。各親ノードは、展開アイコンがその横に表示されて現れます。このアイコンをクリックすると、その特定の親ノードが展開されます。
+
+ただし、展開時に特定のノードまたはすべてのノードを表示することによって、最初のロードのデフォルト動作をオーバーライドできます。XamDataTreeNode オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatreenode~isexpanded.html[IsExpanded] プロパティを設定することでこれを達成できます。
+
+次のコードは、これを実現する方法を示しています。
+
+*Visual Basic の場合:*
+
+----
+MyTree.Nodes(0).IsExpanded = true
+----
+
+*C# の場合:*
+
+----
+MyTree.Nodes[0].IsExpanded = true;
+----
+
+NodeLayout オブジェクトの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.nodelayout~isexpandedmemberpath.html[IsExpandedMemberPath] をオブジェクトのフィールドに設定することによって、ノードの展開をデータ オブジェクトの固有のフィールドにバインドすることもできます。
+
+*XAML の場合:*
+
+----
+<ig:NodeLayout Key="CategoryLayout" TargetTypeName="Category" IsExpandedMemberPath="UnitsInStock" DisplayMemberPath="CategoryName">
+----
+
+xamDataTree コントロールの各ノードの展開状態と縮小状態にカスタム アイコンを表示できます。xamDataTree コントロールの link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~expandedicontemplate.html[ExpandedIconTemplate] プロパティと link:{ApiPlatform}controls.menus.xamdatatree{ApiVersion}~infragistics.controls.menus.xamdatatree~collapsedicontemplate.html[CollapsedIconTemplate] プロパティのためにデータ テンプレートを定義する、またはノード レイアウトごとに個別に設定することによって、これを達成できます。
+
+以下のコード例は、ノードの展開および縮小状態のアイコンを設定する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamDataTree x:Name="MyTree">
+   <ig:XamDataTree.CollapsedIconTemplate>
+      <DataTemplate>
+         <Image Source="/xamWebChart_XAML;component/Images/MoveToFolder32.png"/>
+      </DataTemplate>
+   </ig:XamDataTree.CollapsedIconTemplate>
+   <ig:XamDataTree.ExpandedIconTemplate>
+      <DataTemplate>
+         <Image Source="/xamWebChart_XAML;component/Images/Open32.png"/>
+      </DataTemplate>
+   </ig:XamDataTree.ExpandedIconTemplate>
+   <!-- TODO: Add xamDataTree Items -->
+</ig:XamDataTree>
+----
+
+image::images/Expanded_Collapsed_Icon_Templates_01.png[]
+
+*関連トピック*
+
+link:xamdatatree-xamdatatree-activation.html[アクティブ化]
+
+link:xamdatatree-xamdatatree-check-boxes.html[チェックボックスの表示状態の構成]
+
+link:xamdatatree-xamdatatree-drag-and-drop.html[ドラッグ アンド ドロップの構成]
+
+link:xamdatatree-xamdatatree-editing.html[編集の構成]
+
+link:xamdatatree-xamdatatree-node-connectors.html[ノード コネクターの表示状態の構成]
+
+link:xamdatatree-xamdatatree-node-layouts.html[ノード レイアウトの構成]
+
+link:xamdatatree-xamdatatree-selection.html[選択]

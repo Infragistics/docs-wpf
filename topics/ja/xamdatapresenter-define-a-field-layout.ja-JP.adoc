@@ -1,0 +1,481 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-define-a-field-layout",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Extending","How Do I","Layouts"],
+    "guid": "{FAD67F16-FF2B-4CA9-A6ED-24C43F59689C}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1299791Z"
+}
+|metadata|
+////
+
+= フィールド レイアウトの定義
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、データ エンティティが表示されるフィールドのカスタム セットを定義する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックは、xamDataGrid コントロールの概要を提供し、要素のダイアグラムを含みます。
+
+| link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]
+|このトピックでは、データ項目とデータ レコードの違いを説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref405562793, フラット構造のフィールド レイアウトの定義 >>
+* <<_Ref405562801, 階層構造のフィールド レイアウトの定義 >>
+* <<_Ref405562811, 関連コンテンツ >>
+
+[[_Ref405562793]]
+== フラット構造のフィールド レイアウトの定義
+
+[[_Hlk368069110]]
+
+=== 概要
+
+_xamDataPresenter_™、 _xamDataGrid_™、 _xamDataCards_™、および  _xamDataCarousel_™ コントロールは、データ モデルに基づいて自動的にフィールド レイアウトを作成しますが、それらのフィールドに関連するプロパティを表示および設定するフィールドを指定するためのフィールド レイアウトを定義することもできます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~autogeneratefields.html[AutoGenerateFields] プロパティを False に設定した場合、表示するフィールドを定義する必要があります。そうでない場合、変更するフィールドのみを定義する必要があります。残りのフィールドは自動的に生成されます。
+
+カスタム フィールド レイアウトを定義する場合、次の点に注意してください。
+
+* データ モデル オブジェクトからシンプルなプロパティにバインドする場合は、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field.html[Field] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~bindingtype.html[BindingType] を link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingtype.html[UseNameBinding] に設定し、データ モデル オブジェクトのプロパティ名に一致するように link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fielditem~name.html[Name] プロパティを設定します (`Name` プロパティの値も一意でなければなりません)。
+* データ モデル オブジェクトから複合プロパティにバインドする必要がある場合は、`Field` の `BindingType` を link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingtype.html[UseAlternateBinding] に設定し、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~alternatebinding.html[AlternateBinding] プロパティにバインド パスを指定します。
+* 非バインド フィールド (計算値付き) にする必要がある場合は、`Field` の `BindingType` を link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.bindingtype.html[Unbound] に設定します。
+
+データ エンティティにより公開されたプロパティと一致しない `Field` オブジェクトを追加した場合、レコードの初期化時に link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout.html[FieldLayout] オブジェクトは link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datarecord.html[DataRecord] オブジェクトに割り当てられません。`AutoGenerateFields` プロパティが False に設定されているときにこれが発生した場合、`DataPresenter` コントロールのデータは一切表示されません。そうでない場合、コントロールは自動的に新しい `FieldLayout` オブジェクトを作成し、それを `DataRecord` オブジェクトに割り当てます。
+
+注:
+
+[NOTE]
+====
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.assigningfieldlayouttoitemeventargs.html[AssigningFieldLayoutToItem] イベントを処理し、プロパティが Field オブジェクトの名前と一致しない項目に対して `FieldLayout` オブジェクトを割り当てた場合、`DataPresenter` は例外をスローします。
+====
+
+たとえば、 *CustomerID*  プロパティ、 *ContactName*  プロパティ、および  *ContactTitle*  プロパティを公開するカスタマー エンティティがある場合、3 つの `Field` オブジェクトを作成し、その `Name` プロパティをそれぞれ「CustomerID」、「ContactName」、「ContactTitle」に設定できます。
+
+[[_Hlk337817761]]
+
+=== 例
+
+以下のコード例は、フィールド レイアウトを定義する方法を示します。コード例では、データ モデルが  *ProductID*  プロパティと  *ProductName*  プロパティを公開していると仮定しています。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+    </igDP:XamDataPresenter.FieldLayoutSettings>
+    <igDP:XamDataPresenter.FieldLayouts>
+        <igDP:FieldLayout Key="productLayout">
+            <igDP:FieldLayout.Fields>
+                <igDP:Field Name="ProductID" Label="Product ID" />
+                <igDP:TextField Name="ProductName" Label="Product Name" />
+                <!-- ここで Field オブジェクトをさらに追加できる-->
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+    </igDP:XamDataPresenter.FieldLayouts>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Windows.DataPresenter
+Imports Infragistics.Windows.DataPresenter.Events
+...
+' このイベント ハンドラーを FieldLayoutInitialized イベントにアタッチできる
+Private Sub xamDataPresenter1_FieldLayoutInitialized(ByVal sender As Object, ByVal e As FieldLayoutInitializedEventArgs) 
+    Dim productIDField As New Field With {.Name = "ProductID", .Label = "Product ID"}
+    Dim productNameField As New TextField With {.Name = "ProductName", .Label = "Product Name"}
+    e.FieldLayout.Fields.Add(productIDField)
+    e.FieldLayout.Fields.Add(productNameField)
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Windows.DataPresenter;
+using Infragistics.Windows.DataPresenter.Events;
+...
+// このイベント ハンドラーを FieldLayoutInitialized イベントにアタッチできる。
+private void xamDataPresenter1_FieldLayoutInitialized(object sender, FieldLayoutInitializedEventArgs e)
+{
+    Field productIDField = new Field
+    {
+        Name = "ProductID",
+        Label = "Product ID"
+    };
+    TextField productNameField = new TextField
+    {
+        Name = "ProductName",
+        Label = "Product Name"
+    };
+    e.FieldLayout.Fields.Add(productIDField);
+    e.FieldLayout.Fields.Add(productNameField);
+}
+----
+
+[[_Ref405562801]]
+== 階層構造のフィールド レイアウトの定義
+
+=== 概要
+
+階層構造データ モデルにバインドする場合、子データ オブジェクトが親データ オブジェクトと異なるプロパティを持っていることがあります。そのため、複数のフィールド レイアウトが必要になります。`FieldLayout` の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~key.html[Key] プロパティでデータ型を指定し、各データ型に対して異なるフィールド レイアウトを定義できます。
+
+注:
+
+[NOTE]
+====
+階層 `DataSet` オブジェクトで子レコードを表示するには、`Field` オブジェクトの `Name` プロパティを DataRelation オブジェクトの名前に設定する必要があります。
+====
+
+=== 例
+
+フィールド レイアウト定義を持つ XAML コード:
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataGrid x:Name="xamDataGrid">
+    <igDP:XamDataGrid.FieldLayoutSettings>
+        <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+    </igDP:XamDataGrid.FieldLayoutSettings>
+    <igDP:XamDataGrid.FieldLayouts>
+        <igDP:FieldLayout Key="Customer">
+            <igDP:FieldLayout.Fields>
+                <igDP:Field Name="ID" Label="Customer ID" />
+                <igDP:TextField Name="Name" Label="Customer Name" />
+                <!-- 以下のフィールド定義はサブ項目のコレクションを参照する -->
+                <igDP:Field Name="Addresses" Label="Customer Addresses" />
+                <igDP:Field Name="Orders" Label="Customer Orders"/>
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+        <igDP:FieldLayout Key="Address">
+            <igDP:FieldLayout.Fields>
+                <igDP:Field Name="Country" Label="The Country" />
+                <igDP:Field Name="City" Label="The City" />
+                <igDP:Field Name="Street" Label="The Street" />
+                <igDP:Field Name="Phone" Label="The Phone" />
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+        <igDP:FieldLayout Key="Order">
+            <igDP:FieldLayout.Fields>
+                <igDP:Field Name="FromDate" Label="Ordered On" />
+                <igDP:Field Name="Status" Label="Order State" />
+                <igDP:Field Name="TotalPrice" Label="Total Order Price" />
+            </igDP:FieldLayout.Fields>
+        </igDP:FieldLayout>
+    </igDP:XamDataGrid.FieldLayouts>
+</igDP:XamDataGrid>
+----
+
+エンティティ データ型を定義するコード ビハインド:
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class Address
+        Public Property Country() As String
+                Get
+                        Return m_Country
+                End Get
+                Set
+                        m_Country = Value
+                End Set
+        End Property
+        Private m_Country As String
+        Public Property City() As String
+                Get
+                        Return m_City
+                End Get
+                Set
+                        m_City = Value
+                End Set
+        End Property
+        Private m_City As String
+        Public Property Street() As String
+                Get
+                        Return m_Street
+                End Get
+                Set
+                        m_Street = Value
+                End Set
+        End Property
+        Private m_Street As String
+        Public Property Phone() As String
+                Get
+                        Return m_Phone
+                End Get
+                Set
+                        m_Phone = Value
+                End Set
+        End Property
+        Private m_Phone As String
+End Class
+Public Class Order
+        Public Property FromDate() As DateTime
+                Get
+                        Return m_FromDate
+                End Get
+                Set
+                        m_FromDate = Value
+                End Set
+        End Property
+        Private m_FromDate As DateTime
+        Public Property Status() As String
+                Get
+                        Return m_Status
+                End Get
+                Set
+                        m_Status = Value
+                End Set
+        End Property
+        Private m_Status As String
+        Public Property TotalPrice() As Integer
+                Get
+                        Return m_TotalPrice
+                End Get
+                Set
+                        m_TotalPrice = Value
+                End Set
+        End Property
+        Private m_TotalPrice As Integer
+End Class
+Public Class Customer
+        Public Property ID() As Integer
+                Get
+                        Return m_ID
+                End Get
+                Set
+                        m_ID = Value
+                End Set
+        End Property
+        Private m_ID As Integer
+        Public Property Name() As String
+                Get
+                        Return m_Name
+                End Get
+                Set
+                        m_Name = Value
+                End Set
+        End Property
+        Private m_Name As String
+        Private m_addresses As New List(Of Address)()
+        Public ReadOnly Property Addresses() As List(Of Address)
+                Get
+                        Return Me.m_addresses
+                End Get
+        End Property
+        Private m_orders As New List(Of Order)()
+        Public ReadOnly Property Orders() As List(Of Order)
+                Get
+                        Return Me.m_orders
+                End Get
+        End Property
+End Class
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class Address
+{
+    public string Country { get; set; }
+    public string City { get; set; }
+    public string Street { get; set; }
+    public string Phone { get; set; }
+}
+public class Order
+{
+    public DateTime FromDate { get; set; }
+    public string Status { get; set; }
+    public int TotalPrice { get; set; }
+}
+public class Customer
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+    private List<Address> addresses = new List<Address>();
+    public List<Address> Addresses
+    {
+        get { return this.addresses; }
+    }
+    private List<Order> orders = new List<Order>();
+    public List<Order> Orders
+    {
+        get { return this.orders; }
+    }
+}
+----
+
+エンティティ クラスのインスタンス作成、それらのリスト作成、および  _xamDataGrid_   コントロールのデータ ソースとしてそのリストを設定:
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim list As New List(Of Customer)()
+Dim a As New Customer() With { _
+        .ID = 1, _
+        .Name = "Alfreds Futterkiste" _
+}
+a.Addresses.Add(New Address() With { _
+        .Country = "Germany", _
+        .City = "Berlin", _
+        .Street = "Obere Str. 57", _
+        .Phone = "030-0074321" _
+})
+a.Addresses.Add(New Address() With { _
+        .Country = "Sweden", _
+        .City = "Luleå", _
+        .Street = "Berguvsvägen  8", _
+        .Phone = "0921-12 34 65" _
+})
+a.Orders.Add(New Order() With { _
+        .FromDate = New DateTime(2015, 4, 5), _
+        .Status = "Pending", _
+        .TotalPrice = 241 _
+})
+a.Orders.Add(New Order() With { _
+        .FromDate = New DateTime(2015, 5, 10), _
+        .Status = "Collecting", _
+        .TotalPrice = 184 _
+})
+list.Add(a)
+Dim b As New Customer() With { _
+        .ID = 2, _
+        .Name = "Frédérique Citeaux" _
+}
+b.Addresses.Add(New Address() With { _
+        .Country = "France", _
+        .City = "Strasbourg", _
+        .Street = "24, place Kléber", _
+        .Phone = "88.60.15.31" _
+})
+b.Addresses.Add(New Address() With { _
+        .Country = "Spain", _
+        .City = "Madrid", _
+        .Street = "C/ Araquil, 67", _
+        .Phone = "(91) 555 22 82" _
+})
+b.Orders.Add(New Order() With { _
+        .FromDate = New DateTime(2015, 6, 15), _
+        .Status = "Delivered", _
+        .TotalPrice = 673 _
+})
+b.Orders.Add(New Order() With { _
+        .FromDate = New DateTime(2015, 7, 20), _
+        .Status = "Canceled", _
+        .TotalPrice = 10537 _
+})
+list.Add(b)
+Me.xamDataGrid.DataSource = list
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+List<Customer> list = new List<Customer>();
+Customer a = new Customer() { ID = 1, Name = "Alfreds Futterkiste"};
+a.Addresses.Add(new Address()
+{
+  Country = "Germany", City = "Berlin", Street = "Obere Str. 57", Phone = "030-0074321"
+});
+a.Addresses.Add(new Address()
+{
+  Country = "Sweden", City = "Luleå", Street = "Berguvsvägen  8", Phone = "0921-12 34 65"
+});
+a.Orders.Add(new Order()
+{
+  FromDate = new DateTime(2015, 4, 5), Status = "Pending", TotalPrice = 241
+});
+a.Orders.Add(new Order()
+{
+  FromDate = new DateTime(2015, 5, 10), Status = "Collecting", TotalPrice = 184
+});
+list.Add(a);
+Customer b = new Customer() { ID = 2, Name = "Frédérique Citeaux" };
+b.Addresses.Add(new Address()
+{
+  Country = "France", City = "Strasbourg", Street = "24, place Kléber", Phone = "88.60.15.31"
+});
+b.Addresses.Add(new Address()
+{
+  Country = "Spain", City = "Madrid", Street = "C/ Araquil, 67", Phone = "(91) 555 22 82"
+});
+b.Orders.Add(new Order()
+{
+  FromDate = new DateTime(2015, 6, 15), Status = "Delivered", TotalPrice = 673
+});
+b.Orders.Add(new Order()
+{
+  FromDate = new DateTime(2015, 7, 20), Status = "Canceled", TotalPrice = 10537
+});
+list.Add(b);
+this.xamDataGrid.DataSource = list;
+----
+
+=== 結果
+
+以下のスクリーンショットは、親レコードが 1 つの各子コレクションのみを持つ階層データにバインドされた  _xamDataGrid_   を示しています。親レコードの展開後、子コレクションはただちに表示されます。
+
+image::images/xamDataGrid_Bind_Hierarchical_1.png[]
+
+以下のスクリーンショットは、親レコードがそれぞれ複数の子コレクションを持つ階層データにバインドされた  _xamDataGrid_   を示しています。最初の親レコードの展開時には、子コレクションの存在を示す子バンド ヘッダーのみが表示されます。
+
+image::images/xamDataGrid_Bind_Hierarchical_2.png[]
+
+以下のスクリーンショットは、親レコードがそれぞれ複数の子コレクションを持ち、子バンドもすべて展開されている階層データにバインドされた  _xamDataGrid_   を示しています。ここから分かるとおり、フィールド レイアウト定義が異なるため、親レコードと子レコードには異なるフィールドが表示されます。
+
+image::images/xamDataGrid_Bind_Hierarchical_3.png[]
+
+[[_Ref405562811]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdata-generating-fields-manually-versus-automatically.html[フィールドの生成、手動と自動]
+|このトピックでは、フィールド レイアウト生成のタイプについて説明します。
+
+| link:xamdatapresenter-manually-assigning-a-field-layout-to-xamdatapresenter.html[フィールド レイアウトの xamDataPresenter への手動割り当て]
+|このトピックでは、各データ レコードにカスタム フィールド レイアウトを手動で割り当てる方法を説明します。
+
+| link:xamdatapresenter-add-unbound-fields-to-a-datapresenter-control.html[非バインド フィールドの構成]
+|このトピックでは、フィールド レイアウトのフィールドのうち、データ レコードのフィールドに直接バインドされないフィールドを定義する方法を説明します。
+
+| link:xamdatapresenter-configuring-specific-editor-fields.html[特定のエディター フィールドの構成 (xamDataPresenter)]
+|このトピックでは、さまざまなデータ型について個別のエディター フィールドを簡単に構成する方法を説明します。
+
+|====

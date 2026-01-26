@@ -1,0 +1,127 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-connector-custom-connectors",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling"],
+    "guid": "4273468c-0593-44b8-8100-bd8eece3865f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7083262Z"
+}
+|metadata|
+////
+
+= カスタム コネクター
+
+== データ コネクターの概要
+
+XamSchedule には、バックエンドのデータ ストアに XamSchedule スイートを接続できる 3 つの異なるレイヤーが含まれます。これらのレイヤーは以下のとおりです。
+
+* アクティビティを表示し、ユーザー操作用の UI を提供する link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase.html[ビュー コントロール] (つまり、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdayview.html[xamDataView]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduleview.html[xamScheduleView] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xammonthview.html[xamMonthView]) 
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] クラス - エンドユーザーに必要なデータを取得するために XamScheduleDataManager と直接インターフェイスするビュー コントロール。さらにビュー コントロールは、XamScheduleDataManager に新しい予定を追加するように、任意のデータ操作のタスクをデリゲートします。そして XamScheduleDataManager は、これらのタスクを実行するために link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~dataconnector.html[DataConnector] プロパティを介して設定されるスケジュール データ コネクターに依存します。
+* XamSchedule link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase.html[データ コネクター] クラスは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource.html[リソース]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[リソース カレンダー]および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[アクティビティ] データを XamScheduleDataManager に提供します。これらのクラスは、追加や削除を含み、各アクティビティへの更新を実行するために必要なロジックも提供します。スケジュール データ コネクターは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase.html[ScheduleDataConnectorBase] 基本クラスから派生します。
+
+XamSchedule に含まれる 2 つの組み込みスケジュール データ コネクターがあります。
+
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] - このクラスによって、リソース、リソース カレンダー、予定、タスク、および履歴データが保存されるデータ ソースにバインドできます。ListScheduleDataConnector クラスは ScheduleDataConnectorBase クラスから派生します。
+* link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector.html[WcfListScheduleDataConnector] - このクラスは、ListScheduleDataConnector と同じ機能を提供しますが、WCF サービスをより簡単にします。このクラスにインターフェイスするサービスのタイプは、サーバーにスケジュール データを持つように設定され、WCF サービスを介してクライアントで動作しているアプリケーションに公開されます。WcfListScheduleDataConnector が応答する WCF サービスは、 link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservicesingle.html[WcfListConnectorServiceSingle] および link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservicemulti.html[WcfListConnectorServiceMulti] クラスとして XamSchedule に含まれます(注: これらのクラスは両方とも link:Infragistics.services.schedules.wcfconnectorservice{ApiVersion}~infragistics.services.schedules.wcflistconnectorservice.html[WcfListConnectorService] から派生します)。WcfListConnectorServiceSingle または WcfListConnectorServiceMulti サービスのいずれか一方が、サービスをスケジュール データにバインドするサーバーで動作します。クライアント マシンで動作している WcfListScheduleDataConnector は、必要に応じてサービスに接続してデータを取得します。
+
+== カスタム データ コネクター
+
+上記のコネクターは、スケジュール データを含むデータ ソースにバインドしたいほとんどのシナリオをカバーします。特別なシナリオについては、上記のコネクターから派生し、カスタム ロジックを実装するための固有のメソッドをオーバーライドできます。
+
+ただし、スケジュール データ コネクターのカスタム実装を提供する必要があるケースがあります。これは、たとえばデフォルトのバインド可能なデータ ソースの形式でスケジュール データが使用できないからです。たとえば、データ検索アプローチは、スケジュール データにアクセスするために http または他のプロトコルを介してサーバーに問い合わせる必要があります。
+
+このケースでは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase.html[ScheduleDataConnectorBase] から継承してカスタム データ コネクター ロジックを実装するクラスを作成することによって、カスタム スケジュール データ コネクターを記述できます。ScheduleDataConnectorBase クラスには、カスタム データ検索を実行するために必要なロジックを提供するためにオーバーライドされる抽象および仮想のプロパティ、そしてメソッドが含まれます。
+
+== カスタム データ コネクターの記述
+
+以下は、ScheduleDataConnectorBase をサブクラス化する時に重要となるプロパティおよびメソッドの詳細です。
+
+link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase~resourceitems.html[ResourceItems] プロパティ
+
+このプロパティはリソースのリストを提供します。各リソースの Calendars コレクション (リソースの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resource~calendars.html[Calendars] プロパティから返される) は、少なくともひとつの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.resourcecalendar.html[ResourceCalendar] を移植する必要があることに注意してください。
+
+== ScheduleDataConnectorBase メソッド
+
+以下は、ScheduleDataConnectorBase クラスのサブクラスを作成する時にカスタム実装を提供する必要があるメソッドです。
+
+GetActivities
+
+このメソッドは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityquery.html[ActivityQuery] パラメーターで指定されるクエリ基準に基づき、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.appointment.html[Appointments]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.journal.html[Journals] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.task.html[Tasks] などのアクティビティのリストを返します。クエリ基準には以下が含まれます。
+
+* アクティビティを取得するために使用されるひとつ以上のリソース カレンダー (ActivityQuery. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityquery~calendars.html[Calendars]) 
+* ひとつ以上の日付範囲 (ActivityQuery. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityquery~dateranges.html[DateRanges]) 
+* 取得するアクティビティのタイプ (ActivityQuery. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityquery~activitytypestoquery.html[ActivityTypesToQuery] によって指定される Appointments、Journals、Tasks)
+* 取得する情報のタイプ (ActivityQuery. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityquery~requestedinformation.html[RequestedInformation] フラグ型列挙体) 
+
+GetActivities メソッドは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityqueryresult~initializeresult.html[InitializeResult] メソッドを介してアクティビティのリストで初期化される link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityqueryresult.html[ActivityQueryResult] クラスのインスタンスを返します。InitializeResult メソッドは、Appointment、Task、Journal オブジェクトが移植される IList< link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase.html[ActivityBase]> オブジェクトをパラメーターのひとつとして取得します。
+
+*注:* 返されるオブジェクトのアクティビティ リストは、データが使用可能となったら非同期で移植されます。
+
+データが使用できるようになれば、GetActivities メソッドから返されたオブジェクトで InitializeResult メソッドを呼び出します。これはアクティビティで結果を初期化します。
+
+*注:* これには GetActivities から返されたオブジェクトの追跡をコネクターが行う必要があります。
+
+GetActivities は、同じクエリ基準または異なるクエリ基準で複数回呼び出されるため、以前のリクエストと共通のアクティビティを持つアクティビティ セットとなる場合があることに注意してください。このケースでは、コネクターは、以降の GetActivities 呼び出しが同じ基本アクティビティを表す同じ ActivityBase インスタンスを返すことを確認する必要があります。換言すると、異なる GetActivities メソッドの呼び出しは、同じ基本アクティビティに対して ActivityBase の同じインスタンスを常に返す必要があります。これは、キーがアクティビティの一意の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activitybase~id.html[Id] で、その値が ActivityBase オブジェクトである ActivityBase オブジェクトのディクショナリを保持することによって達成できます。アクティビティのクエリ結果がアクティビティで移植される場合、ディクショナリは、新しいアクティビティが作成される代わりに、固有の ID の既存のアクティビティが使用されることを保証するために使用されます。これは、 GetActivities が基本アクティビティに対して ActivityBase の同じインスタンスを常に返すことを保証します。
+
+たとえば、1 月 10～14 日のリソース カレンダーのアクティビティを取得する最初の GetActivities 呼び出しを考えます。この呼び出しは、日付範囲を表示する link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamdayview.html[XamDayView] コントロールから始まります。次に、1 月 12～16 日の同じリソース カレンダーのアクティビティを取得する第 2 の呼び出しがあります。この呼び出しは、指定された日付範囲を表示する link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduleview.html[XamSchduleView] コントロールから始まります。1 月 12～14 日の日付は、2 つのクエリ間で共通し、結果のオブジェクトは、これらの日で共通するアクティビティ持ちます。2 つの異なる結果オブジェクトのこれらの共通のアクティビティは、ActivityBase の同じインスタンスでなければなりません。
+
+さらに、データが変更されると (たとえば、アクティビティが追加または削除された場合)、以前に返された結果は、アクティビティの追加または削除を反映するために更新する必要があります。これは、InitializeResult メソッドが呼び出された時に結果オブジェクトに提供されたリストを更新することによって達成されます。これは、コネクターが GetActivities から返されるオブジェクトのリストを保持する必要があり、アクティビティが追加または削除されると更新を実行できるという意味です。アクティビティが変更されると、コネクターはただ最新の値で関連付けられた ActivityBase インスタンスを更新することだけが必要となります。
+
+*注:* このコネクターは、弱い参照 (WeakDictionary など) を使用し、返される値を追跡します。参照が不要になった時に、結果を含むビュー コントロールが戻り値をガーベッジ コレクターにリリースできるように、弱い参照が必要です。
+
+== BeginEdit、CancelEdit および EndEdit
+
+編集メソッドは、既存のアクティビティを変更するために使用されます。BeginEdit は、アクティビティで編集操作を開始するために呼び出されます。CancelEdit は、BeginEdit 呼び出し後に行われた変更をキャンセルするために呼び出されます。最後に、EndEdit は、BeginEdit の後に行われた変更をコミットするために使用されます。
+
+== CreateNew
+
+CreateNew メソッドは、新しいアクティビティを追加するために呼び出されます。必要なアクティビティ データが新しいアクティビティで設定された後は、その値をコミットするために EndEdit を呼び出す必要があります。
+
+*注:* EndEdit は、既存のアクティビティへの変更をコミットするだけでなく、新しいアクティビティを追加するために呼び出されるので、コネクターは、アクティビティが追加の新しいアクティビティなのか、それともこのメソッド内の既存のアクティビティなのかを指示できる必要があります。これを達成できるひとつの方法は、CreateNew メソッドで作成されたアクティビティのリストを保持し、どの操作を実行するかを決定するために EndEdio 内のリストをチェックすることです。
+
+== 削除
+
+Remove メソッドは、既存のアクティビティを削除するために呼び出されます。
+
+== IsActivityFeatureSupported
+
+IsActivityFeatureSupported メソッドは、アクティブ タイプごとにコネクターがどの機能をサポートするかについての情報を提供します。ビュー コントロールは、サポートされていない機能に関連付けられたユーザー インターフェイス要素を含まないか無効にします。
+
+== IsActivityOperationSupported
+
+IsActivityOperationSupported メソッドは、追加または削除のような操作がアクティビティまたはリソース カレンダーで実行されるかどうかをチェックするために使用されます。ビュー コントロールは、不許可になった操作をユーザーが実行できないようにするためにこのメソッドを使用します。
+
+== SubscribeToReminders および UnsubscribeFromReminders
+
+これらのメソッドは、アラーム機能をサポートするために使用されます。SubscribeToReminders は、特定のカレンダーでアクティビティのアラームをサブスクライブするために呼び出されます。コレクターに保存する必要がある link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.remindersubscriber.html[ReminderSubscriber] オブジェクトを取得します。カレンダーのアクティビティのアラーム期限になると、コネクターは ReminderSubscriber の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.remindersubscriber~deliverreminder.html[DeliverReminder] メソッドを起動する必要があります。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~currentuser.html[CurrentUser] プロパティに関連付けられたすべてのカレンダーのアラームをサブスクライブします。
+
+== VerifyInitialState
+
+VerifyInitialState メソッドはコネクターの状態を検証して、派生したコネクターによって公開されるカスタム設定が適切に設定されており、スケジュール データを供給するリモート サーバーへの接続が動作していることを保証します。XamScheduleDataManager はロード後に数秒間でこのメソッドを呼び出し、エンドユーザーにこれらのエラーを順々に伝達する XamScheduleDataManager にエラーを報告する機会をコネクターに提供します。
+
+== 非同期動作
+
+基本スケジュール データ ストレージの性質によって、上記の動作の一部は非同期で実行する必要があります。上記のメソッドは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.operationresult.html[OperationResult] 基本クラスにサブクラスを返すので、非同期通信が可能です。非同期動作が実行されている場合、コネクターはメソッド呼び出しから初期化されていない操作結果オブジェクトを返し、そのオブジェクトを追跡できます。動作が問題なく完了しても失敗して完了しても、コネクターは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.operationresult~initializeresult.html[InitializeResult] メソッドを使用して結果の OperationResult を初期化できます。OperationResult オブジェクトは、InitializeResult メソッドが呼び出されるまで False を返す link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.operationresult~iscomplete.html[IsComplete] プロパティを公開します。このプロパティは、動作が保留されているメソッドのコーラーを示します。コーラーは、OperationResult の PropertyChanged イベントをリッスンし、IsComplete プロパティ通知を探すことができます。
+
+== エラー処理
+
+OperationResult オブジェクトの InitializeResult メソッドは、オプション パラメーターとして DataErrorInfo オブジェクトを取得します。動作が問題なく完了すると、エラー情報パラメーターが null で渡されます。ただし、エラーがあると、コネクターはエラーのある結果オブジェクトを初期化するために DataErrorInfo オブジェクトを渡すことができます。
+
+*注:* OperationResult の IsComplete プロパティは、エラーがあっても True に設定されます。
+
+OperationResult は、渡されたエラーを返す link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.operationresult~error.html[Error] プロパティを公開します。上記で説明したように、メソッドのコーラーは、動作が完了して、動作が成功したのか、失敗したのかを確認するために Error プロパティをチェックする時に通知されるために、OperationResult オブジェクトの PropertyChanged イベントをリッスンできます。
+
+*注:* 保留中の動作がタイムアウトすると、コネクターはエラーの動作結果を初期化する必要があります。コネクターは、保留状態で動作を永久に放置しません。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-connector.html[データ コネクターについて]
+
+link:xamschedule-using-connector-list.html[ListScheduleConnector]
+
+link:xamschedule-using-connector-wcf.html[WCFScheduleConnector]
+
+link:xamschedule-using-connector-mapping.html[バックエンド データ ソースでフィールドをマップ]

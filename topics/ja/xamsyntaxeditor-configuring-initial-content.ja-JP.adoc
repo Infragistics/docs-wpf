@@ -1,0 +1,290 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-configuring-initial-content",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Data Binding","Getting Started","How Do I"],
+    "guid": "0c664804-37e3-472c-810b-d836f6b0d0db",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3373527Z"
+}
+|metadata|
+////
+
+= 初期コンテンツの構成 (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™ の_  オーバーロードした link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument_members.html[TextDocument] メソッドの Load メソッドと Save メソッドでコンテンツを読み込み、保存する方法を解説します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+| link:xamsyntaxeditor-adding-to-your-page.html[ _xamSyntaxEditor_ をページに追加]
+|このトピックでは、 _xamSyntaxEditor_ を短時間で起動、実行するのに役立つ体系的な操作方法を紹介します。
+
+|====
+
+この手順を実行するには、以下のリソースが必要です。
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor.html[xamSyntaxEditor] のインスタンス。
+* link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument_members.html[TextDocument] クラスのインスタンスに設定した  _xamSyntaxEditor_   の link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~document.html[Document] プロパティ。
+
+注:
+
+[NOTE]
+====
+Visual Basic など、言語によってはキーワードの大文字と小文字の設定が変更されてしまうので、文書のコンテンツを読み込む前に、Document プロパティを構成してください。構文の正しいハイライト表示を適用するには、`TextDocument` の link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~language.html[言語]を設定します。
+
+文書の言語の構成方法については、 link:xamsyntaxeditor-syntax-highlighting.html[構文のハイライト表示] トピックも参照してください。
+====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref331776029, 文書の読み込みと保存の要旨 >>
+* <<_Ref331776035, ファイルから文書を読み込み >>
+* <<_Ref331776046, ストリームから文書を読み込み >>
+* <<_Ref331776056, 文字列としてコンテンツを提供した文書の読み込み >>
+* <<_Ref331776065, ファイルに文書を保存 >>
+* <<_Ref331776073, ストリームに文書を保存 >>
+* <<_Ref331776081, 関連コンテンツ >>
+
+[[_Ref331776029]]
+== 文書の読み込みと保存の要旨
+
+=== 文書の読み込みメソッド
+
+以下の表は、`TextD``文書の`コンテンツの読み込みと保存に利用できるメソッドをまとめまたものです。
+
+[options="header", cols="a,a"]
+|====
+|構成可能な点|解説
+
+|<<_Ref331776035,ファイルから文書を読み込み>>
+|場所を指定して文字列として提供したファイルから文書のコンテンツを読み込みます。
+
+|<<_Ref331776046,ストリームから文書を読み込み>>
+|提供したストリームから文書のコンテンツを読み込みます。
+
+|<<_Ref331776056,文字列としてコンテンツを提供した文書の読み込み>>
+|提供した文字列から文書のコンテンツを読み込みます。
+
+|<<_Ref331776065,ファイルに文書を保存>>
+|場所を指定して文字列として提供したファイルに文書のコンテンツを保存します。
+
+|<<_Ref331776073,ストリームに文書を保存>>
+|提供したストリームに文書のコンテンツを保存します。
+
+|====
+
+[[_Ref331776035]]
+== ファイルから文書を読み込み
+
+=== 概要
+
+このメソッドでは、文字列値で場所を渡してファイルを読み込みます。
+
+=== メソッド
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|呼び出すメソッド:|指定する値:
+
+|`TextDocument` のコンテンツの読み込み
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~load.html[Load]
+|文字列によるファイルの場所
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.Document.Load("C:\\file.txt");
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.Document.Load("C:\file.txt")
+----
+
+[[_Ref331776046]]
+== ストリームから文書を読み込み
+
+=== 概要
+
+このメソッドでは、指定したストリームから文書のコンテンツを読み込みます。
+
+=== メソッド
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|呼び出すメソッド:|指定する値:
+
+|`TextDocument` のコンテンツの読み込み
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~load.html[Load]
+|テキスト コンテンツを収めたストリーム
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+FileInfo fi = new FileInfo("C:\\file.txt");
+FileStream fs = fi.OpenRead();
+this.xamSyntaxEditor1.Document.Load(fs);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim fi As New FileInfo("C:\file.txt")
+Dim fs As FileStream = fi.OpenRead()
+Me.xamSyntaxEditor1.Document.Load(fs)
+----
+
+[[_Ref331776056]]
+== 文字列としてコンテンツを提供した文書の読み込み
+
+=== 概要
+
+このメソッドでは、指定した文字列値から文書のコンテンツを読み込むことができます。
+
+=== メソッド
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|呼び出すメソッド:|指定する値:
+
+|`TextDocument` のコンテンツの読み込み
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~initializetext.html[InitializeText]
+|文字列としてのコンテンツ
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.Document.InitializeText("the quick brown fox...");
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.Document.InitializeText("the quick brown fox...")
+----
+
+[[_Ref331776065]]
+== ファイルに文書を保存
+
+=== 概要
+
+このメソッドでは、文字列値で渡した場所のファイルに文書のコンテンツを保存します。
+
+文字列で指定した場所のファイルに文書のコンテンツを保存します。
+
+=== メソッド
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|呼び出すメソッド:|指定する値:
+
+|`TextDocument` のコンテンツをファイルに保存します。
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~save.html[Save]
+|文字列によるファイルの場所
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+this.xamSyntaxEditor1.Document.Save("C:\\file.txt");
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Me.xamSyntaxEditor1.Document.Save("C:\file.txt")
+----
+
+[[_Ref331776073]]
+== ストリームに文書を保存
+
+=== 概要
+
+このメソッドでは、指定したストリームに文書を保存します。
+
+=== メソッド
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|呼び出すメソッド:|指定する値:
+
+|`TextDocument` のコンテンツをストリームに保存します。
+| link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~save.html[Save]
+|コンテンツを保存するストリーム
+
+|====
+
+=== 例
+
+*C# の場合:*
+
+[source,csharp]
+----
+FileInfo fi = new FileInfo("C:\\file.txt");
+FileStream fs = fi.OpenWrite();
+this.xamSyntaxEditor1.Document.Save(fs);
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim fi As New FileInfo("C:\file.txt")
+Dim fs As FileStream = fi.OpenWrite()
+Me.xamSyntaxEditor1.Document.Save(fs)
+----
+
+[[_Ref331776081]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-syntax-highlighting.html[構文のハイライト表示]
+|このトピックでは、`TextDocument` の関連言語によるテキストのカラー化について解説します。
+
+|====

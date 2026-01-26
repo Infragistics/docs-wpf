@@ -1,0 +1,17 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcurrencyeditor-about-xamcurrencyeditor",
+    "controlName": ["xamCurrencyEditor"],
+    "tags": ["Getting Started"],
+    "guid": "{3DF7E549-8C46-4586-A20D-7498CC4F63B9}",  
+    "buildFlags": [],
+    "createdOn": "2012-09-05T19:05:30.1239781Z"
+}
+|metadata|
+////
+
+= xamCurrencyEditor について
+
+xamCurrencyEditor™ コントロールは、通貨のタイプとして値を表示するためにマスクを使用するシンプルなテキスト ボックス コントロールです。このマスクを使用して、カルチャーの通貨の記号を値の前に追加することができます。余りがなくても、小数点第 2 位まで値の小数部分がそのまま残ることを保証することも可能です。スタンドアロン エディターとして、または xamDataGrid™ コントロールの Field で xamCurrencyEditor コントロールを使用します。xamDataGrid の Field として、xamCurrencyEditor は特定のグリッド列の適切なフォーマットを維持すると同時に、エンド ユーザーのデータ入力を支援します。

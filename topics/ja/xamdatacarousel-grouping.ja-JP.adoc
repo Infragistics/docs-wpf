@@ -1,0 +1,24 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatacarousel-grouping",
+    "controlName": ["xamDataPresenter"],
+    "tags": [],
+    "guid": "f97e4500-b4d9-4106-8c54-2f5b2fa8210d",  
+    "buildFlags": [],
+    "createdOn": "2012-07-19T13:21:21.2462225Z"
+}
+|metadata|
+////
+
+= グループ化
+
+以下のリンクをクリックすると DataCarousel コントロールを使用してデータをグループ化する方法についてのトピックを表示します。
+
+* link:xamdatapresenter-about-grouping.html[グループ化について]
+* link:xamdatapresenter-change-the-location-of-the-groupbyarea.html[GroupByArea の位置の変更]
+* link:xamdatapresenter-create-an-external-group-by-area.html[外部の Group-By 領域の作成]
+* link:xamdatapresenter-disable-groupby.html[グループ化を無効にする]
+* link:xamdatapresenter-modify-the-group-by-area.html[Group-By 領域の修正]
+* link:xamdatapresenter-sorting-and-grouping-fields-programmatically.html[コードを使用したフィールドの並べ替えとグループ化]

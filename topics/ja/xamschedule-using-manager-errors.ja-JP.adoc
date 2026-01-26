@@ -1,0 +1,89 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamschedule-using-manager-errors",
+    "controlName": ["xamSchedule"],
+    "tags": ["How Do I","Scheduling","Validation"],
+    "guid": "aae75b93-488a-48c8-bd16-8574b8b22ab9",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:58.7593287Z"
+}
+|metadata|
+////
+
+= エラー
+
+エラー情報は link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[XamScheduleDataManager] から送信され、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.dataerrorinfo.html[DataErrorInfo] クラスを介して開発者に通信されます。
+
+この DataErrorInfo オブジェクトは以下のプロパティを公開します。
+
+[options="header", cols="a,a,a"]
+|====
+|プロパティ名|タイプ|説明
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.dataerrorinfo~context.html[Context]
+|object
+|エラーがアクティビティに固有である場合、コンテキストはアクティビティ オブジェクトになります。
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.dataerrorinfo~diagnostictext.html[DiagnosticText]
+|String
+|これはエンドユーザーに通常は表示されない複雑なテキストですが、問題の診断で開発者の手助けとなります。
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.dataerrorinfo~exception.html[Exception]
+|Exception
+|エラーを発生した例外。注: 例外の結果としてエラーが発生しなかった場合、このプロパティは null を返します。
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.dataerrorinfo~errorlist.html[ErrorList]
+|IList<DataErrorInfo>
+|ひとつのイベントに関連付けられた複数のエラーがある場合、これらのエラーのリストが返されます。それ以外は、このプロパティは null を返します。
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.dataerrorinfo~severity.html[Severity]
+|ErrorSeverity
+|これは以下の値を伴う列挙体です。 
+
+* Diagnostic - エンドユーザーには表示されません 
+
+* Warning - エンドユーザーに表示するために適しています 
+
+* Error - エンドユーザーに表示されます 
+
+* SevereError - これはブロック エラーで、コントロールが予期したとおりに動作できない状態を示します 
+
+| link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.dataerrorinfo~usererrortext.html[UserErrorText]
+|String
+|エンドユーザーに表示するために適するテキストです。
+
+|====
+
+DataErrorInfo オブジェクトは以下によって公開されます。
+
+[start=1]
+. XamScheduleDataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.erroreventargs.html[Error] イベント引数。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~error_ev.html[このイベント]は、エラーに遭遇した時に必ず発生します。注: デフォルトでは、デバッガーが添付されていれば、すべてのエラーはデバッガーに記録されます。イベント引数の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.erroreventargs~logerror.html[LogError] プロパティを False に設定することでこれを抑制できます。
+[start=2]
+. XamScheduleDataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.errordisplayingeventargs.html[ErrorDisplaying] イベント引数。link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~activitydialogdisplaying_ev.html[このイベント]は、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.errorseverity.html[Warning]、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.errorseverity.html[Error] または link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.errorseverity.html[SevereError] に遭遇した時に必ず発生します。このイベントは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.errordisplayingeventargs~cancel.html[Cancel] プロパティを True に設定することでキャンセルできます。このイベント引数は、以下の値を伴う link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.errordisplayingeventargs~displaytype.html[DisplayType] という名前の読み取り専用プロパティを公開します。
+
+.. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduleerrordisplaytype.html[ActivityErrorIcon] - これは、ユーザーのアクションによって直接起動しなかったアクティビティ固有のエラーです。キャンセルしなければ、エラー アイコンを表示するためにこのアクティビティを表す ActivityPresenters が発生します。ツールチップには、UserErrorText も含まれます。
+.. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduleerrordisplaytype.html[MessageBox] - このエラーは、エンドユーザーのアクションによって起動されました。たとえば、予定の編集や変更の保存などです。キャンセルしなければ、これはユーザーに MessageBox が表示されるという結果となります。
+.. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduleerrordisplaytype.html[BlockingError] - "SevereError" に遭遇しました。キャンセルしなければ、xamDayView、xamMonthView および xamScheduleView のすべての関連付けられたビュー コントロールの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.schedulecontrolbase~blockingerror.html[BlockingError] プロパティを設定します。これらのコントロールのテンプレートは、ユーザーにブロック エラー情報を示す半透明のオーバーレイ要素を含み、ランタイムにコントロールが動作しないようにします。デザイン モードでは、ブロック エラーは表示されません。ランタイムでの重大なエラーまたはブロック エラーの例は以下のとおりです。
+
+... ビュー コントロールの DataManager プロパティは設定されません。これは Error イベントが発生できない時だけです。これを発生させる XamScheduleDataManager はないからです。ただし、BlockingError プロパティが設定され、その結果、オーバーレイが表示されます。
+... ローカル タイム ゾーンは、100% の確実性で決定できません。フレームワークはこの情報を公開しないので、これは通常 Silverlight に限り問題となります。ローカル時間と UTC 時間の間で日付/時間変換を実行することで推定する必要があります。デフォルトでは、この条件は、エンドユーザーにタイム ゾーン選択ダイアログを表示するという結果になります。ただし、xamScheduleDataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager.html[PromptForLocalTimeZone] プロパティが link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.promptforlocaltimezone.html[Never] に設定され、データ コネクターの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.scheduledataconnectorbase~timezoneinfoproviderresolved.html[TimeZoneProviderResolved]. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.timezoneinfoprovider~localtimezoneid.html[LocalTimeZoneId] が設定されていない場合、ブロック エラーは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~errordisplaying_ev.html[ErrorDisplaying] イベントがキャンセルされない限り表示されます。
+... xamScheduleDataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~dataconnector.html[DataConnector] プロパティは link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.listscheduledataconnector.html[ListScheduleDataConnector] または link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.wcflistscheduledataconnector.html[WcfListScheduleDataConnector] に設定され、最小限要求されるプロパティ マッピングは指定されません。
+
+[start=3]
+. xamScheduledataManager の BeginEdit、BeginEditWithCopy、CancelEdit、および CreateNew メソッドは、"out" パラメーターとして DataErrorInfo オブジェクトを返すことができます。
+[start=4]
+. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.operationresult.html[OperationResult] クラスは、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.dataerrorinfo.html[DataErrorInfo] タイプの link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.operationresult~error.html[Error] プロパティを公開します。これは以下の基本クラスです。
+
+.. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityoperationresult.html[ActivityOperationResult] - このオブジェクトは、xamScheduleDataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~endedit.html[EndEdit] および link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~remove.html[Remove] メソッドによって返されます。
+.. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.activityqueryresult.html[ActivityQueryResult] - このオブジェクトは、xamScheduleDataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~getactivities.html[GetActivities] メソッドによって返されます。
+.. link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.canceloperationresult.html[CancelOperationResult] - このオブジェクトは、xamScheduleDataManager の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~cancelpendingoperation.html[CancelPendingOperation] メソッドによって返されます。
+
+*注:* XamScheduleDataManager はまた、 link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~haspendingoperations.html[HasPendingOperations] プロパティと、まだ完了していない (つまり link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.operationresult~iscomplete.html[IsComplete] プロパティが false の) OperationResults を含む読み取り専用の link:{ApiPlatform}controls.schedules{ApiVersion}~infragistics.controls.schedules.xamscheduledatamanager~pendingoperations.html[PendingOperations] コレクションを公開します。"IsComplete" または "IsCanceled" プロパティが True に変更されると、OperationResult は PropertyChanged イベントを発生します。
+
+== 関連トピック
+
+link:xamschedule-understanding-data-manager.html[データ マネージャーについて]
+
+link:xamschedule-understanding-activities.html[アクティビティについて]

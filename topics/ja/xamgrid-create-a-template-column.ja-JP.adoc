@@ -1,0 +1,101 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-create-a-template-column",
+    "controlName": ["xamGrid"],
+    "tags": ["Data Presentation","Grids","How Do I","Layouts","Templating"],
+    "guid": "{C4E219DA-1508-4C21-A0F8-CC72E7806BDC}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.8881666Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= テンプレート列の作成
+
+xamGrid のテンプレート列によって、カスタム コンテンツを表示できます。その link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.templatecolumn~itemtemplate.html[ItemTemplate] プロパティをデータ テンプレートのインスタンスに設定することによってコンテンツを列に追加できます。ItemTemplate のデータ コンテキストは現在の行が表すデータ オブジェクトです。
+
+以下のコードは、テンプレート列を使用して xamGrid の Description 列および Address 列にコンテンツを表示する方法を示します。テンプレート列内でコントロールをデータにバインドする例については、 link:xamgrid-editing-data-in-a-template-column.html[「テンプレート列でデータを編集」]を参照してください。
+
+*XAML の場合:*
+
+----
+<ig:XamGrid x:Name="dataGrid" AutoGenerateColumns="False" ColumnWidth="*">
+   <ig:XamGrid.Columns>
+      <ig:TextColumn Key="MLS">
+         <ig:TextColumn.HeaderTemplate>
+            <DataTemplate>
+               <TextBlock Text="MLS#" />
+            </DataTemplate>
+         </ig:TextColumn.HeaderTemplate>
+      </ig:TextColumn>
+      <ig:TemplateColumn Key="SqFeet">
+         <ig:TemplateColumn.HeaderTemplate>
+            <DataTemplate>
+               <TextBlock Text="Description" />
+            </DataTemplate>
+         </ig:TemplateColumn.HeaderTemplate>
+         <ig:TemplateColumn.ItemTemplate>
+            <DataTemplate>
+               <StackPanel>
+                  <StackPanel Orientation="Horizontal">
+                     <TextBlock Text="{Binding SqFeet, Converter={StaticResource FormatConverter}, ConverterParameter=N0}" />
+                     <TextBlock Text="Sq. Feet" Margin="5,0,0,0" />
+                  </StackPanel>
+                  <StackPanel Orientation="Horizontal">
+                     <TextBlock Text="{Binding NumberOfBedRooms}" />
+                     <TextBlock Text="Bed Rooms" Margin="5,0,0,0" />
+                     <TextBlock Text="{Binding NumberOfBathRooms}" Margin="5,0,0,0" />
+                     <TextBlock Text="Bath Rooms" Margin="5,0,0,0" />
+                  </StackPanel>
+               </StackPanel>
+            </DataTemplate>
+         </ig:TemplateColumn.ItemTemplate>
+      </ig:TemplateColumn>
+      <ig:TemplateColumn Key="City">
+         <ig:TemplateColumn.HeaderTemplate>
+            <DataTemplate>
+               <TextBlock Text="Address" />
+            </DataTemplate>
+         </ig:TemplateColumn.HeaderTemplate>
+         <ig:TemplateColumn.ItemTemplate>
+            <DataTemplate>
+               <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding City}" Margin="5,0,0,0"  />
+                  <TextBlock Text="," />
+                  <TextBlock Text="{Binding State}" Margin="5,0,0,0" />
+                  <TextBlock Text="{Binding PostalCode}" Margin="5,0,0,0" />
+               </StackPanel>
+            </DataTemplate>
+         </ig:TemplateColumn.ItemTemplate>
+      </ig:TemplateColumn>
+   </ig:XamGrid.Columns>
+</ig:XamGrid>
+----
+
+ifdef::sl,wpf[]
+image::images/sl_xamGrid_Create_a_Template_Column_01.png[]
+endif::sl,wpf[]
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_Create_a_Template_Column_01.png[]
+endif::win-rt[]
+
+== 関連トピック
+
+link:xamgrid-define-column-layout.html[列レイアウトの定義]
+
+link:xamgrid-change-column-type-mapping.html[列タイプ マッピングの変更]
+
+link:xamgrid-editing-data-in-a-template-column.html[テンプレート列でデータを編集]
+
+link:xamgrid-filler-column.html[フィラー列]
+
+ifdef::sl,wpf[]
+link:xamgrid-validating-data.html[データの検証]
+endif::sl,wpf[]
+
+link:xamgrid-data-binding.html[データ バインディング]

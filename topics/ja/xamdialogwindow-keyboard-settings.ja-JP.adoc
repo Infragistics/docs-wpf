@@ -1,0 +1,78 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdialogwindow-keyboard-settings",
+    "controlName": ["xamDialogWindow"],
+    "tags": ["How Do I","Navigation"],
+    "guid": "{5C83D298-BE50-487C-97D0-56BAFE037FDA}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.9921483Z"
+}
+|metadata|
+////
+
+= キーボードの設定
+
+xamDialogWindow™ コントロールでキーボード ナビゲーションを有効にできます。これによって、エンドユーザーが矢印キーを使用してダイアログ ウィンドウを移動することが可能となります。
+
+以下のコードに示すように、 link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.keyboardsettings.html[KeyboardSettings] オブジェクトの link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.keyboardsettings~horizontalstep.html[HorizontalStep] プロパティと link:{ApiPlatform}controls.interactions.xamdialogwindow{ApiVersion}~infragistics.controls.interactions.keyboardsettings~verticalstep.html[VerticalStep] プロパティを設定することによって、ダイアログ ウィンドウが移動するピクセル数を設定できます。
+
+*XAML の場合:*
+
+----
+<Grid x:Name="LayoutRoot" Background="White">
+   <ig:XamDialogWindow x:Name="DialogWindow" Width="200" 
+                   Height="200" IsModal="True">
+      <ig:XamDialogWindow.KeyboardSettings>
+         <ig:KeyboardSettings AllowKeyboardNavigation="True" 
+                                VerticalStep="25" HorizontalStep="25">
+         </ig:KeyboardSettings>
+      </ig:XamDialogWindow.KeyboardSettings>
+   </ig:XamDialogWindow>
+</Grid>
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls.Interactions
+...
+DialogWindow.KeyboardSettings.AllowKeyboardNavigation = True
+DialogWindow.KeyboardSettings.VerticalStep = 25
+DialogWindow.KeyboardSettings.HorizontalStep = 25
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls.Interactions;
+...
+DialogWindow.KeyboardSettings.AllowKeyboardNavigation = true;
+DialogWindow.KeyboardSettings.VerticalStep = 25;
+DialogWindow.KeyboardSettings.HorizontalStep = 25;
+----
+
+== 関連トピック
+
+link:xamdialogwindow-custom-cursors.html[カスタム カーソル]
+
+link:xamdialogwindow-customize-modal-dialog-window-background.html[モーダル ダイアログ ウィンドウの背景のカスタマイズ]
+
+link:xamdialogwindow-customize-the-window-header-icon.html[ウィンドウ ヘッダー アイコンのカスタマイズ]
+
+link:xamdialogwindow-handle-moving-events.html[移動イベントの処理]
+
+link:xamdialogwindow-handle-window-state-changing-events.html[ウィンドウ状態変更イベントの処理]
+
+link:xamdialogwindow-modal-and-modeless-dialog-windows.html[モーダルおよびモーダレス ダイアログ ウィンドウ]
+
+link:xamdialogwindow-position-minimized-dialog-window.html[最小化ダイアログ ウィンドウの配置]
+
+link:xamdialogwindow-set-the-dialog-windows-height-and-width-when-minimized.html[最小化した時のダイアログ ウィンドウの高さと幅を設定]
+
+link:xamdialogwindow-start-up-position-of-xamdialogwindow.html[xamDialogWindow の開始位置]
+
+link:xamdialogwindow-the-xamdialogwindow-controls-behavior.html[xamDialogWindow コントロールの動作]
+
+link:xamdialogwindow-window-header-controls.html[ウィンドウ ヘッダー コントロール]

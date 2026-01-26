@@ -1,0 +1,115 @@
+﻿////
+|metadata|
+{
+    "name": "xamdatapresenter-validating-data",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["How Do I","Validation"],
+    "guid": "{39DAA02D-82BD-4CE9-BEC9-384093C88733}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.3510233Z"
+}
+|metadata|
+////
+
+= データ検証の概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、検証機能を使用する方法について説明します。
+
+=== 前提条件
+
+本トピックの理解を深めるために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|このトピックは、xamDataGrid コントロールの概要を提供し、要素のダイアグラムを含みます。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref419378280, 概要 >>
+* <<_Ref419378289, 関連コンテンツ >>
+
+[[_Ref419378280]]
+== 概要
+
+=== 概要
+
+データ項目が .NET Framework にある `INotifyDataErrorInfo` または `IDataErrorInfo` インターフェイスを実装する場合、ユーザーがセルに無効なデータを入力すると  _DataPresenter_   のコントロール ファミリーはエラー メッセージを表示できます。ただし、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~supportdataerrorinfo.html[SupportDataErrorInfo] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.supportdataerrorinfo.html[SupportDataErrorInfo] 列挙値に設定すると、 link:xamdatapresenter-enable-idataerrorinfo-interface-support.html[データ エラー情報のサポートを有効にする]必要があります。
+
+データ エラー サポート有効化に加えて、`SupportDataErrorInfo` プロパティは  _DataPresenter_   コントロールがセル、レコード セレクターまたは両方のいずれにデータ エラーを表示するかを決定します。
+
+以下の画像は最初のレコードの ProductID 列でデータ エラーを表示します。
+
+image::images/xamDataPresenter_About_Data_Validation_01.png[]
+
+注:
+
+[NOTE]
+====
+データ項目で両方のインターフェイスが実装される場合、`INotifyDataErrorInfo` インターフェイスは `IDataErrorInfo` インターフェイスより優先されます。`INotifyDataErrorInfo` インターフェイスを利用する利点は、レコードまたはセルにエラー メッセージが 2 つ以上使用できることです。
+====
+
+=== データ エラー サポートの構成
+
+以下の表では、`SupportDataErrorInfo` プロパティの値に基づいてエラー情報を取得するために  _DataPresenter_   コントロールがデータ項目のメソッドまたはプロパティをアクセスする方法を表示します。
+
+[options="header", cols="a,a,a"]
+|====
+|`SupportDataErrorInfo` プロパティに設定される値2|`IDataErrorInfo` インターフェイス|`INotifyDataErrorInfo` インターフェイス
+
+|`RecordsOnly`
+|`Error` プロパティをクエリすると、レコードのエラー メッセージを取得します。
+|`GetErrors()` メソッドを空の文字列を引数値として渡してクエリすると、レコードのエラー メッセージを取得します。
+
+|`CellsOnly`
+|データ項目のインデクサーをプロパティ名を引数として渡してクエリすると、各プロパティ エラー メッセージを取得します。
+|`GetErrors()` メソッドをプロパティ名を引数値として渡してクエリすると、各プロパティ エラー メッセージを取得します。
+
+|`RecordsAndCells`
+|以上の両方。
+|以上の両方。
+
+|====
+
+`FieldLayoutSettings` オブジェクトでデータ エラー サポートを有効にする場合、影響を受けたフィールド レイアウトのフィールドはデータ エラーを自動的にレポートします。フィールド オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.field~settings.html[FieldSettings] プロパティによって公開されている link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~supportdataerrorinfo.html[SupportDataErrorInfo] プロパティを `false` に設定することによってフィールドでこの機能を選択的に無効にできます。
+
+`FieldLayoutSettings` オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~dataerrordisplaymode.html[DataErrorDisplayMode] プロパティを link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.dataerrordisplaymode.html[DataErrorDisplayMode] 列挙値に設定することによって、 _DataPresenter_   コントロールがデータ エラーをレポートする方法を修正することも可能です。`DataErrorDisplayMode` プロパティを設定すると、データ エラーがエラー アイコン、強調表示または両方のいずれで示されるかを決定します。
+
+=== エディターの値制約
+
+`IDataErrorInfo` インターフェイスまたは `INotifyDataErrorInfo` インターフェイスのサポートを有効にして、組み込まれた xamEditor コントロールの link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.valueeditor~valueconstraint.html[ValueConstraint] プロパティを設定する場合、値の制約エラーが原因となってエラー アイコンと強調表示の両方またはいずれかが表示されます。値の制約によりエンドユーザーにエラーを修正することを強制し、修正するまでフォーカスを新しいセルに移動できません。`FieldSettings` オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~invalidvaluebehavior.html[InvalidValueBehavior] プロパティを link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.invalidvaluebehavior.html[RevertValue] に設定する場合、セルの値は自動的に元の値に戻ります。これによってエンドユーザーはフォーカスを新しいセルに移動できます。ただし、値は値の制約を常に渡すため、 _DataPresenter_   コントロールはエラー アイコン/強調表示を表示することはありません。一方、値の制約を使用しない場合、 _DataPresenter_   コントロールはデータ項目のエラー メッセージを適切なセルに表示し、エンドユーザーはフォーカスを新しいセルに移動できます。
+
+[[_Ref419378289]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-enable-idataerrorinfo-interface-support.html[データ エラー情報のサポートを有効]
+|このトピックでは、データ エラー サポートを有効にする方法を説明し、コード例を提供します。
+
+| link:xamdatapresenter-validate-data-as-your-end-users-edit-a-cell.html[エンドユーザーがセルを編集するとデータを検証]
+|このトピックでは、ユーザーがセル値を編集するときに検証フィードバックを表示する方法を説明します。
+
+| link:xamdatapresenter-styling-data-errors.html[データ エラーのスタイリング]
+|このトピックでは、視覚データ検証インジケーターのカスタム スタイルを設定する方法を紹介します。
+
+| link:xamdatapresenter-validating-edited-cell-data-in-xamdatapresenter.html[xamDataPresenter で編集したセル データを検証]
+|このトピックでは、カスタム検証ロジックを定義する方法について説明します。
+
+|====

@@ -1,0 +1,85 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgrid-filter-operands",
+    "controlName": ["xamGrid"],
+    "tags": ["Filtering","Grids"],
+    "guid": "{95086365-E52D-40DF-9AF8-C0B862A24667}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:56.0572084Z"
+}
+|metadata|
+////
+
+{XamGridHeader}
+
+= フィルター オペランド
+
+*特定のフィルター オペランドを削除*
+
+xamGrid コントロールのフィルター機能は、デフォルトで様々なオペランドを提供します。ただし、エンドユーザーに特定のオペランドでフィルターを実行させたくない状況があります。link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.column~filtercolumnsettings.html[FilterColumnSettings] オブジェクトの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.filtercolumnsettings~rowfilteroperands.html[RowFilterOperands] コレクションからオペランドを削除することによって、フィルター行から特定のフィルター オペランドを削除できます。
+
+次のコードは、これを実現する方法を示しています。
+
+*Visual Basic の場合:*
+
+----
+Dim fcs As FilterColumnSettings = Me.MyDataGrid.Columns.DataColumns("ProductID").FilterColumnSettings
+fcs.RowFilterOperands.Remove(ComparisonOperator.Equals)
+----
+
+*C# の場合:*
+
+----
+FilterColumnSettings fcs = this.MyDataGrid.Columns.DataColumns["ProductID"].FilterColumnSettings;
+fcs.RowFilterOperands.Remove(ComparisonOperator.Equals);
+----
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_RemoveFilterOperand.png[]
+endif::win-rt[]
+
+*デフォルトのフィルター オペランドを変更*
+
+xamGrid コントロールの link:{ApiPlatform}controls.grids.xamgrid{ApiVersion}~infragistics.controls.grids.primitives.filterrow.html[FilterRow] に表示されるデフォルトのフィルターは Equals です。ただし、このデフォルト フィルターを選んだ任意のフィルターに変更できます。
+
+以下のコードはデフォルト フィルターを Contains に変更する方法を示します。
+
+*Visual Basic の場合:*
+
+----
+For Each f As FilterOperand In Me.MyDataGrid.Columns.DataColumns("ProductName").FilterColumnSettings.RowFilterOperands
+   If (f.ComparisonOperatorValue = ComparisonOperator.Contains) Then
+     Me.MyDataGrid.Columns.DataColumns("ProductName").FilterColumnSettings.FilteringOperand = f
+   Exit For
+  End If
+Next
+----
+
+*C# の場合:*
+
+----
+foreach (FilterOperand f in this.MyDataGrid.Columns.DataColumns["ProductName"].FilterColumnSettings.RowFilterOperands)
+{
+   if (f.ComparisonOperatorValue == ComparisonOperator.Contains)
+   {                  
+      this.MyDataGrid.Columns.DataColumns["ProductName"].FilterColumnSettings.FilteringOperand = f;
+      break;
+   }
+}
+----
+
+ifdef::win-rt[]
+image::images/RT_xamGrid_FilterOperands_ChangeDefault.png[]
+endif::win-rt[]
+
+== 関連トピック 
+
+link:xamgrid-filtering.html[フィルタリング]
+
+link:xamgrid-filtering-events.html[イベントのフィルタリング]
+
+link:xamgrid-programmatically-create-a-filter.html[プログラムによってフィルターを作成]
+
+link:xamgrid-create-a-custom-filter.html[カスタム フィルターの作成]

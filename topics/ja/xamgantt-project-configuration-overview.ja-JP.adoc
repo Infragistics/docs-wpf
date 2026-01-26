@@ -1,0 +1,170 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-project-configuration-overview",
+    "controlName": ["xamGantt"],
+    "tags": ["API","How Do I","Scheduling"],
+    "guid": "caae9c16-c966-47ff-a857-cab60afe921c",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.3141671Z"
+}
+|metadata|
+////
+
+= プロジェクトの構成の概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamGantt™_   link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] クラスとその構成可能な項目の概要を提供します。
+
+=== 前提条件
+
+このトピックを理解するためには、以下のトピックを理解しておく必要があります。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-overview.html[xamGantt の概要]
+|このトピックでは、 _xamGantt_ 、プロジェクト、タスクおよびその他の _xamGantt_ 要素についての基本的な概念的な情報を説明します。
+
+| link:xamgantt-xamgantt-in-detail.html[xamGantt の詳細]
+|このグループのトピックでは、 _xamGantt_ コントロールの詳細について説明します。
+
+|====
+
+=== 本トピックの内容
+
+このトピックには次のセクションがあります。
+
+* <<_Ref334823696, 概要 >>
+* <<_Ref334823701, プロジェクト構成プロパティの概要 >>
+* <<_Ref334823707, プロジェクト構成メソッドの概要 >>
+* <<_Ref334823713, 関連コンテンツ >>
+
+[[_Ref334823696]]
+== 概要
+
+=== タスク クラスの概要
+
+link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project_members.html[Project] クラスは  _xamGantt_   コントロールの主要クラスです。
+
+以下を含むプロジェクトのデータを管理します:
+
+* タスク
+* リソース
+* カレンダー
+
+Microsoft’s Project 2010 エンジンに似た、定義済みのスケジューリング エンジンがあり、制約、期限、先行処理、後続処理に基づいてタスクの日付を調整します。
+
+[[_Ref334823701]]
+== プロジェクト構成プロパティの概要
+
+=== プロジェクト構成プロパティの概要表
+
+以下の表は、 _xamGantt_   `Project` の主要な構成可能な項目の一部を説明しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|説明|プロパティ
+
+|一意の ID でプロジェクトと関連付けられたカレンダーを取得または設定
+|ID によってプロジェクトと関連付けられた link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectcalendar_members.html[ProjectCalendar] を識別または変更します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~calendarid.html[CalendarId]
+
+|プロジェクトと関連付けられたカレンダーを取得
+|プロジェクトと関連付けられた `ProjectCalendar` オブジェクトのコレクションを識別します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~calendars.html[Calendars]
+
+|協定世界時 (UTC) でプロジェクトの終了日を取得または設定
+|UTC でプロジェクトの終了日を識別または修正します。 
+
+プロジェクトのスケジューリングが終了日からの場合、プロジェクトの終了日を設定する必要があります。 
+
+開始日からプロジェクトをスケジュールする時、プロジェクトの終了日は読み取り専用の計算された値です。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~finish.html[Finish]
+
+|プロジェクトが開始日から計算されるのか、それとも終了日から計算されるのかを取得または設定
+|プロジェクトの計算が開始日から行われるのかどうかを識別または修正します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~isscheduledfromstart.html[IsScheduledFromStart]
+
+|プロジェクトと関連付けられたリソースを取得
+|関連付けられた link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.projectresource_members.html[ProjectResource] オブジェクトのプロジェクトのコレクションを識別します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~resourceitems.html[ResourceItems]
+
+|プロジェクトのルート サマリー タスクの取得
+|プロジェクトのルート タスクを識別します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~roottask.html[RootTask]
+
+|さまざまなプロジェクト設定の構成
+|プロジェクトの設定を構成します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~settings.html[Settings]
+
+|協定世界時 (UTC) でプロジェクトの開始日を取得または設定
+|UTC でプロジェクトの開始日を識別または修正します。 
+
+プロジェクトのスケジューリングが開始日からの場合、プロジェクトの開始日を設定する必要があります。 
+
+終了日からプロジェクトをスケジュールする時、プロジェクトの開始日は読み取り専用の計算された値です。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~start.html[Start]
+
+|プロジェクトのすべてのタスクのデフォルト設定を取得または設定
+|プロジェクトのデフォルトのタスク設定を構成します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~tasksettings.html[TaskSettings]
+
+|====
+
+[[_Ref334823707]]
+== プロジェクト構成メソッドの概要
+
+=== プロジェクト構成メソッドの概要表
+
+以下の表は、xamGantt `Project` の主要なメソッドの一部を説明しています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|説明|メソッド
+
+|データの読み取りの開始を通知
+|バッチの初期化/更新が実行されることをプロジェクトに通知します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~beginloaddata.html[BeginLoadData]
+
+|自動計算を中止する時、明示的にプロジェクトをスケジュール
+|プロジェクトのタスクのスケジュールを計算します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~calculate.html[Calculate]
+
+|データの読み取りの終了を通知
+|バッチの初期化/更新のいずれかを実行する時をプロジェクトに通知します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~endloaddata.html[EndLoadData]
+
+|ローカルの日付プロパティを取得
+|指定されたタイム ゾーンに関係する指定された日付プロパティのローカル時間を返します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~getlocal.html[GetLocal]
+
+|ローカルの日付プロパティを設定
+|指定されたタイム ゾーンに関係する指定された日付プロパティのローカル時間を設定します。
+| link:{ApiPlatform}controls.schedules.xamgantt{ApiVersion}~infragistics.controls.schedules.project~setlocal.html[SetLocal]
+
+|====
+
+[[_Ref334823713]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-scheduling-project-from-start-or-finish-date.html[開始日または終了日からプロジェクトをスケジュール]
+|このトピックでは、プロジェクトの開始日と終了日に基づいて _xamGantt_ コントロールがプロジェクトおよびタスクの日にちを計算する方法を説明します。
+
+| link:xamgantt-calculating-explicitly-a-project.html[プロジェクトの明示的計算]
+|このトピックでは、 _xamGantt_ コントロールを使用してプロジェクトを明示的に計算する方法を説明します。
+
+|====

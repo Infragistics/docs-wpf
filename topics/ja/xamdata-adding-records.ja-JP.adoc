@@ -1,0 +1,34 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdata-adding-records",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Editing"],
+    "guid": "{5F61A12B-C6C7-48B9-8F28-5C4A0F0B7939}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.4878507Z"
+}
+|metadata|
+////
+
+= レコードの追加
+
+
+
+デフォルトで、DataPresenter はレコードを追加するための UI を提供しません。レコードを追加するための UI をオンにするには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings.html[FieldLayoutSettings] の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~allowaddnew.html[AllowAddNew] プロパティを True に設定します。以下の例のコードに示すように、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~addnewrecordlocation.html[AddNewRecordLocation] プロパティを使用することによって新しいレコードの位置を指定することも可能です。
+
+----
+<igDP:XamDataGrid> 
+        <igDP:XamDataGrid.FieldLayoutSettings> 
+                <igDP:FieldLayoutSettings 
+                  AllowAddNew="True" 
+                  AddNewRecordLocation="OnTopFixed"/> 
+        </igDP:XamDataGrid.FieldLayoutSettings> 
+</igDP:XamDataGrid>
+----
+
+[NOTE]
+====
+*注:* レコードの追加は、データ ソースが IBindingList インターフェイスを実装して AllowNew プロパティから True を返す場合に限ってサポートされます。レコードの追加はすべてのビュー (たとえばカルーセル ビュー) でサポートされるわけではありません。
+====

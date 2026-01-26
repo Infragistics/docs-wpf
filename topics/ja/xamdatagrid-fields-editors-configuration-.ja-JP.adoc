@@ -1,0 +1,285 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-fields-editors-configuration ",
+    "tags": ["Data Binding","Editing","Layouts"],
+    "controlName": ["xamDataGrid"],
+    "guid": "9ebaf96e-aa18-4fab-8884-b5bb5819ce3d",  
+    "buildFlags": [],
+    "createdOn": "2014-03-18T14:25:03.1125477Z"
+}
+|metadata|
+////
+
+= フィールドのエディター構成
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、データ プレゼンター フィールド エディターのコントロールを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、データ プレゼンター コントロールのフィールドをデータ エンティティにマップする方法を説明します。
+
+| link:xamdata-about-xamdatapresenter-and-xameditors.html[xamDataPresenter および xamEditors について]
+|このトピックでは、データ プレゼンター コントロールが使用するエディターについて説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref372731244,はじめに>>
+* <<_Ref372812467,コード例の概要>>
+* <<_Ref372811120,コード例: CurrencyField の構成>>
+* <<_Ref372811943,コード例: XamComboEditor の構成>>
+* <<_Ref372811958,コード例: XamDateTimeEditor の構成>>
+* <<_Ref372811963,コード例: XamNumericEditor の構成>>
+* <<_Ref372811968,コード例: XamMaskedEditor の構成 #1>>
+* <<_Ref372811973,コード例: XamMaskedEditor の構成 #2>>
+* <<_Ref372812502,関連コンテンツ>>
+
+[[_Ref372731244]]
+== はじめに
+
+=== 構成の概要
+
+link:xamdata-default-editor-types-for-different-data-types.html[さまざまなデータ型に対するデフォルトのエディター タイプ]のトピックで説明するように、データ プレゼンター ファミリーからのコントロールは、各フィールドのデータ型に応じて異なるタイプのエディターをデフォルトで割り当てます。link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings_members.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editortype.html[EditorType] プロパティを使用して 1 つまたは複数のフィールドに割り当てられたエディターの変更 (link:xamdatapresenter-embedding-a-xameditor-in-a-field.html[フィールドへの xamEditor の埋め込み]のトピックを参照)、および以下のコード例のようにこれらのエディターの構成 (またはそのいずれか) することができます。
+
+これらのコントロールを構成するには、 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings_members.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~editorstyle.html[EditorStyle] プロパティを使用して、特定のエディターにスタイルを設定する必要があります。
+
+注:
+
+[NOTE]
+====
+実際のエディターのプロパティ (および機能) は、各フィールドに対して使用するエディターによって異なります。
+====
+
+[[_Ref372812467]]
+== コード例の概要
+
+=== コード例の概要表
+
+以下の表は、このトピックで使用したコード例をまとめたものです。
+
+[options="header", cols="a,a"]
+|====
+|コード例|説明
+
+|<<_Ref372811120,CurrencyField の構成>>
+|`CurrencyField` の構成デモンストレーション
+
+|<<_Ref372811943,XamComboEditor の構成>>
+|`xamComboEditor` の構成デモンストレーション
+
+|<<_Ref372811958,XamDateTimeEditor の構成>>
+|`xamDateTimeEditor` の構成デモンストレーション
+
+|<<_Ref372811963,XamNumericEditor の構成>>
+|`xamNumericEditor` の構成デモンストレーション
+
+|<<_Ref372811968,XamMaskedEditor の構成 #1>>
+|`xamMaskedEditor` の構成デモンストレーション
+
+|<<_Ref372811973,XamMaskedEditor の構成 #2>>
+|`xamMaskedEditor` の構成デモンストレーション
+
+|====
+
+[[_Ref372811120]]
+== コード例: CurrencyField の構成
+
+=== 説明
+
+以下のコード スニペットは、以下の構成の場合に link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.currencyfield_members.html[CurrencyField] を使用する方法を示します。
+
+* 記録された値が null 値の場合は、「No Salary」がテキストに表示されます。
+* 整数部に 7 桁まで、小数部に 2 桁を設定可能にするマスクの設定
+
+=== コード
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:CurrencyField Label="Salary" Mask"{}{currency:7.2}" Name="Salary" NullText="No Salary" />
+----
+
+[[_Ref372811943]]
+== コード例: XamComboEditor の構成
+
+=== 説明
+
+以下のコード スニペットは、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamcomboeditor_members.html[XamComboEditor] をフィールド エディターとして使用して、エディターのドロップダウン リストに選択可能な項目を事前設定する方法を示します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataGrid.Resources>
+    <igEditors:ComboBoxItemsProvider x:Key="ComboItemsProvider">
+        <igEditors:ComboBoxItemsProvider.Items>
+            <igEditors:ComboBoxDataItem DisplayText="Accounting" Value="Accounting"/>
+            <igEditors:ComboBoxDataItem DisplayText="Admin" Value="Admin"/>
+            <igEditors:ComboBoxDataItem DisplayText="Board of Directors" Value="Board of Directors"/>
+            <igEditors:ComboBoxDataItem DisplayText="Human Resources" Value="Human Resources"/>
+            <igEditors:ComboBoxDataItem DisplayText="Sales" Value="Sales"/>
+        </igEditors:ComboBoxItemsProvider.Items>
+    </igEditors:ComboBoxItemsProvider>
+</igDP:XamDataGrid.Resources>
+<igDP:Field Name="department" Label="Department">
+    <igDP:Field.Settings>
+        <igDP:FieldSettings
+            EditorType="{x:Type igEditors:XamComboEditor}">
+            <igDP:FieldSettings.EditorStyle>
+                <Style TargetType="{x:Type igEditors:XamComboEditor}">
+ <Setter Property="DropDownButtonDisplayMode" Value="MouseOver"/>
+ <Setter Property="ItemsProvider" Value="{StaticResource ComboItemsProvider}" />
+                </Style>
+            </igDP:FieldSettings.EditorStyle>
+        </igDP:FieldSettings>
+    </igDP:Field.Settings>
+</igDP:Field>
+----
+
+[[_Ref372811958]]
+== コード例: XamDateTimeEditor の構成
+
+=== 説明
+
+以下のコード スニペットは、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamdatetimeeditor_members.html[XamDateTimeEditor] をフィールド エディターとして使用して、年、月、日の順序で日付の編集を要求するマスクを構成する方法を示します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:Field Label="Date of Birth" DataType="{x:Type sys:DateTime}" BindingType="Unbound">
+    <igDP:Field.Settings>
+        <igDP:FieldSettings EditorType="{x:Type igEditors:XamDateTimeEditor}">
+            <igDP:FieldSettings.EditorStyle>
+                <Style TargetType="{x:Type igEditors:XamDateTimeEditor}">
+                    <Setter Property="Mask" Value="yyyy/mm/dd" />
+                </Style>
+            </igDP:FieldSettings.EditorStyle>
+        </igDP:FieldSettings>
+    </igDP:Field.Settings>
+</igDP:Field>
+----
+
+[[_Ref372811963]]
+== コード例: XamNumericEditor の構成
+
+=== 説明
+
+以下のコード スニペットは、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xamnumericeditor_members.html[XamNumericEditor] をフィールド エディターとして使用して、下限値と上限値を設定する方法を示します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:Field Label="Leave Left" DataType="{x:Type sys:Int32}" BindingType="Unbound">
+    <igDP:Field.Settings>
+        <igDP:FieldSettings EditorType="{x:Type igEditors:XamNumericEditor}">
+            <igDP:FieldSettings.EditorStyle>
+                <Style TargetType="{x:Type igEditors:XamNumericEditor}">
+                    <Setter Property="ValueConstraint">
+                        <Setter.Value>
+ <igEditors:ValueConstraint MinInclusive="0" MaxInclusive="10" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </igDP:FieldSettings.EditorStyle>
+        </igDP:FieldSettings>
+    </igDP:Field.Settings>
+</igDP:Field>
+----
+
+[[_Ref372811968]]
+== コード例: XamMaskedEditor の構成 #1
+
+=== 説明
+
+以下のコード スニペットは、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor_members.html[XamMaskedEditor] をフィールド エディターとして使用して、0 から 50 の範囲で数の編集を要求するマスクの設定方法を示します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:Field Label="Leave Left" DataType="{x:Type sys:Int32}" BindingType="Unbound">
+    <igDP:Field.Settings>
+		<igDP:FieldSettings EditorType="{x:Type igEditors:XamMaskedEditor}">
+            <igDP:FieldSettings.EditorStyle>
+                <Style TargetType="{x:Type igEditors:XamMaskedEditor}">
+                    <Setter Property="Mask" Value="{}{number:0-50}" />
+                </Style>
+            </igDP:FieldSettings.EditorStyle>
+        </igDP:FieldSettings>
+    </igDP:Field.Settings>
+</igDP:Field>
+----
+
+[[_Ref372811973]]
+== コード例: XamMaskedEditor の構成 #2
+
+=== 説明
+
+以下のコード スニペットは、 link:{ApiPlatform}editors{ApiVersion}~infragistics.windows.editors.xammaskededitor.html[XamMaskedEditor] をフィールド エディターとして使用して、特定の形式で電話番号の入力を要求するマスクを設定する方法を示します。
+
+=== コード
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:Field Label="Phone" DataType="{x:Type sys:String}" BindingType="Unbound">
+    <igDP:Field.Settings>
+        <igDP:FieldSettings EditorType="{x:Type igEditors:XamMaskedEditor}">
+            <igDP:FieldSettings.EditorStyle>
+                <Style TargetType="{x:Type igEditors:XamMaskedEditor}">
+                    <Setter Property="Mask" Value="{}{pass:[(###)-###-####]}" />
+                </Style>
+            </igDP:FieldSettings.EditorStyle>
+        </igDP:FieldSettings>
+    </igDP:Field.Settings>
+</igDP:Field>
+----
+
+[[_Ref372812502]]
+== 関連コンテンツ
+
+=== トピック
+
+このトピックの追加情報については、以下のトピックも合わせてご参照ください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdata-default-editor-types-for-different-data-types.html[さまざまなデータ型に対するデフォルトのエディター タイプ]
+|このトピックでは、データ プレゼンター コントロールがデータ型に対して割り当てるデフォルトのエディター タイプを説明します。
+
+| link:xamdatapresenter-embedding-a-xameditor-in-a-field.html[フィールドへの xamEditor の埋め込み]
+|このトピックでは、データ プレゼンター コントロールが割り当てるデフォルトのエディター タイプを変更する方法を説明します。
+
+|====

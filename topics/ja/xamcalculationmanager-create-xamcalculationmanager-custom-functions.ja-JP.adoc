@@ -1,0 +1,80 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcalculationmanager-create-xamcalculationmanager-custom-functions",
+    "controlName": ["xamCalculationManager"],
+    "tags": ["Calculations","How Do I"],
+    "guid": "64bd145f-9b1f-4c5f-a283-8ec80f280984",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.5661246Z"
+}
+|metadata|
+////
+
+= xamCalculationManager カスタム関数の作成
+
+== トピックの概要
+
+== 目的
+
+xamCalculationManager コントロールは Microsoft Excel の関数リストと同じように、事前定義されたデフォルト関数セットを提供します。ただし、状況によっては、このセットの拡張や固有のカスタム関数を追加する必要があります。このトピックでは、xamCalculationManager にカスタム関数を追加する方法を紹介します。
+
+以下の表は、以下に提供されたコード例を示しています。
+
+[options="header", cols="a,a"]
+|====
+|例|説明
+
+|カスタム関数の作成
+|この例は、計算の中で使用されるカスタム関数の作成方法を示します。
+
+|====
+
+== コード例: カスタム関数の作成
+
+== 例の詳細
+
+以下のコードは、カスタム関数を作成し、CustomCalculationFunction 関数を使って登録する方法を示します。このクラスは、 link:{ApiPlatform}calculations.xamcalculationmanager{ApiVersion}~infragistics.calculations.engine.calculationfunction.html[CalculationFunction] 基本クラスから派生します。関数ロジックを含むデリゲートを供給することによりカスタム関数を作成できます。
+
+*Visual Basic の場合:*
+
+----
+Import Infragistics.Calculations
+…
+’CustomCalculation 関数を使用してカスタム関数を登録します。
+Dim absAvg As New CustomCalculationFunction("AbsAvg", Function(x, y) (System.Math.Abs(x) + System.Math.Abs(y)) / 2)
+calcManager.RegisterUserDefinedFunction(absAvg)
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Calculations;
+…
+// CustomCalculation 関数を使用してカスタム関数を登録します。
+CustomCalculationFunction absAvg = new CustomCalculationFunction("AbsAvg",
+                           (x, y) => (System.Math.Abs(x) + System.Math.Abs(y)) / 2);
+calcManager.RegisterUserDefinedFunction(absAvg);
+----
+
+以下の XAML コードは、カスタム関数 absAvg() の使用方法を説明します。この関数は、数式の中でコード例「カスタム関数の作成」で作成されたものです。
+
+*XAML の場合:*
+
+----
+<TextBlock x:Name="Value" Width="150" ig:XamCalculationManager.CalculationManager="{Binding ElementName=calcManager}">
+   <ig:XamCalculationManager.ControlSettings>
+      <ig:ControlCalculationSettings Property="Text" ReferenceId="mulTotal"
+                       Formula="absAvg(1, 2)" />
+   </ig:XamCalculationManager.ControlSettings>
+</TextBlock>
+----
+
+== 関連トピック:
+
+link:xamcalculationmanager-overview-of-named-references.html[名前付き参照の概要]
+
+link:xamcalculationmanager-overview-of-item-calculator.html[項目計算式の概要]
+
+link:xamcalculationmanager-overview-of-list-calculator.html[リスト計算式の概要]

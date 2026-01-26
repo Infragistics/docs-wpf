@@ -1,0 +1,33 @@
+﻿= {DataGridName} Migration Guide
+
+=== Purpose
+
+Provide an approach to take to replace the XamGrid with the {DataGridName} in an existing WPF application. These steps could be applied to replace any of the legacy controls and the XamGrid is used as an example here as it is a complex control that will take longer to replace than the other controls.
+
+=== Getting Started
+
+To begin using the {DataGridName}, it is first necessary to set up the NuGet packages in your project so that you can use the current volume of the {DataGridName} in your application. To do this, you need to add the following NuGet package:
+
+* Infragistics.WPF.DataGrids
+
+For more information on setting up the NuGet feed and adding NuGet packages, you can take a look at the following documentation: link:nuget-feeds.html[NuGet Feeds].
+
+Note that if you were referencing an earlier version of any of these assemblies you should be replacing that reference rather than just adding a new reference.
+
+If at this point in time your application builds and runs without issue, you may start using the {DataGridName} in your application to replace instances of the XamGrid.
+
+If your application doesn’t build or doesn’t run correctly, please continue with the rest of this topic to see how to address the most common scenarios.
+
+=== Feature Differences
+
+There are some architectural differences between the XamGrid and {DataGridName} controls and as such there isn’t a one to one mapping between properties and events between them. For example, listed below are a couple of things that the XamGrid may do differently than the {DataGridName}.
+
+* Paging - The {DataGridName} does not directly support paging. The XamGrid was originally designed to be used in Silverlight, and the paging feature was mainly designed to control the amount of data sent to the client at one time in order to mitigate network traffic. Being that the code base was shared between Silverlight and WPF, the WPF XamGrid essentially inherited this feature. The {DataGridName} does have support for an link:xamdatagrid-asynchronouspagingdatasource.html[Asynchronous Paging DataSource] that you can use to control the amount of data loaded. Note that this does not provide a pager for use in the UI, and so you would need to manually provide that.
+
+* Conditional Formatting - The {DataGridName} does conditional formatting a bit differently than in the XamGrid. The following sample project can help you to apply conditional formatting to the {DataGridName}: link:xamdatagrid-cellvaluepesenterstyleselector-reevaluated.html[Conditional Formatting in {DataGridName}]
+
+For other differences in functionality between the XamGrid and {DataGridName}, see this topic: link:differences-between-xamgrid-and-xamdatagrid[Differences Between XamGrid and {DataGridName}].
+
+=== The Best Approach to Replacing Controls
+
+These are different controls and as such it is best to start with how to best accomplish the desired behavior in the new control and then evaluate how much existing code can be reused. If you start with attempting to reuse all of your code, you may be adding more complexity than needed to using the replacement control. This is especially true for the more complex controls like the XamGrid as there are more architectural differences.

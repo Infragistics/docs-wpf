@@ -1,0 +1,300 @@
+﻿////
+|metadata|
+{
+    "tags": [],
+    "controlName": [""]
+}
+|metadata|
+////
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、TemplateField で公開されるプロパティを使用し、条件に基づく表示および編集テンプレートをセルに適用する方法を説明します。
+
+=== 前提条件
+
+このトピックを理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-understanding-xamdatagrid.html[ _xamDataGrid_ について]
+|このトピックは、 _xamDataGrid_ コントロールとコントロールが構成されるさまざまな要素を紹介します。
+
+| link:xamdatapresenter-about-data-items-and-data-records.html[データ項目とデータ レコードについて]
+|このトピックでは、データ項目とデータ レコードの違いを説明します。
+
+| link:xamdatapresenter-define-a-field-layout.html[フィールド レイアウトの定義]
+|このトピックでは、表示するフィールドを指定し、 _xamDataPresenter_ コントロールでこれらのフィールドに関連するプロパティを設定するために、フィールドのレイアウトを定義する方法を説明します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref419378280, テンプレート セレクターの概要 >>
+* <<_Ref419378289, 関連コンテンツ >>
+
+[[_Ref419378280]]
+== テンプレート セレクターの概要
+
+=== 説明
+
+DataPresenter のコントロールは、テンプレートを動的に link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield.html[TemplateField] に適用し、セル値の表示および編集をサポートします。`TemplateField` に「セレクター」を設定できます。セレクターは、編集中の値に応じて異なるテンプレートを適用する条件付きロジックを提供します。セレクターのクラスは、 link:https://msdn.microsoft.com/ja-jp/library/system.windows.controls.datatemplateselector(v=vs.110).aspx[DataTemplateSelector] クラスから拡張し、 link:https://msdn.microsoft.com/ja-jp/library/system.windows.datatemplate(v=vs.110).aspx[DataTemplate] タイプを返す link:https://msdn.microsoft.com/ja-jp/library/system.windows.controls.datatemplateselector.selecttemplate(v=vs.110).aspx[SelectTemplate] メソッドを実装する必要があります。
+
+次のような場合に、`SelectTemplate` メソッドが `TemplateField` の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield~displaytemplateselector.html[DisplayTemplateSelector] プロパティにより呼び出されます。
+
+* 各 link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.cellvaluepresenter.html[CellValuePresenter] の作成および表示
+* `CellValuePresenter` の編集モード終了
+* 編集モード以外でのセル値の変更
+
+次のような場合に、`SelectTemplate` メソッドが `TemplateField` の link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield~edittemplateselector.html[EditTemplateSelector] プロパティにより呼び出されます。
+
+* `CellValuePresenter` の編集モードへの切り替え
+* 編集モード中のセル値の変更
+
+注:
+
+[NOTE]
+====
+編集モードの場合、ユーザーの入力ごとに編集テンプレート セレクターの `SelectTemplate` メソッドが繰り返し起動されます。編集モードの `CellValuePresenter` でセレクター ロジックが異なるテンプレートを返す場合は、フォーカスが失われ編集モードが終了する結果となります。これを防止するには、エディターのタグ プロパティの選択などの編集モードで最初に提供された `DataTemplate` のインスタンスを、編集の終了まで保存するようにリクエストする必要があります。以下のコードの例を参照してください。
+====
+
+=== タスク
+
+以下の表は、 _xamDataGrid_   コントロールの構成可能な要素を簡単に説明し、それらを構成するプロパティにマップします。
+
+[options="header", cols="a,a,a"]
+|====
+|タスク|詳細|プロパティ
+
+|[[_Hlk356484826]] 
+
+編集モード*以外* のセルに使用するセレクターの設定
+|セレクター クラスを設定し、特定の `TemplateField` で編集モードになって*いない* セルにテンプレートを提供します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield~displaytemplate.html[DisplayTemplate] プロパティも指定された場合、このプロパティは無視されます。 
+
+====
+|`DisplayTemplateSelector`
+
+|編集モード中のセルに使用するセレクターの設定
+|セレクター クラスを設定し、特定の `TemplateField` で編集モード中のセルにテンプレートを提供します。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.templatefield~edittemplate.html[EditTemplate] プロパティも指定された場合、このプロパティは無視されます。`EditTemplate` プロパティと `EditTemplateSelector` プロパティが共に設定されていない場合は、`DisplayTemplate` プロパティまたは `DisplayTemplateSelector` プロパティが編集モードで使用されます。 
+
+====
+|`EditTemplateSelector`
+
+|====
+
+=== コード スニペット
+
+以下のコードでは、表示および編集テンプレートを定義します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+…
+<Page.Resources>
+    <DataTemplate x:Key="displayTemplateRed">
+        <TextBlock Text="{igEditor:TemplateEditorValueBinding}" Forground="Red" />
+    </DataTemplate>
+    <DataTemplate x:Key="displayTemplateGreen">
+        <TextBlock Text="{igEditor:TemplateEditorValueBinding}" Forground="Green" />
+    </DataTemplate>
+    <DataTemplate x:Key="editTemplateRed">
+        <TextBox Text="{igEditor:TemplateEditorValueBinding}" Background="Red" />
+    </DataTemplate>
+    <DataTemplate x:Key="editTemplateGreen">
+        <TextBox Text="{igEditor:TemplateEditorValueBinding}" Background="Green" />
+    </DataTemplate>
+</Page.Resources>
+…
+----
+
+以下のコードでは、表示テンプレートのセレクターを実装します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class CustomDisplayTemplateSelector
+  Inherits DataTemplateSelector
+  Public Overrides Function SelectTemplate(item As Object, container As DependencyObject) _
+      As DataTemplate
+    Dim dataTemplate As DataTemplate = Nothing
+    Dim editor = TemplateEditor.GetEditor(container)
+    'ここで次のために使用されるタグ プロパティをクリア
+    '編集モードで返えされたテンプレートの追跡
+    editor.Tag = Nothing
+    If item IsNot Nothing Then
+      If CInt(item) > 10000 Then
+        dataTemplate = TryCast(editor.FindResource("displayTemplateRed"), DataTemplate)
+      Else
+        dataTemplate = TryCast(editor.FindResource("displayTemplateGreen"), DataTemplate)
+      End If
+    End If
+    If dataTemplate IsNot Nothing Then
+      Return dataTemplate
+    End If
+    Return MyBase.SelectTemplate(item, container)
+  End Function
+End Class
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class CustomDisplayTemplateSelector : DataTemplateSelector
+{
+  public override DataTemplate SelectTemplate(object item, DependencyObject container)
+  {
+    DataTemplate dataTemplate = null;
+    var editor = TemplateEditor.GetEditor(container);
+    //ここで次のために使用されるタグ プロパティをクリア
+    //'編集モードで返えされたテンプレートの追跡
+    editor.Tag = null;
+    if (item != null)
+    {
+      if ((int)item > 10000)
+      {
+        dataTemplate = editor.FindResource("displayTemplateRed") as DataTemplate;
+      }
+      else
+      {
+        dataTemplate = editor.FindResource("displayTemplateGreen") as DataTemplate;
+      }
+    }
+    if (dataTemplate != null) return dataTemplate;
+    return base.SelectTemplate(item, container);
+  }
+}
+----
+
+以下のコードは、編集テンプレートのセレクターを実装します。
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Public Class CustomEditTemplateSelector
+  Inherits DataTemplateSelector
+  Public Overrides Function SelectTemplate(item As Object, container As DependencyObject) _
+      As DataTemplate
+    Dim dataTemplate As DataTemplate = Nothing
+    Dim editor = TemplateEditor.GetEditor(container)
+    'タグ プロパティの設定により編集テンプレートがすでに
+    '返されている場合。エディターが次のことを実行しないように同じテンプレートを返す必要がある。
+    '編集モードの終了。
+    If TypeOf editor.Tag Is DataTemplate Then
+      Return TryCast(editor.Tag, DataTemplate)
+    End If
+    If item IsNot Nothing Then
+      If CInt(item) > 10000 Then
+        dataTemplate = TryCast(editor.FindResource("editTemplateRed"), DataTemplate)
+      Else
+        dataTemplate = TryCast(editor.FindResource("editTemplateGreen"), DataTemplate)
+      End If
+    End If
+    If dataTemplate IsNot Nothing Then
+      editor.Tag = dataTemplate
+      Return dataTemplate
+    End If
+    Return MyBase.SelectTemplate(item, container)
+  End Function
+End Class
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+public class CustomEditTemplateSelector : DataTemplateSelector
+{
+  public override DataTemplate SelectTemplate(object item, DependencyObject container)
+  {
+    DataTemplate dataTemplate = null;
+    var editor = TemplateEditor.GetEditor(container);
+    //タグ プロパティの設定により編集テンプレートがすでに
+    //返されている場合。エディターが次のことを実行しないように同じテンプレートを返す必要がある。
+    //編集モードの終了。
+    if (editor.Tag is DataTemplate)
+        return editor.Tag as DataTemplate;
+    if (item != null)
+    {
+      if ((int)item > 10000)
+      {
+        dataTemplate = editor.FindResource("editTemplateRed") as DataTemplate;
+      }
+      else
+      {
+        dataTemplate = editor.FindResource("editTemplateGreen") as DataTemplate;
+      }
+    }
+    if (dataTemplate != null)
+    {
+        editor.Tag = dataTemplate;
+        return dataTemplate;
+    }
+    return base.SelectTemplate(item, container);
+  }
+}
+----
+
+以下のコードは、ページのリソースに表示おおよび編集のセレクターを追加します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+…
+<Page.Resources>
+    <localNameSpace:CustomDisplayTemplateSelector x:Key="Selector1" />
+    <localNameSpace:CustomEditTemplateSelector x:Key="Selector2" />
+</Page.Resources>
+…
+----
+
+以下のコードは、表示および編集のセレクターをテンプレート フィールドに設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<igDP:XamDataGrid>
+    <igDP:XamDataGrid.FieldLayouts>
+        …
+        <igDP:TemplateField Name="BasePrice" Label="Price"
+            DisplayTemplateSelector="{StaticResource Selector1}"
+            EditTemplateSelector="{StaticResource Selector2}"
+        />
+        …
+    </igDP:XamDataGrid.FieldLayouts>
+</igDP:XamDataGrid>
+----
+
+[[_Ref419378289]]
+== 関連コンテンツ
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。

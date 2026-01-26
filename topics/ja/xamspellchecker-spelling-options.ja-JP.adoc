@@ -1,0 +1,116 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamspellchecker-spelling-options",
+    "controlName": ["xamSpellChecker"],
+    "tags": ["How Do I"],
+    "guid": "{48D7AC9E-7931-4524-8EE9-73AAF5601AD4}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.158382Z"
+}
+|metadata|
+////
+
+= スペル オプション
+
+特定の状況でエンドユーザーの入力がスペルチェッカーによって認められるように、xamSpellChecker コントロールのデフォルト設定をオーバーライドできます。たとえば、デフォルトでは、大文字と小文字が混じっている単語はスペルチェッカーではスペルミスとみなされます。
+
+link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions.html[SpellOptions] オブジェクトは、xamSpellChecker コントロールがスペルミスのチェックを制御する方法をカスタマイズできる多数のプロパティを公開します。
+
+以下の表は各プロパティ、デフォルト値、およびスペルミスに対して単語がチェックされる方法を各プロパティがどのように決定するかを理解するための事例を説明します。
+
+[options="header", cols="a,a,a,a"]
+|====
+|プロパティ|デフォルト値|説明|例
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~allowanycase.html[AllowAnyCase]
+|False
+|これによって、大文字と小文字の両方を使用できます。
+|United States の代わりに united states。
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~allowcaseinsensitivesuggestions.html[AllowCaseInsensitiveSuggestions]
+|False
+|これによって、大文字と小文字の両方が混在している正しいスペルの単語に修正候補を表示できます。
+|たとえば、エンドユーザーが tHe と入力した場合、このプロパティが False に設定されていると、エンドユーザーに修正候補のリストは表示されませんが、True に設定されていると、エンドユーザーに修正候補が表示されます。
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~allowmixedcase.html[AllowMixedCase]
+|False
+|これによって大文字と小文字を使用した単語が許可されます。
+| pick:[sl="SilVerLight"] pick:[wpf="WpF"] 
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~allowwordswithdigits.html[AllowWordsWithDigits]
+|False
+|これによって単語に数字を使用できます。
+|Volume91
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~allowxml.html[AllowXML]
+|False
+|これによって XML タグと HTML タグを使用できます。
+|
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~checkhyphenatedtext.html[CheckHyphenatedText]
+|False
+|このプロパティを True に設定すると、ハイフンで繋がれたテキストを個別の単語としてチェックしますが、False の場合は、ハイフンで繋がれた単語をひとつの単語としてチェックします。
+|たとえば、True に設定すると after-effect という単語は 2 つの個別の単語としてチェックされますが、False に設定するとこの単語はハイフンで繋がれたひとつの単語としてチェックされます。両方のケースで、一部にスペルミスがあると、単語全体が間違いであるとマークされます。
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~includeuserdictionaryinsuggestions.html[IncludeUserDictionaryInSuggestions]
+|False
+|スペルミスの語に対する修正候補の検索にユーザー辞書を使用するかどうかを指定します。
+|Volume91
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~languageparser.html[LanguageParser]
+|False
+|これはパーサーが使用する言語を設定します。使用可能な場合には、これは辞書の言語と同じにします。
+|
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~separatehyphenwords.html[SeparateHyphenWords]
+|False
+|このプロパティを True に設定すると、ハイフンで繋がれたテキストは 2 つの個別の単語としてチェックされます。これらの単語のいずれかのスペルを間違えたら、その単語のみがスペルミスとして判断されます。
+|Cheap-deals
+
+| link:{ApiPlatform}controls.interactions.xamspellchecker{ApiVersion}~infragistics.controls.interactions.spelloptions~suggestionsmethod.html[SuggestionMethod]
+|HashingSuggestions
+|HashingSuggestions - 修正候補はテキストをハッシュすることで決定されます。これがデフォルト値です。PhonesticSuggestions - 修正候補は音声学的に決定されます。
+|
+
+|====
+
+以下のコードは、xamSpellChecker コントロールが数字および大文字と小文字の両方が混在する単語を許可する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamSpellChecker x:Name="spellChecker">
+   <ig:XamSpellChecker.SpellOptions>
+      <ig:SpellOptions AllowMixedCase="True" AllowWordsWithDigits="True"/>
+   </ig:XamSpellChecker.SpellOptions>
+   …
+</ig:XamSpellChecker>
+----
+
+*Visual Basic の場合:*
+
+----
+…
+Me.spellChecker.SpellOptions.AllowMixedCase = True
+Me.spellChecker.SpellOptions.AllowWordsWithDigits = True
+…
+----
+
+*C# の場合:*
+
+----
+..
+this.spellChecker.SpellOptions.AllowMixedCase = true;
+this.spellChecker.SpellOptions.AllowWordsWithDigits = true;
+..
+----
+
+== 関連トピック
+
+link:xamspellchecker-performance-options.html[パフォーマンス オプション]
+
+link:xamspellchecker-how-to-specify-text-to-be-spell-checked.html[テキストをスペルチェックするように指定する方法]
+
+link:xamspellchecker-dictionaries.html[辞書]

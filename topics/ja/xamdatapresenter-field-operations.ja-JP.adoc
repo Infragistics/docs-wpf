@@ -1,0 +1,41 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-field-operations",
+    "tags": [],
+    "controlName": ["xamDataPresenter"],
+    "guid": "c1a80dbb-8cea-4874-912e-8dfe49624cab",  
+    "buildFlags": [],
+    "createdOn": "2014-04-03T11:16:04.405676Z"
+}
+|metadata|
+////
+
+= フィールド操作
+
+== このグループのトピックについて
+
+=== 概要
+
+このトピックのグループは、 _xamDataPresenter_™ のフィールドのコンテンツ編集、列集計の構成、フィールド レイアウト、およびフィールド表示状態などのフィールドに関連する操作を説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatapresenter-defining-layouts.html[フィールド レイアウトの定義 ( _xamDataPresenter_ )]
+|このトピックのグループは、 _xamDataPresenter_ でフィールドを定義し、カスタマイズする方法を説明します。
+
+| link:xamdatapresenter-editing-data.html[データの編集 ( _xamDataPresenter_ )]
+|このトピックのグループは、 _xamDataPresenter_ でフィールド エディターを定義し、カスタマイズする方法を説明します。
+
+| link:xamdatapresenter-field-chooser.html[フィールド選択 ( _xamDataPresenter_ )]
+|このトピックのグループは、フィールド選択を表示し、構成する方法を説明します。フィールド選択は _xamDataPresenter_ で列の表示/非表示を構成するコンポーネントです。
+
+| link:xamdatapresenter-row-summaries.html[行の集計 ( _xamDataPresenter_ )]
+|このトピックのグループは、 _xamDataPresenter_ コントロールでフィールド値に基づいて集計フィールドを設定し、カスタマイズする方法を説明します。
+
+|====

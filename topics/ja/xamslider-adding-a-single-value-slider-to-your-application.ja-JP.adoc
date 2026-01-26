@@ -1,0 +1,160 @@
+﻿////
+|metadata|
+{
+    "name": "xamslider-adding-a-single-value-slider-to-your-application",
+    "controlName": ["xamSlider"],
+    "tags": ["Getting Started"],
+    "guid": "{2385A9B1-A0C7-4FAB-9CBB-84A7878F00B2}",
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0293705Z"
+}
+|metadata|
+////
+
+= 単一値スライダーをアプリケーションに追加
+
+== 始める前に
+
+Microsoft® Silverlight™ にあるコントロールと同じパターンを使用してアプリケーションに単一値スライダーである xamNumericSlider または xamDateTimeSlider を追加できます。このパターンは、レイアウト コンテナーの使用およびレイアウト コンテナーの Children コレクションにコントロールを追加することに関わります。
+
+== 達成すること
+
+xamNumericSlider コントロールをユーザーのアプリケーションに追加します。完成したプロジェクトを実行すると、ブラウザーに以下のスクリーンショットに似た xamNumericSlider コントロールが表示されます。
+
+image::images/xamSlider_Adding_a_Single_Value_Slider_to_Your_Application_01_XAML.png[]
+
+== 次の手順を実行します
+
+[start=1]
+. {PlatformName} プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージ参照をプロジェクトに追加します。
+
+** Infragistics.WPF.Slider
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. コード ビハインドに using/Imports のディレクティブを配置するか xamSlider™ の XML 名前空間定義を追加します。
+
+ifdef::wpf[]
+
+*XAML の場合:*
+
+[source,xaml]
+----
+xmlns:ig="http://schemas.infragistics.com/xaml"
+----
+
+endif::wpf[]
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Imports Infragistics.Controls.Editors
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+using Infragistics.Controls.Editors;
+----
+
+[start=4]
+. xamNumericSlider コントロールのインスタンスを "LayoutRoot" という名前のデフォルトのグリッド レイアウト パネルに追加します。プロシージャ コードでこれを行う場合、UserControl の Loaded イベントを処理し、イベント ハンドラーにこのコードを配置することができます。
+
+範囲スライダーと異なり、単一値スライダーは xamSlider つまみを作成します。つまみのプロパティを変更したい場合を除き、単一値スライダーの link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsimplesliderbase`1~thumb.html[Thumb] プロパティを設定する必要はありません。
+
+** Name プロパティを xamNumericSlider1 に設定します。
+** link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericslider~minvalue.html[MinValue] プロパティを 0 に設定します。
+** link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericslider~maxvalue.html[MaxValue] プロパティを 100 に設定します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamNumericSlider  
+    Name="xamNumericSlider1" 
+    MinValue="0" 
+    MaxValue="100">
+    <!--TODO: SliderTickMarks オブジェクトを TickMarks コレクションに追加します-->
+</ig:XamNumericSlider >
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim xamNumericSlider1 As XamNumericSlider
+Private Sub UserControl_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+    xamNumericSlider1 = New xamNumericSlider With {.MinValue = 0, .MaxValue = 100}
+    Me.LayoutRoot.Children.Add(xamNumericSlider1)
+    'TODO: SliderTickMarks オブジェクトを TickMarks コレクションに追加します-->
+End Sub
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+XamNumericSlider xamNumericSlider1;
+private void UserControl_Loaded(object sender, RoutedEventArgs e)
+{
+    xamNumericSlider1 = new xamNumericSlider
+    {
+        MinValue = 0,
+        MaxValue = 100
+    };
+    this.LayoutRoot.Children.Add(xamNumericSlider1);
+    //TODO: SliderTickMarks オブジェクトを TickMarks コレクションに追加します-->
+}
+----
+
+[start=5]
+. xamNumericSlider コントロールの link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarks`1.html[TickMarks] コレクションに link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarks.html[SliderTickMarks] オブジェクトを追加します。DateTime スライダー コントロール、すなわち xamDateTimeSlider または xamDateTimeRangeSlider については、SliderTickMarks オブジェクトの代わりに TickMarks コレクションに link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.datetimeslidertickmarks.html[DateTimeSliderTickMarks] オブジェクトを追加する必要があります。
+
+** link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarksbase~numberoftickmarks.html[NumberOfTickMarks] プロパティを 10 に設定します。
+** link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarksbase~usefrequency.html[UseFrequency] プロパティを False に設定します。UseFrequency プロパティを False に設定しない場合、xamSlider コントロールは NumberOfTickMarks プロパティを無視します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamNumericSlider.TickMarks>
+    <ig:SliderTickMarks NumberOfTickMarks="10" UseFrequency=" />
+</ig:XamNumericSlider.TickMarks>
+----
+
+*Visual Basic の場合:*
+
+[source,vb]
+----
+Dim majorTickMarks As New SliderTickMarks With {.NumberOfTickMarks = 10, .UseFrequency = True}
+Me.xamNumericSlider1.TickMarks.Add(majorTickMarks)
+----
+
+*C# の場合:*
+
+[source,csharp]
+----
+SliderTickMarks majorTickMarks = new SliderTickMarks
+{
+    NumberOfTickMarks = 10,
+    UseFrequency = false
+};
+this.xamNumericSlider1.TickMarks.Add(majorTickMarks);
+----
+
+[start=6]
+. プロジェクトを実行します。
+
+== 関連トピック
+
+link:xamslider-about-xamslider.html[xamSlider について]
+
+link:xamslider-adding-a-range-slider-to-your-application.html[範囲スライダーをアプリケーションに追加]
+
+link:xamslider-using-xamslider.html[xamSlider の使用]

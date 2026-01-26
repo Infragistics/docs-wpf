@@ -1,0 +1,183 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-undo-redo",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Editing","How Do I"],
+    "guid": "951b1b42-87b0-4648-ac41-357a5686ca8d",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.3623536Z"
+}
+|metadata|
+////
+
+= 元に戻す/やり直し (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   コントロールの元に戻す操作とやり直しの操作について解説します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+| link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]
+|このトピックでは、開発者とユーザー双方の視点から _xamSyntaxEditor_ コントロールのテキスト編集機能を取り上げます。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Introduction, 概要 >>
+* <<_Undo_Operation, 元に戻す操作 >>
+* <<_Redo_Operation, やり直し操作 >>
+* <<_Related_Content, 関連コンテンツ >>
+
+[[_Introduction]]
+== 概要
+
+=== 元に戻すとやり直しのサポートとは
+
+_xamSyntaxEditor_   コントロールは、 link:undo-redo-framework.html[Infragistics Undo/Redo Framework]で、テキスト更新時のロバストな元に戻す/やり直し操作をサポートします。link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager.html[UndoManager] は link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument.html[TextDocument] の link:{ApiPlatform}documents.textdocument{ApiVersion}~infragistics.documents.textdocument~undomanager.html[UndoManager] プロパティでプログラムから利用できます。デフォルトで、各 `TextDocument` には専用の `UndoManager` が備わっており、アプリケーションの `TextDocument` ごとに別々の変更履歴を利用できます。また、1 つの`UndoManager` を複数の `TextDocuments` に構成すると、すべての TextDocuments に共通の履歴を追跡できます。
+
+‘元に戻す’ 操作と ‘やり直し’ 操作は、以下のアクションで起動します。
+
+*  _XamSyntaxEditor_   にフォーカスがあるときに、所定の組み合わせでキーを押す。たとえば、Ctrl + Z を押すと、編集中の `TextDocument` で _元に戻す_  操作が起動し、Ctrl + Y を押すと _やり直し_  操作が起動します。
+* 元に戻すコマンドとやり直しコマンドを呼び出す (以下のコード スニペットを参照)。
+* 以下のメソッドのどちらかを呼び出す。
+** link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager~undo.html[TextDocument.UndoManager.Undo]
+** link:{ApiPlatform}undo{ApiVersion}~infragistics.undo.undomanager~redo.html[TextDocument.UndoManager.Redo]
+
+注:
+
+[NOTE]
+====
+キーボード ショートカットの詳細については、 link:xamsyntaxeditor-editing-support-overview.html[編集サポートの概要]トピックを参照してください。
+====
+
+== 元に戻す/やり直しの構成概要
+
+=== 元に戻す / やり直し構成の概要表
+
+以下の表は、元に戻す操作とやり直し操作を解説とともにまとめたものです。
+
+[options="header", cols="a,a,a"]
+|====
+|操作|解説|呼び出すコマンド
+
+|<<_Ref332719506,元に戻す操作>>
+|指定した _xamSyntaxEditor_ インスタンスで元に戻す操作を実行します。
+|
+* Undo 
+
+|<<_Ref332719522,やり直し操作>>
+|指定した _xamSyntaxEditor_ インスタンスでやり直す操作を実行します。
+|
+* Redo 
+
+|====
+
+[[_Undo_Operation]]
+[[_Ref332719506]]
+== 元に戻す操作
+
+=== 概要
+
+元に戻す操作は、`TextDocument` に対する変更を前回の変更から 1 ステップずつ取り消し、元に戻す操作の記録を、元に戻す履歴スタックからポップ アップし、それをやり直し履歴スタックの最上部に追加します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|インスタンス化するコマンド ソース:|設定するプロパティ:
+
+|指定した _xamSyntaxEditor_ インスタンスで元に戻す操作を実行します。
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.primitives.syntaxeditorcommandsource.html[SyntaxEditorCommandSource]
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.primitives.syntaxeditorcommandsource~eventname.html[EventName] 
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.primitives.syntaxeditorcommandsource~commandtype.html[CommandType] 
+
+link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.primitives.syntaxeditorcommandsource~targetname.html[TargetName]
+
+|====
+
+=== 例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Undo">
+    <ig:Commanding.Command>
+        <igPrim:SyntaxEditorCommandSource 
+            EventName="Click" CommandType="Undo" TargetName="xamSyntaxEditor1" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+[[_Redo_Operation]]
+[[_Ref332719522]]
+== やり直し操作
+
+=== 概要
+
+やり直し操作は、`TextDocument` に対する元に戻す操作で挿入された変更を 1 ステップずつ取り消し、元に戻す操作の記録を、やり直し履歴スタックからポップ アップし、それを元に戻す履歴スタックの最上部に追加します。
+
+=== プロパティ設定
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|インスタンス化するコマンド ソース:|設定するプロパティ:
+
+|指定した _xamSyntaxEditor_ インスタンスでやり直す操作を実行します。
+|`SyntaxEditorCommandSource`
+|`EventName` 
+
+`CommandType` 
+
+`TargetName`
+
+|====
+
+=== 例
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<Button Content="Redo">
+    <ig:Commanding.Command>
+        <igPrim:SyntaxEditorCommandSource 
+            EventName="Click" CommandType="Redo" TargetName="xamSyntaxEditor1" />
+    </ig:Commanding.Command>
+</Button>
+----
+
+[[_Related_Content]]
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-events-and-commands.html[イベントとコマンド]
+|このトピックでは、 _xamSyntaxEditor_ アプリケーションの構築とともにユーザーが利用できるイベントとサポート対象コマンドを紹介します。
+
+| link:generalconcepts-about-ig-commanding.html[Infragistics コマンディング フレームワーク]
+|このトピックでは、Infragistics コマンディング フレームワークに関するさまざまな情報とともにそのサンプルを紹介します。
+
+|====

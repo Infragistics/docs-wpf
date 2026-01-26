@@ -1,0 +1,39 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamoutlookbar-using-xamoutlookbar",
+    "controlName": ["xamOutlookBar"],
+    "tags": [],
+    "guid": "{E7CC8ADB-DEB3-404D-8B12-30A7F5172C85}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:54.0511633Z"
+}
+|metadata|
+////
+
+= xamOutlookBar の使用
+
+
+
+このセクションでは、xamOutlookBar™ が提供する様々な特長や機能を効率的に使用するためのタスク ベースの情報を提供します。
+
+link:xamoutlookbar-about-styling-xamoutlookbar.html[xamOutlookBar のスタイル設定について]
+
+このトピックでは、xamOutlookBar control の外観をカスタマイズする際に役立つ、いくつかのスタイル設定の要点を説明します。
+
+link:xamoutlookbar-add-groups-to-xamoutlookbar.html[xamOutlookBar にグループを追加]
+
+このトピックでは、グループを追加して xamOutlookBar にコンテンツを表示する方法を説明します。
+
+link:xamoutlookbar-add-content-to-a-group.html[グループにコンテンツを追加]
+
+このトピックでは、xamOutlookBar コントロールのグループの項目にコンテンツを追加する方法を説明します。
+
+link:xamoutlookbar-collapse-xamoutlookbar.html[xamOutlookBar の最小化]
+
+このトピックでは、IsMinimized プロパティを使用して xamOutlookBar コントロールを最小化する方法を説明します。
+
+link:xamoutlookbar-select-a-group.html[グループの選択]
+
+このトピックでは、最初に選択したグループの定義方法を説明します。

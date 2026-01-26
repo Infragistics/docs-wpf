@@ -1,0 +1,43 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-configuring-the-listbackedproject-viewprovider-for-xamgantt",
+    "controlName": ["xamGantt"],
+    "tags": ["Getting Started","Grids","How Do I","Scheduling"],
+    "guid": "dd90c0bd-d85d-43ee-89a8-95c43b04eb1b",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.5331391Z"
+}
+|metadata|
+////
+
+= xamGantt の ListBackedProject ViewProvider の構成
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックには、 _xamGantt™_  ListBackedProjectViewProvider の情報が含まれています。
+
+=== トピック
+
+このセクションは、xamGantt タイムスケールの使用と構成をカバーします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-configuring-the-listbackedproject-viewprovider-overview.html[ _xamGantt_ ListBacked ViewProvider の概要]
+|このトピックでは、 _xamGantt_ ListBackedProject ViewProvider クラスの主要な機能の概要を提供します。このクラスは、プロジェクト テーブルとプロジェクト ビュー インスタンスを _xamGantt_ に提供するために使用されます。
+
+| link:xamgantt-code-example-changing-xamgantt-column-set.html[コード例: プロジェクト テーブルのために列セットを変更]
+|ListBackedProjectViewProvider を使用して _xamGantt_ グリッド セクションに表示される定義済みの列のセットをしていできます。
+
+| link:xamgantt-code-example-creating-customized-view-for-xamgantt.html[コード例: _xamGantt_ のためにカスタマイズされたビューを作成]
+|ListBackedProject ViewProvider と定義済みプロジェクト列、プロジェクト テーブル、プロジェクト ビュー クラスを使用することによってカスタマイズされた xamGantt ビューを作成できます。
+
+| link:xamgantt-code-example-creating-view-for-xamgantt-using-custom-classes.html[コード例: カスタム クラスを使用して xamGantt のビューを作成]
+|プロジェクト列、プロジェクト テーブルおよびプロジェクト ビューのカスタム クラスを作成し、これらのクラスを使用して xamGantt の外観をカスタマイズできます。
+
+|====

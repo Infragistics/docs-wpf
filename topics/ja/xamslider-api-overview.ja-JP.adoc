@@ -1,0 +1,47 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamslider-api-overview",
+    "controlName": ["xamSlider"],
+    "tags": ["API"],
+    "guid": "{934B6B0F-859F-4366-84F0-BFB2ABFF89D5}",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.0543741Z"
+}
+|metadata|
+////
+
+= API の概要
+
+このセクションではコントロールに関連する各名前空間を示します。このコントロールでプログラムに使用するいくつかのキー クラスも提供します。このページの名前空間とクラスは当社の API マニュアルに直接リンクします。
+
+[cols="a,a"]
+|====
+|*xamSlider 名前空間*
+|*キー クラス*
+
+| link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics_namespace.html[Infragistics] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.automationpeers_namespace.html[Infragistics.AutomationPeers] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors_namespace.html[Infragistics.Controls.Editors] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.primitives_namespace.html[Infragistics.Controls.Editors.Primitives]
+| link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericslider.html[XamNumericSlider] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamnumericrangeslider.html[XamNumericRangeSlider] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimeslider.html[XamDateTimeSlider] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamdatetimerangeslider.html[XamDateTimeRangeSlider] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.slidertickmarks.html[SliderTickMarks] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.datetimeslidertickmarks.html[DateTimeSliderTickMarks] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamslidernumericthumb.html[XamSliderNumericThumb] 
+
+link:{ApiPlatform}controls.editors.xamslider{ApiVersion}~infragistics.controls.editors.xamsliderdatetimethumb.html[XamSliderDateTimeThumb]
+
+|====

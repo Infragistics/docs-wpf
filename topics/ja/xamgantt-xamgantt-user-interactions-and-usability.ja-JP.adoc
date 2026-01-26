@@ -1,0 +1,46 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamgantt-xamgantt-user-interactions-and-usability",
+    "controlName": ["xamGantt"],
+    "tags": [],
+    "guid": "88d4b3be-f451-475c-bf50-733f667ad1dd",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:55.1751575Z"
+}
+|metadata|
+////
+
+= xamGantt のユーザー インタラクションと操作性
+
+== このグループのトピックについて
+
+=== はじめに
+
+このグループのこのトピックでは、 _xamGantt_™ コントロールにおけるユーザー インタラクションと操作性について説明します。
+
+=== トピック
+
+このセクションのトピックでは、 _xamGantt_   コントロールのユーザー インタラクションと操作性について説明します。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamgantt-xamgantt-user-interactions-in-the-grid-section.html[グリッド セクションにおける xamGantt ユーザー インタラクション]
+|このトピックでは、 _xamGantt_ コントロールのグリッド セクションを使用して利用可能なユーザー インタラクションを説明します。
+
+| link:xamgantt-xamgantt-user-interactions-in-the-chart-section.html[チャート セクションにおける xamGantt ユーザー インタラクション]
+|このトピックでは、 _xamGantt_ コントロールのチャート セクションを使用して利用可能なユーザー インタラクションを説明します。
+
+| link:xamgantt-columns-editing.html[xamGantt 列の編集]
+|このトピックでは、 _xamGantt_ コントロールの重要なグリッド列の編集機能を説明します。
+
+| link:xamgantt-keyboard-support.html[キーボードのサポート]
+|このトピックでは、 _xamGantt_ コントロールの組み込みキーボード サポート、および関連するキーボード ショートカットを持つユーザー アクションについて説明します。
+
+| link:xamgantt-user-notifications-shown-at-conflict-resolution.html[ _xamGantt_ 競合解決で表示されるユーザー通知]
+|特定の無効なタスク値、プロジェクト設定、または操作のスケジュールの変更は競合を発生する可能性があります。_xamGantt_ は、競合を解決し、通知をユーザーに表示できます。このトピックでは、競合の解決で発生するユーザー通知を説明します。
+
+|====

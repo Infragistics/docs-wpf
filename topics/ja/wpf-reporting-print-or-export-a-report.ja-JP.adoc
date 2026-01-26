@@ -1,0 +1,59 @@
+﻿////
+
+|metadata|
+{
+    "name": "wpf-reporting-print-or-export-a-report",
+    "controlName": ["IG WPF Reporting"],
+    "tags": ["Reporting"],
+    "guid": "{747AB415-915E-4553-8FA9-6697BE1B1F70}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:51.9087349Z"
+}
+|metadata|
+////
+
+= レポートの印刷またはエクスポート
+
+
+
+レポートを作成した後で、 link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report.html[Report] オブジェクトの link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~print.html[Print] または link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.report~export.html[Export] メソッドを呼び出すことで、それぞれ、レポートを印刷またはエクスポートできます。xamDataPresenter™、xamDataGrid™、または、xamDataCarousel™ を印刷またはエクスポートする場合、WPF レポーティングエンジンはコントロールのコンテンツを自動的に改ページして表形式で印刷します。
+
+== 印刷とページング
+
+単一のページに収まらない複数のコントロールを印刷またはエクスポートしたい場合には、以下の 3 つのオプションがあります。
+
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.iembeddedvisualpaginator.html[IEmbeddedVisualPaginator] インターフェイス - このインターフェイスを実装するクラスを作成し、参照を link:{ApiPlatform}reporting{ApiVersion}~infragistics.windows.reporting.embeddedvisualreportsection.html[EmbeddedVisualReportSection] オブジェクトのコンストラクターに渡します。
+* link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.iembeddedvisualpaginatorfactory.html[IEmbeddedVisualPaginatorFactory] インターフェイス - このインターフェイスをカスタム コントロールに実装すると、EmbeddedVisualReportSection オブジェクトでコントロールのページング実装を使用できます。
+* 拡大縮小 - link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.reportsettings.html[ReportSetting] オブジェクトの link:{RootAssembly}{ApiVersion}~infragistics.windows.reporting.reportsettings~horizontalpaginationmode.html[HorizontalPaginationMode] プロパティを Scale に設定することで、コンテンツが単一ページに収まるように水平方向に拡大縮小できます。ただし、ページの下部をはみ出すコンテンツは印刷またはエクスポートされません。
+
+以下のコード例は、レポートを印刷またはエクスポートする方法を示します。このコード例は、report1 という名前の Report オブジェクトをすでに持っていることを前提とします。
+
+*Visual Basic の場合:*
+
+----
+report1.Print()
+' 次の行のコメントを解除すると、レポートを印刷する代わりにエクスポートできます:
+'report1.Export(OutputFormat.XPS, "c:\\Report1.xps")
+----
+
+*C# の場合:*
+
+----
+report1.Print();
+// 次の行のコメントを解除すると、レポートを印刷する代わりにエクスポートできます:
+//report.Export(OutputFormat.XPS, "c:\\Report1.xps");
+----
+
+== 関連トピック
+
+link:wpf-reporting-understanding-wpf-reporting.html[WPF レポーティング について]
+
+link:wpf-reporting-getting-started-with-wpf-reporting.html[WPF レポートをページに追加]
+
+link:wpf-reporting-align-content-to-the-top-of-a-page.html[コンテンツをページの上側に揃える]
+
+link:wpf-reporting-modify-the-page-layout-of-a-report.html[レポートのページ レイアウトを変更]
+
+link:wpf-reporting-print-page-numbers.html[ページ番号の印刷]
+
+link:wpf-reporting-show-a-print-preview.html[印刷プレビューの表示]

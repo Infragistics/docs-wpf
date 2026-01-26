@@ -1,0 +1,372 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdiagram-configuring-the-caps-of-diagram-connections",
+    "tags": ["Charting","How Do I","Styling","Templating"],
+    "controlName": ["xamDiagram"],
+    "guid": "2ad692f0-7a68-4087-a81a-3bb43c5754f3",  
+    "buildFlags": [],
+    "createdOn": "2014-06-16T09:35:33.587159Z"
+}
+|metadata|
+////
+
+= ダイアグラム接続のキャップの構成 (xamDiagram)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、定義済みのキャップを選択、またはカスタム キャップを適用して、 _xamDiagram_™ コントロールのダイアグラム接続のキャップを構成する方法を説明します。
+
+=== 前提条件
+
+このトピックをより理解するために、以下のトピックを参照することをお勧めします。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-general-overview.html[概要 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールおよびその主要機能の概念的な概要を説明します。
+
+| link:xamdiagram-adding-to-a-page.html[ _xamDiagram_ をページに追加]
+|このトピックでは、 _xamDiagram_ コントロールを WPF アプリケーションに追加する方法を説明します。
+
+| link:xamdiagram-configuring-the-start-and-end-of-diagram-connections.html[ダイアグラム接続の開始および終了の構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ にダイアグラム接続の始点および終点を構成する場合に使用できる 2 つのアプローチ (接続先のノードを指定する方法と、ダイアグラム スペースに接続の始点と終点の座標を指定する方法) について説明します。
+
+| link:xamdiagram-nodes-connection-points.html[ダイアグラム ノードの接続ポイントの構成 ( _xamDiagram_ )]
+|このトピックでは、 _xamDiagram_ コントロールでダイアグラム ノードの接続ポイントを構成する方法を説明します。これは、カスタム ノードを使用する場合や、標準ノードの事前設定された接続ポイントをカスタマイズする場合に必要です。
+
+|====
+
+=== このトピックの内容
+
+このトピックは、以下のセクションで構成されます。
+
+* <<_Ref386477912, 概要 >>
+
+** <<_Ref386477960,ダイアグラム接続キャップの構成の概要>>
+** <<_Ref387492519,定義済み接続キャップの構成の概要表>>
+** <<_CustomConnectionsCapsConfigSummaryChart,カスタム接続キャップの構成の概要表>>
+
+* <<_Ref386478000, 定義済み接続キャップの構成 >>
+
+** <<_Ref386478019,概要>>
+** <<_PropertySettings,プロパティ設定>>
+** <<_Ref386478040,例>>
+
+* <<_Ref386478056, カスタム接続キャップの構成 >>
+
+** <<_Ref386478065,概要>>
+** <<_Ref386478080,プロパティ設定>>
+** <<_Ref386478085,例>>
+
+* <<_Ref386478097, 関連コンテンツ >>
+
+** <<_Ref386478106,トピック>>
+
+[[_Ref386477912]]
+== 概要
+
+[[_Ref386477960]]
+
+=== ダイアグラム接続キャップの構成の概要
+
+ダイアグラム接続のキャップは、始点および終点を示す図形です。デフォルトでは、接続の開始点にキャップはなく、接続端は塗りつぶされた矢印キャップです。
+
+image::images/xamDiagram_Configuring_The_Caps_Of_Diagram_Connections_1.png[]
+
+_xamDiagram_   には、定義済みのキャップの図形が複数あります。(詳細は、 link:xamdiagram-visual-elements-overview.html[視覚要素の概要 ( _xamDiagram)_ ] のトピックを参照してください。) 定義済みのキャップは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcaptype.html[StartCapType] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcaptype.html[EndCapType] プロパティを使用して選択します。これらのプロパティは、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncaptype.html[DiagramConnectionCapType] 列挙体として選択できるキャップ図形を、値として受け取ります。任意の定義済みのキャップ タイプを使用する場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapsize.html[StartCapSize] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapsize.html[EndCapSize] プロパティでキャップ サイズも指定できます。
+
+カスタム キャップを全体的に使用する場合は、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter_members.html[DiagramConnectionCapPresenter] のターゲット タイプのカスタム `スタイル`を link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapstyle.html[StartCapStyle] / link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapstyle.html[EndCapStyle] プロパティで設定できます。このスタイルでは、目的の外観を得るためにカスタムの `ControlTemplate` を指定できます。
+
+[[_Ref387492519]]
+
+=== 定義済み接続キャップの構成の概要表
+
+以下の表は、目的のノード図形とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|キャップ タイプ
+|キャップの図形を指定します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcaptype.html[StartCapType] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcaptype.html[EndCapType] 
+
+|キャップ サイズ
+|キャップ図形のサイズを指定します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapsize.html[StartCapSize] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapsize.html[EndCapSize] 
+
+|キャップの塗りつぶしの色 (塗りつぶされたキャップ タイプのみ)
+|キャップ図形の塗りつぶしの色を指定します。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~fill.html[Fill] 
+
+|====
+
+[[_CustomConnectionsCapsConfigSummaryChart]]
+
+=== カスタム接続キャップの構成の概要表
+
+以下の表は、目的の接続キャップとそれを管理するプロパティ設定のマップを示します。緑で強調表示された項目は、このヘルプでさらに詳しく説明されています。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な項目|詳細|プロパティ
+
+|タイプとサイズ
+|カスタム キャップは、スタイルを使用して構成できます。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapstyle.html[StartCapStyle] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapstyle.html[EndCapStyle] 
+
+|====
+
+[[_Ref386478000]]
+== 定義済み接続キャップの構成
+
+[[_Ref386478019]]
+
+=== 概要
+
+ダイアグラム接続に目的のキャップの図形を設定するには、対応する列挙値を link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcaptype.html[StartCapType]/ link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcaptype.html[EndCapType] プロパティの値として指定します。キャップのサイズを変更するには、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapsize.html[StartCapSize]/ link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapsize.html[EndCapSize] プロパティを設定します。
+
+[[_PropertySettings]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|設定の目的:|使用するプロパティ:|設定値:
+
+|開始キャップの図形
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcaptype.html[StartCapType]
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncaptype.html[DiagramConnectionCapType] 列挙体で使用できるキャップ タイプのうちの目的のキャップ タイプ
+
+|終了キャップの図形
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcaptype.html[EndCapType]
+|`DiagramConnectionCapType` 列挙体で使用できるキャップ タイプのうちの目的のキャップ タイプ
+
+|開始キャップのサイズ
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapsize.html[StartCapSize]
+|目的のサイズ (ピクセル)
+
+|終了キャップのサイズ
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapsize.html[EndCapSize]
+|目的のサイズ (ピクセル)
+
+|キャップの塗りつぶしの色 (塗りつぶされたキャップのみ)
+| link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramitem~fill.html[Fill]
+|目的のブラシ
+
+|====
+
+[[_Ref386478040]]
+
+=== 例
+
+以下のスクリーンショットは、以下のコードを実行した結果、さまざまな link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcaptype.html[EndCapType] と link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapsize.html[EndCapSize] が設定された複数の接続を持つ  _xamDiagram_   がどのように表示されるかを示しています (例では、わかりやすくするために、同じように機能する link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcaptype.html[StartCapType] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapsize.html[StartCapSize] プロパティを設定していません)。
+
+image::images/xamDiagram_Configuring_The_Caps_Of_Diagram_Connections_2.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram >
+      <ig:DiagramConnection StartPosition="20,0"   EndPosition="300,0"   EndCapSize="10,10" EndCapType="None" Content="None" />
+      <ig:DiagramConnection StartPosition="20,20"  EndPosition="300,20"  EndCapSize="10,10" EndCapType="OpenArrow" Content="OpenArrow" />
+      <ig:DiagramConnection StartPosition="20,40"  EndPosition="300,40"  EndCapSize="10,10" EndCapType="ClosedArrow" Content="ClosedArrow"  />
+      <ig:DiagramConnection StartPosition="20,60"  EndPosition="300,60"  EndCapSize="10,10" EndCapType="FilledArrow" Content="FilledArrow" />
+      <ig:DiagramConnection StartPosition="20,80"  EndPosition="300,80"  EndCapSize="10,10" EndCapType="IndentedClosedArrow" Content="IndentedClosedArrow"  />
+      <ig:DiagramConnection StartPosition="20,100" EndPosition="300,100" EndCapSize="10,10" EndCapType="IndentedFilledArrow" Content="IndentedFilledArrow" />
+      <ig:DiagramConnection StartPosition="20,120" EndPosition="300,120" EndCapSize="20,10" EndCapType="OpenDoubleArrow" Content="OpenDoubleArrow"  />
+      <ig:DiagramConnection StartPosition="20,140" EndPosition="300,140" EndCapSize="20,10" EndCapType="ClosedDoubleArrow" Content="ClosedDoubleArrow" />
+      <ig:DiagramConnection StartPosition="20,160" EndPosition="300,160" EndCapSize="20,10" EndCapType="FilledDoubleArrow" Content="FilledDoubleArrow"  />
+      <ig:DiagramConnection StartPosition="20,180" EndPosition="300,180" EndCapSize="10,10" EndCapType="DimensionLine" Content="DimensionLine" />
+      <ig:DiagramConnection StartPosition="20,200" EndPosition="300,200" EndCapSize="10,10" EndCapType="Dot" Content="Dot"  />
+      <ig:DiagramConnection StartPosition="20,220" EndPosition="300,220" EndCapSize="10,10" EndCapType="FilledDot" Content="FilledDot" />
+      <ig:DiagramConnection StartPosition="20,240" EndPosition="300,240" EndCapSize="10,10" EndCapType="Diamond" Content="Diamond"  />
+      <ig:DiagramConnection StartPosition="20,260" EndPosition="300,260" EndCapSize="10,10" EndCapType="FilledDiamond" Content="FilledDiamond" />
+      <ig:DiagramConnection StartPosition="20,280" EndPosition="300,280" EndCapSize="10,10" EndCapType="Square" Content="Square"  />
+      <ig:DiagramConnection StartPosition="20,300" EndPosition="300,300" EndCapSize="10,10" EndCapType="FilledSquare" Content="FilledSquare" />
+      <ig:DiagramConnection StartPosition="20,320" EndPosition="300,320" EndCapSize="10,10" EndCapType="ClosedNoDash" Content="ClosedNoDash"  />
+      <ig:DiagramConnection StartPosition="20,340" EndPosition="300,340" EndCapSize="10,10" EndCapType="FilledNoDash" Content="FilledNoDash" />
+      <ig:DiagramConnection StartPosition="20,360" EndPosition="300,360" EndCapSize="10,10" EndCapType="OpenOneDash" Content="OpenOneDash"  />
+      <ig:DiagramConnection StartPosition="20,380" EndPosition="300,380" EndCapSize="20,10" EndCapType="OpenTwoDash" Content="OpenTwoDash" />
+      <ig:DiagramConnection StartPosition="20,400" EndPosition="300,400" EndCapSize="20,10" EndCapType="OpenThreeDash" Content="OpenThreeDash"  />
+      <ig:DiagramConnection StartPosition="20,420" EndPosition="300,420" EndCapSize="20,10" EndCapType="ClosedOneDash" Content="ClosedOneDash" />
+      <ig:DiagramConnection StartPosition="20,440" EndPosition="300,440" EndCapSize="20,10" EndCapType="ClosedTwoDash" Content="ClosedTwoDash"  />
+      <ig:DiagramConnection StartPosition="20,460" EndPosition="300,460" EndCapSize="20,10" EndCapType="ClosedThreeDash" Content="ClosedThreeDash" />
+      <ig:DiagramConnection StartPosition="20,480" EndPosition="300,480" EndCapSize="20,10" EndCapType="FilledOneDash" Content="FilledOneDash"  />
+      <ig:DiagramConnection StartPosition="20,500" EndPosition="300,500" EndCapSize="20,10" EndCapType="FilledTwoDash" Content="FilledTwoDash" />
+      <ig:DiagramConnection StartPosition="20,520" EndPosition="300,520" EndCapSize="20,10" EndCapType="FilledThreeDash" Content="FilledThreeDash"  />
+      <ig:DiagramConnection StartPosition="20,540" EndPosition="300,540" EndCapSize="10,10" EndCapType="Fork" Content="Fork" />
+</ig:XamDiagram>
+----
+
+[[_Configuring_a_Custom]]
+[[_Ref386478056]]
+== カスタム接続キャップの構成
+
+[[_Ref386478065]]
+
+=== 概要
+
+link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapstyle.html[StartCapStyle] プロパティと link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapstyle.html[EndCapStyle] プロパティを、カスタムの `ControlTemplate` を持つ link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter_members.html[DiagramConnectionCapPresenter] のカスタム スタイルに設定することで、ほぼすべてのキャップを指定できます。また、 link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter_members.html[DiagramConnectionCapPresenter] は、キャップの表示を制御する追加のプロパティ セットも公開します。以下のスクリーンショットは、ノード (1)、接続ポイント (2)、および接続キャップ (3) に関連するこれらのプロパティを示します。
+
+image::images/xamDiagram_Configuring_The_Caps_Of_Diagram_Connections_3.png[]
+
+[[_Ref386478080]]
+
+=== プロパティ設定
+
+以下の表は、任意の構成とそれを管理するプロパティ設定のマップを示します。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定値:
+
+|カスタム キャップの適用
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~startcapstyle.html[DiagramConnection.StartCapStyle] 
+
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnection~endcapstyle.html[DiagramConnection.EndCapStyle] 
+
+|目的のスタイル
+
+|接続線の終了ポイントからのカスタム キャップのオフセットの設定(キャップは接続線に沿って配置されます。)
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter~placementoffset.html[DiagramConnectionCapPresenter.PlacementOffset] 
+
+|目的のオフセット (ピクセル)
+
+|予想される終点からの接続線の終了ポイントのオフセット (新しい終点は、接続線に沿って配置されます)。
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter~lineoffset.html[DiagramConnectionCapPresenter.LineOffset] 
+
+|目的のオフセット (ピクセル)
+
+|接続の角度によるキャップの回転
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter~userotation.html[DiagramConnectionCapPresenter.UseRotation] 
+
+| _“True”_ 
+
+|接続の角度によるキャップの回転防止 (許可しない)
+|
+* link:{ApiPlatform}controls.charts.xamdiagram{ApiVersion}~infragistics.controls.charts.diagramconnectioncappresenter~userotation.html[DiagramConnectionCapPresenter.UseRotation] 
+
+| _False_ 
+
+|====
+
+[[_Ref386478085]]
+
+=== 例
+
+以下のスクリーンショットは、以下のコードを実行した結果、ダイアグラム接続がどのように表示されるかを示しています。
+
+image::images/xamDiagram_Configuring_The_Caps_Of_Diagram_Connections_4.png[]
+
+以下のコードはこの例を実装します。
+
+*XAML の場合:*
+
+[source,xaml]
+----
+<ig:XamDiagram x:Name="Diagram">
+    <ig:DiagramNode Key="Node1"
+                    Content="Start"
+                    Position="100,20" />
+    <ig:DiagramNode Key="Node2"
+                    Content="End"
+                    Position="320,150" />
+    <ig:DiagramConnection x:Name="Connection1"
+                          StartNodeKey="Node1"
+                          EndNodeKey="Node2" 
+                          ConnectionType="Straight">
+        <ig:DiagramConnection.StartCapStyle>
+            <Style TargetType="ig:DiagramConnectionCapPresenter">
+            <!-- ボタンは接続の EndPosition の中央に移動します -->
+                <Setter Property="PlacementOffset"
+                        Value="0" />
+            <!-- ボタンは常に水平方向に配置されます-->
+                <Setter Property="UseRotation"
+                        Value=" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Button Content="Cap"
+                                    Width="30"
+                                    Height="30" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ig:DiagramConnection.StartCapStyle>
+        <ig:DiagramConnection.EndCapStyle>
+            <Style TargetType="ig:DiagramConnectionCapPresenter">
+            <!-- 行の終点を十字の中央にオフセットします -->
+                <Setter Property="LineOffset"
+                        Value="8" />
+                <!-- 十字は幅の中心と接続線でオフセットします -->
+                <Setter Property="PlacementOffset"
+                        Value="8" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Path Stretch="Fill"
+                                  Width="16"
+                                  Height="16"
+                                  Stroke="{Binding Connection.Stroke, RelativeSource={RelativeSource TemplatedParent}}">
+                                  <Path.Data>
+                                      <GeometryGroup>
+                                          <LineGeometry StartPoint="0,0"
+                                                        EndPoint="10,10" />
+                                          <LineGeometry StartPoint="0,10"
+                                                        EndPoint="10,0" />
+                                      </GeometryGroup>
+                                  </Path.Data>
+                              </Path>
+                          </ControlTemplate>
+                      </Setter.Value>
+                  </Setter>
+              </Style>
+        </ig:DiagramConnection.EndCapStyle>
+    </ig:DiagramConnection>
+</ig:XamDiagram>
+----
+
+[[_Ref386478097]]
+== 関連コンテンツ
+
+[[_Ref386478106]]
+
+=== トピック
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdiagram-look-and-feel.html[ダイアグラム項目のルック アンド フィールの構成 ( _xamDiagram_ )]
+|このトピックでは、ルック アンド フィールに関連する _xamDiagram_ コントロールのダイアグラム項目の基本的なプロパティを構成する方法を説明します。
+
+|====

@@ -1,0 +1,24 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-exporting-to-excel",
+    "controlName": ["xamDataGrid"],
+    "tags": [],
+    "guid": "{A82556C2-F0DE-4EED-AEBB-0280AE95543B}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.9989529Z"
+}
+|metadata|
+////
+
+= Excel へエクスポート
+
+
+
+Microsoft® Excel® へのエクスポートについての詳細は、以下のトピックをクリックしてください。
+
+* link:xamdatapresenter-export-a-datapresenter-control-to-excel.html[DataPresenter コントロールを Excel にエクスポート]
+* link:xamdatapresenter-apply-formats-for-exporting.html[エクスポートするフォーマットを適用]
+* link:xamdatapresenter-exclude-datapresenter-settings-when-exporting.html[エクスポート時に DataPresenter 設定を除外]
+* link:xamdatapresenter-handle-exporting-events.html[エクスポート イベントの処理]

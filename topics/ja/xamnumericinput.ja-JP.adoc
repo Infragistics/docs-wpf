@@ -1,0 +1,32 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamnumericinput",
+    "controlName": ["xamInputs"],
+    "tags": ["Editing"],
+    "guid": "95d843d9-fb71-4263-87e0-ac044beafcf4",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:57.0252205Z"
+}
+|metadata|
+////
+
+{XamNumericInputHeader}
+
+= xamNumericInput
+
+このセクションには、コントロールの動作、アプリケーションでコントロールを使用する理由から、コントロールを使用して共通タスクを実現する方法の手順まで、 link:xamnumericinput.html[xamNumericInput]™ コントロールに関する有益な情報が含まれています。
+
+以下のトピックでは、xamNumericInput コントロールに関して必要な情報を扱います。
+
+* link:xamnumericinput-about.html[xamNumericInput について]
+* link:xamnumericinput-using.html[xamNumericInput の使用]
+* link:xamnumericinput-api-overview.html[API の概要]
+
+== 関連トピック
+
+以下は、その他の役立つトピックです。
+
+* link:xaminputs-masks.html[マスク]
+* link:xaminputs-overview-of-the-valueinput-class.html[ValueInput クラスの概要]

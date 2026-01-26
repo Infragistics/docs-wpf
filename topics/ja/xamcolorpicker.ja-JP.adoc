@@ -1,0 +1,44 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcolorpicker",
+    "controlName": ["xamColorPicker"],
+    "tags": [],
+    "guid": "0dffd70c-b315-4ec2-be3c-9451f893cb6f",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.6310976Z"
+}
+|metadata|
+////
+
+= xamColorPicker
+
+== このグループのトピックについて
+
+=== 概要
+
+このグループのトピックでは、 _xamColorPicker_™ コントロールとその使用について説明します。
+
+=== トピック
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamcolorpicker-about-xamcolorpicker.html[xamColorPicker について]
+|このトピックでは、 _xamColorPicker_ コントロールの主要機能を説明します。
+
+| link:xamcolorpicker-adding-xamcolorpicker-to-your-page.html[xamColorPicker をページに追加]
+|このトピックでは、XAML とプロシージャー コードを使用して、ページに _xamColorPicker_ コントロールを追加する方法を説明します。
+
+| link:xamcolorpicker-adding-xamcolorpicker-to-your-grid.html[xamColorPicker をグリッドに追加]
+|このトピックでは、XAML を使用して、データ グリッド コントロールに _xamColorPicker_ コントロールを追加する方法を説明します。
+
+| link:xamcolorpicker-using-xamcolorpicker.html[xamColorPicker の構成]
+|このグループのトピックでは、 _xamColorPicker_ コントロールの主要機能の構成について説明します。
+
+| link:xamcolorpicker-api-overview.html[API の概要]
+|このトピックでは、コントロールに関連する名前空間の一覧と API ヘルプへの参照を提供します。
+
+|====

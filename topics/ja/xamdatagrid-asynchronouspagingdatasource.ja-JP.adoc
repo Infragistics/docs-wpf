@@ -1,0 +1,17 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatagrid-asynchronouspagingdatasource",
+    "tags": ["Data Binding","Sample Data Source","Virtualization"],
+    "controlName": ["xamDataGrid"],
+    "guid": "94a21cc0-826c-407a-942e-ce77881f816e",  
+    "buildFlags": [],
+    "createdOn": "2016-03-09T14:26:24.5599133Z"
+}
+|metadata|
+////
+
+= 非同期ページング データ ソース (xamDataGrid)
+
+include::shared-asynchronouspagingdatasource.ja-JP.adoc[]

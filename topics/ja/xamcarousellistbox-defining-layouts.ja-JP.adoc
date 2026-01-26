@@ -1,0 +1,27 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcarousellistbox-defining-layouts",
+    "controlName": ["xamCarouselListBox"],
+    "tags": ["Data Presentation","Layouts"],
+    "guid": "{0F249959-002D-4F58-B1D5-A15A5F77BB59}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:52.0317595Z"
+}
+|metadata|
+////
+
+= レイアウトの定義
+
+xamCarouselListBox™ にデータをバインドするための手順は完了したので、データを提示する準備は整いました。ただし、データはそれだけで画面から飛び出すことはありません。パターンを作成し、意味のある形式でデータを整理する必要があります。レイアウトの定義は、xamCarouselListBox コントロールの主要な機能です。
+
+フラットなデータ ソースまたは階層的なデータ ソースのいずれであっても、ニーズに合ったいくつかのレイアウトがあります。このセクションでは、最も使用に適したフォーマットでデータを提示するために、xamCarouselListBox のためのレイアウトの定義に必要なすべての知識を提供します。
+
+xamCarouselListBox コントロールを使用したレイアウトの定義に特化したヘルプトピックをご覧になる場合は以下のリンクをクリックしてください。
+
+* link:xamcarousel-enabling-right-to-left-support.html[右から左へのサポートを有効にする]
+* link:xamcarousellistbox-limiting-the-number-of-items-on-xamcarousellistboxs-path.html[xamCarouselListBox のパスで項目数を制限]
+* link:xamcarousellistbox-making-the-xamcarousellistboxs-path-continuous.html[xamCarouselListBox のパスを継続]
+* link:xamcarousellistbox-setting-padding-on-xamcarousellistboxs-path.html[xamCarouselListBox のパスでパディングを設定]
+* link:xamcarousellistbox-working-with-the-itemtemplate.html[ItemTemplate での作業]

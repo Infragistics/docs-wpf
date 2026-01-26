@@ -1,0 +1,28 @@
+﻿= What's New in 2019 Volume 1
+
+This topic gives a brief overview of the new controls and features introduced in the {ProductName} 2019 Volume 1 Release. The main features are listed below and the following sections explain them in details.
+
+toc::[]
+
+=== .NET Core 3 Support
+
+A new environment to use Infragistics controls is now available! As of version 2019.1, our assemblies now have support for the .NET Core 3.0 environment through NuGet.
+
+On release, we will be supporting the release candidate version for .NET Core 3.0, but we will be synchronizing our environment with Microsoft's release schedule so that we will support the full release of .NET Core 3.0 when it releases. For some advantages of .NET Core 3.0, see link:https://msdn.microsoft.com/en-us/magazine/mt848631.aspx[this article on Microsoft's site].
+
+You can read about configuring your environment to use Infragistics NuGet packages at our link:nuget-feeds.html[NuGet Feed] and link:nuget-packages.html[NuGet Packages] topics.
+
+== {SpreadsheetName} Features
+=== Chart Support
+
+image:images/charts.png[]
+
+A popular Excel feature is now here! Visualize your data in ways that create maximum impact on your target audience. The new SpreadsheetChartAdapter class has been added and integrated into the {SpreadsheetName} making this sought after experience all the more easier to configure. In addition, the chart adapters are complemented by our Excel Engine, where link:excelengine-workingwithcharts.html[chart support was added in volume 18.2]. 
+
+There are over 35 chart types supported by the Spreadsheet ChartAdapters including, Line, Area, Column, and Doughnut.
+
+For more information about the Excel Charts in the {SpreadsheetName}, please see the link:spreadsheet-adding-chart.html[Displaying Charts in the {SpreadsheetName} Control] topic.
+
+=== Combination Charts
+A combination chart is a chart that combines two or more chart types in a single chart. 
+image:images/whats_new_combination_charts.png[]

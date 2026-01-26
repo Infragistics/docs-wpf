@@ -1,0 +1,53 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatatree-using-xamdatatree",
+    "controlName": ["xamDataTree"],
+    "tags": ["Getting Started"],
+    "guid": "e36e8f57-4db3-4f94-ab56-cbb7d20c3f82",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.8691105Z"
+}
+|metadata|
+////
+
+= xamDataTree の構成
+
+このセクションでは、xamDataTree™ コントロールの様々な機能を使用するために役立つ、重要な概念やタスク ベースの情報について説明します。
+
+link:xamdatatree-xamdatatree-activation.html[アクティブ化]
+
+このトピックでは、xamDataTree 内でアクティブ化を実装する方法と、この機能を有効にする手順について説明します。
+
+link:xamdatatree-active-data-item.html[アクティブなデータ アイテムの構成]
+
+このトピックは、Model-View-ViewModel (MVVM) アーキテクチャを使用して  _xamDataTree_   のアクティブなデータ アイテムを識別し操作する方法を説明します。
+
+link:xamdatatree-xamdatatree-check-boxes.html[チェックボックスの表示状態の構成]
+
+このトピックでは、xamDataTree でチェックボックスを有効にする方法を示します。
+
+link:xamdatatree-expanded-and-collapsed-xamdatatree-nodes.html[ノードの展開と縮小状態の構成]
+
+このトピックでは、すべてのノードを展開する方法と、展開/縮小に関連したテンプレートの設定方法を示します。
+
+link:xamdatatree-xamdatatree-drag-and-drop.html[ドラッグ アンド ドロップの構成]
+
+このトピックは、xamDataTree コントロールでノードをドラッグ アンド ドロップする方法を示します。
+
+link:xamdatatree-xamdatatree-editing.html[編集の構成]
+
+このトピックでは、xamDataTree コントロールでのノードの編集方法について説明します。
+
+link:xamdatatree-xamdatatree-node-connectors.html[ノード コネクターの表示状態の構成]
+
+このトピックでは、xamDataTree コントロールでノード コネクタを有効にする方法を示します。
+
+link:xamdatatree-xamdatatree-node-layouts.html[ノード レイアウトの構成]
+
+このトピックでは、xamDataTree コントロールでのノード レイアウトの実装方法について説明します。
+
+link:xamdatatree-xamdatatree-selection.html[選択]
+
+このトピックでは、xamDataTree コントロール内での選択の実装方法について説明します。

@@ -1,0 +1,118 @@
+﻿////
+|metadata|
+{
+    "name": "xammonthcalendar-getting-started-with-xammonthcalendar",
+    "controlName": ["xamMonthCalendar"],
+    "tags": ["Getting Started"],
+    "guid": "{5A9F23E0-CD53-4A9D-818B-FCEE8633A3CF}",
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.9851501Z"
+}
+|metadata|
+////
+
+= xamMonthCalendar をページに追加
+
+== 始める前に
+
+Microsoft® Windows® Presentation Foundation のコントロールと同じパターンを使用して xamMonthCalendar™ を Window に追加できます。このパターンは、Window のメイン コンテンツとしてレイアウト コンテナーを使用し、レイアウト コンテナーの Children コレクションにコントロールを追加することが必要となります。コード ビハインドから参照できるように、XAML のレイアウト コンテナーに名前を付けることが重要です。
+
+== 達成すること
+
+xamMonthCalendar をページに追加します。
+
+== 次の手順を実行します
+
+[start=1]
+. Microsoft® Windows® Presentation Foundation Window プロジェクトを作成します。
+[start=2]
+. 以下の NuGet パッケージへの参照を追加します。
+
+** Infragistics.WPF.Editors
+
++
+NuGet フィードのセットアップと NuGet パッケージの追加の詳細については、link:nuget-feeds.html[NuGet フィード] ドキュメントを参照してください。
+
+[start=3]
+. Window でデフォルトのグリッド レイアウト パネルに名前を付け、コード ビハインドでそれを参照できます。
+
+*XAML の場合:*
+
+----
+<Grid Name="layoutRoot"> 
+</Grid>
+----
+
+[start=4]
+. コード ビハインドを使用して xamMonthCalendar を追加する場合、Window の Loaded イベントにイベント ハンドラーを接続します。
+
+*XAML の場合:*
+
+----
+<Window ... Loaded="Window_Loaded">
+----
+
+[start=5]
+. using/Import のディレクティブを配置すると、メンバーの完全に記述された名前を入力する必要がなくなります。
+
+*XAML の場合:*
+
+----
+xmlns:igEditors="http://infragistics.com/Editors"
+----
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Windows.Editors
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Windows.Editors;
+----
+
+[start=6]
+. xamMonthCalendar コントロールを作成して、これをメイン グリッドに追加します。
+
+*XAML の場合:*
+
+----
+<igEditors:XamMonthCalendar Name="xamMonthCalendar1"> 
+</igEditors:XamMonthCalendar>
+----
+
+*Visual Basic の場合:*
+
+----
+Private Sub Window_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs) 
+    Private xamMonthCalendar1 As XamMonthCalendar    
+    xamMonthCalendar1 = New XamMonthCalendar()
+    Me.layoutRoot.Children.Add(xamMonthCalendar1)
+End Sub
+----
+
+*C# の場合:*
+
+----
+private void Window_Loaded(object sender, RoutedEventArgs e) 
+{
+    private XamMonthCalendar xamMonthCalendar1;
+    xamMonthCalendar1 = new XamMonthCalendar();
+    this.layoutRoot.Children.Add(xamMonthCalendar1);
+}
+----
+
+[start=7]
+. プロジェクトを実行します。
+
+以下のスクリーンショットのような Window が表示されます。
+
+image::images/xamMonthCalendar_Adding_xamMonthCalendar_to_a_Window_Using_XAML_01.png[]
+
+== 関連トピック
+
+link:xammonthcalendar-about-xammonthcalendar.html[xamMonthCalendar について]
+
+link:xammonthcalendar-using-xammonthcalendar.html[xamMonthCalendar の使用]

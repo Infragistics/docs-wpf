@@ -1,0 +1,189 @@
+﻿////
+
+|metadata|
+{
+    "name": "external-sorting-filtering-grouping-summaries-overview-xamdatagrid",
+    "controlName": ["xamDataGrid"],
+    "tags": ["Calculations","Filtering","Grids","Grouping","Sorting"],
+    "guid": "fbf93767-afe9-4760-9b77-5c932e2b1ea3",  
+    "buildFlags": [],
+    "createdOn": "2012-09-12T11:48:33.2286081Z"
+}
+|metadata|
+////
+
+= 外部ソートフィルタリング グループと集計の概要
+
+== トピックの概要
+
+=== 目的
+
+このトピックは、外部ソート、フィルタリング、グループ化、集計を含む link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.xamdatagrid_members.html[XamDataGrid] の機能の概要について説明します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:wpf-about-the-data-presenter-family.html[DataPresenter コントロールについて]
+|Data Presenter Family は、{ProductName} データ主導のコントロールのグループです。
+
+| link:xamdatagrid-understanding-xamdatagrid.html[xamDataGrid について]
+|xamDataGrid™ コントロールは、GridView を使用して、データを列と行に配置します。
+
+| link:xamdatagrid-using-xamdatagrid.html[xamDataGrid の使用]
+|このセクションは、xamDataGrid コントロールの様々な特徴や機能を効果的に使用するための重要なタスク ベースの情報について説明します。
+
+| link:xamdatagrid-sorting.html[並べ替え]
+|xamDataGrid コントロールを使用した並べ替え機能について説明するトピックへのリンクを提供します。
+
+| link:xamdatagrid-grouping.html[グループ化]
+|xamDataGrid コントロールを使用したグループ化機能について説明するトピックへのリンクを提供します。
+
+|====
+
+== はじめに
+
+=== xamDataGrid の外部ソート、フィルタリング、グループ化、および集計
+
+XamDataGrid は、外部での並べ替え、フィルタリング、グループ化、集計機能を含み、操作を外部ソースへオフロードできます。デフォルトでは、データ プレゼンターによって並べ替え、フィルタリング、グループ化、集計計算が内部で実行されます。内部処理でデータ プレゼンターがこれらの処理を独自のオブジェクトモデルおよび UI と統合することが許可されている場合でも、これらの処理を外部で実行する利点もあります。
+
+[options="header", cols="a,a"]
+|====
+|ケース|説明
+
+|メモリ割り当ての時間へのパフォーマンスの影響を防止します。
+|並べ替え、フィルタリング、グループ化、集計計算の内部処理では、データ プレゼンターが `DataRecord` オブジェクトを演算の一部であるデータ項目のすべてに割り当てをします。 
+
+これは、データ レコード オブジェクトの割り当て処理によってメモリ割り当ての時間と同様に初期 CPU 時間でパフォーマンスの影響があります。 
+
+外部処理の利点は、パフォーマンスがより向上することです。
+
+|ネイティブ XamDataGrid UI で外部データ ソースの使用
+|外部プロセスでデータ ソースは ICollectionView を継承します。ビューで実行される並べ替え、フィルタリング、グループ化操作は、データ プレゼンターの UI に反映されます。 
+
+データ プレゼンターを介した並べ替えまたはグループ化条件への変更は、基になる link:http://msdn.microsoft.com/ja-jp/library/ms644316[ICollectionView] にも反映されます。
+
+|`ICollectionView` インスタンスを他の View コントロールへバインド
+|同じ `ICollectionView` インスタンスを他のビュー コントロールへバインドします。これは、データ プレゼンター UI を介して適用される並べ替え、フィルタリング、グループ化条件に反映されます。
+
+|データ プレゼンターは、 link:http://msdn.microsoft.com/ja-jp/library/system.componentmodel.icollectionview.sortdescriptions[SortDescriptions] および (または) link:http://msdn.microsoft.com/ja-jp/library/system.componentmodel.icollectionview.groupdescriptions[GroupDescriptions] が外部で変更されたときに link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayout~sortedfields.html[SortedFields] を同期します。
+|`ICollectionView` の `SortDescription` および `GroupDescriptions` が外部で変更されると、データ プレゼンターに変更が通知され、`SortedFields` コレクションに変更を反映するために同期されます。 
+
+注: 
+
+[NOTE] 
+
+==== 
+
+ルート フィールドのレイアウトのみが外部処理をサポートします。子フィールドレイアウトに複数のコレクションビューがあるため、子フィールド レイアウトはサポートされません。 
+
+====
+
+|操作をリモートで実行
+|サーバー上での並べ替え、フィルタリング、グループ化、集計計算を実行します。データ プレゼンターの機能は、結果のみを表示し、その UI は、サーバーでの並べ替え、フィルタリング、グループ化、および集計のコメントの生成に使用されます。
+
+|====
+
+== 主要機能の概要
+
+=== 主要機能の概要図
+
+以下のテーブルは、xamDataGrid 外部ソート、フィルタリング、グループ化、集計の主要機能の概要です。
+
+[options="header", cols="a,a"]
+|====
+|機能|解説
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~sortevaluationmode.html[SortEvaluationMode]
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings_members.html[FieldLayoutSettings] の `SortEvaluationMode` プロパティ。この列挙体には以下のオプションがあります。 
+
+* _Default_ 
+
+* _Auto_ 
+
+* _Manual_ 
+
+* _UseCollectinView_ 
+
+外部ソートを使用するには、 _UseCollectionView_ オプションを設定してください。外部ソートについての詳細は、 link:xamdatagrid-external-sorting.html[外部ソート]を参照してください。
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~filterevaluationmode.html[FilterEvaluationMode]
+|FieldLayoutSettings の `FilterEvaluationMode` プロパティ。この列挙体には以下のオプションがあります。 
+
+* _Default_ 
+
+* _Auto_ 
+
+* _Manual_ 
+
+* _UseCollectinView_ 
+
+外部フィルタリングを使用するには、 _UseCollectionView_ オプションを設定します。外部フィルタリングについての詳細は、 link:xamdatagrid-external-filtering.html[外部のフィルタリング]を参照してください。
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~groupbyevaluationmode.html[GroupByEvaluationMode]
+|FieldLayoutSettings の `GroupByEvaluationMode` プロパティ。この列挙体には以下のオプションがあります。 
+
+* _Default_ 
+
+* _Auto_ 
+
+* _UseCollectinView_ 
+
+外部グルーピングを使用するには、 _UseCollectionView_ オプションを設定します。外部グルーピングについての詳細は、 link:xamdatagrid-external-grouping.html[外部でグルーピング]を参照してください。
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldlayoutsettings~summaryevaluationmode.html[SummaryEvaluationMode]
+|FieldLayoutSettings の `SummaryEvaluationMode` プロパティ。この列挙体には以下のオプションがあります。 
+
+* _Default_ 
+
+* _Auto_ 
+
+* _Manual_ 
+
+* _UseLINQ_ 
+
+外部集計を使用するには、 _UseLINQ_ オプションを設定します。詳細については、 link:xamdatagrid-external-summary-calculations.html[外部集計計算]を参照してください。
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase~querysummaryresult_ev.html[QuerySummaryResult]
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.datapresenterbase_members.html[DataPresenterBase] の `QuerySummaryResult` イベント。このイベントは、データ プレゼンターが集計結果を計算するときに発生されます。 
+
+詳細については、 link:xamdatagrid-external-summary-calculations.html[外部集計計算]を参照してください。
+
+| link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.events.querysummaryresulteventargs_members.html[QuerySummaryResultEventArgs]
+|`QuerySummaryResultEventArgs` クラスは以下のプロパティおよびメソッドを公開します。 
+
+* _概要_ 
+
+* _SetSummaryValue_ 
+
+詳細については、 link:xamdatagrid-external-summary-calculations.html[外部集計計算]を参照してください。
+
+|====
+
+== 関連コンテンツ
+
+=== トピック
+
+このトピックについては、以下のトピックも参照してください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamdatagrid-external-sorting.html[外部ソート]
+|このトピックは、 _XamDataGrid_ コントロールのレコードの外部処理を説明します。
+
+| link:xamdatagrid-external-filtering.html[外部のフィルタリング]
+|このトピックは、 _XamDataGrid_ コントロールのレコードのフィルタリング処理を説明します。
+
+| link:xamdatagrid-external-grouping.html[外部でグルーピング]
+|このトピックは、 _XamDataGrid_ で外部グルーピングを使用する方法について説明します。
+
+| link:xamdatagrid-external-summary-calculations.html[外部集計計算]
+|このトピックは、 _xamDataGrid_ の外部集計計算機能について説明します。
+
+|====

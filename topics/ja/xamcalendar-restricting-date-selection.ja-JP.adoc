@@ -1,0 +1,93 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamcalendar-restricting-date-selection",
+    "controlName": ["xamCalendar"],
+    "tags": ["Getting Started","How Do I","Navigation","Selection"],
+    "guid": "3aa6dce2-0168-4f19-8959-7a973e27d23a",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:54.6061275Z"
+}
+|metadata|
+////
+
+= 日付選択制限を実装
+
+このトピックは、 link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors.xamcalendar.html[xamCalendar] コントロールで日付選択制限をエンドユーザーに対して実装する方法を、コード例と共に説明します。
+
+== 概要
+
+xamCalendar コントロールは、ユーザーが使用可能な日付選択の選択肢を制限するために 3 つの異なる方法を提供します。週の特定の日、特定の日の範囲、または指定された最も早い/最も遅い日以外の日をユーザーが選択しないように指定できます。
+
+== 日付選択制限のプロパティ
+
+日付選択制限を実装するために使用できるプロパティを以下に説明します。必要に応じて個別にまたは結合して使用できます。
+
+* link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors.xamcalendar~mindate.html[MinDate] プロパティと link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors.xamcalendar~maxdate.html[MaxDate] プロパティ - ユーザーが指定した日範囲外の日を選択しないように指定します
+* link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors.xamcalendar~disableddates.html[DisabledDates] プロパティ - DateRange オブジェクトを DisabledDates コレクションに追加すると、ユーザーが特定の日または日の範囲を選択しないように指定できます
+* link:{ApiPlatform}controls.editors.xamcalendar{ApiVersion}~infragistics.controls.editors.xamcalendar~disableddaysofweek.html[DisabledDaysOfWeek] プロパティ - ユーザーが週の特定の日を選択しないように指定します
+
+== コード例
+
+以下のコードは、上記の 3 つのプロパティすべての使用を組み合わせることによって選択可能な日を制限する方法を示します。
+
+*XAML の場合:*
+
+----
+<ig:XamCalendar x:Name="myCalendar"
+        MinDate="1/1/2001"
+        MaxDate="12/31/2020"
+        DisabledDaysOfWeekVisibility="Visible"
+        DisabledDaysOfWeek="Sunday, Saturday">
+        <ig:XamCalendar.DisabledDates>
+                <ig:DateRange Start="1/1/2010" End="12/31/2010"/>
+        </ig:XamCalendar.DisabledDates>
+</ig:XamCalendar>
+----
+
+あるいは、コード ビハインドでこれらのプロパティを設定できます。
+
+*Visual Basic の場合:*
+
+----
+Imports Infragistics.Controls
+...
+' エンドユーザーが週末を選択できないようにします
+myCalendar.DisabledDaysOfWeek = _
+    DayOfWeekFlags.Saturday Or DayOfWeekFlags.Sunday
+'エンドユーザーが
+'1/1/2001 以前 12/31/2012 以降の日を選択しないようにします
+myCalendar.MinDate = New DateTime(2001, 1, 1)
+myCalendar.MaxDate = New DateTime(2012, 12, 31)
+'エンドユーザーが 2010年 から日を選択しないようにします
+Dim year2010Range As _
+    New DateRange(New DateTime(2010, 1, 1), New DateTime(2010, 12, 31))
+myCalendar.DisabledDates.Add(year2010Range)
+...
+----
+
+*C# の場合:*
+
+----
+using Infragistics.Controls;
+...
+// エンドユーザーが週末を選択できないようにします
+myCalendar.DisabledDaysOfWeek =
+    DayOfWeekFlags.Saturday | DayOfWeekFlags.Sunday;
+//エンドユーザーが
+//1/1/2001 以前 12/31/2012 以降の日を選択しないようにします
+myCalendar.MinDate = new DateTime(2001, 1, 1);
+myCalendar.MaxDate = new DateTime(2012, 12, 31);
+//エンドユーザーが 2010年 から日を選択しないようにします
+DateRange year2010Range =
+    new DateRange(new DateTime(2010, 1, 1), new DateTime(2010, 12, 31));
+myCalendar.DisabledDates.Add(year2010Range);
+...
+----
+
+== 関連トピック
+
+link:xamcalendar-about.html[xamCalendar について]
+
+link:xamcalendar-using.html[xamCalendar の使用]

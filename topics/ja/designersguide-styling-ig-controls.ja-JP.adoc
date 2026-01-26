@@ -1,0 +1,86 @@
+﻿////
+
+|metadata|
+{
+    "name": "designersguide-styling-ig-controls",
+    "controlName": [],
+    "tags": ["FAQ","Getting Started","How Do I","Styling","Templating"],
+    "guid": "{F955029C-52C1-4C58-88A4-040C8C1241E6}",  
+    "buildFlags": ["sl","wpf","win-phone"],
+    "createdOn": "2012-01-30T16:46:26.9418012Z"
+}
+|metadata|
+////
+
+= Infragistics コントロールのスタイル
+
+== 始める前に
+
+{ProductName} コントロールのすべての特徴は、アプリケーション全体で整合性を維持するためにスタイルおよびカスタマイズできます。すべてのコントロールには個々にスタイルプロパティおよびターゲットタイプが含まれます。詳細については、各コントロールの「スタイリングポイント」を参照してください。コントロールのスタイリングは同じパターンに従います。たとえば、このトピックは Style プロパティを設定することによって、{LinearGaugeName}™ の前景をスタイルする方法を説明します。
+
+== 達成すること
+
+この詳細なガイドで手順を完了した後は、{LinearGaugeName} をスタイルするために使用される Style リソースを作成したことになります。
+
+== 次の手順を実行します
+
+[start=1]
+. ユーザー コントロールのリソース ディクショナリのタグを追加します。
+
+*XAML の場合:*
+[source,xaml]
+----
+<UserControl.Resources>
+   <!-- TODO: ここで Style を作成します -->
+</UserControl.Resources>
+----
+
+[start=2]
+. Style オブジェクトをリソース ディクショナリに追加します。以下のプロパティを設定します。
+
+** x:Key -- DisplayCustomStyle
+** TargetType -- ig:{LinearGaugeName}
+
+*XAML の場合:*
+[source,xaml]
+----
+<Style x:Key="DisplayCustomStyle" TargetType="ig:{LinearGaugeName}">     
+   <!-- setter を追加します -->
+</Style>
+----
+
+[start=3]
+. Setter 要素を Style に追加します。以下のプロパティを設定します。
+
+** Property -– Foreground
+** Value -– DodgerBlue
+
+*XAML の場合:*
+[source,xaml]
+----
+<Setter Property="Foreground" Value="DodgerBlue" />
+----
+
+[start=4]
+. {LinearGaugeName} コントロール内で Style プロパティを開発者が作成した Style に設定します。
+
+*XAML の場合:*
+[source,xaml]
+----
+<Grid x:Name="layoutRoot" >
+    <ig:{LinearGaugeName} x:Name="{LinearGaugeName}1"
+                          Margin="5"
+                          FontSize="16"
+                          Style="{StaticResource DisplayCustomStyle}"
+                          Height="150" />
+</Grid>
+----
+
+[start=5]
+. アプリケーションを保存して実行します。
+
+image::images/Designers_Guide_Styling_Infragistics_Controls_01.png[]
+
+== 関連トピック:
+
+link:designers-guide-using-themes.html[テーマの使用]

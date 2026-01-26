@@ -1,0 +1,60 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamdatapresenter-enable-record-filtering",
+    "controlName": ["xamDataPresenter"],
+    "tags": ["Filtering","How Do I"],
+    "guid": "{A57CCE55-DCEB-445C-928F-F2B3D76D3204}",  
+    "buildFlags": [],
+    "createdOn": "2012-01-30T19:39:53.1819895Z"
+}
+|metadata|
+////
+
+= レコード フィルタリングを有効にする
+
+link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings.html[FieldSettings] オブジェクトの link:{ApiPlatform}datapresenter{ApiVersion}~infragistics.windows.datapresenter.fieldsettings~allowrecordfiltering.html[AllowRecordFiltering] プロパティを True に設定することによって、DataPresenter コントロールのレコード フィルタリングを有効にできます。コントロールのすべてのフィールドでレコード フィルタリングを有効にするためにコントロール レベルで AllowRecordFiltering プロパティを設定するか、特定のフィールドでレコード フィルタリングを有効にするためにフィールド レベルで AllowRecordFiltering プロパティを設定できます。
+
+[NOTE]
+====
+*注:* xamDataCarousel コントロールではフィルター レコードとフィルター アイコンを使用できません。ただし、XAML またはプロシージャ コードでフィルター条件を xamDataCarousel に追加してデータをフィルターすることができます。
+====
+
+image::images/xamDataPresenter_Enable_Record_Filtering.png[]
+
+以下のコード例は、レコード フィルタリングを有効にする方法を示します。例のコードが xamDataPresenter コントロールを使用しているとしても、xamDataGrid コントロールを代わりに使用できます。
+
+*XAML の場合:*
+
+----
+<igDP:XamDataPresenter Name="xamDataPresenter1">
+    <igDP:XamDataPresenter.FieldSettings>
+        <igDP:FieldSettings AllowRecordFiltering="True" />
+    </igDP:XamDataPresenter.FieldSettings>
+</igDP:XamDataPresenter>
+----
+
+*Visual Basic の場合:*
+
+----
+Me.xamDataPresenter1.FieldSettings.AllowRecordFiltering = True
+----
+
+*C# の場合:*
+
+----
+this.xamDataPresenter1.FieldSettings.AllowRecordFiltering = true;
+----
+
+== 関連トピック
+
+link:xamdatapresenter-about-record-filtering.html[レコード フィルタリングについて]
+
+link:xamdatapresenter-enable-excelstyle-record-filtering.html[Excel スタイル レコード フィルタリングを有効にする]
+
+link:xamdatapresenter-add-filter-conditions.html[フィルター条件の追加]
+
+link:xamdatapresenter-modify-the-list-of-operators.html[演算子のリストの修正]
+
+link:xamdatapresenter-modify-the-look-of-filtered-records.html[フィルターされたレコードの外観を修正]

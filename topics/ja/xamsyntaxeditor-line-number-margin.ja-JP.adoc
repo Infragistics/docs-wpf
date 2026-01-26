@@ -1,0 +1,182 @@
+﻿////
+
+|metadata|
+{
+    "name": "xamsyntaxeditor-line-number-margin",
+    "controlName": ["xamSyntaxEditor"],
+    "tags": ["Formatting","Layouts"],
+    "guid": "11be2d07-97b6-4d80-b539-ca25adbfa474",  
+    "buildFlags": [],
+    "createdOn": "2016-05-25T18:21:59.4393965Z"
+}
+|metadata|
+////
+
+= 行番号のマージン (xamSyntaxEditor)
+
+== トピックの概要
+
+=== 目的
+
+このトピックでは、 _xamSyntaxEditor™_   コントロールの組み込み行番号マージンの使用方法と構成方法を解説します。
+
+=== 前提条件
+
+このトピックの本題に入る前に、以下のトピックをお読みください。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-overview.html[ _xamSyntaxEditor_ の概要]
+|このトピックでは、 _xamSyntaxEditor の_ 機能をわかりやすく解説します。
+
+|====
+
+=== このトピックの内容
+
+このトピックは以下のセクションからなります。
+
+* <<_Ref331153146, 概要 >>
+* <<_Ref331153153, 行番号マージンの構成の要旨 >>
+** <<_Ref331153161,表示／非表示>>
+** <<_Ref331153172,色の変更>>
+** <<_Ref331153181,フォントの変更>>
+
+* <<_Ref331153189, 関連コンテンツ >>
+
+[[_Ref331153146]]
+== 概要
+
+=== 行番号マージンの構成の要旨
+
+行番号マージンは  _xamSyntaxEditor_   の組み込みマージンであり _;_  デフォルトで有効です。編集領域の左端が行番号マージンであり、ここにそれぞれの行番号を表示します。行番号マージンは、以下にまとめたプロパティで各種の要素を構成できます。
+
+[[_Ref331153153]]
+== 行番号マージンの構成の要旨
+
+=== 構成の要旨表
+
+以下の表は、行番号マージンの構成可能な要素です。このメソッドについては、表の後の解説も参照してください。
+
+[options="header", cols="a,a,a"]
+|====
+|構成可能な要素|解説|プロパティ
+
+|<<_Ref331153172,色の変更>>
+|行番号マージンに使用する色を構成します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginbackground.html[LineNumberMarginBackground] 
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginforeground.html[LineNumberMarginForeground] 
+
+|<<_Ref331153181,フォントの変更>>
+|行番号マージンに使用するフォントとスタイルを構成します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginfontfamily.html[LineNumberMarginFontFamily] 
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginfontstyle.html[LineNumberMarginFontStyle] 
+
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginfontweight.html[LineNumberMarginFontWeight] 
+
+|<<_Ref331153161,表示／非表示>>
+|行番号マージンを表示するか、非表示にするかを構成します。
+|
+* link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~islinenumbermarginvisible.html[IsLineNumberMarginVisible] 
+
+|====
+
+[[_Ref331153161]]
+== 表示／非表示
+
+=== 概要
+
+行番号マージンを表示するか、非表示にするかを構成します。
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|行番号マージンを表示にするか、非表示にします。
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~islinenumbermarginvisible.html[IsLineNumberMarginVisible]
+|
+* True (表示) 
+
+* False (非表示) 
+
+|====
+
+[[_Ref331153172]]
+== 色の変更
+
+=== 概要
+
+行番号マージンに使用する色を構成します。
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|前景色を変更
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginforeground.html[LineNumberMarginForeground]
+|新しい前景ブラシ
+
+|背景色を変更
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginbackground.html[LineNumberMarginBackground]
+|新しい背景ブラシ
+
+|====
+
+[[_Ref331153181]]
+== フォントの変更
+
+=== 概要
+
+行番号マージンに使用するフォントとスタイルを構成します。
+
+=== プロパティ設定
+
+以下の表では、目的の構成をプロパティ設定にマップしています。
+
+[options="header", cols="a,a,a"]
+|====
+|目的:|使用するプロパティ:|設定の選択肢:
+
+|行番号マージンのフォント ファミリーを変更
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginfontfamily.html[LineNumberMarginFontFamily]
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.media.fontfamily.aspx[FontFamily] クラスのインスタンス
+
+|行番号マージンのフォント スタイルを変更
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginfontstyle.html[LineNumberMarginFontStyle]
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.fontstyles.aspx[FontStyles] クラスのフィールド
+
+|行番号フォントの重みを変更
+| link:{ApiPlatform}controls.editors.xamsyntaxeditor{ApiVersion}~infragistics.controls.editors.xamsyntaxeditor~linenumbermarginfontweight.html[LineNumberMarginFontWeight]
+| link:http://msdn.microsoft.com/ja-jp/library/system.windows.fontweights.aspx[FontWeights] クラスのフィールド
+
+|====
+
+[[_Ref331153189]]
+
+== 関連コンテンツ
+
+以下のトピックでは、このトピックに関連する追加情報を提供しています。
+
+[options="header", cols="a,a"]
+|====
+|トピック|目的
+
+| link:xamsyntaxeditor-ruler-margin.html[ルーラー マージン]
+|このトピックでは、ルーラー マージンの作成方法を解説します。
+| link:xamsyntaxeditor-custom-margins.html[カスタム マージン]
+|このトピックでは、カスタム マージンの作成方法を解説します。
+
+|====
