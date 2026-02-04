@@ -79,7 +79,7 @@
 
 |====
 
-アセンブリ名が変更されました。プレフィックス *Infragistics3.Wpf* が *InfragisticsWPF3* に変更されました。また .NET 4.0 アセンブリは *{ApiPlatform}* プレフィックスを使用しています。詳細は link:developers-guide-upgrading-your-project.html[「アップグレード」]セクションを参照してください。
+アセンブリ名が変更されました。プレフィックス *Infragistics3.Wpf* が *InfragisticsWPF3* に変更されました。また .NET 4.0 アセンブリは *{ApiPlatform}* プレフィックスを使用しています。
 
 [[VSMSupport]]
 

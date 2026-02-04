@@ -174,5 +174,4 @@ At this time, you can use the log file to identify what caused the error and try
 
 == Related Topics
 
-* link:developers-guide-upgrading-your-project.html[Upgrading Your Projects]
 * link:developers-guide-restoring-version-upgrade-utility-backup-undoing-upgrade.html[Restoring Version Upgrade Utility Backup Undoing Upgrade]

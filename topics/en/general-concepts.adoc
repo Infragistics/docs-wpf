@@ -16,7 +16,6 @@
 In this section you will find topics describing key concepts and principles. Click on the links below for information on general concepts that you'll need to know when using the {ProductName} controls:
 
 * link:generalconcepts-about-ig-commanding.html[About Infragistics Commanding]
-* link:generalconcepts-assemblies.html[Assemblies]
 * link:developers-guide-customizing-resource-strings.html[Customizing Resource Strings]
 * link:generalconcepts-customizing-resource-strings-for-wpf-only-control.html[Customizing Resource Strings for WPF Only Controls]
 * link:developers-guide-ui-automation-overview.html[UI Automation Overview]
@@ -30,4 +29,3 @@ ifdef::wpf[]
 endif::wpf[]
 
 * link:generalconcepts-general-programming-concepts.html[General Programming Concepts]
-* link:developers-guide-upgrading-your-project.html[Upgrading Your Projects]

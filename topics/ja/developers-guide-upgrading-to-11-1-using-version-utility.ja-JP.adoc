@@ -175,5 +175,4 @@ image::images/VU_Finish_Failed.png[]
 
 == 関連トピック
 
-* link:developers-guide-upgrading-your-project.html[プロジェクトのアップグレード]
 * link:developers-guide-restoring-version-upgrade-utility-backup-undoing-upgrade.html[バージョン アップグレード ユーティリティ バックアップの復元]

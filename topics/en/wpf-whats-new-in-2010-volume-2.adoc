@@ -79,7 +79,7 @@ These are the folder locations for the two versions of the control assemblies:
 
 |====
 
-The assemblies names have been changed - the prefix *Infragistics3.Wpf* is now changed to *InfragisticsWPF3*. Also the .NET 4.0 assemblies are using the *{ApiPlatform}* prefix. For more information see the link:developers-guide-upgrading-your-project.html[Upgrading section].
+The assemblies names have been changed - the prefix *Infragistics3.Wpf* is now changed to *InfragisticsWPF3*. Also the .NET 4.0 assemblies are using the *{ApiPlatform}* prefix.
 
 [[VSMSupport]]
 
