@@ -4,6 +4,7 @@
 
 This topic contains the following sections:
 
+* <<Ref_25_2_59, 25.2.107 (March 2026)>>
 * <<Ref_25_2_59, 25.2.59 (December 2025)>>
 * <<Ref_25_2_45, 25.2.45 (November 2025)>>
 * <<Ref_25_1_117, 25.1.117 (October 2025)>>
@@ -18,6 +19,77 @@ This topic contains the following sections:
 * <<Ref_23_2_233,23.2.233 (June 2024)>>
 * <<Ref_23_2_157,23.2.157 (April 2024)>>
 * <<Ref_23_2, 23.2 (2023)>> 
+
+[[Ref_25_2_107]]
+
+== 25.2.107 (March 2026)
+
+=== Bug Fixes
+[options="header", cols="a,a,a"]
+|====
+
+|Bug Number|Control|Description
+
+|`2378`
+|Editors
+|UltraDateTimeEditor always select last month and date while changing the year and month respectively
+
+|`27870`
+|Menu
+|Context menu does not show up in UI Automation's application tree if setting UIAutomationForCodedUITestingEnabled to false
+
+|`35085`
+|CalcManager
+|Grid throws exceptions when summaries columns prior to adding sorted columns with groupby
+
+|`35658`
+|Grid
+|With UIAutomationForCodedUITestingEnabled set to false the UltraCombo drop-down items are not accessible
+
+|`36959`
+|DataSource
+|UltraDataSource - When canceling in the UltraDataSource designer, the layout of Form1.cs (Design) disappears.
+
+|`38668`
+|DataTooltipLayer
+|TitleTextColor is overriden when chart's TitleTextColor is used
+
+|`40705`
+|Editors
+|CheckEditor Unable to Create a Custom Style Using GlyphInfo
+
+|`41594`
+|UltraDataChart
+|AssigningCategoryStyle args.GetItems is null or not working to update items in the fragment series.
+
+|`41731`
+|ToolbarsManager
+|UltraToolBarsManager ApplicationMenu is not showing in WinForms designer
+
+|`40238`
+|Excel
+|fixed Excel Formula parser - Workbook.Load() throwing a Excel.FormulaParseException
+
+|`41167`
+|Excel
+|Object's Formulas are not round-tripped - Added Excel support for round tripping the camera tool
+
+|`41419`
+|Excel
+|Saving a VBA Signed Excel file does not keep a signature/certificate.
+
+|`41739`
+|GanttView
+|GanttView - TimelineVisibleDateTimeRangeChanged events raised after Form has been closed
+
+|====
+
+=== Enhancements
+
+==== Charts
+
+- Added OthersCategoryBrush and OthersCategoryOutline to DataPieChart
+
 
 [[Ref_25_2_59]]
 
