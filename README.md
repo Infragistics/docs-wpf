@@ -7,6 +7,8 @@
 ![Infragistics repository title](./ig-title.svg)
 
 # Infragistics Docs for WPF Components
+
+
  
 Welcome to the help topics repository for [Infragistics WPF](https://www.infragistics.com/help/wpf/) components. By interacting with the content in this repository, you can learn how to use these components. Also you have an opportunity to interface directly with the Infragistics product teams to help build better product documentation. Pull requests, comments and issues are all welcome!
 
