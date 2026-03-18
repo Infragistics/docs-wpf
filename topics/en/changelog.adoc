@@ -4,6 +4,7 @@
 
 This topic contains the following sections:
 
+* <<Ref_25_2_59, 25.2.107 (March 2026)>>
 * <<Ref_25_2_59, 25.2.59 (December 2025)>>
 * <<Ref_25_2_45, 25.2.45 (November 2025)>>
 * <<Ref_25_1_117, 25.1.117 (October 2025)>>
@@ -18,6 +19,80 @@ This topic contains the following sections:
 * <<Ref_23_2_233,23.2.233 (June 2024)>>
 * <<Ref_23_2_157,23.2.157 (April 2024)>>
 * <<Ref_23_2, 23.2 (2023)>> 
+
+[[Ref_25_2_107]]
+
+== 25.2.107 (March 2026)
+
+=== Bug Fixes
+[options="header", cols="a,a,a"]
+|====
+| Bug Number | Control | Description
+
+| `2391`
+| XamDataGrid
+| Grid with RecordSelectorNumberType set to DataItemIndex makes the grid show horizontal scrollbar
+
+| `2864`
+| XamRichTextEditor
+| XamRichTextEditor selecting all and then pasting content from an outside source results in an exception
+
+| `3075`
+| XamTileManager
+| XamTileManager displays no tiles when only last tile is in view and that tile is removed when using Vertical layout order
+
+| `3104`
+| XamDataPresenter
+| Headers displayed above child records are not indented to the same value as the source record
+
+| `31788`
+| XamDataPresenter
+| xamDataGrid - Preview of ChildRecordsDisplayOrder ΓÇ£BeforeParentΓÇ¥
+
+| `38668`
+| DataTooltipLayer
+| TitleTextColor is overriden when chart's TitleTextColor is used
+
+| `39370`
+| XamDataGrid
+| Grouping in DataGrid by Unbound field with CalculationSettings formula dosent recalculate
+
+| `40238`
+| Excel
+| fixed Excel Formula parser - Workbook.Load() throwing a Excel.FormulaParseException
+
+| `40447`
+| XamDataGrid
+| MergedCells - Merged cells are not printed in an expected way
+
+| `41431`
+| XamDataTree
+| Argument Null Exception occurs when re-templating the XamDataTreeNodeControl and selecting a node
+
+| `41167`
+| Excel
+| Object's Formulas are not round-tripped - Added Excel support for round tripping the camera tool
+
+| `41419`
+| Excel
+| Saving a VBA Signed Excel file does not keep a signature/certificate.
+
+| `41457`
+| XamRichTextEditor
+| RichTextEditor Loading an .rtf file with tables sometimes loads without table formatting
+
+| `41594`
+| XamDataChart
+| AssigningCategoryStyle args.GetItems is null or not working to update items in the fragment series.
+
+|====
+
+=== Enhancements
+
+==== Charts
+
+- Added OthersCategoryBrush and OthersCategoryOutline to DataPieChart
+
 
 [[Ref_25_2_59]]
 
