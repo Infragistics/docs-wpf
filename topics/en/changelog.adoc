@@ -27,60 +27,63 @@ This topic contains the following sections:
 === Bug Fixes
 [options="header", cols="a,a,a"]
 |====
+| Bug Number | Control | Description
 
-|Bug Number|Control|Description
+| `2391`
+| XamDataGrid
+| Grid with RecordSelectorNumberType set to DataItemIndex makes the grid show horizontal scrollbar
 
-|`2378`
-|Editors
-|UltraDateTimeEditor always select last month and date while changing the year and month respectively
+| `2864`
+| XamRichTextEditor
+| XamRichTextEditor selecting all and then pasting content from an outside source results in an exception
 
-|`27870`
-|Menu
-|Context menu does not show up in UI Automation's application tree if setting UIAutomationForCodedUITestingEnabled to false
+| `3075`
+| XamTileManager
+| XamTileManager displays no tiles when only last tile is in view and that tile is removed when using Vertical layout order
 
-|`35085`
-|CalcManager
-|Grid throws exceptions when summaries columns prior to adding sorted columns with groupby
+| `3104`
+| XamDataPresenter
+| Headers displayed above child records are not indented to the same value as the source record
 
-|`35658`
-|Grid
-|With UIAutomationForCodedUITestingEnabled set to false the UltraCombo drop-down items are not accessible
+| `31788`
+| XamDataPresenter
+| xamDataGrid - Preview of ChildRecordsDisplayOrder ΓÇ£BeforeParentΓÇ¥
 
-|`36959`
-|DataSource
-|UltraDataSource - When canceling in the UltraDataSource designer, the layout of Form1.cs (Design) disappears.
+| `38668`
+| DataTooltipLayer
+| TitleTextColor is overriden when chart's TitleTextColor is used
 
-|`38668`
-|DataTooltipLayer
-|TitleTextColor is overriden when chart's TitleTextColor is used
+| `39370`
+| XamDataGrid
+| Grouping in DataGrid by Unbound field with CalculationSettings formula dosent recalculate
 
-|`40705`
-|Editors
-|CheckEditor Unable to Create a Custom Style Using GlyphInfo
+| `40238`
+| Excel
+| fixed Excel Formula parser - Workbook.Load() throwing a Excel.FormulaParseException
 
-|`41594`
-|UltraDataChart
-|AssigningCategoryStyle args.GetItems is null or not working to update items in the fragment series.
+| `40447`
+| XamDataGrid
+| MergedCells - Merged cells are not printed in an expected way
 
-|`41731`
-|ToolbarsManager
-|UltraToolBarsManager ApplicationMenu is not showing in WinForms designer
+| `41431`
+| XamDataTree
+| Argument Null Exception occurs when re-templating the XamDataTreeNodeControl and selecting a node
 
-|`40238`
-|Excel
-|fixed Excel Formula parser - Workbook.Load() throwing a Excel.FormulaParseException
+| `41167`
+| Excel
+| Object's Formulas are not round-tripped - Added Excel support for round tripping the camera tool
 
-|`41167`
-|Excel
-|Object's Formulas are not round-tripped - Added Excel support for round tripping the camera tool
+| `41419`
+| Excel
+| Saving a VBA Signed Excel file does not keep a signature/certificate.
 
-|`41419`
-|Excel
-|Saving a VBA Signed Excel file does not keep a signature/certificate.
+| `41457`
+| XamRichTextEditor
+| RichTextEditor Loading an .rtf file with tables sometimes loads without table formatting
 
-|`41739`
-|GanttView
-|GanttView - TimelineVisibleDateTimeRangeChanged events raised after Form has been closed
+| `41594`
+| XamDataChart
+| AssigningCategoryStyle args.GetItems is null or not working to update items in the fragment series.
 
 |====
 
