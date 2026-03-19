@@ -4,6 +4,7 @@
 
 このトピックは、以下のセクションで構成されます。
 
+* <<Ref_25_2_107, 25.2.107 (2026 年 3 月)>>
 * <<Ref_25_2_59, 25.2.59 (2025 年 12 月)>>
 * <<Ref_25_2_45, 25.2.45 (2025 年 11 月)>>
 * <<Ref_25_1_117, 25.1.117 (2025 年 10 月)>>
@@ -18,6 +19,81 @@
 * <<Ref_23_2_233,23.2.233 (2024 年 6 月)>>
 * <<Ref_23_2_157,23.2.157 (2024 年 4 月)>>
 * <<Ref_23_2, 23.2 (2023 年)>> 
+
+[[Ref_25_2_107]]
+
+== 25.2.107 (2026 年 3 月)
+
+=== バグ修正
+
+[options="header", cols="a,a,a"]
+|====
+
+|バグ番号|コントロール|説明
+
+|`2391`
+|XamDataGrid
+|RecordSelectorNumberType を DataItemIndex に設定したグリッドで、水平スクロールバーが表示される。
+
+|`2864`
+|XamRichTextEditor
+|XamRichTextEditor - すべてを選択して外部ソースからコンテンツを貼り付けると例外が発生する。
+
+|`3075`
+|XamTileManager
+|XamTileManager - 垂直レイアウト順序を使用している場合、最後のタイルのみが表示されている状態でそのタイルが削除されると、タイルが表示されなくなる。
+
+|`3104`
+|XamDataPresenter
+|子レコードの上に表示されるヘッダーが、ソース レコードと同じ値にインデントされていない。
+
+|`31788`
+|XamDataPresenter
+|xamDataGrid - ChildRecordsDisplayOrder "BeforeParent" のプレビュー。
+
+|`38668`
+|DataTooltipLayer
+|チャートの TitleTextColor が使用されると、TitleTextColor がオーバーライドされる。
+
+|`39370`
+|XamDataGrid
+|CalculationSettings の数式が設定されたアンバインド フィールドで DataGrid をグループ化しても再計算されない。
+
+|`40238`
+|Excel
+|Excel 数式パーサーの修正 - Workbook.Load() が Excel.FormulaParseException をスローする。
+
+|`40447`
+|XamDataGrid
+|MergedCells - 結合されたセルが期待どおりに印刷されない。
+
+|`41431`
+|XamDataTree
+|XamDataTreeNodeControl を再テンプレートしてノードを選択すると ArgumentNullException が発生する。
+
+|`41167`
+|Excel
+|オブジェクトの数式がラウンドトリップされない - カメラ ツールのラウンドトリップの Excel サポートを追加。
+
+|`41419`
+|Excel
+|VBA 署名付き Excel ファイルを保存しても署名/証明書が保持されない。
+
+|`41457`
+|XamRichTextEditor
+|RichTextEditor - テーブルを含む .rtf ファイルの読み込み時に、テーブルの書式設定なしで読み込まれることがある。
+
+|`41594`
+|XamDataChart
+|AssigningCategoryStyle の args.GetItems が null であるか、フラグメント シリーズの項目を更新するために機能しない。
+
+|====
+
+=== 機能拡張
+
+==== チャート
+
+- DataPieChart に OthersCategoryBrush と OthersCategoryOutline を追加しました。
 
 [[Ref_25_2_59]]
 
