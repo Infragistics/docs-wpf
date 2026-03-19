@@ -49,7 +49,7 @@
 
 |`31788`
 |XamDataPresenter
-|xamDataGrid - ChildRecordsDisplayOrder "BeforeParent" のプレビュー。
+|XamDataGrid - ChildRecordsDisplayOrder "BeforeParent" のプレビュー。
 
 |`38668`
 |DataTooltipLayer
