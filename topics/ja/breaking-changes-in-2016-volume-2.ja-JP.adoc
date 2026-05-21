@@ -79,7 +79,7 @@ link:xamdatapresenter-about-the-field-chooser.html[フィールド選択につ�
 |ChartOutlines	
 |線状グラデーション ブラシ	
 |単色ブラシ、ChartBrushes と同じブラシ
-|マーカー テンプレート (円、三角形、ピラミッド、四角形、ダイアモンド、五角形、六角形、四面体、星形五角形、および六線星形)
+|マーカー テンプレート (円、三角形、ピラミッド、四角形、ダイアモンド、五角形、六角形、四面体、星形五角形、六線星形、およびチェックマーク)
 |StrokeThickness = 0.5	
 |StrokeThickness は、1 値の MarkerStrokeThickness にバインドされます。
 |ToolTipStyle, ToolTipNoBadgeStyle, PieChartToolTipStyle	
