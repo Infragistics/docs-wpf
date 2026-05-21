@@ -1,0 +1,9 @@
+﻿= 2026 Volume 1 の新機能
+
+=== Range Bar シリーズ
+
+link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries] は、値の範囲を水平バーとして表示する新しい xamDataChart シリーズ タイプです。これは link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries] のバー向きの対応シリーズです。
+
+この新しいシリーズ タイプの詳細については、以下のトピックを参照してください。
+
+- link:datachart-series-range-bar.html[Range Bar シリーズ]

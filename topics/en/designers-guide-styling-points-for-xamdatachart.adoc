@@ -77,6 +77,8 @@ For example:
 
 * link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.barseries_members.html[BarSeries] 
 
+* link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.rangebarseries_members.html[RangeBarSeries]
+
 * link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.stackedbarseries_members.html[StackedBarSeries] 
 
 * link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.stacked100barseries_members.html[Stacked100BarSeries] 

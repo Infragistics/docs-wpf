@@ -17,6 +17,10 @@
 
 Find out what new features have been added to recent releases of the Ultimate UI for WPF product.
 
+== link:whats-new-in-2026-volume-1.html[What’s New in 2026 Volume 1]
+
+Review the 2026 Volume 1 feature highlights, including the new Range Bar Series for xamDataChart.
+
 == link:wpf-revision-history.html[Revision History]
 
 Need to find out if or when a specific feature was added to our controls? Use this section to quickly and easily track down any new feature since our 2007 Volume 2 release.

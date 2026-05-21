@@ -1,0 +1,68 @@
+﻿////
+|metadata|
+{
+    "name": "datachart-series-range-bar",
+    "controlName": [],
+    "tags": ["xamDataChart", "RangeBarSeries"],
+    "guid": "",
+    "buildFlags": [],
+    "createdOn": "2026-05-21T00:00:00Z"
+}
+|metadata|
+////
+
+= Range Bar シリーズ
+
+link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries] は、値の範囲を水平バーとして表示する新しい xamDataChart シリーズ タイプです。これは link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries] のバー向きの対応シリーズです。
+
+== 要件
+
+xamDataChart で `RangeBarSeries` をプロットするには、以下を設定します。
+
+* X 軸の値範囲には link:{DataChartLink}.NumericXAxis.html[NumericXAxis] を使用します。
+* Y 軸のカテゴリ ラベルには link:{DataChartLink}.CategoryYAxis.html[CategoryYAxis] を使用します。
+* 各範囲を定義するデータ フィールドに `LowMemberPath` と `HighMemberPath` を設定します。
+
+== 例
+
+[source,xaml]
+----
+<ig:XamDataChart x:Name="DataChart">
+    <ig:XamDataChart.Axes>
+        <ig:NumericXAxis x:Name="xAxis" />
+        <ig:CategoryYAxis x:Name="yAxis"
+                          ItemsSource="{Binding}"
+                          Label="{}{Label}" />
+    </ig:XamDataChart.Axes>
+    <ig:XamDataChart.Series>
+        <ig:RangeBarSeries ItemsSource="{Binding}"
+                           LowMemberPath="Low"
+                           HighMemberPath="High"
+                           XAxis="{Binding ElementName=xAxis}"
+                           YAxis="{Binding ElementName=yAxis}"
+                           Title="Range" />
+    </ig:XamDataChart.Series>
+</ig:XamDataChart>
+----
+
+== 主なプロパティ
+
+[options="header", cols="a,a"]
+|===
+| プロパティ | 説明
+| `HighMemberPath` | 各バーの上限値を含むデータ列のパスを指定します。
+| `LowMemberPath` | 各バーの下限値を含むデータ列のパスを指定します。
+| `XAxis` | 値範囲を描画する数値 X 軸を指定します。
+| `YAxis` | 項目ラベルを描画するカテゴリ Y 軸を指定します。
+| `RadiusX` | バー形状の水平方向の角丸半径を設定します。
+| `RadiusY` | バー形状の垂直方向の角丸半径を設定します。
+| `LowMemberAsLegendLabel` | データ凡例で下限値の前に表示するラベルを指定します。
+| `HighMemberAsLegendLabel` | データ凡例で上限値の前に表示するラベルを指定します。
+| `LowMemberAsLegendUnit` | データ凡例で下限値の後に表示する単位を指定します。
+| `HighMemberAsLegendUnit` | データ凡例で上限値の後に表示する単位を指定します。
+|===
+
+== 関連トピック
+
+* link:whats-new-in-2026-volume-1.html[2026 Volume 1 の新機能]
+* link:datachart-datachart.html[xamDataChart]

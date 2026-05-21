@@ -1,0 +1,68 @@
+﻿////
+|metadata|
+{
+    "name": "datachart-series-range-bar",
+    "controlName": [],
+    "tags": ["xamDataChart", "RangeBarSeries"],
+    "guid": "",
+    "buildFlags": [],
+    "createdOn": "2026-05-21T00:00:00Z"
+}
+|metadata|
+////
+
+= Range Bar Series
+
+The link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries] is a new xamDataChart series type that displays value ranges as horizontal bars. It is the bar-oriented counterpart to the link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries].
+
+== Requirements
+
+To plot a `RangeBarSeries` in xamDataChart:
+
+* Use a link:{DataChartLink}.NumericXAxis.html[NumericXAxis] for the value range on the X axis.
+* Use a link:{DataChartLink}.CategoryYAxis.html[CategoryYAxis] for the category labels on the Y axis.
+* Set the `LowMemberPath` and `HighMemberPath` properties to the data fields that define each range.
+
+== Example
+
+[source,xaml]
+----
+<ig:XamDataChart x:Name="DataChart">
+    <ig:XamDataChart.Axes>
+        <ig:NumericXAxis x:Name="xAxis" />
+        <ig:CategoryYAxis x:Name="yAxis"
+                          ItemsSource="{Binding}"
+                          Label="{}{Label}" />
+    </ig:XamDataChart.Axes>
+    <ig:XamDataChart.Series>
+        <ig:RangeBarSeries ItemsSource="{Binding}"
+                           LowMemberPath="Low"
+                           HighMemberPath="High"
+                           XAxis="{Binding ElementName=xAxis}"
+                           YAxis="{Binding ElementName=yAxis}"
+                           Title="Range" />
+    </ig:XamDataChart.Series>
+</ig:XamDataChart>
+----
+
+== Key Properties
+
+[options="header", cols="a,a"]
+|===
+| Property | Description
+| `HighMemberPath` | Specifies the path to the data column that contains the upper value for each bar.
+| `LowMemberPath` | Specifies the path to the data column that contains the lower value for each bar.
+| `XAxis` | Specifies the numeric X axis used to render the value range.
+| `YAxis` | Specifies the category Y axis used to render the item labels.
+| `RadiusX` | Sets the horizontal corner radius for the bar shape.
+| `RadiusY` | Sets the vertical corner radius for the bar shape.
+| `LowMemberAsLegendLabel` | Specifies the label shown before the low value in the data legend.
+| `HighMemberAsLegendLabel` | Specifies the label shown before the high value in the data legend.
+| `LowMemberAsLegendUnit` | Specifies the unit shown after the low value in the data legend.
+| `HighMemberAsLegendUnit` | Specifies the unit shown after the high value in the data legend.
+|===
+
+== Related Topics
+
+* link:whats-new-in-2026-volume-1.html[What’s New in 2026 Volume 1]
+* link:datachart-datachart.html[xamDataChart]
