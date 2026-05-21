@@ -111,10 +111,14 @@ link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls
 Specifies a style for legend item and legend badge templates for a series in the _xamDataChart_ control’s link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.seriesviewer~series.html[Series] collection.
 
 | link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.marker_members.html[Marker]
-| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries_members.html[MarkerSeries]. link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries~markerstyle.html[MarkerStyle] 
+| link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries_members.html[MarkerSeries]. link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries~markerstyle.html[MarkerStyle]
+
+link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries~markersize.html[MarkerSize]
 
 (Applies to Series that inherits)
 |Specifies a style for markers of a series that inherits link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries_members.html[MarkerSeries] class (for example, link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.lineseries_members.html[LineSeries]).
+
+Use `MarkerSize` to set a uniform pixel width and height for markers on supported series, or set it to `NaN` to use the marker template's default size. `BubbleSeries` continues to use its radius-based sizing.
 
 | link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.legend_members.html[Legend]
 | link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.legend_members.html[Legend]. link:http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.style.aspx[Style]
