@@ -1,7 +1,0 @@
-﻿= What's New in 2026 Volume 1
-
-=== Checkmark Marker Type
-
-Charts now support a new `Checkmark` marker type that can be used for series markers and legend badges.
-
-This marker option is available anywhere the `MarkerType` and `LegendItemBadgeShape` enumerations are used for chart marker shapes.
