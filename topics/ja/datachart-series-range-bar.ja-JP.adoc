@@ -64,5 +64,5 @@ xamDataChart で `RangeBarSeries` をプロットするには、以下を設定�
 
 == 関連トピック
 
-* link:whats-new-in-2026-volume-1.html[2026 Volume 1 の新機能]
+* link:changelog.html[Ultimate UI for WPF 変更ログ]
 * link:datachart-datachart.html[xamDataChart]

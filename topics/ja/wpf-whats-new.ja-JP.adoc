@@ -17,10 +17,6 @@
 
 Ultimate UI for WPF 製品の最新リリースに追加された新機能。
 
-== link:whats-new-in-2026-volume-1.html[2026 Volume 1 の新機能]
-
-2026 Volume 1 の主な新機能 (xamDataChart の新しい Range Bar シリーズを含む) を確認できます。
-
 == link:wpf-revision-history.html[改訂履歴]
 
 特定の機能がコントロールに追加されたかどうか、いつ追加されたかを確認できます。このセクションでは 2007 Volume 2 以降の新機能についてすばやく簡単に調べることができます。

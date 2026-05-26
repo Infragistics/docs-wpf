@@ -64,5 +64,5 @@ To plot a `RangeBarSeries` in xamDataChart:
 
 == Related Topics
 
-* link:whats-new-in-2026-volume-1.html[What’s New in 2026 Volume 1]
+* link:changelog.html[Ultimate UI for WPF Changelog]
 * link:datachart-datachart.html[xamDataChart]

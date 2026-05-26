@@ -1,9 +1,0 @@
-﻿= What’s New in 2026 Volume 1
-
-=== Range Bar Series
-
-The link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries] is a new xamDataChart series type that displays value ranges as horizontal bars. It is the bar-oriented counterpart to the link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries].
-
-The following topic reviews this new series type in more detail:
-
-- link:datachart-series-range-bar.html[Range Bar Series]
