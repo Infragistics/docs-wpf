@@ -92,7 +92,7 @@ This topic contains the following sections:
 ==== Charts
 
 - Added OthersCategoryBrush and OthersCategoryOutline to DataPieChart
-- Added `MarkerSize` to `MarkerSeries` so you can set an exact pixel width and height for markers on supported chart series and restore template sizing with `NaN`
+- Added `MarkerSize` to `MarkerSeries` so you can set an exact width and height in device-independent pixels for markers on supported chart series and restore template sizing with `NaN`
 
 
 [[Ref_25_2_59]]

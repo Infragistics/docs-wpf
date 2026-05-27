@@ -118,7 +118,7 @@ link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls
 (継承するシリーズに適用)
 | link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries_members.html[MarkerSeries] クラスを継承するシリーズのマーカーのスタイルを指定します (たとえば、 link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.lineseries_members.html[LineSeries])。
 
-`MarkerSize` を使用すると、サポートされるシリーズのマーカーの幅と高さをピクセル単位で一律に設定できます。`NaN` を設定すると、マーカー テンプレートの既定サイズを使用します。`BubbleSeries` は引き続き半径ベースのサイズ設定を使用します。
+`MarkerSize` を使用すると、サポートされるシリーズのマーカーの幅と高さをデバイス非依存ピクセル単位で一律に設定できます。`NaN` を設定すると、マーカー テンプレートの既定サイズを使用します。`BubbleSeries` は引き続き半径ベースのサイズ設定を使用します。
 
 | link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.legend_members.html[Legend]
 | link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.legend_members.html[Legend]. link:http://msdn.microsoft.com/ja-jp/library/system.windows.frameworkelement.style.aspx[Style]

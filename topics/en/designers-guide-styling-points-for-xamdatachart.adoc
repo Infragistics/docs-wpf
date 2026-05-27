@@ -118,7 +118,7 @@ link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls
 (Applies to Series that inherits)
 |Specifies a style for markers of a series that inherits link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.markerseries_members.html[MarkerSeries] class (for example, link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.lineseries_members.html[LineSeries]).
 
-Use `MarkerSize` to set a uniform pixel width and height for markers on supported series, or set it to `NaN` to use the marker template's default size. `BubbleSeries` continues to use its radius-based sizing.
+Use `MarkerSize` to set a uniform width and height in device-independent pixels for markers on supported series, or set it to `NaN` to use the marker template's default size. `BubbleSeries` continues to use its radius-based sizing.
 
 | link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.legend_members.html[Legend]
 | link:{ApiPlatform}controls.charts.xamdatachart{ApiVersion}~infragistics.controls.charts.legend_members.html[Legend]. link:http://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.style.aspx[Style]
