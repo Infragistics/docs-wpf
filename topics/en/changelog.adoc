@@ -31,6 +31,16 @@ This topic contains the following sections:
 
 - Added the `Checkmark` marker type for chart series markers and legend badges.
 
+=== New Chart Features
+
+==== Range Bar Series
+
+Added support for the link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries], a new xamDataChart series type for rendering value ranges as horizontal bars. It is the bar-oriented counterpart to the link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries] and uses a link:{DataChartLink}.NumericXAxis.html[NumericXAxis] together with a link:{DataChartLink}.CategoryYAxis.html[CategoryYAxis].
+
+The following topic reviews this new series type in more detail:
+
+- link:datachart-series-range-bar.html[Range Bar Series]
+
 [[Ref_25_2_107]]
 
 == 25.2.107 (March 2026)
