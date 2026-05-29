@@ -4,7 +4,7 @@
 
 This topic contains the following sections:
 
-* <<Ref_26_1, 26.1 (2026 Release)>>
+* <<Ref_26_1, 26.1 (May 2026)>>
 * <<Ref_25_2_107, 25.2.107 (March 2026)>>
 * <<Ref_25_2_59, 25.2.59 (December 2025)>>
 * <<Ref_25_2_45, 25.2.45 (November 2025)>>
@@ -30,6 +30,17 @@ This topic contains the following sections:
 ==== Charts
 
 - Added `MarkerSize` to `MarkerSeries` so you can set an exact width and height in device-independent pixels for markers on supported chart series and restore template sizing with `NaN`
+- Added the `Checkmark` marker type for chart series markers and legend badges.
+
+=== New Chart Features
+
+==== Range Bar Series
+
+Added support for the link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries], a new xamDataChart series type for rendering value ranges as horizontal bars. It is the bar-oriented counterpart to the link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries] and uses a link:{DataChartLink}.NumericXAxis.html[NumericXAxis] together with a link:{DataChartLink}.CategoryYAxis.html[CategoryYAxis].
+
+The following topic reviews this new series type in more detail:
+
+- link:datachart-series-range-bar.html[Range Bar Series]
 
 [[Ref_25_2_107]]
 

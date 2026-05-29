@@ -30,6 +30,17 @@
 ==== チャート
 
 - サポートされるチャート シリーズのマーカーの幅と高さをデバイス非依存ピクセル単位で正確に設定し、`NaN` でテンプレートのサイズ設定に戻せる `MarkerSize` を `MarkerSeries` に追加しました。
+- チャート シリーズのマーカーおよび凡例バッジに `Checkmark` マーカー タイプを追加しました。
+
+=== 新しいチャート機能
+
+==== Range Bar シリーズ
+
+link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries] のサポートが追加されました。これは、値の範囲を水平バーとして描画する新しい xamDataChart シリーズ タイプです。link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries] のバー向きの対応シリーズであり、link:{DataChartLink}.NumericXAxis.html[NumericXAxis] と link:{DataChartLink}.CategoryYAxis.html[CategoryYAxis] を使用します。
+
+この新しいシリーズ タイプの詳細については、以下のトピックを参照してください。
+
+- link:datachart-series-range-bar.html[Range Bar シリーズ]
 
 [[Ref_25_2_107]]
 

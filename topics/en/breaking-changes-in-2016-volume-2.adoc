@@ -80,7 +80,7 @@ link:xamdatapresenter-about-the-field-chooser.html[About the Field Chooser]
 |ChartOutlines	
 |Linear gradient brushes	
 |Solid color brushes, same brushes as ChartBrushes
-|Marker Templates (Circle, Triangle, Pyramid, Square, Diamond, Pentagon, Hexagon, Tetragram, Pentagram, Hexagram)	
+|Marker Templates (Circle, Triangle, Pyramid, Square, Diamond, Pentagon, Hexagon, Tetragram, Pentagram, Hexagram, Checkmark)
 |StrokeThickness = 0.5	
 |StrokeThickness is now bound to MarkerStrokeThickness which has a value of 1
 |ToolTipStyle, ToolTipNoBadgeStyle, PieChartToolTipStyle	
