@@ -42,6 +42,55 @@ link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries] のサポートが追�
 
 - link:datachart-series-range-bar.html[Range Bar シリーズ]
 
+=== バグ修正
+
+[options="header", cols="a,a,a"]
+|====
+
+|バグ番号|コントロール|説明
+
+|`2281`
+|DonutChart
+|テーマ適用時に DonutChart の LegendItemBadgeTemplate が表示されない。
+
+|`3075`
+|TileManager
+|垂直レイアウト順序を使用している場合、最後のタイルのみが表示されている状態でそのタイルが削除されると、XamTileManager にタイルが表示されなくなる。
+
+|`3104`
+|DataPresenter
+|子レコードの上に表示されるヘッダーが、ソース レコードと同じ値にインデントされていない。
+
+|`3284`
+|DataTree
+|XamDataTree: ノードがインライン編集モードのとき、外部ボタンのクリック/コマンドが発火しない。
+
+|`33893`
+|TextEditor
+|編集モードに入るとき TextEditor がわずかにリサイズされる。
+
+|`34441`
+|PropertyGrid
+|EditTemplate で ContentPresenter を使用している場合、プロパティ グリッドをスクロールすると値が変わる。
+
+|`39084`
+|TextEditor
+|XamRichTextEditor が読み込んだ RTF ファイルに対して水平スクロールバーを誤って表示する。
+
+|`39370`
+|DataGrid
+|CalculationSettings の数式が設定されたアンバインド フィールドで DataGrid をグループ化しても再計算されない。
+
+|`40128`
+|TreeGrid
+|XamDataTree を含むアプリケーションで 'System.InvalidOperationException: Collection was modified' が発生する。
+
+|`41419`
+|Excel
+|VBA 署名付き Excel ファイルを保存しても署名/証明書が保持されない。
+
+|====
+
 [[Ref_25_2_107]]
 
 == 25.2.107 (2026 年 3 月)
