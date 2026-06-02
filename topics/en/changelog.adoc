@@ -23,12 +23,13 @@ This topic contains the following sections:
 
 [[Ref_26_1]]
 
-== 26.1 (May 2026)
+== 26.1 (2026 Release)
 
 === Enhancements
 
 ==== Charts
 
+- Added `MarkerSize` to `MarkerSeries` so you can set an exact width and height in device-independent pixels for markers on supported chart series and restore template sizing with `NaN`
 - Added the `Checkmark` marker type for chart series markers and legend badges.
 
 === New Chart Features
