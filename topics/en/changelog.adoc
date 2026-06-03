@@ -29,7 +29,7 @@ This topic contains the following sections:
 
 ==== Charts
 
-- Added `MarkerSize` to `MarkerSeries` so you can set an exact width and height in device-independent pixels for markers on supported chart series and restore template sizing with `NaN`
+- Added `MarkerSize` property so you can set an exact width and height in device-independent pixels for markers on supported chart series and restore template sizing with `NaN`
 - Added the `Checkmark` marker type for chart series markers and legend badges.
 
 === New Chart Features
@@ -41,6 +41,56 @@ Added support for the link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries], 
 The following topic reviews this new series type in more detail:
 
 - link:datachart-series-range-bar.html[Range Bar Series]
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+
+|Bug Number|Control|Description
+
+|`2281`
+|DonutChart
+|DonutChart is not showing the LegendItemBadgeTemplate when themes are applied
+
+|`3075`
+|TileManager
+|XamTileManager displays no tiles when only last tile is in view and that tile is removed when using Vertical layout order
+
+|`3104`
+|DataPresenter
+|Headers displayed above child records are not indented to the same value as the source record
+
+|`3284`
+|DataTree
+|XamDataTree: External button Click/Command not fired when node is in inline edit mode
+
+|`33893`
+|TextEditor
+|TextEditor resizes slightly when entering edit mode
+
+|`34441`
+|PropertyGrid
+|When using a ContentPresenter in an EditTemplate scrolling the property grid causes values to change
+
+|`39084`
+|TextEditor
+|XamRichTextEditor incorrectly shows horizontal scrollbar for loaded RTF file
+
+|`39370`
+|DataGrid
+|Grouping in DataGrid by Unbound field with CalculationSettings formula dosent recalculate
+
+|`40128`
+|TreeGrid
+|'System.InvalidOperationException: Collection was modified' occurs in an application containing XamDataTree
+
+|`41419`
+|Excel
+|Saving a VBA Signed Excel file does not keep a signature/certificate.
+
+|====
+
 
 [[Ref_25_2_107]]
 
