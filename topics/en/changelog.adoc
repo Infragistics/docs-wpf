@@ -4,7 +4,7 @@
 
 This topic contains the following sections:
 
-* <<Ref_26_1, 26.1 (May 2026)>>
+* <<Ref_26_1, 26.1 (June 2026)>>
 * <<Ref_25_2_107, 25.2.107 (March 2026)>>
 * <<Ref_25_2_59, 25.2.59 (December 2025)>>
 * <<Ref_25_2_45, 25.2.45 (November 2025)>>
