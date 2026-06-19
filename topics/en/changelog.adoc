@@ -4,6 +4,7 @@
 
 This topic contains the following sections:
 
+* <<Ref_26_1_21, 26.1.21 (June 2026)>>
 * <<Ref_26_1, 26.1 (June 2026)>>
 * <<Ref_25_2_107, 25.2.107 (March 2026)>>
 * <<Ref_25_2_59, 25.2.59 (December 2025)>>
@@ -20,6 +21,23 @@ This topic contains the following sections:
 * <<Ref_23_2_233,23.2.233 (June 2024)>>
 * <<Ref_23_2_157,23.2.157 (April 2024)>>
 * <<Ref_23_2, 23.2 (2023)>> 
+
+[[Ref_26_1_21]]
+
+== 26.1.21 (June 2026)
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+
+|Bug Number|Control|Description
+
+|`3065`
+|DataChart
+|Regression issue with XamDataChart using ScatterLineSeries and custom label converter , throwing index out of range error
+
+|====
 
 [[Ref_26_1]]
 
