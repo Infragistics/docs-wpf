@@ -35,7 +35,7 @@
 
 |`3065`
 |DataChart
-|ScatterLineSeries とカスタムラベルコンバーターを使用した XamDataChart における回帰問題で、添字が範囲外になるエラーが発生する問題を修正
+|ScatterLineSeries とカスタムラベルコンバーターを使用している XamDataChart で、インデックス範囲外のエラーがスローされる問題を修正
 
 |====
 
