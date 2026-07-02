@@ -13,7 +13,23 @@
 
 = Range Bar Series
 
-The link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries] is a new xamDataChart series type that displays value ranges as horizontal bars. It is the bar-oriented counterpart to the link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries].
+== Overview
+
+The link:{DataChartLink}.RangeBarSeries.html[RangeBarSeries] is a xamDataChart series type that displays value ranges as horizontal bars. It is the bar-oriented counterpart to the link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries].
+
+Range Bar Series uses a link:{DataChartLink}.CategoryYAxis.html[CategoryYAxis] for categories and a link:{DataChartLink}.NumericXAxis.html[NumericXAxis] for values, with each bar spanning from a low value to a high value on the X axis.
+
+== Class Hierarchy
+
+[source]
+----
+RangeCategorySeries
+├── HorizontalRangeCategorySeries
+│   ├── RangeColumnSeries      (categories on X, value ranges on Y)
+│   └── RangeAreaSeries        (categories on X, value ranges on Y)
+└── VerticalRangeCategorySeries
+    └── RangeBarSeries         (categories on Y, value ranges on X)
+----
 
 == Requirements
 
@@ -61,6 +77,40 @@ To plot a `RangeBarSeries` in xamDataChart:
 | `LowMemberAsLegendUnit` | Specifies the unit shown after the low value in the data legend.
 | `HighMemberAsLegendUnit` | Specifies the unit shown after the high value in the data legend.
 |===
+
+== Comparison with Range Column Series
+
+[options="header", cols="a,a,a"]
+|===
+| Feature | Range Column Series | Range Bar Series
+| Orientation | Vertical columns | Horizontal bars
+| Category Axis | CategoryXAxis (horizontal) | CategoryYAxis (vertical)
+| Value Axis | NumericYAxis (vertical) | NumericXAxis (horizontal)
+| Base Class | HorizontalRangeCategorySeries | VerticalRangeCategorySeries
+| IsVertical | false | true
+| IsBar | false | true
+|===
+
+== Data Format
+
+The Range Bar Series expects data items with high and low numeric values and a category label:
+
+[source,json]
+----
+[
+    { "Label": "A", "High": 1000, "Low": 800 },
+    { "Label": "B", "High": 200, "Low": 100 },
+    { "Label": "C", "High": 400, "Low": 200 },
+    { "Label": "D", "High": -200, "Low": -400 },
+    { "Label": "E", "High": 200, "Low": 100 }
+]
+----
+
+== Related Series
+
+* link:{DataChartLink}.RangeColumnSeries.html[RangeColumnSeries]
+* link:{DataChartLink}.RangeAreaSeries.html[RangeAreaSeries]
+* link:{DataChartLink}.BarSeries.html[BarSeries]
 
 == Related Topics
 
