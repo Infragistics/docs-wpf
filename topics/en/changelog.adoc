@@ -4,6 +4,7 @@
 
 This topic contains the following sections:
 
+* <<Ref_26_1_54, 26.1.54 (September 2026)>>
 * <<Ref_26_1_21, 26.1.21 (June 2026)>>
 * <<Ref_26_1, 26.1 (June 2026)>>
 * <<Ref_25_2_107, 25.2.107 (March 2026)>>
@@ -21,6 +22,80 @@ This topic contains the following sections:
 * <<Ref_23_2_233,23.2.233 (June 2024)>>
 * <<Ref_23_2_157,23.2.157 (April 2024)>>
 * <<Ref_23_2, 23.2 (2023)>> 
+
+[[Ref_26_1_54]]
+
+== 26.1.54 (September 2026)
+
+=== New Features
+
+==== BulletGraph
+
+* *Add StartInset/EndInset pixel-gap range properties to linear gauge, bullet graph, and radial gauge*
++
+Ranges on the linear gauge, bullet graph, and radial gauge can only be offset by value, which requires knowing the control's pixel dimensions to produce a fixed-size gap. This adds `StartInset`/`EndInset` properties that inset a range's start/end by a number of device-independent pixels, enabling pixel-precise gaps between adjacent ranges regardless of control size.
+```csharp
+// 50px gap between two adjacent ranges, independent of gauge width
+
+==== DataChart
+
+* *New Axis visibility properties*
+- Added properties `AreLabelsVisible, AreAnnotationsVisible, AreTickMarksVisible` and `IsLabelPanelVisible` to `Axis`, they can be used to toggle visibility for each type of element in the axis.
+- Added properties `XAxisIsLabelPanelVisible, YAxisIsLabelPanelVisible, XAxisAreLabelsVisible, YAxisAreLabelsVisible, XAxisAreAnnotationsVisible, YAxisAreAnnotationsVisible, XAxisAreTickMarksVisible, YAxisAreTickMarksVisible` to XYCharts
+
+* *Add marker size scaling to legends*
+
+* *Add FormatSpecifiers to TimeXAxis*
+
+=== Bug Fixes
+
+[options="header", cols="a,a,a"]
+|====
+
+|Bug Number|Control|Description
+
+|`3018`
+|Grid
+|XamTreeGrid using Field Chooser throwing Index was out of range error when moving columns
+
+|`3065`
+|DataChart
+|Regression issue with XamDataChart using ScatterLineSeries and custom label converter , throwing index out of range error
+
+|`3551`
+|Editors
+|The RecentColorPalette property of the color picker should be public
+
+|`3810`
+|DataPresenter
+|ArgumentOutOfRangeException thrown when adding a Field and calling EnsureUniqueFieldPositions
+
+|`32043`
+|DataPresenter
+|xamDataPresenter with treeview layout showing multiple row expansion indicators when changing the field layout
+
+|`3889`
+|Reporting
+|Fix the report preview failing to load resource parts (images and fonts)
+
+|`36536`
+|Ribbon
+|caption area's height resizes when toggling QuickAccessToolbarLocation Above\BelowRibbon
+
+|`17097`
+|Spreadsheet
+|Row height of merged cells differs from how they appear in MS Excel
+
+|`2183`
+|Spreadsheet
+|SUMIF doesn't recalculate after importing an Excel file
+
+|`33492`
+|SyntaxEditor
+|XamSyntaxEditor - - CLIPBOARD_E_CANT_OPEN occurs when [ctrl] + [c] is kept pressed for a while.
+
+|====
+
 
 [[Ref_26_1_21]]
 

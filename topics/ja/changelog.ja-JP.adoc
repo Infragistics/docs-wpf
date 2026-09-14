@@ -4,6 +4,7 @@
 
 このトピックは、以下のセクションで構成されます。
 
+* <<Ref_26_1_54, 26.1.54 (September 2026)>>
 * <<Ref_26_1_21, 26.1.21 (2026 年 6 月)>>
 * <<Ref_26_1, 26.1 (2026 年リリース)>>
 * <<Ref_25_2_107, 25.2.107 (2026 年 3 月)>>
@@ -21,6 +22,79 @@
 * <<Ref_23_2_233,23.2.233 (2024 年 6 月)>>
 * <<Ref_23_2_157,23.2.157 (2024 年 4 月)>>
 * <<Ref_23_2, 23.2 (2023 年)>> 
+
+[[Ref_26_1_54]]
+
+== 26.1.54 (2026 年 9 月)
+
+=== 新機能
+
+==== BulletGraph
+
+* *線形ゲージ、ブレット グラフ、およびラジアル ゲージに StartInset/EndInset のピクセル間隔範囲プロパティを追加*
++
+線形ゲージ、ブレット グラフ、およびラジアル ゲージの範囲は、現在値によってのみオフセットできます。このため、固定サイズのギャップを作成するには、コントロールのピクセル寸法を知る必要があります。これにより、範囲の開始/終了をデバイス非依存ピクセル数でインセットする `StartInset`/`EndInset` プロパティが追加され、コントロール サイズに関係なく、隣接する範囲間にピクセル単位で正確なギャップを作成できるようになります。
+```csharp
+// 2 つの隣接する範囲の間に 50px のギャップを設定します。ゲージの幅には依存しません。
+
+==== DataChart
+
+* *新しい軸の表示プロパティ*
+- `Axis` に `AreLabelsVisible`、`AreAnnotationsVisible`、`AreTickMarksVisible`、`IsLabelPanelVisible` の各プロパティを追加し、軸内の各要素の表示/非表示を切り替えられるようにしました。
+- `XYCharts` に `XAxisIsLabelPanelVisible`、`YAxisIsLabelPanelVisible`、`XAxisAreLabelsVisible`、`YAxisAreLabelsVisible`、`XAxisAreAnnotationsVisible`、`YAxisAreAnnotationsVisible`、`XAxisAreTickMarksVisible`、`YAxisAreTickMarksVisible` を追加しました。
+
+* *凡例のマーカー サイズのスケーリングを追加*
+
+* *TimeXAxis に FormatSpecifiers を追加*
+
+=== バグ修正
+
+[options="header", cols="a,a,a"]
+|====
+
+|バグ番号|コントロール|説明
+
+|`3018`
+|Grid
+|Field Chooser を使用している XamTreeGrid で、列を移動するとインデックス範囲外のエラーが発生する問題を修正
+
+|`3065`
+|DataChart
+|ScatterLineSeries とカスタム ラベル コンバーターを使用している XamDataChart で、インデックス範囲外のエラーがスローされる回帰問題を修正
+
+|`3551`
+|Editors
+|Color Picker の `RecentColorPalette` プロパティを public に変更
+
+|`3810`
+|DataPresenter
+|Field を追加して `EnsureUniqueFieldPositions` を呼び出したときに `ArgumentOutOfRangeException` がスローされる問題を修正
+
+|`32043`
+|DataPresenter
+|treeview レイアウトを使用している xamDataPresenter で、field layout を変更すると複数の行展開インジケーターが表示される問題を修正
+
+|`3889`
+|Reporting
+|レポート プレビューでリソース パーツ (画像とフォント) を読み込めない問題を修正
+
+|`36536`
+|Ribbon
+|QuickAccessToolbarLocation を Above\BelowRibbon で切り替えると、キャプション領域の高さがリサイズされる問題を修正
+
+|`17097`
+|Spreadsheet
+|結合セルの行高さが MS Excel 上の表示と異なる問題を修正
+
+|`2183`
+|Spreadsheet
+|Excel ファイルのインポート後に `SUMIF` が再計算されない問題を修正
+
+|`33492`
+|SyntaxEditor
+|XamSyntaxEditor で `[Ctrl] + [C]` を長押しすると `CLIPBOARD_E_CANT_OPEN` が発生する問題を修正
+
+|====
 
 [[Ref_26_1_21]]
 
